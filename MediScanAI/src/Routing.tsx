@@ -1,31 +1,40 @@
-import { createBrowserRouter } from "react-router-dom";
-import LoginPage from "./pages/auth/LoginPage";
+import { createBrowserRouter, Navigate } from "react-router-dom";
+import PublicRoute from "./components/PublicRoute";
 import RegisterPage from "./pages/auth/RegisterPage";
+import LoginPage from "./pages/auth/LoginPage";
 import HomePage from "./pages/main/HomePage";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 const router = createBrowserRouter([
-    {
-        path: "/login",
-        element: <LoginPage />,
-    },
-    {
+  {
+    element: <PublicRoute />,
+    children: [
+      {
+        index: true,
+        element: <HomePage />,
+      },
+      {
         path: "/register",
         element: <RegisterPage />,
-    },
-    {
-        path: "/",
-        element: <div>Layout</div>,
-        children: [
-            {
-                path: "/",
-                element: <HomePage />
-            },
-            {
-                path: "*",
-                element: <div>Page not found</div>
-            }
-        ]
-    }
+      },
+      {
+        path: "/login",
+        element: <LoginPage />,
+      },
+    ],
+  },
+  {
+    path: "/",
+    element: <ProtectedRoute />,
+    children: [
+      {
+        path: "/ai-doctor",
+        element: <div>AI Doctor page</div>,
+      },
+      //...
+    ],
+  },
+  { path: "*", element: <Navigate to={"/"} replace /> },
 ]);
 
 export default router;
