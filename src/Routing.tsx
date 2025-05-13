@@ -5,7 +5,7 @@ import LoginPage from './pages/auth/LoginPage';
 import HomePage from './pages/main/HomePage';
 import ProtectedRoute from './components/ProtectedRoute';
 import AboutUsPage from './pages/main/AboutUsPage';
-import Layout from "./components/Layout.tsx";
+import Layout from './components/Layout.tsx';
 
 const router = createBrowserRouter([
   {
@@ -13,11 +13,19 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <Layout><HomePage /></Layout>,
+        element: (
+          <Layout>
+            <HomePage />
+          </Layout>
+        ),
       },
       {
         path: '/about-us',
-        element: <Layout><AboutUsPage /></Layout>,
+        element: (
+          <Layout>
+            <AboutUsPage />
+          </Layout>
+        ),
       },
       {
         path: '/register',
