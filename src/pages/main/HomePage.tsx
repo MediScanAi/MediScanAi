@@ -1,4 +1,4 @@
-import { Typography, Row, Col, Card, Carousel, List, } from 'antd';
+import { Typography, Row, Col, Card, Carousel, List, Button, } from 'antd';
 import 'antd/dist/reset.css';
 import {
     CloudUploadOutlined,
@@ -17,6 +17,8 @@ import insightsReport from "../../assets/photos/insightsReport.jpg"
 import clinicalDecision from "../../assets/photos/clinicalDecision.jpg"
 import backGroundPlatform from "../../assets/photos/backGroundPlatform.jpg"
 import mission from "../../assets/photos/ourMission.jpg"
+import getStartedBackground from "../../assets/photos/getStartedBackground.jpg"
+import "../../assets/styles/homepage.css"
 import { useEffect, useState } from 'react';
 
 const { Title, Text } = Typography;
@@ -147,6 +149,70 @@ function HomePage() {
 
                     </Col>
                 </Row>
+                <Row style={{
+                    width: "96.5%",
+                    display: "flex",
+                    justifyContent: "space-around",
+                    alignItems: "center",
+                    flexDirection: "row",
+                    backgroundImage: `url(${getStartedBackground})`,
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center',
+                    minHeight: "220px",
+                    borderRadius: "15px",
+                    margin: "0 auto",
+                    marginTop: "20px",
+                    position: 'relative',
+                    overflow: 'hidden',
+                    boxShadow: '0 10px 30px rgba(0,0,0,0.1)',
+                }}>
+                    <div style={{
+                        position: 'absolute',
+                        top: 0,
+                        left: 0,
+                        right: 0,
+                        bottom: 0,
+                        zIndex: 1,
+                    }}></div>
+
+                    <Col style={{
+                        textAlign: 'center',
+                        display: "flex",
+                        flexDirection: "column",
+                        alignItems: "center",
+                        zIndex: 2,
+                        padding: '20px',
+                    }}>
+                        <Title style={{ color: 'black', marginBottom: 16, fontWeight: 700 }}>
+                            Ready to Get Started?
+                        </Title>
+
+                        <Text style={{ fontSize: 23, color: "black", fontWeight: 500, marginBottom: 20 }}>
+                            Embrace wellness with us - where health meets happiness in every step of your journey.
+                        </Text>
+
+                        <Button
+                            type="primary"
+                            size="large"
+                            style={{
+                                height: '50px',
+                                padding: '0 40px',
+                                fontSize: '1.1rem',
+                                fontWeight: 600,
+                                borderRadius: '25px',
+                                boxShadow: '0 4px 15px rgba(0,0,0,0.1)',
+                                background: 'linear-gradient(45deg, #1890ff, #0052d9)',
+                                border: 'none',
+                                animation: 'fadeInUp 1s ease-out 0.4s forwards',
+                                opacity: 0,
+                                transition: 'all 0.3s ease',
+                            }}
+
+                        >
+                            Start Your Journey
+                        </Button>
+                    </Col>
+                </Row>
                 <Col
                     style={{
                         textAlign: "center",
@@ -155,7 +221,7 @@ function HomePage() {
                     }}
                 >
                     <Title level={2} style={{ color: '#3498db', marginBottom: 32 }}>
-                        How It Works
+                        How It Works ?
                     </Title>
                     <Row gutter={[16, 16]} justify="space-around" align="top">
                         {steps.map(({ title, text, icon, backgroundImage }, index) => (
@@ -196,9 +262,10 @@ function HomePage() {
                     </Row>
                 </Col >
 
+
                 <Col style={{ textAlign: "center", marginTop: 25, padding: "24px" }}>
                     <Title level={2} style={{ color: '#3498db', marginBottom: 32 }}>
-                        Why Choose Us?
+                        Why Choose Us ?
                     </Title>
 
                     <List
