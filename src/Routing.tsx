@@ -4,6 +4,7 @@ import RegisterPage from './pages/auth/RegisterPage';
 import LoginPage from './pages/auth/LoginPage';
 import HomePage from './pages/main/HomePage';
 import ProtectedRoute from './components/ProtectedRoute';
+import Layout from "./components/Layout.tsx";
 
 const router = createBrowserRouter([
   {
@@ -11,7 +12,7 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <HomePage />,
+        element: <Layout><HomePage /></Layout>,
       },
       {
         path: '/register',
