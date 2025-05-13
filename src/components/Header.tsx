@@ -3,7 +3,7 @@ import {NavLink} from "react-router-dom";
 import {useEffect, useState} from "react";
 import {ExperimentOutlined, HomeOutlined, LogoutOutlined, MenuOutlined, UserOutlined} from "@ant-design/icons";
 import {useNavigate} from "react-router";
-import '../App.css'
+import '../assets/styles/header.css'
 
 const burgerItems:MenuProps['items'] =[
     {
@@ -22,7 +22,7 @@ const burgerItems:MenuProps['items'] =[
         key:'Doctor',
     },
     {
-        label:(<NavLink to="/">About Us</NavLink>),
+        label:(<NavLink to="/about-us">About Us</NavLink>),
         key:'About',
     }
 ]
@@ -57,11 +57,11 @@ const Header = () => {
         },
         {
             key:"doctor",
-            label: (<span  onClick={()=>navigate('/')}>Your AI Doctor</span>)
+            label: (<span  onClick={()=>navigate('/ai-doctor')}>Your AI Doctor</span>)
         },
         {
-            key:"about",
-            label: (<span  onClick={()=>navigate('/')}>About Us</span>)
+            key:"about-us",
+            label: (<span  onClick={()=>navigate('/about-us')}>About Us</span>)
         }
 
     ]
@@ -74,7 +74,15 @@ const Header = () => {
         return () => window.removeEventListener("resize", handleResize);
     }, []);
     return (
-        <header style={{position:'sticky',top:0,zIndex:1000,borderBottom:'1px solid #e8e8e8',padding:5,}}>
+        <header style={{
+            position:'sticky',
+            top:0,
+            zIndex:1000,
+            borderBottom:'1px solid #e8e8e8',
+            padding:5,
+            backgroundColor: 'rgba(154, 154, 154, 0.77)',
+            backdropFilter: 'blur(5px)',
+            }}>
             <Flex justify="space-around" align="middle" style={{width:'100%',height:40}}>
                 {width < 820 ? <div >
                         <Dropdown menu={{items: burgerItems}}>
@@ -83,13 +91,12 @@ const Header = () => {
                     </div> :
                     (
                         <div   >
-                            <Tabs size={'middle'} items={items}>
-                            </Tabs>
+                            <Tabs className="custom-tabs" size={'middle'} items={items}></Tabs>
                         </div>
                     )}
                 <div style={{display:'flex',alignItems:'center'}} >
                     <Dropdown menu={{items: userItems}}>
-                        <Button>
+                        <Button style={{backgroundColor:'transparent',color:'black', border:'none', fontSize:16}}>
                             <UserOutlined style={{fontSize: 20}}/>
                             arayik@gmail.com
                         </Button>
