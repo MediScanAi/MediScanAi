@@ -3,12 +3,6 @@
     margin: 0;
     box-sizing: border-box;
 }
-html,body{
-    height: 100%;
-}
-#root{
-    height: 100%;
-}
 .ant-row{
     margin: 0;
 }

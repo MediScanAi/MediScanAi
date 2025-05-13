@@ -6,17 +6,18 @@ import {
     SolutionOutlined,
     BarChartOutlined
 } from '@ant-design/icons';
-import partner1 from "../../assets/partner1.jpg"
-import partner2 from "../../assets/partner2.jpg"
-import partner3 from "../../assets/partner3.png"
-import partner4 from "../../assets/partner4.jpg"
-import partner5 from "../../assets/partner5.jpg"
-import dataUpload from "../../assets/dataUpload.jpg"
-import aiAnalysis from "../../assets/aiAnalysis.jpg"
-import insightsReport from "../../assets/insightsReport.jpg"
-import clinicalDecision from "../../assets/clinicalDecision.jpg"
-import backGroundPlatform from "../../assets/backGroundPlatform.jpg"
-import mission from "../../assets/ourMission.jpg"
+import partner1 from "../../assets/photos/partner1.jpg"
+import partner2 from "../../assets/photos/partner2.jpg"
+import partner3 from "../../assets/photos/partner3.png"
+import partner4 from "../../assets/photos/partner4.jpg"
+import partner5 from "../../assets/photos/partner5.jpg"
+import dataUpload from "../../assets/photos/dataUpload.jpg"
+import aiAnalysis from "../../assets/photos/aiAnalysis.jpg"
+import insightsReport from "../../assets/photos/insightsReport.jpg"
+import clinicalDecision from "../../assets/photos/clinicalDecision.jpg"
+import backGroundPlatform from "../../assets/photos/backGroundPlatform.jpg"
+import mission from "../../assets/photos/ourMission.jpg"
+import { useEffect, useState } from 'react';
 
 const { Title, Text } = Typography;
 
@@ -103,6 +104,15 @@ const partners = [
 ]
 
 function HomePage() {
+    const [width, setWidth] = useState(window.innerWidth);
+
+    useEffect(() => {
+        const handleResize = () => {
+            setWidth(window.innerWidth);
+        };
+        window.addEventListener("resize", handleResize);
+        return () => window.removeEventListener("resize", handleResize);
+    }, []);
 
     return (
         <Row justify="center" align="middle"
@@ -113,6 +123,7 @@ function HomePage() {
             }}>
             <Col style={{ width: "100%" }}>
                 <Row style={{
+                    width: "96.5%",
                     padding: "20px",
                     display: "flex",
                     justifyContent: "space-around",
@@ -122,7 +133,8 @@ function HomePage() {
                     backgroundSize: 'cover',
                     backgroundPosition: 'center',
                     minHeight: "220px",
-                    borderRadius: "15px"
+                    borderRadius: "15px",
+                    margin: "0 auto"
                 }}>
                     <Col>
                         <div style={{ textAlign: 'center', display: "flex", flexDirection: "column", alignItems: "center" }}>
@@ -225,7 +237,7 @@ function HomePage() {
                                 src={mission}
                                 alt="mission"
                                 style={{
-                                    height: '350px',
+                                    width: '96.5%',
                                     borderRadius: '25px',
                                     backgroundSize: 'cover',
                                     backgroundPosition: 'center',
@@ -233,7 +245,7 @@ function HomePage() {
                             />
                         </Col>
                         <Col xs={24} md={12}>
-                            <Text type="secondary" style={{ fontSize: 25, display: "block", textAlign: 'center' }}>
+                            <Text type="secondary" style={{ fontSize: 20, display: "block", textAlign: 'center' }}>
                                 Our mission is to provide healthcare professionals with accurate, actionable insights to make
                                 informed decisions for their patients. By leveraging advanced AI and genomic data,
                                 we aim to improve patient care, enhance diagnostic accuracy, and support personalized treatment plans.
@@ -248,19 +260,19 @@ function HomePage() {
                     <Carousel
                         autoplay
                         autoplaySpeed={2000}
-                        dots
-                        slidesToShow={3}
+                        dots={false}
+                        slidesToShow={width > 1200 ? 4 : width > 900 ? 3 : width > 600 ? 2 : 1}
                         slidesToScroll={1}
                         infinite
-                        style={{ padding: '40px', background: '#f9f9f9' }}
+                        style={{ padding: '40px'}}
                     >
                         {partners.map((partner) => (
                             <Col style={{
                                 borderRadius: '8px',
                                 overflow: 'hidden',
                             }}>
-                                <Title level={4} style={{ color: '#2c3e50', textAlign: "center", fontSize: "20px" }}>{partner.name}</Title>
-                                <Row style={{ height: "350px", padding: "15px", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                                <Title level={4} style={{ color: '#2c3e50', textAlign: "center", fontSize: "17px" }}>{partner.name}</Title>
+                                <Row style={{ height: "250px", padding: "15px", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
                                     <img src={partner.image} alt={partner.name} style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: "25px" }} />
                                 </Row>
                             </Col>
