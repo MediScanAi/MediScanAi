@@ -1,9 +1,9 @@
-import { createBrowserRouter, Navigate } from "react-router-dom";
-import PublicRoute from "./components/PublicRoute";
-import RegisterPage from "./pages/auth/RegisterPage";
-import LoginPage from "./pages/auth/LoginPage";
-import HomePage from "./pages/main/HomePage";
-import ProtectedRoute from "./components/ProtectedRoute";
+import { createBrowserRouter, Navigate } from 'react-router-dom';
+import PublicRoute from './components/PublicRoute';
+import RegisterPage from './pages/auth/RegisterPage';
+import LoginPage from './pages/auth/LoginPage';
+import HomePage from './pages/main/HomePage';
+import ProtectedRoute from './components/ProtectedRoute';
 
 const router = createBrowserRouter([
   {
@@ -14,27 +14,27 @@ const router = createBrowserRouter([
         element: <HomePage />,
       },
       {
-        path: "/register",
+        path: '/register',
         element: <RegisterPage />,
       },
       {
-        path: "/login",
+        path: '/login',
         element: <LoginPage />,
       },
     ],
   },
   {
-    path: "/",
+    path: '/',
     element: <ProtectedRoute />,
     children: [
       {
-        path: "/ai-doctor",
+        path: '/ai-doctor',
         element: <div>AI Doctor page</div>,
       },
       //...
     ],
   },
-  { path: "*", element: <Navigate to={"/"} replace /> },
+  { path: '*', element: <Navigate to={'/'} replace /> },
 ]);
 
 export default router;
