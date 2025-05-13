@@ -68,7 +68,7 @@ const chooseUs = [
         text: "In healthcare, time is critical. Our system delivers detailed analysis and comprehensive results quickly — without compromising accuracy. This means patients can get timely care, and clinicians can act with confidence.",
     },
     {
-        title: "Easy to Use",
+        title: "Easey to Use",
         text: "Designed for simplicity, our platform requires no specialized training. With an intuitive interface, healthcare providers can upload data, run analyses, and review results in just a few steps, making advanced insights accessible to all.",
     },
 ];
