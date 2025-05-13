@@ -1,10 +1,10 @@
-import { Typography, Row, Col, Card, Carousel, List } from 'antd';
+import { Typography, Row, Col, Card, Carousel, List, } from 'antd';
 import 'antd/dist/reset.css';
 import {
     CloudUploadOutlined,
     FileTextOutlined,
     SolutionOutlined,
-    BarChartOutlined
+    BarChartOutlined,
 } from '@ant-design/icons';
 import partner1 from "../../assets/photos/partner1.jpg"
 import partner2 from "../../assets/photos/partner2.jpg"
@@ -24,32 +24,30 @@ const { Title, Text } = Typography;
 const steps = [
     {
         title: "Data Upload",
-        text: "Securely submit medical genomic data through our encrypted portal",
+        text: "Securely upload your genomic data via encrypted portal",
         icon: <CloudUploadOutlined style={{ fontSize: 40 }} />,
         backgroundImage: dataUpload
     },
     {
         title: "AI Analysis",
-        text: "Our algorithms process your data with multi-omic integration",
+        text: "AI analyzes genomic data using multi-omic integration techniques",
         icon: <BarChartOutlined style={{ fontSize: 40 }} />,
         backgroundImage: aiAnalysis
-
     },
     {
-        title: " Insights Report",
-        text: "Receive actionable biomarkers and therapeutic recommendations",
+        title: "Insights Report",
+        text: "Receive biomarkers and recommendations in a detailed report",
         icon: <FileTextOutlined style={{ fontSize: 40 }} />,
         backgroundImage: insightsReport
-
     },
     {
-        title: " Clinical Decision",
-        text: "Physicians integrate findings into personalized treatment plans",
+        title: "Clinical Decision",
+        text: "Physicians apply findings for personalized treatment decision-making",
         icon: <SolutionOutlined style={{ fontSize: 40 }} />,
         backgroundImage: clinicalDecision
-
     },
 ];
+
 
 const chooseUs = [
     {
@@ -69,7 +67,7 @@ const chooseUs = [
         text: "In healthcare, time is critical. Our system delivers detailed analysis and comprehensive results quickly — without compromising accuracy. This means patients can get timely care, and clinicians can act with confidence.",
     },
     {
-        title: "Easey to Use",
+        title: "Easy to Use",
         text: "Designed for simplicity, our platform requires no specialized training. With an intuitive interface, healthcare providers can upload data, run analyses, and review results in just a few steps, making advanced insights accessible to all.",
     },
 ];
@@ -121,6 +119,7 @@ function HomePage() {
                 backgroundSize: 'cover',
                 backgroundPosition: 'center'
             }}>
+
             <Col style={{ width: "100%" }}>
                 <Row style={{
                     width: "96.5%",
@@ -134,19 +133,18 @@ function HomePage() {
                     backgroundPosition: 'center',
                     minHeight: "220px",
                     borderRadius: "15px",
-                    margin: "0 auto"
+                    margin: "0 auto",
                 }}>
-                    <Col>
-                        <div style={{ textAlign: 'center', display: "flex", flexDirection: "column", alignItems: "center" }}>
-                            <Title style={{ color: 'black', marginBottom: 16, fontWeight: 500 }}>
-                                <b>Medical Analysis Platform</b>
-                            </Title>
-                            <Text type="secondary" style={{ fontSize: 23, color: "black" }}>
-                                Advanced AI-powered diagnostics and medical analysis for healthcare professionals.
-                                The platform uses the latest AI to analyze complex medical and genomic data accurately.
+                    <Col style={{ textAlign: 'center', display: "flex", flexDirection: "column", alignItems: "center" }}>
+                        <Title style={{ color: 'black', marginBottom: 16, fontWeight: 500 }}>
+                            <b>Medical Analysis Platform</b>
+                        </Title>
+                        <Text type="secondary" style={{ fontSize: 23, color: "black", fontWeight: 500 }}>
+                            Advanced AI-powered diagnostics and medical analysis for healthcare professionals.
+                            The platform uses the latest AI to analyze complex medical and genomic data accurately.
 
-                            </Text>
-                        </div>
+                        </Text>
+
                     </Col>
                 </Row>
                 <Col
@@ -159,12 +157,12 @@ function HomePage() {
                     <Title level={2} style={{ color: '#3498db', marginBottom: 32 }}>
                         How It Works
                     </Title>
-                    <Row gutter={[24, 24]} justify="space-around" align="top">
+                    <Row gutter={[16, 16]} justify="space-around" align="top">
                         {steps.map(({ title, text, icon, backgroundImage }, index) => (
-                            <Col key={index} xs={54} sm={12} md={6}>
+                            <Col key={index} xs={24} sm={14} md={12} lg={6}>
                                 <Card
                                     style={{
-                                        height: '100%',
+                                        minHeight: "200px",
                                         borderRadius: 12,
                                         overflow: 'hidden',
                                         padding: 0,
@@ -189,14 +187,14 @@ function HomePage() {
                                         <div style={{ display: "flex", justifyContent: "center", alignItems: "center", marginBottom: 16 }}>
                                             {icon}
                                         </div>
-                                        <Title level={3} style={{ color: 'black' }}>{title}</Title>
-                                        <Text style={{ color: 'black' }}>{text}</Text>
+                                        <Title level={3} style={{ color: 'black' }} > {title}</Title>
+                                        <Text style={{ color: 'black', fontSize: "15px" }}>{text}</Text>
                                     </div>
                                 </Card>
                             </Col>
                         ))}
                     </Row>
-                </Col>
+                </Col >
 
                 <Col style={{ textAlign: "center", marginTop: 25, padding: "24px" }}>
                     <Title level={2} style={{ color: '#3498db', marginBottom: 32 }}>
@@ -264,7 +262,7 @@ function HomePage() {
                         slidesToShow={width > 1200 ? 4 : width > 900 ? 3 : width > 600 ? 2 : 1}
                         slidesToScroll={1}
                         infinite
-                        style={{ padding: '40px'}}
+                        style={{ padding: '40px' }}
                     >
                         {partners.map((partner) => (
                             <Col style={{
@@ -279,7 +277,7 @@ function HomePage() {
                         ))}
                     </Carousel>
                 </Col>
-            </Col>
+            </Col >
         </Row >
     );
 }
