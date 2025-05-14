@@ -7,6 +7,7 @@ import ProtectedRoute from './components/ProtectedRoute';
 import AboutUsPage from './pages/main/AboutUsPage';
 import Layout from './components/Layout.tsx';
 import AnalysisPage from './pages/main/AnalysisPage.tsx';
+import Profile from './pages/main/Profile/Profile.tsx';
 
 const router = createBrowserRouter([
   {
@@ -52,9 +53,20 @@ const router = createBrowserRouter([
     children: [
       {
         path: '/ai-doctor',
-        element: <Layout><div>AI Doctor page</div></Layout>,
+        element: (
+          <Layout>
+            <div>AI Doctor page</div>
+          </Layout>
+        ),
       },
-      //...
+      {
+        path: '/profile',
+        element: (
+          <Layout>
+            <Profile />
+          </Layout>
+        ),
+      },
     ],
   },
   { path: '*', element: <Navigate to={'/'} replace /> },
