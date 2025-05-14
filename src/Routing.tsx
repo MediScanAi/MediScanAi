@@ -8,6 +8,8 @@ import AboutUsPage from './pages/main/AboutUsPage';
 import Layout from './components/Layout.tsx';
 import AnalysisPage from './pages/main/AnalysisPage.tsx';
 import ChatWithAI from './pages/main/ChatWithAI.tsx';
+import Profile from './pages/main/Profile/Profile.tsx';
+
 const router = createBrowserRouter([
   {
     element: <PublicRoute />,
@@ -59,7 +61,14 @@ const router = createBrowserRouter([
           </Layout>
         ),
       },
-      //...
+      {
+        path: '/profile',
+        element: (
+          <Layout>
+            <Profile />
+          </Layout>
+        ),
+      },
     ],
   },
   { path: '*', element: <Navigate to={'/'} replace /> },

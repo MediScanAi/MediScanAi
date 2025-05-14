@@ -32,6 +32,7 @@ const steps = [
   },
   {
     title: 'AI Analysis',
+
     text: 'AI analyzes genomic data using multi-omic integration techniques',
     icon: <BarChartOutlined style={{ fontSize: 40 }} />,
     backgroundImage: aiAnalysis,
@@ -389,12 +390,13 @@ function HomePage() {
             infinite
             style={{ padding: '40px' }}
           >
-            {partners.map((partner) => (
+            {partners.map((partner, index) => (
               <Col
                 style={{
                   borderRadius: '8px',
                   overflow: 'hidden',
                 }}
+                key={index}
               >
                 <Title
                   level={4}
