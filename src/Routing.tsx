@@ -7,6 +7,7 @@ import ProtectedRoute from './components/ProtectedRoute';
 import AboutUsPage from './pages/main/AboutUsPage';
 import Layout from './components/Layout.tsx';
 import AnalysisPage from './pages/main/AnalysisPage.tsx';
+import RootForm from './pages/main/testsform/RootForm.tsx';
 import ChatWithAI from './pages/main/ChatWithAI.tsx';
 import Profile from './pages/main/Profile/Profile.tsx';
 
@@ -53,8 +54,15 @@ const router = createBrowserRouter([
         ),
       },
       {
+        path: '/tests-form/:testType',
+        element: (
+          <Layout>
+            <RootForm />
+          </Layout>
+        ),
+      },
+      {
         path: '/ai-doctor',
-
         element: (
           <Layout>
             <ChatWithAI />

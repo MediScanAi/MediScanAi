@@ -124,14 +124,24 @@ const Header = () => {
             <MenuOutlined style={{ fontSize: 30 }} />
           </Dropdown>
         ) : (
-          <Tabs
-            onTabClick={handleTabClick}
-            className="custom-tabs"
-            size={'middle'}
-            items={items}
-          ></Tabs>
+          <div>
+            <Tabs
+              onTabClick={handleTabClick}
+              className="custom-tabs"
+              size={'middle'}
+              items={items}
+            ></Tabs>
+          </div>
         )}
-        <div className={'Right-buttons'}>
+        <div
+          className={'Right-buttons'}
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-around',
+            width: 250,
+          }}
+        >
           <Dropdown menu={{ items: userItems }}>
             <Button className="user-button">
               <UserOutlined style={{ fontSize: 20 }} />
