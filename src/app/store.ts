@@ -1,9 +1,7 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 
 export const store = configureStore({
-    reducer: combineReducers({
-       
-    }),
+  reducer: combineReducers({}),
 });
 
 export type RootState = ReturnType<typeof store.getState>;
