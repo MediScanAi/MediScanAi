@@ -1,4 +1,4 @@
-import { Typography, Row, Col, Card, Carousel, List } from 'antd';
+import { Typography, Row, Col, Card, Carousel, List, Button } from 'antd';
 import 'antd/dist/reset.css';
 import {
   CloudUploadOutlined,
@@ -17,6 +17,8 @@ import insightsReport from '../../assets/photos/insightsReport.jpg';
 import clinicalDecision from '../../assets/photos/clinicalDecision.jpg';
 import backGroundPlatform from '../../assets/photos/backGroundPlatform.jpg';
 import mission from '../../assets/photos/ourMission.jpg';
+import getStartedBackground from '../../assets/photos/getStartedBackground.jpg';
+import '../../assets/styles/homepage.css';
 import { useEffect, useState } from 'react';
 
 const { Title, Text } = Typography;
@@ -24,25 +26,28 @@ const { Title, Text } = Typography;
 const steps = [
   {
     title: 'Data Upload',
-    text: 'Securely submit medical genomic data through our encrypted portal',
+    text: 'Securely upload your genomic data via encrypted portal',
     icon: <CloudUploadOutlined style={{ fontSize: 40 }} />,
     backgroundImage: dataUpload,
   },
   {
     title: 'AI Analysis',
-    text: 'Our algorithms process your data with multi-omic integration',
+
+    text: 'AI analyzes genomic data using multi-omic integration techniques',
     icon: <BarChartOutlined style={{ fontSize: 40 }} />,
     backgroundImage: aiAnalysis,
   },
   {
-    title: ' Insights Report',
-    text: 'Receive actionable biomarkers and therapeutic recommendations',
+
+    title: 'Insights Report',
+    text: 'Receive biomarkers and recommendations in a detailed report',
     icon: <FileTextOutlined style={{ fontSize: 40 }} />,
     backgroundImage: insightsReport,
   },
   {
-    title: ' Clinical Decision',
-    text: 'Physicians integrate findings into personalized treatment plans',
+
+    title: 'Clinical Decision',
+    text: 'Physicians apply findings for personalized treatment decision-making',
     icon: <SolutionOutlined style={{ fontSize: 40 }} />,
     backgroundImage: clinicalDecision,
   },
@@ -66,7 +71,8 @@ const chooseUs = [
     text: 'In healthcare, time is critical. Our system delivers detailed analysis and comprehensive results quickly — without compromising accuracy. This means patients can get timely care, and clinicians can act with confidence.',
   },
   {
-    title: 'Easey to Use',
+
+    title: 'Easy to Use',
     text: 'Designed for simplicity, our platform requires no specialized training. With an intuitive interface, healthcare providers can upload data, run analyses, and review results in just a few steps, making advanced insights accessible to all.',
   },
 ];
@@ -138,26 +144,106 @@ function HomePage() {
             margin: '0 auto',
           }}
         >
-          <Col>
-            <div
+          <Col
+            style={{
+              textAlign: 'center',
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+            }}
+          >
+            <Title
+              style={{ color: 'black', marginBottom: 16, fontWeight: 500 }}
+            >
+              <b>Medical Analysis Platform</b>
+            </Title>
+            <Text
+              type="secondary"
+              style={{ fontSize: 23, color: 'black', fontWeight: 500 }}
+            >
+              Advanced AI-powered diagnostics and medical analysis for
+              healthcare professionals. The platform uses the latest AI to
+              analyze complex medical and genomic data accurately.
+            </Text>
+          </Col>
+        </Row>
+        <Row
+          style={{
+            width: '96.5%',
+            display: 'flex',
+            justifyContent: 'space-around',
+            alignItems: 'center',
+            flexDirection: 'row',
+            backgroundImage: `url(${getStartedBackground})`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            minHeight: '220px',
+            borderRadius: '15px',
+            margin: '0 auto',
+            marginTop: '20px',
+            position: 'relative',
+            overflow: 'hidden',
+            boxShadow: '0 10px 30px rgba(0,0,0,0.1)',
+          }}
+        >
+          <div
+            style={{
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              right: 0,
+              bottom: 0,
+              zIndex: 1,
+            }}
+          ></div>
+
+          <Col
+            style={{
+              textAlign: 'center',
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              zIndex: 2,
+              padding: '20px',
+            }}
+          >
+            <Title
+              style={{ color: 'black', marginBottom: 16, fontWeight: 700 }}
+            >
+              Ready to Get Started?
+            </Title>
+
+            <Text
               style={{
-                textAlign: 'center',
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
+                fontSize: 23,
+                color: 'black',
+                fontWeight: 500,
+                marginBottom: 20,
               }}
             >
-              <Title
-                style={{ color: 'black', marginBottom: 16, fontWeight: 500 }}
-              >
-                <b>Medical Analysis Platform</b>
-              </Title>
-              <Text type="secondary" style={{ fontSize: 23, color: 'black' }}>
-                Advanced AI-powered diagnostics and medical analysis for
-                healthcare professionals. The platform uses the latest AI to
-                analyze complex medical and genomic data accurately.
-              </Text>
-            </div>
+              Embrace wellness with us - where health meets happiness in every
+              step of your journey.
+            </Text>
+
+            <Button
+              type="primary"
+              size="large"
+              style={{
+                height: '50px',
+                padding: '0 40px',
+                fontSize: '1.1rem',
+                fontWeight: 600,
+                borderRadius: '25px',
+                boxShadow: '0 4px 15px rgba(0,0,0,0.1)',
+                background: 'linear-gradient(45deg, #1890ff, #0052d9)',
+                border: 'none',
+                animation: 'fadeInUp 1s ease-out 0.4s forwards',
+                opacity: 0,
+                transition: 'all 0.3s ease',
+              }}
+            >
+              Start Your Journey
+            </Button>
           </Col>
         </Row>
         <Col
@@ -168,14 +254,15 @@ function HomePage() {
           }}
         >
           <Title level={2} style={{ color: '#3498db', marginBottom: 32 }}>
-            How It Works
+
+            How It Works ?
           </Title>
-          <Row gutter={[24, 24]} justify="space-around" align="top">
+          <Row gutter={[16, 16]} justify="space-around" align="top">
             {steps.map(({ title, text, icon, backgroundImage }, index) => (
-              <Col key={index} xs={54} sm={12} md={6}>
+              <Col key={index} xs={24} sm={14} md={12} lg={6}>
                 <Card
                   style={{
-                    height: '100%',
+                    minHeight: '200px',
                     borderRadius: 12,
                     overflow: 'hidden',
                     padding: 0,
@@ -208,9 +295,13 @@ function HomePage() {
                       {icon}
                     </div>
                     <Title level={3} style={{ color: 'black' }}>
+
+                      {' '}
                       {title}
                     </Title>
-                    <Text style={{ color: 'black' }}>{text}</Text>
+                    <Text style={{ color: 'black', fontSize: '15px' }}>
+                      {text}
+                    </Text>
                   </div>
                 </Card>
               </Col>
@@ -220,7 +311,8 @@ function HomePage() {
 
         <Col style={{ textAlign: 'center', marginTop: 25, padding: '24px' }}>
           <Title level={2} style={{ color: '#3498db', marginBottom: 32 }}>
-            Why Choose Us?
+
+            Why Choose Us ?
           </Title>
 
           <List
@@ -274,6 +366,7 @@ function HomePage() {
                   backgroundPosition: 'center',
                 }}
               />
+
             </Col>
             <Col xs={24} md={12}>
               <Text
