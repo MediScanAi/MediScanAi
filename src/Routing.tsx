@@ -7,7 +7,7 @@ import ProtectedRoute from './components/ProtectedRoute';
 import AboutUsPage from './pages/main/AboutUsPage';
 import Layout from './components/Layout.tsx';
 import AnalysisPage from './pages/main/AnalysisPage.tsx';
-
+import ChatWithAI from './pages/main/ChatWithAI.tsx';
 const router = createBrowserRouter([
   {
     element: <PublicRoute />,
@@ -29,14 +29,6 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: '/analysis',
-        element: (
-          <Layout>
-            <AnalysisPage />
-          </Layout>
-        ),
-      },
-      {
         path: '/register',
         element: <RegisterPage />,
       },
@@ -51,8 +43,21 @@ const router = createBrowserRouter([
     element: <ProtectedRoute />,
     children: [
       {
+        path: '/analysis',
+        element: (
+          <Layout>
+            <AnalysisPage />
+          </Layout>
+        ),
+      },
+      {
         path: '/ai-doctor',
-        element: <div>AI Doctor page</div>,
+
+        element: (
+          <Layout>
+            <ChatWithAI />
+          </Layout>
+        ),
       },
       //...
     ],
