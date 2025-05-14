@@ -23,10 +23,10 @@ const Footer = () => {
           sm={8}
           style={{ textAlign: 'center', marginBottom: '16px' }}
         >
-          <Text style={{ color: 'black', fontSize: 20 }}>
+          <Text style={{ color: 'black', fontSize: 16 }}>
             © 2025 Your AI Doctor.
           </Text>
-          <Text style={{ marginLeft: 10, fontSize: 20 }}>
+          <Text style={{ marginLeft: 10, fontSize: 16 }}>
             {' '}
             All rights reserved.
           </Text>
@@ -34,23 +34,23 @@ const Footer = () => {
         <Col
           xs={24}
           sm={8}
-          style={{ textAlign: 'center', marginBottom: '16px', fontSize: 20 }}
+          style={{ textAlign: 'center', marginBottom: '16px', fontSize: 16 }}
         >
           <Link
             href="/"
-            style={{ color: 'black', margin: '0 8px', fontSize: 20 }}
+            style={{ color: 'black', margin: '0 8px', fontSize: 16 }}
           >
             About US
           </Link>
           <Link
             href="/"
-            style={{ color: 'black', margin: '0 8px', fontSize: 20 }}
+            style={{ color: 'black', margin: '0 8px', fontSize: 16 }}
           >
             Contacts
           </Link>
           <Link
             href="/"
-            style={{ color: 'black', margin: '0 8px', fontSize: 20 }}
+            style={{ color: 'black', margin: '0 8px', fontSize: 16 }}
           >
             Support
           </Link>
@@ -59,14 +59,14 @@ const Footer = () => {
               color: 'black',
               marginLeft: 30,
               marginRight: 8,
-              fontSize: 25,
+              fontSize: 20,
             }}
           />
           <FacebookFilled
-            style={{ color: 'black', margin: '0 8px', fontSize: 25 }}
+            style={{ color: 'black', margin: '0 8px', fontSize: 20 }}
           />
           <GooglePlusOutlined
-            style={{ color: 'black', margin: '0 8px', fontSize: 25 }}
+            style={{ color: 'black', margin: '0 8px', fontSize: 20 }}
           />
         </Col>
       </Row>

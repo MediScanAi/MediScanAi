@@ -52,7 +52,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: '/ai-doctor',
-        element: <div>AI Doctor page</div>,
+        element: <Layout><div>AI Doctor page</div></Layout>,
       },
       //...
     ],

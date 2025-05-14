@@ -10,14 +10,14 @@ import {
 import { NavLink } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import {
-  ExperimentOutlined,
-  HomeOutlined,
-  LogoutOutlined,
-  MenuOutlined,
-  MoonOutlined,
-  SunOutlined,
+    ExperimentOutlined,
+    HomeOutlined,
+    LogoutOutlined, MedicineBoxOutlined,
+    MenuOutlined,
+    MoonOutlined, SettingOutlined,
+    SunOutlined, TeamOutlined,
 
-  UserOutlined,
+    UserOutlined,
 } from '@ant-design/icons';
 import { useNavigate } from 'react-router';
 import '../assets/styles/header.css';
@@ -36,61 +36,78 @@ const burgerItems: MenuProps['items'] = [
   {
     label: <NavLink to="/">Your AI Doctor</NavLink>,
     key: 'Doctor',
+    icon: <MedicineBoxOutlined />
   },
   {
     label: <NavLink to="/about-us">About Us</NavLink>,
     key: 'About',
+    icon: <TeamOutlined />,
   },
 ];
 
 const userItems: MenuProps['items'] = [
+    {
+        key:'profile',
+        label: <NavLink to={'/profile'}>Profile</NavLink>,
+        icon: <SettingOutlined />,
+    },
   {
     key: 'logout',
     label: <NavLink to={'/'}>Logout</NavLink>,
     icon: <LogoutOutlined />,
   },
 ];
-
+const items: TabsProps['items'] = [
+    {
+        label: (
+          'Home'
+        ),
+        key: 'home',
+        icon: <HomeOutlined />,
+    },
+    {
+        label: (
+          'Analysis'
+        ),
+        key: 'analysis',
+        icon: <ExperimentOutlined />,
+    },
+    {
+        key: 'doctor',
+        label: (
+          'Your AI Doctor'
+        ),
+        icon: <MedicineBoxOutlined />
+    },
+    {
+        key: 'about',
+        label: (
+          'About Us'
+        ),
+        icon: <TeamOutlined />
+    },
+];
 const Header = () => {
   const [width, setWidth] = useState(window.innerWidth);
   const navigate = useNavigate();
 
-  const items: TabsProps['items'] = [
-    {
-      label: (
-        <span style={{ height: '100%' }} onClick={() => navigate('/')}>
-          Home
-        </span>
-      ),
-      key: 'home',
-      icon: <HomeOutlined />,
-    },
-    {
-      label: (
-        <span style={{ height: '100%' }} onClick={() => navigate('/')}>
-          Analysis
-        </span>
-      ),
-      key: 'analysis',
-      icon: <ExperimentOutlined />,
-    },
-    {
-      key: 'doctor',
-      label: (
-        <span style={{ height: '100%' }} onClick={() => navigate('/ai-doctor')}>
-          Your AI Doctor
-        </span>
-      ),
-    },
-    {
-      key: 'about-us',
-      label: (
-        <span style={{ height: '100%' }} onClick={() => navigate('/about-us')}>
-          About Us
-        </span>
-      ),
-    },
-  ];
+  const handleTabClick = (key: string) => {
+      switch (key) {
+          case 'home':
+              navigate('/');
+              break;
+          case 'analysis':
+              navigate('/analysis');
+              break;
+          case 'about':
+              navigate('/about-us');
+              break;
+          case 'doctor':
+              navigate('/ai-doctor');
+              break;
+      }
+  }
+
 
   useEffect(() => {
     const handleResize = () => {
@@ -124,7 +141,9 @@ const Header = () => {
           </div>
         ) : (
           <div>
-            <Tabs className="custom-tabs" size={'middle'} items={items}></Tabs>
+            <Tabs
+                onTabClick={handleTabClick}
+                className="custom-tabs" size={'middle'} items={items}></Tabs>
           </div>
         )}
        <div
