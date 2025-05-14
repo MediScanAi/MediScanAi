@@ -6,6 +6,7 @@ import HomePage from './pages/main/HomePage';
 import ProtectedRoute from './components/ProtectedRoute';
 import AboutUsPage from './pages/main/AboutUsPage';
 import Layout from './components/Layout.tsx';
+import AnalysisPage from './pages/main/AnalysisPage.tsx';
 
 const router = createBrowserRouter([
   {
@@ -24,6 +25,14 @@ const router = createBrowserRouter([
         element: (
           <Layout>
             <AboutUsPage />
+          </Layout>
+        ),
+      },
+      {
+        path: '/analysis',
+        element: (
+          <Layout>
+            <AnalysisPage />
           </Layout>
         ),
       },
