@@ -58,7 +58,7 @@ const Header = () => {
       icon: <HomeOutlined />,
     },
     {
-      label: <span onClick={() => navigate('/')}>Analysis</span>,
+      label: <span onClick={() => navigate('/analysis')}>Analysis</span>,
       key: 'analysis',
       icon: <ExperimentOutlined />,
     },
