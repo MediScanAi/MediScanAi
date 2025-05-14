@@ -1,13 +1,13 @@
-*{
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
 }
-.ant-row{
-    margin: 0;
+.ant-row {
+  margin: 0;
 }
 .ant-tabs-top {
-    .ant-tabs-nav::before{
-        border: none;
-    }
+  .ant-tabs-nav::before {
+    border: none;
+  }
 }
