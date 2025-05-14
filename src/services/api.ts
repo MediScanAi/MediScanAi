@@ -1,2 +1,0 @@
-export const OpenAiAPI =
-  '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';

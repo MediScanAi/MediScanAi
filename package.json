@@ -17,6 +17,8 @@
     "@ant-design/plots": "^1.2.6",
     "antd": "^5.25.1",
     "axios": "^1.9.0",
+    "dotenv": "^16.5.0",
+    "firebase-functions": "^6.3.2",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-router": "^7.6.0",
@@ -26,6 +28,8 @@
   "devDependencies": {
     "@eslint/js": "^9.25.0",
     "@evilmartians/lefthook": "^1.11.12",
+    "@types/express": "^5.0.1",
+    "@types/node": "^22.15.18",
     "@types/react": "^19.1.2",
     "@types/react-dom": "^19.1.2",
     "@typescript-eslint/eslint-plugin": "^8.32.1",

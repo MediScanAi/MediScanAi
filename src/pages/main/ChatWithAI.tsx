@@ -22,19 +22,9 @@ const ChatWithAI = () => {
     setLoading(true);
 
     try {
-      const res = await axios.post(
-        'https://api.openai.com/v1/chat/completions',
-        {
-          model: 'gpt-4',
-          messages: updatedMessages,
-        },
-        {
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer YOUR_OPENAI_API_KEY`,
-          },
-        }
-      );
+      const res = await axios.post('/api/chat', {
+        messages: updatedMessages,
+      });
 
       const aiMessage = res.data.choices[0].message;
       setMessages((prev) => [...prev, aiMessage]);
@@ -52,10 +42,10 @@ const ChatWithAI = () => {
     >
       <List
         dataSource={messages}
-        renderItem={(item, idx) => (
+        renderItem={(item) => (
           <List.Item>
-            <Text strong={item.role === 'user'}>
-              {item.role === 'user' ? 'You' : 'AI'}:
+            <Text>
+              <strong> {item.role === 'user' ? 'You' : 'MediScan AI'}:</strong>
             </Text>
             &nbsp;
             <Text>{item.content}</Text>
