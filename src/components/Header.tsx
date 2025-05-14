@@ -3,6 +3,7 @@ import {
   Dropdown,
   Flex,
   type MenuProps,
+  Switch,
   Tabs,
   type TabsProps,
 } from 'antd';
@@ -13,6 +14,9 @@ import {
   HomeOutlined,
   LogoutOutlined,
   MenuOutlined,
+  MoonOutlined,
+  SunOutlined,
+
   UserOutlined,
 } from '@ant-design/icons';
 import { useNavigate } from 'react-router';
@@ -53,22 +57,38 @@ const Header = () => {
 
   const items: TabsProps['items'] = [
     {
-      label: <span onClick={() => navigate('/')}>Home</span>,
+      label: (
+        <span style={{ height: '100%' }} onClick={() => navigate('/')}>
+          Home
+        </span>
+      ),
       key: 'home',
       icon: <HomeOutlined />,
     },
     {
-      label: <span onClick={() => navigate('/analysis')}>Analysis</span>,
+      label: (
+        <span style={{ height: '100%' }} onClick={() => navigate('/')}>
+          Analysis
+        </span>
+      ),
       key: 'analysis',
       icon: <ExperimentOutlined />,
     },
     {
       key: 'doctor',
-      label: <span onClick={() => navigate('/ai-doctor')}>Your AI Doctor</span>,
+      label: (
+        <span style={{ height: '100%' }} onClick={() => navigate('/ai-doctor')}>
+          Your AI Doctor
+        </span>
+      ),
     },
     {
       key: 'about-us',
-      label: <span onClick={() => navigate('/about-us')}>About Us</span>,
+      label: (
+        <span style={{ height: '100%' }} onClick={() => navigate('/about-us')}>
+          About Us
+        </span>
+      ),
     },
   ];
 
@@ -107,7 +127,15 @@ const Header = () => {
             <Tabs className="custom-tabs" size={'middle'} items={items}></Tabs>
           </div>
         )}
-        <div style={{ display: 'flex', alignItems: 'center' }}>
+       <div
+          className={'Right-buttons'}
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-around',
+            width: 250,
+          }}
+        >
           <Dropdown menu={{ items: userItems }}>
             <Button
               style={{
@@ -121,6 +149,10 @@ const Header = () => {
               arayik@gmail.com
             </Button>
           </Dropdown>
+          <Switch
+            checkedChildren={<SunOutlined />}
+            unCheckedChildren={<MoonOutlined />}
+          ></Switch>
         </div>
       </Flex>
     </header>
