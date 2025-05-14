@@ -10,14 +10,16 @@ import {
 import { NavLink } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import {
-    ExperimentOutlined,
-    HomeOutlined,
-    LogoutOutlined, MedicineBoxOutlined,
-    MenuOutlined,
-    MoonOutlined, SettingOutlined,
-    SunOutlined, TeamOutlined,
-
-    UserOutlined,
+  ExperimentOutlined,
+  HomeOutlined,
+  LogoutOutlined,
+  MedicineBoxOutlined,
+  MenuOutlined,
+  MoonOutlined,
+  SettingOutlined,
+  SunOutlined,
+  TeamOutlined,
+  UserOutlined,
 } from '@ant-design/icons';
 import { useNavigate } from 'react-router';
 import '../assets/styles/header.css';
@@ -36,7 +38,7 @@ const burgerItems: MenuProps['items'] = [
   {
     label: <NavLink to="/">Your AI Doctor</NavLink>,
     key: 'Doctor',
-    icon: <MedicineBoxOutlined />
+    icon: <MedicineBoxOutlined />,
   },
   {
     label: <NavLink to="/about-us">About Us</NavLink>,
@@ -46,11 +48,11 @@ const burgerItems: MenuProps['items'] = [
 ];
 
 const userItems: MenuProps['items'] = [
-    {
-        key:'profile',
-        label: <NavLink to={'/profile'}>Profile</NavLink>,
-        icon: <SettingOutlined />,
-    },
+  {
+    key: 'profile',
+    label: <NavLink to={'/profile'}>Profile</NavLink>,
+    icon: <SettingOutlined />,
+  },
   {
     key: 'logout',
     label: <NavLink to={'/'}>Logout</NavLink>,
@@ -58,56 +60,47 @@ const userItems: MenuProps['items'] = [
   },
 ];
 const items: TabsProps['items'] = [
-    {
-        label: (
-          'Home'
-        ),
-        key: 'home',
-        icon: <HomeOutlined />,
-    },
-    {
-        label: (
-          'Analysis'
-        ),
-        key: 'analysis',
-        icon: <ExperimentOutlined />,
-    },
-    {
-        key: 'doctor',
-        label: (
-          'Your AI Doctor'
-        ),
-        icon: <MedicineBoxOutlined />
-    },
-    {
-        key: 'about',
-        label: (
-          'About Us'
-        ),
-        icon: <TeamOutlined />
-    },
+  {
+    label: 'Home',
+    key: 'home',
+    icon: <HomeOutlined />,
+  },
+  {
+    label: 'Analysis',
+    key: 'analysis',
+    icon: <ExperimentOutlined />,
+  },
+  {
+    key: 'doctor',
+    label: 'Your AI Doctor',
+    icon: <MedicineBoxOutlined />,
+  },
+  {
+    key: 'about',
+    label: 'About Us',
+    icon: <TeamOutlined />,
+  },
 ];
 const Header = () => {
   const [width, setWidth] = useState(window.innerWidth);
   const navigate = useNavigate();
 
   const handleTabClick = (key: string) => {
-      switch (key) {
-          case 'home':
-              navigate('/');
-              break;
-          case 'analysis':
-              navigate('/analysis');
-              break;
-          case 'about':
-              navigate('/about-us');
-              break;
-          case 'doctor':
-              navigate('/ai-doctor');
-              break;
-      }
-  }
-
+    switch (key) {
+      case 'home':
+        navigate('/');
+        break;
+      case 'analysis':
+        navigate('/analysis');
+        break;
+      case 'about':
+        navigate('/about-us');
+        break;
+      case 'doctor':
+        navigate('/ai-doctor');
+        break;
+    }
+  };
 
   useEffect(() => {
     const handleResize = () => {
@@ -142,11 +135,14 @@ const Header = () => {
         ) : (
           <div>
             <Tabs
-                onTabClick={handleTabClick}
-                className="custom-tabs" size={'middle'} items={items}></Tabs>
+              onTabClick={handleTabClick}
+              className="custom-tabs"
+              size={'middle'}
+              items={items}
+            ></Tabs>
           </div>
         )}
-       <div
+        <div
           className={'Right-buttons'}
           style={{
             display: 'flex',

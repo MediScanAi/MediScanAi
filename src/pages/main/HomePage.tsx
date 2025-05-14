@@ -38,14 +38,12 @@ const steps = [
     backgroundImage: aiAnalysis,
   },
   {
-
     title: 'Insights Report',
     text: 'Receive biomarkers and recommendations in a detailed report',
     icon: <FileTextOutlined style={{ fontSize: 40 }} />,
     backgroundImage: insightsReport,
   },
   {
-
     title: 'Clinical Decision',
     text: 'Physicians apply findings for personalized treatment decision-making',
     icon: <SolutionOutlined style={{ fontSize: 40 }} />,
@@ -71,7 +69,6 @@ const chooseUs = [
     text: 'In healthcare, time is critical. Our system delivers detailed analysis and comprehensive results quickly — without compromising accuracy. This means patients can get timely care, and clinicians can act with confidence.',
   },
   {
-
     title: 'Easy to Use',
     text: 'Designed for simplicity, our platform requires no specialized training. With an intuitive interface, healthcare providers can upload data, run analyses, and review results in just a few steps, making advanced insights accessible to all.',
   },
@@ -254,7 +251,6 @@ function HomePage() {
           }}
         >
           <Title level={2} style={{ color: '#3498db', marginBottom: 32 }}>
-
             How It Works ?
           </Title>
           <Row gutter={[16, 16]} justify="space-around" align="top">
@@ -295,7 +291,6 @@ function HomePage() {
                       {icon}
                     </div>
                     <Title level={3} style={{ color: 'black' }}>
-
                       {' '}
                       {title}
                     </Title>
@@ -311,7 +306,6 @@ function HomePage() {
 
         <Col style={{ textAlign: 'center', marginTop: 25, padding: '24px' }}>
           <Title level={2} style={{ color: '#3498db', marginBottom: 32 }}>
-
             Why Choose Us ?
           </Title>
 
@@ -366,7 +360,6 @@ function HomePage() {
                   backgroundPosition: 'center',
                 }}
               />
-
             </Col>
             <Col xs={24} md={12}>
               <Text
