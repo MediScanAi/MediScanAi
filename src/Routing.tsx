@@ -8,6 +8,8 @@ import AboutUsPage from './pages/main/AboutUsPage';
 import Layout from './components/Layout.tsx';
 import AnalysisPage from './pages/main/AnalysisPage.tsx';
 import RootForm from './pages/main/testsform/RootForm.tsx';
+import ChatWithAI from './pages/main/ChatWithAI.tsx';
+import Profile from './pages/main/Profile/Profile.tsx';
 
 const router = createBrowserRouter([
   {
@@ -30,14 +32,6 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: '/analysis',
-        element: (
-          <Layout>
-            <AnalysisPage />
-          </Layout>
-        ),
-      },
-      {
         path: '/register',
         element: <RegisterPage />,
       },
@@ -52,10 +46,10 @@ const router = createBrowserRouter([
     element: <ProtectedRoute />,
     children: [
       {
-        path: '/ai-doctor',
+        path: '/analysis',
         element: (
           <Layout>
-            <div>AI Doctor page</div>
+            <AnalysisPage />
           </Layout>
         ),
       },
@@ -64,6 +58,22 @@ const router = createBrowserRouter([
         element: (
           <Layout>
             <RootForm />
+          </Layout>
+        ),
+      },
+      {
+        path: '/ai-doctor',
+        element: (
+          <Layout>
+            <ChatWithAI />
+          </Layout>
+        ),
+      },
+      {
+        path: '/profile',
+        element: (
+          <Layout>
+            <Profile />
           </Layout>
         ),
       },

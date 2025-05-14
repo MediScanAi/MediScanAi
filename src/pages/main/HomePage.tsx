@@ -390,12 +390,13 @@ function HomePage() {
             infinite
             style={{ padding: '40px' }}
           >
-            {partners.map((partner) => (
+            {partners.map((partner, index) => (
               <Col
                 style={{
                   borderRadius: '8px',
                   overflow: 'hidden',
                 }}
+                key={index}
               >
                 <Title
                   level={4}

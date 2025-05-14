@@ -59,6 +59,7 @@ const userItems: MenuProps['items'] = [
     icon: <LogoutOutlined />,
   },
 ];
+
 const items: TabsProps['items'] = [
   {
     label: 'Home',
@@ -81,6 +82,7 @@ const items: TabsProps['items'] = [
     icon: <TeamOutlined />,
   },
 ];
+
 const Header = () => {
   const [width, setWidth] = useState(window.innerWidth);
   const navigate = useNavigate();
@@ -109,29 +111,18 @@ const Header = () => {
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
+
   return (
-    <header
-      style={{
-        position: 'sticky',
-        top: 0,
-        zIndex: 1000,
-        borderBottom: '1px solid #e8e8e8',
-        padding: 5,
-        backgroundColor: 'rgba(154, 154, 154, 0.77)',
-        backdropFilter: 'blur(5px)',
-      }}
-    >
+    <header>
       <Flex
         justify="space-around"
         align="middle"
         style={{ width: '100%', height: 40 }}
       >
         {width < 820 ? (
-          <div>
-            <Dropdown menu={{ items: burgerItems }}>
-              <MenuOutlined style={{ fontSize: 30 }} />
-            </Dropdown>
-          </div>
+          <Dropdown menu={{ items: burgerItems }}>
+            <MenuOutlined style={{ fontSize: 30 }} />
+          </Dropdown>
         ) : (
           <div>
             <Tabs
@@ -152,14 +143,7 @@ const Header = () => {
           }}
         >
           <Dropdown menu={{ items: userItems }}>
-            <Button
-              style={{
-                backgroundColor: 'transparent',
-                color: 'black',
-                border: 'none',
-                fontSize: 16,
-              }}
-            >
+            <Button className="user-button">
               <UserOutlined style={{ fontSize: 20 }} />
               arayik@gmail.com
             </Button>
@@ -167,7 +151,7 @@ const Header = () => {
           <Switch
             checkedChildren={<SunOutlined />}
             unCheckedChildren={<MoonOutlined />}
-          ></Switch>
+          />
         </div>
       </Flex>
     </header>
