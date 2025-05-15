@@ -1,6 +1,5 @@
 import { Button, Form, InputNumber, message, Card, Typography } from 'antd';
 import { useAppDispatch, useAppSelector } from '../../../app/hooks';
-import { useEffect } from 'react';
 import { setBloodTestData } from '../../../app/slices/bloodTestSlice';
 import type { RootState } from '../../../app/store';
 import type { BloodTestFormValues } from '../../../app/slices/bloodTestSlice';
@@ -64,14 +63,15 @@ function BloodTestsForm() {
     (state: RootState) => state.bloodTest?.bloodTestData
   );
 
-  useEffect(() => {
-    form.setFieldsValue(data);
-  }, [data, form]);
-
 
   const onFinish = (values: BloodTestFormValues) => {
     dispatch(setBloodTestData(values));
+
     message.success('Blood test submitted successfully');
+    setTimeout(() => {
+      form.resetFields();
+    }, 0);
+
   };
 
   console.log(data);
@@ -79,7 +79,7 @@ function BloodTestsForm() {
   return (
     <Card
       style={{ border: 'none' }}
-      title={<Title level={3}>Vitamin Test</Title>}
+      title={<Title level={3}>Blood Test</Title>}
     >
       <Form form={form} onFinish={onFinish} layout="vertical" size="large">
         {bloodTestFields.map(field => (
@@ -100,8 +100,8 @@ function BloodTestsForm() {
         ))}
 
         <Form.Item style={{ textAlign: 'center' }}>
-          <Button type="primary" htmlType="submit">
-            Submit Vitamin Test
+          <Button type="primary" htmlType="submit" >
+            Submit Blood Test
           </Button>
         </Form.Item>
       </Form>

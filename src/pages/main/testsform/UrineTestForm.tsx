@@ -7,7 +7,6 @@ import {
   Typography,
   Card,
 } from 'antd';
-import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../../../app/hooks';
 import { setUrineTestData } from '../../../app/slices/urineTestSlice';
 import type { RootState } from '../../../app/store';
@@ -50,13 +49,12 @@ const UrineTestForm = () => {
   const dispatch = useAppDispatch();
   const data = useAppSelector((state: RootState) => state.urineTest?.urineTestData);
 
-  useEffect(() => {
-    form.setFieldsValue(data);
-  }, [data, form]);
-
   const onFinish = (values: UrineTestFormValues) => {
     dispatch(setUrineTestData(values));
     message.success('Urine test submitted successfully');
+    setTimeout(() => {
+      form.resetFields();
+    }, 0);
   };
 
   console.log(data);

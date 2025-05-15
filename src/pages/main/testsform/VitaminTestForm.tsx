@@ -6,7 +6,6 @@ import {
   Typography,
   Card,
 } from 'antd';
-import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../../../app/hooks';
 import { setVitaminTestData } from '../../../app/slices/vitaminTestSlice';
 import type { RootState } from '../../../app/store';
@@ -30,13 +29,12 @@ const VitaminTestForm = () => {
     (state: RootState) => state.vitaminTest?.vitaminTestData
   );
 
-  useEffect(() => {
-    form.setFieldsValue(data);
-  }, [data, form]);
-
   const onFinish = (values: VitaminTestFormValues) => {
     dispatch(setVitaminTestData(values));
     message.success('Vitamin test submitted successfully');
+    setTimeout(() => {
+      form.resetFields();
+    },0);
   };
 
   console.log(data);
