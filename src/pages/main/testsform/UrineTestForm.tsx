@@ -16,12 +16,39 @@ import type { UrineTestFormValues } from '../../../app/slices/urineTestSlice';
 const { Option } = Select;
 const { Title } = Typography;
 
+const urineTestFields = [
+  { type: "input", label: 'pH (4.5-8.0)', name: 'ph', min: 4.5, max: 8.0, step: 0.1, placeholder: 'e.g. 7.5', },
+  {
+    type: 'input',
+    label: 'Specific Gravity (1.0-1.03)',
+    name: 'specificGravity',
+    min: 1.0,
+    max: 1.03,
+    step: 0.001,
+    placeholder: 'e.g. 1.015',
+    unit: 'g/dL',
+  },
+  { type: 'input', label: 'Protein (mg/dL)', name: 'protein', min: 0, max: 300, step: 1, placeholder: 'e.g. 100', unit: 'mg/dL' },
+  { type: 'input', label: 'Glucose (mg/dL)', name: 'glucose', min: 0, max: 1000, step: 1, placeholder: 'e.g. 100', unit: 'mg/dL' },
+  { type: 'input', label: 'Ketones (mg/dL)', name: 'ketones', min: 0, max: 160, step: 1, placeholder: 'e.g. 100', unit: 'mg/dL' },
+  { type: 'select', label: 'Bilirubin', name: 'bilirubin', options: ['negative', 'positive'], unit: 'mg/dL' },
+  { type: 'input', label: 'Urobilinogen (EU/dL)', name: 'urobilinogen', min: 0.1, max: 8.0, step: 0.1, placeholder: 'e.g. 1.5', unit: 'EU/dL' },
+  { type: 'select', label: 'Nitrites', name: 'nitrites', options: ['negative', 'positive'], unit: 'mg/dL' },
+  {
+    type: 'select',
+    label: 'Leukocyte Esterase',
+    name: 'leukocyteEsterase',
+    options: ['negative', 'trace', 'positive'],
+    placeholder: 'e.g. negative',
+    unit: 'mg/dL',
+  },
+  { type: 'select', label: 'Blood', name: 'blood', options: ['negative', 'trace', 'positive'], placeholder: 'e.g. negative', unit: 'mg/dL' },
+];
+
 const UrineTestForm = () => {
   const [form] = Form.useForm();
   const dispatch = useAppDispatch();
-  const data = useAppSelector(
-    (state: RootState) => state.urineTest?.urineTestData
-  );
+  const data = useAppSelector((state: RootState) => state.urineTest?.urineTestData);
 
   useEffect(() => {
     form.setFieldsValue(data);
@@ -32,29 +59,7 @@ const UrineTestForm = () => {
     message.success('Urine test submitted successfully');
   };
 
-  const renderInput = (
-    label: string,
-    name: string,
-    min: number,
-    max: number,
-    step: number
-  ) => (
-    <Form.Item label={label} name={name} rules={[{ required: true }]}>
-      <InputNumber min={min} max={max} step={step} style={{ width: '100%' }} />
-    </Form.Item>
-  );
-
-  const renderSelect = (label: string, name: string, options: string[]) => (
-    <Form.Item label={label} name={name} rules={[{ required: true }]}>
-      <Select placeholder="Select result">
-        {options.map((opt) => (
-          <Option key={opt} value={opt}>
-            {opt.charAt(0).toUpperCase() + opt.slice(1)}
-          </Option>
-        ))}
-      </Select>
-    </Form.Item>
-  );
+  console.log(data);
 
   return (
     <Card
@@ -63,20 +68,45 @@ const UrineTestForm = () => {
       title={<Title level={3}>Urine Test</Title>}
     >
       <Form form={form} onFinish={onFinish} layout="vertical" size="large">
-        {renderInput('pH', 'ph', 4.5, 8.0, 0.1)}
-        {renderInput('Specific Gravity', 'specificGravity', 1.0, 1.03, 0.001)}
-        {renderInput('Protein (mg/dL)', 'protein', 0, 300, 1)}
-        {renderInput('Glucose (mg/dL)', 'glucose', 0, 1000, 1)}
-        {renderInput('Ketones (mg/dL)', 'ketones', 0, 160, 1)}
-        {renderSelect('Bilirubin', 'bilirubin', ['negative', 'positive'])}
-        {renderInput('Urobilinogen (EU/dL)', 'urobilinogen', 0.1, 8.0, 0.1)}
-        {renderSelect('Nitrites', 'nitrites', ['negative', 'positive'])}
-        {renderSelect('Leukocyte Esterase', 'leukocyteEsterase', [
-          'negative',
-          'trace',
-          'positive',
-        ])}
-        {renderSelect('Blood', 'blood', ['negative', 'trace', 'positive'])}
+        {urineTestFields.map((field) => {
+          if (field.type === 'input') {
+            return (
+              <Form.Item
+                key={field.name}
+                label={field.label}
+                name={field.name}
+
+                rules={[{ required: true }]}
+              >
+                <InputNumber
+                  min={field.min}
+                  max={field.max}
+                  step={field.step}
+                  style={{ width: '100%' }}
+                  placeholder={field.placeholder}
+                />
+              </Form.Item>
+            );
+          } else if (field.type === 'select') {
+            return (
+              <Form.Item
+                key={field.name}
+                label={field.label}
+                name={field.name}
+                rules={[{ required: true }]}
+              >
+                <Select placeholder="Select result">
+                  {field.options?.map((opt) => (
+                    <Option key={opt} value={opt}>
+                      {opt.charAt(0).toUpperCase() + opt.slice(1)}
+                    </Option>
+                  ))}
+                </Select>
+              </Form.Item>
+            );
+          }
+          return null;
+        })}
 
         <Form.Item style={{ textAlign: 'center' }}>
           <Button type="primary" htmlType="submit" className="submit-btn">

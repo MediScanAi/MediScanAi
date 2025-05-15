@@ -1,13 +1,15 @@
 import { Tabs, Typography, Card, Button } from 'antd';
 import type { TabsProps } from 'antd';
-import BloodTestsForm from './BloodTestForm';
-import UrineTestForm from './UrineTestForm';
-import VitaminTestForm from './VitaminTestForm';
 import { useNavigate, useParams } from 'react-router-dom';
 import type { JSX } from 'react';
+import { HeartFilled, SafetyOutlined, HeatMapOutlined, MonitorOutlined } from '@ant-design/icons';
+import '../../../assets/styles/rootForm.css';
+import VitaminTestForm from './VitaminTestForm';
+import UrineTestForm from './UrineTestForm';
+import BloodTestsForm from './BloodTestForm';
 import GeneticTestForm from './GeneticTestForm';
 
-const { Title } = Typography;
+const { Title, Text } = Typography;
 
 function RootForm(): JSX.Element | null {
   const navigate = useNavigate();
@@ -15,22 +17,42 @@ function RootForm(): JSX.Element | null {
 
   const items: TabsProps['items'] = [
     {
-      label: 'Blood Test',
+      label: (
+        <span>
+          <HeartFilled style={{ marginRight: 8 }} />
+          Blood Test
+        </span>
+      ),
       key: 'blood-test',
       children: <BloodTestsForm />,
     },
     {
-      label: 'Urine Test',
+      label: (
+        <span>
+          <MonitorOutlined style={{ marginRight: 8 }} />
+          Urine Test
+        </span>
+      ),
       key: 'urine-test',
       children: <UrineTestForm />,
     },
     {
-      label: 'Vitamin Test',
+      label: (
+        <span>
+          <SafetyOutlined style={{ marginRight: 8 }} />
+          Vitamin Test
+        </span>
+      ),
       key: 'vitamin-test',
       children: <VitaminTestForm />,
     },
     {
-      label: 'Genetic Test',
+      label: (
+        <span>
+          <HeatMapOutlined style={{ marginRight: 8 }} />
+          Genetic Test
+        </span>
+      ),
       key: 'genetic-test',
       children: <GeneticTestForm />,
     },
@@ -40,50 +62,53 @@ function RootForm(): JSX.Element | null {
     navigate(`/tests-form/${key}`);
   };
 
-  const activeKey =
-    items.find((item) => item.key === testType)?.key || 'blood-test';
+  const activeKey = items.find((item) => item.key === testType)?.key || 'blood-test';
 
   return (
-    <div
-      style={{
-        backgroundColor: '#f5f8fa',
-        minHeight: '100vh',
-        padding: '20px 16px',
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-      }}
-    >
-      <Button style={{ margin: '0 60% 0 0' }} onClick={() => navigate('/profile')} type="primary">Go profile</Button>
-      <div style={{ textAlign: 'center', marginBottom: 24 }}>
-        <Title level={1} style={{ color: 'black', marginBottom: 0 }}>
-          Medical Test Form
-        </Title>
-        <p style={{ fontSize: 18, color: 'black' }}>
-          Select a test and fill out the required information
-        </p>
+    <div className="medical-form-container">
+      <div className="welcome-banner">
+        <div className="welcome-content">
+          <Title level={2} className="welcome-title">
+            Welcome to Our Medical Laboratory Portal
+          </Title>
+          <Text className="welcome-message">
+            Your health is our priority. Get accurate test results with our MediScanAi technologies.
+          </Text>
+        </div>
       </div>
 
-      <Card
-        style={{
-          width: '100%',
-          maxWidth: 960,
-          borderRadius: 12,
-          boxShadow: '0 8px 20px rgba(0,0,0,0.1)',
-          background: '#fff',
-          position: 'relative',
-          backdropFilter: 'blur(6px)',
-        }}
-      >
-        <Tabs
-          type="card"
-          centered
-          size="large"
-          activeKey={activeKey}
-          onChange={handleTabChange}
-          items={items}
-        />
-      </Card>
+      <div className="form-content">
+        <div className="form-header">
+          <Button
+            className="back-button"
+            onClick={() => navigate('/profile')}
+            type="primary"
+          >
+            Back to Profile
+          </Button>
+
+          <div className="header-content">
+            <Title level={1} className="medical-title">
+              Medical Laboratory Test Form
+            </Title>
+            <p className="medical-subtitle">
+              Select a test type and provide the required specimen information
+            </p>
+          </div>
+        </div>
+
+        <Card className="medical-form-card">
+          <Tabs
+            type="card"
+            centered
+            size="large"
+            activeKey={activeKey}
+            onChange={handleTabChange}
+            items={items}
+            className="medical-tabs"
+          />
+        </Card>
+      </div>
     </div>
   );
 }

@@ -21,6 +21,11 @@ export interface UrineTestFormValues {
   protein: number | null;
   glucose: number | null;
   ketones: number | null;
+  bilirubin: string | null;
+  urobilinogen: number | null;
+  nitrites: string | null;
+  leukocyteEsterase: string | null;
+  blood: string | null;
 }
 
 const initialState: UrineTestState = {
