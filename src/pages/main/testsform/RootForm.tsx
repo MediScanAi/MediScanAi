@@ -1,9 +1,11 @@
-import { Tabs, Typography, Card } from 'antd';
+import { Tabs, Typography, Card, Button } from 'antd';
 import type { TabsProps } from 'antd';
 import BloodTestsForm from './BloodTestForm';
 import UrineTestForm from './UrineTestForm';
 import VitaminTestForm from './VitaminTestForm';
 import { useNavigate, useParams } from 'react-router-dom';
+import type { JSX } from 'react';
+import GeneticTestForm from './GeneticTestForm';
 
 const { Title } = Typography;
 
@@ -27,6 +29,11 @@ function RootForm(): JSX.Element | null {
       key: 'vitamin-test',
       children: <VitaminTestForm />,
     },
+    {
+      label: 'Genetic Test',
+      key: 'genetic-test',
+      children: <GeneticTestForm />,
+    },
   ];
 
   const handleTabChange = (key: string) => {
@@ -41,12 +48,13 @@ function RootForm(): JSX.Element | null {
       style={{
         backgroundColor: '#f5f8fa',
         minHeight: '100vh',
-        padding: '48px 16px',
+        padding: '20px 16px',
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
       }}
     >
+      <Button style={{ margin: '0 60% 0 0' }} onClick={() => navigate('/profile')} type="primary">Go profile</Button>
       <div style={{ textAlign: 'center', marginBottom: 24 }}>
         <Title level={1} style={{ color: 'black', marginBottom: 0 }}>
           Medical Test Form
