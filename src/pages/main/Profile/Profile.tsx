@@ -7,8 +7,9 @@ import {
 } from '@ant-design/icons';
 import UserInfo from './UserInfo.tsx';
 import '../../../assets/styles/Profile.css';
-import MainTests from '../testsform/MainTests.tsx';
+import MainTests from './MainTests.tsx';
 import AnalysisHistory from './AnalysisHistory.tsx';
+import ContactUs from './ContactUs.tsx';
 const items: TabsProps['items'] = [
   {
     label: <span className={'menu-button'}>Info</span>,
@@ -32,18 +33,7 @@ const items: TabsProps['items'] = [
     key: 'about',
     label: <label className={'menu-button'}>Contact Us</label>,
     icon: <PhoneOutlined />,
-    children: (
-      <div>
-        <p>Contact Us</p>
-        <p>Phone: +1234567890</p>
-        <p>Email: mediscan@center.com</p>
-        <p>Address: 123 Main St, Anytown, USA</p>
-        <p>Hours: Mon - Fri: 9:00 AM - 5:00 PM</p>
-        <p>
-          LinkedIn: <a>Mediscan Center</a>
-        </p>
-      </div>
-    ),
+    children: <ContactUs />,
   },
 ];
 
