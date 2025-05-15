@@ -17,6 +17,7 @@
 
 .ant-descriptions-title {
   background: linear-gradient(45deg, #4a90e2 0%, #67b0ff 100%);
+  -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   font-size: 28px;
   font-weight: 800;
@@ -113,7 +114,6 @@
   font-weight: 600;
   background: linear-gradient(45deg, #4a90e2 0%, #67b0ff 100%);
   color: white;
-  /*box-shadow: 0 4px 12px rgba(74, 144, 226, 0.2);*/
 }
 
 .ant-tag-blue {
