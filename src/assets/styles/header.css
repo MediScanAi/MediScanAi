@@ -6,7 +6,6 @@ header {
   top: 0;
   z-index: 1000;
   border-bottom: 1px solid #e8e8e8;
-  padding: 5px;
   background-color: rgba(154, 154, 154, 0.77);
   backdrop-filter: blur(5px);
 }
