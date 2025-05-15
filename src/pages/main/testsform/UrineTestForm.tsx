@@ -9,9 +9,9 @@ import {
 } from 'antd';
 import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../../../app/hooks';
-import { setUrineTestData } from '../../../app/slices/urineTestSlice';
+import { setUrineTestData } from '../../../app/Slices/urineTestSlice';
 import type { RootState } from '../../../app/store';
-import type { UrineTestFormValues } from '../../../app/slices/urineTestSlice';
+import type { UrineTestFormValues } from '../../../app/Slices/urineTestSlice';
 
 const { Option } = Select;
 const { Title } = Typography;

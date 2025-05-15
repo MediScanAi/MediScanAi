@@ -5,10 +5,21 @@ header {
   position: sticky;
   top: 0;
   z-index: 1000;
-  border-bottom: 1px solid #e8e8e8;
-  padding: 5px;
   background-color: rgba(154, 154, 154, 0.77);
   backdrop-filter: blur(5px);
+}
+
+.dark-Header{
+  background-color: rgba(16, 39, 57, 0.71);
+  span{
+    color: white;
+  }
+}
+
+.Header{
+  width: 100%;
+  height: 46px;
+  border-bottom: 1px solid #e8e8e8;
 }
 .Right-buttons {
   display: flex;
@@ -21,4 +32,12 @@ header {
   color: black;
   border: none;
   font-size: 16px;
+  height: 100%;
+  display: flex;
+  align-content: center;
+  align-items: center;
+  justify-content: space-between;
+}
+.dark-user-button{
+  color: white;
 }

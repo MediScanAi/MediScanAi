@@ -4,12 +4,15 @@ import BloodTestsForm from './BloodTestForm';
 import UrineTestForm from './UrineTestForm';
 import VitaminTestForm from './VitaminTestForm';
 import { useNavigate, useParams } from 'react-router-dom';
+import {useAppSelector} from "../../../app/hooks.ts";
+import type {ReactNode} from "react";
 
 const { Title } = Typography;
 
-function RootForm(): JSX.Element | null {
+function RootForm(): ReactNode | null {
   const navigate = useNavigate();
   const { testType } = useParams();
+  const theme = useAppSelector((state)=>state.theme.isDarkMode);
 
   const items: TabsProps['items'] = [
     {
@@ -38,14 +41,8 @@ function RootForm(): JSX.Element | null {
 
   return (
     <div
-      style={{
-        backgroundColor: '#f5f8fa',
-        minHeight: '100vh',
-        padding: '48px 16px',
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-      }}
+        className={'root-form'+' '+(theme? 'dark-theme' : '')}
+
     >
       <div style={{ textAlign: 'center', marginBottom: 24 }}>
         <Title level={1} style={{ color: 'black', marginBottom: 0 }}>

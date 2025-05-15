@@ -4,29 +4,25 @@ import {
   GooglePlusOutlined,
   InstagramOutlined,
 } from '@ant-design/icons';
+import '../assets/styles/footer.css';
+import {useAppSelector} from "../app/hooks.ts";
 
 const { Text, Link } = Typography;
 
 const Footer = () => {
+  const theme = useAppSelector((state) => state.theme.isDarkMode);
   return (
-    <footer
-      style={{
-        backgroundColor: 'white',
-        padding: '24px 0',
-        marginTop: 'auto',
-        borderTop: '1px solid #e8e8e8',
-      }}
-    >
+    <footer className={theme? 'dark-footer' : ''}>
       <Row justify="space-around" align="middle">
         <Col
           xs={24}
           sm={8}
           style={{ textAlign: 'center', marginBottom: '16px' }}
         >
-          <Text style={{ color: 'black', fontSize: 16 }}>
+          <Text className={'info'} >
             © 2025 Your AI Doctor.
           </Text>
-          <Text style={{ marginLeft: 10, fontSize: 16 }}>
+          <Text className={'info'}>
             {' '}
             All rights reserved.
           </Text>
@@ -34,39 +30,34 @@ const Footer = () => {
         <Col
           xs={24}
           sm={8}
-          style={{ textAlign: 'center', marginBottom: '16px', fontSize: 16 }}
+          className={'info'}
         >
           <Link
             href="/"
-            style={{ color: 'black', margin: '0 8px', fontSize: 16 }}
+            className={'info'}
           >
             About US
           </Link>
           <Link
             href="/"
-            style={{ color: 'black', margin: '0 8px', fontSize: 16 }}
+            className={'info'}
           >
             Contacts
           </Link>
           <Link
             href="/"
-            style={{ color: 'black', margin: '0 8px', fontSize: 16 }}
+            className={'info'}
           >
             Support
           </Link>
           <InstagramOutlined
-            style={{
-              color: 'black',
-              marginLeft: 30,
-              marginRight: 8,
-              fontSize: 20,
-            }}
+              className={'info-icons'}
           />
           <FacebookFilled
-            style={{ color: 'black', margin: '0 8px', fontSize: 20 }}
+              className={'info-icons'}
           />
           <GooglePlusOutlined
-            style={{ color: 'black', margin: '0 8px', fontSize: 20 }}
+              className={'info-icons'}
           />
         </Col>
       </Row>
