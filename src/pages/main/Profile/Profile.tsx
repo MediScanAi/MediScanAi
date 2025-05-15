@@ -3,7 +3,6 @@ import {
   ExperimentOutlined,
   MedicineBoxOutlined,
   PhoneOutlined,
-  TeamOutlined,
   UserOutlined,
 } from '@ant-design/icons';
 import UserInfo from './UserInfo.tsx';
