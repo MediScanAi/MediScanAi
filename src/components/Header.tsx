@@ -31,12 +31,12 @@ const burgerItems: MenuProps['items'] = [
     icon: <HomeOutlined />,
   },
   {
-    label: <NavLink to="/">Analysis</NavLink>,
+    label: <NavLink to="/analysis">Analysis</NavLink>,
     key: 'Analysis',
     icon: <ExperimentOutlined />,
   },
   {
-    label: <NavLink to="/">Your AI Doctor</NavLink>,
+    label: <NavLink to="/ai-doctor">Your AI Doctor</NavLink>,
     key: 'Doctor',
     icon: <MedicineBoxOutlined />,
   },
