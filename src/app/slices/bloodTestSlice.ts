@@ -31,7 +31,7 @@ const initialState: BloodTestState = {
     glucose: null,
     cholesterol: null,
     date: null,
-  }
+  },
 };
 
 const bloodTestSlice = createSlice({
@@ -39,8 +39,21 @@ const bloodTestSlice = createSlice({
   initialState,
   reducers: {
     setBloodTestData: (state, action) => {
-      state.bloodTestData = { ...state.bloodTestData, ...action.payload, date: new Date().toLocaleString([], { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit' }) };
-      localStorage.setItem('bloodTestData', JSON.stringify(state.bloodTestData));
+      state.bloodTestData = {
+        ...state.bloodTestData,
+        ...action.payload,
+        date: new Date().toLocaleString([], {
+          year: 'numeric',
+          month: '2-digit',
+          day: '2-digit',
+          hour: '2-digit',
+          minute: '2-digit',
+        }),
+      };
+      localStorage.setItem(
+        'bloodTestData',
+        JSON.stringify(state.bloodTestData)
+      );
     },
   },
 });

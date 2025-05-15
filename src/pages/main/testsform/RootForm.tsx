@@ -2,7 +2,12 @@ import { Tabs, Typography, Card, Button } from 'antd';
 import type { TabsProps } from 'antd';
 import { useNavigate, useParams } from 'react-router-dom';
 import type { JSX } from 'react';
-import { HeartFilled, SafetyOutlined, HeatMapOutlined, MonitorOutlined } from '@ant-design/icons';
+import {
+  HeartFilled,
+  SafetyOutlined,
+  HeatMapOutlined,
+  MonitorOutlined,
+} from '@ant-design/icons';
 import '../../../assets/styles/rootForm.css';
 import VitaminTestForm from './VitaminTestForm';
 import UrineTestForm from './UrineTestForm';
@@ -62,7 +67,8 @@ function RootForm(): JSX.Element | null {
     navigate(`/tests-form/${key}`);
   };
 
-  const activeKey = items.find((item) => item.key === testType)?.key || 'blood-test';
+  const activeKey =
+    items.find((item) => item.key === testType)?.key || 'blood-test';
 
   return (
     <div className="medical-form-container">
@@ -72,7 +78,8 @@ function RootForm(): JSX.Element | null {
             Welcome to Our Medical Laboratory Portal
           </Title>
           <Text className="welcome-message">
-            Your health is our priority. Get accurate test results with our MediScanAi technologies.
+            Your health is our priority. Get accurate test results with our
+            MediScanAi technologies.
           </Text>
         </div>
       </div>

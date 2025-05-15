@@ -21,10 +21,10 @@ const items: TabsProps['items'] = [
     label: <span className={'menu-button'}>Analysis History</span>,
     key: 'analysis',
     icon: <ExperimentOutlined />,
-    children: <AnalysisHistory />
+    children: <AnalysisHistory />,
   },
   {
-    key: 'doctor', 
+    key: 'doctor',
     label: <span className={'menu-button'}>Tests</span>,
     icon: <MedicineBoxOutlined />,
     children: <MainTests />,

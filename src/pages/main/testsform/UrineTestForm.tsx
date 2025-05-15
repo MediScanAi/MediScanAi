@@ -16,7 +16,15 @@ const { Option } = Select;
 const { Title } = Typography;
 
 const urineTestFields = [
-  { type: "input", label: 'pH (4.5-8.0)', name: 'ph', min: 4.5, max: 8.0, step: 0.1, placeholder: 'e.g. 7.5', },
+  {
+    type: 'input',
+    label: 'pH (4.5-8.0)',
+    name: 'ph',
+    min: 4.5,
+    max: 8.0,
+    step: 0.1,
+    placeholder: 'e.g. 7.5',
+  },
   {
     type: 'input',
     label: 'Specific Gravity (1.0-1.03)',
@@ -27,12 +35,60 @@ const urineTestFields = [
     placeholder: 'e.g. 1.015',
     unit: 'g/dL',
   },
-  { type: 'input', label: 'Protein (mg/dL)', name: 'protein', min: 0, max: 300, step: 1, placeholder: 'e.g. 100', unit: 'mg/dL' },
-  { type: 'input', label: 'Glucose (mg/dL)', name: 'glucose', min: 0, max: 1000, step: 1, placeholder: 'e.g. 100', unit: 'mg/dL' },
-  { type: 'input', label: 'Ketones (mg/dL)', name: 'ketones', min: 0, max: 160, step: 1, placeholder: 'e.g. 100', unit: 'mg/dL' },
-  { type: 'select', label: 'Bilirubin', name: 'bilirubin', options: ['negative', 'positive'], unit: 'mg/dL' },
-  { type: 'input', label: 'Urobilinogen (EU/dL)', name: 'urobilinogen', min: 0.1, max: 8.0, step: 0.1, placeholder: 'e.g. 1.5', unit: 'EU/dL' },
-  { type: 'select', label: 'Nitrites', name: 'nitrites', options: ['negative', 'positive'], unit: 'mg/dL' },
+  {
+    type: 'input',
+    label: 'Protein (mg/dL)',
+    name: 'protein',
+    min: 0,
+    max: 300,
+    step: 1,
+    placeholder: 'e.g. 100',
+    unit: 'mg/dL',
+  },
+  {
+    type: 'input',
+    label: 'Glucose (mg/dL)',
+    name: 'glucose',
+    min: 0,
+    max: 1000,
+    step: 1,
+    placeholder: 'e.g. 100',
+    unit: 'mg/dL',
+  },
+  {
+    type: 'input',
+    label: 'Ketones (mg/dL)',
+    name: 'ketones',
+    min: 0,
+    max: 160,
+    step: 1,
+    placeholder: 'e.g. 100',
+    unit: 'mg/dL',
+  },
+  {
+    type: 'select',
+    label: 'Bilirubin',
+    name: 'bilirubin',
+    options: ['negative', 'positive'],
+    unit: 'mg/dL',
+  },
+  {
+    type: 'input',
+    label: 'Urobilinogen (EU/dL)',
+    name: 'urobilinogen',
+    min: 0.1,
+    max: 8.0,
+    step: 0.1,
+    placeholder: 'e.g. 1.5',
+    unit: 'EU/dL',
+  },
+  {
+    type: 'select',
+    label: 'Nitrites',
+    name: 'nitrites',
+    options: ['negative', 'positive'],
+    unit: 'mg/dL',
+  },
   {
     type: 'select',
     label: 'Leukocyte Esterase',
@@ -41,13 +97,22 @@ const urineTestFields = [
     placeholder: 'e.g. negative',
     unit: 'mg/dL',
   },
-  { type: 'select', label: 'Blood', name: 'blood', options: ['negative', 'trace', 'positive'], placeholder: 'e.g. negative', unit: 'mg/dL' },
+  {
+    type: 'select',
+    label: 'Blood',
+    name: 'blood',
+    options: ['negative', 'trace', 'positive'],
+    placeholder: 'e.g. negative',
+    unit: 'mg/dL',
+  },
 ];
 
 const UrineTestForm = () => {
   const [form] = Form.useForm();
   const dispatch = useAppDispatch();
-  const data = useAppSelector((state: RootState) => state.urineTest?.urineTestData);
+  const data = useAppSelector(
+    (state: RootState) => state.urineTest?.urineTestData
+  );
 
   const onFinish = (values: UrineTestFormValues) => {
     dispatch(setUrineTestData(values));
@@ -73,7 +138,6 @@ const UrineTestForm = () => {
                 key={field.name}
                 label={field.label}
                 name={field.name}
-
                 rules={[{ required: true }]}
               >
                 <InputNumber

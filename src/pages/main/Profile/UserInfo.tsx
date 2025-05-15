@@ -11,7 +11,9 @@ const ColorfulPatientDescription: React.FC = () => {
         </div>
       </Descriptions.Item>
 
-      <Descriptions.Item label="Surname">HERE WILL BE SURNAME</Descriptions.Item>
+      <Descriptions.Item label="Surname">
+        HERE WILL BE SURNAME
+      </Descriptions.Item>
 
       <Descriptions.Item label="Age">HERE WILL BE AGE</Descriptions.Item>
 
@@ -21,11 +23,11 @@ const ColorfulPatientDescription: React.FC = () => {
 
       <Descriptions.Item label="Sex">Male</Descriptions.Item>
 
-      <Descriptions.Item label="Adress">
-        HERE WILL BE ADRESS
-      </Descriptions.Item>
+      <Descriptions.Item label="Adress">HERE WILL BE ADRESS</Descriptions.Item>
 
-      <Descriptions.Item label="Phone number">HERE WILL BE PHONE NUMBER</Descriptions.Item>
+      <Descriptions.Item label="Phone number">
+        HERE WILL BE PHONE NUMBER
+      </Descriptions.Item>
     </Descriptions>
   );
 };
