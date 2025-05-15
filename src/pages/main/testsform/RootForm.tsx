@@ -4,7 +4,7 @@ import BloodTestsForm from './BloodTestForm';
 import UrineTestForm from './UrineTestForm';
 import VitaminTestForm from './VitaminTestForm';
 import { useNavigate, useParams } from 'react-router-dom';
-import type {ReactNode} from "react";
+import type { ReactNode } from 'react';
 
 const { Title } = Typography;
 
