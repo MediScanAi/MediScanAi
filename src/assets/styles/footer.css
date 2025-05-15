@@ -1,0 +1,33 @@
+footer {
+    background-color: white;
+    padding: 24px 0;
+    margin-top: auto;
+    width: 100%;
+    border-top: 1px solid #e8e8e8;
+}
+.info {
+    color: black;
+    font-size: 16px;
+    margin-right: 10px;
+    a {
+        color: #000;
+    }
+}
+.info-icons {
+    color: black;
+    font-size: 20px;
+    margin-right: 10px;
+}
+.dark-footer {
+    background-color: #102739;
+    border-top-color: black;
+    .info-icons {
+        color: white;
+    }
+    .info {
+        color: white;
+        a {
+            color: white;
+        }
+    }
+}
