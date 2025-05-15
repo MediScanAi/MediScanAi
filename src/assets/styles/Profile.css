@@ -1,0 +1,184 @@
+.Column {
+  margin: 50px auto;
+  box-shadow:
+    0 8px 32px rgba(74, 144, 226, 0.12),
+    0 0 0 3px rgba(114, 167, 255, 0.15);
+  border-radius: 10px;
+  width: 90%;
+}
+.menu-button {
+  font-size: 20px;
+}
+.ant-descriptions {
+  border-radius: 20px;
+  padding: 28px;
+  transition: all 0.3s ease;
+}
+
+/* Заголовок Description */
+.ant-descriptions-title {
+  background: linear-gradient(45deg, #4a90e2 0%, #67b0ff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size: 28px;
+  font-weight: 800;
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 3px solid #e8f2ff;
+  letter-spacing: -0.5px;
+  position: relative;
+}
+
+.ant-descriptions-title::after {
+  content: '';
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(90deg, #4a90e2, #67b0ff);
+  border-radius: 3px;
+}
+
+/* Метки (labels) */
+.ant-descriptions-item-label {
+  color: #4a5568;
+  font-weight: 600;
+  font-size: 14px;
+  padding: 16px 24px 16px 0;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  background: linear-gradient(45deg, #f6f9ff 0%, #ffffff 100%);
+}
+
+/* Значения */
+.ant-descriptions-item-content {
+  color: #2d3748;
+  font-size: 16px;
+  padding: 16px 20px;
+  font-weight: 500;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+/* Стили для bordered варианта */
+.ant-descriptions-bordered {
+  border: none;
+  overflow: hidden;
+}
+
+.ant-descriptions-bordered .ant-descriptions-view {
+  border: 2px solid #e8f2ff;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.ant-descriptions-bordered .ant-descriptions-item-label {
+  position: relative;
+  overflow: hidden;
+}
+
+.ant-descriptions-bordered .ant-descriptions-row {
+  position: relative;
+}
+
+.ant-descriptions-bordered .ant-descriptions-row:hover {
+  background: linear-gradient(45deg, #f8faff 0%, #ffffff 100%);
+}
+
+/* Статусы с градиентами */
+.status-wrapper {
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.status-active {
+  background: linear-gradient(45deg, #20bf55 0%, #01baef 100%);
+  color: white;
+}
+
+.status-pending {
+  background: linear-gradient(45deg, #f7b733 0%, #fc4a1a 100%);
+  color: white;
+}
+
+.status-completed {
+  background: linear-gradient(45deg, #56ab2f 0%, #a8e063 100%);
+  color: white;
+}
+
+/* Теги */
+.ant-tag {
+  border: none;
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-weight: 600;
+  background: linear-gradient(45deg, #4a90e2 0%, #67b0ff 100%);
+  color: white;
+  /*box-shadow: 0 4px 12px rgba(74, 144, 226, 0.2);*/
+}
+
+.ant-tag-blue {
+  background: linear-gradient(45deg, #2193b0 0%, #6dd5ed 100%);
+}
+
+.ant-tag-red {
+  background: linear-gradient(45deg, #ff416c 0%, #ff4b2b 100%);
+}
+
+.ant-tag-green {
+  background: linear-gradient(45deg, #56ab2f 0%, #a8e063 100%);
+}
+
+/* Бейджи */
+.ant-badge-status-dot {
+  width: 10px;
+  height: 10px;
+  box-shadow: 0 0 0 4px rgba(74, 144, 226, 0.15);
+}
+
+/* Анимированные ссылки */
+.ant-descriptions-item-content a {
+  color: #4a90e2;
+  text-decoration: none;
+  position: relative;
+  padding: 2px 4px;
+  font-weight: 600;
+  background: linear-gradient(90deg, #4a90e2, #67b0ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.ant-descriptions-item-content a::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, #4a90e2, #67b0ff);
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+}
+
+.ant-descriptions-item-content a:hover::before {
+  transform: scaleX(1);
+}
+
+/* Иконки */
+.icon-wrapper {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: linear-gradient(45deg, #4a90e2 0%, #67b0ff 100%);
+  color: white;
+  margin-right: 12px;
+}
