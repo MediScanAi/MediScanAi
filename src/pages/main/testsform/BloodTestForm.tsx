@@ -63,7 +63,6 @@ function BloodTestsForm() {
     (state: RootState) => state.bloodTest?.bloodTestData
   );
 
-
   const onFinish = (values: BloodTestFormValues) => {
     dispatch(setBloodTestData(values));
 
@@ -71,7 +70,6 @@ function BloodTestsForm() {
     setTimeout(() => {
       form.resetFields();
     }, 0);
-
   };
 
   console.log(data);
@@ -82,7 +80,7 @@ function BloodTestsForm() {
       title={<Title level={3}>Blood Test</Title>}
     >
       <Form form={form} onFinish={onFinish} layout="vertical" size="large">
-        {bloodTestFields.map(field => (
+        {bloodTestFields.map((field) => (
           <Form.Item
             key={field.name}
             label={`${field.label}`}
@@ -100,7 +98,7 @@ function BloodTestsForm() {
         ))}
 
         <Form.Item style={{ textAlign: 'center' }}>
-          <Button type="primary" htmlType="submit" >
+          <Button type="primary" htmlType="submit">
             Submit Blood Test
           </Button>
         </Form.Item>

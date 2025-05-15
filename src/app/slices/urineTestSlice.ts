@@ -51,8 +51,21 @@ const urineTestSlice = createSlice({
   initialState,
   reducers: {
     setUrineTestData: (state, action) => {
-      state.urineTestData = { ...state.urineTestData, ...action.payload, date: new Date().toLocaleString([], { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit' }) };
-      localStorage.setItem('urineTestData', JSON.stringify(state.urineTestData));
+      state.urineTestData = {
+        ...state.urineTestData,
+        ...action.payload,
+        date: new Date().toLocaleString([], {
+          year: 'numeric',
+          month: '2-digit',
+          day: '2-digit',
+          hour: '2-digit',
+          minute: '2-digit',
+        }),
+      };
+      localStorage.setItem(
+        'urineTestData',
+        JSON.stringify(state.urineTestData)
+      );
     },
   },
 });
