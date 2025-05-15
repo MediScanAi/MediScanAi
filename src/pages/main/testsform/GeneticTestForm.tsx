@@ -6,14 +6,12 @@ import {
     Card,
     Typography,
     Input,
-    Checkbox,
 } from "antd";
 
 import { setGeneticTestData, type GeneticTestFormValues } from "../../../app/slices/geneticTestSlice";
 import { useAppDispatch, useAppSelector } from "../../../app/hooks";
 import type { RootState } from "../../../app/store";
 import { useEffect } from "react";
-
 const { Title } = Typography;
 
 const geneticFields = [
@@ -111,19 +109,19 @@ function GeneticTestForm() {
         form.setFieldsValue(data);
     }, [data, form]);
 
-    const validateNumber = (_: unknown, value: number) =>
-        isNaN(value) ? Promise.reject('Enter a valid number') : Promise.resolve();
 
-    const onFinish = async (values: GeneticTestFormValues) => {
+    const onFinish = (values: GeneticTestFormValues) => {
         dispatch(setGeneticTestData(values));
         message.success({
-            content: 'Form submitted successfully!',
+            content: `Genetic Test & Family Health History submitted successfully!`,
             className: 'success-message',
         });
     };
 
+    console.log(data);
+
     return (
-        <Card title={<Title level={3}>Genetic Test & Family Health History</Title>} className="blood-card">
+        <Card style={{ border: 'none' }} title={<Title level={3}>Genetic Test & Family Health History</Title>}>
             <Form
                 form={form}
                 onFinish={onFinish}
@@ -132,15 +130,14 @@ function GeneticTestForm() {
                 validateTrigger={['onBlur', 'onChange']}
             >
                 <Title level={4}>Genetic Test</Title>
-                <div className="form-grid">
+                <div>
                     {geneticFields.map((field) => (
                         <Form.Item
                             key={field.name}
                             label={field.label}
                             name={field.name}
                             rules={[
-                                { required: true, message: 'This field is required' },
-                                { validator: validateNumber },
+                                { required: true, },
                                 {
                                     type: 'number',
                                     min: field.min,
@@ -162,7 +159,7 @@ function GeneticTestForm() {
                 </div>
 
                 <Title level={4} style={{ marginTop: 32 }}>Family Health History</Title>
-                <div className="form-grid">
+                <div>
                     {familyHistoryFields.map((field) => (
                         <Form.Item
                             key={field.name}
@@ -170,7 +167,6 @@ function GeneticTestForm() {
                             name={field.name}
                             valuePropName="checked"
                         >
-                            <Checkbox style={{ marginBottom: 10 }} />
                             <Input.TextArea
                                 placeholder="Something to add?"
                                 style={{ marginBottom: 10, maxHeight: 100, overflowY: 'auto', minHeight: 50 }}
@@ -184,7 +180,6 @@ function GeneticTestForm() {
                         type="primary"
                         htmlType="submit"
                         size="large"
-                        className="submit-btn"
                     >
                         Submit Form
                     </Button>

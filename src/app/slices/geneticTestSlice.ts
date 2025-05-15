@@ -8,10 +8,14 @@ interface GeneticTestState {
     mthfr: number | null;
     factor_v_leiden: number | null;
     cyp2c19: number | null;
-    cyp2d6: number | null;
     family_history_heart_disease: string | null;
     family_history_diabetes: string | null;
     family_history_cancer: string | null;
+    family_history_hypertension: string | null;
+    family_history_stroke: string | null;
+    family_history_genetic_disorders: string | null;
+    
+  
   };
 }
 
@@ -26,6 +30,9 @@ export interface GeneticTestFormValues {
   family_history_heart_disease: string | null;
   family_history_diabetes: string | null;
   family_history_cancer: string | null;
+  family_history_hypertension: string | null;
+  family_history_stroke: string | null;
+  family_history_genetic_disorders: string | null;
 }
 
 const initialState: GeneticTestState = {
@@ -36,10 +43,12 @@ const initialState: GeneticTestState = {
     mthfr: null,
     factor_v_leiden: null,
     cyp2c19: null,
-    cyp2d6: null,
     family_history_heart_disease: null,
     family_history_diabetes: null,
     family_history_cancer: null,
+    family_history_hypertension: null,
+    family_history_stroke: null,
+    family_history_genetic_disorders: null,
   },
 };
 

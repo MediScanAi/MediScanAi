@@ -15,10 +15,8 @@
   transition: all 0.3s ease;
 }
 
-/* Заголовок Description */
 .ant-descriptions-title {
   background: linear-gradient(45deg, #4a90e2 0%, #67b0ff 100%);
-  -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   font-size: 28px;
   font-weight: 800;
@@ -40,7 +38,6 @@
   border-radius: 3px;
 }
 
-/* Метки (labels) */
 .ant-descriptions-item-label {
   color: #4a5568;
   font-weight: 600;
@@ -51,7 +48,6 @@
   background: linear-gradient(45deg, #f6f9ff 0%, #ffffff 100%);
 }
 
-/* Значения */
 .ant-descriptions-item-content {
   color: #2d3748;
   font-size: 16px;
@@ -61,7 +57,6 @@
   transition: all 0.3s ease;
 }
 
-/* Стили для bordered варианта */
 .ant-descriptions-bordered {
   border: none;
   overflow: hidden;
@@ -86,7 +81,6 @@
   background: linear-gradient(45deg, #f8faff 0%, #ffffff 100%);
 }
 
-/* Статусы с градиентами */
 .status-wrapper {
   padding: 6px 16px;
   border-radius: 20px;
@@ -112,7 +106,6 @@
   color: white;
 }
 
-/* Теги */
 .ant-tag {
   border: none;
   padding: 6px 16px;
@@ -135,14 +128,12 @@
   background: linear-gradient(45deg, #56ab2f 0%, #a8e063 100%);
 }
 
-/* Бейджи */
 .ant-badge-status-dot {
   width: 10px;
   height: 10px;
   box-shadow: 0 0 0 4px rgba(74, 144, 226, 0.15);
 }
 
-/* Анимированные ссылки */
 .ant-descriptions-item-content a {
   color: #4a90e2;
   text-decoration: none;
@@ -150,7 +141,6 @@
   padding: 2px 4px;
   font-weight: 600;
   background: linear-gradient(90deg, #4a90e2, #67b0ff);
-  -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
@@ -170,7 +160,6 @@
   transform: scaleX(1);
 }
 
-/* Иконки */
 .icon-wrapper {
   display: inline-flex;
   align-items: center;
