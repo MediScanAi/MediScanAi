@@ -9,14 +9,14 @@ header {
   backdrop-filter: blur(5px);
 }
 
-.dark-Header{
+.dark-Header {
   background-color: rgba(16, 39, 57, 0.71);
-  span{
+  span {
     color: white;
   }
 }
 
-.Header{
+.Header {
   width: 100%;
   height: 46px;
   border-bottom: 1px solid #e8e8e8;
@@ -38,6 +38,6 @@ header {
   align-items: center;
   justify-content: space-between;
 }
-.dark-user-button{
+.dark-user-button {
   color: white;
 }
