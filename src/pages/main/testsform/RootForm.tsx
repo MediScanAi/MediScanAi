@@ -13,7 +13,7 @@ function RootForm(): ReactNode | null {
   const navigate = useNavigate();
   const { testType } = useParams();
   const theme = useAppSelector((state) => state.theme.isDarkMode);
-    console.log(theme)
+  console.log(theme);
   const items: TabsProps['items'] = [
     {
       label: 'Blood Test',
