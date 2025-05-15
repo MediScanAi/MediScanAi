@@ -17,8 +17,8 @@ import Title from 'antd/es/typography/Title';
 import geneticBackground from '../../assets/photos/GeneticBackground.jpg';
 import bloodBackground from '../../assets/photos/bloodBackground.jpg';
 import vitaminBackground from '../../assets/photos/vitaminBackground.jpg';
-import inputBackground from '../../assets/photos/inputBackground.jpg';
 import urineBackground from '../../assets/photos/urineBackground.jpg';
+import inputBackground from '../../assets/photos/inputBackground.jpg';
 import '../../assets/styles/analysis.css';
 
 
@@ -137,26 +137,6 @@ const AnalysisPage = () => {
           <div >
             {analysisData && (
               <div>
-                <Row
-                  className="row-design"
-                  style={{
-                    width: '96.5%',
-                    margin: '0 auto',
-                    marginBottom: '25px',
-                    backgroundImage: `url(${inputBackground})`,
-                  }}
-                >
-                  <Col
-                    className="row-col"
-                  >
-                    <Title
-                      style={{ fontWeight: 400 }}
-                    >
-                      <b>Your Personal Analysis</b>
-                    </Title>
-                  </Col>
-                </Row>
-
                 <div style={{
                   width: '96.5%',
                   display: 'flex',
@@ -242,56 +222,58 @@ const AnalysisPage = () => {
                   </Col>
                 </div>
 
-                <Row
-                  style={{ marginTop: 24, margin: '0 auto', display: 'flex' }}
-                >
-                  <div
-                    style={{
-                      display: width < 1100 ? 'grid' : 'flex',
-                      gap: 32,
-                      margin: '0 auto',
-                      width: '96.5%',
-                    }}
+                <div style={{ backgroundColor: '#fff4', backgroundSize: 'cover', backgroundPosition: 'center', position: 'relative', zIndex: 4 }}>
+                  <Row
+                    style={{ marginTop: 24, margin: '0 auto', display: 'flex' }}
                   >
-                    <Card title="Cholesterol Breakdown" style={{ flex: 5, borderRadius: '15px', marginRight: '25px', border: 'none' }}>
-                      <CustomPieChart data={analysisData.pieData} />
-                    </Card>
-                    <Card title="Minerals & Vitamins" style={{ flex: 4, borderRadius: '15px', marginRight: '25px', border: 'none' }}>
-                      <CustomBarChart data={analysisData.barData} />
-                    </Card>
-                    <div style={{ display: 'flex', gap: 16, justifyContent: 'center' }}>
-                      {analysisData?.scorecards.map(
-                        (item: Scorecard, index: number) => (
-                          <Card
-                            key={index}
-                            style={{ textAlign: 'center', borderRadius: '15px', border: 'none' }}
-                          >
-                            <Progress
-                              type="circle"
-                              percent={item.percent}
-                              format={() => `${item.value}`}
-                              strokeWidth={15}
-                            />
-                            <div style={{ marginTop: 45 }}>
-                              {item.label}
-                            </div>
-                          </Card>
-                        )
-                      )}
+                    <div
+                      style={{
+                        display: width < 1100 ? 'grid' : 'flex',
+                        gap: 32,
+                        margin: '0 auto',
+                        width: '96.5%',
+                      }}
+                    >
+                      <Card title="Cholesterol Breakdown" style={{ flex: 5, borderRadius: '15px', marginRight: '25px', border: 'none' }}>
+                        <CustomPieChart data={analysisData.pieData} />
+                      </Card>
+                      <Card title="Minerals & Vitamins" style={{ flex: 4, borderRadius: '15px', marginRight: '25px', border: 'none' }}>
+                        <CustomBarChart data={analysisData.barData} />
+                      </Card>
+                      <div style={{ display: 'flex', gap: 16, justifyContent: 'center' }}>
+                        {analysisData?.scorecards.map(
+                          (item: Scorecard, index: number) => (
+                            <Card
+                              key={index}
+                              style={{ textAlign: 'center', borderRadius: '15px', border: 'none' }}
+                            >
+                              <Progress
+                                type="circle"
+                                percent={item.percent}
+                                format={() => `${item.value}`}
+                                strokeWidth={15}
+                              />
+                              <div style={{ marginTop: 45 }}>
+                                {item.label}
+                              </div>
+                            </Card>
+                          )
+                        )}
+                      </div>
                     </div>
-                  </div>
-                </Row>
-                <Col style={{ marginTop: 32, textAlign: 'center' }}>
-                  <h2
-                    style={{ fontSize: 24, fontWeight: 'bold', color: '#3498db' }}
-                  >
-                    Cholesterol Trends
-                  </h2>
-                  <p style={{ fontSize: 16, color: '#666' }}>
-                    This chart shows the trend of your cholesterol levels over time.
-                  </p>
-                  <LineChart data={analysisData.trendData} />
-                </Col>
+                  </Row>
+                  <Col style={{ marginTop: 32, textAlign: 'center' }}>
+                    <h2
+                      style={{ fontSize: 24, fontWeight: 'bold', color: '#3498db' }}
+                    >
+                      Cholesterol Trends
+                    </h2>
+                    <p style={{ fontSize: 16, color: '#666' }}>
+                      This chart shows the trend of your cholesterol levels over time.
+                    </p>
+                    <LineChart data={analysisData.trendData} />
+                  </Col>
+                </div>
               </div>
             )}
           </div>
