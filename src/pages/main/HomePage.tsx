@@ -20,6 +20,7 @@ import mission from '../../assets/photos/ourMission.jpg';
 import getStartedBackground from '../../assets/photos/getStartedBackground.jpg';
 import '../../assets/styles/homepage.css';
 import { useEffect, useState } from 'react';
+import { useAppSelector } from '../../app/hooks.ts';
 
 const { Title, Text } = Typography;
 
@@ -104,6 +105,7 @@ const partners = [
 
 function HomePage() {
   const [width, setWidth] = useState(window.innerWidth);
+  const theme = useAppSelector((state) => state.theme.isDarkMode);
 
   useEffect(() => {
     const handleResize = () => {
@@ -115,6 +117,7 @@ function HomePage() {
 
   return (
     <Row
+      className={theme ? 'dark-theme' : ''}
       justify="center"
       align="middle"
       style={{

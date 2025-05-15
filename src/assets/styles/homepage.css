@@ -9,3 +9,6 @@
     transform: translateY(0);
   }
 }
+.dark-theme {
+  background-color: #2d3748;
+}
