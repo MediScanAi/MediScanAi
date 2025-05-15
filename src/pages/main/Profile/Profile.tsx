@@ -8,6 +8,7 @@ import {
 import UserInfo from './UserInfo.tsx';
 import '../../../assets/styles/Profile.css';
 import MainTests from '../testsform/MainTests.tsx';
+import AnalysisHistory from './AnalysisHistory.tsx';
 const items: TabsProps['items'] = [
   {
     label: <span className={'menu-button'}>Info</span>,
@@ -19,9 +20,10 @@ const items: TabsProps['items'] = [
     label: <span className={'menu-button'}>Analysis History</span>,
     key: 'analysis',
     icon: <ExperimentOutlined />,
+    children: <AnalysisHistory />
   },
   {
-    key: 'doctor',
+    key: 'doctor', 
     label: <span className={'menu-button'}>Tests</span>,
     icon: <MedicineBoxOutlined />,
     children: <MainTests />,

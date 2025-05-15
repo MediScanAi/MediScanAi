@@ -12,6 +12,7 @@ interface UrineTestState {
     nitrites: string | null;
     leukocyteEsterase: string | null;
     blood: string | null;
+    date: string | null;
   };
 }
 
@@ -26,6 +27,7 @@ export interface UrineTestFormValues {
   nitrites: string | null;
   leukocyteEsterase: string | null;
   blood: string | null;
+  date: string | null;
 }
 
 const initialState: UrineTestState = {
@@ -40,6 +42,7 @@ const initialState: UrineTestState = {
     nitrites: null,
     leukocyteEsterase: null,
     blood: null,
+    date: null,
   },
 };
 
@@ -48,7 +51,8 @@ const urineTestSlice = createSlice({
   initialState,
   reducers: {
     setUrineTestData: (state, action) => {
-      state.urineTestData = action.payload;
+      state.urineTestData = { ...state.urineTestData, ...action.payload, date: new Date().toLocaleString([], { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit' }) };
+      localStorage.setItem('urineTestData', JSON.stringify(state.urineTestData));
     },
   },
 });

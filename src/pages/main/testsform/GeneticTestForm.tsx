@@ -5,13 +5,11 @@ import {
     Form,
     Card,
     Typography,
-    Input,
 } from "antd";
 
 import { setGeneticTestData, type GeneticTestFormValues } from "../../../app/slices/geneticTestSlice";
 import { useAppDispatch, useAppSelector } from "../../../app/hooks";
 import type { RootState } from "../../../app/store";
-import { useEffect } from "react";
 const { Title } = Typography;
 
 const geneticFields = [
@@ -65,39 +63,6 @@ const geneticFields = [
     },
 ];
 
-const familyHistoryFields = [
-    {
-        name: 'family_history_heart_disease',
-        label: 'Family History of Heart Disease',
-        type: 'boolean',
-    },
-    {
-        name: 'family_history_diabetes',
-        label: 'Family History of Diabetes',
-        type: 'boolean',
-    },
-    {
-        name: 'family_history_cancer',
-        label: 'Family History of Cancer',
-        type: 'boolean',
-    },
-    {
-        name: 'family_history_hypertension',
-        label: 'Family History of Hypertension',
-        type: 'boolean',
-    },
-    {
-        name: 'family_history_stroke',
-        label: 'Family History of Stroke',
-        type: 'boolean',
-    },
-    {
-        name: 'family_history_genetic_disorders',
-        label: 'Family History of Genetic Disorders',
-        type: 'boolean',
-    },
-];
-
 function GeneticTestForm() {
     const [form] = Form.useForm();
     const dispatch = useAppDispatch();
@@ -105,17 +70,15 @@ function GeneticTestForm() {
         (state: RootState) => state.geneticTest?.geneticTestData
     );
 
-    useEffect(() => {
-        form.setFieldsValue(data);
-    }, [data, form]);
-
-
     const onFinish = (values: GeneticTestFormValues) => {
         dispatch(setGeneticTestData(values));
         message.success({
             content: `Genetic Test & Family Health History submitted successfully!`,
             className: 'success-message',
         });
+        setTimeout(() => {
+            form.resetFields();
+        }, 0);
     };
 
     console.log(data);
@@ -153,23 +116,6 @@ function GeneticTestForm() {
                                 step={field.step}
                                 style={{ width: '100%' }}
                                 placeholder={field.placeholder}
-                            />
-                        </Form.Item>
-                    ))}
-                </div>
-
-                <Title level={4} style={{ marginTop: 32 }}>Family Health History</Title>
-                <div>
-                    {familyHistoryFields.map((field) => (
-                        <Form.Item
-                            key={field.name}
-                            label={field.label}
-                            name={field.name}
-                            valuePropName="checked"
-                        >
-                            <Input.TextArea
-                                placeholder="Something to add?"
-                                style={{ marginBottom: 10, maxHeight: 100, overflowY: 'auto', minHeight: 50 }}
                             />
                         </Form.Item>
                     ))}
