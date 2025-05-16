@@ -1,18 +1,18 @@
 import { Typography, Card, Divider, Row, Col, Button } from 'antd';
 import {
-  HeartOutlined,
-  AlertOutlined,
-  FundOutlined,
-  DashboardOutlined,
-  ExperimentOutlined,
-  MedicineBoxOutlined,
-  SafetyCertificateOutlined,
-  FireOutlined,
-  EyeOutlined,
-  SmileOutlined,
-  ThunderboltOutlined,
-  SolutionOutlined,
-  SunOutlined,
+    HeartOutlined,
+    AlertOutlined,
+    FundOutlined,
+    DashboardOutlined,
+    ExperimentOutlined,
+    MedicineBoxOutlined,
+    SafetyCertificateOutlined,
+    FireOutlined,
+    EyeOutlined,
+    SmileOutlined,
+    ThunderboltOutlined,
+    SolutionOutlined,
+    SunOutlined,
 } from '@ant-design/icons';
 import { useAppDispatch, useAppSelector } from '../../../app/hooks';
 import { deleteBloodTestData, type BloodTestFormValues } from '../../../app/slices/bloodTestSlice';
@@ -132,104 +132,98 @@ const AnalysisHistory: React.FC = () => {
 
     return (
         <div style={{ maxWidth: 1200, margin: '0 auto', padding: '16px' }}>
-            <Card style={{ border: "none" }}>
-                <Title level={2} style={{ marginBottom: 24, color: "#3498db" }}>Patient Analysis History</Title>
+            <Col>
 
-                {!hasAnyTestData && (
-                    <Text type="secondary" style={{ display: 'block', marginBottom: 24 }}>
-                        No test results available. You haven't completed any tests yet.
+                <Card style={{ border: "none" }}>
+                    <Title level={2} style={{ marginBottom: 24, color: "#3498db" }}>Patient Analysis History</Title>
 
-                    </Text>
-                  )}
-                </Title>
-                {test.normalRange && (
-                  <Text type="secondary">Normal: {test.normalRange}</Text>
-                )}
-              </Card>
+                    {!hasAnyTestData && (
+                        <Text type="secondary" style={{ display: 'block', marginBottom: 24 }}>
+                            No test results available. You haven't completed any tests yet.
+
+                        </Text>
+                    )}
+
+                    <Row gutter={[24, 32]}>
+                        {bloodTestData && (
+                            <Col span={24}>
+                                <div style={{ marginBottom: 8 }}>
+                                    <Text strong style={{ fontSize: 16 }}>Blood Test</Text>
+                                    <Text type="secondary" style={{ marginLeft: 12 }}>
+                                        Last updated: {bloodTestData.date || 'Date not specified'}
+                                    </Text>
+                                    <Button onClick={handleDeleteBloodTestData} style={{ marginLeft: 12 }}>Delete</Button>
+                                    <Button onClick={sendBloodTestData} style={{ marginLeft: 12 }}>Edit</Button>
+                                </div>
+                                <Divider style={{ margin: '12px 0' }} />
+                                {renderTestCards(testBloodResults.map(result => ({
+                                    ...result,
+                                    value: result.value?.toString() || ''
+                                })))}
+                            </Col>
+                        )}
+
+                        {urineTestData && (
+                            <Col span={24}>
+                                <div style={{ marginBottom: 8 }}>
+                                    <Text strong style={{ fontSize: 16 }}>Urine Test</Text>
+                                    <Text type="secondary" style={{ marginLeft: 12 }}>
+                                        Last updated: {urineTestData.date || 'Date not specified'}
+                                    </Text>
+                                    <Button onClick={handleDeleteUrineTestData} style={{ marginLeft: 12 }}>Delete</Button>
+                                    <Button onClick={sendUrineTestData} style={{ marginLeft: 12 }}>Edit</Button>
+                                </div>
+                                <Divider style={{ margin: '12px 0' }} />
+                                {renderTestCards(testUrineResults.map(result => ({
+                                    ...result,
+                                    value: result.value?.toString() || ''
+                                })))}
+                            </Col>
+                        )}
+
+                        {vitaminTestData && (
+                            <Col span={24}>
+                                <div style={{ marginBottom: 8 }}>
+                                    <Text strong style={{ fontSize: 16 }}>Vitamin Test</Text>
+                                    <Text type="secondary" style={{ marginLeft: 12 }}>
+                                        Last updated: {vitaminTestData.date || 'Date not specified'}
+                                    </Text>
+                                    <Button onClick={handleDeleteVitaminTestData} style={{ marginLeft: 12 }}>Delete</Button>
+                                    <Button onClick={sendVitaminTestData} style={{ marginLeft: 12 }}>Edit</Button>
+                                </div>
+                                <Divider style={{ margin: '12px 0' }} />
+                                {renderTestCards(testVitaminResults.map(result => ({
+                                    ...result,
+                                    value: result.value?.toString() || ''
+                                })))}
+                            </Col>
+                        )}
+
+                        {geneticTestData && (
+                            <Col span={24}>
+                                <div style={{ marginBottom: 8 }}>
+                                    <Text strong style={{ fontSize: 16 }}>Genetic Test</Text>
+                                    <Text type="secondary" style={{ marginLeft: 12 }}>
+                                        Last updated: {geneticTestData.date || 'Date not specified'}
+                                    </Text>
+                                    <Button onClick={handleDeleteGeneticTestData} style={{ marginLeft: 12 }}>Delete</Button>
+                                    <Button onClick={sendGeneticTestData} style={{ marginLeft: 12 }}>Edit</Button>
+                                </div>
+                                <Divider style={{ margin: '12px 0' }} />
+                                {renderTestCards(testGeneticResults.map(result => ({
+                                    ...result,
+                                    value: result.value?.toString() || '',
+                                    unit: '',
+                                    normalRange: '',
+                                })))}
+                            </Col>
+                        )}
+                    </Row>
+                </Card>
             </Col>
-          )
-      )}
-    </Row>
-  );
-
-                <Row gutter={[24, 32]}>
-                    {bloodTestData && (
-                        <Col span={24}>
-                            <div style={{ marginBottom: 8 }}>
-                                <Text strong style={{ fontSize: 16 }}>Blood Test</Text>
-                                <Text type="secondary" style={{ marginLeft: 12 }}>
-                                    Last updated: {bloodTestData.date || 'Date not specified'}
-                                </Text>
-                                <Button onClick={handleDeleteBloodTestData} style={{ marginLeft: 12 }}>Delete</Button>
-                                <Button onClick={sendBloodTestData} style={{ marginLeft: 12 }}>Edit</Button>
-                            </div>
-                            <Divider style={{ margin: '12px 0' }} />
-                            {renderTestCards(testBloodResults.map(result => ({
-                                ...result,
-                                value: result.value?.toString() || ''
-                            })))}
-                        </Col>
-                    )}
-
-                    {urineTestData && (
-                        <Col span={24}>
-                            <div style={{ marginBottom: 8 }}>
-                                <Text strong style={{ fontSize: 16 }}>Urine Test</Text>
-                                <Text type="secondary" style={{ marginLeft: 12 }}>
-                                    Last updated: {urineTestData.date || 'Date not specified'}
-                                </Text>
-                                <Button onClick={handleDeleteUrineTestData} style={{ marginLeft: 12 }}>Delete</Button>
-                                <Button onClick={sendUrineTestData} style={{ marginLeft: 12 }}>Edit</Button>
-                            </div>
-                            <Divider style={{ margin: '12px 0' }} />
-                            {renderTestCards(testUrineResults.map(result => ({
-                                ...result,
-                                value: result.value?.toString() || ''
-                            })))}
-                        </Col>
-                    )}
-
-                    {vitaminTestData && (
-                        <Col span={24}>
-                            <div style={{ marginBottom: 8 }}>
-                                <Text strong style={{ fontSize: 16 }}>Vitamin Test</Text>
-                                <Text type="secondary" style={{ marginLeft: 12 }}>
-                                    Last updated: {vitaminTestData.date || 'Date not specified'}
-                                </Text>
-                                <Button onClick={handleDeleteVitaminTestData} style={{ marginLeft: 12 }}>Delete</Button>
-                                <Button onClick={sendVitaminTestData} style={{ marginLeft: 12 }}>Edit</Button>
-                            </div>
-                            <Divider style={{ margin: '12px 0' }} />
-                            {renderTestCards(testVitaminResults.map(result => ({
-                                ...result,
-                                value: result.value?.toString() || ''
-                            })))}
-                        </Col>
-                    )}
-
-                    {geneticTestData && (
-                        <Col span={24}>
-                            <div style={{ marginBottom: 8 }}>
-                                <Text strong style={{ fontSize: 16 }}>Genetic Test</Text>
-                                <Text type="secondary" style={{ marginLeft: 12 }}>
-                                    Last updated: {geneticTestData.date || 'Date not specified'}
-                                </Text>
-                                <Button onClick={handleDeleteGeneticTestData} style={{ marginLeft: 12 }}>Delete</Button>
-                                <Button onClick={sendGeneticTestData} style={{ marginLeft: 12 }}>Edit</Button>
-                            </div>
-                            <Divider style={{ margin: '12px 0' }} />
-                            {renderTestCards(testGeneticResults.map(result => ({
-                                ...result,
-                                value: result.value?.toString() || '',
-                                unit: '',
-                                normalRange: '',
-                            })))}
-                        </Col>
-                    )}
-                </Row>
-            </Card>
         </div>
     );
+
 };
 
 export default AnalysisHistory;

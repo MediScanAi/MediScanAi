@@ -108,7 +108,7 @@ const VitaminTestForm = () => {
 
         <Form.Item style={{ textAlign: 'center' }}>
           <Button type="primary" htmlType="submit">
-            Submit Vitamin Test
+            {updatedData ? 'Update Vitamin Test' : 'Submit Vitamin Test'}
           </Button>
         </Form.Item>
       </Form>
