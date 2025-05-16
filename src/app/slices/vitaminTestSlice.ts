@@ -8,6 +8,7 @@ interface VitaminTestState {
     vitaminD: number | null;
     vitaminE: number | null;
     vitaminK: number | null;
+    date: string | null;
   };
 }
 
@@ -18,6 +19,7 @@ export interface VitaminTestFormValues {
   vitaminD: number | null;
   vitaminE: number | null;
   vitaminK: number | null;
+  date: string | null;
 }
 
 const initialState: VitaminTestState = {
@@ -28,6 +30,7 @@ const initialState: VitaminTestState = {
     vitaminD: null,
     vitaminE: null,
     vitaminK: null,
+    date: null,
   },
 };
 
@@ -36,7 +39,21 @@ const vitaminTestSlice = createSlice({
   initialState,
   reducers: {
     setVitaminTestData: (state, action) => {
-      state.vitaminTestData = action.payload;
+      state.vitaminTestData = {
+        ...state.vitaminTestData,
+        ...action.payload,
+        date: new Date().toLocaleString([], {
+          year: 'numeric',
+          month: '2-digit',
+          day: '2-digit',
+          hour: '2-digit',
+          minute: '2-digit',
+        }),
+      };
+      localStorage.setItem(
+        'vitaminTestData',
+        JSON.stringify(state.vitaminTestData)
+      );
     },
   },
 });

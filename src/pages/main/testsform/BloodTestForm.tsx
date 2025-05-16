@@ -1,12 +1,11 @@
 import { Button, Form, InputNumber, message, Card, Typography } from 'antd';
 import { useAppDispatch, useAppSelector } from '../../../app/hooks';
-import { useEffect } from 'react';
 import { setBloodTestData } from '../../../app/slices/bloodTestSlice';
-import '../../../assets/styles/bloodTests.css';
 import type { RootState } from '../../../app/store';
 import type { BloodTestFormValues } from '../../../app/slices/bloodTestSlice';
 const { Title } = Typography;
-const fields = [
+
+const bloodTestFields = [
   {
     name: 'hemoglobin',
     label: 'Hemoglobin (g/dL)',
@@ -64,66 +63,42 @@ function BloodTestsForm() {
     (state: RootState) => state.bloodTest?.bloodTestData
   );
 
-  useEffect(() => {
-    form.setFieldsValue(data);
-  }, [data, form]);
-
-  const validateNumber = (_: unknown, value: number) =>
-    isNaN(value) ? Promise.reject('Enter a valid number') : Promise.resolve();
-
-  const onFinish = async (values: BloodTestFormValues) => {
+  const onFinish = (values: BloodTestFormValues) => {
     dispatch(setBloodTestData(values));
-    message.success({
-      content: 'Blood test submitted successfully!',
-      className: 'success-message',
-    });
+
+    message.success('Blood test submitted successfully');
+    setTimeout(() => {
+      form.resetFields();
+    }, 0);
   };
 
-  return (
-    <Card title={<Title level={3}>Blood Test</Title>} className="blood-card">
-      <Form
-        form={form}
-        onFinish={onFinish}
-        layout="vertical"
-        size="large"
-        validateTrigger={['onBlur', 'onChange']}
-      >
-        <div className="form-grid">
-          {fields.map((field) => (
-            <Form.Item
-              key={field.name}
-              label={field.label}
-              name={field.name}
-              rules={[
-                { required: true, message: 'This field is required' },
-                { validator: validateNumber },
-                {
-                  type: 'number',
-                  min: field.min,
-                  max: field.max,
-                  message: `Must be between ${field.min}-${field.max}`,
-                },
-              ]}
-              validateFirst
-            >
-              <InputNumber
-                min={field.min}
-                max={field.max}
-                step={field.step}
-                style={{ width: '100%' }}
-                placeholder={field.placeholder}
-              />
-            </Form.Item>
-          ))}
-        </div>
+  console.log(data);
 
-        <Form.Item style={{ textAlign: 'center', marginTop: 24 }}>
-          <Button
-            type="primary"
-            htmlType="submit"
-            size="large"
-            className="submit-btn"
+  return (
+    <Card
+      style={{ border: 'none' }}
+      title={<Title level={3}>Blood Test</Title>}
+    >
+      <Form form={form} onFinish={onFinish} layout="vertical" size="large">
+        {bloodTestFields.map((field) => (
+          <Form.Item
+            key={field.name}
+            label={`${field.label}`}
+            name={field.name}
+            rules={[{ required: true }]}
           >
+            <InputNumber
+              min={field.min}
+              max={field.max}
+              step={field.step}
+              style={{ width: '100%' }}
+              placeholder={field.placeholder}
+            />
+          </Form.Item>
+        ))}
+
+        <Form.Item style={{ textAlign: 'center' }}>
+          <Button type="primary" htmlType="submit">
             Submit Blood Test
           </Button>
         </Form.Item>

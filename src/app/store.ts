@@ -1,8 +1,8 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
-import bloodTestReducer from './Slices/bloodTestSlice';
-import urineTestReducer from './Slices/urineTestSlice';
-import vitaminTestReducer from './Slices/vitaminTestSlice';
-import theme from './Slices/theme.ts';
+import bloodTestReducer from './slices/bloodTestSlice';
+import urineTestReducer from './slices/urineTestSlice';
+import vitaminTestReducer from './slices/vitaminTestSlice';
+import theme from './slices/theme';
 
 export const store = configureStore({
   reducer: combineReducers({
