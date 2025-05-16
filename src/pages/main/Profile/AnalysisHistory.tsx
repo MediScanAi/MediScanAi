@@ -1,5 +1,4 @@
-
-import { Typography, Card, Divider, Row, Col } from 'antd';
+import { Typography, Card, Divider, Row, Col, Button } from 'antd';
 import {
     HeartOutlined,
     AlertOutlined,
@@ -15,26 +14,60 @@ import {
     SolutionOutlined,
     SunOutlined,
 } from '@ant-design/icons';
+import { useAppDispatch, useAppSelector } from '../../../app/hooks';
+import { deleteBloodTestData, type BloodTestFormValues } from '../../../app/slices/bloodTestSlice';
+import { useState } from 'react';
+import { useNavigate } from 'react-router';
+import { deleteUrineTestData, type UrineTestFormValues } from '../../../app/slices/urineTestSlice';
+import { deleteVitaminTestData, type VitaminTestFormValues } from '../../../app/slices/vitaminTestSlice';
+import { deleteGeneticTestData, type GeneticTestFormValues } from '../../../app/slices/geneticTestSlice';
+
 
 const { Title, Text } = Typography;
 
 const AnalysisHistory: React.FC = () => {
-    
-    const hasTestData = (testData: { [key: string]: string | number | null }) => {
-        if (!testData) return false;
-        return Object.values(testData).some(val => val !== undefined && val !== null && val !== '');
+    const navigate = useNavigate();
+    const dispatch = useAppDispatch();
+    const [bloodTestData, setBloodTestData] = useState<BloodTestFormValues | null>(useAppSelector(state => state.bloodTest.bloodTestData));
+    const [urineTestData, setUrineTestData] = useState<UrineTestFormValues | null>(useAppSelector(state => state.urineTest.urineTestData));
+    const [vitaminTestData, setVitaminTestData] = useState<VitaminTestFormValues | null>(useAppSelector(state => state.vitaminTest.vitaminTestData));
+    const [geneticTestData, setGeneticTestData] = useState<GeneticTestFormValues | null>(useAppSelector(state => state.geneticTest.geneticTestData));
+
+    const handleDeleteBloodTestData = () => {
+        dispatch(deleteBloodTestData());
+        setBloodTestData(null);
     };
 
-    const getDataFromStorage = (key: string) => {
-        const item = localStorage.getItem(key);
-        const parsed = item ? JSON.parse(item) : null;
-        return hasTestData(parsed) ? parsed : null;
+    const sendBloodTestData = () => {
+        navigate('/tests-form/blood-test', { state: { bloodTestData: bloodTestData } });
     };
 
-    const bloodTestData = getDataFromStorage('bloodTestData');
-    const urineTestData = getDataFromStorage('urineTestData');
-    const vitaminTestData = getDataFromStorage('vitaminTestData');
-    const geneticTestData = getDataFromStorage('geneticTestData');
+    const handleDeleteUrineTestData = () => {
+        dispatch(deleteUrineTestData());
+        setUrineTestData(null);
+    };
+
+    const sendUrineTestData = () => {
+        navigate('/tests-form/urine-test', { state: { urineTestData: urineTestData } });
+    };
+
+    const handleDeleteVitaminTestData = () => {
+        dispatch(deleteVitaminTestData());
+        setVitaminTestData(null);
+    };
+
+    const sendVitaminTestData = () => {
+        navigate('/tests-form/vitamin-test', { state: { vitaminTestData: vitaminTestData } });
+    };
+
+    const handleDeleteGeneticTestData = () => {
+        dispatch(deleteGeneticTestData());
+        setGeneticTestData(null);
+    };
+
+    const sendGeneticTestData = () => {
+        navigate('/tests-form/genetic-test', { state: { geneticTestData: geneticTestData } });
+    };
 
     const testBloodResults = [
         { name: 'Hemoglobin', value: bloodTestData?.hemoglobin, unit: 'g/dL', normalRange: '13.5-17.5', icon: <HeartOutlined /> },
@@ -43,6 +76,7 @@ const AnalysisHistory: React.FC = () => {
         { name: 'Platelets', value: bloodTestData?.platelets, unit: '10³/μL', normalRange: '150-450', icon: <DashboardOutlined /> },
         { name: 'Glucose', value: bloodTestData?.glucose, unit: 'mg/dL', normalRange: '70-99', icon: <ExperimentOutlined /> },
         { name: 'Cholesterol', value: bloodTestData?.cholesterol, unit: 'mg/dL', normalRange: '<200', icon: <HeartOutlined /> },
+
     ];
 
     const testUrineResults = [
@@ -72,7 +106,8 @@ const AnalysisHistory: React.FC = () => {
         { name: 'CYP2C19', value: geneticTestData?.cyp2c19, icon: <SafetyCertificateOutlined /> },
     ];
 
-    const renderTestCards = (testArray: { name: string, value: string, unit: string, normalRange: string, icon: React.ReactNode }[]) =>
+    const renderTestCards = (testArray: { name: string, value: string, unit: string, normalRange: string, icon: React.ReactNode }[]
+    ) =>
         <Row gutter={[16, 16]}>
             {testArray.map((test, index) => (
                 test.value !== undefined && test.value !== null && test.value !== '' && (
@@ -83,6 +118,7 @@ const AnalysisHistory: React.FC = () => {
                             <Title level={3} style={{ margin: '8px 0' }}>
                                 {test.value} {test.unit && (<Text type="secondary" style={{ fontSize: 25 }}>({test.unit})</Text>)}
                             </Title>
+
                             {test.normalRange && (
                                 <Text type="secondary">Normal: {test.normalRange}</Text>
                             )}
@@ -113,9 +149,14 @@ const AnalysisHistory: React.FC = () => {
                                 <Text type="secondary" style={{ marginLeft: 12 }}>
                                     Last updated: {bloodTestData.date || 'Date not specified'}
                                 </Text>
+                                <Button onClick={handleDeleteBloodTestData} style={{ marginLeft: 12 }}>Delete</Button>
+                                <Button onClick={sendBloodTestData} style={{ marginLeft: 12 }}>Edit</Button>
                             </div>
                             <Divider style={{ margin: '12px 0' }} />
-                            {renderTestCards(testBloodResults)}
+                            {renderTestCards(testBloodResults.map(result => ({
+                                ...result,
+                                value: result.value?.toString() || ''
+                            })))}
                         </Col>
                     )}
 
@@ -126,9 +167,14 @@ const AnalysisHistory: React.FC = () => {
                                 <Text type="secondary" style={{ marginLeft: 12 }}>
                                     Last updated: {urineTestData.date || 'Date not specified'}
                                 </Text>
+                                <Button onClick={handleDeleteUrineTestData} style={{ marginLeft: 12 }}>Delete</Button>
+                                <Button onClick={sendUrineTestData} style={{ marginLeft: 12 }}>Edit</Button>
                             </div>
                             <Divider style={{ margin: '12px 0' }} />
-                            {renderTestCards(testUrineResults)}
+                            {renderTestCards(testUrineResults.map(result => ({
+                                ...result,
+                                value: result.value?.toString() || ''
+                            })))}
                         </Col>
                     )}
 
@@ -139,9 +185,14 @@ const AnalysisHistory: React.FC = () => {
                                 <Text type="secondary" style={{ marginLeft: 12 }}>
                                     Last updated: {vitaminTestData.date || 'Date not specified'}
                                 </Text>
+                                <Button onClick={handleDeleteVitaminTestData} style={{ marginLeft: 12 }}>Delete</Button>
+                                <Button onClick={sendVitaminTestData} style={{ marginLeft: 12 }}>Edit</Button>
                             </div>
                             <Divider style={{ margin: '12px 0' }} />
-                            {renderTestCards(testVitaminResults)}
+                            {renderTestCards(testVitaminResults.map(result => ({
+                                ...result,
+                                value: result.value?.toString() || ''
+                            })))}
                         </Col>
                     )}
 
@@ -152,12 +203,15 @@ const AnalysisHistory: React.FC = () => {
                                 <Text type="secondary" style={{ marginLeft: 12 }}>
                                     Last updated: {geneticTestData.date || 'Date not specified'}
                                 </Text>
+                                <Button onClick={handleDeleteGeneticTestData} style={{ marginLeft: 12 }}>Delete</Button>
+                                <Button onClick={sendGeneticTestData} style={{ marginLeft: 12 }}>Edit</Button>
                             </div>
                             <Divider style={{ margin: '12px 0' }} />
                             {renderTestCards(testGeneticResults.map(result => ({
                                 ...result,
+                                value: result.value?.toString() || '',
                                 unit: '',
-                                normalRange: ''
+                                normalRange: '',
                             })))}
                         </Col>
                     )}

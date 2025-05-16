@@ -1,11 +1,11 @@
-import { Button, InputNumber, message, Form, Card, Typography } from 'antd';
+import { Button, Input, message, Form, Card, Typography } from 'antd';
 
 import {
   setGeneticTestData,
   type GeneticTestFormValues,
 } from '../../../app/slices/geneticTestSlice';
-import { useAppDispatch, useAppSelector } from '../../../app/hooks';
-import type { RootState } from '../../../app/store';
+import { useAppDispatch } from '../../../app/hooks';
+import { useLocation, useNavigate } from 'react-router-dom';
 const { Title } = Typography;
 
 const geneticFields = [
@@ -60,24 +60,26 @@ const geneticFields = [
 ];
 
 function GeneticTestForm() {
+  const navigate = useNavigate();
   const [form] = Form.useForm();
   const dispatch = useAppDispatch();
-  const data = useAppSelector(
-    (state: RootState) => state.geneticTest?.geneticTestData
-  );
+  const updatedData = useLocation()?.state?.geneticTestData || undefined;
 
   const onFinish = (values: GeneticTestFormValues) => {
-    dispatch(setGeneticTestData(values));
-    message.success({
-      content: `Genetic Test & Family Health History submitted successfully!`,
-      className: 'success-message',
-    });
-    setTimeout(() => {
-      form.resetFields();
-    }, 0);
-  };
+    dispatch(setGeneticTestData({
+      ...values,
+    }));
 
-  console.log(data);
+    if (updatedData) {
+      message.success('Genetic test updated successfully');
+    } else {
+      message.success('Genetic test submitted successfully');
+    }
+
+    setTimeout(() => {
+      navigate('/profile');
+    }, 1000);
+  };
 
   return (
     <Card
@@ -90,6 +92,7 @@ function GeneticTestForm() {
         layout="vertical"
         size="large"
         validateTrigger={['onBlur', 'onChange']}
+        initialValues={updatedData}
       >
         <Title level={4}>Genetic Test</Title>
         <div>
@@ -108,7 +111,7 @@ function GeneticTestForm() {
               ]}
               validateFirst
             >
-              <InputNumber
+              <Input
                 min={field.min}
                 max={field.max}
                 step={field.step}

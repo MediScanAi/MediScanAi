@@ -1,12 +1,14 @@
 import { Button, Form, InputNumber, message, Card, Typography } from 'antd';
-import { useAppDispatch, useAppSelector } from '../../../app/hooks';
+import { useAppDispatch } from '../../../app/hooks';
 import { setBloodTestData } from '../../../app/slices/bloodTestSlice';
-import type { RootState } from '../../../app/store';
 import type { BloodTestFormValues } from '../../../app/slices/bloodTestSlice';
+import { useLocation } from 'react-router';
+import { useNavigate } from 'react-router-dom';
 const { Title } = Typography;
 
 const bloodTestFields = [
   {
+
     name: 'hemoglobin',
     label: 'Hemoglobin (g/dL)',
     min: 0,
@@ -57,29 +59,33 @@ const bloodTestFields = [
 ];
 
 function BloodTestsForm() {
+  const navigate = useNavigate();
   const [form] = Form.useForm();
   const dispatch = useAppDispatch();
-  const data = useAppSelector(
-    (state: RootState) => state.bloodTest?.bloodTestData
-  );
+  const updatedData = useLocation()?.state?.bloodTestData || undefined;
 
   const onFinish = (values: BloodTestFormValues) => {
-    dispatch(setBloodTestData(values));
+    dispatch(setBloodTestData({
+      ...values,
+    }));
 
-    message.success('Blood test submitted successfully');
+    if (updatedData) {
+      message.success('Blood test updated successfully');
+    } else {
+      message.success('Blood test submitted successfully');
+    }
     setTimeout(() => {
-      form.resetFields();
-    }, 0);
+      navigate('/profile');
+    }, 1000);
   };
 
-  console.log(data);
 
   return (
     <Card
       style={{ border: 'none' }}
       title={<Title level={3}>Blood Test</Title>}
     >
-      <Form form={form} onFinish={onFinish} layout="vertical" size="large">
+      <Form form={form} onFinish={onFinish} initialValues={updatedData} layout="vertical" size="large">
         {bloodTestFields.map((field) => (
           <Form.Item
             key={field.name}
@@ -99,11 +105,11 @@ function BloodTestsForm() {
 
         <Form.Item style={{ textAlign: 'center' }}>
           <Button type="primary" htmlType="submit">
-            Submit Blood Test
+            {updatedData ? 'Update Blood Test' : 'Submit Blood Test'}
           </Button>
         </Form.Item>
       </Form>
-    </Card>
+    </Card >
   );
 }
 
