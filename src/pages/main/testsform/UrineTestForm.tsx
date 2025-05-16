@@ -8,9 +8,9 @@ import {
   Card,
 } from 'antd';
 import { useAppDispatch, useAppSelector } from '../../../app/hooks';
-import { setUrineTestData } from '../../../app/Slices/urineTestSlice';
+import { setUrineTestData } from '../../../app/slices/urineTestSlice';
 import type { RootState } from '../../../app/store';
-import type { UrineTestFormValues } from '../../../app/Slices/urineTestSlice';
+import type { UrineTestFormValues } from '../../../app/slices/urineTestSlice';
 
 const { Option } = Select;
 const { Title } = Typography;
