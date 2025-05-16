@@ -1,5 +1,11 @@
-import { Button, Input, message, Form, Card, Typography } from 'antd';
-
+import {
+  Button,
+  message,
+  Form,
+  Card,
+  Typography,
+  Select,
+} from 'antd';
 import {
   setGeneticTestData,
   type GeneticTestFormValues,
@@ -7,55 +13,44 @@ import {
 import { useAppDispatch } from '../../../app/hooks';
 import { useLocation, useNavigate } from 'react-router-dom';
 const { Title } = Typography;
+const { Option } = Select;
 
 const geneticFields = [
   {
+    type: 'select',
     name: 'brca1',
     label: 'BRCA1 Gene Mutation',
-    min: 0,
-    max: 1,
-    step: 0.01,
-    placeholder: 'e.g. 0.12',
+    options: ['negative', 'positive'],
   },
   {
+    type: 'select',
     name: 'brca2',
     label: 'BRCA2 Gene Mutation',
-    min: 0,
-    max: 1,
-    step: 0.01,
-    placeholder: 'e.g. 0.05',
+    options: ['negative', 'positive'],
   },
   {
+    type: 'select',
     name: 'apoe',
     label: 'APOE Genotype Risk Score',
-    min: 0,
-    max: 100,
-    step: 1,
-    placeholder: 'e.g. 75',
+    options: ['ε2/ε2', 'ε3/ε3', 'ε3/ε4', 'ε4/ε4'],
   },
   {
+    type: 'select',
     name: 'mthfr',
     label: 'MTHFR Mutation Level',
-    min: 0,
-    max: 2,
-    step: 0.01,
-    placeholder: 'e.g. 1.35',
+    options: ['Homozygous', 'Heterozygous', 'Normal'],
   },
   {
+    type: 'select',
     name: 'factor_v_leiden',
     label: 'Factor V Leiden Mutation',
-    min: 0,
-    max: 1,
-    step: 0.01,
-    placeholder: 'e.g. 0.24',
+    options: ['negative', 'positive'],
   },
   {
+    type: 'select',
     name: 'cyp2c19',
     label: 'CYP2C19 Enzyme Activity',
-    min: 0,
-    max: 10,
-    step: 0.1,
-    placeholder: 'e.g. 3.5',
+    options: ['Category I', 'Category II', 'Category III'],
   },
 ];
 
@@ -82,45 +77,32 @@ function GeneticTestForm() {
   };
 
   return (
-    <Card
-      style={{ border: 'none' }}
-      title={<Title level={3}>Genetic Test & Family Health History</Title>}
-    >
+    <Card style={{ border: 'none' }}>
       <Form
         form={form}
         onFinish={onFinish}
         layout="vertical"
         size="large"
-        validateTrigger={['onBlur', 'onChange']}
         initialValues={updatedData}
       >
+        <Title level={3}>Genetic Test & Family Health History</Title>
         <Title level={4}>Genetic Test</Title>
-        <div>
-          {geneticFields.map((field) => (
-            <Form.Item
-              key={field.name}
-              label={field.label}
-              name={field.name}
-              rules={[
-                {
-                  type: 'number',
-                  min: field.min,
-                  max: field.max,
-                  message: `Must be between ${field.min}-${field.max}`,
-                },
-              ]}
-              validateFirst
-            >
-              <Input
-                min={field.min}
-                max={field.max}
-                step={field.step}
-                style={{ width: '100%' }}
-                placeholder={field.placeholder}
-              />
-            </Form.Item>
-          ))}
-        </div>
+        {geneticFields.map((field) => (
+          <Form.Item
+            key={field.name}
+            label={field.label}
+            name={field.name}
+            rules={[{ required: true }]}
+          >
+            <Select placeholder="Select result">
+              {field.options?.map((opt) => (
+                <Option key={opt} value={opt}>
+                  {opt.charAt(0).toUpperCase() + opt.slice(1)}
+                </Option>
+              ))}
+            </Select>
+          </Form.Item>
+        ))}
 
         <Form.Item style={{ textAlign: 'center', marginTop: 32 }}>
           <Button type="primary" htmlType="submit" size="large">

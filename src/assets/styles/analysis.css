@@ -10,6 +10,10 @@
   min-height: 150px;
 }
 
+.first-col-design:hover {
+  box-shadow: 0 0 10px 0 rgba(87, 87, 87, 0.5);
+}
+
 .row-design {
   display: flex;
   justify-content: space-around;

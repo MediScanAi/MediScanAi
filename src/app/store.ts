@@ -4,6 +4,7 @@ import urineTestReducer from './slices/urineTestSlice';
 import vitaminTestReducer from './slices/vitaminTestSlice';
 import geneticTestReducer from './slices/geneticTestSlice';
 import theme from './slices/theme';
+import geneticTestReducer from './slices/geneticTestSlice';
 
 export const store = configureStore({
   reducer: combineReducers({
@@ -12,6 +13,7 @@ export const store = configureStore({
     vitaminTest: vitaminTestReducer,
     geneticTest: geneticTestReducer,
     theme: theme,
+    geneticTest: geneticTestReducer,
   }),
 });
 

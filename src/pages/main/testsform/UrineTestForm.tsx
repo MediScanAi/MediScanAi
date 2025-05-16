@@ -9,10 +9,8 @@ import {
 } from 'antd';
 import { useAppDispatch } from '../../../app/hooks';
 import { setUrineTestData } from '../../../app/slices/urineTestSlice';
-
 import type { UrineTestFormValues } from '../../../app/slices/urineTestSlice';
 import { useLocation, useNavigate } from 'react-router-dom';
-
 const { Option } = Select;
 const { Title } = Typography;
 

@@ -70,18 +70,14 @@ function BloodAnalysis() {
     localStorage.getItem('bloodTestData') || '{}'
   );
 
-  const data = {
-    Cholesterol: mockAnalysisData.cholesterol || 0,
-    Glucose: mockAnalysisData.glucose || 0,
-    Hemoglobin: mockAnalysisData.hemoglobin || 0,
-    Platelets: mockAnalysisData.platelets || 0,
-    RBC: mockAnalysisData.rbc || 0,
-    WBC: mockAnalysisData.wbc || 0,
-  };
-
-  const aiCondition = Object.entries(data).map(([key, value]) => ({
-    [key]: value,
-  }));
+//   const data = {
+//     Cholesterol: mockAnalysisData.cholesterol || 0,
+//     Glucose: mockAnalysisData.glucose || 0,
+//     Hemoglobin: mockAnalysisData.hemoglobin || 0,
+//     Platelets: mockAnalysisData.platelets || 0,
+//     RBC: mockAnalysisData.rbc || 0,
+//     WBC: mockAnalysisData.wbc || 0,
+//   };
 
   const PieData: ChartData[] = [
     {
@@ -224,7 +220,7 @@ function BloodAnalysis() {
             justifyContent: 'center',
           }}
         >
-          <Card className="cholesterol-breakdown">
+          <Card style={{ border: 'none' }} className="cholesterol-breakdown">
             <CustomPieChart data={PieData} />
           </Card>
 
