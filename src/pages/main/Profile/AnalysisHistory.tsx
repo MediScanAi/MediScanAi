@@ -1,18 +1,18 @@
 import { Typography, Card, Divider, Row, Col, Button } from 'antd';
 import {
-    HeartOutlined,
-    AlertOutlined,
-    FundOutlined,
-    DashboardOutlined,
-    ExperimentOutlined,
-    MedicineBoxOutlined,
-    SafetyCertificateOutlined,
-    FireOutlined,
-    EyeOutlined,
-    SmileOutlined,
-    ThunderboltOutlined,
-    SolutionOutlined,
-    SunOutlined,
+  HeartOutlined,
+  AlertOutlined,
+  FundOutlined,
+  DashboardOutlined,
+  ExperimentOutlined,
+  MedicineBoxOutlined,
+  SafetyCertificateOutlined,
+  FireOutlined,
+  EyeOutlined,
+  SmileOutlined,
+  ThunderboltOutlined,
+  SolutionOutlined,
+  SunOutlined,
 } from '@ant-design/icons';
 import { useAppDispatch, useAppSelector } from '../../../app/hooks';
 import { deleteBloodTestData, type BloodTestFormValues } from '../../../app/slices/bloodTestSlice';
@@ -138,8 +138,19 @@ const AnalysisHistory: React.FC = () => {
                 {!hasAnyTestData && (
                     <Text type="secondary" style={{ display: 'block', marginBottom: 24 }}>
                         No test results available. You haven't completed any tests yet.
+
                     </Text>
+                  )}
+                </Title>
+                {test.normalRange && (
+                  <Text type="secondary">Normal: {test.normalRange}</Text>
                 )}
+              </Card>
+            </Col>
+          )
+      )}
+    </Row>
+  );
 
                 <Row gutter={[24, 32]}>
                     {bloodTestData && (
