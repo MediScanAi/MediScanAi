@@ -144,12 +144,6 @@ const Header = () => {
         )}
         <div
           className={'Right-buttons'}
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'space-around',
-            width: 250,
-          }}
         >
           <Dropdown menu={{ items: userItems }}>
             <div className={'user-button' + (theme ? ' dark-user-button' : '')}>

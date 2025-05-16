@@ -13,7 +13,6 @@ function RootForm(): ReactNode | null {
   const navigate = useNavigate();
   const { testType } = useParams();
   const theme = useAppSelector((state) => state.theme.isDarkMode);
-  console.log(theme);
   const items: TabsProps['items'] = [
     {
       label: 'Blood Test',
@@ -41,14 +40,7 @@ function RootForm(): ReactNode | null {
 
   return (
     <div
-      style={{
-        backgroundColor: '#f5f8fa',
-        minHeight: '100vh',
-        padding: '48px 16px',
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-      }}
+      className={'root-form'+(theme?' dark-theme':'')}
     >
       <div style={{ textAlign: 'center', marginBottom: 24 }}>
         <Title level={1} style={{ color: 'black', marginBottom: 0 }}>

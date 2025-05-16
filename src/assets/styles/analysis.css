@@ -19,8 +19,8 @@
   background-position: center;
   min-height: 150px;
   border-radius: 15px;
-  margin: 0 auto;
-  margin-bottom: 25px;
+  margin: 0 auto 25px;
+  width: 96.5%;
 }
 
 .row-col {
@@ -39,4 +39,7 @@
   align-items: center;
   backdrop-filter: blur(2px);
   border-radius: 15px;
+}
+.dark-theme {
+  background-color: #2d3748;
 }
