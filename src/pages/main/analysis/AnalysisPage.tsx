@@ -14,10 +14,10 @@ import {
   Bar,
 } from 'recharts';
 import Title from 'antd/es/typography/Title';
-import geneticBackground from '../../../assets/photos/geneticBackground.jpg';
-import bloodBackground from '../../../assets/photos/bloodBackground.jpg';
-import vitaminBackground from '../../../assets/photos/vitaminBackground.jpg';
-import urineBackground from '../../../assets/photos/urineBackground.jpg';
+import geneticBackground from '../../../assets/photos/geneticBackground.webp';
+import bloodBackground from '../../../assets/photos/bloodBackground.webp';
+import vitaminBackground from '../../../assets/photos/vitaminBackground.webp';
+import urineBackground from '../../../assets/photos/urineBackground.webp';
 import '../../../assets/styles/analysis.css';
 import { useNavigate } from 'react-router-dom';
 

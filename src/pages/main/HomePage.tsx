@@ -6,18 +6,18 @@ import {
   SolutionOutlined,
   BarChartOutlined,
 } from '@ant-design/icons';
-import partner1 from '../../assets/photos/partner1.jpg';
-import partner2 from '../../assets/photos/partner2.jpg';
-import partner3 from '../../assets/photos/partner3.png';
-import partner4 from '../../assets/photos/partner4.jpg';
-import partner5 from '../../assets/photos/partner5.jpg';
-import dataUpload from '../../assets/photos/dataUpload.jpg';
-import aiAnalysis from '../../assets/photos/aiAnalysis.jpg';
-import insightsReport from '../../assets/photos/insightsReport.jpg';
-import clinicalDecision from '../../assets/photos/clinicalDecision.jpg';
-import backGroundPlatform from '../../assets/photos/backGroundPlatform.jpg';
-import mission from '../../assets/photos/ourMission.jpg';
-import getStartedBackground from '../../assets/photos/getStartedBackground.jpg';
+import partner1 from '../../assets/photos/partner1.webp';
+import partner2 from '../../assets/photos/partner2.webp';
+import partner3 from '../../assets/photos/partner3.webp';
+import partner4 from '../../assets/photos/partner4.webp';
+import partner5 from '../../assets/photos/partner5.webp';
+import dataUpload from '../../assets/photos/dataUpload.webp';
+import aiAnalysis from '../../assets/photos/aiAnalysis.webp';
+import insightsReport from '../../assets/photos/insightsReport.webp';
+import clinicalDecision from '../../assets/photos/clinicalDecision.webp';
+import backGroundPlatform from '../../assets/photos/backGroundPlatform.webp';
+import mission from '../../assets/photos/ourMission.webp';
+import getStartedBackground from '../../assets/photos/getStartedBackground.webp';
 import '../../assets/styles/homepage.css';
 import { useEffect, useState } from 'react';
 

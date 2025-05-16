@@ -1,10 +1,5 @@
 import { Col, Card, Typography, Row, Button, Space } from "antd";
 import { useNavigate } from "react-router-dom";
-import bloodBackground from "../../../assets/photos/bloodBackground.jpg";
-import urineBackground from "../../../assets/photos/urineBackground.jpg";
-import vitaminBackground from "../../../assets/photos/vitaminBackground.jpg";
-import geneticBackground from "../../../assets/photos/geneticBackground.jpg";
-
 const { Title, Text } = Typography;
 
 function MainTests() {
@@ -14,25 +9,21 @@ function MainTests() {
     {
       title: "Blood Test",
       subtitle: "Complete blood count & biochemistry",
-      background: bloodBackground,
       onClick: () => navigate("/tests-form/blood-test"),
     },
     {
       title: "Urine Test",
       subtitle: "Urinalysis & microalbumin test",
-      background: urineBackground,
       onClick: () => navigate("/tests-form/urine-test"),
     },
     {
       title: "Vitamin Test",
       subtitle: "Vitamin D, B12 & minerals",
-      background: vitaminBackground,
       onClick: () => navigate("/tests-form/vitamin-test"),
     },
     {
       title: "Genetic Test",
       subtitle: "DNA analysis & health risks",
-      background: geneticBackground,
       onClick: () => navigate("/tests-form/genetic-test"),
     }
   ];
@@ -61,6 +52,7 @@ function MainTests() {
                 padding: 0,
                 height: "100%"
               }}
+              onClick={card.onClick}
             >
               <div style={{
                 position: "absolute",
@@ -68,7 +60,6 @@ function MainTests() {
                 left: 0,
                 right: 0,
                 bottom: 0,
-                backgroundImage: `url(${card.background})`,
                 backgroundSize: "cover",
                 backgroundPosition: "center",
                 filter: "blur(3px)",
@@ -127,7 +118,6 @@ function MainTests() {
                     marginLeft: "auto",
                     marginRight: "auto",
                   }}
-                  onClick={card.onClick}
                 >
                   View More
                 </Button>
