@@ -1,4 +1,3 @@
-import React from 'react';
 import { Form, Input, Button, Card, Typography, message, Grid } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
 import { registerUser } from '../../app/slices/authSlice';

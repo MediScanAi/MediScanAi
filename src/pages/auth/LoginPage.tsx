@@ -1,4 +1,3 @@
-import React from 'react';
 import { Form, Input, Button, Card, Typography, message, Grid } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
 import { loginUser } from '../../app/slices/authSlice';
@@ -6,7 +5,8 @@ import type { AppDispatch, RootState } from '../../app/store';
 import { useNavigate, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import backgroundImage from '../../assets/photos/background.png';
-
+import { useState } from 'react';
+import ForgotPasswordForm from '../../components/ForgotPasswordForm';
 const { Title, Text } = Typography;
 const { useBreakpoint } = Grid;
 
@@ -20,6 +20,7 @@ const LoginPage: React.FC = () => {
   const navigate = useNavigate();
   const { loading } = useSelector((state: RootState) => state.auth);
   const screens = useBreakpoint();
+  const [isForgotPassword, setIsForgotPassword] = useState(false);
 
   const onFinish = async (values: LoginFormValues) => {
     const { email, password } = values;
@@ -36,6 +37,9 @@ const LoginPage: React.FC = () => {
     }
   };
 
+  const toggleForgotPassword = () => {
+    setIsForgotPassword((prev) => !prev);
+  };
   return (
     <div
       style={{
@@ -50,57 +54,72 @@ const LoginPage: React.FC = () => {
         padding: screens.md ? '0 10%' : '20px',
       }}
     >
-      <motion.div
-        initial={{ opacity: 0, y: 40 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-        style={{ width: '100%', maxWidth: 400 }}
-      >
-        <Card
-          style={{
-            borderRadius: '16px',
-            boxShadow: '0 8px 16px rgba(0,0,0,0.15)',
-          }}
+      {isForgotPassword ? (
+        <ForgotPasswordForm goBack={toggleForgotPassword} />
+      ) : (
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          style={{ width: '100%', maxWidth: 400 }}
         >
-          <Title level={2} style={{ fontWeight: 'bold', marginBottom: 24 }}>
-            Login
-          </Title>
-          <Form layout="vertical" onFinish={onFinish}>
-            <Form.Item
-              label="Email"
-              name="email"
-              rules={[
-                { required: true, message: 'Enter your email' },
-                { type: 'email', message: 'Invalid email' },
-              ]}
-            >
-              <Input placeholder="Email" />
-            </Form.Item>
+          <Card
+            style={{
+              borderRadius: '16px',
+              boxShadow: '0 8px 16px rgba(0,0,0,0.15)',
+            }}
+          >
+            <Title level={2} style={{ fontWeight: 'bold', marginBottom: 24 }}>
+              Login
+            </Title>
+            <Form layout="vertical" onFinish={onFinish}>
+              <Form.Item
+                label="Email"
+                name="email"
+                rules={[
+                  { required: true, message: 'Enter your email' },
+                  { type: 'email', message: 'Invalid email' },
+                ]}
+              >
+                <Input placeholder="Email" />
+              </Form.Item>
 
-            <Form.Item
-              label="Password"
-              name="password"
-              rules={[{ required: true, message: 'Enter your password' }]}
-            >
-              <Input.Password placeholder="Password" />
-            </Form.Item>
+              <Form.Item
+                label="Password"
+                name="password"
+                rules={[{ required: true, message: 'Enter your password' }]}
+              >
+                <Input.Password placeholder="Password" />
+              </Form.Item>
 
-            <Form.Item style={{ textAlign: 'right', marginBottom: 16 }}>
-              <Link to="/forgot-password">Forgot password?</Link>
-            </Form.Item>
+              <Form.Item style={{ textAlign: 'right', marginBottom: 16 }}>
+                <Button
+                  type="text"
+                  style={{ color: '#1677ff' }}
+                  onClick={toggleForgotPassword}
+                >
+                  Forgot your password?
+                </Button>
+              </Form.Item>
 
-            <Form.Item>
-              <Button block type="primary" htmlType="submit" loading={loading}>
-                Login
-              </Button>
-            </Form.Item>
+              <Form.Item>
+                <Button
+                  block
+                  type="primary"
+                  htmlType="submit"
+                  loading={loading}
+                >
+                  Login
+                </Button>
+              </Form.Item>
 
-            <Text style={{ display: 'block', textAlign: 'center' }}>
-              Don't have an account? <Link to="/register">Register</Link>
-            </Text>
-          </Form>
-        </Card>
-      </motion.div>
+              <Text style={{ display: 'block', textAlign: 'center' }}>
+                Don't have an account? <Link to="/register">Register</Link>
+              </Text>
+            </Form>
+          </Card>
+        </motion.div>
+      )}
 
       <motion.div
         initial={{ opacity: 0, x: 40 }}
