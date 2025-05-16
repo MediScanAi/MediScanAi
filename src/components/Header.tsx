@@ -23,8 +23,8 @@ import {
 import { useLocation, useNavigate } from 'react-router';
 import '../assets/styles/header.css';
 import { useAppDispatch, useAppSelector } from '../app/hooks.ts';
-import { toggleTheme } from '../app/Slices/theme.ts';
-
+import { toggleTheme } from '../app/slices/theme';
+  
 const burgerItems: MenuProps['items'] = [
   {
     label: <NavLink to={'/'}>Home</NavLink>,
