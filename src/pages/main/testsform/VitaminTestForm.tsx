@@ -1,61 +1,114 @@
 import { Button, Form, InputNumber, message, Typography, Card } from 'antd';
-import { useEffect } from 'react';
-import { useAppDispatch, useAppSelector } from '../../../app/hooks';
+import { useAppDispatch } from '../../../app/hooks';
 import { setVitaminTestData } from '../../../app/slices/vitaminTestSlice';
-import type { RootState } from '../../../app/store';
 import type { VitaminTestFormValues } from '../../../app/slices/vitaminTestSlice';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const { Title } = Typography;
 
+const vitaminTestFields = [
+  {
+    label: 'Vitamin A',
+    name: 'vitaminA',
+    min: 10,
+    max: 80,
+    step: 1,
+    unit: 'mcg/dL',
+    placeholder: 'e.g. 50',
+  },
+  {
+    label: 'Vitamin B12',
+    name: 'vitaminB12',
+    min: 200,
+    max: 900,
+    step: 1,
+    unit: 'pg/mL',
+    placeholder: 'e.g. 300',
+  },
+  {
+    label: 'Vitamin C',
+    name: 'vitaminC',
+    min: 0.2,
+    max: 2.0,
+    step: 0.1,
+    unit: 'mg/dL',
+    placeholder: 'e.g. 1.5',
+  },
+  {
+    label: 'Vitamin D',
+    name: 'vitaminD',
+    min: 10,
+    max: 100,
+    step: 1,
+    unit: 'ng/mL',
+    placeholder: 'e.g. 50',
+  },
+  {
+    label: 'Vitamin E',
+    name: 'vitaminE',
+    min: 5,
+    max: 20,
+    step: 0.1,
+    unit: 'mg/L',
+    placeholder: 'e.g. 10',
+  },
+  {
+    label: 'Vitamin K',
+    name: 'vitaminK',
+    min: 0.1,
+    max: 3.2,
+    step: 0.1,
+    unit: 'ng/mL',
+    placeholder: 'e.g. 1.5',
+  },
+];
+
 const VitaminTestForm = () => {
+  const navigate = useNavigate();
   const [form] = Form.useForm();
   const dispatch = useAppDispatch();
-  const data = useAppSelector(
-    (state: RootState) => state.vitaminTest?.vitaminTestData
-  );
-
-  useEffect(() => {
-    form.setFieldsValue(data);
-  }, [data, form]);
+  const updatedData = useLocation()?.state?.vitaminTestData || undefined;
 
   const onFinish = (values: VitaminTestFormValues) => {
-    dispatch(setVitaminTestData(values));
-    message.success('Vitamin test submitted successfully');
+    dispatch(setVitaminTestData({
+      ...values,
+    }));
+    if (updatedData) {
+      message.success('Vitamin test updated successfully');
+    } else {
+      message.success('Vitamin test submitted successfully');
+    }
+    setTimeout(() => {
+      navigate('/profile');
+    }, 1000);
   };
-
-  const renderInput = (
-    label: string,
-    name: string,
-    min: number,
-    max: number,
-    step: number,
-    unit?: string
-  ) => (
-    <Form.Item
-      label={`${label}${unit ? ` (${unit})` : ''}`}
-      name={name}
-      rules={[{ required: true }]}
-    >
-      <InputNumber min={min} max={max} step={step} style={{ width: '100%' }} />
-    </Form.Item>
-  );
 
   return (
     <Card
       style={{ border: 'none' }}
       title={<Title level={3}>Vitamin Test</Title>}
     >
-      <Form form={form} onFinish={onFinish} layout="vertical" size="large">
-        {renderInput('Vitamin A', 'vitaminA', 10, 80, 1, 'mcg/dL')}
-        {renderInput('Vitamin B12', 'vitaminB12', 200, 900, 1, 'pg/mL')}
-        {renderInput('Vitamin C', 'vitaminC', 0.2, 2.0, 0.1, 'mg/dL')}
-        {renderInput('Vitamin D', 'vitaminD', 10, 100, 1, 'ng/mL')}
-        {renderInput('Vitamin E', 'vitaminE', 5, 20, 0.1, 'mg/L')}
-        {renderInput('Vitamin K', 'vitaminK', 0.1, 3.2, 0.1, 'ng/mL')}
+      <Form form={form} onFinish={onFinish} layout="vertical" size="large" initialValues={updatedData}>
+        {vitaminTestFields.map((field) => (
+          <Form.Item
+            key={field.name}
+            label={`${field.label} (${field.unit})`}
+            name={field.name}
+            rules={[{ required: true }]}
+          >
+            <InputNumber
+              min={field.min}
+              max={field.max}
+              step={field.step}
+              style={{ width: '100%' }}
+              placeholder={field.placeholder}
+            />
+          </Form.Item>
+        ))}
 
         <Form.Item style={{ textAlign: 'center' }}>
           <Button type="primary" htmlType="submit">
-            Submit Vitamin Test
+            {updatedData ? 'Update Vitamin Test' : 'Submit Vitamin Test'}
           </Button>
         </Form.Item>
       </Form>

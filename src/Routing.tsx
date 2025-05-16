@@ -6,10 +6,14 @@ import HomePage from './pages/main/HomePage';
 import ProtectedRoute from './components/ProtectedRoute';
 import AboutUsPage from './pages/main/AboutUsPage';
 import Layout from './components/Layout.tsx';
-import AnalysisPage from './pages/main/AnalysisPage.tsx';
+import AnalysisPage from './pages/main/analysis/AnalysisPage.tsx';
 import RootForm from './pages/main/testsform/RootForm.tsx';
 import ChatWithAI from './pages/main/ChatWithAI.tsx';
 import Profile from './pages/main/Profile/Profile.tsx';
+import BloodAnalysis from './pages/main/analysis/BloodAnalysis.tsx';
+import VitaminAnalysis from './pages/main/analysis/VitaminAnalysis.tsx';
+import UrineAnalysis from './pages/main/analysis/UrineAnalysis.tsx';
+import GeneticAnalysis from './pages/main/analysis/GeneticAnalysis.tsx';
 
 const router = createBrowserRouter([
   {
@@ -54,10 +58,34 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: '/tests-form/:testType',
+        path: '/analysis/blood-test',
         element: (
           <Layout>
-            <RootForm />
+            <BloodAnalysis />
+          </Layout>
+        ),
+      },
+      {
+        path: '/analysis/vitamin-test',
+        element: (
+          <Layout>
+            <VitaminAnalysis />
+          </Layout>
+        ),
+      },
+      {
+        path: '/analysis/urine-test',
+        element: (
+          <Layout>
+            <UrineAnalysis />
+          </Layout>
+        ),
+      },
+      {
+        path: '/analysis/genetic-test',
+        element: (
+          <Layout>
+            <GeneticAnalysis />
           </Layout>
         ),
       },
@@ -66,6 +94,14 @@ const router = createBrowserRouter([
         element: (
           <Layout>
             <ChatWithAI />
+          </Layout>
+        ),
+      },
+      {
+        path: '/tests-form/:testType',
+        element: (
+          <Layout>
+            <RootForm />
           </Layout>
         ),
       },

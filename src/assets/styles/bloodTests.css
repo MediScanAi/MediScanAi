@@ -22,3 +22,16 @@
   width: 200px;
   height: 40px;
 }
+.root-form {
+  background-color: #f5f8fa;
+  min-height: 100vh;
+  padding: 48px 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.dark-theme {
+  background-color: #2d3748;
+}
