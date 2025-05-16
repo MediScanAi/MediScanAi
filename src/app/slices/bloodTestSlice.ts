@@ -1,15 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 interface BloodTestState {
-  bloodTestData: {
-    hemoglobin: number | null;
-    wbc: number | null;
-    rbc: number | null;
-    platelets: number | null;
-    glucose: number | null;
-    cholesterol: number | null;
-    date: string | null;
-  };
+  bloodTestData: BloodTestFormValues | null;
 }
 
 export interface BloodTestFormValues {
@@ -22,17 +14,11 @@ export interface BloodTestFormValues {
   date: string | null;
 }
 
+const storedData = localStorage.getItem('bloodTestData');
 const initialState: BloodTestState = {
-  bloodTestData: {
-    hemoglobin: null,
-    wbc: null,
-    rbc: null,
-    platelets: null,
-    glucose: null,
-    cholesterol: null,
-    date: null,
-  },
+  bloodTestData: storedData ? (JSON.parse(storedData) as BloodTestFormValues) : null,
 };
+
 
 const bloodTestSlice = createSlice({
   name: 'bloodTest',
@@ -55,8 +41,18 @@ const bloodTestSlice = createSlice({
         JSON.stringify(state.bloodTestData)
       );
     },
+    deleteBloodTestData: (state) => {
+      state.bloodTestData = null
+      localStorage.removeItem('bloodTestData');
+    },
+    updateBloodTestData: (state, action) => {
+      state.bloodTestData = {
+        ...action.payload,
+      };
+      localStorage.setItem('bloodTestData', JSON.stringify(state.bloodTestData));
+    },
   },
 });
 
-export const { setBloodTestData } = bloodTestSlice.actions;
+export const { setBloodTestData, deleteBloodTestData, updateBloodTestData } = bloodTestSlice.actions;
 export default bloodTestSlice.reducer;
