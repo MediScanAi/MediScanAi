@@ -20,7 +20,7 @@ import vitaminBackground from '../../assets/photos/vitaminBackground.jpg';
 import inputBackground from '../../assets/photos/inputBackground.jpg';
 import urineBackground from '../../assets/photos/urineBackground.jpg';
 import '../../assets/styles/analysis.css';
-import {useAppSelector} from "../../app/hooks.ts";
+import { useAppSelector } from '../../app/hooks.ts';
 
 interface Scorecard {
   label: string;
@@ -118,7 +118,7 @@ const AnalysisPage = () => {
   const [loading] = useState(false);
   const useMockData = true;
   const [width, setWidth] = useState(window.innerWidth);
-  const theme = useAppSelector((state)=>state.theme.isDarkMode);
+  const theme = useAppSelector((state) => state.theme.isDarkMode);
 
   useEffect(() => {
     const handleResize = () => {
@@ -133,7 +133,10 @@ const AnalysisPage = () => {
   );
 
   return (
-    <div className={(theme ? " dark-theme" : "")} style={{ padding: 24, position: 'relative' }}>
+    <div
+      className={theme ? ' dark-theme' : ''}
+      style={{ padding: 24, position: 'relative' }}
+    >
       {loading ? (
         <Spin style={{ margin: '45vh 50vh', display: 'block' }} size="large" />
       ) : (
@@ -142,14 +145,13 @@ const AnalysisPage = () => {
             {analysisData && (
               <div>
                 <Row
-
                   style={{
                     width: '96.5%',
                     margin: '0 auto',
                     marginBottom: '25px',
                     backgroundImage: `url(${inputBackground})`,
                   }}
-                  className={"row-design"}
+                  className={'row-design'}
                 >
                   <Col className="row-col">
                     <Title style={{ fontWeight: 400 }}>

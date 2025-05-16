@@ -142,9 +142,7 @@ const Header = () => {
             ></Tabs>
           </div>
         )}
-        <div
-          className={'Right-buttons'}
-        >
+        <div className={'Right-buttons'}>
           <Dropdown menu={{ items: userItems }}>
             <div className={'user-button' + (theme ? ' dark-user-button' : '')}>
               <UserOutlined style={{ fontSize: 20 }} />

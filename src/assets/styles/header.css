@@ -39,14 +39,13 @@ header {
   width: 170px;
   height: 35px;
 }
-.ant-tabs .ant-tabs-tab{
+.ant-tabs .ant-tabs-tab {
   font-size: 15px;
 }
-.dark-user-button{
+.dark-user-button {
   color: white;
 }
-.dark-user-button:hover{
+.dark-user-button:hover {
   border: 1px solid white;
   border-radius: 5px;
 }
-

@@ -39,9 +39,7 @@ function RootForm(): ReactNode | null {
     items.find((item) => item.key === testType)?.key || 'blood-test';
 
   return (
-    <div
-      className={'root-form'+(theme?' dark-theme':'')}
-    >
+    <div className={'root-form' + (theme ? ' dark-theme' : '')}>
       <div style={{ textAlign: 'center', marginBottom: 24 }}>
         <Title level={1} style={{ color: 'black', marginBottom: 0 }}>
           Medical Test Form
