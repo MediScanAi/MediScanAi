@@ -19,13 +19,17 @@ import {
 const { Title, Text } = Typography;
 
 const AnalysisHistory: React.FC = () => {
+    
     const hasTestData = (testData: { [key: string]: string | number | null }) => {
         if (!testData) return false;
         return Object.values(testData).some(val => val !== undefined && val !== null && val !== '');
     };
 
-    const getDataFromStorage = (key: string) =>
-        hasTestData(JSON.parse(localStorage.getItem(key) || '{}')) ? JSON.parse(localStorage.getItem(key) || '{}') : null;
+    const getDataFromStorage = (key: string) => {
+        const item = localStorage.getItem(key);
+        const parsed = item ? JSON.parse(item) : null;
+        return hasTestData(parsed) ? parsed : null;
+    };
 
     const bloodTestData = getDataFromStorage('bloodTestData');
     const urineTestData = getDataFromStorage('urineTestData');
