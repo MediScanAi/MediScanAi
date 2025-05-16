@@ -6,9 +6,21 @@ header {
   top: 0;
   z-index: 1000;
   border-bottom: 1px solid #e8e8e8;
-  padding: 5px;
-  background-color: rgba(255, 255, 255, 0.77);
+  background-color: rgba(154, 154, 154, 0.77);
   backdrop-filter: blur(5px);
+}
+
+.dark-Header {
+  background-color: rgba(16, 39, 57, 0.71);
+  span {
+    color: white;
+  }
+}
+
+.Header {
+  width: 100%;
+  height: 46px;
+  border-bottom: 1px solid #e8e8e8;
 }
 .Right-buttons {
   display: flex;
@@ -20,5 +32,20 @@ header {
   background-color: transparent;
   color: black;
   border: none;
-  font-size: 16px;
+  font-size: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 170px;
+  height: 35px;
+}
+.ant-tabs .ant-tabs-tab {
+  font-size: 15px;
+}
+.dark-user-button {
+  color: white;
+}
+.dark-user-button:hover {
+  border: 1px solid white;
+  border-radius: 5px;
 }

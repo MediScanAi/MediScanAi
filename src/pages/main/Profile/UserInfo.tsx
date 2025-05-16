@@ -4,7 +4,12 @@ import { HeartOutlined } from '@ant-design/icons';
 
 const ColorfulPatientDescription: React.FC = () => {
   return (
-    <Descriptions style={{ color: "#3498db", fontSize: "30px" }} title="Patient Info" bordered column={1}>
+    <Descriptions
+      style={{ color: '#3498db', fontSize: '30px' }}
+      title="Patient Info"
+      bordered
+      column={1}
+    >
       <Descriptions.Item label="Name">
         <div style={{ display: 'flex', alignItems: 'center' }}>
           HERE WILL BE NAME

@@ -20,6 +20,7 @@ import mission from '../../assets/photos/ourMission.webp';
 import getStartedBackground from '../../assets/photos/getStartedBackground.webp';
 import '../../assets/styles/homepage.css';
 import { useEffect, useState } from 'react';
+import { useAppSelector } from '../../app/hooks.ts';
 
 const { Title, Text } = Typography;
 
@@ -32,7 +33,6 @@ const steps = [
   },
   {
     title: 'AI Analysis',
-
     text: 'AI analyzes genomic data using multi-omic integration techniques',
     icon: <BarChartOutlined style={{ fontSize: 40 }} />,
     backgroundImage: aiAnalysis,
@@ -104,6 +104,7 @@ const partners = [
 
 function HomePage() {
   const [width, setWidth] = useState(window.innerWidth);
+  const theme = useAppSelector((state) => state.theme.isDarkMode);
 
   useEffect(() => {
     const handleResize = () => {
@@ -115,6 +116,7 @@ function HomePage() {
 
   return (
     <Row
+      className={theme ? 'dark-theme' : ''}
       justify="center"
       align="middle"
       style={{
@@ -321,7 +323,11 @@ function HomePage() {
                   <Col xs={24} md={6}>
                     <Title
                       level={4}
-                      style={{ color: '#2c3e50', margin: 0, textAlign: 'left' }}
+                      style={{
+                        color: theme ? 'gray' : '#2c3e50',
+                        margin: 0,
+                        textAlign: 'left',
+                      }}
                     >
                       {title}
                     </Title>
@@ -333,6 +339,7 @@ function HomePage() {
                         fontSize: 16,
                         textAlign: 'left',
                         display: 'block',
+                        color: theme ? 'white' : 'black',
                       }}
                     >
                       {text}
@@ -364,7 +371,12 @@ function HomePage() {
             <Col xs={24} md={12}>
               <Text
                 type="secondary"
-                style={{ fontSize: 20, display: 'block', textAlign: 'center' }}
+                style={{
+                  fontSize: 20,
+                  display: 'block',
+                  textAlign: 'center',
+                  color: theme ? 'white' : 'black',
+                }}
               >
                 Our mission is to provide healthcare professionals with
                 accurate, actionable insights to make informed decisions for
@@ -401,7 +413,7 @@ function HomePage() {
                 <Title
                   level={4}
                   style={{
-                    color: '#2c3e50',
+                    color: theme ? 'white' : '#2c3e50',
                     textAlign: 'center',
                     fontSize: '17px',
                   }}

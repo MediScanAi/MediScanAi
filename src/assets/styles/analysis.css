@@ -8,12 +8,6 @@
   background-position: center;
   border-radius: 15px;
   min-height: 150px;
-  cursor: pointer;
-  transition: box-shadow 0.3s ease;
-}
-
-.first-col-design:hover {
-  box-shadow: 7px 7px 20px 7px rgba(63, 63, 63, 0.2);
 }
 
 .row-design {
@@ -25,8 +19,8 @@
   background-position: center;
   min-height: 150px;
   border-radius: 15px;
-  margin: 0 auto;
-  margin-bottom: 25px;
+  margin: 0 auto 25px;
+  width: 96.5%;
 }
 
 .row-col {
@@ -46,29 +40,6 @@
   backdrop-filter: blur(2px);
   border-radius: 15px;
 }
-
-.default-analysis {
-  position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 10;
-  border-radius: 12px;
-  padding: 20px 30px;
-  box-shadow: 0 4px 20px rgba(63, 63, 63, 0.2);
-  width: 98%;
-  height: 100%;
-  text-align: center;
-  backdrop-filter: blur(4px);
-  margin: 0 auto;
-}
-
-.cholesterol-breakdown {
-  border-radius: 15px;
-  margin-right: 25px;
-  border: none;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+.dark-theme {
+  background-color: #2d3748;
 }

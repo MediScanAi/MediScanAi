@@ -9,3 +9,9 @@
     transform: translateY(0);
   }
 }
+.step-text {
+  color: white;
+}
+.dark-theme {
+  background-color: #2d3748;
+}
