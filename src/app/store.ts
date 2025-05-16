@@ -2,6 +2,7 @@ import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import bloodTestReducer from './slices/bloodTestSlice';
 import urineTestReducer from './slices/urineTestSlice';
 import vitaminTestReducer from './slices/vitaminTestSlice';
+import geneticTestReducer from './slices/geneticTestSlice';
 import theme from './slices/theme';
 import geneticTestReducer from './slices/geneticTestSlice';
 
@@ -10,6 +11,7 @@ export const store = configureStore({
     bloodTest: bloodTestReducer,
     urineTest: urineTestReducer,
     vitaminTest: vitaminTestReducer,
+    geneticTest: geneticTestReducer,
     theme: theme,
     geneticTest: geneticTestReducer,
   }),

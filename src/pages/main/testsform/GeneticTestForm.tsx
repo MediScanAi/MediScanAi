@@ -1,4 +1,3 @@
-// GeneticTestForm.tsx
 import {
   Button,
   message,
@@ -11,9 +10,8 @@ import {
   setGeneticTestData,
   type GeneticTestFormValues,
 } from '../../../app/slices/geneticTestSlice';
-import { useAppDispatch, useAppSelector } from '../../../app/hooks';
-import type { RootState } from '../../../app/store';
-
+import { useAppDispatch } from '../../../app/hooks';
+import { useLocation, useNavigate } from 'react-router-dom';
 const { Title } = Typography;
 const { Option } = Select;
 
@@ -57,21 +55,25 @@ const geneticFields = [
 ];
 
 function GeneticTestForm() {
+  const navigate = useNavigate();
   const [form] = Form.useForm();
   const dispatch = useAppDispatch();
-  const data = useAppSelector(
-    (state: RootState) => state.geneticTest?.geneticTestData
-  );
+  const updatedData = useLocation()?.state?.geneticTestData || undefined;
 
   const onFinish = (values: GeneticTestFormValues) => {
-    dispatch(setGeneticTestData(values));
-    message.success({
-      content: `Genetic Test & Family Health History submitted successfully!`,
-      className: 'success-message',
-    });
+    dispatch(setGeneticTestData({
+      ...values,
+    }));
+
+    if (updatedData) {
+      message.success('Genetic test updated successfully');
+    } else {
+      message.success('Genetic test submitted successfully');
+    }
+
     setTimeout(() => {
-      form.resetFields();
-    }, 0);
+      navigate('/profile');
+    }, 1000);
   };
 
   return (
@@ -81,6 +83,7 @@ function GeneticTestForm() {
         onFinish={onFinish}
         layout="vertical"
         size="large"
+        initialValues={updatedData}
       >
         <Title level={3}>Genetic Test & Family Health History</Title>
         <Title level={4}>Genetic Test</Title>
@@ -103,7 +106,7 @@ function GeneticTestForm() {
 
         <Form.Item style={{ textAlign: 'center', marginTop: 32 }}>
           <Button type="primary" htmlType="submit" size="large">
-            Submit Form
+            {updatedData ? 'Update Genetic Test' : 'Submit Genetic Test'}
           </Button>
         </Form.Item>
       </Form>

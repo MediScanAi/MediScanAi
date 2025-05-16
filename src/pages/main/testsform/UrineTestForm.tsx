@@ -7,11 +7,10 @@ import {
   Typography,
   Card,
 } from 'antd';
-import { useAppDispatch, useAppSelector } from '../../../app/hooks';
+import { useAppDispatch } from '../../../app/hooks';
 import { setUrineTestData } from '../../../app/slices/urineTestSlice';
-import type { RootState } from '../../../app/store';
 import type { UrineTestFormValues } from '../../../app/slices/urineTestSlice';
-
+import { useLocation, useNavigate } from 'react-router-dom';
 const { Option } = Select;
 const { Title } = Typography;
 
@@ -108,21 +107,24 @@ const urineTestFields = [
 ];
 
 const UrineTestForm = () => {
+  const navigate = useNavigate();
   const [form] = Form.useForm();
   const dispatch = useAppDispatch();
-  const data = useAppSelector(
-    (state: RootState) => state.urineTest?.urineTestData
-  );
+  const updatedData = useLocation()?.state?.urineTestData || undefined;
 
   const onFinish = (values: UrineTestFormValues) => {
-    dispatch(setUrineTestData(values));
-    message.success('Urine test submitted successfully');
+    dispatch(setUrineTestData({
+      ...values,
+    }));
+    if (updatedData) {
+      message.success('Urine test updated successfully');
+    } else {
+      message.success('Urine test submitted successfully');
+    }
     setTimeout(() => {
-      form.resetFields();
-    }, 0);
+      navigate('/profile');
+    }, 1000);
   };
-
-  console.log(data);
 
   return (
     <Card
@@ -130,7 +132,7 @@ const UrineTestForm = () => {
       className="urine-form-card"
       title={<Title level={3}>Urine Test</Title>}
     >
-      <Form form={form} onFinish={onFinish} layout="vertical" size="large">
+      <Form form={form} onFinish={onFinish} layout="vertical" size="large" initialValues={updatedData}>
         {urineTestFields.map((field) => {
           if (field.type === 'input') {
             return (
@@ -172,7 +174,7 @@ const UrineTestForm = () => {
 
         <Form.Item style={{ textAlign: 'center' }}>
           <Button type="primary" htmlType="submit" className="submit-btn">
-            Submit Urine Test
+            {updatedData ? 'Update Urine Test' : 'Submit Urine Test'}
           </Button>
         </Form.Item>
       </Form>

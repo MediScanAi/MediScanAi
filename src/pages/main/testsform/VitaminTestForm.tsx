@@ -1,8 +1,8 @@
 import { Button, Form, InputNumber, message, Typography, Card } from 'antd';
-import { useAppDispatch, useAppSelector } from '../../../app/hooks';
+import { useAppDispatch } from '../../../app/hooks';
 import { setVitaminTestData } from '../../../app/slices/vitaminTestSlice';
-import type { RootState } from '../../../app/store';
 import type { VitaminTestFormValues } from '../../../app/slices/vitaminTestSlice';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const { Title } = Typography;
 
@@ -64,28 +64,31 @@ const vitaminTestFields = [
 ];
 
 const VitaminTestForm = () => {
+  const navigate = useNavigate();
   const [form] = Form.useForm();
   const dispatch = useAppDispatch();
-  const data = useAppSelector(
-    (state: RootState) => state.vitaminTest?.vitaminTestData
-  );
+  const updatedData = useLocation()?.state?.vitaminTestData || undefined;
 
   const onFinish = (values: VitaminTestFormValues) => {
-    dispatch(setVitaminTestData(values));
-    message.success('Vitamin test submitted successfully');
+    dispatch(setVitaminTestData({
+      ...values,
+    }));
+    if (updatedData) {
+      message.success('Vitamin test updated successfully');
+    } else {
+      message.success('Vitamin test submitted successfully');
+    }
     setTimeout(() => {
-      form.resetFields();
-    }, 0);
+      navigate('/profile');
+    }, 1000);
   };
-
-  console.log(data);
 
   return (
     <Card
       style={{ border: 'none' }}
       title={<Title level={3}>Vitamin Test</Title>}
     >
-      <Form form={form} onFinish={onFinish} layout="vertical" size="large">
+      <Form form={form} onFinish={onFinish} layout="vertical" size="large" initialValues={updatedData}>
         {vitaminTestFields.map((field) => (
           <Form.Item
             key={field.name}
@@ -105,7 +108,7 @@ const VitaminTestForm = () => {
 
         <Form.Item style={{ textAlign: 'center' }}>
           <Button type="primary" htmlType="submit">
-            Submit Vitamin Test
+            {updatedData ? 'Update Vitamin Test' : 'Submit Vitamin Test'}
           </Button>
         </Form.Item>
       </Form>
