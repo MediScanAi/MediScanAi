@@ -8,7 +8,6 @@ const { Title } = Typography;
 
 const bloodTestFields = [
   {
-
     name: 'hemoglobin',
     label: 'Hemoglobin (g/dL)',
     min: 0,
@@ -65,9 +64,11 @@ function BloodTestsForm() {
   const updatedData = useLocation()?.state?.bloodTestData || undefined;
 
   const onFinish = (values: BloodTestFormValues) => {
-    dispatch(setBloodTestData({
-      ...values,
-    }));
+    dispatch(
+      setBloodTestData({
+        ...values,
+      })
+    );
 
     if (updatedData) {
       message.success('Blood test updated successfully');
@@ -79,13 +80,18 @@ function BloodTestsForm() {
     }, 1000);
   };
 
-
   return (
     <Card
       style={{ border: 'none' }}
       title={<Title level={3}>Blood Test</Title>}
     >
-      <Form form={form} onFinish={onFinish} initialValues={updatedData} layout="vertical" size="large">
+      <Form
+        form={form}
+        onFinish={onFinish}
+        initialValues={updatedData}
+        layout="vertical"
+        size="large"
+      >
         {bloodTestFields.map((field) => (
           <Form.Item
             key={field.name}
@@ -109,7 +115,7 @@ function BloodTestsForm() {
           </Button>
         </Form.Item>
       </Form>
-    </Card >
+    </Card>
   );
 }
 

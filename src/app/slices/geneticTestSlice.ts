@@ -16,7 +16,9 @@ export interface GeneticTestFormValues {
 
 const storedData = localStorage.getItem('geneticTestData');
 const initialState: GeneticTestState = {
-  geneticTestData: storedData ? (JSON.parse(storedData) as GeneticTestFormValues) : null,
+  geneticTestData: storedData
+    ? (JSON.parse(storedData) as GeneticTestFormValues)
+    : null,
 };
 
 const geneticTestSlice = createSlice({
@@ -48,10 +50,17 @@ const geneticTestSlice = createSlice({
       state.geneticTestData = {
         ...action.payload,
       };
-      localStorage.setItem('geneticTestData', JSON.stringify(state.geneticTestData));
+      localStorage.setItem(
+        'geneticTestData',
+        JSON.stringify(state.geneticTestData)
+      );
     },
   },
 });
 
-export const { setGeneticTestData, deleteGeneticTestData, updateGeneticTestData } = geneticTestSlice.actions;
+export const {
+  setGeneticTestData,
+  deleteGeneticTestData,
+  updateGeneticTestData,
+} = geneticTestSlice.actions;
 export default geneticTestSlice.reducer;

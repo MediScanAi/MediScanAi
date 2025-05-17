@@ -24,6 +24,8 @@ import { useLocation, useNavigate } from 'react-router';
 import '../assets/styles/header.css';
 import { useAppDispatch, useAppSelector } from '../app/hooks.ts';
 import { toggleTheme } from '../app/slices/theme';
+import { logoutUser } from '../app/slices/authSlice';
+
 
 const burgerItems: MenuProps['items'] = [
   {
@@ -45,19 +47,6 @@ const burgerItems: MenuProps['items'] = [
     label: <NavLink to="/about-us">About Us</NavLink>,
     key: 'about-us\n',
     icon: <TeamOutlined />,
-  },
-];
-
-const userItems: MenuProps['items'] = [
-  {
-    key: 'profile',
-    label: <NavLink to={'/profile'}>Profile</NavLink>,
-    icon: <SettingOutlined />,
-  },
-  {
-    key: 'logout',
-    label: <NavLink to={'/'}>Logout</NavLink>,
-    icon: <LogoutOutlined />,
   },
 ];
 
@@ -84,7 +73,7 @@ const items: TabsProps['items'] = [
   },
 ];
 
-const Header = () => {
+function Header() {
   const [width, setWidth] = useState(window.innerWidth);
   const navigate = useNavigate();
   const activeKey = useLocation().pathname.substring(1);
@@ -93,7 +82,7 @@ const Header = () => {
   const handleThemeChange = () => {
     dispatch(toggleTheme());
   };
-
+  const user = useAppSelector((state) => state.auth.user);
   const handleTabClick = (key: string) => {
     switch (key) {
       case 'home':
@@ -110,6 +99,19 @@ const Header = () => {
         break;
     }
   };
+
+  const userItems: MenuProps['items'] = [
+    {
+      key: 'profile',
+      label: <NavLink to={'/profile'}>Profile</NavLink>,
+      icon: <SettingOutlined />,
+    },
+    {
+      key: 'logout',
+      label: <NavLink onClick={() => dispatch(logoutUser())} to={'/auth/login'}>Logout</NavLink>,
+      icon: <LogoutOutlined />,
+    },
+  ];
 
   useEffect(() => {
     const handleResize = () => {
@@ -144,9 +146,9 @@ const Header = () => {
         )}
         <div className={'Right-buttons'}>
           <Dropdown menu={{ items: userItems }}>
-            <div className={'user-button' + (theme ? ' dark-user-button' : '')}>
+            <div className={'user-button' + (theme ? ' dark-user-button' : '')} style={{marginRight: 50}}>
               <UserOutlined style={{ fontSize: 20 }} />
-              arayik@gmail.com
+              {user?.email}
             </div>
           </Dropdown>
           <Switch

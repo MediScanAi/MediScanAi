@@ -161,23 +161,39 @@ const AnalysisPage = () => {
                   justifyContent: 'center',
                 }}
               >
-                <li>This summary includes results from all your tests and a
-                personalized analysis of your health with AI.</li>
+                <li>
+                  This summary includes results from all your tests and a
+                  personalized analysis of your health with AI.
+                </li>
                 <br />
-                <li>Our system has processed your tests data to provide a comprehensive overview of your health status.</li>
+                <li>
+                  Our system has processed your tests data to provide a
+                  comprehensive overview of your health status.
+                </li>
                 <br />
-                <li>Trends over time are also visualized, helping you and your healthcare provider understand how your health is evolving.</li>
+                <li>
+                  Trends over time are also visualized, helping you and your
+                  healthcare provider understand how your health is evolving.
+                </li>
                 <br />
-                <li>This report is not a diagnosis, but an AI-assisted guide to support your personal health awareness and decision-making.</li>
+                <li>
+                  This report is not a diagnosis, but an AI-assisted guide to
+                  support your personal health awareness and decision-making.
+                </li>
                 <br />
-                <li style={{ color: 'red' }}>For any abnormal values or health concerns, we strongly recommend consulting a licensed medical professional.</li>
-                <Button 
-                style={{ marginTop: '10px' }} 
-                type="primary"
-                onClick={() => {
-                  navigate('/ai-doctor');
-                }}
-                >Get Analysis</Button>
+                <li style={{ color: 'red' }}>
+                  For any abnormal values or health concerns, we strongly
+                  recommend consulting a licensed medical professional.
+                </li>
+                <Button
+                  style={{ marginTop: '10px' }}
+                  type="primary"
+                  onClick={() => {
+                    navigate('/ai-doctor');
+                  }}
+                >
+                  Get Analysis
+                </Button>
               </p>
             </Col>
           </div>
