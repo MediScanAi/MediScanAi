@@ -74,21 +74,6 @@ function VitaminAnalysis() {
     return <div>No data found</div>;
   }
 
-  console.log(mockAnalysisData);
-
-  const data = {
-    'Vitamin A': mockAnalysisData.vitaminA || 0,
-    'Vitamin B12': mockAnalysisData.vitaminB12 || 0,
-    'Vitamin C': mockAnalysisData.vitaminC || 0,
-    'Vitamin D': mockAnalysisData.vitaminD || 0,
-    'Vitamin E': mockAnalysisData.vitaminE || 0,
-    'Vitamin K': mockAnalysisData.vitaminK || 0,
-  };
-
-  const aiCondition = Object.entries(data).map(([key, value]) => ({
-    [key]: value,
-  }));
-
   const PieData: ChartData[] = [
     {
       name: 'Vitamin A',
