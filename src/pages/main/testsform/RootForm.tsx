@@ -1,8 +1,14 @@
 import { Tabs, Typography, Card, Button } from 'antd';
 import type { TabsProps } from 'antd';
 import { useNavigate, useParams } from 'react-router-dom';
-import type { JSX } from 'react';
-import { HeartFilled, SafetyOutlined, HeatMapOutlined, MonitorOutlined } from '@ant-design/icons';
+import { useAppSelector } from '../../../app/hooks.ts';
+import type { ReactNode } from 'react';
+import {
+  HeartFilled,
+  SafetyOutlined,
+  HeatMapOutlined,
+  MonitorOutlined,
+} from '@ant-design/icons';
 import '../../../assets/styles/rootForm.css';
 import VitaminTestForm from './VitaminTestForm';
 import UrineTestForm from './UrineTestForm';
@@ -11,10 +17,10 @@ import GeneticTestForm from './GeneticTestForm';
 
 const { Title, Text } = Typography;
 
-function RootForm(): JSX.Element | null {
+function RootForm(): ReactNode | null {
   const navigate = useNavigate();
   const { testType } = useParams();
-
+  const theme = useAppSelector((state) => state.theme.isDarkMode);
   const items: TabsProps['items'] = [
     {
       label: (
@@ -62,52 +68,65 @@ function RootForm(): JSX.Element | null {
     navigate(`/tests-form/${key}`);
   };
 
-  const activeKey = items.find((item) => item.key === testType)?.key || 'blood-test';
+  const activeKey =
+    items.find((item) => item.key === testType)?.key || 'blood-test';
 
   return (
-    <div className="medical-form-container">
-      <div className="welcome-banner">
-        <div className="welcome-content">
-          <Title level={2} className="welcome-title">
-            Welcome to Our Medical Laboratory Portal
-          </Title>
-          <Text className="welcome-message">
-            Your health is our priority. Get accurate test results with our MediScanAi technologies.
-          </Text>
-        </div>
+    <div className={'root-form' + (theme ? ' dark-theme' : '')}>
+      <div style={{ textAlign: 'center', marginBottom: 24 }}>
+        <Title level={1} style={{ color: 'black', marginBottom: 0 }}>
+          Medical Test Form
+        </Title>
+        <p style={{ fontSize: 18, color: 'black' }}>
+          Select a test and fill out the required information
+        </p>
       </div>
 
-      <div className="form-content">
-        <div className="form-header">
-          <Button
-            className="back-button"
-            onClick={() => navigate('/profile')}
-            type="primary"
-          >
-            Back to Profile
-          </Button>
-
-          <div className="header-content">
-            <Title level={1} className="medical-title">
-              Medical Laboratory Test Form
+      <div className="medical-form-container">
+        <div className="welcome-banner">
+          <div className="welcome-content">
+            <Title level={2} className="welcome-title">
+              Welcome to Our Medical Laboratory Portal
             </Title>
-            <p className="medical-subtitle">
-              Select a test type and provide the required specimen information
-            </p>
+            <Text className="welcome-message">
+              Your health is our priority. Get accurate test results with our
+              MediScanAi technologies.
+            </Text>
           </div>
         </div>
 
-        <Card className="medical-form-card">
-          <Tabs
-            type="card"
-            centered
-            size="large"
-            activeKey={activeKey}
-            onChange={handleTabChange}
-            items={items}
-            className="medical-tabs"
-          />
-        </Card>
+        <div className="form-content">
+          <div className="form-header">
+            <Button
+              className="back-button"
+              onClick={() => navigate('/profile')}
+              type="primary"
+            >
+              Back to Profile
+            </Button>
+
+            <div className="header-content">
+              <Title level={1} className="medical-title">
+                Medical Laboratory Test Form
+              </Title>
+              <p className="medical-subtitle">
+                Select a test type and provide the required specimen information
+              </p>
+            </div>
+          </div>
+
+          <Card className="medical-form-card">
+            <Tabs
+              type="card"
+              centered
+              size="large"
+              activeKey={activeKey}
+              onChange={handleTabChange}
+              items={items}
+              className="medical-tabs"
+            />
+          </Card>
+        </div>
       </div>
     </div>
   );

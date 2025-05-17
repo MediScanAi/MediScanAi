@@ -1,5 +1,4 @@
 import {
-  Button,
   Dropdown,
   Flex,
   type MenuProps,
@@ -21,8 +20,10 @@ import {
   TeamOutlined,
   UserOutlined,
 } from '@ant-design/icons';
-import { useNavigate } from 'react-router';
+import { useLocation, useNavigate } from 'react-router';
 import '../assets/styles/header.css';
+import { useAppDispatch, useAppSelector } from '../app/hooks.ts';
+import { toggleTheme } from '../app/slices/theme';
 
 const burgerItems: MenuProps['items'] = [
   {
@@ -31,18 +32,18 @@ const burgerItems: MenuProps['items'] = [
     icon: <HomeOutlined />,
   },
   {
-    label: <NavLink to="/analysis">Analysis</NavLink>,
-    key: 'Analysis',
+    label: <NavLink to="/">Analysis</NavLink>,
+    key: 'analysis',
     icon: <ExperimentOutlined />,
   },
   {
-    label: <NavLink to="/ai-doctor">Your AI Doctor</NavLink>,
-    key: 'Doctor',
+    label: <NavLink to="/">Your AI Doctor</NavLink>,
+    key: 'ai-doctor',
     icon: <MedicineBoxOutlined />,
   },
   {
     label: <NavLink to="/about-us">About Us</NavLink>,
-    key: 'About',
+    key: 'about-us\n',
     icon: <TeamOutlined />,
   },
 ];
@@ -72,12 +73,12 @@ const items: TabsProps['items'] = [
     icon: <ExperimentOutlined />,
   },
   {
-    key: 'doctor',
+    key: 'ai-doctor',
     label: 'Your AI Doctor',
     icon: <MedicineBoxOutlined />,
   },
   {
-    key: 'about',
+    key: 'about-us',
     label: 'About Us',
     icon: <TeamOutlined />,
   },
@@ -86,6 +87,12 @@ const items: TabsProps['items'] = [
 const Header = () => {
   const [width, setWidth] = useState(window.innerWidth);
   const navigate = useNavigate();
+  const activeKey = useLocation().pathname.substring(1);
+  const theme = useAppSelector((state) => state.theme.isDarkMode);
+  const dispatch = useAppDispatch();
+  const handleThemeChange = () => {
+    dispatch(toggleTheme());
+  };
 
   const handleTabClick = (key: string) => {
     switch (key) {
@@ -95,10 +102,10 @@ const Header = () => {
       case 'analysis':
         navigate('/analysis');
         break;
-      case 'about':
+      case 'about-us':
         navigate('/about-us');
         break;
-      case 'doctor':
+      case 'ai-doctor':
         navigate('/ai-doctor');
         break;
     }
@@ -115,9 +122,9 @@ const Header = () => {
   return (
     <header>
       <Flex
+        className={'Header' + ' ' + (theme ? 'dark-Header' : '')}
         justify="space-around"
         align="middle"
-        style={{ width: '100%', height: 40 }}
       >
         {width < 820 ? (
           <Dropdown menu={{ items: burgerItems }}>
@@ -129,28 +136,24 @@ const Header = () => {
               onTabClick={handleTabClick}
               className="custom-tabs"
               size={'middle'}
+              defaultActiveKey={activeKey ? activeKey : 'home'}
               items={items}
+              animated={false}
             ></Tabs>
           </div>
         )}
-        <div
-          className={'Right-buttons'}
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'space-around',
-            width: 250,
-          }}
-        >
+        <div className={'Right-buttons'}>
           <Dropdown menu={{ items: userItems }}>
-            <Button className="user-button">
+            <div className={'user-button' + (theme ? ' dark-user-button' : '')}>
               <UserOutlined style={{ fontSize: 20 }} />
               arayik@gmail.com
-            </Button>
+            </div>
           </Dropdown>
           <Switch
+            defaultChecked={theme}
             checkedChildren={<SunOutlined />}
             unCheckedChildren={<MoonOutlined />}
+            onClick={handleThemeChange}
           />
         </div>
       </Flex>

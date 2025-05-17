@@ -7,16 +7,23 @@ import {
   Typography,
   Card,
 } from 'antd';
-import { useAppDispatch, useAppSelector } from '../../../app/hooks';
+import { useAppDispatch } from '../../../app/hooks';
 import { setUrineTestData } from '../../../app/slices/urineTestSlice';
-import type { RootState } from '../../../app/store';
 import type { UrineTestFormValues } from '../../../app/slices/urineTestSlice';
-
+import { useLocation, useNavigate } from 'react-router-dom';
 const { Option } = Select;
 const { Title } = Typography;
 
 const urineTestFields = [
-  { type: "input", label: 'pH (4.5-8.0)', name: 'ph', min: 4.5, max: 8.0, step: 0.1, placeholder: 'e.g. 7.5', },
+  {
+    type: 'input',
+    label: 'pH (4.5-8.0)',
+    name: 'ph',
+    min: 4.5,
+    max: 8.0,
+    step: 0.1,
+    placeholder: 'e.g. 7.5',
+  },
   {
     type: 'input',
     label: 'Specific Gravity (1.0-1.03)',
@@ -27,12 +34,60 @@ const urineTestFields = [
     placeholder: 'e.g. 1.015',
     unit: 'g/dL',
   },
-  { type: 'input', label: 'Protein (mg/dL)', name: 'protein', min: 0, max: 300, step: 1, placeholder: 'e.g. 100', unit: 'mg/dL' },
-  { type: 'input', label: 'Glucose (mg/dL)', name: 'glucose', min: 0, max: 1000, step: 1, placeholder: 'e.g. 100', unit: 'mg/dL' },
-  { type: 'input', label: 'Ketones (mg/dL)', name: 'ketones', min: 0, max: 160, step: 1, placeholder: 'e.g. 100', unit: 'mg/dL' },
-  { type: 'select', label: 'Bilirubin', name: 'bilirubin', options: ['negative', 'positive'], unit: 'mg/dL' },
-  { type: 'input', label: 'Urobilinogen (EU/dL)', name: 'urobilinogen', min: 0.1, max: 8.0, step: 0.1, placeholder: 'e.g. 1.5', unit: 'EU/dL' },
-  { type: 'select', label: 'Nitrites', name: 'nitrites', options: ['negative', 'positive'], unit: 'mg/dL' },
+  {
+    type: 'input',
+    label: 'Protein (mg/dL)',
+    name: 'protein',
+    min: 0,
+    max: 300,
+    step: 1,
+    placeholder: 'e.g. 100',
+    unit: 'mg/dL',
+  },
+  {
+    type: 'input',
+    label: 'Glucose (mg/dL)',
+    name: 'glucose',
+    min: 0,
+    max: 1000,
+    step: 1,
+    placeholder: 'e.g. 100',
+    unit: 'mg/dL',
+  },
+  {
+    type: 'input',
+    label: 'Ketones (mg/dL)',
+    name: 'ketones',
+    min: 0,
+    max: 160,
+    step: 1,
+    placeholder: 'e.g. 100',
+    unit: 'mg/dL',
+  },
+  {
+    type: 'select',
+    label: 'Bilirubin',
+    name: 'bilirubin',
+    options: ['negative', 'positive'],
+    unit: 'mg/dL',
+  },
+  {
+    type: 'input',
+    label: 'Urobilinogen (EU/dL)',
+    name: 'urobilinogen',
+    min: 0.1,
+    max: 8.0,
+    step: 0.1,
+    placeholder: 'e.g. 1.5',
+    unit: 'EU/dL',
+  },
+  {
+    type: 'select',
+    label: 'Nitrites',
+    name: 'nitrites',
+    options: ['negative', 'positive'],
+    unit: 'mg/dL',
+  },
   {
     type: 'select',
     label: 'Leukocyte Esterase',
@@ -41,23 +96,35 @@ const urineTestFields = [
     placeholder: 'e.g. negative',
     unit: 'mg/dL',
   },
-  { type: 'select', label: 'Blood', name: 'blood', options: ['negative', 'trace', 'positive'], placeholder: 'e.g. negative', unit: 'mg/dL' },
+  {
+    type: 'select',
+    label: 'Blood',
+    name: 'blood',
+    options: ['negative', 'trace', 'positive'],
+    placeholder: 'e.g. negative',
+    unit: 'mg/dL',
+  },
 ];
 
 const UrineTestForm = () => {
+  const navigate = useNavigate();
   const [form] = Form.useForm();
   const dispatch = useAppDispatch();
-  const data = useAppSelector((state: RootState) => state.urineTest?.urineTestData);
+  const updatedData = useLocation()?.state?.urineTestData || undefined;
 
   const onFinish = (values: UrineTestFormValues) => {
-    dispatch(setUrineTestData(values));
-    message.success('Urine test submitted successfully');
+    dispatch(setUrineTestData({
+      ...values,
+    }));
+    if (updatedData) {
+      message.success('Urine test updated successfully');
+    } else {
+      message.success('Urine test submitted successfully');
+    }
     setTimeout(() => {
-      form.resetFields();
-    }, 0);
+      navigate('/profile');
+    }, 1000);
   };
-
-  console.log(data);
 
   return (
     <Card
@@ -65,7 +132,7 @@ const UrineTestForm = () => {
       className="urine-form-card"
       title={<Title level={3}>Urine Test</Title>}
     >
-      <Form form={form} onFinish={onFinish} layout="vertical" size="large">
+      <Form form={form} onFinish={onFinish} layout="vertical" size="large" initialValues={updatedData}>
         {urineTestFields.map((field) => {
           if (field.type === 'input') {
             return (
@@ -73,7 +140,6 @@ const UrineTestForm = () => {
                 key={field.name}
                 label={field.label}
                 name={field.name}
-
                 rules={[{ required: true }]}
               >
                 <InputNumber
@@ -108,7 +174,7 @@ const UrineTestForm = () => {
 
         <Form.Item style={{ textAlign: 'center' }}>
           <Button type="primary" htmlType="submit" className="submit-btn">
-            Submit Urine Test
+            {updatedData ? 'Update Urine Test' : 'Submit Urine Test'}
           </Button>
         </Form.Item>
       </Form>

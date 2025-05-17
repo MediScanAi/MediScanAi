@@ -4,14 +4,21 @@ import { HeartOutlined } from '@ant-design/icons';
 
 const ColorfulPatientDescription: React.FC = () => {
   return (
-    <Descriptions title="Patient Info" bordered column={1}>
+    <Descriptions
+      style={{ color: '#3498db', fontSize: '30px' }}
+      title="Patient Info"
+      bordered
+      column={1}
+    >
       <Descriptions.Item label="Name">
         <div style={{ display: 'flex', alignItems: 'center' }}>
           HERE WILL BE NAME
         </div>
       </Descriptions.Item>
 
-      <Descriptions.Item label="Surname">HERE WILL BE SURNAME</Descriptions.Item>
+      <Descriptions.Item label="Surname">
+        HERE WILL BE SURNAME
+      </Descriptions.Item>
 
       <Descriptions.Item label="Age">HERE WILL BE AGE</Descriptions.Item>
 
@@ -21,11 +28,11 @@ const ColorfulPatientDescription: React.FC = () => {
 
       <Descriptions.Item label="Sex">Male</Descriptions.Item>
 
-      <Descriptions.Item label="Adress">
-        HERE WILL BE ADRESS
-      </Descriptions.Item>
+      <Descriptions.Item label="Adress">HERE WILL BE ADRESS</Descriptions.Item>
 
-      <Descriptions.Item label="Phone number">HERE WILL BE PHONE NUMBER</Descriptions.Item>
+      <Descriptions.Item label="Phone number">
+        HERE WILL BE PHONE NUMBER
+      </Descriptions.Item>
     </Descriptions>
   );
 };
