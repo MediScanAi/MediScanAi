@@ -134,13 +134,13 @@ function AboutUsPage() {
           >
             <Title
               level={1}
-              style={{ color: 'white', marginBottom: 16, }}
+              style={{ color: 'black', marginBottom: 16, }}
             >
               <b>About Us</b>
             </Title>
             <Text
               type="secondary"
-              style={{ fontSize: 23, color: 'white', fontWeight: 500 }}
+              style={{ fontSize: 23, color: 'black', fontWeight: 500 }}
             >
               We are a team of developers who are passionate about creating
               innovative solutions for the healthcare industry.
@@ -148,7 +148,7 @@ function AboutUsPage() {
 
             <Text
               type="secondary"
-              style={{ fontSize: 23, color: 'white', fontWeight: 500, marginTop: '1rem' }}
+              style={{ fontSize: 23, color: 'black', fontWeight: 500, marginTop: '1rem' }}
             >
               With backgrounds in medicine, artificial intelligence, and software engineering,
               we strive to bridge the gap between technology and patient care. Our goal is to make
