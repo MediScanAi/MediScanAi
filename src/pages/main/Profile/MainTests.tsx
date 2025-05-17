@@ -2,7 +2,7 @@ import { Col, Card, Typography, Row, Button, Space } from 'antd';
 import { useNavigate } from 'react-router-dom';
 const { Title, Text } = Typography;
 
-const MainTests: React.FC = ()=> {
+const MainTests: React.FC = () => {
   const navigate = useNavigate();
 
   const testCards = [
@@ -29,103 +29,61 @@ const MainTests: React.FC = ()=> {
   ];
 
   return (
-    <div style={{ padding: '24px', margin: '0 auto' }}>
+    <div style={{ padding: '40px 24px', maxWidth: 1200, margin: '0 auto' }}>
       <Title
         level={2}
-        style={{ marginBottom: '24px', color: '#3498db', fontWeight: 500 }}
+        style={{
+          marginBottom: '40px',
+          color: '#3498db',
+          fontWeight: 600,
+        }}
       >
         Fill the form to get your test results
       </Title>
-      <Row gutter={[24, 24]} justify="center">
+
+      <Row gutter={[32, 32]} justify="center">
         {testCards.map((card, index) => (
-          <Col key={index} xs={24} sm={12} md={12} lg={6}>
+          <Col key={index} xs={24} sm={12} md={8} lg={6}>
             <Card
               hoverable
+              onClick={card.onClick}
               style={{
-                border: 'none',
-                height: '200px',
-                position: 'relative',
-                overflow: 'hidden',
-                borderRadius: '12px',
+                height: '220px',
+                borderRadius: '16px',
+                boxShadow: '0 6px 20px rgba(0,0,0,0.05)',
+                transition: 'transform 0.2s ease',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
+                textAlign: 'center',
+                padding: '24px',
+                border: '2px solid #2BC0E4',
               }}
-              onClick={card.onClick}
+              bodyStyle={{ padding: 0 }}
             >
-              <div
-                style={{
-                  position: 'absolute',
-                  top: 0,
-                  left: 0,
-                  right: 0,
-                  bottom: 0,
-                  backgroundSize: 'cover',
-                  backgroundPosition: 'center',
-                  filter: 'blur(3px)',
-                  zIndex: 1,
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                }}
-              />
-
-              <div
-                style={{
-                  position: 'absolute',
-                  top: 0,
-                  left: 0,
-                  right: 0,
-                  bottom: 0,
-                  zIndex: 2,
-                }}
-              />
-
-              <div
-                style={{
-                  position: 'relative',
-                  zIndex: 3,
-                  height: '100%',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  flexDirection: 'column',
-                  padding: '24px',
-                }}
-              >
+              <div>
                 <Title
-                  level={3}
+                  level={4}
                   style={{
-                    color: 'black',
-                    marginBottom: '8px',
-                    fontSize: '22px',
+                    color: '#1e3a8a',
+                    fontWeight: 600,
+                    marginBottom: '12px',
                   }}
                 >
                   {card.title}
                 </Title>
-
                 <Text
                   style={{
-                    color: 'black',
+                    color: '#555',
                     fontSize: '15px',
-                    textAlign: 'center',
+                    display: 'block',
+                    marginBottom: '16px',
                   }}
                 >
                   {card.subtitle}
                 </Text>
-
-                <Button
-                  type="text"
-                  style={{
-                    color: 'black',
-                    alignSelf: 'flex-start',
-                    fontWeight: 500,
-                    marginTop: '16px',
-                    marginLeft: 'auto',
-                    marginRight: 'auto',
-                  }}
-                >
-                  View More
+                <Button type="link" style={{ padding: 0, fontWeight: 500 }}>
+                  View More 
                 </Button>
               </div>
             </Card>
@@ -137,9 +95,9 @@ const MainTests: React.FC = ()=> {
         direction="vertical"
         style={{
           width: '100%',
-          marginTop: '48px',
-          textAlign: 'center',
+          marginTop: '60px',
           alignItems: 'center',
+          textAlign: 'center',
         }}
       >
         <Button
@@ -147,18 +105,22 @@ const MainTests: React.FC = ()=> {
           size="large"
           onClick={() => navigate('/tests-form/blood-test')}
           style={{
-            width: '220px',
-            height: '48px',
-            borderRadius: '24px',
-            fontWeight: 500,
-            fontSize: '16px',
+            height: '52px',
+            padding: '0 48px',
+            fontSize: '1.1rem',
+            fontWeight: 600,
+            borderRadius: '28px',
+            background: 'linear-gradient(90deg, #2563eb, #1d4ed8)',
+            boxShadow: '0 6px 16px rgba(37, 99, 235, 0.3)',
+            border: 'none',
           }}
         >
-          Start Testing
+          Get Started
         </Button>
       </Space>
     </div>
   );
+
 }
 
 export default MainTests;
