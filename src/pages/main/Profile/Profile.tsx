@@ -10,6 +10,7 @@ import '../../../assets/styles/Profile.css';
 import MainTests from './MainTests';
 import AnalysisHistory from './AnalysisHistory';
 import ContactUs from './ContactUs';
+
 const items: TabsProps['items'] = [
   {
     label: <span className={'menu-button'}>Info</span>,
@@ -37,7 +38,7 @@ const items: TabsProps['items'] = [
   },
 ];
 
-function Profile() {
+const Profile: React.FC = () => {
   return (
     <Row style={{ marginTop: '20px' }}>
       <Col className={'Column'}>
@@ -51,4 +52,5 @@ function Profile() {
     </Row>
   );
 }
+
 export default Profile;

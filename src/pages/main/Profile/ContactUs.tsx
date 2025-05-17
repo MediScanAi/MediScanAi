@@ -1,4 +1,5 @@
 import { Card, Typography, Row, Col } from 'antd';
+import React from 'react';
 import {
   PhoneOutlined,
   MailOutlined,
@@ -9,7 +10,7 @@ import {
 
 const { Title, Text } = Typography;
 
-function ContactUs() {
+const ContactUs: React.FC = () => {
   return (
     <Card
       title={
