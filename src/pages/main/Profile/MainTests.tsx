@@ -2,7 +2,7 @@ import { Col, Card, Typography, Row, Button, Space } from 'antd';
 import { useNavigate } from 'react-router-dom';
 const { Title, Text } = Typography;
 
-function MainTests() {
+const MainTests: React.FC = ()=> {
   const navigate = useNavigate();
 
   const testCards = [
@@ -50,10 +50,6 @@ function MainTests() {
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-              }}
-              bodyStyle={{
-                padding: 0,
-                height: '100%',
               }}
               onClick={card.onClick}
             >

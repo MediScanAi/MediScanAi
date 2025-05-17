@@ -2,12 +2,10 @@ import { createBrowserRouter, Navigate } from 'react-router-dom';
 import Layout from './components/Layout';
 import PublicRoute from './components/PublicRoute';
 import ProtectedRoute from './components/ProtectedRoute';
-
 import HomePage from './pages/main/HomePage';
 import AboutUsPage from './pages/main/AboutUsPage';
 import RegisterPage from './pages/auth/RegisterPage';
 import LoginPage from './pages/auth/LoginPage';
-
 import AnalysisPage from './pages/main/analysis/AnalysisPage';
 import BloodAnalysis from './pages/main/analysis/BloodAnalysis';
 import VitaminAnalysis from './pages/main/analysis/VitaminAnalysis';
@@ -15,7 +13,7 @@ import UrineAnalysis from './pages/main/analysis/UrineAnalysis';
 import GeneticAnalysis from './pages/main/analysis/GeneticAnalysis';
 import ChatWithAI from './pages/main/ChatWithAI';
 import RootForm from './pages/main/testsform/RootForm';
-import Profile from './pages/main/Profile/Profile';
+import Profile from './pages/main/profile/Profile';
 import PageNotFound from './pages/main/PageNotFound';
 
 const router = createBrowserRouter([
