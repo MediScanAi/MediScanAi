@@ -72,7 +72,8 @@ function GeneticTestForm() {
   };
 
   return (
-    <Card style={{ border: 'none' }}>
+    <Card style={{ border: 'none' }}
+      title={<Title level={3}>Genetic Test</Title>}>
       <Form
         form={form}
         onFinish={onFinish}
@@ -80,12 +81,11 @@ function GeneticTestForm() {
         size="large"
         initialValues={updatedData}
       >
-        <Title level={3}>Genetic Test & Family Health History</Title>
-        <Title level={4}>Genetic Test</Title>
+
         {geneticFields.map((field) => (
           <Form.Item
             key={field.name}
-            label={field.label}
+            label={`${field.label}`}
             name={field.name}
             rules={[{ required: true }]}
           >
