@@ -5,11 +5,11 @@ import {
   PhoneOutlined,
   UserOutlined,
 } from '@ant-design/icons';
-import UserInfo from './UserInfo.tsx';
+import UserInfo from './UserInfo';
 import '../../../assets/styles/Profile.css';
-import MainTests from './MainTests.tsx';
-import AnalysisHistory from './AnalysisHistory.tsx';
-import ContactUs from './ContactUs.tsx';
+import MainTests from './MainTests';
+import AnalysisHistory from './AnalysisHistory';
+import ContactUs from './ContactUs';
 const items: TabsProps['items'] = [
   {
     label: <span className={'menu-button'}>Info</span>,

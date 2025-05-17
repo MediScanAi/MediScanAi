@@ -8,6 +8,7 @@ import {
   SafetyOutlined,
   HeatMapOutlined,
   MonitorOutlined,
+  EnterOutlined,
 } from '@ant-design/icons';
 import '../../../assets/styles/rootForm.css';
 import VitaminTestForm from './VitaminTestForm';
@@ -73,15 +74,6 @@ function RootForm(): ReactNode | null {
 
   return (
     <div className={'root-form' + (theme ? ' dark-theme' : '')}>
-      <div style={{ textAlign: 'center', marginBottom: 24 }}>
-        <Title level={1} style={{ color: 'black', marginBottom: 0 }}>
-          Medical Test Form
-        </Title>
-        <p style={{ fontSize: 18, color: 'black' }}>
-          Select a test and fill out the required information
-        </p>
-      </div>
-
       <div className="medical-form-container">
         <div className="welcome-banner">
           <div className="welcome-content">
@@ -102,6 +94,7 @@ function RootForm(): ReactNode | null {
               onClick={() => navigate('/profile')}
               type="primary"
             >
+              <EnterOutlined style={{ width: 16, height: 16, fontSize: 18 }} />
               Back to Profile
             </Button>
 

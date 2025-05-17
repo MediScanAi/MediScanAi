@@ -11,6 +11,9 @@ import partner2 from '../../assets/photos/partner2.webp';
 import partner3 from '../../assets/photos/partner3.webp';
 import partner4 from '../../assets/photos/partner4.webp';
 import partner5 from '../../assets/photos/partner5.webp';
+import partner6 from '../../assets/photos/partner6.webp';
+import partner7 from '../../assets/photos/partner7.webp';
+import partner8 from '../../assets/photos/partner8.webp';
 import dataUpload from '../../assets/photos/dataUpload.webp';
 import aiAnalysis from '../../assets/photos/aiAnalysis.webp';
 import insightsReport from '../../assets/photos/insightsReport.webp';
@@ -21,6 +24,7 @@ import getStartedBackground from '../../assets/photos/getStartedBackground.webp'
 import '../../assets/styles/homepage.css';
 import { useEffect, useState } from 'react';
 import { useAppSelector } from '../../app/hooks.ts';
+import { useNavigate } from 'react-router-dom';
 
 const { Title, Text } = Typography;
 
@@ -79,31 +83,64 @@ const partners = [
     id: 1,
     image: partner1,
     name: 'Astghik Medical Center',
+    description:
+      'Astghik Medical Center is a modern, multidisciplinary hospital offering advanced medical services with international standards and cutting-edge technologies.',
   },
   {
     id: 2,
     image: partner2,
     name: 'Izmirlyan Medical Center',
+    description:
+      'Izmirlyan Medical Center is a multifunctional hospital known for specialties like urology, cardiology, and surgery, affiliated with the Mother See of Holy Etchmiadzin.',
   },
   {
     id: 3,
     image: partner3,
     name: 'Erebuni Medical Center',
+    description:
+      'Erebuni Medical Center is Armenia’s largest hospital, providing full-spectrum care including emergency services, diagnostics, and surgery since 1991.',
   },
   {
     id: 4,
     image: partner4,
     name: 'Davidyants Laboratory',
+    description:
+      'Davidyants Laboratory specializes in clinical diagnostics, offering services like histology, immunohistochemistry, and infectious disease testing.',
   },
   {
     id: 5,
     image: partner5,
     name: 'Slawmed Medical Center',
+    description:
+      'Slawmed is a multidisciplinary medical center offering treatments in gynecology, urology, ENT, ophthalmology, and other fields with modern equipment.',
+  },
+  {
+    id: 6,
+    image: partner6,
+    name: 'Wigmore Medical Center',
+    description:
+      'Wigmore Medical Center provides top-quality care in orthopedics, spine surgery, vascular surgery, cardiology, and more, with a patient-focused approach.',
+  },
+  {
+    id: 7,
+    image: partner7,
+    name: 'Nairi Medical Center',
+    description:
+      'Nairi Medical Center is a leading Armenian hospital offering high-standard medical care across multiple specialties and promoting medical research and education.',
+  },
+  {
+    id: 8,
+    image: partner8,
+    name: 'Armenian Hematological Center',
+    description:
+      'The Armenian Hematological Center specializes in diagnosing and treating blood disorders, providing advanced care for both children and adults.',
   },
 ];
 
+
 function HomePage() {
   const [width, setWidth] = useState(window.innerWidth);
+  const navigate = useNavigate();
   const theme = useAppSelector((state) => state.theme.isDarkMode);
 
   useEffect(() => {
@@ -240,8 +277,9 @@ function HomePage() {
                 opacity: 0,
                 transition: 'all 0.3s ease',
               }}
+              onClick={() => navigate('/tests-form/blood-test')}
             >
-              Start Your Journey
+              Hand over your first test
             </Button>
           </Col>
         </Row>
@@ -440,6 +478,20 @@ function HomePage() {
                     }}
                   />
                 </Row>
+                <Text
+                  type="secondary"
+                  style={{
+                    fontSize: 14,
+                    textAlign: 'center',
+                    marginTop: '10px',
+                    marginBottom: '10px',
+                    marginLeft: '10px',
+                    marginRight: '10px',
+                    color: theme ? 'white' : 'black',
+                  }}
+                >
+                  {partner.description}
+                </Text>
               </Col>
             ))}
           </Carousel>
