@@ -7,6 +7,8 @@ import {
   onAuthStateChanged,
   type User as FirebaseUser,
   sendPasswordResetEmail,
+  sendEmailVerification,
+  applyActionCode,
 } from 'firebase/auth';
 
 const firebaseConfig = {
@@ -19,24 +21,24 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
+export const auth = getAuth(app);
+
+export interface PlainUser {
+  uid: string;
+  email: string | null;
+}
+
+export const mapFirebaseUser = (u: FirebaseUser | null): PlainUser | null =>
+  u ? { uid: u.uid, email: u.email } : null;
 
 export const login = async (email: string, password: string) => {
-  const userCredential = await signInWithEmailAndPassword(
-    auth,
-    email,
-    password
-  );
-  return userCredential.user;
+  const { user } = await signInWithEmailAndPassword(auth, email, password);
+  return mapFirebaseUser(user);
 };
 
 export const register = async (email: string, password: string) => {
-  const userCredential = await createUserWithEmailAndPassword(
-    auth,
-    email,
-    password
-  );
-  return userCredential.user;
+  const { user } = await createUserWithEmailAndPassword(auth, email, password);
+  return user;
 };
 
 export const logout = async () => {
@@ -44,10 +46,14 @@ export const logout = async () => {
 };
 
 export const sendResetPasswordEmail = async (email: string) => {
-  const auth = getAuth();
   await sendPasswordResetEmail(auth, email);
 };
 
-export const onAuthChange = (callback: (user: FirebaseUser | null) => void) => {
-  return onAuthStateChanged(auth, callback);
-};
+export const onAuthChange = (cb: (u: PlainUser | null) => void) =>
+  onAuthStateChanged(auth, (u) => cb(mapFirebaseUser(u)));
+
+export const sendVerificationEmail = async (u: FirebaseUser) =>
+  sendEmailVerification(u);
+
+export const applyVerificationCode = async (oobCode: string) =>
+  applyActionCode(auth, oobCode);

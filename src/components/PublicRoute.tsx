@@ -1,10 +1,14 @@
-import { Navigate, Outlet } from 'react-router-dom';
-// import { useSelector } from "react-redux";
+import { Navigate, Outlet } from 'react-router';
+import { useSelector } from 'react-redux';
+import type { RootState } from '../app/store';
+import { Spin } from 'antd';
 
-const PublicRoute = () => {
-  //   const { user, loading } = useSelector((state) => state.auth);
-  //   if (loading) return null;
-  return false ? <Navigate to="/" replace /> : <Outlet />;
+const PublicRoute: React.FC<React.PropsWithChildren> = ({ children }) => {
+  const { user, loading } = useSelector((s: RootState) => s.auth);
+
+  if (loading) return <Spin fullscreen/>;
+  if (user) return <Navigate to="/" replace />;
+  return children ?? <Outlet />;
 };
 
 export default PublicRoute;

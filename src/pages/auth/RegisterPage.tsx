@@ -5,6 +5,8 @@ import type { AppDispatch, RootState } from '../../app/store';
 import { useNavigate, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import backgroundImage from '../../assets/photos/background.png';
+import { useEffect, useState } from 'react';
+import { getAuth, reload } from 'firebase/auth';
 
 const { Title, Text } = Typography;
 const { useBreakpoint } = Grid;
@@ -19,22 +21,43 @@ interface RegisterFormValues {
 const RegisterPage: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
-  const { loading } = useSelector((state: RootState) => state.auth);
+  const { loading } = useSelector((s: RootState) => s.auth);
   const screens = useBreakpoint();
 
-  const onFinish = async (values: RegisterFormValues) => {
-    const { email, password } = values;
+  const [waitingVerification, setWaitingVerification] = useState(false);
+  const [checking, setChecking] = useState(false);
+
+  useEffect(() => {
+    const auth = getAuth();
+    if (auth.currentUser && !auth.currentUser.emailVerified) {
+      setWaitingVerification(true);
+    }
+  }, []);
+
+  const onFinish = async ({ email, password }: RegisterFormValues) => {
     try {
       await dispatch(registerUser({ email, password })).unwrap();
-      message.success('Registration successful!');
-      navigate('/');
-    } catch (error: unknown) {
-      if (error instanceof Error) {
-        message.error(error.message);
-      } else {
-        message.error('Registration failed');
-      }
+      message.info(
+        "We've sent a verification e-mail. Please check your inbox."
+      );
+      setWaitingVerification(true);
+    } catch {
+      message.error('Registration failed');
     }
+  };
+
+  const handleCheckVerification = async () => {
+    const auth = getAuth();
+    if (!auth.currentUser) return;
+    setChecking(true);
+    await reload(auth.currentUser);
+    if (auth.currentUser.emailVerified) {
+      message.success('Welcome to MediScan AI!');
+      navigate('/');
+    } else {
+      message.warning('E-mail not verified yet');
+    }
+    setChecking(false);
   };
 
   return (
@@ -56,19 +79,55 @@ const RegisterPage: React.FC = () => {
         initial={{ opacity: 0, y: 40 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
-        style={{ width: '100%', maxWidth: 400 }}
+        style={{ width: '100%', maxWidth: 400, position: 'relative' }}
       >
+        {waitingVerification && (
+          <div
+            style={{
+              position: 'absolute',
+              inset: 0,
+              background: 'rgba(255,255,255,0.85)',
+              borderRadius: 16,
+              zIndex: 10,
+              display: 'grid',
+              placeItems: 'center',
+              padding: 24,
+              textAlign: 'center',
+            }}
+          >
+            <div>
+              <Title level={4}>Check your e-mail</Title>
+              <Text>
+                Click the link we sent to verify your address, then press the
+                button below.
+              </Text>
+              <Button
+                type="primary"
+                block
+                style={{ marginTop: 24 }}
+                onClick={handleCheckVerification}
+                loading={checking}
+              >
+                I've verified
+              </Button>
+            </div>
+          </div>
+        )}
+
         <Card
           style={{
-            borderRadius: '16px',
+            borderRadius: 16,
             boxShadow: '0 8px 16px rgba(0,0,0,0.15)',
             maxHeight: '90vh',
             overflowY: 'auto',
+            filter: waitingVerification ? 'blur(2px)' : undefined,
+            pointerEvents: waitingVerification ? 'none' : 'auto',
           }}
         >
           <Title level={2} style={{ fontWeight: 'bold', marginBottom: 20 }}>
             Create an Account
           </Title>
+
           <Form layout="vertical" onFinish={onFinish}>
             <Form.Item
               label="Surname"
@@ -90,8 +149,8 @@ const RegisterPage: React.FC = () => {
               label="Email"
               name="email"
               rules={[
-                { required: true, message: 'Enter your email' },
-                { type: 'email', message: 'Invalid email' },
+                { required: true, message: 'Enter your e-mail' },
+                { type: 'email', message: 'Invalid e-mail' },
               ]}
             >
               <Input placeholder="Email" />
@@ -100,7 +159,14 @@ const RegisterPage: React.FC = () => {
             <Form.Item
               label="Password"
               name="password"
-              rules={[{ required: true, message: 'Enter your password' }]}
+              rules={[
+                { required: true, message: 'Enter your password' },
+                {
+                  pattern: /^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*]).{8,}$/,
+                  message:
+                    'Min 8 chars with uppercase, digit and special character',
+                },
+              ]}
             >
               <Input.Password placeholder="Password" />
             </Form.Item>
