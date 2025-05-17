@@ -1,52 +1,51 @@
 import { createBrowserRouter, Navigate } from 'react-router-dom';
+import Layout from './components/Layout';
 import PublicRoute from './components/PublicRoute';
+import ProtectedRoute from './components/ProtectedRoute';
+
+import HomePage from './pages/main/HomePage';
+import AboutUsPage from './pages/main/AboutUsPage';
 import RegisterPage from './pages/auth/RegisterPage';
 import LoginPage from './pages/auth/LoginPage';
-import HomePage from './pages/main/HomePage';
-import ProtectedRoute from './components/ProtectedRoute';
-import AboutUsPage from './pages/main/AboutUsPage';
-import Layout from './components/Layout.tsx';
-import AnalysisPage from './pages/main/analysis/AnalysisPage.tsx';
-import RootForm from './pages/main/testsform/RootForm.tsx';
-import ChatWithAI from './pages/main/ChatWithAI.tsx';
-import Profile from './pages/main/Profile/Profile.tsx';
-import BloodAnalysis from './pages/main/analysis/BloodAnalysis.tsx';
-import VitaminAnalysis from './pages/main/analysis/VitaminAnalysis.tsx';
-import UrineAnalysis from './pages/main/analysis/UrineAnalysis.tsx';
-import GeneticAnalysis from './pages/main/analysis/GeneticAnalysis.tsx';
+
+import AnalysisPage from './pages/main/analysis/AnalysisPage';
+import BloodAnalysis from './pages/main/analysis/BloodAnalysis';
+import VitaminAnalysis from './pages/main/analysis/VitaminAnalysis';
+import UrineAnalysis from './pages/main/analysis/UrineAnalysis';
+import GeneticAnalysis from './pages/main/analysis/GeneticAnalysis';
+import ChatWithAI from './pages/main/ChatWithAI';
+import RootForm from './pages/main/testsform/RootForm';
+import Profile from './pages/main/Profile/Profile';
 
 const router = createBrowserRouter([
   {
-    element: <PublicRoute />,
-    children: [
-      {
-        index: true,
-        element: (
-          <Layout>
-            <HomePage />
-          </Layout>
-        ),
-      },
-      {
-        path: '/about-us',
-        element: (
-          <Layout>
-            <AboutUsPage />
-          </Layout>
-        ),
-      },
-      {
-        path: '/register',
-        element: <RegisterPage />,
-      },
-      {
-        path: '/login',
-        element: <LoginPage />,
-      },
-    ],
+    path: '/',
+    element: (
+      <Layout>
+        <HomePage />
+      </Layout>
+    ),
   },
   {
-    path: '/',
+    path: '/about-us',
+    element: (
+      <Layout>
+        <AboutUsPage />
+      </Layout>
+    ),
+  },
+
+  {
+    path: '/auth',
+    element: <PublicRoute />,
+    children: [
+      { path: 'login', element: <LoginPage /> },
+      { path: 'register', element: <RegisterPage /> },
+      { index: true, element: <Navigate to="login" replace /> },
+    ],
+  },
+
+  {
     element: <ProtectedRoute />,
     children: [
       {
@@ -115,7 +114,8 @@ const router = createBrowserRouter([
       },
     ],
   },
-  { path: '*', element: <Navigate to={'/'} replace /> },
+
+  { path: '*', element: <Navigate to="/" replace /> },
 ]);
 
 export default router;
