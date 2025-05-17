@@ -8,7 +8,6 @@ import {
   SafetyOutlined,
   HeatMapOutlined,
   MonitorOutlined,
-  ArrowLeftOutlined,
   EnterOutlined,
 } from '@ant-design/icons';
 import '../../../assets/styles/rootForm.css';

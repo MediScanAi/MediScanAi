@@ -15,7 +15,8 @@ import UrineAnalysis from './pages/main/analysis/UrineAnalysis';
 import GeneticAnalysis from './pages/main/analysis/GeneticAnalysis';
 import ChatWithAI from './pages/main/ChatWithAI';
 import RootForm from './pages/main/testsform/RootForm';
-import Profile from './pages/main/profile/Profile';
+import Profile from './pages/main/Profile/Profile';
+import PageNotFound from './pages/main/PageNotFound';
 
 const router = createBrowserRouter([
   {
@@ -114,8 +115,14 @@ const router = createBrowserRouter([
       },
     ],
   },
-
-  { path: '*', element: <Navigate to="/" replace /> },
+  {
+    path: '/*',
+    element: (
+      <Layout>
+        <PageNotFound />
+      </Layout>
+    ),
+  },
 ]);
 
 export default router;
