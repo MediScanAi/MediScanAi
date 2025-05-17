@@ -70,14 +70,14 @@ function BloodAnalysis() {
     localStorage.getItem('bloodTestData') || '{}'
   );
 
-//   const data = {
-//     Cholesterol: mockAnalysisData.cholesterol || 0,
-//     Glucose: mockAnalysisData.glucose || 0,
-//     Hemoglobin: mockAnalysisData.hemoglobin || 0,
-//     Platelets: mockAnalysisData.platelets || 0,
-//     RBC: mockAnalysisData.rbc || 0,
-//     WBC: mockAnalysisData.wbc || 0,
-//   };
+  //   const data = {
+  //     Cholesterol: mockAnalysisData.cholesterol || 0,
+  //     Glucose: mockAnalysisData.glucose || 0,
+  //     Hemoglobin: mockAnalysisData.hemoglobin || 0,
+  //     Platelets: mockAnalysisData.platelets || 0,
+  //     RBC: mockAnalysisData.rbc || 0,
+  //     WBC: mockAnalysisData.wbc || 0,
+  //   };
 
   const PieData: ChartData[] = [
     {

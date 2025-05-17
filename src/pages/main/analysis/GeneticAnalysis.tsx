@@ -75,26 +75,32 @@ const convertGeneticValue = (field: string, value: string | null): number => {
       return value === 'positive' ? 1 : 0;
 
     case 'apoe':
-      return {
-        'ε2/ε2': 1,
-        'ε3/ε3': 2,
-        'ε3/ε4': 3,
-        'ε4/ε4': 4,
-      }[value] || 0;
+      return (
+        {
+          'ε2/ε2': 1,
+          'ε3/ε3': 2,
+          'ε3/ε4': 3,
+          'ε4/ε4': 4,
+        }[value] || 0
+      );
 
     case 'mthfr':
-      return {
-        'Normal': 1,
-        'Heterozygous': 2,
-        'Homozygous': 3,
-      }[value] || 0;
+      return (
+        {
+          Normal: 1,
+          Heterozygous: 2,
+          Homozygous: 3,
+        }[value] || 0
+      );
 
     case 'cyp2c19':
-      return {
-        'Category I': 1,
-        'Category II': 2,
-        'Category III': 3,
-      }[value] || 0;
+      return (
+        {
+          'Category I': 1,
+          'Category II': 2,
+          'Category III': 3,
+        }[value] || 0
+      );
 
     default:
       return 0;
@@ -111,88 +117,178 @@ function GeneticAnalysis() {
   }
 
   const PieData: ChartData[] = [
-    { name: 'APOE', value: convertGeneticValue('apoe', mockAnalysisData.apoe?.toString() || null), color: '#8884d8' },
-    { name: 'BRCA1', value: convertGeneticValue('brca1', mockAnalysisData.brca1?.toString() || null), color: '#82ca9d' },
-    { name: 'BRCA2', value: convertGeneticValue('brca2', mockAnalysisData.brca2?.toString() || null), color: '#ffc658' },
-    { name: 'CYP2C19', value: convertGeneticValue('cyp2c19', mockAnalysisData.cyp2c19?.toString() || null), color: '#ff8042' },
-    { name: 'FACTORV', value: convertGeneticValue('factor_v_leiden', mockAnalysisData.factor_v_leiden?.toString() || null), color: '#0088FE' },
-    { name: 'MTHFR', value: convertGeneticValue('mthfr', mockAnalysisData.mthfr?.toString() || null), color: '#00C49F' },
+    {
+      name: 'APOE',
+      value: convertGeneticValue(
+        'apoe',
+        mockAnalysisData.apoe?.toString() || null
+      ),
+      color: '#8884d8',
+    },
+    {
+      name: 'BRCA1',
+      value: convertGeneticValue(
+        'brca1',
+        mockAnalysisData.brca1?.toString() || null
+      ),
+      color: '#82ca9d',
+    },
+    {
+      name: 'BRCA2',
+      value: convertGeneticValue(
+        'brca2',
+        mockAnalysisData.brca2?.toString() || null
+      ),
+      color: '#ffc658',
+    },
+    {
+      name: 'CYP2C19',
+      value: convertGeneticValue(
+        'cyp2c19',
+        mockAnalysisData.cyp2c19?.toString() || null
+      ),
+      color: '#ff8042',
+    },
+    {
+      name: 'FACTORV',
+      value: convertGeneticValue(
+        'factor_v_leiden',
+        mockAnalysisData.factor_v_leiden?.toString() || null
+      ),
+      color: '#0088FE',
+    },
+    {
+      name: 'MTHFR',
+      value: convertGeneticValue(
+        'mthfr',
+        mockAnalysisData.mthfr?.toString() || null
+      ),
+      color: '#00C49F',
+    },
   ];
 
-  const BarData = [...PieData]; 
+  const BarData = [...PieData];
 
   const scorecards: Scorecard[] = [
     {
       label: `APOE: ${mockAnalysisData.apoe}`,
       value: mockAnalysisData.apoe?.toString() || null,
-      percent: convertGeneticValue('apoe', mockAnalysisData.apoe?.toString() || null) * 25,
+      percent:
+        convertGeneticValue('apoe', mockAnalysisData.apoe?.toString() || null) *
+        25,
     },
     {
       label: `BRCA1: ${mockAnalysisData.brca1}`,
       value: mockAnalysisData.brca1?.toString() || null,
-      percent: convertGeneticValue('brca1', mockAnalysisData.brca1?.toString() || null) * 100,
+      percent:
+        convertGeneticValue(
+          'brca1',
+          mockAnalysisData.brca1?.toString() || null
+        ) * 100,
     },
     {
       label: `BRCA2: ${mockAnalysisData.brca2}`,
       value: mockAnalysisData.brca2?.toString() || null,
-      percent: convertGeneticValue('brca2', mockAnalysisData.brca2?.toString() || null) * 100,
+      percent:
+        convertGeneticValue(
+          'brca2',
+          mockAnalysisData.brca2?.toString() || null
+        ) * 100,
     },
     {
       label: `CYP2C19: ${mockAnalysisData.cyp2c19}`,
       value: mockAnalysisData.cyp2c19?.toString() || null,
-      percent: convertGeneticValue('cyp2c19', mockAnalysisData.cyp2c19?.toString() || null) * 33.33,
+      percent:
+        convertGeneticValue(
+          'cyp2c19',
+          mockAnalysisData.cyp2c19?.toString() || null
+        ) * 33.33,
     },
     {
       label: `FACTOR V Leiden: ${mockAnalysisData.factor_v_leiden}`,
       value: mockAnalysisData.factor_v_leiden?.toString() || null,
-      percent: convertGeneticValue('factor_v_leiden', mockAnalysisData.factor_v_leiden?.toString() || null) * 100,
+      percent:
+        convertGeneticValue(
+          'factor_v_leiden',
+          mockAnalysisData.factor_v_leiden?.toString() || null
+        ) * 100,
     },
     {
       label: `MTHFR: ${mockAnalysisData.mthfr}`,
       value: mockAnalysisData.mthfr?.toString() || null,
-      percent: convertGeneticValue('mthfr', mockAnalysisData.mthfr?.toString() || null) * 33.33,
+      percent:
+        convertGeneticValue(
+          'mthfr',
+          mockAnalysisData.mthfr?.toString() || null
+        ) * 33.33,
     },
   ];
 
   const trendData: TrendData[] = [
     {
       date: `APOE: ${mockAnalysisData.date}`,
-      value: convertGeneticValue('apoe', mockAnalysisData.apoe?.toString() || null),
+      value: convertGeneticValue(
+        'apoe',
+        mockAnalysisData.apoe?.toString() || null
+      ),
       color: '#8884d8',
     },
     {
       date: `BRCA1: ${mockAnalysisData.date}`,
-      value: convertGeneticValue('brca1', mockAnalysisData.brca1?.toString() || null),
+      value: convertGeneticValue(
+        'brca1',
+        mockAnalysisData.brca1?.toString() || null
+      ),
       color: '#82ca9d',
     },
     {
       date: `BRCA2: ${mockAnalysisData.date}`,
-      value: convertGeneticValue('brca2', mockAnalysisData.brca2?.toString() || null),
+      value: convertGeneticValue(
+        'brca2',
+        mockAnalysisData.brca2?.toString() || null
+      ),
       color: '#ffc658',
     },
     {
       date: `CYP2C19: ${mockAnalysisData.date}`,
-      value: convertGeneticValue('cyp2c19', mockAnalysisData.cyp2c19?.toString() || null),
+      value: convertGeneticValue(
+        'cyp2c19',
+        mockAnalysisData.cyp2c19?.toString() || null
+      ),
       color: '#ff8042',
     },
     {
       date: `FACTORV: ${mockAnalysisData.date}`,
-      value: convertGeneticValue('factor_v_leiden', mockAnalysisData.factor_v_leiden?.toString() || null),
+      value: convertGeneticValue(
+        'factor_v_leiden',
+        mockAnalysisData.factor_v_leiden?.toString() || null
+      ),
       color: '#0088FE',
     },
     {
       date: `MTHFR: ${mockAnalysisData.date}`,
-      value: convertGeneticValue('mthfr', mockAnalysisData.mthfr?.toString() || null),
+      value: convertGeneticValue(
+        'mthfr',
+        mockAnalysisData.mthfr?.toString() || null
+      ),
       color: '#00C49F',
     },
   ];
 
   return (
     <div>
-      <Col style={{ backgroundColor: 'white', margin: '0 auto', marginTop: '60px' }}>
+      <Col
+        style={{
+          backgroundColor: 'white',
+          margin: '0 auto',
+          marginTop: '60px',
+        }}
+      >
         <div className="inside-dev">
           <Col className="row-col">
-            <Title level={3} style={{ color: 'black' }}>Genetic Test Results</Title>
+            <Title level={3} style={{ color: 'black' }}>
+              Genetic Test Results
+            </Title>
             <h5 style={{ color: 'black', margin: '10px' }}>
               Genetic test results show categorical gene risk factors.
             </h5>
@@ -200,18 +296,42 @@ function GeneticAnalysis() {
         </div>
       </Col>
 
-      <Card style={{ flex: 4, borderRadius: '15px', marginRight: '25px', border: 'none', width: '90%', margin: '0 auto' }}>
+      <Card
+        style={{
+          flex: 4,
+          borderRadius: '15px',
+          marginRight: '25px',
+          border: 'none',
+          width: '90%',
+          margin: '0 auto',
+        }}
+      >
         <CustomBarChart data={BarData} />
       </Card>
 
       <Row style={{ marginTop: '80px', margin: '0 auto', display: 'flex' }}>
-        <div style={{ display: 'flex', gap: 32, margin: '0 auto', width: '96.5%', justifyContent: 'center' }}>
+        <div
+          style={{
+            display: 'flex',
+            gap: 32,
+            margin: '0 auto',
+            width: '96.5%',
+            justifyContent: 'center',
+          }}
+        >
           <Card className="cholesterol-breakdown">
             <CustomPieChart data={PieData} />
           </Card>
 
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 16, justifyContent: 'center' }}>
-            {PieData.map(item => (
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              gap: 16,
+              justifyContent: 'center',
+            }}
+          >
+            {PieData.map((item) => (
               <h3 key={item.name} style={{ fontSize: 16, color: item.color }}>
                 {`This chart shows the breakdown of your ${item.name} levels.`}
               </h3>
@@ -219,9 +339,24 @@ function GeneticAnalysis() {
           </div>
         </div>
 
-        <div style={{ display: 'flex', gap: 16, justifyContent: 'center', margin: '0 auto', flexWrap: 'wrap' }}>
+        <div
+          style={{
+            display: 'flex',
+            gap: 16,
+            justifyContent: 'center',
+            margin: '0 auto',
+            flexWrap: 'wrap',
+          }}
+        >
           {scorecards.map((item: Scorecard, idx) => (
-            <Card key={idx} style={{ textAlign: 'center', borderRadius: '15px', border: 'none' }}>
+            <Card
+              key={idx}
+              style={{
+                textAlign: 'center',
+                borderRadius: '15px',
+                border: 'none',
+              }}
+            >
               <Progress
                 type="circle"
                 percent={Math.min(item.percent, 100)}

@@ -113,9 +113,11 @@ const UrineTestForm = () => {
   const updatedData = useLocation()?.state?.urineTestData || undefined;
 
   const onFinish = (values: UrineTestFormValues) => {
-    dispatch(setUrineTestData({
-      ...values,
-    }));
+    dispatch(
+      setUrineTestData({
+        ...values,
+      })
+    );
     if (updatedData) {
       message.success('Urine test updated successfully');
     } else {
@@ -132,7 +134,13 @@ const UrineTestForm = () => {
       className="urine-form-card"
       title={<Title level={3}>Urine Test</Title>}
     >
-      <Form form={form} onFinish={onFinish} layout="vertical" size="large" initialValues={updatedData}>
+      <Form
+        form={form}
+        onFinish={onFinish}
+        layout="vertical"
+        size="large"
+        initialValues={updatedData}
+      >
         {urineTestFields.map((field) => {
           if (field.type === 'input') {
             return (

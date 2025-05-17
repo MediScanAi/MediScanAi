@@ -16,7 +16,9 @@ export interface VitaminTestFormValues {
 
 const storedData = localStorage.getItem('vitaminTestData');
 const initialState: VitaminTestState = {
-  vitaminTestData: storedData ? (JSON.parse(storedData) as VitaminTestFormValues) : null,
+  vitaminTestData: storedData
+    ? (JSON.parse(storedData) as VitaminTestFormValues)
+    : null,
 };
 
 const vitaminTestSlice = createSlice({
@@ -48,10 +50,17 @@ const vitaminTestSlice = createSlice({
       state.vitaminTestData = {
         ...action.payload,
       };
-      localStorage.setItem('vitaminTestData', JSON.stringify(state.vitaminTestData));
-    }
+      localStorage.setItem(
+        'vitaminTestData',
+        JSON.stringify(state.vitaminTestData)
+      );
+    },
   },
 });
 
-export const { setVitaminTestData, deleteVitaminTestData, updateVitaminTestData } = vitaminTestSlice.actions;
+export const {
+  setVitaminTestData,
+  deleteVitaminTestData,
+  updateVitaminTestData,
+} = vitaminTestSlice.actions;
 export default vitaminTestSlice.reducer;

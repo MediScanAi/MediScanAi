@@ -20,7 +20,9 @@ export interface UrineTestFormValues {
 
 const storedData = localStorage.getItem('urineTestData');
 const initialState: UrineTestState = {
-  urineTestData: storedData ? (JSON.parse(storedData) as UrineTestFormValues) : null,
+  urineTestData: storedData
+    ? (JSON.parse(storedData) as UrineTestFormValues)
+    : null,
 };
 
 const urineTestSlice = createSlice({
@@ -52,10 +54,14 @@ const urineTestSlice = createSlice({
       state.urineTestData = {
         ...action.payload,
       };
-      localStorage.setItem('urineTestData', JSON.stringify(state.urineTestData));
-    }
+      localStorage.setItem(
+        'urineTestData',
+        JSON.stringify(state.urineTestData)
+      );
+    },
   },
 });
 
-export const { setUrineTestData, deleteUrineTestData, updateUrineTestData } = urineTestSlice.actions;
+export const { setUrineTestData, deleteUrineTestData, updateUrineTestData } =
+  urineTestSlice.actions;
 export default urineTestSlice.reducer;

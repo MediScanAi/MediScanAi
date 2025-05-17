@@ -1,11 +1,4 @@
-import {
-  Button,
-  message,
-  Form,
-  Card,
-  Typography,
-  Select,
-} from 'antd';
+import { Button, message, Form, Card, Typography, Select } from 'antd';
 import {
   setGeneticTestData,
   type GeneticTestFormValues,
@@ -61,9 +54,11 @@ function GeneticTestForm() {
   const updatedData = useLocation()?.state?.geneticTestData || undefined;
 
   const onFinish = (values: GeneticTestFormValues) => {
-    dispatch(setGeneticTestData({
-      ...values,
-    }));
+    dispatch(
+      setGeneticTestData({
+        ...values,
+      })
+    );
 
     if (updatedData) {
       message.success('Genetic test updated successfully');

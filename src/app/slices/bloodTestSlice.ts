@@ -16,9 +16,10 @@ export interface BloodTestFormValues {
 
 const storedData = localStorage.getItem('bloodTestData');
 const initialState: BloodTestState = {
-  bloodTestData: storedData ? (JSON.parse(storedData) as BloodTestFormValues) : null,
+  bloodTestData: storedData
+    ? (JSON.parse(storedData) as BloodTestFormValues)
+    : null,
 };
-
 
 const bloodTestSlice = createSlice({
   name: 'bloodTest',
@@ -42,17 +43,21 @@ const bloodTestSlice = createSlice({
       );
     },
     deleteBloodTestData: (state) => {
-      state.bloodTestData = null
+      state.bloodTestData = null;
       localStorage.removeItem('bloodTestData');
     },
     updateBloodTestData: (state, action) => {
       state.bloodTestData = {
         ...action.payload,
       };
-      localStorage.setItem('bloodTestData', JSON.stringify(state.bloodTestData));
+      localStorage.setItem(
+        'bloodTestData',
+        JSON.stringify(state.bloodTestData)
+      );
     },
   },
 });
 
-export const { setBloodTestData, deleteBloodTestData, updateBloodTestData } = bloodTestSlice.actions;
+export const { setBloodTestData, deleteBloodTestData, updateBloodTestData } =
+  bloodTestSlice.actions;
 export default bloodTestSlice.reducer;

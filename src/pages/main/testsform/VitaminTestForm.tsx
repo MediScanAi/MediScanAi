@@ -70,9 +70,11 @@ const VitaminTestForm = () => {
   const updatedData = useLocation()?.state?.vitaminTestData || undefined;
 
   const onFinish = (values: VitaminTestFormValues) => {
-    dispatch(setVitaminTestData({
-      ...values,
-    }));
+    dispatch(
+      setVitaminTestData({
+        ...values,
+      })
+    );
     if (updatedData) {
       message.success('Vitamin test updated successfully');
     } else {
@@ -88,7 +90,13 @@ const VitaminTestForm = () => {
       style={{ border: 'none' }}
       title={<Title level={3}>Vitamin Test</Title>}
     >
-      <Form form={form} onFinish={onFinish} layout="vertical" size="large" initialValues={updatedData}>
+      <Form
+        form={form}
+        onFinish={onFinish}
+        layout="vertical"
+        size="large"
+        initialValues={updatedData}
+      >
         {vitaminTestFields.map((field) => (
           <Form.Item
             key={field.name}

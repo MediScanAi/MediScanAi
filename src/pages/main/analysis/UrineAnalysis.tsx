@@ -8,7 +8,7 @@ import {
   BarChart,
   XAxis,
   YAxis,
-  Bar
+  Bar,
 } from 'recharts';
 import '../../../assets/styles/analysis.css';
 

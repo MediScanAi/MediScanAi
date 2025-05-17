@@ -1,6 +1,6 @@
 import { Form, Input, Button, Card, Typography, message, Grid } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
-import { registerUser } from '../../app/slices/authSlice';
+import { registerUser, setUser } from '../../app/slices/authSlice';
 import type { AppDispatch, RootState } from '../../app/store';
 import { useNavigate, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
@@ -52,6 +52,7 @@ const RegisterPage: React.FC = () => {
     setChecking(true);
     await reload(auth.currentUser);
     if (auth.currentUser.emailVerified) {
+      dispatch(setUser(auth.currentUser));
       message.success('Welcome to MediScan AI!');
       navigate('/');
     } else {
