@@ -178,7 +178,7 @@ const RegisterPage: React.FC = () => {
             </Form.Item>
 
             <Text style={{ display: 'block', textAlign: 'center' }}>
-              Already have an account? <Link to="/login">Login</Link>
+              Already have an account? <Link to="/auth/login">Login</Link>
             </Text>
           </Form>
         </Card>

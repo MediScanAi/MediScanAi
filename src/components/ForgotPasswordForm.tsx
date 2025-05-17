@@ -81,7 +81,7 @@ const ForgotPasswordForm: React.FC<ForgotPasswordFormProps> = ({ goBack }) => {
           </Form.Item>
 
           <Text style={{ display: 'block', textAlign: 'center' }}>
-            Don't have an account? <Link to="/register">Register</Link>
+            Don't have an account? <Link to="/auth/register">Register</Link>
           </Text>
         </Form>
       </Card>
