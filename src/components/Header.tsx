@@ -151,10 +151,10 @@ function Header() {
           <Dropdown menu={{ items: userItems }}>
             <div
               className={'user-button' + (theme ? ' dark-user-button' : '')}
-              style={{ marginRight: 50 }}
+              style={{ marginRight: 50, width: '100%', padding: 10 }}
             >
               <UserOutlined style={{ fontSize: 20 }} />
-              {user?.email}
+              {user?.email ? user?.email : 'Profile'}
             </div>
           </Dropdown>
           <Switch
