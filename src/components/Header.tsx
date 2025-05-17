@@ -26,7 +26,6 @@ import { useAppDispatch, useAppSelector } from '../app/hooks.ts';
 import { toggleTheme } from '../app/slices/theme';
 import { logoutUser } from '../app/slices/authSlice';
 
-
 const burgerItems: MenuProps['items'] = [
   {
     label: <NavLink to={'/'}>Home</NavLink>,
@@ -108,7 +107,11 @@ function Header() {
     },
     {
       key: 'logout',
-      label: <NavLink onClick={() => dispatch(logoutUser())} to={'/auth/login'}>Logout</NavLink>,
+      label: (
+        <NavLink onClick={() => dispatch(logoutUser())} to={'/auth/login'}>
+          Logout
+        </NavLink>
+      ),
       icon: <LogoutOutlined />,
     },
   ];
@@ -146,7 +149,10 @@ function Header() {
         )}
         <div className={'Right-buttons'}>
           <Dropdown menu={{ items: userItems }}>
-            <div className={'user-button' + (theme ? ' dark-user-button' : '')} style={{marginRight: 50}}>
+            <div
+              className={'user-button' + (theme ? ' dark-user-button' : '')}
+              style={{ marginRight: 50 }}
+            >
               <UserOutlined style={{ fontSize: 20 }} />
               {user?.email}
             </div>
@@ -161,6 +167,6 @@ function Header() {
       </Flex>
     </header>
   );
-};
+}
 
 export { Header };

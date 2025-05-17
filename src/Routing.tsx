@@ -15,7 +15,7 @@ import UrineAnalysis from './pages/main/analysis/UrineAnalysis';
 import GeneticAnalysis from './pages/main/analysis/GeneticAnalysis';
 import ChatWithAI from './pages/main/ChatWithAI';
 import RootForm from './pages/main/testsform/RootForm';
-import Profile from './pages/main/Profile/Profile';
+import Profile from './pages/main/profile/Profile';
 
 const router = createBrowserRouter([
   {
