@@ -139,6 +139,7 @@ const partners = [
 
 
 function HomePage() {
+
   const [width, setWidth] = useState(window.innerWidth);
   const navigate = useNavigate();
   const theme = useAppSelector((state) => state.theme.isDarkMode);
