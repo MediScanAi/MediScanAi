@@ -44,6 +44,10 @@
   backdrop-filter: blur(2px);
   border-radius: 15px;
 }
+.Analysis {
+  padding: 24px ;
+  position: relative;
+}
 .dark-theme {
   background-color: #2d3748;
 }

@@ -1,14 +1,16 @@
 import {
+  Avatar,
   Dropdown,
   Flex,
-  type MenuProps,
+  type MenuProps, Select,
   Switch,
   Tabs,
   type TabsProps,
 } from 'antd';
 import { NavLink } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import {useEffect, useState} from 'react';
 import {
+  DownOutlined,
   ExperimentOutlined,
   HomeOutlined,
   LogoutOutlined,
@@ -17,8 +19,7 @@ import {
   MoonOutlined,
   SettingOutlined,
   SunOutlined,
-  TeamOutlined,
-  UserOutlined,
+  TeamOutlined, UpOutlined,
 } from '@ant-design/icons';
 import { useLocation, useNavigate } from 'react-router';
 import '../assets/styles/header.css';
@@ -72,16 +73,20 @@ const items: TabsProps['items'] = [
   },
 ];
 
+
 function Header() {
   const [width, setWidth] = useState(window.innerWidth);
   const navigate = useNavigate();
   const activeKey = useLocation().pathname.substring(1);
   const theme = useAppSelector((state) => state.theme.isDarkMode);
   const dispatch = useAppDispatch();
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const user = useAppSelector((state) => state.auth.user);
+  console.log(user?.email);
   const handleThemeChange = () => {
     dispatch(toggleTheme());
   };
-  const user = useAppSelector((state) => state.auth.user);
+
   const handleTabClick = (key: string) => {
     switch (key) {
       case 'home':
@@ -98,6 +103,10 @@ function Header() {
         break;
     }
   };
+
+  const toggleArrow = () => {
+    setIsDropdownOpen(!isDropdownOpen);
+  }
 
   const userItems: MenuProps['items'] = [
     {
@@ -132,7 +141,7 @@ function Header() {
         align="middle"
       >
         {width < 820 ? (
-          <Dropdown menu={{ items: burgerItems }}>
+          <Dropdown trigger={["click"]} menu={{ items: burgerItems }}>
             <MenuOutlined style={{ fontSize: 30 }} />
           </Dropdown>
         ) : (
@@ -148,21 +157,30 @@ function Header() {
           </div>
         )}
         <div className={'Right-buttons'}>
-          <Dropdown menu={{ items: userItems }}>
+          {user?<Dropdown trigger={['click']} menu={{items: userItems}} onOpenChange={toggleArrow}>
             <div
-              className={'user-button' + (theme ? ' dark-user-button' : '')}
-              style={{ marginRight: 50, width: '100%', padding: 10 }}
+                className={'user-button' + (theme ? ' dark-user-button' : '')}
             >
-              <UserOutlined style={{ fontSize: 20 }} />
-              {user?.email ? user?.email : 'Profile'}
+              <Avatar style={{fontSize: 20}}>{user?.email ? user?.email[0].toUpperCase() : 'Profile'}</Avatar>
+              {
+                isDropdownOpen ?
+                    <UpOutlined/> :
+                    <DownOutlined/>
+              }
             </div>
-          </Dropdown>
+
+          </Dropdown>:<NavLink to={'/auth/login'}>Log In</NavLink>}
           <Switch
             defaultChecked={theme}
             checkedChildren={<SunOutlined />}
             unCheckedChildren={<MoonOutlined />}
             onClick={handleThemeChange}
           />
+          <Select defaultValue="english" style={{ width: 120 }} >
+            <Select.Option value="english">ENG</Select.Option>
+            <Select.Option value="russian">RUS</Select.Option>
+            <Select.Option value="armenian">ARM</Select.Option>
+          </Select>
         </div>
       </Flex>
     </header>

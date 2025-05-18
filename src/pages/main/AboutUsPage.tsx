@@ -105,6 +105,7 @@ function AboutUsPage() {
         padding: '20px',
         backgroundSize: 'cover',
         backgroundPosition: 'center',
+
       }}
     >
       <Col style={{ width: '100%' }}>
@@ -122,6 +123,7 @@ function AboutUsPage() {
             minHeight: '220px',
             borderRadius: '15px',
             margin: '0 auto',
+
           }}
         >
           <Col

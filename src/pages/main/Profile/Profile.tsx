@@ -10,6 +10,7 @@ import '../../../assets/styles/Profile.css';
 import MainTests from './MainTests';
 import AnalysisHistory from './AnalysisHistory';
 import ContactUs from './ContactUs';
+import {useAppSelector} from "../../../app/hooks.ts";
 
 const items: TabsProps['items'] = [
   {
@@ -39,13 +40,14 @@ const items: TabsProps['items'] = [
 ];
 
 const Profile: React.FC = () => {
+  const theme = useAppSelector((state) => state.theme.isDarkMode);
   return (
-    <Row style={{ marginTop: '20px' }}>
+    <Row className={'Profile'+(theme?' dark-theme':'')} >
       <Col className={'Column'}>
         <Tabs
           tabPosition={'left'}
           defaultActiveKey="1"
-          style={{ padding: 40, marginTop: '20px' }}
+          style={{ padding: 40, marginTop: '20px' ,height:'80vh'}}
           items={items}
         />
       </Col>
