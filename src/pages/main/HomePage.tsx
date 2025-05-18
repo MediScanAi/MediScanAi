@@ -1,9 +1,6 @@
 import { Typography, Row, Col, Card, Carousel, List, Button } from 'antd';
 import 'antd/dist/reset.css';
-import {
-  DownOutlined,
-  LineOutlined,
-} from '@ant-design/icons';
+import { DownOutlined, LineOutlined } from '@ant-design/icons';
 import partner1 from '../../assets/photos/partner1.webp';
 import partner2 from '../../assets/photos/partner2.webp';
 import partner3 from '../../assets/photos/partner3.webp';
@@ -30,25 +27,45 @@ const activities = [
   {
     title: 'Data Upload',
     text: 'Securely upload your genomic data via encrypted portal',
-    icon: <img src={frame} alt="frame" style={{ width: '60px', height: '100px' }} />,
+    icon: (
+      <img src={frame} alt="frame" style={{ width: '60px', height: '100px' }} />
+    ),
     color: '#e6f7ff',
   },
   {
     title: 'AI Analysis',
     text: 'AI analyzes genomic data using multi-omic integration techniques',
-    icon: <img src={frame1} alt="frame1" style={{ width: '60px', height: '100px' }} />,
+    icon: (
+      <img
+        src={frame1}
+        alt="frame1"
+        style={{ width: '60px', height: '100px' }}
+      />
+    ),
     color: '#fff1b8',
   },
   {
     title: 'Insights Report',
     text: 'Receive biomarkers and recommendations in a detailed report',
-    icon: <img src={frame2} alt="frame2" style={{ width: '60px', height: '100px' }} />,
+    icon: (
+      <img
+        src={frame2}
+        alt="frame2"
+        style={{ width: '60px', height: '100px' }}
+      />
+    ),
     color: '#f4ffb8',
   },
   {
     title: 'Clinical Decision',
     text: 'Physicians apply findings for personalized treatment decision',
-    icon: <img src={frame3} alt="frame3" style={{ width: '60px', height: '100px' }} />,
+    icon: (
+      <img
+        src={frame3}
+        alt="frame3"
+        style={{ width: '60px', height: '100px' }}
+      />
+    ),
     color: '#ffd6e7',
   },
 ];
@@ -136,7 +153,6 @@ const partners = [
 ];
 
 function HomePage() {
-
   const [width, setWidth] = useState(window.innerWidth);
   const [openIndex, setOpenIndex] = useState<number | null>(null);
   const navigate = useNavigate();
@@ -167,7 +183,7 @@ function HomePage() {
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
-        justifyContent: "space-around",
+        justifyContent: 'space-around',
       }}
     >
       <Col style={{ width: '100%' }}>
@@ -195,14 +211,26 @@ function HomePage() {
               justifyContent: 'space-around',
             }}
           >
-            <Text style={{ color: '#3498db', fontSize: '22px', fontWeight: 'bold', marginBottom: '10px', }}>
+            <Text
+              style={{
+                color: '#3498db',
+                fontSize: '22px',
+                fontWeight: 'bold',
+                marginBottom: '10px',
+              }}
+            >
               Welcome
             </Text>
-            <Title style={{ color: 'black', fontWeight: 'bold', fontSize: '50px',  }}>
+            <Title
+              style={{ color: 'black', fontWeight: 'bold', fontSize: '50px' }}
+            >
               MediScanAi Platform
             </Title>
-            <Text style={{ color: 'black', fontSize: '22px', fontWeight: 'bold',  }}>
-              Advanced AI-powered diagnostics and medical<br /> analysis for healthcare professionals.
+            <Text
+              style={{ color: 'black', fontSize: '22px', fontWeight: 'bold' }}
+            >
+              Advanced AI-powered diagnostics and medical
+              <br /> analysis for healthcare professionals.
             </Text>
             <Button
               type="primary"
@@ -215,7 +243,8 @@ function HomePage() {
                 fontWeight: 500,
                 borderRadius: '22px',
                 boxShadow: '0 4px 15px rgba(0,0,0,0.1)',
-                background: 'linear-gradient(45deg,rgb(100, 157, 211), #0052d9)',
+                background:
+                  'linear-gradient(45deg,rgb(100, 157, 211), #0052d9)',
                 border: 'none',
                 animation: 'fadeInUp 1s ease-out 0.4s forwards',
                 opacity: 0,
@@ -266,11 +295,26 @@ function HomePage() {
               justifyContent: 'space-around',
             }}
           >
-            <Title level={1} style={{ color: 'black', fontWeight: 'bold', fontFamily: 'Poppins', }}>
+            <Title
+              level={1}
+              style={{
+                color: 'black',
+                fontWeight: 'bold',
+                fontFamily: 'Poppins',
+              }}
+            >
               Our Activity
             </Title>
-            <Text style={{ color: 'black', fontSize: '22px', fontWeight: 'bold', fontFamily: 'Poppins', }}>
-              Problems trying to resolve the conflict between the two major realms of Classical physics: Newtonian mechanics.
+            <Text
+              style={{
+                color: 'black',
+                fontSize: '22px',
+                fontWeight: 'bold',
+                fontFamily: 'Poppins',
+              }}
+            >
+              Problems trying to resolve the conflict between the two major
+              realms of Classical physics: Newtonian mechanics.
             </Text>
             <Row gutter={[16, 16]} style={{ marginTop: '40px' }} align="top">
               {activities.map(({ title, text, icon }, index) => (
@@ -287,12 +331,18 @@ function HomePage() {
                       flexDirection: 'column',
                       justifyContent: 'space-between',
                       alignItems: 'center',
-                      backgroundColor: "white",
+                      backgroundColor: 'white',
                       boxShadow: '0 4px 15px rgba(0,0,0,0.2)',
                     }}
                     bodyStyle={{ padding: 0 }}
                   >
-                    <div style={{ position: 'relative', zIndex: 2, textAlign: 'left' }}>
+                    <div
+                      style={{
+                        position: 'relative',
+                        zIndex: 2,
+                        textAlign: 'left',
+                      }}
+                    >
                       <div
                         style={{
                           display: 'flex',
@@ -302,10 +352,24 @@ function HomePage() {
                       >
                         {icon}
                       </div>
-                      <Title level={4} style={{ color: '#2c3e50', textAlign: 'left', fontFamily: 'Poppins', }}>
+                      <Title
+                        level={4}
+                        style={{
+                          color: '#2c3e50',
+                          textAlign: 'left',
+                          fontFamily: 'Poppins',
+                        }}
+                      >
                         {title}
                       </Title>
-                      <Text style={{ color: '#2c3e50', fontSize: '15px', textAlign: 'left', fontFamily: 'Poppins', }}>
+                      <Text
+                        style={{
+                          color: '#2c3e50',
+                          fontSize: '15px',
+                          textAlign: 'left',
+                          fontFamily: 'Poppins',
+                        }}
+                      >
                         {text}
                       </Text>
                     </div>
@@ -340,11 +404,26 @@ function HomePage() {
             }}
           >
             <LineOutlined style={{ fontSize: 68, color: 'rgb(210, 46, 18)' }} />
-            <Title style={{ color: 'black', fontWeight: 'bold', fontSize: '50px', fontFamily: 'Poppins', }}>
+            <Title
+              style={{
+                color: 'black',
+                fontWeight: 'bold',
+                fontSize: '50px',
+                fontFamily: 'Poppins',
+              }}
+            >
               Leading Medicine
             </Title>
-            <Text style={{ color: 'black', fontSize: '22px', fontWeight: 'bold', fontFamily: 'Poppins', }}>
-              Advanced AI-powered diagnostics and medical<br /> analysis for healthcare professionals.
+            <Text
+              style={{
+                color: 'black',
+                fontSize: '22px',
+                fontWeight: 'bold',
+                fontFamily: 'Poppins',
+              }}
+            >
+              Advanced AI-powered diagnostics and medical
+              <br /> analysis for healthcare professionals.
             </Text>
           </Col>
           <Col>
@@ -376,7 +455,6 @@ function HomePage() {
             maxWidth: '1300px',
           }}
         >
-
           <Col style={{ marginTop: 50, padding: '24px' }} span={24}>
             <Title
               level={1}
@@ -411,10 +489,7 @@ function HomePage() {
                 >
                   <Row gutter={[16, 16]} style={{ width: '100%' }}>
                     <Col xs={24}>
-                      <Row
-                        justify="space-between"
-                        style={{ width: '100%' }}
-                      >
+                      <Row justify="space-between" style={{ width: '100%' }}>
                         <Col span={22}>
                           <Title
                             level={3}
@@ -432,7 +507,9 @@ function HomePage() {
                             style={{
                               transition: 'transform 0.3s',
                               transform:
-                                openIndex === index ? 'rotate(180deg)' : 'rotate(0deg)',
+                                openIndex === index
+                                  ? 'rotate(180deg)'
+                                  : 'rotate(0deg)',
                               fontSize: 20,
                               color: theme ? 'white' : 'black',
                             }}
@@ -465,7 +542,14 @@ function HomePage() {
         </Row>
 
         <Col style={{ textAlign: 'center', marginTop: 25, padding: '24px' }}>
-          <Title level={1} style={{ color: '#3498db', marginBottom: 32, fontFamily: 'Poppins', }}>
+          <Title
+            level={1}
+            style={{
+              color: '#3498db',
+              marginBottom: 32,
+              fontFamily: 'Poppins',
+            }}
+          >
             Partner With Us
           </Title>
           <Carousel

@@ -62,6 +62,6 @@ const ContactUs: React.FC = () => {
       </Row>
     </Card>
   );
-}
+};
 
 export default ContactUs;

@@ -72,8 +72,10 @@ function GeneticTestForm() {
   };
 
   return (
-    <Card style={{ border: 'none' }}
-      title={<Title level={3}>Genetic Test</Title>}>
+    <Card
+      style={{ border: 'none' }}
+      title={<Title level={3}>Genetic Test</Title>}
+    >
       <Form
         form={form}
         onFinish={onFinish}
@@ -81,7 +83,6 @@ function GeneticTestForm() {
         size="large"
         initialValues={updatedData}
       >
-
         {geneticFields.map((field) => (
           <Form.Item
             key={field.name}

@@ -12,8 +12,7 @@ import UserInfo from './UserInfo';
 import AnalysisHistory from './AnalysisHistory';
 import MainTests from './MainTests';
 import ContactUs from './ContactUs';
-import {useAppSelector} from "../../../app/hooks.ts";
-
+import { useAppSelector } from '../../../app/hooks.ts';
 
 const Profile: React.FC = () => {
   const theme = useAppSelector((state) => state.theme.isDarkMode);
@@ -47,20 +46,19 @@ const Profile: React.FC = () => {
     },
   ];
 
-  const activeKey =
-    items.find((item) => item.key === type)?.key || 'info';
+  const activeKey = items.find((item) => item.key === type)?.key || 'info';
 
   const handleTabChange = (key: string) => {
     navigate(`/profile/${key}`);
   };
 
   return (
-    <Row className={'Profile'+(theme?' dark-theme':'')} >
+    <Row className={'Profile' + (theme ? ' dark-theme' : '')}>
       <Col className={'Column'}>
         <Tabs
           tabPosition={'left'}
           defaultActiveKey="1"
-          style={{ padding: 40, marginTop: '20px' ,height:'80vh'}}
+          style={{ padding: 40, marginTop: '20px', height: '80vh' }}
           items={items}
           activeKey={activeKey}
           onChange={handleTabChange}
@@ -68,6 +66,6 @@ const Profile: React.FC = () => {
       </Col>
     </Row>
   );
-}
+};
 
 export default Profile;
