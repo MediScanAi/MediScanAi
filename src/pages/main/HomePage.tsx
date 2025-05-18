@@ -1,9 +1,6 @@
 import { Typography, Row, Col, Card, Carousel, List, Button } from 'antd';
 import 'antd/dist/reset.css';
 import {
-  FileTextOutlined,
-  SolutionOutlined,
-  BarChartOutlined,
   LineOutlined,
 } from '@ant-design/icons';
 import partner1 from '../../assets/photos/partner1.webp';
@@ -49,7 +46,7 @@ const activities = [
   },
   {
     title: 'Clinical Decision',
-    text: 'Physicians apply findings for personalized treatment decision-making',
+    text: 'Physicians apply findings for personalized treatment decision',
     icon: <img src={frame3} alt="frame3" style={{ width: '60px', height: '100px' }} />,
     color: '#ffd6e7',
   },
@@ -170,7 +167,7 @@ function HomePage() {
       <Col style={{ width: '100%' }}>
         <Row
           style={{
-            width: '96%',
+            width: '100%',
             padding: '20px',
             display: 'flex',
             justifyContent: 'space-around',
@@ -192,13 +189,13 @@ function HomePage() {
               justifyContent: 'space-around',
             }}
           >
-            <Text style={{ color: '#3498db', fontSize: '25px', fontWeight: 'bold', marginBottom: '10px' }}>
+            <Text style={{ color: '#3498db', fontSize: '25px', fontWeight: 'bold', marginBottom: '10px',fontFamily: 'Poppins', }}>
               Welcome
             </Text>
-            <Title style={{ color: 'black', fontWeight: 'bold', fontSize: '50px' }}>
+            <Title style={{ color: 'black', fontWeight: 'bold', fontSize: '50px',fontFamily: 'Poppins', }}>
               MediScanAi Platform
             </Title>
-            <Text style={{ color: 'black', fontSize: '22px', fontWeight: 'bold' }}>
+            <Text style={{ color: 'black', fontSize: '22px', fontWeight: 'bold',fontFamily: 'Poppins', }}>
               Advanced AI-powered diagnostics and medical<br /> analysis for healthcare professionals.
             </Text>
             <Button
@@ -207,8 +204,9 @@ function HomePage() {
               style={{
                 marginTop: '20px',
                 height: '50px',
-                fontSize: '18px',
-                fontWeight: 600,
+                fontSize: '16px',
+                fontFamily: 'Poppins',
+                fontWeight: 500,
                 borderRadius: '22px',
                 boxShadow: '0 4px 15px rgba(0,0,0,0.1)',
                 background: 'linear-gradient(45deg,rgb(100, 157, 211), #0052d9)',
@@ -219,7 +217,7 @@ function HomePage() {
               }}
               onClick={() => navigate('/tests-form/blood-test')}
             >
-              Hand over your first test
+              Consult Today
             </Button>
           </Col>
           <Col>
@@ -239,7 +237,7 @@ function HomePage() {
         <Row
           style={{
             padding: '20px',
-            width: '90%',
+            width: '100%',
             display: 'flex',
             justifyContent: 'space-around',
             alignItems: 'center',
@@ -249,6 +247,7 @@ function HomePage() {
             minHeight: '220px',
             borderRadius: '15px',
             margin: '0 auto',
+            marginTop: '60px',
           }}
         >
           <Col
@@ -256,26 +255,23 @@ function HomePage() {
               textAlign: 'left',
               display: 'flex',
               flexDirection: 'column',
-              alignItems: 'flex-start',
+              alignItems: 'center',
               justifyContent: 'space-around',
-              width: '100%',
             }}
           >
-            <Text style={{ color: '#3498db', fontSize: '22px', fontWeight: 'bold' }}>
-              Practice Advice
-            </Text>
-            <Title level={1} style={{ color: 'black', fontWeight: 'bold' }}>
+            <Title level={1} style={{ color: 'black', fontWeight: 'bold',fontFamily: 'Poppins', }}>
               Our Activity
             </Title>
-            <Text style={{ color: 'black', fontSize: '22px', fontWeight: 'bold' }}>
-              Problems trying to resolve the conflict between <br /> the two major realms of Classical physics: Newtonian mechanics.
+            <Text style={{ color: 'black', fontSize: '22px', fontWeight: 'bold',fontFamily: 'Poppins', }}>
+              Problems trying to resolve the conflict between the two major realms of Classical physics: Newtonian mechanics.
             </Text>
             <Row gutter={[16, 16]} style={{ marginTop: '40px' }} align="top">
               {activities.map(({ title, text, icon }, index) => (
                 <Col key={index} xs={24} sm={14} md={12} lg={6}>
                   <Card
                     style={{
-                      minHeight: '240px',
+                      height: '260px',
+                      width: '100%',
                       borderRadius: 20,
                       overflow: 'hidden',
                       padding: '16px',
@@ -299,10 +295,10 @@ function HomePage() {
                       >
                         {icon}
                       </div>
-                      <Title level={3} style={{ color: '#2c3e50', textAlign: 'left' }}>
+                      <Title level={4} style={{ color: '#2c3e50', textAlign: 'left',fontFamily: 'Poppins', }}>
                         {title}
                       </Title>
-                      <Text style={{ color: '#2c3e50', fontSize: '15px', textAlign: 'left' }}>
+                      <Text style={{ color: '#2c3e50', fontSize: '15px', textAlign: 'left',fontFamily: 'Poppins', }}>
                         {text}
                       </Text>
                     </div>
@@ -325,6 +321,7 @@ function HomePage() {
             minHeight: '220px',
             margin: '0 auto',
             marginTop: '40px',
+            width: '100%',
           }}
         >
           <Col
@@ -337,10 +334,10 @@ function HomePage() {
             }}
           >
             <LineOutlined style={{ fontSize: 68, color: 'rgb(210, 46, 18)' }} />
-            <Title style={{ color: 'black', fontWeight: 'bold', fontSize: '50px' }}>
+            <Title style={{ color: 'black', fontWeight: 'bold', fontSize: '50px',fontFamily: 'Poppins', }}>
               Leading Medicine
             </Title>
-            <Text style={{ color: 'black', fontSize: '22px', fontWeight: 'bold' }}>
+            <Text style={{ color: 'black', fontSize: '22px', fontWeight: 'bold',fontFamily: 'Poppins', }}>
               Advanced AI-powered diagnostics and medical<br /> analysis for healthcare professionals.
             </Text>
           </Col>
@@ -380,6 +377,7 @@ function HomePage() {
                         color: theme ? 'gray' : '#2c3e50',
                         margin: 0,
                         textAlign: 'left',
+                        fontFamily: 'Poppins',
                       }}
                     >
                       {title}
@@ -393,6 +391,7 @@ function HomePage() {
                         textAlign: 'left',
                         display: 'block',
                         color: theme ? 'white' : 'black',
+                        fontFamily: 'Poppins',
                       }}
                     >
                       {text}
@@ -404,7 +403,7 @@ function HomePage() {
           />
         </Col>
         <Col style={{ textAlign: 'center', marginTop: 25, padding: '24px' }}>
-          <Title level={1} style={{ color: '#3498db', marginBottom: 32 }}>
+          <Title level={1} style={{ color: '#3498db', marginBottom: 32,fontFamily: 'Poppins', }}>
             Partner With Us
           </Title>
           <Carousel
@@ -432,6 +431,7 @@ function HomePage() {
                     color: theme ? 'white' : '#2c3e50',
                     textAlign: 'center',
                     fontSize: '17px',
+                    fontFamily: 'Poppins',
                   }}
                 >
                   {partner.name}
