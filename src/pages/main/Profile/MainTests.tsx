@@ -2,9 +2,13 @@ import { Col, Card, Typography, Row, Button, Space } from 'antd';
 import { useNavigate } from 'react-router-dom';
 const { Title, Text } = Typography;
 
-const MainTests: React.FC = () => {
-  const navigate = useNavigate();
+interface MainTestsProps {
+  theme?: boolean;
+}
 
+const MainTests: React.FC<MainTestsProps> = ({theme}) => {
+  const navigate = useNavigate();
+    console.log(theme)
   const testCards = [
     {
       title: 'Blood Test',
