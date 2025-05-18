@@ -10,10 +10,16 @@ import {
 import { PlusOutlined, SendOutlined } from '@ant-design/icons';
 import { v4 as uuidv4 } from 'uuid';
 import axios from 'axios';
-import { doc, setDoc, collection, getDocs } from 'firebase/firestore';
+import {
+  doc,
+  setDoc,
+  collection,
+  getDocs,
+  deleteDoc,
+} from 'firebase/firestore';
 import { onAuthStateChanged } from 'firebase/auth';
 import { db, auth } from '../../api/authApi';
-import { deleteDoc } from 'firebase/firestore';
+
 import { DeleteOutlined } from '@ant-design/icons';
 
 const { Sider, Content } = Layout;
