@@ -6,7 +6,7 @@ const ColorfulPatientDescription: React.FC = () => {
   return (
     <Descriptions
       style={{ color: '#3498db', fontSize: '30px' }}
-      title="Patient Info"
+      title={<h1>User Information</h1>}
       bordered
       column={1}
     >
