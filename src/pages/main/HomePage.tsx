@@ -1,10 +1,10 @@
 import { Typography, Row, Col, Card, Carousel, List, Button } from 'antd';
 import 'antd/dist/reset.css';
 import {
-  CloudUploadOutlined,
   FileTextOutlined,
   SolutionOutlined,
   BarChartOutlined,
+  LineOutlined,
 } from '@ant-design/icons';
 import partner1 from '../../assets/photos/partner1.webp';
 import partner2 from '../../assets/photos/partner2.webp';
@@ -14,13 +14,13 @@ import partner5 from '../../assets/photos/partner5.webp';
 import partner6 from '../../assets/photos/partner6.webp';
 import partner7 from '../../assets/photos/partner7.webp';
 import partner8 from '../../assets/photos/partner8.webp';
-import dataUpload from '../../assets/photos/dataUpload.webp';
-import aiAnalysis from '../../assets/photos/aiAnalysis.webp';
-import insightsReport from '../../assets/photos/insightsReport.webp';
-import clinicalDecision from '../../assets/photos/clinicalDecision.webp';
-import backGroundPlatform from '../../assets/photos/backGroundPlatform.webp';
-import mission from '../../assets/photos/ourMission.webp';
-import getStartedBackground from '../../assets/photos/getStartedBackground.webp';
+// import group99 from '../../assets/photos/Group 99.png';
+import group101 from '../../assets/photos/Group 101.png';
+import illustation from '../../assets/photos/illustration.svg';
+import frame from '../../assets/photos/Frame.svg';
+import frame1 from '../../assets/photos/Frame1.svg';
+import frame2 from '../../assets/photos/Frame3.svg';
+import frame3 from '../../assets/photos/Frame4.svg';
 import '../../assets/styles/homepage.css';
 import { useEffect, useState } from 'react';
 import { useAppSelector } from '../../app/hooks.ts';
@@ -28,30 +28,30 @@ import { useNavigate } from 'react-router-dom';
 
 const { Title, Text } = Typography;
 
-const steps = [
+const activities = [
   {
     title: 'Data Upload',
     text: 'Securely upload your genomic data via encrypted portal',
-    icon: <CloudUploadOutlined style={{ fontSize: 40 }} />,
-    backgroundImage: dataUpload,
+    icon: <img src={frame} alt="frame" style={{ width: '60px', height: '100px' }} />,
+    color: '#e6f7ff',
   },
   {
     title: 'AI Analysis',
     text: 'AI analyzes genomic data using multi-omic integration techniques',
-    icon: <BarChartOutlined style={{ fontSize: 40 }} />,
-    backgroundImage: aiAnalysis,
+    icon: <img src={frame1} alt="frame1" style={{ width: '60px', height: '100px' }} />,
+    color: '#fff1b8',
   },
   {
     title: 'Insights Report',
     text: 'Receive biomarkers and recommendations in a detailed report',
-    icon: <FileTextOutlined style={{ fontSize: 40 }} />,
-    backgroundImage: insightsReport,
+    icon: <img src={frame2} alt="frame2" style={{ width: '60px', height: '100px' }} />,
+    color: '#f4ffb8',
   },
   {
     title: 'Clinical Decision',
     text: 'Physicians apply findings for personalized treatment decision-making',
-    icon: <SolutionOutlined style={{ fontSize: 40 }} />,
-    backgroundImage: clinicalDecision,
+    icon: <img src={frame3} alt="frame3" style={{ width: '60px', height: '100px' }} />,
+    color: '#ffd6e7',
   },
 ];
 
@@ -137,7 +137,6 @@ const partners = [
   },
 ];
 
-
 function HomePage() {
 
   const [width, setWidth] = useState(window.innerWidth);
@@ -162,18 +161,21 @@ function HomePage() {
         padding: '20px',
         backgroundSize: 'cover',
         backgroundPosition: 'center',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: "space-around",
       }}
     >
       <Col style={{ width: '100%' }}>
         <Row
           style={{
-            width: '96.5%',
+            width: '96%',
             padding: '20px',
             display: 'flex',
             justifyContent: 'space-around',
             alignItems: 'center',
             flexDirection: 'row',
-            backgroundImage: `url(${backGroundPlatform})`,
             backgroundSize: 'cover',
             backgroundPosition: 'center',
             minHeight: '220px',
@@ -183,96 +185,33 @@ function HomePage() {
         >
           <Col
             style={{
-              textAlign: 'center',
+              textAlign: 'left',
               display: 'flex',
               flexDirection: 'column',
-              alignItems: 'center',
+              alignItems: 'flex-start',
+              justifyContent: 'space-around',
             }}
           >
-            <Title
-              style={{ color: 'black', marginBottom: 16, fontWeight: 500 }}
-            >
-              <b>Medical Analysis Platform</b>
-            </Title>
-            <Text
-              type="secondary"
-              style={{ fontSize: 23, color: 'black', fontWeight: 500 }}
-            >
-              Advanced AI-powered diagnostics and medical analysis for
-              healthcare professionals. The platform uses the latest AI to
-              analyze complex medical and genomic data accurately.
+            <Text style={{ color: '#3498db', fontSize: '25px', fontWeight: 'bold', marginBottom: '10px' }}>
+              Welcome
             </Text>
-          </Col>
-        </Row>
-        <Row
-          style={{
-            width: '96.5%',
-            display: 'flex',
-            justifyContent: 'space-around',
-            alignItems: 'center',
-            flexDirection: 'row',
-            backgroundImage: `url(${getStartedBackground})`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-            minHeight: '220px',
-            borderRadius: '15px',
-            margin: '0 auto',
-            marginTop: '20px',
-            position: 'relative',
-            overflow: 'hidden',
-            boxShadow: '0 10px 30px rgba(0,0,0,0.1)',
-          }}
-        >
-          <div
-            style={{
-              position: 'absolute',
-              top: 0,
-              left: 0,
-              right: 0,
-              bottom: 0,
-              zIndex: 1,
-            }}
-          ></div>
-
-          <Col
-            style={{
-              textAlign: 'center',
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-              zIndex: 2,
-              padding: '20px',
-            }}
-          >
-            <Title
-              style={{ color: 'black', marginBottom: 16, fontWeight: 700 }}
-            >
-              Ready to Get Started?
+            <Title style={{ color: 'black', fontWeight: 'bold', fontSize: '50px' }}>
+              MediScanAi Platform
             </Title>
-
-            <Text
-              style={{
-                fontSize: 23,
-                color: 'black',
-                fontWeight: 500,
-                marginBottom: 20,
-              }}
-            >
-              Embrace wellness with us - where health meets happiness in every
-              step of your journey.
+            <Text style={{ color: 'black', fontSize: '22px', fontWeight: 'bold' }}>
+              Advanced AI-powered diagnostics and medical<br /> analysis for healthcare professionals.
             </Text>
-
             <Button
               type="primary"
               size="large"
               style={{
+                marginTop: '20px',
                 height: '50px',
-                padding: '0 40px',
-                fontSize: '1.1rem',
+                fontSize: '18px',
                 fontWeight: 600,
-                borderRadius: '25px',
+                borderRadius: '22px',
                 boxShadow: '0 4px 15px rgba(0,0,0,0.1)',
-                background: 'linear-gradient(45deg, #1890ff, #0052d9)',
+                background: 'linear-gradient(45deg,rgb(100, 157, 211), #0052d9)',
                 border: 'none',
                 animation: 'fadeInUp 1s ease-out 0.4s forwards',
                 opacity: 0,
@@ -283,67 +222,142 @@ function HomePage() {
               Hand over your first test
             </Button>
           </Col>
+          <Col>
+            <img
+              src={illustation}
+              alt="platform"
+              style={{
+                marginTop: '20px',
+                width: '100%',
+                height: '100%',
+                objectFit: 'cover',
+                borderRadius: '15px',
+              }}
+            />
+          </Col>
         </Row>
-        <Col
+        <Row
           style={{
-            textAlign: 'center',
-            marginTop: 25,
-            padding: '0 24px',
+            padding: '20px',
+            width: '90%',
+            display: 'flex',
+            justifyContent: 'space-around',
+            alignItems: 'center',
+            flexDirection: 'row',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            minHeight: '220px',
+            borderRadius: '15px',
+            margin: '0 auto',
           }}
         >
-          <Title level={2} style={{ color: '#3498db', marginBottom: 32 }}>
-            How It Works ?
-          </Title>
-          <Row gutter={[16, 16]} justify="space-around" align="top">
-            {steps.map(({ title, text, icon, backgroundImage }, index) => (
-              <Col key={index} xs={24} sm={14} md={12} lg={6}>
-                <Card
-                  style={{
-                    minHeight: '200px',
-                    borderRadius: 12,
-                    overflow: 'hidden',
-                    padding: 0,
-                    position: 'relative',
-                  }}
-                >
-                  <div
+          <Col
+            style={{
+              textAlign: 'left',
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'flex-start',
+              justifyContent: 'space-around',
+              width: '100%',
+            }}
+          >
+            <Text style={{ color: '#3498db', fontSize: '22px', fontWeight: 'bold' }}>
+              Practice Advice
+            </Text>
+            <Title level={1} style={{ color: 'black', fontWeight: 'bold' }}>
+              Our Activity
+            </Title>
+            <Text style={{ color: 'black', fontSize: '22px', fontWeight: 'bold' }}>
+              Problems trying to resolve the conflict between <br /> the two major realms of Classical physics: Newtonian mechanics.
+            </Text>
+            <Row gutter={[16, 16]} style={{ marginTop: '40px' }} align="top">
+              {activities.map(({ title, text, icon }, index) => (
+                <Col key={index} xs={24} sm={14} md={12} lg={6}>
+                  <Card
                     style={{
-                      position: 'absolute',
-                      top: 0,
-                      left: 0,
-                      right: 0,
-                      bottom: 0,
-                      backgroundImage: `url(${backgroundImage})`,
-                      backgroundSize: 'cover',
-                      backgroundPosition: 'center',
-                      filter: 'blur(2px)',
-                      zIndex: 1,
+                      minHeight: '240px',
+                      borderRadius: 20,
+                      overflow: 'hidden',
+                      padding: '16px',
+                      position: 'relative',
+                      display: 'flex',
+                      flexDirection: 'column',
+                      justifyContent: 'space-between',
+                      alignItems: 'center',
+                      backgroundColor: "white",
+                      boxShadow: '0 4px 15px rgba(0,0,0,0.2)',
                     }}
-                  />
-                  <div style={{ position: 'relative', zIndex: 2 }}>
-                    <div
-                      style={{
-                        display: 'flex',
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                        marginBottom: 16,
-                      }}
-                    >
-                      {icon}
+                    bodyStyle={{ padding: 0 }}
+                  >
+                    <div style={{ position: 'relative', zIndex: 2, textAlign: 'left' }}>
+                      <div
+                        style={{
+                          display: 'flex',
+                          alignItems: 'center',
+                          marginBottom: 12,
+                        }}
+                      >
+                        {icon}
+                      </div>
+                      <Title level={3} style={{ color: '#2c3e50', textAlign: 'left' }}>
+                        {title}
+                      </Title>
+                      <Text style={{ color: '#2c3e50', fontSize: '15px', textAlign: 'left' }}>
+                        {text}
+                      </Text>
                     </div>
-                    <Title level={3} style={{ color: 'black' }}>
-                      {' '}
-                      {title}
-                    </Title>
-                    <Text style={{ color: 'black', fontSize: '15px' }}>
-                      {text}
-                    </Text>
-                  </div>
-                </Card>
-              </Col>
-            ))}
-          </Row>
-        </Col>
+                  </Card>
+                </Col>
+              ))}
+            </Row>
+
+          </Col>
+        </Row>
+        <Row
+          style={{
+            padding: '20px',
+            display: 'flex',
+            justifyContent: 'space-around',
+            alignItems: 'center',
+            flexDirection: 'row',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            minHeight: '220px',
+            margin: '0 auto',
+            marginTop: '40px',
+          }}
+        >
+          <Col
+            style={{
+              textAlign: 'left',
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'flex-start',
+              justifyContent: 'space-around',
+            }}
+          >
+            <LineOutlined style={{ fontSize: 68, color: 'rgb(210, 46, 18)' }} />
+            <Title style={{ color: 'black', fontWeight: 'bold', fontSize: '50px' }}>
+              Leading Medicine
+            </Title>
+            <Text style={{ color: 'black', fontSize: '22px', fontWeight: 'bold' }}>
+              Advanced AI-powered diagnostics and medical<br /> analysis for healthcare professionals.
+            </Text>
+          </Col>
+          <Col>
+            <img
+              src={group101}
+              alt="platform"
+              style={{
+                marginTop: '20px',
+                width: '100%',
+                height: '100%',
+                objectFit: 'cover',
+                borderRadius: '15px',
+              }}
+            />
+          </Col>
+        </Row>
 
         <Col style={{ textAlign: 'center', marginTop: 25, padding: '24px' }}>
           <Title level={2} style={{ color: '#3498db', marginBottom: 32 }}>
@@ -388,43 +402,6 @@ function HomePage() {
               </List.Item>
             )}
           />
-        </Col>
-
-        <Col style={{ textAlign: 'center', marginTop: 50 }}>
-          <Title style={{ color: '#3498db', marginBottom: 32 }}>
-            Our Mission
-          </Title>
-          <Row justify="center" align="middle" gutter={[32, 32]}>
-            <Col xs={24} md={12}>
-              <img
-                src={mission}
-                alt="mission"
-                style={{
-                  width: '96.5%',
-                  borderRadius: '25px',
-                  backgroundSize: 'cover',
-                  backgroundPosition: 'center',
-                }}
-              />
-            </Col>
-            <Col xs={24} md={12}>
-              <Text
-                type="secondary"
-                style={{
-                  fontSize: 20,
-                  display: 'block',
-                  textAlign: 'center',
-                  color: theme ? 'white' : 'black',
-                }}
-              >
-                Our mission is to provide healthcare professionals with
-                accurate, actionable insights to make informed decisions for
-                their patients. By leveraging advanced AI and genomic data, we
-                aim to improve patient care, enhance diagnostic accuracy, and
-                support personalized treatment plans.
-              </Text>
-            </Col>
-          </Row>
         </Col>
         <Col style={{ textAlign: 'center', marginTop: 25, padding: '24px' }}>
           <Title level={1} style={{ color: '#3498db', marginBottom: 32 }}>
