@@ -111,7 +111,7 @@ function Header() {
   const userItems: MenuProps['items'] = [
     {
       key: 'profile',
-      label: <NavLink to={'/profile'}>Profile</NavLink>,
+      label: <NavLink to={'/profile/info'}>Profile</NavLink>,
       icon: <SettingOutlined />,
     },
     {

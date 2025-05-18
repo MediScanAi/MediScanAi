@@ -104,7 +104,7 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: '/profile',
+        path: '/profile/:type',
         element: (
           <Layout>
             <Profile />
