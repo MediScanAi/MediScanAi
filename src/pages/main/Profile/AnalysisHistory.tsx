@@ -36,7 +36,12 @@ import {
 
 const { Title, Text } = Typography;
 
-const AnalysisHistory: React.FC = () => {
+type AnalysisHistoryProps = {
+  theme: boolean;
+};
+
+const AnalysisHistory: React.FC<AnalysisHistoryProps> = ({theme}) => {
+  console.log(theme)
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const [bloodTestData, setBloodTestData] =

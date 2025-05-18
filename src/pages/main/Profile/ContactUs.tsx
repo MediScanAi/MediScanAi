@@ -10,7 +10,12 @@ import {
 
 const { Title, Text } = Typography;
 
-const ContactUs: React.FC = () => {
+interface ContactUsProps {
+  theme: boolean;
+}
+
+const ContactUs: React.FC<ContactUsProps> = ({theme}) => {
+  console.log(theme)
   return (
     <Card
       title={
