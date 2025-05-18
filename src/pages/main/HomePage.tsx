@@ -1,6 +1,7 @@
 import { Typography, Row, Col, Card, Carousel, List, Button } from 'antd';
 import 'antd/dist/reset.css';
 import {
+  DownOutlined,
   LineOutlined,
 } from '@ant-design/icons';
 import partner1 from '../../assets/photos/partner1.webp';
@@ -11,9 +12,9 @@ import partner5 from '../../assets/photos/partner5.webp';
 import partner6 from '../../assets/photos/partner6.webp';
 import partner7 from '../../assets/photos/partner7.webp';
 import partner8 from '../../assets/photos/partner8.webp';
-// import group99 from '../../assets/photos/Group 99.png';
+import group99 from '../../assets/photos/Group 99.png';
 import group101 from '../../assets/photos/Group 101.png';
-import illustation from '../../assets/photos/illustration.svg';
+// import illustation from '../../assets/photos/illustration.svg';
 import frame from '../../assets/photos/Frame.svg';
 import frame1 from '../../assets/photos/Frame1.svg';
 import frame2 from '../../assets/photos/Frame3.svg';
@@ -52,26 +53,26 @@ const activities = [
   },
 ];
 
-const chooseUs = [
+const questions = [
   {
-    title: 'Advanced AI Technology',
-    text: 'We leverage state-of-the-art artificial intelligence to process and interpret complex medical and genomic data. Our models are continuously updated to ensure accurate diagnostics and personalized recommendations, helping clinicians stay ahead in a rapidly evolving field.',
+    title: 'What is Mediscan AI?',
+    text: 'Mediscan AI is an advanced web-based health integration platform that uses artificial intelligence to analyze medical and genomic data. It supports clinicians with fast, accurate, and personalized insights for better patient care.',
   },
   {
-    title: 'Secure & Compliant',
-    text: 'Your privacy is our priority. Our platform is built with enterprise-grade encryption and adheres strictly to HIPAA and GDPR standards. We ensure that all sensitive health data remains protected and compliant with global healthcare regulations.',
+    title: 'How does Mediscan AI ensure data security?',
+    text: 'We prioritize data privacy and security. Mediscan AI is built with enterprise-level encryption and complies with HIPAA, GDPR, and other global standards, ensuring all health data is fully protected.',
   },
   {
-    title: 'Clinician-Ready Reports',
-    text: 'Our reports are designed with healthcare professionals in mind — easy to read, focused on what matters, and integrated with clinical insights. Each report highlights key findings and suggests next steps, supporting better-informed decisions at the point of care.',
+    title: 'Who can use Mediscan AI?',
+    text: 'Mediscan AI is designed for healthcare professionals, researchers, and institutions. Its user-friendly interface allows clinicians of all levels to easily access, interpret, and apply AI-driven insights in their workflow.',
   },
   {
-    title: 'Fast Turnaround',
-    text: 'In healthcare, time is critical. Our system delivers detailed analysis and comprehensive results quickly — without compromising accuracy. This means patients can get timely care, and clinicians can act with confidence.',
+    title: 'How accurate are the AI diagnostics?',
+    text: 'Our AI models are trained on vast, high-quality datasets and continuously updated to ensure clinical accuracy. Mediscan AI provides detailed, clinician-ready reports backed by real-world medical intelligence.',
   },
   {
-    title: 'Easy to Use',
-    text: 'Designed for simplicity, our platform requires no specialized training. With an intuitive interface, healthcare providers can upload data, run analyses, and review results in just a few steps, making advanced insights accessible to all.',
+    title: 'What makes Mediscan AI different?',
+    text: 'Mediscan AI stands out with its seamless integration, fast turnaround times, intuitive design, and trusted clinical accuracy. We bring advanced diagnostics within reach — no specialized training required.',
   },
 ];
 
@@ -137,6 +138,7 @@ const partners = [
 function HomePage() {
 
   const [width, setWidth] = useState(window.innerWidth);
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
   const navigate = useNavigate();
   const theme = useAppSelector((state) => state.theme.isDarkMode);
 
@@ -147,6 +149,10 @@ function HomePage() {
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
+
+  const toggleOpen = (index: number | null) => {
+    setOpenIndex(openIndex === index ? null : index);
+  };
 
   return (
     <Row
@@ -189,13 +195,13 @@ function HomePage() {
               justifyContent: 'space-around',
             }}
           >
-            <Text style={{ color: '#3498db', fontSize: '25px', fontWeight: 'bold', marginBottom: '10px',fontFamily: 'Poppins', }}>
+            <Text style={{ color: '#3498db', fontSize: '22px', fontWeight: 'bold', marginBottom: '10px', fontFamily: 'Poppins', }}>
               Welcome
             </Text>
-            <Title style={{ color: 'black', fontWeight: 'bold', fontSize: '50px',fontFamily: 'Poppins', }}>
+            <Title style={{ color: 'black', fontWeight: 'bold', fontSize: '50px', fontFamily: 'Poppins', }}>
               MediScanAi Platform
             </Title>
-            <Text style={{ color: 'black', fontSize: '22px', fontWeight: 'bold',fontFamily: 'Poppins', }}>
+            <Text style={{ color: 'black', fontSize: '22px', fontWeight: 'bold', fontFamily: 'Poppins', }}>
               Advanced AI-powered diagnostics and medical<br /> analysis for healthcare professionals.
             </Text>
             <Button
@@ -214,6 +220,7 @@ function HomePage() {
                 animation: 'fadeInUp 1s ease-out 0.4s forwards',
                 opacity: 0,
                 transition: 'all 0.3s ease',
+                padding: '0 35px',
               }}
               onClick={() => navigate('/tests-form/blood-test')}
             >
@@ -222,7 +229,7 @@ function HomePage() {
           </Col>
           <Col>
             <img
-              src={illustation}
+              src={group99}
               alt="platform"
               style={{
                 marginTop: '20px',
@@ -259,10 +266,10 @@ function HomePage() {
               justifyContent: 'space-around',
             }}
           >
-            <Title level={1} style={{ color: 'black', fontWeight: 'bold',fontFamily: 'Poppins', }}>
+            <Title level={1} style={{ color: 'black', fontWeight: 'bold', fontFamily: 'Poppins', }}>
               Our Activity
             </Title>
-            <Text style={{ color: 'black', fontSize: '22px', fontWeight: 'bold',fontFamily: 'Poppins', }}>
+            <Text style={{ color: 'black', fontSize: '22px', fontWeight: 'bold', fontFamily: 'Poppins', }}>
               Problems trying to resolve the conflict between the two major realms of Classical physics: Newtonian mechanics.
             </Text>
             <Row gutter={[16, 16]} style={{ marginTop: '40px' }} align="top">
@@ -295,10 +302,10 @@ function HomePage() {
                       >
                         {icon}
                       </div>
-                      <Title level={4} style={{ color: '#2c3e50', textAlign: 'left',fontFamily: 'Poppins', }}>
+                      <Title level={4} style={{ color: '#2c3e50', textAlign: 'left', fontFamily: 'Poppins', }}>
                         {title}
                       </Title>
-                      <Text style={{ color: '#2c3e50', fontSize: '15px', textAlign: 'left',fontFamily: 'Poppins', }}>
+                      <Text style={{ color: '#2c3e50', fontSize: '15px', textAlign: 'left', fontFamily: 'Poppins', }}>
                         {text}
                       </Text>
                     </div>
@@ -306,7 +313,6 @@ function HomePage() {
                 </Col>
               ))}
             </Row>
-
           </Col>
         </Row>
         <Row
@@ -334,10 +340,10 @@ function HomePage() {
             }}
           >
             <LineOutlined style={{ fontSize: 68, color: 'rgb(210, 46, 18)' }} />
-            <Title style={{ color: 'black', fontWeight: 'bold', fontSize: '50px',fontFamily: 'Poppins', }}>
+            <Title style={{ color: 'black', fontWeight: 'bold', fontSize: '50px', fontFamily: 'Poppins', }}>
               Leading Medicine
             </Title>
-            <Text style={{ color: 'black', fontSize: '22px', fontWeight: 'bold',fontFamily: 'Poppins', }}>
+            <Text style={{ color: 'black', fontSize: '22px', fontWeight: 'bold', fontFamily: 'Poppins', }}>
               Advanced AI-powered diagnostics and medical<br /> analysis for healthcare professionals.
             </Text>
           </Col>
@@ -355,55 +361,111 @@ function HomePage() {
             />
           </Col>
         </Row>
+        <Row
+          style={{
+            padding: '20px',
+            display: 'flex',
+            justifyContent: 'space-around',
+            alignItems: 'center',
+            flexDirection: 'row',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            minHeight: '220px',
+            margin: '0 auto',
+            marginTop: '40px',
+            maxWidth: '1300px',
+          }}
+        >
+
+          <Col style={{ marginTop: 50, padding: '24px' }} span={24}>
+            <Title
+              level={1}
+              style={{
+                color: '#3498db',
+                marginBottom: 32,
+                fontFamily: 'Poppins',
+                textAlign: 'center',
+              }}
+            >
+              Frequently Asked Questions
+            </Title>
+
+            <List
+              itemLayout="horizontal"
+              dataSource={questions}
+              split={false}
+              style={{ width: '100%' }}
+              renderItem={({ title, text }, index) => (
+                <List.Item
+                  style={{
+                    padding: '16px',
+                    borderBottom: theme
+                      ? '1px solid rgb(52, 50, 50)'
+                      : '1px solid rgb(221, 219, 219)',
+                    cursor: 'pointer',
+                    width: '100%',
+                    borderRadius: 12,
+                    transition: 'background 0.3s',
+                  }}
+                  onClick={() => toggleOpen(index)}
+                >
+                  <Row gutter={[16, 16]} style={{ width: '100%' }}>
+                    <Col xs={24}>
+                      <Row
+                        justify="space-between"
+                        style={{ width: '100%' }}
+                      >
+                        <Col span={22}>
+                          <Title
+                            level={3}
+                            style={{
+                              color: theme ? 'gray' : '#2c3e50',
+                              margin: 0,
+                              fontFamily: 'Poppins',
+                            }}
+                          >
+                            {title}
+                          </Title>
+                        </Col>
+                        <Col span={2} style={{ textAlign: 'right' }}>
+                          <DownOutlined
+                            style={{
+                              transition: 'transform 0.3s',
+                              transform:
+                                openIndex === index ? 'rotate(180deg)' : 'rotate(0deg)',
+                              fontSize: 20,
+                              color: theme ? 'white' : 'black',
+                            }}
+                          />
+                        </Col>
+                      </Row>
+
+                      {openIndex === index && (
+                        <Text
+                          type="secondary"
+                          style={{
+                            fontSize: '20px',
+                            display: 'block',
+                            color: theme ? 'white' : 'black',
+                            fontFamily: 'Poppins',
+                            marginTop: 12,
+                            fontWeight: 300,
+                            lineHeight: 1.5,
+                          }}
+                        >
+                          {text}
+                        </Text>
+                      )}
+                    </Col>
+                  </Row>
+                </List.Item>
+              )}
+            />
+          </Col>
+        </Row>
 
         <Col style={{ textAlign: 'center', marginTop: 25, padding: '24px' }}>
-          <Title level={2} style={{ color: '#3498db', marginBottom: 32 }}>
-            Why Choose Us ?
-          </Title>
-
-          <List
-            itemLayout="horizontal"
-            dataSource={chooseUs}
-            split={false}
-            renderItem={({ title, text }) => (
-              <List.Item
-                style={{ padding: '16px 0', borderBottom: '1px solid #f0f0f0' }}
-              >
-                <Row gutter={[16, 16]} align="middle" style={{ width: '100%' }}>
-                  <Col xs={24} md={6}>
-                    <Title
-                      level={4}
-                      style={{
-                        color: theme ? 'gray' : '#2c3e50',
-                        margin: 0,
-                        textAlign: 'left',
-                        fontFamily: 'Poppins',
-                      }}
-                    >
-                      {title}
-                    </Title>
-                  </Col>
-                  <Col xs={24} md={18}>
-                    <Text
-                      type="secondary"
-                      style={{
-                        fontSize: 16,
-                        textAlign: 'left',
-                        display: 'block',
-                        color: theme ? 'white' : 'black',
-                        fontFamily: 'Poppins',
-                      }}
-                    >
-                      {text}
-                    </Text>
-                  </Col>
-                </Row>
-              </List.Item>
-            )}
-          />
-        </Col>
-        <Col style={{ textAlign: 'center', marginTop: 25, padding: '24px' }}>
-          <Title level={1} style={{ color: '#3498db', marginBottom: 32,fontFamily: 'Poppins', }}>
+          <Title level={1} style={{ color: '#3498db', marginBottom: 32, fontFamily: 'Poppins', }}>
             Partner With Us
           </Title>
           <Carousel
@@ -432,6 +494,7 @@ function HomePage() {
                     textAlign: 'center',
                     fontSize: '17px',
                     fontFamily: 'Poppins',
+                    fontWeight: 'semibold',
                   }}
                 >
                   {partner.name}
@@ -466,6 +529,8 @@ function HomePage() {
                     marginLeft: '10px',
                     marginRight: '10px',
                     color: theme ? 'white' : 'black',
+                    fontFamily: 'Poppins',
+                    fontWeight: 'semibold',
                   }}
                 >
                   {partner.description}
