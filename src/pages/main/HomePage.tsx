@@ -12,7 +12,7 @@ import partner5 from '../../assets/photos/partner5.webp';
 import partner6 from '../../assets/photos/partner6.webp';
 import partner7 from '../../assets/photos/partner7.webp';
 import partner8 from '../../assets/photos/partner8.webp';
-import group99 from '../../assets/photos/Group 99.png';
+import group99 from '../../assets/photos/Group 99.svg';
 import group101 from '../../assets/photos/Group 101.png';
 // import illustation from '../../assets/photos/illustration.svg';
 import frame from '../../assets/photos/Frame.svg';
@@ -195,13 +195,13 @@ function HomePage() {
               justifyContent: 'space-around',
             }}
           >
-            <Text style={{ color: '#3498db', fontSize: '22px', fontWeight: 'bold', marginBottom: '10px', fontFamily: 'Poppins', }}>
+            <Text style={{ color: '#3498db', fontSize: '22px', fontWeight: 'bold', marginBottom: '10px', }}>
               Welcome
             </Text>
-            <Title style={{ color: 'black', fontWeight: 'bold', fontSize: '50px', fontFamily: 'Poppins', }}>
+            <Title style={{ color: 'black', fontWeight: 'bold', fontSize: '50px',  }}>
               MediScanAi Platform
             </Title>
-            <Text style={{ color: 'black', fontSize: '22px', fontWeight: 'bold', fontFamily: 'Poppins', }}>
+            <Text style={{ color: 'black', fontSize: '22px', fontWeight: 'bold',  }}>
               Advanced AI-powered diagnostics and medical<br /> analysis for healthcare professionals.
             </Text>
             <Button
@@ -278,7 +278,7 @@ function HomePage() {
                   <Card
                     style={{
                       height: '260px',
-                      width: '100%',
+                      width: '300px',
                       borderRadius: 20,
                       overflow: 'hidden',
                       padding: '16px',

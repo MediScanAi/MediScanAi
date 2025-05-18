@@ -5,8 +5,7 @@ header {
   position: sticky;
   top: 0;
   z-index: 1000;
-  border-bottom: 1px solid #e8e8e8;
-  background-color: rgba(154, 154, 154, 0.77);
+  background-color: rgba(255, 255, 255, 0.77);
   backdrop-filter: blur(5px);
 }
 
@@ -20,7 +19,6 @@ header {
 .Header {
   width: 100%;
   height: 46px;
-  border-bottom: 1px solid #e8e8e8;
 }
 .Right-buttons {
   display: flex;
