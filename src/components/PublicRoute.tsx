@@ -7,7 +7,6 @@ const PublicRoute: React.FC<React.PropsWithChildren> = ({ children }) => {
   const { user, loading } = useSelector((s: RootState) => s.auth);
 
   if (loading) return <Spin fullscreen />;
-  console.log(user);
   if (user) return <Navigate to="/" replace />;
   return children ?? <Outlet />;
 };

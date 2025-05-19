@@ -10,7 +10,9 @@ const AuthProvider = () => {
   useEffect(() => {
     const unsub = onAuthStateChanged(auth, (u) => {
       if (u && u.emailVerified) {
-        dispatch(setUser({ uid: u.uid, email: u.email }));
+        dispatch(
+          setUser({ firstName: '', lastName: '', uid: u.uid, email: u.email }) // todo: add user last and first name
+        );
       } else {
         dispatch(setUser(null));
       }

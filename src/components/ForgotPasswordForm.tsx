@@ -17,7 +17,7 @@ const ForgotPasswordForm: React.FC<ForgotPasswordFormProps> = ({ goBack }) => {
     try {
       await sendResetPasswordEmail(email);
       message.success('Password reset email sent!');
-    } catch (error) {
+    } catch (_) {
       message.error('Failed to send reset email.');
     } finally {
       setLoading(false);
