@@ -1,0 +1,4 @@
+.chat-item-hover:hover {
+    background-color: #cac9c9 !important;
+    transition: background-color 0.2s ease;
+}
