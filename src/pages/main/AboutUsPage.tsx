@@ -6,7 +6,11 @@ import member2 from '../../assets/photos/teamMember2.webp';
 import member3 from '../../assets/photos/teamMember3.webp';
 import member4 from '../../assets/photos/teamMember4.webp';
 import member5 from '../../assets/photos/teamMember5.webp';
-import { CheckCircleOutlined, FormOutlined, OpenAIOutlined } from '@ant-design/icons';
+import {
+  CheckCircleOutlined,
+  FormOutlined,
+  OpenAIOutlined,
+} from '@ant-design/icons';
 import { useEffect, useState } from 'react';
 
 const { Title, Text, Paragraph } = Typography;
@@ -68,32 +72,29 @@ function AboutUsPage() {
     {
       name: 'Vahe Nersesyan',
       role: 'Frontend Developer',
-      image: member1
+      image: member1,
     },
     {
       name: 'Vache Aseyan',
       role: 'Frontend Developer',
-      image: member2
+      image: member2,
     },
     {
       name: 'Artur Baghramyan',
       role: 'Frontend Developer',
-      image: member3
+      image: member3,
     },
     {
       name: 'Arayik Avagyan',
       role: 'Frontend Developer',
-      image: member4
+      image: member4,
     },
     {
       name: 'Davit Mutafyan',
       role: 'Frontend Developer',
-      image: member5
-    }
+      image: member5,
+    },
   ];
-
-
-
 
   return (
     <Row
@@ -105,7 +106,6 @@ function AboutUsPage() {
         padding: '20px',
         backgroundSize: 'cover',
         backgroundPosition: 'center',
-
       }}
     >
       <Col style={{ width: '100%' }}>
@@ -123,7 +123,6 @@ function AboutUsPage() {
             minHeight: '220px',
             borderRadius: '15px',
             margin: '0 auto',
-
           }}
         >
           <Col
@@ -134,10 +133,7 @@ function AboutUsPage() {
               alignItems: 'center',
             }}
           >
-            <Title
-              level={1}
-              style={{ color: 'black', marginBottom: 16, }}
-            >
+            <Title level={1} style={{ color: 'black', marginBottom: 16 }}>
               <b>About Us</b>
             </Title>
             <Text
@@ -150,11 +146,17 @@ function AboutUsPage() {
 
             <Text
               type="secondary"
-              style={{ fontSize: 23, color: 'black', fontWeight: 500, marginTop: '1rem' }}
+              style={{
+                fontSize: 23,
+                color: 'black',
+                fontWeight: 500,
+                marginTop: '1rem',
+              }}
             >
-              With backgrounds in medicine, artificial intelligence, and software engineering,
-              we strive to bridge the gap between technology and patient care. Our goal is to make
-              healthcare smarter, faster, and more accessible to everyone.
+              With backgrounds in medicine, artificial intelligence, and
+              software engineering, we strive to bridge the gap between
+              technology and patient care. Our goal is to make healthcare
+              smarter, faster, and more accessible to everyone.
             </Text>
           </Col>
         </Row>
@@ -164,31 +166,56 @@ function AboutUsPage() {
           Meet Technologies
         </Title>
         <Col style={{ textAlign: 'center', padding: '24px' }}>
-          <Paragraph style={{ fontSize: 20, maxWidth: 800, margin: '0 auto', color: theme ? 'white' : 'black' }}>
-            Discover how our AI-driven process simplifies your healthcare journey in 3 simple steps.
+          <Paragraph
+            style={{
+              fontSize: 20,
+              maxWidth: 800,
+              margin: '0 auto',
+              color: theme ? 'white' : 'black',
+            }}
+          >
+            Discover how our AI-driven process simplifies your healthcare
+            journey in 3 simple steps.
           </Paragraph>
           <Row gutter={[32, 32]} justify="center" style={{ marginTop: 40 }}>
             <Col xs={24} sm={12} md={8}>
               <FormOutlined style={{ fontSize: 48, color: '#2ecc71' }} />
-              <Title level={4} style={{ marginTop: 16, color: theme ? 'white' : 'black' }}> Fill Out the Smart Form</Title>
+              <Title
+                level={4}
+                style={{ marginTop: 16, color: theme ? 'white' : 'black' }}
+              >
+                {' '}
+                Fill Out the Smart Form
+              </Title>
               <Text style={{ fontSize: 16, color: theme ? 'white' : 'black' }}>
-                Answer a few easy questions about your health, symptoms, and concerns.
+                Answer a few easy questions about your health, symptoms, and
+                concerns.
               </Text>
             </Col>
             <Col xs={24} sm={12} md={8}>
               <OpenAIOutlined style={{ fontSize: 48, color: 'black' }} />
-              <Title level={4} style={{ marginTop: 16, color: theme ? 'white' : 'black' }}>
+              <Title
+                level={4}
+                style={{ marginTop: 16, color: theme ? 'white' : 'black' }}
+              >
                 Let AI Analyze
               </Title>
               <Text style={{ fontSize: 16, color: theme ? 'white' : 'black' }}>
-                Our AI engine processes your responses to understand your condition.
+                Our AI engine processes your responses to understand your
+                condition.
               </Text>
             </Col>
             <Col xs={24} sm={12} md={8}>
               <CheckCircleOutlined style={{ fontSize: 48, color: '#3498db' }} />
-              <Title level={4} style={{ marginTop: 16, color: theme ? 'white' : 'black' }}>Get Your Results</Title>
+              <Title
+                level={4}
+                style={{ marginTop: 16, color: theme ? 'white' : 'black' }}
+              >
+                Get Your Results
+              </Title>
               <Text style={{ fontSize: 16, color: theme ? 'white' : 'black' }}>
-                Receive personalized insights, suggestions, and possible next steps.
+                Receive personalized insights, suggestions, and possible next
+                steps.
               </Text>
             </Col>
           </Row>
@@ -230,7 +257,7 @@ function AboutUsPage() {
                 level={3}
                 style={{
                   color: theme ? 'white' : '#2c3e50',
-                  marginBottom: '8px'
+                  marginBottom: '8px',
                 }}
               >
                 {opinion.name}
@@ -241,9 +268,8 @@ function AboutUsPage() {
                   fontSize: 20,
                   color: theme ? 'rgba(255,255,255,0.8)' : '#7f8c8d',
                   lineHeight: '1.4',
-                  textAlign: "center",
+                  textAlign: 'center',
                   fontWeight: 500,
-
                 }}
               >
                 {opinion.description}
@@ -257,10 +283,13 @@ function AboutUsPage() {
           Our Team
         </Title>
         <Row gutter={[24, 24]} justify="center" style={{ marginTop: 40 }}>
-          {teamMembers.map(member => (
+          {teamMembers.map((member) => (
             <Col xs={24} sm={12} md={8}>
               <Avatar style={{ width: 200, height: 200 }} src={member.image} />
-              <Title level={4} style={{ marginTop: 16, color: theme ? 'white' : 'black' }}>
+              <Title
+                level={4}
+                style={{ marginTop: 16, color: theme ? 'white' : 'black' }}
+              >
                 {member.name}
               </Title>
               <Text style={{ fontSize: 16, color: theme ? 'white' : 'black' }}>
@@ -272,7 +301,6 @@ function AboutUsPage() {
       </Col>
     </Row>
   );
-
 }
 
 export default AboutUsPage;

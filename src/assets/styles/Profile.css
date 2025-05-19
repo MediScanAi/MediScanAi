@@ -1,19 +1,63 @@
 .Column {
-  margin: 50px auto;
+  height: 90%;
   box-shadow:
     0 8px 32px rgba(74, 144, 226, 0.12),
     0 0 0 3px rgba(114, 167, 255, 0.15);
   border-radius: 10px;
-  width: 90%;
+  width: 80%;
+}
+.Profile{
+  padding: 30px 0;
+  min-height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 .menu-button {
   font-size: 20px;
 }
+.test-title{
+  color: #1e3a8a !important;
+  font-weight: 600;
+  font-size: 2.25rem;
+  margin-bottom: 1rem !important;
+}
 .dark-mode-text{
-  span{
-    color: white;
+  color: white !important;
+  span,h1,h2,h3,h4,h5,h6,p{
+    color: white !important;
   }
-  h1{
-    color: white;
+  a{
+    color: white !important;
+    text-decoration: underline;
   }
 }
+.ant-tabs-left >.ant-tabs-nav .ant-tabs-ink-bar{
+ width: 4px;
+}
+.ant-tabs-top >.ant-tabs-nav .ant-tabs-ink-bar-animated{
+  height: 3.5px;
+}
+.css-dev-only-do-not-override-1m2bkf9.ant-tabs >.ant-tabs-nav .ant-tabs-nav-operations{
+  display: none;
+}
+
+.icon-wrapper {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: linear-gradient(45deg, #4a90e2 0%, #67b0ff 100%);
+  color: white;
+  margin-right: 12px;
+}
+.Profile {
+  margin-top: 20px;
+}
+.dark-theme {
+  color: white;
+}
+

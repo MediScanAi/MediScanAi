@@ -1,8 +1,5 @@
-html,
-body,
-#root {
-    height: 100%;
-    margin: 0;
-    overflow: hidden;
-    /* Убирает скролл страницы */
+
+body {
+  font-family: 'Poppins', sans-serif;
 }
+
