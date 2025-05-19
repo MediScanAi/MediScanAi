@@ -81,7 +81,7 @@ const VitaminTestForm = () => {
       message.success('Vitamin test submitted successfully');
     }
     setTimeout(() => {
-      navigate('/profile');
+      navigate('/profile/analysis-history');
     }, 1000);
   };
 

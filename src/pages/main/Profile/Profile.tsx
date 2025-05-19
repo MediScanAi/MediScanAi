@@ -13,7 +13,7 @@ import AnalysisHistory from '../Profile/AnalysisHistory';
 import MainTests from '../Profile/MainTests';
 import ContactUs from '../Profile/ContactUs';
 import {useAppSelector} from "../../../app/hooks.ts";
-import {useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 
 
 const Profile: React.FC = () => {
@@ -31,27 +31,23 @@ const Profile: React.FC = () => {
 
   const items: TabsProps['items'] = [
     {
-      label: <span className={'menu-button'+(theme?' dark-mode-text':'')}>Info</span>,
+      label: <span className={'menu-button'+(theme?' dark-mode-text':'')}><UserOutlined />  Info</span>,
       key: 'info',
-      icon: <UserOutlined />,
       children: <UserInfo theme={theme} />,
     },
     {
-      label: <span className={'menu-button'}>Analysis History</span>,
+      label: <span className={'menu-button'+(theme?' dark-mode-text':'')}><ExperimentOutlined />  Analysis History</span>,
       key: 'analysis-history',
-      icon: <ExperimentOutlined />,
-      children: <AnalysisHistory theme={theme} />,
+      children: <AnalysisHistory width={width} theme={theme} />,
     },
     {
       key: 'tests',
-      label: <span className={'menu-button'}>Tests</span>,
-      icon: <MedicineBoxOutlined />,
-      children: <MainTests theme={theme} />,
+      label: <span className={'menu-button'+(theme?' dark-mode-text':'')}><MedicineBoxOutlined />  Tests</span>,
+      children: <MainTests width={width} theme={theme} />,
     },
     {
       key: 'contact-us',
-      label: <label className={'menu-button'}>Contact Us</label>,
-      icon: <PhoneOutlined />,
+      label: <span className={'menu-button'+(theme?' dark-mode-text':'')}><PhoneOutlined />  Contact Us</span>,
       children: <ContactUs  theme={theme}/>,
     },
   ];
@@ -69,7 +65,7 @@ const Profile: React.FC = () => {
         <Tabs
           tabPosition={width<820?'top':'left'}
           defaultActiveKey="1"
-          style={{ padding: 40, marginTop: '20px' ,height:'85vh',color:'white'}}
+          style={{ padding: 40, marginTop: '20px' ,color:'white'}}
           items={items}
           activeKey={activeKey}
           onChange={handleTabChange}
