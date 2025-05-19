@@ -10,6 +10,8 @@ import {
   sendEmailVerification,
   applyActionCode,
 } from 'firebase/auth';
+import { getFirestore } from 'firebase/firestore'
+
 
 const firebaseConfig = {
   apiKey: 'AIzaSyDJENrior6OVxgHHT0xkitZp-Xj12_By20',
@@ -22,6 +24,7 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
+export const db = getFirestore(app);
 
 export interface PlainUser {
   uid: string;

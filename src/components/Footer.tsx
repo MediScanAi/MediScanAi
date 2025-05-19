@@ -17,13 +17,13 @@ const Footer = () => {
       <Row justify="space-around" align="middle">
         <Col
           xs={24}
-          sm={8}
-          style={{ textAlign: 'center', marginBottom: '16px' }}
+          sm={12}
+          style={{ textAlign: 'center'}}
         >
           <Text className={'info'}>© 2025 Your AI Doctor.</Text>
           <Text className={'info'}> All rights reserved.</Text>
         </Col>
-        <Col xs={24} sm={8} className={'info'}>
+        <Col xs={24} sm={11} className={'info'}>
           <Link href="/about-us" className={'info'}>
             About US
           </Link>

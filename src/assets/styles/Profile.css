@@ -1,163 +1,46 @@
 .Column {
-  margin: 50px auto;
+  height: 90%;
   box-shadow:
     0 8px 32px rgba(74, 144, 226, 0.12),
     0 0 0 3px rgba(114, 167, 255, 0.15);
   border-radius: 10px;
-  width: 90%;
+  width: 80%;
+}
+.Profile{
+  padding: 30px 0;
+  min-height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 .menu-button {
   font-size: 20px;
 }
-.ant-descriptions {
-  border-radius: 20px;
-  padding: 28px;
-  transition: all 0.3s ease;
-}
-
-.ant-descriptions-title {
-  background: linear-gradient(45deg, #4a90e2 0%, #67b0ff 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  font-size: 28px;
-  font-weight: 800;
-  margin-bottom: 24px;
-  padding-bottom: 16px;
-  border-bottom: 3px solid #e8f2ff;
-  letter-spacing: -0.5px;
-  position: relative;
-}
-
-.ant-descriptions-title::after {
-  content: '';
-  position: absolute;
-  bottom: -3px;
-  left: 0;
-  width: 60px;
-  height: 3px;
-  background: linear-gradient(90deg, #4a90e2, #67b0ff);
-  border-radius: 3px;
-}
-
-.ant-descriptions-item-label {
-  color: #4a5568;
+.test-title{
+  color: #1e3a8a !important;
   font-weight: 600;
-  font-size: 14px;
-  padding: 16px 24px 16px 0;
-  text-transform: uppercase;
-  letter-spacing: 0.8px;
-  background: linear-gradient(45deg, #f6f9ff 0%, #ffffff 100%);
+  font-size: 2.25rem;
+  margin-bottom: 1rem !important;
 }
-
-.ant-descriptions-item-content {
-  color: #2d3748;
-  font-size: 16px;
-  padding: 16px 20px;
-  font-weight: 500;
-  position: relative;
-  transition: all 0.3s ease;
+.dark-mode-text{
+  color: white !important;
+  span,h1,h2,h3,h4,h5,h6,p{
+    color: white !important;
+  }
+  a{
+    color: white !important;
+    text-decoration: underline;
+  }
 }
-
-.ant-descriptions-bordered {
-  border: none;
-  overflow: hidden;
+.ant-tabs-left >.ant-tabs-nav .ant-tabs-ink-bar{
+ width: 4px;
 }
-
-.ant-descriptions-bordered .ant-descriptions-view {
-  border: 2px solid #e8f2ff;
-  border-radius: 16px;
-  overflow: hidden;
+.ant-tabs-top >.ant-tabs-nav .ant-tabs-ink-bar-animated{
+  height: 3.5px;
 }
-
-.ant-descriptions-bordered .ant-descriptions-item-label {
-  position: relative;
-  overflow: hidden;
-}
-
-.ant-descriptions-bordered .ant-descriptions-row {
-  position: relative;
-}
-
-.ant-descriptions-bordered .ant-descriptions-row:hover {
-  background: linear-gradient(45deg, #f8faff 0%, #ffffff 100%);
-}
-
-.status-wrapper {
-  padding: 6px 16px;
-  border-radius: 20px;
-  font-weight: 600;
-  font-size: 14px;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.status-active {
-  background: linear-gradient(45deg, #20bf55 0%, #01baef 100%);
-  color: white;
-}
-
-.status-pending {
-  background: linear-gradient(45deg, #f7b733 0%, #fc4a1a 100%);
-  color: white;
-}
-
-.status-completed {
-  background: linear-gradient(45deg, #56ab2f 0%, #a8e063 100%);
-  color: white;
-}
-
-.ant-tag {
-  border: none;
-  padding: 6px 16px;
-  border-radius: 20px;
-  font-weight: 600;
-  background: linear-gradient(45deg, #4a90e2 0%, #67b0ff 100%);
-  color: white;
-}
-
-.ant-tag-blue {
-  background: linear-gradient(45deg, #2193b0 0%, #6dd5ed 100%);
-}
-
-.ant-tag-red {
-  background: linear-gradient(45deg, #ff416c 0%, #ff4b2b 100%);
-}
-
-.ant-tag-green {
-  background: linear-gradient(45deg, #56ab2f 0%, #a8e063 100%);
-}
-
-.ant-badge-status-dot {
-  width: 10px;
-  height: 10px;
-  box-shadow: 0 0 0 4px rgba(74, 144, 226, 0.15);
-}
-
-.ant-descriptions-item-content a {
-  color: #4a90e2;
-  text-decoration: none;
-  position: relative;
-  padding: 2px 4px;
-  font-weight: 600;
-  background: linear-gradient(90deg, #4a90e2, #67b0ff);
-  -webkit-text-fill-color: transparent;
-}
-
-.ant-descriptions-item-content a::before {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 2px;
-  background: linear-gradient(90deg, #4a90e2, #67b0ff);
-  transform: scaleX(0);
-  transition: transform 0.3s ease;
-}
-
-.ant-descriptions-item-content a:hover::before {
-  transform: scaleX(1);
+.css-dev-only-do-not-override-1m2bkf9.ant-tabs >.ant-tabs-nav .ant-tabs-nav-operations{
+  display: none;
 }
 
 .icon-wrapper {
@@ -177,3 +60,4 @@
 .dark-theme {
   color: white;
 }
+

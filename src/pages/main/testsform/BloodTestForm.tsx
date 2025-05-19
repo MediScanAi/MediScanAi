@@ -76,7 +76,7 @@ function BloodTestsForm() {
       message.success('Blood test submitted successfully');
     }
     setTimeout(() => {
-      navigate('/profile');
+      navigate('/profile/analysis-history');
     }, 1000);
   };
 

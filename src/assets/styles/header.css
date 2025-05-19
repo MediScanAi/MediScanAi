@@ -5,8 +5,9 @@ header {
   position: sticky;
   top: 0;
   z-index: 1000;
-  background-color: rgba(255, 255, 255, 0.77);
-  backdrop-filter: blur(5px);
+
+  background-color: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(10px);
 }
 
 .dark-Header {
@@ -18,7 +19,9 @@ header {
 
 .Header {
   width: 100%;
-  height: 46px;
+
+  height: 6vh;
+
 }
 .Right-buttons {
   display: flex;
@@ -40,8 +43,12 @@ header {
 .ant-tabs .ant-tabs-tab {
   font-size: 15px;
 }
-.dark-user-button {
-  color: white;
+
+.ant-tabs .ant-tabs-tab .ant-dropdown-trigger{
+ height: 46px;
+}
+#analysis-tab{
+  padding: 0;
 }
 .dark-user-button:hover {
   border: 1px solid white;
@@ -54,3 +61,34 @@ header {
 .arrow-icon.rotated {
   transform: rotate(180deg);
 }
+
+.ant-select-outlined:not(.ant-select-customize-input) .ant-select-selector{
+  background-color: transparent;
+  border: none;
+  color: black;
+  font-size: 15px;
+}
+.ant-select-outlined:not(.ant-select-customize-input) .ant-select-selector:after{
+  background-color: transparent;
+  border: none;
+}
+.dark-select-selector{
+  color: white;
+}
+
+/* Можно удалить неиспользуемые стили для табов */
+.custom-tabs .ant-tabs-tab:hover {
+  color: #075f9b;
+}
+
+.ant-tabs .ant-tabs-tab {
+  font-size: 15px;
+}
+
+.ant-menu-light{
+  background-color: transparent;
+}
+.custom-menu{
+  width: 500px;
+}
+
