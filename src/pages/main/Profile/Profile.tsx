@@ -9,10 +9,10 @@ import '../../../assets/styles/Profile.css';
 import { useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 
-import UserInfo from '../Profile/UserInfo';
-import AnalysisHistory from '../Profile/AnalysisHistory';
-import MainTests from '../Profile/MainTests';
-import ContactUs from '../Profile/ContactUs';
+import UserInfo from '../profile/UserInfo';
+import AnalysisHistory from '../profile/AnalysisHistory';
+import MainTests from '../profile/MainTests';
+import ContactUs from '../profile/ContactUs';
 import {useAppSelector} from "../../../app/hooks.ts";
 import React, {useEffect, useState} from "react";
 

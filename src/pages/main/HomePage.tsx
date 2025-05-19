@@ -9,12 +9,12 @@ import partner5 from '../../assets/photos/partner5.webp';
 import partner6 from '../../assets/photos/partner6.webp';
 import partner7 from '../../assets/photos/partner7.webp';
 import partner8 from '../../assets/photos/partner8.webp';
-import group99 from '../../assets/photos/Group 99.png';
+import group99 from '../../assets/photos/Group 99.svg';
 import group101 from '../../assets/photos/Group 101.png';
-import frame from '../../assets/photos/Frame.svg';
-import frame1 from '../../assets/photos/Frame1.svg';
-import frame2 from '../../assets/photos/Frame3.svg';
-import frame3 from '../../assets/photos/Frame4.svg';
+import fileUpload from '../../assets/photos/Folder.png';
+import aiAnalysis from '../../assets/photos/Productivity 4.png';
+import insightsReport from '../../assets/photos/Finance 5.png';
+import clinicalDecision from '../../assets/photos/m11.png';
 import '../../assets/styles/homepage.css';
 import { useEffect, useState } from 'react';
 import { useAppSelector } from '../../app/hooks.ts';
@@ -27,7 +27,7 @@ const activities = [
     title: 'Data Upload',
     text: 'Securely upload your genomic data via encrypted portal',
     icon: (
-      <img src={frame} alt="frame" style={{ width: '60px', height: '100px' }} />
+      <img src={fileUpload} alt="frame" style={{ width: '110px', height: '100%' }} />
     ),
     color: '#e6f7ff',
   },
@@ -36,9 +36,9 @@ const activities = [
     text: 'AI analyzes genomic data using multi-omic integration techniques',
     icon: (
       <img
-        src={frame1}
+        src={aiAnalysis}
         alt="frame1"
-        style={{ width: '60px', height: '100px' }}
+        style={{ width: '110px', height: '100%' }}
       />
     ),
     color: '#fff1b8',
@@ -48,9 +48,9 @@ const activities = [
     text: 'Receive biomarkers and recommendations in a detailed report',
     icon: (
       <img
-        src={frame2}
+        src={insightsReport}
         alt="frame2"
-        style={{ width: '60px', height: '100px' }}
+        style={{ width: '110px', height: '100%' }}
       />
     ),
     color: '#f4ffb8',
@@ -60,9 +60,9 @@ const activities = [
     text: 'Physicians apply findings for personalized treatment decision',
     icon: (
       <img
-        src={frame3}
+        src={clinicalDecision}
         alt="frame3"
-        style={{ width: '60px', height: '100px' }}
+        style={{ width: '125px', height: '110px' }}
       />
     ),
     color: '#ffd6e7',
