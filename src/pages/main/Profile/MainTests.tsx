@@ -88,7 +88,7 @@ const MainTests: React.FC<MainTestsProps> = ({theme,width}) => {
                   {card.subtitle}
                 </Text>
                 <Button type="link" style={{ padding: 0, fontWeight: 500 }}>
-                  View More 
+                  View More
                 </Button>
               </div>
             </Card>
@@ -125,7 +125,6 @@ const MainTests: React.FC<MainTestsProps> = ({theme,width}) => {
       </Space>
     </div>
   );
-
-}
+};
 
 export default MainTests;

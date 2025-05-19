@@ -8,12 +8,14 @@ import {
 import '../../../assets/styles/Profile.css';
 import { useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
+
 import UserInfo from '../Profile/UserInfo';
 import AnalysisHistory from '../Profile/AnalysisHistory';
 import MainTests from '../Profile/MainTests';
 import ContactUs from '../Profile/ContactUs';
 import {useAppSelector} from "../../../app/hooks.ts";
 import React, {useEffect, useState} from "react";
+
 
 
 const Profile: React.FC = () => {
@@ -52,19 +54,19 @@ const Profile: React.FC = () => {
     },
   ];
 
-  const activeKey =
-    items.find((item) => item.key === type)?.key || 'info';
+  const activeKey = items.find((item) => item.key === type)?.key || 'info';
 
   const handleTabChange = (key: string) => {
     navigate(`/profile/${key}`);
   };
 
   return (
-    <Row className={'Profile'+(theme?' dark-theme':'')} >
+    <Row className={'Profile' + (theme ? ' dark-theme' : '')}>
       <Col className={'Column'}>
         <Tabs
           tabPosition={width<820?'top':'left'}
           defaultActiveKey="1"
+
           style={{ padding: 40, marginTop: '20px' ,color:'white'}}
           items={items}
           activeKey={activeKey}
@@ -73,6 +75,6 @@ const Profile: React.FC = () => {
       </Col>
     </Row>
   );
-}
+};
 
 export default Profile;

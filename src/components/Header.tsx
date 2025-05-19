@@ -110,9 +110,6 @@ const burgerItems: MenuProps['items'] = [
     },
 ];
 
-
-
-
 function Header() {
     const [width, setWidth] = useState(window.innerWidth);
     const navigate = useNavigate();
@@ -156,6 +153,7 @@ function Header() {
         setIsDropdownOpen(!isDropdownOpen);
     }
 
+
     const userItems: MenuProps['items'] = [
         {
             key: 'profile',
@@ -172,6 +170,7 @@ function Header() {
             icon: <LogoutOutlined/>,
         },
     ];
+
 
     useEffect(() => {
         const handleResize = () => {
@@ -236,4 +235,4 @@ function Header() {
     );
 }
 
-export {Header};
+export {Header}

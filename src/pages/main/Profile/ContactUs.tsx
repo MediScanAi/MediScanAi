@@ -26,6 +26,7 @@ const ContactUs: React.FC<ContactUsProps> = ({theme}) => {
                 variant={'borderless'}
                 style={{borderRadius: '12px', backgroundColor: 'transparent'}}
             >
+
                 <Row gutter={[0, 16]}>
                     <Col span={24}>
                         <Text className={theme?'dark-mode-text':''}  style={{fontSize: 16}}>

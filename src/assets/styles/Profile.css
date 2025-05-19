@@ -43,3 +43,21 @@
   display: none;
 }
 
+.icon-wrapper {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: linear-gradient(45deg, #4a90e2 0%, #67b0ff 100%);
+  color: white;
+  margin-right: 12px;
+}
+.Profile {
+  margin-top: 20px;
+}
+.dark-theme {
+  color: white;
+}
+

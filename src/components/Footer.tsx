@@ -9,7 +9,6 @@ import { useAppSelector } from '../app/hooks.ts';
 
 const { Text, Link } = Typography;
 
-
 const Footer = () => {
   const theme = useAppSelector((state) => state.theme.isDarkMode);
 
