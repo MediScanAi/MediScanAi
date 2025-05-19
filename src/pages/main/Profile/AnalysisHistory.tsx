@@ -38,10 +38,10 @@ const { Title, Text } = Typography;
 
 type AnalysisHistoryProps = {
   theme: boolean;
+  width:number;
 };
 
 const AnalysisHistory: React.FC<AnalysisHistoryProps> = ({theme}) => {
-  console.log(theme)
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const [bloodTestData, setBloodTestData] =
@@ -281,7 +281,7 @@ const AnalysisHistory: React.FC<AnalysisHistoryProps> = ({theme}) => {
           test.value !== null &&
           test.value !== '' && (
             <Col xs={24} sm={12} md={8} lg={6} xl={6} key={index}>
-              <Card hoverable style={{ border: 'none' }}>
+              <Card hoverable style={{ border: 'none' ,backgroundColor:'transparent'}}>
                 <div style={{ fontSize: 24, marginBottom: 8 }}>{test.icon}</div>
                 <Text strong>{test.name}</Text>
                 <Title level={3} style={{ margin: '8px 0' }}>
@@ -307,9 +307,9 @@ const AnalysisHistory: React.FC<AnalysisHistoryProps> = ({theme}) => {
     bloodTestData || urineTestData || vitaminTestData || geneticTestData;
 
   return (
-    <div style={{ maxWidth: 1200, margin: '0 auto', padding: '16px' }}>
+    <div style={{ maxWidth: 1200, margin: '0 auto', padding: '16px',minHeight: '57.5vh',backgroundColor:'transparent' }}>
       <Col>
-        <Card style={{ border: 'none' }}>
+        <Card className={theme?'dark-mode-text':''  } style={{ border: 'none',backgroundColor:'transparent' }}>
           <Title level={2} style={{ marginBottom: 24, color: '#3498db' }}>
             Patient Analysis History
           </Title>
@@ -326,7 +326,7 @@ const AnalysisHistory: React.FC<AnalysisHistoryProps> = ({theme}) => {
           <Row gutter={[24, 32]}>
             {bloodTestData && (
               <Col span={24}>
-                <div style={{ marginBottom: 8 }}>
+                <div  style={{ marginBottom: 8 ,backgroundColor:'transparent'}}>
                   <Text strong style={{ fontSize: 16 }}>
                     Blood Test
                   </Text>
@@ -335,13 +335,13 @@ const AnalysisHistory: React.FC<AnalysisHistoryProps> = ({theme}) => {
                   </Text>
                   <Button
                     onClick={handleDeleteBloodTestData}
-                    style={{ marginLeft: 12 }}
+                    style={{ marginLeft: 12 ,backgroundColor:'transparent'}}
                   >
                     Delete
                   </Button>
                   <Button
                     onClick={sendBloodTestData}
-                    style={{ marginLeft: 12 }}
+                    style={{ marginLeft: 12,backgroundColor:'transparent' }}
                   >
                     Edit
                   </Button>
@@ -367,13 +367,13 @@ const AnalysisHistory: React.FC<AnalysisHistoryProps> = ({theme}) => {
                   </Text>
                   <Button
                     onClick={handleDeleteUrineTestData}
-                    style={{ marginLeft: 12 }}
+                    style={{ marginLeft: 12 ,backgroundColor:'transparent'}}
                   >
                     Delete
                   </Button>
                   <Button
                     onClick={sendUrineTestData}
-                    style={{ marginLeft: 12 }}
+                    style={{ marginLeft: 12 ,backgroundColor:'transparent'}}
                   >
                     Edit
                   </Button>
@@ -399,13 +399,13 @@ const AnalysisHistory: React.FC<AnalysisHistoryProps> = ({theme}) => {
                   </Text>
                   <Button
                     onClick={handleDeleteVitaminTestData}
-                    style={{ marginLeft: 12 }}
+                    style={{ marginLeft: 12,backgroundColor:'transparent' }}
                   >
                     Delete
                   </Button>
                   <Button
                     onClick={sendVitaminTestData}
-                    style={{ marginLeft: 12 }}
+                    style={{ marginLeft: 12,backgroundColor:'transparent' }}
                   >
                     Edit
                   </Button>
@@ -431,13 +431,13 @@ const AnalysisHistory: React.FC<AnalysisHistoryProps> = ({theme}) => {
                   </Text>
                   <Button
                     onClick={handleDeleteGeneticTestData}
-                    style={{ marginLeft: 12 }}
+                    style={{ marginLeft: 12 ,backgroundColor:'transparent'}}
                   >
                     Delete
                   </Button>
                   <Button
                     onClick={sendGeneticTestData}
-                    style={{ marginLeft: 12 }}
+                    style={{ marginLeft: 12 ,backgroundColor:'transparent'}}
                   >
                     Edit
                   </Button>

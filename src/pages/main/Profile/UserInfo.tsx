@@ -13,8 +13,8 @@ const ColorfulPatientDescription: React.FC<ColorfulPatientDescriptionProps> = ({
       bordered
       column={1}
       size={'small'}
-      className={theme?'dark-mode-text':''}
-      style={{backgroundColor:'transparent'}}
+      className={''+(theme?'dark-mode-text':'')}
+      style={{backgroundColor:'transparent',height:'57.5vh'}}
     >
       <Descriptions.Item  className={theme?'dark-mode-text':''} label="Name">
         <div >

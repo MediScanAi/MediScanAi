@@ -67,7 +67,7 @@ function GeneticTestForm() {
     }
 
     setTimeout(() => {
-      navigate('/profile');
+      navigate('/profile/analysis-history');
     }, 1000);
   };
 
