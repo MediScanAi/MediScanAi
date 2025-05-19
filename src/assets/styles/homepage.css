@@ -66,7 +66,7 @@
   font-weight: 500;
   border-radius: 22px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-  background: linear-gradient(45deg, rgb(100, 157, 211), #0052d9);
+  background: linear-gradient(45deg, rgb(100, 157, 211), #0052d9) !important;
   border: none;
   animation: fadeInUp 1s ease-out 0.4s forwards;
   opacity: 0;
@@ -117,7 +117,7 @@
 }
 
 .activity-card {
-  height: 260px;
+  height: 280px;
   width: 100%;
   border-radius: 20px;
   overflow: hidden;
@@ -263,7 +263,7 @@
 .partner-card {
   border-radius: 20px;
   margin: 10px;
-  height: 560px;
+  height: 590px;
   border: 1px solid rgb(213, 218, 228);
 }
 
@@ -317,7 +317,7 @@
 .partner-button {
   margin-top: 20px;
   border-radius: 30px;
-  background: linear-gradient(135deg, #64a7f0, #0052d9);
+  background: linear-gradient(135deg, #64a7f0, #0052d9) !important;
   font-weight: 500;
   font-size: 16px;
   font-family: 'Poppins';
