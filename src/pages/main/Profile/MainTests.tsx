@@ -1,6 +1,6 @@
 import { Col, Card, Typography, Row, Button, Space } from 'antd';
 import { useNavigate } from 'react-router-dom';
-import React from "react";
+import React from 'react';
 const { Title, Text } = Typography;
 
 interface MainTestsProps {
@@ -8,7 +8,7 @@ interface MainTestsProps {
   width?: number;
 }
 
-const MainTests: React.FC<MainTestsProps> = ({theme,width}) => {
+const MainTests: React.FC<MainTestsProps> = ({ theme, width }) => {
   const navigate = useNavigate();
   const testCards = [
     {
@@ -36,12 +36,11 @@ const MainTests: React.FC<MainTestsProps> = ({theme,width}) => {
   return (
     <div style={{ padding: '40px 24px', maxWidth: 1200, margin: '0 auto' }}>
       <Title
-        className={'test-title'+(theme?' dark-mode-text':'')}
+        className={'test-title' + (theme ? ' dark-mode-text' : '')}
         level={2}
-
         style={{
           marginBottom: '40px',
-          fontSize:(width && width<1200?'22px':'36px'),
+          fontSize: width && width < 1200 ? '22px' : '36px',
         }}
       >
         Fill the form to get your test results
@@ -49,9 +48,18 @@ const MainTests: React.FC<MainTestsProps> = ({theme,width}) => {
 
       <Row gutter={[32, 32]} justify="center">
         {testCards.map((card, index) => (
-          <Col key={index} xs={24} sm={24} md={24} lg={12} xl={12} xxl={6} style={{backgroundColor:'transparent'}}>
+          <Col
+            key={index}
+            xs={24}
+            sm={24}
+            md={24}
+            lg={12}
+            xl={12}
+            xxl={6}
+            style={{ backgroundColor: 'transparent' }}
+          >
             <Card
-                className={theme?'dark-mode-text':''}
+              className={theme ? 'dark-mode-text' : ''}
               hoverable
               onClick={card.onClick}
               style={{
@@ -65,14 +73,14 @@ const MainTests: React.FC<MainTestsProps> = ({theme,width}) => {
                 textAlign: 'center',
                 padding: '24px',
                 border: '2px solid #2BC0E4',
-                minWidth:'200px',
-                backgroundColor:'transparent'
+                minWidth: '200px',
+                backgroundColor: 'transparent',
               }}
             >
               <div>
                 <Title
-                    className={'test-title'+(theme?' dark-mode-text':'')}
-                    level={4}
+                  className={'test-title' + (theme ? ' dark-mode-text' : '')}
+                  level={4}
                 >
                   {card.title}
                 </Title>
@@ -83,7 +91,6 @@ const MainTests: React.FC<MainTestsProps> = ({theme,width}) => {
                     display: 'block',
                     marginBottom: '16px',
                   }}
-
                 >
                   {card.subtitle}
                 </Text>

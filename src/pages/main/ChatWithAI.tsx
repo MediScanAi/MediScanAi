@@ -25,7 +25,6 @@ import '../../assets/styles/chatwithai.css';
 import { format, isToday, isYesterday, differenceInDays } from 'date-fns';
 import { DeleteOutlined } from '@ant-design/icons';
 
-
 const { Sider, Content } = Layout;
 const { Text } = Typography;
 
