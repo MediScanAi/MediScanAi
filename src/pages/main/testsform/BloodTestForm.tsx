@@ -1,4 +1,13 @@
-import { Button, Form, InputNumber, message, Card, Typography } from 'antd';
+import {
+  Button,
+  Form,
+  InputNumber,
+  message,
+  Card,
+  Typography,
+  Row,
+  Col,
+} from 'antd';
 import { useAppDispatch } from '../../../app/hooks';
 import { setBloodTestData } from '../../../app/slices/bloodTestSlice';
 import type { BloodTestFormValues } from '../../../app/slices/bloodTestSlice';
@@ -92,24 +101,27 @@ function BloodTestsForm() {
         layout="vertical"
         size="large"
       >
-        {bloodTestFields.map((field) => (
-          <Form.Item
-            key={field.name}
-            label={`${field.label}`}
-            name={field.name}
-            rules={[{ required: true }]}
-          >
-            <InputNumber
-              min={field.min}
-              max={field.max}
-              step={field.step}
-              style={{ width: '100%' }}
-              placeholder={field.placeholder}
-            />
-          </Form.Item>
-        ))}
+        <Row gutter={[24, 16]}>
+          {bloodTestFields.map((field) => (
+            <Col span={12} key={field.name}>
+              <Form.Item
+                label={field.label}
+                name={field.name}
+                rules={[{ required: true }]}
+              >
+                <InputNumber
+                  min={field.min}
+                  max={field.max}
+                  step={field.step}
+                  style={{ width: '100%' }}
+                  placeholder={field.placeholder}
+                />
+              </Form.Item>
+            </Col>
+          ))}
+        </Row>
 
-        <Form.Item style={{ textAlign: 'center' }}>
+        <Form.Item style={{ textAlign: 'center', marginTop: 32 }}>
           <Button type="primary" htmlType="submit">
             {updatedData ? 'Update Blood Test' : 'Submit Blood Test'}
           </Button>

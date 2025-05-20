@@ -8,19 +8,19 @@ import {
 import '../../../assets/styles/Profile.css';
 import { useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
-import UserInfo from '../Profile/UserInfo';
-import AnalysisHistory from '../Profile/AnalysisHistory';
-import MainTests from '../Profile/MainTests';
-import ContactUs from '../Profile/ContactUs';
-import {useAppSelector} from "../../../app/hooks.ts";
-import React, {useEffect, useState} from "react";
 
+import UserInfo from '../profile/UserInfo';
+import AnalysisHistory from '../profile/AnalysisHistory';
+import MainTests from '../profile/MainTests';
+import ContactUs from '../profile/ContactUs';
+import { useAppSelector } from '../../../app/hooks.ts';
+import React, { useEffect, useState } from 'react';
 
 const Profile: React.FC = () => {
-  const theme = useAppSelector((state) => state.theme.isDarkMode)
+  const theme = useAppSelector((state) => state.theme.isDarkMode);
   const { type } = useParams();
   const navigate = useNavigate();
-  const [width,setWidth] = useState(window.innerWidth) ;
+  const [width, setWidth] = useState(window.innerWidth);
   useEffect(() => {
     const handleResize = () => {
       setWidth(window.innerWidth);
@@ -52,20 +52,19 @@ const Profile: React.FC = () => {
     },
   ];
 
-  const activeKey =
-    items.find((item) => item.key === type)?.key || 'info';
+  const activeKey = items.find((item) => item.key === type)?.key || 'info';
 
   const handleTabChange = (key: string) => {
     navigate(`/profile/${key}`);
   };
 
   return (
-    <Row className={'Profile'+(theme?' dark-theme':'')} >
+    <Row className={'Profile' + (theme ? ' dark-theme' : '')}>
       <Col className={'Column'}>
         <Tabs
-          tabPosition={width<820?'top':'left'}
+          tabPosition={width < 820 ? 'top' : 'left'}
           defaultActiveKey="1"
-          style={{ padding: 40, marginTop: '20px' ,color:'white'}}
+          style={{ padding: 40, marginTop: '20px', color: 'white' }}
           items={items}
           activeKey={activeKey}
           onChange={handleTabChange}
@@ -73,6 +72,6 @@ const Profile: React.FC = () => {
       </Col>
     </Row>
   );
-}
+};
 
 export default Profile;

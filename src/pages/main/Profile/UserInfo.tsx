@@ -22,32 +22,45 @@ const ColorfulPatientDescription: React.FC<ColorfulPatientDescriptionProps> = ({
       className={''+(theme?'dark-mode-text':'')}
       style={{backgroundColor:'transparent',minHeight:'50vh',}}
     >
-      <Descriptions.Item  className={theme?'dark-mode-text':''} label="Name">
-        <div >
-          HERE WILL BE NAME
-        </div>
+      <Descriptions.Item className={theme ? 'dark-mode-text' : ''} label="Name">
+        <div>HERE WILL BE NAME</div>
       </Descriptions.Item>
 
-      <Descriptions.Item className={theme?'dark-mode-text':''} label="Surname">
+      <Descriptions.Item
+        className={theme ? 'dark-mode-text' : ''}
+        label="Surname"
+      >
         <Typography.Text>
-          <span>
-            HERE WILL BE SURNAME
-          </span>
+          <span>HERE WILL BE SURNAME</span>
         </Typography.Text>
-
       </Descriptions.Item>
 
-      <Descriptions.Item className={theme?'dark-mode-text':''} label="Age">HERE WILL BE AGE</Descriptions.Item>
+      <Descriptions.Item className={theme ? 'dark-mode-text' : ''} label="Age">
+        HERE WILL BE AGE
+      </Descriptions.Item>
 
-      <Descriptions.Item className={theme?'dark-mode-text':''} label="Blood type">
+      <Descriptions.Item
+        className={theme ? 'dark-mode-text' : ''}
+        label="Blood type"
+      >
         <HeartOutlined /> HERE WILL BE BLOOD TYPE
       </Descriptions.Item>
 
-      <Descriptions.Item className={theme?'dark-mode-text':''} label="Sex">Male</Descriptions.Item>
+      <Descriptions.Item className={theme ? 'dark-mode-text' : ''} label="Sex">
+        Male
+      </Descriptions.Item>
 
-      <Descriptions.Item className={theme?'dark-mode-text':''} label="Adress">HERE WILL BE ADRESS</Descriptions.Item>
+      <Descriptions.Item
+        className={theme ? 'dark-mode-text' : ''}
+        label="Adress"
+      >
+        HERE WILL BE ADRESS
+      </Descriptions.Item>
 
-      <Descriptions.Item className={theme?'dark-mode-text':''} label="Phone number">
+      <Descriptions.Item
+        className={theme ? 'dark-mode-text' : ''}
+        label="Phone number"
+      >
         HERE WILL BE PHONE NUMBER
       </Descriptions.Item>
     </Descriptions>

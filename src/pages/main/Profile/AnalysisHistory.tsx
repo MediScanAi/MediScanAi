@@ -38,10 +38,11 @@ const { Title, Text } = Typography;
 
 type AnalysisHistoryProps = {
   theme: boolean;
-  width:number;
+  width: number;
 };
 
 const AnalysisHistory: React.FC<AnalysisHistoryProps> = ({theme,width}) => {
+
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const [bloodTestData, setBloodTestData] =
@@ -287,6 +288,7 @@ const AnalysisHistory: React.FC<AnalysisHistoryProps> = ({theme,width}) => {
                 <div style={{ fontSize: fontSize, marginBottom: 8 }}>{test.icon}</div>
                 <Text style={{fontSize: fontSize}} strong>{test.name}</Text>
                 <Title level={3} style={{ margin: '8px 0',fontSize: fontSize }}>
+
                   {test.value}{' '}
                   {test.unit && (
                     <Text type="secondary" style={{ fontSize: fontSize }}>
@@ -313,6 +315,7 @@ const AnalysisHistory: React.FC<AnalysisHistoryProps> = ({theme,width}) => {
       <Col>
         <Card className={theme?'dark-mode-text':''  } style={{ border: 'none',backgroundColor:'transparent' }}>
           <Title level={2} style={{ marginBottom: 24, color: '#3498db',fontSize:width<800?'18px':'32px' }}>
+
             Patient Analysis History
           </Title>
 
@@ -330,6 +333,7 @@ const AnalysisHistory: React.FC<AnalysisHistoryProps> = ({theme,width}) => {
               <Col span={24}>
                 <div  style={{ marginBottom: 8 ,backgroundColor:'transparent',}}>
                   <Text strong style={{ fontSize:width<800?'10px':'16px' }}>
+
                     Blood Test
                   </Text>
                   <Text type="secondary" style={{marginLeft: 12, fontSize:width<800?'10px':'16px'}}>
@@ -338,12 +342,14 @@ const AnalysisHistory: React.FC<AnalysisHistoryProps> = ({theme,width}) => {
                   <Button
                     onClick={handleDeleteBloodTestData}
                     style={{ marginLeft: 12 ,backgroundColor:'transparent',fontSize:width<800?'10px':'16px',padding:'0 5px',minWidth:40  }}
+
                   >
                     Delete
                   </Button>
                   <Button
                     onClick={sendBloodTestData}
                     style={{ marginLeft: 12,backgroundColor:'transparent',fontSize:width<800?'10px':'16px',padding:'0 5px',minWidth:40  }}
+
                   >
                     Edit
                   </Button>
@@ -370,12 +376,14 @@ const AnalysisHistory: React.FC<AnalysisHistoryProps> = ({theme,width}) => {
                   <Button
                     onClick={handleDeleteUrineTestData}
                     style={{ marginLeft: 12 ,backgroundColor:'transparent',fontSize:width<800?'10px':'16px',padding:'0 5px',minWidth:40  }}
+
                   >
                     Delete
                   </Button>
                   <Button
                     onClick={sendUrineTestData}
                     style={{ marginLeft: 12 ,backgroundColor:'transparent',fontSize:width<800?'10px':'16px',padding:'0 5px',minWidth:40  }}
+
                   >
                     Edit
                   </Button>
@@ -402,12 +410,14 @@ const AnalysisHistory: React.FC<AnalysisHistoryProps> = ({theme,width}) => {
                   <Button
                     onClick={handleDeleteVitaminTestData}
                     style={{ marginLeft: 12 ,backgroundColor:'transparent',fontSize:width<800?'10px':'16px',padding:'0 5px',minWidth:40  }}
+
                   >
                     Delete
                   </Button>
                   <Button
                     onClick={sendVitaminTestData}
                     style={{ marginLeft: 12 ,backgroundColor:'transparent',fontSize:width<800?'10px':'16px',padding:'0 5px',minWidth:40  }}
+
                   >
                     Edit
                   </Button>
@@ -434,12 +444,14 @@ const AnalysisHistory: React.FC<AnalysisHistoryProps> = ({theme,width}) => {
                   <Button
                     onClick={handleDeleteGeneticTestData}
                     style={{ marginLeft: 12 ,backgroundColor:'transparent',fontSize:width<800?'10px':'16px',padding:'0 5px',minWidth:40  }}
+
                   >
                     Delete
                   </Button>
                   <Button
                     onClick={sendGeneticTestData}
                     style={{ marginLeft: 12 ,backgroundColor:'transparent',fontSize:width<800?'10px':'16px',padding:'0 5px',minWidth:40  }}
+
                   >
                     Edit
                   </Button>

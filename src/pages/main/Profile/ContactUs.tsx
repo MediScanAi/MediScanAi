@@ -1,14 +1,14 @@
-import {Card, Typography, Row, Col} from 'antd';
+import { Card, Typography, Row, Col } from 'antd';
 import React from 'react';
 import {
-    PhoneOutlined,
-    MailOutlined,
-    EnvironmentOutlined,
-    ClockCircleOutlined,
-    LinkedinOutlined,
+  PhoneOutlined,
+  MailOutlined,
+  EnvironmentOutlined,
+  ClockCircleOutlined,
+  LinkedinOutlined,
 } from '@ant-design/icons';
 
-const {Title, Text} = Typography;
+const { Title, Text } = Typography;
 
 interface ContactUsProps {
     theme: boolean;
@@ -73,5 +73,6 @@ const ContactUs: React.FC<ContactUsProps> = ({theme,width}) => {
         </div>
     );
 }
+
 
 export default ContactUs;

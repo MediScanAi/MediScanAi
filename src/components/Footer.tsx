@@ -9,18 +9,13 @@ import { useAppSelector } from '../app/hooks.ts';
 
 const { Text, Link } = Typography;
 
-
 const Footer = () => {
   const theme = useAppSelector((state) => state.theme.isDarkMode);
 
   return (
     <footer className={theme ? 'dark-footer' : ''}>
       <Row justify="space-around" align="middle">
-        <Col
-          xs={24}
-          sm={12}
-          style={{ textAlign: 'center'}}
-        >
+        <Col xs={24} sm={12} style={{ textAlign: 'center' }}>
           <Text className={'info'}>© 2025 Your AI Doctor.</Text>
           <Text className={'info'}> All rights reserved.</Text>
         </Col>
