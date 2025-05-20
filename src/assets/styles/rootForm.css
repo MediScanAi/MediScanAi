@@ -1,9 +1,3 @@
-.medical-form-container {
-  background: #f8fafc;
-  min-height: 100vh;
-  font-family: 'Roboto', 'Helvetica Neue', Arial, sans-serif;
-}
-
 .form-welcome-section {
   width: 100%;
   padding: 30px 40px;
@@ -16,20 +10,16 @@
   overflow: hidden;
 }
 
-.welcome-user-container {
-  text-align: center;
+.welcome-top-row {
+  position: relative;
   width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 50px;
+  margin-bottom: 1.5rem;
 }
 
-.welcome-user-greeting {
-  color: #1f69b4;
-  font-size: 24px;
-  font-weight: 600;
-  font-family: 'Poppins', sans-serif;
-  animation: fadeInDown 1s ease-out;
-  display: inline-block;
-  padding: 8px 20px;
-}
 
 .welcome-content-container {
   display: flex;
@@ -67,7 +57,6 @@
   font-weight: 700;
   font-family: 'Poppins', sans-serif;
   line-height: 1.6;
-
 }
 
 .form-platform-image {
@@ -112,7 +101,6 @@
   }
 }
 
-
 @media (max-width: 992px) {
   .welcome-content-container {
     flex-direction: column;
@@ -156,14 +144,11 @@
   width: 100%;
   display: flex;
   padding: 0 2rem 2rem;
-  flex-wrap: wrap;
 }
-
 
 .form-left-content {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
   text-align: center;
   padding: 2rem 1rem;
@@ -178,18 +163,22 @@
   background: #3b82f6;
   border: none;
   padding: 0.5rem 1.5rem;
-  border-radius: 10px;
+  border-radius: 22px;
   font-weight: 500;
   display: flex;
   align-items: center;
   transition: all 0.2s ease;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  font-size: 16px;
+  margin-top: 10px;
   width: 160px;
   height: 40px;
-  font-size: 16px;
-  margin-top: 20px;
-  margin-left: 60px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  margin-top: 10px;
 }
+
 
 .back-button:hover {
   background: #2563eb;

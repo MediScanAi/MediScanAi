@@ -1,4 +1,13 @@
-import { Button, Form, InputNumber, message, Card, Typography, Row, Col } from 'antd';
+import {
+  Button,
+  Form,
+  InputNumber,
+  message,
+  Card,
+  Typography,
+  Row,
+  Col,
+} from 'antd';
 import { useAppDispatch } from '../../../app/hooks';
 import { setBloodTestData } from '../../../app/slices/bloodTestSlice';
 import type { BloodTestFormValues } from '../../../app/slices/bloodTestSlice';
@@ -110,7 +119,7 @@ function BloodTestsForm() {
               </Form.Item>
             </Col>
           ))}
-        </Row >
+        </Row>
 
         <Form.Item style={{ textAlign: 'center', marginTop: 32 }}>
           <Button type="primary" htmlType="submit">
@@ -120,7 +129,6 @@ function BloodTestsForm() {
       </Form>
     </Card>
   );
-
 }
 
 export default BloodTestsForm;

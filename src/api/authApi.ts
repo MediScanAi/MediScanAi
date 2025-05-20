@@ -10,8 +10,7 @@ import {
   sendEmailVerification,
   applyActionCode,
 } from 'firebase/auth';
-import { getFirestore } from 'firebase/firestore'
-
+import { getFirestore } from 'firebase/firestore';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyDJENrior6OVxgHHT0xkitZp-Xj12_By20',

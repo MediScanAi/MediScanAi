@@ -11,7 +11,6 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
       <Header />
       {children}
       {!hideFooter && <Footer />}
-
     </>
   );
 };

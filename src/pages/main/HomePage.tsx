@@ -27,7 +27,11 @@ const activities = [
     title: 'Data Upload',
     text: 'Securely upload your genomic data via encrypted portal',
     icon: (
-      <img src={fileUpload} alt="frame" style={{ width: '110px', height: '100%' }} />
+      <img
+        src={fileUpload}
+        alt="frame"
+        style={{ width: '110px', height: '100%' }}
+      />
     ),
     color: '#e6f7ff',
   },
@@ -113,7 +117,7 @@ const partners = [
     id: 3,
     image: partner3,
     name: 'Erebuni Medical Center',
-    link: "https://www.erebunimed.com/",
+    link: 'https://www.erebunimed.com/',
     description:
       'Erebuni Medical Center is Armenia’s largest hospital, providing full-spectrum care including emergency services, diagnostics, and surgery since 1991.',
   },
@@ -121,14 +125,14 @@ const partners = [
     id: 4,
     image: partner4,
     name: 'Davidyants Laboratory',
-    link: "https://davlab.am/hy",
+    link: 'https://davlab.am/hy',
     description:
       'Davidyants Laboratory specializes in clinical diagnostics, offering services like histology, immunohistochemistry, and infectious disease testing.',
   },
   {
     id: 5,
     image: partner5,
-    link: "https://slavmed.am/en/",
+    link: 'https://slavmed.am/en/',
     name: 'Slawmed Medical Center',
     description:
       'Slawmed is a multidisciplinary medical center offering treatments in gynecology, urology, ENT, ophthalmology, and other fields with modern equipment.',
@@ -136,7 +140,7 @@ const partners = [
   {
     id: 6,
     image: partner6,
-    link: "https://wigmore.am/en/",
+    link: 'https://wigmore.am/en/',
     name: 'Wigmore Medical Center',
     description:
       'Wigmore Medical Center provides top-quality care in orthopedics, spine surgery, vascular surgery, cardiology, and more, with a patient-focused approach.',
@@ -145,14 +149,14 @@ const partners = [
     id: 7,
     image: partner7,
     name: 'Nairi Medical Center',
-    link: "https://nairimed.com/hy",
+    link: 'https://nairimed.com/hy',
     description:
       'Nairi Medical Center is a leading Armenian hospital offering high-standard medical care across multiple specialties and promoting medical research and education.',
   },
   {
     id: 8,
     image: partner8,
-    link: "https://blood.am/arm",
+    link: 'https://blood.am/arm',
     name: ' Hematological Center',
     description:
       'The Armenian Hematological Center specializes in diagnosing and treating blood disorders, providing advanced care for both children and adults.',
@@ -188,7 +192,12 @@ function HomePage() {
               Advanced AI-powered diagnostics and medical
               <br /> analysis for healthcare professionals.
             </Text>
-            <Button className="consult-button" type="primary" size="large" onClick={() => navigate('/tests-form/blood-test')}>
+            <Button
+              className="consult-button"
+              type="primary"
+              size="large"
+              onClick={() => navigate('/tests-form/blood-test')}
+            >
               Consult Today
             </Button>
           </Col>
@@ -198,7 +207,9 @@ function HomePage() {
         </Row>
         <Row className="activity-section">
           <Col className="activity-section-column">
-            <Title level={1} className="activity-section-column-title">Our Activity</Title>
+            <Title level={1} className="activity-section-column-title">
+              Our Activity
+            </Title>
             <Text className="activity-section-column-text">
               Problems trying to resolve the conflict between the two major
               realms of Classical physics: Newtonian mechanics.
@@ -209,7 +220,9 @@ function HomePage() {
                   <Card className="activity-card" bodyStyle={{ padding: 0 }}>
                     <div className="activity-card-content">
                       <div className="activity-icon">{icon}</div>
-                      <Title level={4} className="activity-card-title">{title}</Title>
+                      <Title level={4} className="activity-card-title">
+                        {title}
+                      </Title>
                       <Text className="activity-card-text">{text}</Text>
                     </div>
                   </Card>
@@ -233,7 +246,9 @@ function HomePage() {
         </Row>
         <Row className="faq-section">
           <Col style={{ marginTop: 50, padding: '24px' }} span={24}>
-            <Title level={1} className="faq-title">Frequently Asked Questions</Title>
+            <Title level={1} className="faq-title">
+              Frequently Asked Questions
+            </Title>
             <List
               itemLayout="horizontal"
               dataSource={questions}
@@ -248,13 +263,18 @@ function HomePage() {
                     <Col xs={24}>
                       <Row justify="space-between" style={{ width: '100%' }}>
                         <Col span={22}>
-                          <Title level={3} className="faq-question">{title}</Title>
+                          <Title level={3} className="faq-question">
+                            {title}
+                          </Title>
                         </Col>
                         <Col span={2} style={{ textAlign: 'right' }}>
                           <DownOutlined
                             style={{
                               transition: 'transform 0.3s',
-                              transform: openIndex === index ? 'rotate(180deg)' : 'rotate(0deg)',
+                              transform:
+                                openIndex === index
+                                  ? 'rotate(180deg)'
+                                  : 'rotate(0deg)',
                               fontSize: 20,
                               color: theme ? 'white' : 'black',
                             }}
@@ -273,31 +293,57 @@ function HomePage() {
         </Row>
         <Row gutter={[24, 24]} className="partners-section">
           <Col span={24}>
-            <Title level={1} className="partners-title">Partner With Us</Title>
+            <Title level={1} className="partners-title">
+              Partner With Us
+            </Title>
             <Carousel
               autoplay
               autoplaySpeed={2000}
               dots={false}
               infinite
-              slidesToShow={width > 1200 ? 4 : width > 900 ? 3 : width > 600 ? 2 : 1}
+              slidesToShow={
+                width > 1200 ? 4 : width > 900 ? 3 : width > 600 ? 2 : 1
+              }
               slidesToScroll={1}
               className="carousel-container"
             >
               {partners.map((partner, index) => (
                 <div key={index} className="partner-card-wrapper">
                   <Card
-                    style={{border:"none"}}
+                    style={{ border: 'none' }}
                     hoverable
                     className={`partner-card ${theme ? 'partner-card-dark' : 'partner-card-light'}`}
-                    bodyStyle={{ padding: 20, display: 'flex', flexDirection: 'column', justifyContent: 'space-between', height: '100%' }}
+                    bodyStyle={{
+                      padding: 20,
+                      display: 'flex',
+                      flexDirection: 'column',
+                      justifyContent: 'space-between',
+                      height: '100%',
+                    }}
                   >
                     <div className="partner-image-container">
-                      <img src={partner.image} alt={partner.name} className="partner-image" />
-                      <Title level={4} className="partner-name">{partner.name}</Title>
-                      <Text className="partner-description">{partner.description}</Text>
+                      <img
+                        src={partner.image}
+                        alt={partner.name}
+                        className="partner-image"
+                      />
+                      <Title level={4} className="partner-name">
+                        {partner.name}
+                      </Title>
+                      <Text className="partner-description">
+                        {partner.description}
+                      </Text>
                     </div>
-                    <Button className="partner-button" type="primary" size="large">
-                      <a href={partner.link} target="_blank" rel="noopener noreferrer">
+                    <Button
+                      className="partner-button"
+                      type="primary"
+                      size="large"
+                    >
+                      <a
+                        href={partner.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
                         Read More
                       </a>
                     </Button>

@@ -1,4 +1,4 @@
-import { Tabs, Typography, Card, Button, Row, Col, Collapse } from 'antd';
+import { Tabs, Typography, Card, Button, Row, Col } from 'antd';
 import type { TabsProps } from 'antd';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useAppSelector } from '../../../app/hooks.ts';
@@ -8,7 +8,6 @@ import {
   SafetyOutlined,
   HeatMapOutlined,
   MonitorOutlined,
-  EnterOutlined,
 } from '@ant-design/icons';
 import formImage from '../../../assets/photos/Productivity 10.png';
 import laboratoryImage from '../../../assets/photos/Education8.png';
@@ -23,7 +22,6 @@ const { Title, Text } = Typography;
 function RootForm(): ReactNode | null {
   const navigate = useNavigate();
   const { testType } = useParams();
-  const user = useAppSelector((state) => state.auth.user);
 
   const theme = useAppSelector((state) => state.theme.isDarkMode);
   const items: TabsProps['items'] = [
@@ -77,41 +75,39 @@ function RootForm(): ReactNode | null {
     items.find((item) => item.key === testType)?.key || 'blood-test';
 
   return (
-    <div className={'root-form' + (theme ? ' dark-theme' : '')}>
-      <Button
-        className="back-button"
-        onClick={() => navigate('/profile/info')}
-        type="primary"
-      >
-        Back to Profile
-      </Button>
+    <div className={theme ? ' dark-theme' : ''}>
       <Row className="form-welcome-section">
-        <Col span={24} className="welcome-user-container">
-          <Text className="welcome-user-greeting">
-            Welcome back, {user?.email || 'User'}
-          </Text>
-        </Col>
+        <div className="welcome-top-row">
+          <Button
+            className="back-button"
+            onClick={() => navigate('/profile/info')}
+            type="primary"
+          >
+            Back to Profile
+          </Button>
+        </div>
+
         <Row className="welcome-content-container">
           <Col className="image-column">
-            <img src={formImage} alt="platform" className="form-platform-image" />
+            <img
+              src={formImage}
+              alt="platform"
+              className="form-platform-image"
+            />
           </Col>
           <Col className="text-column">
-            <Title className="form-welcome-title">MediScanAI Diagnostic Portal</Title>
+            <Title className="form-welcome-title">
+              MediScanAI Diagnostic Portal
+            </Title>
             <Text className="form-welcome-message">
-              Comprehensive medical test analysis powered by AI
-              Receive accurate results and personalized insights within 24 hours.
+              Comprehensive medical test analysis powered by AI Receive accurate
+              results and personalized insights within 24 hours.
             </Text>
           </Col>
         </Row>
       </Row>
-
-      <Col span={24}>
-
-      </Col>
-
       <Row className="form-main-container">
         <Col xs={24} md={10} className="form-left-content">
-
           <div className="form-header">
             <Title level={2} className="medical-title">
               Medical Laboratory Test Form
@@ -122,10 +118,7 @@ function RootForm(): ReactNode | null {
           </div>
 
           <div className="medical-image-container">
-            <img
-              src={laboratoryImage}
-              alt="Medical illustration"
-            />
+            <img src={laboratoryImage} alt="Medical illustration" />
           </div>
         </Col>
 

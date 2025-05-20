@@ -1,4 +1,13 @@
-import { Button, message, Form, Card, Typography, Select, Row, Col } from 'antd';
+import {
+  Button,
+  message,
+  Form,
+  Card,
+  Typography,
+  Select,
+  Row,
+  Col,
+} from 'antd';
 import {
   setGeneticTestData,
   type GeneticTestFormValues,
