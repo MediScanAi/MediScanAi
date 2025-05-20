@@ -286,6 +286,7 @@ function HomePage() {
               {partners.map((partner, index) => (
                 <div key={index} className="partner-card-wrapper">
                   <Card
+                    style={{border:"none"}}
                     hoverable
                     className={`partner-card ${theme ? 'partner-card-dark' : 'partner-card-light'}`}
                     bodyStyle={{ padding: 20, display: 'flex', flexDirection: 'column', justifyContent: 'space-between', height: '100%' }}

@@ -6,6 +6,8 @@ import {
   Select,
   Typography,
   Card,
+  Col,
+  Row,
 } from 'antd';
 import { useAppDispatch } from '../../../app/hooks';
 import { setUrineTestData } from '../../../app/slices/urineTestSlice';
@@ -17,7 +19,7 @@ const { Title } = Typography;
 const urineTestFields = [
   {
     type: 'input',
-    label: 'pH (4.5-8.0)',
+    label: 'pH (4.5-8)',
     name: 'ph',
     min: 4.5,
     max: 8.0,
@@ -26,7 +28,7 @@ const urineTestFields = [
   },
   {
     type: 'input',
-    label: 'Specific Gravity (1.0-1.03)',
+    label: 'Gravity (1-1.1)',
     name: 'specificGravity',
     min: 1.0,
     max: 1.03,
@@ -141,46 +143,44 @@ const UrineTestForm = () => {
         size="large"
         initialValues={updatedData}
       >
-        {urineTestFields.map((field) => {
-          if (field.type === 'input') {
-            return (
+        <Row gutter={[24, 16]}>
+          {urineTestFields.map((field) => {
+            const formItem = (
               <Form.Item
                 key={field.name}
                 label={field.label}
                 name={field.name}
                 rules={[{ required: true }]}
               >
-                <InputNumber
-                  min={field.min}
-                  max={field.max}
-                  step={field.step}
-                  style={{ width: '100%' }}
-                  placeholder={field.placeholder}
-                />
+                {field.type === 'input' ? (
+                  <InputNumber
+                    min={field.min}
+                    max={field.max}
+                    step={field.step}
+                    style={{ width: '100%' }}
+                    placeholder={field.placeholder}
+                  />
+                ) : (
+                  <Select placeholder="Select result">
+                    {field.options?.map((opt) => (
+                      <Option key={opt} value={opt}>
+                        {opt.charAt(0).toUpperCase() + opt.slice(1)}
+                      </Option>
+                    ))}
+                  </Select>
+                )}
               </Form.Item>
             );
-          } else if (field.type === 'select') {
-            return (
-              <Form.Item
-                key={field.name}
-                label={field.label}
-                name={field.name}
-                rules={[{ required: true }]}
-              >
-                <Select placeholder="Select result">
-                  {field.options?.map((opt) => (
-                    <Option key={opt} value={opt}>
-                      {opt.charAt(0).toUpperCase() + opt.slice(1)}
-                    </Option>
-                  ))}
-                </Select>
-              </Form.Item>
-            );
-          }
-          return null;
-        })}
 
-        <Form.Item style={{ textAlign: 'center' }}>
+            return (
+              <Col span={12} key={field.name}>
+                {formItem}
+              </Col>
+            );
+          })}
+        </Row>
+
+        <Form.Item style={{ textAlign: 'center', marginTop: 32 }}>
           <Button type="primary" htmlType="submit" className="submit-btn">
             {updatedData ? 'Update Urine Test' : 'Submit Urine Test'}
           </Button>
@@ -188,6 +188,7 @@ const UrineTestForm = () => {
       </Form>
     </Card>
   );
+
 };
 
 export default UrineTestForm;

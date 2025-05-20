@@ -1,4 +1,4 @@
-import { Tabs, Typography, Card, Button } from 'antd';
+import { Tabs, Typography, Card, Button, Row, Col, Collapse } from 'antd';
 import type { TabsProps } from 'antd';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useAppSelector } from '../../../app/hooks.ts';
@@ -10,6 +10,8 @@ import {
   MonitorOutlined,
   EnterOutlined,
 } from '@ant-design/icons';
+import formImage from '../../../assets/photos/Productivity 10.png';
+import laboratoryImage from '../../../assets/photos/Education8.png';
 import '../../../assets/styles/rootForm.css';
 import VitaminTestForm from './VitaminTestForm';
 import UrineTestForm from './UrineTestForm';
@@ -21,6 +23,8 @@ const { Title, Text } = Typography;
 function RootForm(): ReactNode | null {
   const navigate = useNavigate();
   const { testType } = useParams();
+  const user = useAppSelector((state) => state.auth.user);
+
   const theme = useAppSelector((state) => state.theme.isDarkMode);
   const items: TabsProps['items'] = [
     {
@@ -74,44 +78,61 @@ function RootForm(): ReactNode | null {
 
   return (
     <div className={'root-form' + (theme ? ' dark-theme' : '')}>
-      <div className="medical-form-container">
-        <div className="welcome-banner">
-          <div className="welcome-content">
-            <Title level={2} className="welcome-title">
-              Welcome to Our Medical Laboratory Portal
+      <Button
+        className="back-button"
+        onClick={() => navigate('/profile/info')}
+        type="primary"
+      >
+        Back to Profile
+      </Button>
+      <Row className="form-welcome-section">
+        <Col span={24} className="welcome-user-container">
+          <Text className="welcome-user-greeting">
+            Welcome back, {user?.email || 'User'}
+          </Text>
+        </Col>
+        <Row className="welcome-content-container">
+          <Col className="image-column">
+            <img src={formImage} alt="platform" className="form-platform-image" />
+          </Col>
+          <Col className="text-column">
+            <Title className="form-welcome-title">MediScanAI Diagnostic Portal</Title>
+            <Text className="form-welcome-message">
+              Comprehensive medical test analysis powered by AI
+              Receive accurate results and personalized insights within 24 hours.
+            </Text>
+          </Col>
+        </Row>
+      </Row>
+
+      <Col span={24}>
+
+      </Col>
+
+      <Row className="form-main-container">
+        <Col xs={24} md={10} className="form-left-content">
+
+          <div className="form-header">
+            <Title level={2} className="medical-title">
+              Medical Laboratory Test Form
             </Title>
-            <Text className="welcome-message">
-              Your health is our priority. Get accurate test results with our
-              MediScanAi technologies.
+            <Text className="medical-subtitle">
+              Select a test type and provide the required specimen information
             </Text>
           </div>
-        </div>
 
-        <div className="form-content">
-          <div className="form-header">
-            <Button
-              className="back-button"
-              onClick={() => navigate('/profile')}
-              type="primary"
-            >
-              <EnterOutlined style={{ width: 16, height: 16, fontSize: 18 }} />
-              Back to Profile
-            </Button>
-
-            <div className="header-content">
-              <Title level={1} className="medical-title">
-                Medical Laboratory Test Form
-              </Title>
-              <p className="medical-subtitle">
-                Select a test type and provide the required specimen information
-              </p>
-            </div>
+          <div className="medical-image-container">
+            <img
+              src={laboratoryImage}
+              alt="Medical illustration"
+            />
           </div>
+        </Col>
 
+        <Col xs={24} md={14} className="form-right-content">
           <Card className="medical-form-card">
             <Tabs
               type="card"
-              centered
               size="large"
               activeKey={activeKey}
               onChange={handleTabChange}
@@ -119,8 +140,8 @@ function RootForm(): ReactNode | null {
               className="medical-tabs"
             />
           </Card>
-        </div>
-      </div>
+        </Col>
+      </Row>
     </div>
   );
 }
