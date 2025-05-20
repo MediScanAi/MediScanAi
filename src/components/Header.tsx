@@ -29,7 +29,22 @@ import { useAppDispatch, useAppSelector } from '../app/hooks.ts';
 import { toggleTheme } from '../app/slices/theme';
 import { logoutUser } from '../app/slices/authSlice';
 
-// Изменим формат элементов меню
+
+const options = [
+    {
+        label:(<div className={'language-options'} ><img style={{height:'20px'}} src={'src/assets/photos/united-kingdom.png'}/> ENG</div>),
+        value: 'english',
+    },
+    {
+        label: (<div className={'language-options'}><img style={{height:'20px'}} src={'src/assets/photos/russia.png'}/> RUS</div>),
+        value: 'russian',
+    },
+    {
+        label: (<div className={'language-options'}><img style={{height:'20px'}} src={'src/assets/photos/armenia.png'}/> ARM</div>),
+        value: 'armenia',
+    },
+];
+
 const menuItems: MenuProps['items'] = [
   {
     label: (
@@ -197,76 +212,60 @@ function Header() {
     },
   ];
 
-  useEffect(() => {
-    const handleResize = () => {
-      setWidth(window.innerWidth);
-    };
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
-
-  return (
-    <header>
-      <Flex
-        className={'Header' + ' ' + (theme ? 'dark-Header' : '')}
-        justify="space-around"
-        align="middle"
-      >
-        {width < 820 ? (
-          <Dropdown trigger={['click']} menu={{ items: burgerItems }}>
-            <MenuOutlined style={{ fontSize: 30 }} />
-          </Dropdown>
-        ) : (
-          <Menu
-            onClick={handleMenuClick}
-            className="custom-menu"
-            mode="horizontal"
-            defaultSelectedKeys={[
-              activeKey.includes('analysis') ? 'analysis' : activeKey,
-            ]}
-            items={menuItems}
-          />
-        )}
-        <div className={'Right-buttons'}>
-          {user ? (
-            <Dropdown
-              trigger={['click']}
-              menu={{ items: userItems }}
-              onOpenChange={toggleArrow}
+    return (
+        <header>
+            <Flex
+                className={'Header' + ' ' + (theme ? 'dark-Header' : '')}
+                justify="space-around"
+                align="middle"
             >
-              <div
-                className={'user-button' + (theme ? ' dark-user-button' : '')}
-              >
-                <Avatar style={{ fontSize: 20 }}>
-                  {user?.email ? user?.email[0].toUpperCase() : 'Profile'}
-                </Avatar>
-                {isDropdownOpen ? <UpOutlined /> : <DownOutlined />}
-              </div>
-            </Dropdown>
-          ) : (
-            <Button ghost variant={'text'} style={{ border: 'none' }}>
-              <NavLink to={'/auth/login'}>Log In</NavLink>
-            </Button>
-          )}
-          <Switch
-            defaultChecked={theme}
-            checkedChildren={<SunOutlined />}
-            unCheckedChildren={<MoonOutlined />}
-            onClick={handleThemeChange}
-          />
-          <Select
-            defaultValue="english"
-            className={theme ? 'dark-select-selector' : ''}
-            style={{ width: 75, backgroundColor: 'transparent' }}
-          >
-            <Select.Option value="english">ENG</Select.Option>
-            <Select.Option value="russian">RUS</Select.Option>
-            <Select.Option value="armenian">ARM</Select.Option>
-          </Select>
-        </div>
-      </Flex>
-    </header>
-  );
+                {width < 820 ? (
+                    <Dropdown trigger={["click"]} menu={{items: burgerItems}}>
+                        <MenuOutlined style={{fontSize: 30}}/>
+                    </Dropdown>
+                ) : (
+                        <Menu
+                            onClick={handleMenuClick}
+                            className="custom-menu"
+                            mode="horizontal"
+                            selectedKeys={[activeKey.includes('analysis/') ? 'analysis' : activeKey]}
+                            items={menuItems}
+                        />
+                )}
+                <div className={'Right-buttons'}>
+                    {user ? <Dropdown trigger={['click']} menu={{items: userItems}} onOpenChange={toggleArrow}>
+                        <div
+                            className={'user-button' + (theme ? ' dark-user-button' : '')}
+                        >
+                            <Avatar style={{fontSize: 20}}>
+                                {user?.email ? user?.email[0].toUpperCase() : 'Profile'}
+                            </Avatar>
+                            {
+                                isDropdownOpen ?
+                                    <UpOutlined/> :
+                                    <DownOutlined/>
+                            }
+                        </div>
+                    </Dropdown> :
+                        <Button onClick={()=>navigate('/auth/login')}  ghost variant={"text"} style={{border:'none',color:(theme?'white':'black')}}>
+                          Log In
+                        </Button>}
+                    <Switch
+                        defaultChecked={theme}
+                        checkedChildren={<SunOutlined/>}
+                        unCheckedChildren={<MoonOutlined/>}
+                        onClick={handleThemeChange}
+                    />
+                    <Select variant={'borderless'} options={options} optionRender={(option)=>{
+                        return(
+                        <Space>
+                            {option.data.label}
+                        </Space>
+                    )}}  defaultValue="english" className={theme?'dark-select-selector':''} style={{width: 100,backgroundColor:'transparent'}}/>
+                </div>
+            </Flex>
+        </header>
+    );
 }
 
-export { Header };
+export {Header};
