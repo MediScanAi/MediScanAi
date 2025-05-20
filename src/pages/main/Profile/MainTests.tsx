@@ -34,7 +34,7 @@ const MainTests: React.FC<MainTestsProps> = ({theme,width}) => {
   ];
 
   return (
-    <div style={{ padding: '40px 24px', maxWidth: 1200, margin: '0 auto' }}>
+    <div style={{ padding: '40px 24px', }}>
       <Title
         className={'test-title'+(theme?' dark-mode-text':'')}
         level={2}

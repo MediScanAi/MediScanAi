@@ -31,24 +31,24 @@ const Profile: React.FC = () => {
 
   const items: TabsProps['items'] = [
     {
-      label: <span className={'menu-button'+(theme?' dark-mode-text':'')}><UserOutlined />  Info</span>,
+      label: <span style={{fontSize:width<1200?'16px':'20px'}} className={(theme?' dark-mode-text':'')}><UserOutlined />  Info</span>,
       key: 'info',
-      children: <UserInfo theme={theme} />,
+      children: <UserInfo width={width} theme={theme} />,
     },
     {
-      label: <span className={'menu-button'+(theme?' dark-mode-text':'')}><ExperimentOutlined />  Analysis History</span>,
+      label: <span style={{fontSize:width<1200?'16px':'20px'}} className={(theme?' dark-mode-text':'')}><ExperimentOutlined />  Analysis History</span>,
       key: 'analysis-history',
       children: <AnalysisHistory width={width} theme={theme} />,
     },
     {
       key: 'tests',
-      label: <span className={'menu-button'+(theme?' dark-mode-text':'')}><MedicineBoxOutlined />  Tests</span>,
+      label: <span style={{fontSize:width<1200?'16px':'20px'}} className={(theme?' dark-mode-text':'')}><MedicineBoxOutlined />  Tests</span>,
       children: <MainTests width={width} theme={theme} />,
     },
     {
       key: 'contact-us',
-      label: <span className={'menu-button'+(theme?' dark-mode-text':'')}><PhoneOutlined />  Contact Us</span>,
-      children: <ContactUs  theme={theme}/>,
+      label: <span style={{fontSize:width<1200?'16px':'20px'}} className={(theme?' dark-mode-text':'')}><PhoneOutlined />  Contact Us</span>,
+      children: <ContactUs width={width}  theme={theme}/>,
     },
   ];
 

@@ -1,11 +1,11 @@
 import {
-  Avatar,
-  Dropdown,
-  Flex,
-  type MenuProps,
-  Select,
-  Switch,
-  Menu, Button,
+    Avatar,
+    Dropdown,
+    Flex,
+    type MenuProps,
+    Select,
+    Switch,
+    Menu, Button, Space,
 } from 'antd';
 import { NavLink} from 'react-router-dom';
 import {useEffect, useState} from 'react';
@@ -27,7 +27,22 @@ import {useAppDispatch, useAppSelector} from '../app/hooks.ts';
 import {toggleTheme} from '../app/slices/theme';
 import {logoutUser} from '../app/slices/authSlice';
 
-// Изменим формат элементов меню
+
+const options = [
+    {
+        label:(<div className={'language-options'} ><img style={{height:'20px'}} src={'src/assets/photos/united-kingdom.png'}/> ENG</div>),
+        value: 'english',
+    },
+    {
+        label: (<div className={'language-options'}><img style={{height:'20px'}} src={'src/assets/photos/russia.png'}/> RUS</div>),
+        value: 'russian',
+    },
+    {
+        label: (<div className={'language-options'}><img style={{height:'20px'}} src={'src/assets/photos/armenia.png'}/> ARM</div>),
+        value: 'armenia',
+    },
+];
+
 const menuItems: MenuProps['items'] = [
     {
         label: (<span><HomeOutlined/>  Home</span>),
@@ -197,7 +212,7 @@ function Header() {
                             onClick={handleMenuClick}
                             className="custom-menu"
                             mode="horizontal"
-                            defaultSelectedKeys={[activeKey.includes('analysis') ? 'analysis' : activeKey]}
+                            selectedKeys={[activeKey.includes('analysis/') ? 'analysis' : activeKey]}
                             items={menuItems}
                         />
                 )}
@@ -206,18 +221,18 @@ function Header() {
                         <div
                             className={'user-button' + (theme ? ' dark-user-button' : '')}
                         >
-                            <Avatar
-                                style={{fontSize: 20}}>{user?.email ? user?.email[0].toUpperCase() : 'Profile'}</Avatar>
+                            <Avatar style={{fontSize: 20}}>
+                                {user?.email ? user?.email[0].toUpperCase() : 'Profile'}
+                            </Avatar>
                             {
                                 isDropdownOpen ?
                                     <UpOutlined/> :
                                     <DownOutlined/>
                             }
                         </div>
-
                     </Dropdown> :
-                        <Button  ghost variant={"text"} style={{border:'none'}}>
-                          <NavLink to={'/auth/login'}>Log In</NavLink>
+                        <Button onClick={()=>navigate('/auth/login')}  ghost variant={"text"} style={{border:'none',color:(theme?'white':'black')}}>
+                          Log In
                         </Button>}
                     <Switch
                         defaultChecked={theme}
@@ -225,11 +240,12 @@ function Header() {
                         unCheckedChildren={<MoonOutlined/>}
                         onClick={handleThemeChange}
                     />
-                    <Select defaultValue="english" className={theme?'dark-select-selector':''} style={{width: 75,backgroundColor:'transparent'}}>
-                        <Select.Option value="english">ENG</Select.Option>
-                        <Select.Option value="russian">RUS</Select.Option>
-                        <Select.Option value="armenian">ARM</Select.Option>
-                    </Select>
+                    <Select variant={'borderless'} options={options} optionRender={(option)=>{
+                        return(
+                        <Space>
+                            {option.data.label}
+                        </Space>
+                    )}}  defaultValue="english" className={theme?'dark-select-selector':''} style={{width: 100,backgroundColor:'transparent'}}/>
                 </div>
             </Flex>
         </header>
