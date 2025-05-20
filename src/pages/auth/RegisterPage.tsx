@@ -1,4 +1,13 @@
-import { Form, Input, Button, Card, Typography, message, Grid } from 'antd';
+import {
+  Form,
+  Input,
+  Button,
+  Card,
+  Typography,
+  message,
+  Grid,
+  Spin,
+} from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
 import { registerUser, setUser } from '../../app/slices/authSlice';
 import type { AppDispatch, RootState } from '../../app/store';
@@ -7,6 +16,8 @@ import { motion } from 'framer-motion';
 import backgroundImage from '../../assets/photos/background.png';
 import { useEffect, useState } from 'react';
 import { getAuth, reload } from 'firebase/auth';
+import { mapFirebaseUser } from '../../api/authApi';
+import LoginWithGoogleButton from '../../components/LoginWithGoogleButton';
 
 const { Title, Text } = Typography;
 const { useBreakpoint } = Grid;
@@ -26,7 +37,10 @@ const RegisterPage: React.FC = () => {
 
   const [waitingVerification, setWaitingVerification] = useState(false);
   const [checking, setChecking] = useState(false);
-
+  const [googleLoading, setGoogleLoading] = useState(false);
+  const toggleGoogleLoading = (isLoading: boolean) => {
+    setGoogleLoading(isLoading);
+  };
   useEffect(() => {
     const auth = getAuth();
     if (auth.currentUser && !auth.currentUser.emailVerified) {
@@ -34,9 +48,14 @@ const RegisterPage: React.FC = () => {
     }
   }, []);
 
-  const onFinish = async ({ email, password }: RegisterFormValues) => {
+  const onFinish = async ({
+    name,
+    surname,
+    email,
+    password,
+  }: RegisterFormValues) => {
     try {
-      await dispatch(registerUser({ email, password })).unwrap();
+      await dispatch(registerUser({ name, surname, email, password })).unwrap();
       message.info(
         "We've sent a verification e-mail. Please check your inbox."
       );
@@ -45,14 +64,14 @@ const RegisterPage: React.FC = () => {
       message.error('Registration failed');
     }
   };
-
   const handleCheckVerification = async () => {
     const auth = getAuth();
     if (!auth.currentUser) return;
     setChecking(true);
     await reload(auth.currentUser);
     if (auth.currentUser.emailVerified) {
-      dispatch(setUser(auth.currentUser));
+      const mapped = mapFirebaseUser(auth.currentUser);
+      dispatch(setUser(mapped));
       message.success('Welcome to MediScan AI!');
       navigate('/');
     } else {
@@ -114,75 +133,84 @@ const RegisterPage: React.FC = () => {
             </div>
           </div>
         )}
+        <Spin spinning={googleLoading} tip="Waiting for Google response...">
+          <Card
+            style={{
+              borderRadius: 16,
+              boxShadow: '0 8px 16px rgba(0,0,0,0.15)',
+              maxHeight: '90vh',
+              overflowY: 'auto',
+              filter: waitingVerification ? 'blur(2px)' : undefined,
+              pointerEvents: waitingVerification ? 'none' : 'auto',
+            }}
+          >
+            <Title level={2} style={{ fontWeight: 'bold', marginBottom: 20 }}>
+              Create an Account
+            </Title>
 
-        <Card
-          style={{
-            borderRadius: 16,
-            boxShadow: '0 8px 16px rgba(0,0,0,0.15)',
-            maxHeight: '90vh',
-            overflowY: 'auto',
-            filter: waitingVerification ? 'blur(2px)' : undefined,
-            pointerEvents: waitingVerification ? 'none' : 'auto',
-          }}
-        >
-          <Title level={2} style={{ fontWeight: 'bold', marginBottom: 20 }}>
-            Create an Account
-          </Title>
+            <Form layout="vertical" onFinish={onFinish}>
+              <Form.Item
+                label="Surname"
+                name="surname"
+                rules={[{ required: true, message: 'Enter your surname' }]}
+              >
+                <Input placeholder="Surname" />
+              </Form.Item>
 
-          <Form layout="vertical" onFinish={onFinish}>
-            <Form.Item
-              label="Surname"
-              name="surname"
-              rules={[{ required: true, message: 'Enter your surname' }]}
-            >
-              <Input placeholder="Surname" />
-            </Form.Item>
+              <Form.Item
+                label="Name"
+                name="name"
+                rules={[{ required: true, message: 'Enter your name' }]}
+              >
+                <Input placeholder="Name" />
+              </Form.Item>
 
-            <Form.Item
-              label="Name"
-              name="name"
-              rules={[{ required: true, message: 'Enter your name' }]}
-            >
-              <Input placeholder="Name" />
-            </Form.Item>
+              <Form.Item
+                label="Email"
+                name="email"
+                rules={[
+                  { required: true, message: 'Enter your e-mail' },
+                  { type: 'email', message: 'Invalid e-mail' },
+                ]}
+              >
+                <Input placeholder="Email" />
+              </Form.Item>
 
-            <Form.Item
-              label="Email"
-              name="email"
-              rules={[
-                { required: true, message: 'Enter your e-mail' },
-                { type: 'email', message: 'Invalid e-mail' },
-              ]}
-            >
-              <Input placeholder="Email" />
-            </Form.Item>
+              <Form.Item
+                label="Password"
+                name="password"
+                rules={[
+                  { required: true, message: 'Enter your password' },
+                  {
+                    pattern: /^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*]).{8,}$/,
+                    message:
+                      'Min 8 chars with uppercase, digit and special character',
+                  },
+                ]}
+              >
+                <Input.Password placeholder="Password" />
+              </Form.Item>
 
-            <Form.Item
-              label="Password"
-              name="password"
-              rules={[
-                { required: true, message: 'Enter your password' },
-                {
-                  pattern: /^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*]).{8,}$/,
-                  message:
-                    'Min 8 chars with uppercase, digit and special character',
-                },
-              ]}
-            >
-              <Input.Password placeholder="Password" />
-            </Form.Item>
+              <Form.Item>
+                <Button
+                  block
+                  type="primary"
+                  htmlType="submit"
+                  loading={loading}
+                >
+                  Register
+                </Button>
+              </Form.Item>
 
-            <Form.Item>
-              <Button block type="primary" htmlType="submit" loading={loading}>
-                Register
-              </Button>
-            </Form.Item>
-
-            <Text style={{ display: 'block', textAlign: 'center' }}>
-              Already have an account? <Link to="/auth/login">Login</Link>
-            </Text>
-          </Form>
-        </Card>
+              <Form.Item style={{ marginTop: 20 }}>
+                <LoginWithGoogleButton toggleLoading={toggleGoogleLoading} />
+              </Form.Item>
+              <Text style={{ display: 'block', textAlign: 'center' }}>
+                Already have an account? <Link to="/auth/login">Login</Link>
+              </Text>
+            </Form>
+          </Card>
+        </Spin>
       </motion.div>
 
       <motion.div
