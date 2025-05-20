@@ -9,7 +9,7 @@ import {
   Spin,
 } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
-import { loginUser, setUser } from '../../app/slices/authSlice';
+import { loginUser } from '../../app/slices/authSlice';
 import type { AppDispatch, RootState } from '../../app/store';
 import { useNavigate, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
@@ -17,7 +17,6 @@ import backgroundImage from '../../assets/photos/background.png';
 import { useState } from 'react';
 import ForgotPasswordForm from '../../components/ForgotPasswordForm';
 import LoginWithGoogleButton from '../../components/LoginWithGoogleButton';
-import { loginWithGoogle } from '../../api/authApi';
 const { Title, Text } = Typography;
 const { useBreakpoint } = Grid;
 
@@ -53,22 +52,8 @@ const LoginPage: React.FC = () => {
     setIsForgotPassword((prev) => !prev);
   };
 
-  const handleGoogleLogin = async () => {
-    setGoogleLoading(true);
-    try {
-      const user = await loginWithGoogle();
-      if (user) {
-        dispatch(setUser(user));
-        message.success('Google login successful');
-        navigate('/');
-      } else {
-        message.info('Google login cancelled');
-      }
-    } catch (_) {
-      message.error('Google login failed');
-    } finally {
-      setGoogleLoading(false);
-    }
+  const toggleGoogleLoading = async (isLoading: boolean) => {
+    setGoogleLoading(isLoading);
   };
   return (
     <div
@@ -145,9 +130,7 @@ const LoginPage: React.FC = () => {
                 </Form.Item>
 
                 <Form.Item>
-                  <LoginWithGoogleButton
-                    handleGoogleLogin={handleGoogleLogin}
-                  />
+                  <LoginWithGoogleButton toggleLoading={toggleGoogleLoading} />
                 </Form.Item>
                 <Text style={{ display: 'block', textAlign: 'center' }}>
                   Don't have an account?{' '}
