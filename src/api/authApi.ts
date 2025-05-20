@@ -19,7 +19,7 @@ const firebaseConfig = {
   apiKey: 'AIzaSyDJENrior6OVxgHHT0xkitZp-Xj12_By20',
   authDomain: 'mediscan-ai-app.firebaseapp.com',
   projectId: 'mediscan-ai-app',
-  storageBucket: 'mediscan-ai-app.appspot.com', // <-- FIXED
+  storageBucket: 'mediscan-ai-app.firebaseapp.com',
   messagingSenderId: '887417209376',
   appId: '1:887417209376:web:0ee850da4f543051967245',
 };
@@ -37,7 +37,19 @@ export interface PlainUser {
 
 export const mapFirebaseUser = (u: FirebaseUser | null): PlainUser | null => {
   if (!u) return null;
-  return { firstName: '', lastName: '', uid: u.uid, email: u.email };
+  let firstName = '',
+    lastName = '';
+  if (u.displayName) {
+    const parts = u.displayName.trim().split(' ');
+    firstName = parts[0];
+    lastName = parts.length > 1 ? parts.slice(1).join(' ') : '';
+  }
+  return {
+    firstName,
+    lastName,
+    uid: u.uid,
+    email: u.email,
+  };
 };
 
 export const login = async (email: string, password: string) => {
@@ -59,7 +71,7 @@ export const sendResetPasswordEmail = async (email: string) => {
 };
 
 export const onAuthChange = (cb: (u: PlainUser | null) => void) =>
-  onAuthStateChanged(auth, (u) => cb(mapFirebaseUser(u)));
+  onAuthStateChanged(auth, (u) => u?.emailVerified ? cb(mapFirebaseUser(u)) : cb(null));
 
 export const sendVerificationEmail = async (u: FirebaseUser) =>
   sendEmailVerification(u);

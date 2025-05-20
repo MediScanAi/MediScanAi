@@ -7,6 +7,7 @@ import { motion } from 'framer-motion';
 import backgroundImage from '../../assets/photos/background.png';
 import { useEffect, useState } from 'react';
 import { getAuth, reload } from 'firebase/auth';
+import { mapFirebaseUser } from '../../api/authApi';
 
 const { Title, Text } = Typography;
 const { useBreakpoint } = Grid;
@@ -34,9 +35,14 @@ const RegisterPage: React.FC = () => {
     }
   }, []);
 
-  const onFinish = async ({ email, password }: RegisterFormValues) => {
+  const onFinish = async ({
+    name,
+    surname,
+    email,
+    password,
+  }: RegisterFormValues) => {
     try {
-      await dispatch(registerUser({ email, password })).unwrap();
+      await dispatch(registerUser({ name, surname, email, password })).unwrap();
       message.info(
         "We've sent a verification e-mail. Please check your inbox."
       );
@@ -45,14 +51,14 @@ const RegisterPage: React.FC = () => {
       message.error('Registration failed');
     }
   };
-
   const handleCheckVerification = async () => {
     const auth = getAuth();
     if (!auth.currentUser) return;
     setChecking(true);
     await reload(auth.currentUser);
     if (auth.currentUser.emailVerified) {
-      dispatch(setUser(auth.currentUser));
+      const mapped = mapFirebaseUser(auth.currentUser);
+      dispatch(setUser(mapped));
       message.success('Welcome to MediScan AI!');
       navigate('/');
     } else {

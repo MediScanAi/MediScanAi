@@ -93,7 +93,7 @@ const LoginPage: React.FC = () => {
           transition={{ duration: 0.6 }}
           style={{ width: '100%', maxWidth: 400 }}
         >
-          <Spin spinning={googleLoading} tip="Authenticating via Google...">
+          <Spin spinning={googleLoading} tip="Waiting for Google response...">
             <Card
               style={{
                 borderRadius: '16px',
@@ -101,7 +101,7 @@ const LoginPage: React.FC = () => {
               }}
             >
               <Title level={2} style={{ fontWeight: 'bold', marginBottom: 24 }}>
-                Login
+                Log in
               </Title>
               <Form layout="vertical" onFinish={onFinish}>
                 <Form.Item

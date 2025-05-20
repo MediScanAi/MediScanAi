@@ -1,18 +1,15 @@
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { onAuthStateChanged } from 'firebase/auth';
 import { setUser, finishLoading } from '../app/slices/authSlice';
-import { auth } from '../api/authApi';
+import { onAuthChange } from '../api/authApi';
 
 const AuthProvider = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const unsub = onAuthStateChanged(auth, (u) => {
-      if (u && u.emailVerified) {
-        dispatch(
-          setUser({ firstName: '', lastName: '', uid: u.uid, email: u.email }) // todo: add user last and first name
-        );
+    const unsub = onAuthChange((plainUser) => {
+      if (plainUser) {
+        dispatch(setUser(plainUser));
       } else {
         dispatch(setUser(null));
       }
