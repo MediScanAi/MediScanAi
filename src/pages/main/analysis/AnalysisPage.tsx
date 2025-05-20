@@ -7,8 +7,11 @@ import vitaminBackground from '../../../assets/photos/vitaminBackground.webp';
 import urineBackground from '../../../assets/photos/urineBackground.webp';
 import '../../../assets/styles/analysis.css';
 import { useNavigate } from 'react-router-dom';
+import { useAppSelector } from '../../../app/hooks.ts';
 
 const AnalysisPage = () => {
+  const theme = useAppSelector((state) => state.theme.isDarkMode);
+
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, []);
@@ -16,7 +19,10 @@ const AnalysisPage = () => {
   const navigate = useNavigate();
 
   return (
-    <div style={{ padding: 24, position: 'relative' }}>
+    <div
+      className={'Analysis' + (theme ? ' dark-theme' : '')}
+      style={{ padding: 24, position: 'relative' }}
+    >
       <div>
         <div>
           <div
@@ -144,6 +150,7 @@ const AnalysisPage = () => {
                   textAlign: 'center',
                   margin: '0 auto',
                   width: '100%',
+                  height: '49px',
                 }}
               >
                 Health Analysis Summary with AI

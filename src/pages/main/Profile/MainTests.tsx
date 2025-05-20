@@ -1,10 +1,15 @@
 import { Col, Card, Typography, Row, Button, Space } from 'antd';
 import { useNavigate } from 'react-router-dom';
+import React from 'react';
 const { Title, Text } = Typography;
 
-function MainTests() {
-  const navigate = useNavigate();
+interface MainTestsProps {
+  theme?: boolean;
+  width?: number;
+}
 
+const MainTests: React.FC<MainTestsProps> = ({ theme, width }) => {
+  const navigate = useNavigate();
   const testCards = [
     {
       title: 'Blood Test',
@@ -29,106 +34,67 @@ function MainTests() {
   ];
 
   return (
-    <div style={{ padding: '24px', margin: '0 auto' }}>
+    <div style={{ padding: '40px 24px', }}>
       <Title
+        className={'test-title' + (theme ? ' dark-mode-text' : '')}
         level={2}
-        style={{ marginBottom: '24px', color: '#3498db', fontWeight: 500 }}
+        style={{
+          marginBottom: '40px',
+          fontSize: width && width < 1200 ? '22px' : '36px',
+        }}
       >
         Fill the form to get your test results
       </Title>
-      <Row gutter={[24, 24]} justify="center">
+
+      <Row gutter={[32, 32]} justify="center">
         {testCards.map((card, index) => (
-          <Col key={index} xs={24} sm={12} md={12} lg={6}>
+          <Col
+            key={index}
+            xs={24}
+            sm={24}
+            md={24}
+            lg={12}
+            xl={12}
+            xxl={6}
+            style={{ backgroundColor: 'transparent' }}
+          >
             <Card
+              className={theme ? 'dark-mode-text' : ''}
               hoverable
+              onClick={card.onClick}
               style={{
-                border: 'none',
-                height: '200px',
-                position: 'relative',
-                overflow: 'hidden',
-                borderRadius: '12px',
+                height: '220px',
+                borderRadius: '16px',
+                boxShadow: '0 6px 20px rgba(0,0,0,0.05)',
+                transition: 'transform 0.2s ease',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
+                textAlign: 'center',
+                padding: '24px',
+                border: '2px solid #2BC0E4',
+                minWidth: '200px',
+                backgroundColor: 'transparent',
               }}
-              bodyStyle={{
-                padding: 0,
-                height: '100%',
-              }}
-              onClick={card.onClick}
             >
-              <div
-                style={{
-                  position: 'absolute',
-                  top: 0,
-                  left: 0,
-                  right: 0,
-                  bottom: 0,
-                  backgroundSize: 'cover',
-                  backgroundPosition: 'center',
-                  filter: 'blur(3px)',
-                  zIndex: 1,
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                }}
-              />
-
-              <div
-                style={{
-                  position: 'absolute',
-                  top: 0,
-                  left: 0,
-                  right: 0,
-                  bottom: 0,
-                  zIndex: 2,
-                }}
-              />
-
-              <div
-                style={{
-                  position: 'relative',
-                  zIndex: 3,
-                  height: '100%',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  flexDirection: 'column',
-                  padding: '24px',
-                }}
-              >
+              <div>
                 <Title
-                  level={3}
-                  style={{
-                    color: 'black',
-                    marginBottom: '8px',
-                    fontSize: '22px',
-                  }}
+                  className={'test-title' + (theme ? ' dark-mode-text' : '')}
+                  level={4}
                 >
                   {card.title}
                 </Title>
-
                 <Text
                   style={{
-                    color: 'black',
+                    color: '#555',
                     fontSize: '15px',
-                    textAlign: 'center',
+                    display: 'block',
+                    marginBottom: '16px',
                   }}
                 >
                   {card.subtitle}
                 </Text>
-
-                <Button
-                  type="text"
-                  style={{
-                    color: 'black',
-                    alignSelf: 'flex-start',
-                    fontWeight: 500,
-                    marginTop: '16px',
-                    marginLeft: 'auto',
-                    marginRight: 'auto',
-                  }}
-                >
+                <Button type="link" style={{ padding: 0, fontWeight: 500 }}>
                   View More
                 </Button>
               </div>
@@ -141,9 +107,9 @@ function MainTests() {
         direction="vertical"
         style={{
           width: '100%',
-          marginTop: '48px',
-          textAlign: 'center',
+          marginTop: '60px',
           alignItems: 'center',
+          textAlign: 'center',
         }}
       >
         <Button
@@ -151,18 +117,21 @@ function MainTests() {
           size="large"
           onClick={() => navigate('/tests-form/blood-test')}
           style={{
-            width: '220px',
-            height: '48px',
-            borderRadius: '24px',
-            fontWeight: 500,
-            fontSize: '16px',
+            height: '52px',
+            padding: '0 48px',
+            fontSize: '1.1rem',
+            fontWeight: 600,
+            borderRadius: '28px',
+            background: 'linear-gradient(90deg, #2563eb, #1d4ed8)',
+            boxShadow: '0 6px 16px rgba(37, 99, 235, 0.3)',
+            border: 'none',
           }}
         >
-          Start Testing
+          Get Started
         </Button>
       </Space>
     </div>
   );
-}
+};
 
 export default MainTests;

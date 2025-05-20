@@ -1,14 +1,18 @@
 import {
+  Avatar,
   Dropdown,
   Flex,
   type MenuProps,
+  Select,
   Switch,
-  Tabs,
-  type TabsProps,
+  Menu,
+  Button,
+  Space
 } from 'antd';
 import { NavLink } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import {
+  DownOutlined,
   ExperimentOutlined,
   HomeOutlined,
   LogoutOutlined,
@@ -18,7 +22,7 @@ import {
   SettingOutlined,
   SunOutlined,
   TeamOutlined,
-  UserOutlined,
+  UpOutlined,
 } from '@ant-design/icons';
 import { useLocation, useNavigate } from 'react-router';
 import '../assets/styles/header.css';
@@ -27,6 +31,97 @@ import { toggleTheme } from '../app/slices/theme';
 import { logoutUser } from '../app/slices/authSlice';
 
 
+const options = [
+    {
+        label:(<div className={'language-options'} ><img style={{height:'20px'}} src={'src/assets/photos/united-kingdom.png'}/> ENG</div>),
+        value: 'english',
+    },
+    {
+        label: (<div className={'language-options'}><img style={{height:'20px'}} src={'src/assets/photos/russia.png'}/> RUS</div>),
+        value: 'russian',
+    },
+    {
+        label: (<div className={'language-options'}><img style={{height:'20px'}} src={'src/assets/photos/armenia.png'}/> ARM</div>),
+        value: 'armenia',
+    },
+];
+
+const menuItems: MenuProps['items'] = [
+  {
+    label: (
+      <span>
+        <HomeOutlined /> Home
+      </span>
+    ),
+    key: 'home',
+  },
+  {
+    label: (
+      <span>
+        <ExperimentOutlined /> Analysis
+      </span>
+    ),
+    key: 'analysis',
+    children: [
+      {
+        label: 'Blood Test',
+        key: 'blood-test',
+      },
+      {
+        label: 'Urine Test',
+        key: 'urine-test',
+      },
+      {
+        label: 'Vitamin Test',
+        key: 'vitamin-test',
+      },
+      {
+        label: 'Genetic Test',
+        key: 'genetic-test',
+      },
+    ],
+  },
+  {
+    label: (
+      <span>
+        <MedicineBoxOutlined /> Your AI Doctor
+      </span>
+    ),
+    key: 'ai-doctor',
+  },
+  {
+    label: (
+      <span>
+        <TeamOutlined /> About Us
+      </span>
+    ),
+    key: 'about-us',
+  },
+];
+
+const analysisItems: MenuProps['items'] = [
+  {
+    label: <NavLink to={'/analysis/blood-test'}>Blood Test</NavLink>,
+    key: 'blood-test',
+    icon: <MedicineBoxOutlined />,
+  },
+  {
+    label: <NavLink to={'/analysis/urine-test'}>Urine Test</NavLink>,
+    key: 'urine-test',
+    icon: <MedicineBoxOutlined />,
+  },
+  {
+    label: <NavLink to={'/analysis/vitamin-test'}>Vitamin Test</NavLink>,
+    key: 'vitamin-test',
+    icon: <MedicineBoxOutlined />,
+  },
+  {
+    label: <NavLink to={'/analysis/genetic-test'}>Genetic Test</NavLink>,
+    key: 'genetic-test',
+    icon: <MedicineBoxOutlined />,
+  },
+];
+
 const burgerItems: MenuProps['items'] = [
   {
     label: <NavLink to={'/'}>Home</NavLink>,
@@ -34,12 +129,17 @@ const burgerItems: MenuProps['items'] = [
     icon: <HomeOutlined />,
   },
   {
-    label: <NavLink to="/">Analysis</NavLink>,
+    label: (
+      <Dropdown trigger={['hover']} menu={{ items: analysisItems }}>
+        <div style={{ height: '100%', width: '100%' }}>
+          <ExperimentOutlined /> Analysis
+        </div>
+      </Dropdown>
+    ),
     key: 'analysis',
-    icon: <ExperimentOutlined />,
   },
   {
-    label: <NavLink to="/">Your AI Doctor</NavLink>,
+    label: <NavLink to="/ai-doctor">Your AI Doctor</NavLink>,
     key: 'ai-doctor',
     icon: <MedicineBoxOutlined />,
   },
@@ -50,46 +150,26 @@ const burgerItems: MenuProps['items'] = [
   },
 ];
 
-const items: TabsProps['items'] = [
-  {
-    label: 'Home',
-    key: 'home',
-    icon: <HomeOutlined />,
-  },
-  {
-    label: 'Analysis',
-    key: 'analysis',
-    icon: <ExperimentOutlined />,
-  },
-  {
-    key: 'ai-doctor',
-    label: 'Your AI Doctor',
-    icon: <MedicineBoxOutlined />,
-  },
-  {
-    key: 'about-us',
-    label: 'About Us',
-    icon: <TeamOutlined />,
-  },
-];
-
 function Header() {
   const [width, setWidth] = useState(window.innerWidth);
   const navigate = useNavigate();
-  const activeKey = useLocation().pathname.substring(1);
+  const activeKey =
+    useLocation().pathname === '/'
+      ? 'home'
+      : useLocation().pathname.substring(1);
   const theme = useAppSelector((state) => state.theme.isDarkMode);
   const dispatch = useAppDispatch();
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const user = useAppSelector((state) => state.auth.user);
+
   const handleThemeChange = () => {
     dispatch(toggleTheme());
   };
-  const user = useAppSelector((state) => state.auth.user);
-  const handleTabClick = (key: string) => {
+
+  const handleMenuClick: MenuProps['onClick'] = ({ key }) => {
     switch (key) {
       case 'home':
         navigate('/');
-        break;
-      case 'analysis':
-        navigate('/analysis');
         break;
       case 'about-us':
         navigate('/about-us');
@@ -97,70 +177,96 @@ function Header() {
       case 'ai-doctor':
         navigate('/ai-doctor');
         break;
+      case 'blood-test':
+        navigate('/analysis/blood-test');
+        break;
+      case 'urine-test':
+        navigate('/analysis/urine-test');
+        break;
+      case 'vitamin-test':
+        navigate('/analysis/vitamin-test');
+        break;
+      case 'genetic-test':
+        navigate('/analysis/genetic-test');
+        break;
     }
+  };
+
+  const toggleArrow = () => {
+    setIsDropdownOpen(!isDropdownOpen);
   };
 
   const userItems: MenuProps['items'] = [
     {
       key: 'profile',
-      label: <NavLink to={'/profile'}>Profile</NavLink>,
+      label: <NavLink to={'/profile/info'}>Profile</NavLink>,
       icon: <SettingOutlined />,
     },
     {
       key: 'logout',
-      label: <NavLink onClick={() => dispatch(logoutUser())} to={'/auth/login'}>Logout</NavLink>,
+      label: (
+        <NavLink onClick={() => dispatch(logoutUser())} to={'/'}>
+          Logout
+        </NavLink>
+      ),
       icon: <LogoutOutlined />,
     },
   ];
 
-  useEffect(() => {
-    const handleResize = () => {
-      setWidth(window.innerWidth);
-    };
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
+    return (
+        <header>
+            <Flex
+                className={'Header' + ' ' + (theme ? 'dark-Header' : '')}
+                justify="space-around"
+                align="middle"
+            >
+                {width < 820 ? (
+                    <Dropdown trigger={["click"]} menu={{items: burgerItems}}>
+                        <MenuOutlined style={{fontSize: 30}}/>
+                    </Dropdown>
+                ) : (
+                        <Menu
+                            onClick={handleMenuClick}
+                            className="custom-menu"
+                            mode="horizontal"
+                            selectedKeys={[activeKey.includes('analysis/') ? 'analysis' : activeKey]}
+                            items={menuItems}
+                        />
+                )}
+                <div className={'Right-buttons'}>
+                    {user ? <Dropdown trigger={['click']} menu={{items: userItems}} onOpenChange={toggleArrow}>
+                        <div
+                            className={'user-button' + (theme ? ' dark-user-button' : '')}
+                        >
+                            <Avatar style={{fontSize: 20}}>
+                                {user?.email ? user?.email[0].toUpperCase() : 'Profile'}
+                            </Avatar>
+                            {
+                                isDropdownOpen ?
+                                    <UpOutlined/> :
+                                    <DownOutlined/>
+                            }
+                        </div>
+                    </Dropdown> :
+                        <Button onClick={()=>navigate('/auth/login')}  ghost variant={"text"} style={{border:'none',color:(theme?'white':'black')}}>
+                          Log In
+                        </Button>}
+                    <Switch
+                        defaultChecked={theme}
+                        checkedChildren={<SunOutlined/>}
+                        unCheckedChildren={<MoonOutlined/>}
+                        onClick={handleThemeChange}
+                    />
+                    <Select variant={'borderless'} options={options} optionRender={(option)=>{
+                        return(
+                        <Space>
+                            {option.data.label}
+                        </Space>
+                    )}}  defaultValue="english" className={theme?'dark-select-selector':''} style={{width: 100,backgroundColor:'transparent'}}/>
+                </div>
+            </Flex>
+        </header>
+    );
+}
 
-  return (
-    <header>
-      <Flex
-        className={'Header' + ' ' + (theme ? 'dark-Header' : '')}
-        justify="space-around"
-        align="middle"
-      >
-        {width < 820 ? (
-          <Dropdown menu={{ items: burgerItems }}>
-            <MenuOutlined style={{ fontSize: 30 }} />
-          </Dropdown>
-        ) : (
-          <div>
-            <Tabs
-              onTabClick={handleTabClick}
-              className="custom-tabs"
-              size={'middle'}
-              defaultActiveKey={activeKey ? activeKey : 'home'}
-              items={items}
-              animated={false}
-            ></Tabs>
-          </div>
-        )}
-        <div className={'Right-buttons'}>
-          <Dropdown menu={{ items: userItems }}>
-            <div className={'user-button' + (theme ? ' dark-user-button' : '')} style={{marginRight: 50}}>
-              <UserOutlined style={{ fontSize: 20 }} />
-              {user?.email}
-            </div>
-          </Dropdown>
-          <Switch
-            defaultChecked={theme}
-            checkedChildren={<SunOutlined />}
-            unCheckedChildren={<MoonOutlined />}
-            onClick={handleThemeChange}
-          />
-        </div>
-      </Flex>
-    </header>
-  );
-};
-
-export { Header };
+export {Header};

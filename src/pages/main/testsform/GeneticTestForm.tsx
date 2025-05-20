@@ -1,4 +1,13 @@
-import { Button, message, Form, Card, Typography, Select } from 'antd';
+import {
+  Button,
+  message,
+  Form,
+  Card,
+  Typography,
+  Select,
+  Row,
+  Col,
+} from 'antd';
 import {
   setGeneticTestData,
   type GeneticTestFormValues,
@@ -67,12 +76,15 @@ function GeneticTestForm() {
     }
 
     setTimeout(() => {
-      navigate('/profile');
+      navigate('/profile/analysis-history');
     }, 1000);
   };
 
   return (
-    <Card style={{ border: 'none' }}>
+    <Card
+      style={{ border: 'none' }}
+      title={<Title level={3}>Genetic Test</Title>}
+    >
       <Form
         form={form}
         onFinish={onFinish}
@@ -80,24 +92,25 @@ function GeneticTestForm() {
         size="large"
         initialValues={updatedData}
       >
-        <Title level={3}>Genetic Test & Family Health History</Title>
-        <Title level={4}>Genetic Test</Title>
-        {geneticFields.map((field) => (
-          <Form.Item
-            key={field.name}
-            label={field.label}
-            name={field.name}
-            rules={[{ required: true }]}
-          >
-            <Select placeholder="Select result">
-              {field.options?.map((opt) => (
-                <Option key={opt} value={opt}>
-                  {opt.charAt(0).toUpperCase() + opt.slice(1)}
-                </Option>
-              ))}
-            </Select>
-          </Form.Item>
-        ))}
+        <Row gutter={[24, 16]}>
+          {geneticFields.map((field) => (
+            <Col span={12} key={field.name}>
+              <Form.Item
+                label={field.label}
+                name={field.name}
+                rules={[{ required: true }]}
+              >
+                <Select placeholder="Select result">
+                  {field.options?.map((opt) => (
+                    <Option key={opt} value={opt}>
+                      {opt.charAt(0).toUpperCase() + opt.slice(1)}
+                    </Option>
+                  ))}
+                </Select>
+              </Form.Item>
+            </Col>
+          ))}
+        </Row>
 
         <Form.Item style={{ textAlign: 'center', marginTop: 32 }}>
           <Button type="primary" htmlType="submit" size="large">

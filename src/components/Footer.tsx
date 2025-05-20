@@ -11,26 +11,23 @@ const { Text, Link } = Typography;
 
 const Footer = () => {
   const theme = useAppSelector((state) => state.theme.isDarkMode);
+
   return (
     <footer className={theme ? 'dark-footer' : ''}>
       <Row justify="space-around" align="middle">
-        <Col
-          xs={24}
-          sm={8}
-          style={{ textAlign: 'center', marginBottom: '16px' }}
-        >
+        <Col xs={24} sm={12} style={{ textAlign: 'center' }}>
           <Text className={'info'}>© 2025 Your AI Doctor.</Text>
           <Text className={'info'}> All rights reserved.</Text>
         </Col>
-        <Col xs={24} sm={8} className={'info'}>
-          <Link href="/" className={'info'}>
+        <Col xs={24} sm={11} className={'info'}>
+          <Link href="/about-us" className={'info'}>
             About US
           </Link>
-          <Link href="/" className={'info'}>
+          <Link href="/profile/contact-us" className={'info'}>
             Contacts
           </Link>
-          <Link href="/" className={'info'}>
-            Support
+          <Link href="/profile/partner-with-us" className={'info'}>
+            Partner With Us
           </Link>
           <InstagramOutlined className={'info-icons'} />
           <FacebookFilled className={'info-icons'} />

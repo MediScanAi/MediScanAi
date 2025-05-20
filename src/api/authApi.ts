@@ -14,18 +14,20 @@ import {
   setPersistence,
   browserLocalPersistence,
 } from 'firebase/auth';
+import { getFirestore } from 'firebase/firestore';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyDJENrior6OVxgHHT0xkitZp-Xj12_By20',
   authDomain: 'mediscan-ai-app.firebaseapp.com',
   projectId: 'mediscan-ai-app',
-  storageBucket: 'mediscan-ai-app.firebaseapp.com',
+  storageBucket: 'mediscan-ai-app.firebasestorage.com',
   messagingSenderId: '887417209376',
   appId: '1:887417209376:web:0ee850da4f543051967245',
 };
 
 const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
+export const db = getFirestore(app);
 await setPersistence(auth, browserLocalPersistence);
 
 export interface PlainUser {
