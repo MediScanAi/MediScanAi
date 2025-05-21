@@ -1,8 +1,7 @@
-import { createSlice } from '@reduxjs/toolkit';
-
-interface BloodTestState {
-  bloodTestData: BloodTestFormValues | null;
-}
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import type { PayloadAction } from '@reduxjs/toolkit';
+import { doc, getDoc, setDoc, deleteDoc, updateDoc } from 'firebase/firestore';
+import { db } from '../../api/authApi'; // путь к твоей инициализации Firebase
 
 export interface BloodTestFormValues {
   hemoglobin: number | null;
@@ -14,50 +13,119 @@ export interface BloodTestFormValues {
   date: string | null;
 }
 
-const storedData = localStorage.getItem('bloodTestData');
+interface BloodTestState {
+  bloodTestData: BloodTestFormValues | null;
+}
+
 const initialState: BloodTestState = {
-  bloodTestData: storedData
-    ? (JSON.parse(storedData) as BloodTestFormValues)
-    : null,
+  bloodTestData: null,
 };
+
+export const fetchBloodTestData = createAsyncThunk<
+  BloodTestFormValues | null,
+  string
+>('bloodTest/fetchBloodTestData', async (uid) => {
+  const ref = doc(db, 'users', uid, 'bloodTest', 'latest');
+  const snap = await getDoc(ref);
+
+  if (snap.exists()) {
+    const data = snap.data() as BloodTestFormValues;
+
+    return {
+      ...data,
+      date: new Date(data.date || '').toLocaleString('ru-RU', {
+        day: '2-digit',
+        month: '2-digit',
+        year: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit',
+      }),
+    };
+  }
+
+  return null;
+});
+
+export const saveBloodTestData = createAsyncThunk(
+  'bloodTest/saveBloodTestData',
+  async ({
+    uid,
+    data,
+  }: {
+    uid: string;
+    data: Omit<BloodTestFormValues, 'date'>;
+  }) => {
+    const fullData: BloodTestFormValues = {
+      ...data,
+      date: new Date().toISOString(),
+    };
+
+    const ref = doc(db, 'users', uid, 'bloodTest', 'latest');
+    await setDoc(ref, fullData);
+
+    return fullData;
+  }
+);
+
+export const deleteBloodTestDataFromDB = createAsyncThunk(
+  'bloodTest/deleteBloodTestDataFromDB',
+  async (uid: string) => {
+    const ref = doc(db, 'users', uid, 'bloodTest', 'latest');
+    await deleteDoc(ref);
+    return null;
+  }
+);
+
+export const editBloodTestData = createAsyncThunk(
+  'bloodTest/editBloodTestData',
+  async ({
+    uid,
+    updatedFields,
+  }: {
+    uid: string;
+    updatedFields: Partial<Omit<BloodTestFormValues, 'date'>>
+  }) => {
+    const ref = doc(db, 'users', uid, 'bloodTest', 'latest');
+
+    const updatedWithDate = {
+      ...updatedFields,
+      date: new Date().toISOString(),
+    };
+
+    await updateDoc(ref, updatedWithDate);
+
+    const snap = await getDoc(ref);
+    return snap.data() as BloodTestFormValues;
+  }
+);
 
 const bloodTestSlice = createSlice({
   name: 'bloodTest',
   initialState,
   reducers: {
-    setBloodTestData: (state, action) => {
-      state.bloodTestData = {
-        ...state.bloodTestData,
-        ...action.payload,
-        date: new Date().toLocaleString([], {
-          year: 'numeric',
-          month: '2-digit',
-          day: '2-digit',
-          hour: '2-digit',
-          minute: '2-digit',
-        }),
-      };
-      localStorage.setItem(
-        'bloodTestData',
-        JSON.stringify(state.bloodTestData)
-      );
+    setBloodTestData: (state, action: PayloadAction<BloodTestFormValues>) => {
+      state.bloodTestData = action.payload;
     },
     deleteBloodTestData: (state) => {
       state.bloodTestData = null;
-      localStorage.removeItem('bloodTestData');
     },
-    updateBloodTestData: (state, action) => {
-      state.bloodTestData = {
-        ...action.payload,
-      };
-      localStorage.setItem(
-        'bloodTestData',
-        JSON.stringify(state.bloodTestData)
-      );
-    },
+  },
+  extraReducers: (builder) => {
+    builder
+      .addCase(fetchBloodTestData.fulfilled, (state, action) => {
+        state.bloodTestData = action.payload;
+      })
+      .addCase(saveBloodTestData.fulfilled, (state, action) => {
+        state.bloodTestData = action.payload;
+      })
+      .addCase(deleteBloodTestDataFromDB.fulfilled, (state) => {
+        state.bloodTestData = null;
+      })
+      .addCase(editBloodTestData.fulfilled, (state, action) => {
+        state.bloodTestData = action.payload;
+      });
   },
 });
 
-export const { setBloodTestData, deleteBloodTestData, updateBloodTestData } =
-  bloodTestSlice.actions;
+export const { setBloodTestData, deleteBloodTestData } = bloodTestSlice.actions;
 export default bloodTestSlice.reducer;

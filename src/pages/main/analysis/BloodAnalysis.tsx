@@ -10,8 +10,12 @@ import {
   Bar,
 } from 'recharts';
 import '../../../assets/styles/analysis.css';
-import type { BloodTestFormValues } from '../../../app/slices/bloodTestSlice';
-import BloodMultic from '../../../assets/photos/BloodMultic.png';
+import { useAppDispatch, useAppSelector } from '../../../app/hooks';
+import { fetchBloodTestData } from '../../../app/slices/bloodTestSlice';
+import { onAuthStateChanged } from 'firebase/auth';
+import { auth } from '../../../api/authApi';
+import { collection } from 'firebase/firestore';
+import { db } from '../../../api/authApi';import BloodMultic from '../../../assets/photos/BloodMultic.png';
 import Done from '../../../assets/photos/Done.webp';
 import { Button } from 'antd';
 import { useNavigate } from 'react-router-dom';
@@ -38,6 +42,15 @@ interface CustomTooltipProps {
 interface LegendPayload {
   color: string;
   value: string;
+}
+
+interface BloodTestFormValues {
+  hemoglobin: number | null;
+  wbc: number | null;
+  rbc: number | null;
+  platelets: number | null;
+  glucose: number | null;
+  cholesterol: number | null;
 }
 
 const CustomTooltip = ({ active, payload }: CustomTooltipProps) => {
@@ -68,7 +81,7 @@ const CustomLegend = ({ payload }: { payload: LegendPayload[] }) => (
 );
 
 const CustomBarChart = ({ data }: { data: ChartData[] }) => (
-  <ResponsiveContainer width="100%" height={300}>
+  <ResponsiveContainer width="90%" height={300}>
     <BarChart data={data} margin={{ top: 20, right: 30, left: 0, bottom: 5 }}>
       <defs>
         <linearGradient id="barGradient" x1="0" y1="0" x2="0" y2="1">
@@ -92,10 +105,26 @@ const CustomBarChart = ({ data }: { data: ChartData[] }) => (
 const { Title } = Typography;
 
 function BloodAnalysis() {
-  const mockAnalysisData: BloodTestFormValues = JSON.parse(
-    localStorage.getItem('bloodTestData') || '{}'
+  const dispatch = useAppDispatch();
+  const bloodTestData = useAppSelector(
+    (state) => state.bloodTest.bloodTestData
   );
   const [width, setWidth] = useState(window.innerWidth);
+  
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        collection(db, 'users', user.uid, 'bloodTest');
+        dispatch(fetchBloodTestData(user.uid));
+      }
+    });
+    
+
+    return () => unsubscribe();
+  }, [dispatch]);
+
+  
+
 
   const [expandedWarnings, setExpandedWarnings] = useState<{
     [key: string]: boolean;
@@ -211,37 +240,37 @@ function BloodAnalysis() {
   const PieData: ChartData[] = [
     {
       name: 'Cholesterol',
-      value: mockAnalysisData.cholesterol || 0,
+      value: bloodTestData?.cholesterol || 0,
       color: '#f39c12',
       image: Cholesterol,
     },
     {
       name: 'Glucose',
-      value: mockAnalysisData.glucose || 0,
+      value: bloodTestData?.glucose || 0,
       color: '#16a085',
       image: Chocolate,
     },
     {
       name: 'Hemoglobin',
-      value: mockAnalysisData.hemoglobin || 0,
+      value: bloodTestData?.hemoglobin || 0,
       color: '#e74c3c',
       image: Syringe,
     },
     {
       name: 'Platelets',
-      value: mockAnalysisData.platelets || 0,
+      value: bloodTestData?.platelets || 0,
       color: '#8e44ad',
       image: ChartGoingDown,
     },
     {
       name: 'RBC',
-      value: mockAnalysisData.rbc || 0,
+      value: bloodTestData?.rbc || 0,
       color: '#2980b9',
       image: MedKit,
     },
     {
       name: 'WBC',
-      value: mockAnalysisData.wbc || 0,
+      value: bloodTestData?.wbc || 0,
       color: '#27ae60',
       image: Done,
     },
@@ -346,18 +375,25 @@ function BloodAnalysis() {
       </Row>
 
       <div>
-        {mockAnalysisData.cholesterol ? (
+        {bloodTestData?.cholesterol ? (
           <div>
-            <Card className="card2-design">
+            <Card className="card2-design" style={{ border: "none" }}>
               <Col className="card2-col-design">
-                <Button
-                  className="consult-button"
-                  type="primary"
-                  size="large"
-                  onClick={() => navigate('/ai-doctor')}
-                >
-                  Analyze with AI
-                </Button>
+                <div style={{ 
+                  display: 'flex',
+                  justifyContent: 'center',
+                  width: '100%',
+                  marginBottom: '20px'
+                }}>
+                  <Button 
+                    className="consult-button"
+                    type="primary"
+                    size="large"
+                    onClick={() => navigate('/ai-doctor')}
+                  >
+                    Analyze with AI
+                  </Button>
+                </div>
               </Col>
               <Col
                 style={{
@@ -388,8 +424,8 @@ function BloodAnalysis() {
                 🚨 Health Risk Warnings
               </Title>
               <ul style={{ paddingLeft: 20 }}>
-                {getDiseaseRisks(mockAnalysisData).length > 0 ? (
-                  getDiseaseRisks(mockAnalysisData).map((risk, index) => (
+                {getDiseaseRisks(bloodTestData).length > 0 ? (
+                  getDiseaseRisks(bloodTestData).map((risk, index) => (
                     <li key={index} style={{ fontSize: 16, marginBottom: 8 }}>
                       {risk}
                       {diseaseExplanations[risk] && (
