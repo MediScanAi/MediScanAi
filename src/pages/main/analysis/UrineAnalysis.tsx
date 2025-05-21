@@ -10,19 +10,19 @@ import {
   Bar,
 } from 'recharts';
 import '../../../assets/styles/analysis.css';
-import Done from '../../../assets/photos/Done.png';
+import Done from '../../../assets/photos/Done.webp';
 import { Button } from 'antd';
 import { useNavigate } from 'react-router-dom';
-import Cholesterol from '../../../assets/photos/Cholesterol.png';
-import PH from '../../../assets/photos/PH.png';
-import Nitrites from '../../../assets/photos/Nitrite.png';
-import Protein from '../../../assets/photos/Protein.png';
-import Ketones from '../../../assets/photos/Ketones.png';
-import Bilirubin from '../../../assets/photos/Bilirubin.png';
+import Chocolate from '../../../assets/photos/Chocolate.webp';
+import PH from '../../../assets/photos/PH.webp';
+import Nitrites from '../../../assets/photos/Nitrite.webp';
+import Protein from '../../../assets/photos/Protein.webp';
+import Ketones from '../../../assets/photos/Ketones.webp';
+import Bilirubin from '../../../assets/photos/Bilirubin.webp';
 import BloodMultic from '../../../assets/photos/BloodMultic.png';
-import Urobilinogen from '../../../assets/photos/Urobilinogen.png';
-import Urine from '../../../assets/photos/Urine.png';
-import LeukocyteEsterase from '../../../assets/photos/LeukocyteEsterase.png';
+import Urobilinogen from '../../../assets/photos/Urobilinogen.webp';
+import Urine from '../../../assets/photos/Urine.webp';
+import LeukocyteEsterase from '../../../assets/photos/LeukocyteEsterase.webp';
 import { useEffect } from 'react';
 import { useState } from 'react';
 import type { UrineTestFormValues } from '../../../app/slices/urineTestSlice';
@@ -155,7 +155,7 @@ function UrineAnalysis() {
       name: 'Glucose',
       value: mockAnalysisData.glucose || 0,
       color: '#2980b9',
-      image: Cholesterol,
+      image: Chocolate,
     },
     {
       name: 'Ketones',
@@ -250,7 +250,10 @@ function UrineAnalysis() {
         '⚠️ Nitrites detected — Suggestive of Urinary Tract Infection (UTI)'
       );
     }
-    if (data.leukocyteEsterase !== undefined && Number(data.leukocyteEsterase) > 0) {
+    if (
+      data.leukocyteEsterase !== undefined &&
+      Number(data.leukocyteEsterase) > 0
+    ) {
       risks.push(
         '⚠️ Leukocyte Esterase detected — Indicative of Infection or Inflammation'
       );
@@ -263,7 +266,10 @@ function UrineAnalysis() {
         '⚠️ Ketones detected — Possible Diabetes, Starvation, or Ketoacidosis'
       );
     }
-    if (data.ph !== undefined && (Number(data.ph) < 4.5 || Number(data.ph) > 8)) {
+    if (
+      data.ph !== undefined &&
+      (Number(data.ph) < 4.5 || Number(data.ph) > 8)
+    ) {
       risks.push(
         '⚠️ Abnormal pH — Possible Infection, Kidney Stones, or Diet-related Issues'
       );
@@ -275,7 +281,8 @@ function UrineAnalysis() {
     }
     if (
       data.specificGravity !== undefined &&
-      (Number(data.specificGravity) < 1.005 || Number(data.specificGravity) > 1.03)
+      (Number(data.specificGravity) < 1.005 ||
+        Number(data.specificGravity) > 1.03)
     ) {
       risks.push(
         '⚠️ Abnormal Specific Gravity — May Indicate Hydration Issues or Kidney Dysfunction'
@@ -403,7 +410,7 @@ function UrineAnalysis() {
         <Col className="welcome-section-column">
           <Typography
             className="welcome-text"
-            style={{ fontSize: width > 768 ? '30px' : '20px', marginTop: 50 }}
+            style={{ fontSize: width > 768 ? '30px' : '20px', marginTop: 50, marginLeft: 5 }}
           >
             Urine Test Results
           </Typography>
@@ -431,55 +438,105 @@ function UrineAnalysis() {
 
       <div>
         {mockAnalysisData.bilirubin ? (
-          <Card className="card2-design">
-            <Col className="card2-col-design">
-              <Button
-                className="consult-button"
-                type="primary"
-                size="large"
-                onClick={() => navigate('/ai-doctor')}
-              >
-                Analyze with AI
-              </Button>
-            </Col>
-            <Col
-              style={{
-                display: 'flex',
-                flexDirection: 'row',
-                alignItems: 'center',
-                justifyContent: 'center',
-              }}
-            >
-              <CustomBarChart data={BarData.slice(4)} />
-            </Col>
-            <Col
-              style={{
-                display: 'flex',
-                flexDirection: width > 768 ? 'row' : 'column',
-                alignItems: 'center',
-                justifyContent: 'center',
-              }}
-            >
-              {scorecards.map((item: Scorecard, idx) => (
-                <Card
-                  key={idx}
-                  style={{
-                    textAlign: 'center',
-                    borderRadius: '15px',
-                    border: 'none',
-                  }}
+          <div>
+            <Card className="card2-design">
+              <Col className="card2-col-design">
+                <Button
+                  className="consult-button"
+                  type="primary"
+                  size="large"
+                  onClick={() => navigate('/ai-doctor')}
                 >
-                  <Progress
-                    type="circle"
-                    percent={Math.min(item.percent, 100)}
-                    format={() => item.value || 'N/A'}
-                    strokeWidth={7}
-                  />
-                  <div style={{ marginTop: 45 }}>{item.label}</div>
-                </Card>
-              ))}
-            </Col>
-          </Card>
+                  Analyze with AI
+                </Button>
+              </Col>
+              <Col
+                style={{
+                  display: 'flex',
+                  flexDirection: 'row',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                }}
+              >
+                <CustomBarChart data={BarData.slice(4)} />
+              </Col>
+              <Col
+                style={{
+                  display: 'flex',
+                  flexDirection: width > 768 ? 'row' : 'column',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                }}
+              >
+                {scorecards.map((item: Scorecard, idx) => (
+                  <Card
+                    key={idx}
+                    style={{
+                      textAlign: 'center',
+                      borderRadius: '15px',
+                      border: 'none',
+                    }}
+                  >
+                    <Progress
+                      type="circle"
+                      percent={Math.min(item.percent, 100)}
+                      format={() => item.value || 'N/A'}
+                      strokeWidth={7}
+                    />
+                    <div style={{ marginTop: 45 }}>{item.label}</div>
+                  </Card>
+                ))}
+              </Col>
+            </Card>
+            <Card
+              style={{
+                margin: '20px auto',
+                width: '90%',
+                backgroundColor: '#fffbe6',
+                border: '1px solid #faad14',
+                borderRadius: 10,
+                padding: 16,
+              }}
+            >
+              <Title
+                level={3}
+                style={{ color: 'rgb(255, 0, 0)', fontFamily: 'Poppins' }}
+              >
+                🚨 Health Risk Warnings
+              </Title>
+              <ul style={{ paddingLeft: 20 }}>
+                {urineWarnings.length > 0 ? (
+                  urineWarnings.map((risk, index) => (
+                    <li key={index} style={{ fontSize: 16, marginBottom: 8 }}>
+                      {risk}
+                      {diseaseExplanations[risk] && (
+                        <div>
+                          <Button
+                            type="link"
+                            style={{ padding: 0 }}
+                            onClick={() => toggleWarning(risk)}
+                          >
+                            {expandedWarnings[risk] ? 'Show less' : 'Show more'}
+                          </Button>
+                          {expandedWarnings[risk] && (
+                            <p
+                              style={{ marginTop: 5, fontSize: 14, color: '#555' }}
+                            >
+                              {diseaseExplanations[risk]}
+                            </p>
+                          )}
+                        </div>
+                      )}
+                    </li>
+                  ))
+                ) : (
+                  <p style={{ fontSize: 16 }}>
+                    ✅ All your values are within normal range. Great job!
+                  </p>
+                )}
+              </ul>
+            </Card>
+          </div>
         ) : (
           <div
             style={{
@@ -505,108 +562,54 @@ function UrineAnalysis() {
         )}
       </div>
 
-      {mockAnalysisData.bilirubin !== undefined ? (
-        <Card
-          style={{
-            margin: '20px auto',
-            width: '90%',
-            backgroundColor: '#fffbe6',
-            border: '1px solid #faad14',
-            borderRadius: 10,
-            padding: 16,
-          }}
-        >
-          <Title
-            level={3}
-            style={{ color: 'rgb(255, 0, 0)', fontFamily: 'Poppins' }}
-          >
-            🚨 Health Risk Warnings
-          </Title>
-          <ul style={{ paddingLeft: 20 }}>
-            {urineWarnings.length > 0 ? (
-              urineWarnings.map((risk, index) => (
-                <li key={index} style={{ fontSize: 16, marginBottom: 8 }}>
-                  {risk}
-                  {diseaseExplanations[risk] && (
-                    <div>
-                      <Button
-                        type="link"
-                        style={{ padding: 0 }}
-                        onClick={() => toggleWarning(risk)}
-                      >
-                        {expandedWarnings[risk] ? 'Show less' : 'Show more'}
-                      </Button>
-                      {expandedWarnings[risk] && (
-                        <p
-                          style={{ marginTop: 5, fontSize: 14, color: '#555' }}
-                        >
-                          {diseaseExplanations[risk]}
-                        </p>
-                      )}
-                    </div>
-                  )}
-                </li>
-              ))
-            ) : (
-              <p style={{ fontSize: 16 }}>
-                ✅ All your values are within normal range. Great job!
-              </p>
-            )}
-          </ul>
-        </Card>
-      ) : (
-        <p style={{ fontSize: 16 }}>
-          ✅ All your values are within normal range. Great job!
-        </p>
-      )}
-
-      <div style={{ width: '90%', margin: '20px auto 40px auto' }}>
+      <div
+        style={{
+          width: '90%',
+          margin: '20px auto 40px auto',
+          display: 'flex',
+          flexWrap: 'wrap',
+          justifyContent: 'space-between',
+          gap: '20px',
+        }}
+      >
         {BarData.map((item) => (
           <Card
-            key={item.name}
-            style={{
-              marginTop: 20,
-              backgroundColor: 'white',
-              padding: 16,
-              borderRadius: 10,
-              boxShadow: '0 4px 15px rgba(0, 0, 0, 0.2)',
-            }}
-          >
-            <Col
+          key={item.name}
+          style={{
+            flex: width > 900 ? '0 1 calc(50% - 10px)' : '1 1 100%',
+            backgroundColor: 'white',
+            padding: 20,
+            borderRadius: 10,
+            boxShadow: '0 4px 15px rgba(0, 0, 0, 0.2)',
+          }}
+        >
+          <Row style={{ alignItems: 'center', justifyContent: 'center' }}>
+            <Title
+              level={2}
               style={{
-                display: 'flex',
-                justifyContent: 'space-between',
-                alignItems: 'middle',
+                color: '#3498db',
+                fontFamily: 'Poppins',
+                alignItems: 'center',
+                justifyContent: 'center',
               }}
             >
-              <Col>
-                <Title
-                  level={2}
-                  style={{
-                    color: '#3498db',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    fontFamily: 'Poppins',
-                  }}
-                >
-                  {item.name}
-                </Title>
-                <p style={{ margin: 0, fontSize: 16 }}>
-                  {interestingFacts[item.name]}
-                </p>
-              </Col>
+              {item.name}
+            </Title>
               <img
                 style={{
                   width: '16%',
                   height: '16%',
                 }}
                 src={item.image}
-                alt="Blood Test"
               />
-            </Col>
-          </Card>
+          </Row>
+          <p style={{ margin: 0, fontSize: 16 }}>
+            {interestingFacts[item.name]}
+          </p>
+        </Card>
         ))}
       </div>
+
     </div>
   );
 }

@@ -1,16 +1,15 @@
 import { Card, Row, Col, Typography, Progress } from 'antd';
 import '../../../assets/styles/analysis.css';
-import Done from '../../../assets/photos/Done.png';
 import { Button } from 'antd';
 import { useNavigate } from 'react-router-dom';
-import ChartGoingDown from '../../../assets/photos/ChartGoingDown.png';
-import Syringe from '../../../assets/photos/Syringe.png';
-import MedKit from '../../../assets/photos/MedKit.png';
-import Cholesterol from '../../../assets/photos/Cholesterol.png';
-import Hemoglobin from '../../../assets/photos/Hemoglobin.png';
+import ChartGoingDown from '../../../assets/photos/ChartGoingDown.webp';
+import Syringe from '../../../assets/photos/Syringe.webp';
+import Bilirubin from '../../../assets/photos/Bilirubin.webp';
+import BRCA1 from '../../../assets/photos/BRCA1.webp';
+import APOE from '../../../assets/photos/APOE.webp';
 import { useEffect } from 'react';
 import { useState } from 'react';
-import Gen from '../../../assets/photos/Gen.png';
+import Gen from '../../../assets/photos/Gen.webp';
 import type { GeneticTestFormValues } from '../../../app/slices/geneticTestSlice';
 
 interface ChartData {
@@ -58,13 +57,13 @@ function GeneticAnalysis() {
       name: 'BRCA1',
       value: mockAnalysisData.brca1 || 0,
       color: '#f39c12',
-      image: Cholesterol,
+      image: BRCA1,
     },
     {
       name: 'BRCA2',
       value: mockAnalysisData.brca2 || 0,
       color: '#16a085',
-      image: Hemoglobin,
+      image: Gen,
     },
     {
       name: 'Factor V Leiden',
@@ -76,19 +75,19 @@ function GeneticAnalysis() {
       name: 'APOE',
       value: mockAnalysisData.apoe || 0,
       color: '#8e44ad',
-      image: ChartGoingDown,
+      image: APOE,
     },
     {
       name: 'MTHFR',
       value: mockAnalysisData.mthfr || 0,
       color: '#2980b9',
-      image: MedKit,
+      image: ChartGoingDown,
     },
     {
       name: 'CYP2C19',
       value: mockAnalysisData.cyp2c19 || 0,
       color: '#27ae60',
-      image: Done,
+      image: Bilirubin,
     },
   ];
 
@@ -264,7 +263,7 @@ function GeneticAnalysis() {
         <Col className="welcome-section-column">
           <Typography
             className="welcome-text"
-            style={{ fontSize: width > 768 ? '30px' : '20px', marginTop: 50 }}
+            style={{ fontSize: width > 768 ? '30px' : '20px', marginTop: 50, marginLeft: 5 }}
           >
             Genetic Test Results
           </Typography>
@@ -292,45 +291,96 @@ function GeneticAnalysis() {
 
       <div>
         {mockAnalysisData.brca1 ? (
-          <Card className="card2-design">
-            <Col className="card2-col-design">
-              <Button
-                className="consult-button"
-                type="primary"
-                size="large"
-                onClick={() => navigate('/ai-doctor')}
+          <div>
+            <Card className="card2-design">
+              <Col className="card2-col-design">
+                <Button
+                  className="consult-button"
+                  type="primary"
+                  size="large"
+                  onClick={() => navigate('/ai-doctor')}
+                >
+                  Analyze with AI
+                </Button>
+              </Col>
+              <Col
+                style={{
+                  display: 'flex',
+                  flexDirection: width > 768 ? 'row' : 'column',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                }}
               >
-                Analyze with AI
-              </Button>
-            </Col>
-            <Col
+                {scorecards.map((item: Scorecard, idx) => (
+                  <Card
+                    key={idx}
+                    style={{
+                      textAlign: 'center',
+                      borderRadius: '15px',
+                      border: 'none',
+                    }}
+                  >
+                    <div style={{ marginTop: 10 }}>{item.value}</div>
+                    <Progress
+                      type="circle"
+                      percent={Math.min(item.percent, 100)}
+                      strokeWidth={7}
+                    />
+                    <div style={{ marginTop: 30 }}>{item.label}</div>
+                  </Card>
+                ))}
+              </Col>
+            </Card>
+
+            <Card
               style={{
-                display: 'flex',
-                flexDirection: width > 768 ? 'row' : 'column',
-                alignItems: 'center',
-                justifyContent: 'center',
+                margin: '20px auto',
+                width: '90%',
+                backgroundColor: '#fffbe6',
+                border: '1px solid #faad14',
+                borderRadius: 10,
+                padding: 16,
               }}
             >
-              {scorecards.map((item: Scorecard, idx) => (
-                <Card
-                  key={idx}
-                  style={{
-                    textAlign: 'center',
-                    borderRadius: '15px',
-                    border: 'none',
-                  }}
-                >
-                  <div style={{ marginTop: 10 }}>{item.value}</div>
-                  <Progress
-                    type="circle"
-                    percent={Math.min(item.percent, 100)}
-                    strokeWidth={7}
-                  />
-                  <div style={{ marginTop: 30 }}>{item.label}</div>
-                </Card>
-              ))}
-            </Col>
-          </Card>
+              <Title
+                level={3}
+                style={{ color: 'rgb(255, 0, 0)', fontFamily: 'Poppins' }}
+              >
+                🚨 Health Risk Warnings
+              </Title>
+              <ul style={{ paddingLeft: 20 }}>
+                {getGeneticRisks(mockAnalysisData).length > 0 ? (
+                  getGeneticRisks(mockAnalysisData).map((risk, index) => (
+                    <li key={index} style={{ fontSize: 16, marginBottom: 8 }}>
+                      {risk}
+                      {geneticExplanations[risk] && (
+                        <div>
+                          <Button
+                            type="link"
+                            style={{ padding: 0 }}
+                            onClick={() => toggleWarning(risk)}
+                          >
+                            {expandedWarnings[risk] ? 'Show less' : 'Show more'}
+                          </Button>
+                          {expandedWarnings[risk] && (
+                            <p
+                              style={{ marginTop: 5, fontSize: 14, color: '#555' }}
+                            >
+                              {geneticExplanations[risk]}
+                            </p>
+                          )}
+                        </div>
+                      )}
+                    </li>
+                  ))
+                ) : (
+                  <p style={{ fontSize: 16 }}>
+                    ✅ All your values are within normal range. Great job!
+                  </p>
+                )}
+              </ul>
+            </Card>
+          </div>
         ) : (
           <div
             style={{
@@ -356,102 +406,49 @@ function GeneticAnalysis() {
         )}
       </div>
 
-      {mockAnalysisData.brca1 && (
-        <Card
-          style={{
-            margin: '20px auto',
-            width: '90%',
-            backgroundColor: '#fffbe6',
-            border: '1px solid #faad14',
-            borderRadius: 10,
-            padding: 16,
-          }}
-        >
-          <Title
-            level={3}
-            style={{ color: 'rgb(255, 0, 0)', fontFamily: 'Poppins' }}
-          >
-            🚨 Health Risk Warnings
-          </Title>
-          <ul style={{ paddingLeft: 20 }}>
-            {getGeneticRisks(mockAnalysisData).length > 0 ? (
-              getGeneticRisks(mockAnalysisData).map((risk, index) => (
-                <li key={index} style={{ fontSize: 16, marginBottom: 8 }}>
-                  {risk}
-                  {geneticExplanations[risk] && (
-                    <div>
-                      <Button
-                        type="link"
-                        style={{ padding: 0 }}
-                        onClick={() => toggleWarning(risk)}
-                      >
-                        {expandedWarnings[risk] ? 'Show less' : 'Show more'}
-                      </Button>
-                      {expandedWarnings[risk] && (
-                        <p
-                          style={{ marginTop: 5, fontSize: 14, color: '#555' }}
-                        >
-                          {geneticExplanations[risk]}
-                        </p>
-                      )}
-                    </div>
-                  )}
-                </li>
-              ))
-            ) : (
-              <p style={{ fontSize: 16 }}>
-                ✅ All your values are within normal range. Great job!
-              </p>
-            )}
-          </ul>
-        </Card>
-      )}
-
-      <div style={{ width: '90%', margin: '20px auto 40px auto' }}>
+      <div style={{
+          width: '90%',
+          margin: '20px auto 40px auto',
+          display: 'flex',
+          flexWrap: 'wrap',
+          justifyContent: 'space-between',
+          gap: '20px',
+        }}>
         {PieData.map((item) => (
           <Card
-            key={item.name}
-            style={{
-              marginTop: 20,
-              backgroundColor: 'white',
-              padding: 16,
-              borderRadius: 10,
-              boxShadow: '0 4px 15px rgba(0, 0, 0, 0.2)',
-            }}
-          >
-            <Col
+          key={item.name}
+          style={{
+            flex: width > 900 ? '0 1 calc(50% - 10px)' : '1 1 100%',
+            backgroundColor: 'white',
+            padding: 20,
+            borderRadius: 10,
+            boxShadow: '0 4px 15px rgba(0, 0, 0, 0.2)',
+          }}
+        >
+          <Row style={{ alignItems: 'center', justifyContent: 'center' }}>
+            <Title
+              level={2}
               style={{
-                display: 'flex',
-                justifyContent: 'space-between',
-                alignItems: 'middle',
+                color: '#3498db',
+                fontFamily: 'Poppins',
+                alignItems: 'center',
+                justifyContent: 'center',
               }}
             >
-              <Col>
-                <Title
-                  level={2}
-                  style={{
-                    color: '#3498db',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    fontFamily: 'Poppins',
-                  }}
-                >
-                  {item.name}
-                </Title>
-                <p style={{ margin: 0, fontSize: 16 }}>
-                  {interestingFacts[item.name]}
-                </p>
-              </Col>
+              {item.name}
+            </Title>
               <img
                 style={{
                   width: '16%',
                   height: '16%',
                 }}
                 src={item.image}
-                alt="Blood Test"
               />
-            </Col>
-          </Card>
+          </Row>
+          <p style={{ margin: 0, fontSize: 16 }}>
+            {interestingFacts[item.name]}
+          </p>
+        </Card>
         ))}
       </div>
     </div>

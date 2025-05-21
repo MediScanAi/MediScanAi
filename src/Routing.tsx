@@ -6,7 +6,6 @@ import HomePage from './pages/main/HomePage';
 import AboutUsPage from './pages/main/AboutUsPage';
 import RegisterPage from './pages/auth/RegisterPage';
 import LoginPage from './pages/auth/LoginPage';
-import AnalysisPage from './pages/main/analysis/AnalysisPage';
 import BloodAnalysis from './pages/main/analysis/BloodAnalysis';
 import VitaminAnalysis from './pages/main/analysis/VitaminAnalysis';
 import UrineAnalysis from './pages/main/analysis/UrineAnalysis';
@@ -47,14 +46,6 @@ const router = createBrowserRouter([
   {
     element: <ProtectedRoute />,
     children: [
-      {
-        path: '/analysis',
-        element: (
-          <Layout>
-            <AnalysisPage />
-          </Layout>
-        ),
-      },
       {
         path: '/analysis/blood-test',
         element: (

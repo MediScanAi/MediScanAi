@@ -11,15 +11,15 @@ import {
 } from 'recharts';
 import '../../../assets/styles/analysis.css';
 import type { VitaminTestFormValues } from '../../../app/slices/vitaminTestSlice';
-import Drugs from '../../../assets/photos/Drugs.png';
-import Done from '../../../assets/photos/Done.png';
+import Drugs from '../../../assets/photos/Drugs.webp';
+import VitaminK from '../../../assets/photos/VitaminK.webp';
 import { Button } from 'antd';
 import { useNavigate } from 'react-router-dom';
-import ChartGoingDown from '../../../assets/photos/ChartGoingDown.png';
-import Syringe from '../../../assets/photos/Syringe.png';
-import MedKit from '../../../assets/photos/MedKit.png';
-import Cholesterol from '../../../assets/photos/Cholesterol.png';
-import Hemoglobin from '../../../assets/photos/Hemoglobin.png';
+import Apple from '../../../assets/photos/Apple.webp';
+import Cholesterol from '../../../assets/photos/Cholesterol.webp';
+import Cow from '../../../assets/photos/Cow.webp';
+import Protein from '../../../assets/photos/Protein.webp';
+import PopCorn from '../../../assets/photos/PopCorn.webp';
 import { useEffect, useState } from 'react';
 
 interface ChartData {
@@ -225,31 +225,31 @@ function VitaminAnalysis() {
       name: 'Vitamin B12',
       value: mockAnalysisData.vitaminB12 || 0,
       color: '#16a085',
-      image: Hemoglobin,
+      image: Cow,
     },
     {
       name: 'Vitamin C',
       value: mockAnalysisData.vitaminC || 0,
       color: '#e74c3c',
-      image: Syringe,
+      image: Apple,
     },
     {
       name: 'Vitamin D',
       value: mockAnalysisData.vitaminD || 0,
       color: '#8e44ad',
-      image: ChartGoingDown,
+      image: Protein,
     },
     {
       name: 'Vitamin E',
       value: mockAnalysisData.vitaminE || 0,
       color: '#2980b9',
-      image: MedKit,
+      image: PopCorn,
     },
     {
       name: 'Vitamin K',
       value: mockAnalysisData.vitaminK || 0,
       color: '#27ae60',
-      image: Done,
+      image: VitaminK,
     },
   ];
 
@@ -321,7 +321,7 @@ function VitaminAnalysis() {
         <Col className="welcome-section-column">
           <Typography
             className="welcome-text"
-            style={{ fontSize: width > 768 ? '30px' : '20px', marginTop: 50 }}
+            style={{ fontSize: width > 768 ? '30px' : '20px', marginTop: 50, marginLeft: 5 }}
           >
             Vitamin Test Results
           </Typography>
@@ -456,51 +456,49 @@ function VitaminAnalysis() {
         )}
       </div>
 
-      <div style={{ width: '90%', margin: '20px auto 40px auto' }}>
+      <div style={{
+        width: '90%',
+        margin: '20px auto 40px auto',
+        display: 'flex',
+        flexWrap: 'wrap',
+        justifyContent: 'space-between',
+        gap: '20px',
+      }}>
         {PieData.map((item) => (
           <Card
-            key={item.name}
-            style={{
-              marginTop: 20,
-              backgroundColor: 'white',
-              padding: 16,
-              borderRadius: 10,
-              boxShadow: '0 4px 15px rgba(0, 0, 0, 0.2)',
-            }}
-          >
-            <Col
+          key={item.name}
+          style={{
+            flex: width > 900 ? '0 1 calc(50% - 10px)' : '1 1 100%',
+            backgroundColor: 'white',
+            padding: 20,
+            borderRadius: 10,
+            boxShadow: '0 4px 15px rgba(0, 0, 0, 0.2)',
+          }}
+        >
+          <Row style={{ alignItems: 'center', justifyContent: 'center' }}>
+            <Title
+              level={2}
               style={{
-                display: 'flex',
-                justifyContent: 'space-between',
-                alignItems: 'middle',
+                color: '#3498db',
+                fontFamily: 'Poppins',
+                alignItems: 'center',
+                justifyContent: 'center',
               }}
             >
-              <Col>
-                <Title
-                  level={2}
-                  style={{
-                    color: '#3498db',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    fontFamily: 'Poppins',
-                  }}
-                >
-                  {item.name}
-                </Title>
-                <p style={{ margin: 0, fontSize: 16 }}>
-                  {interestingFacts[item.name]}
-                </p>
-              </Col>
+              {item.name}
+            </Title>
               <img
                 style={{
                   width: '16%',
                   height: '16%',
                 }}
                 src={item.image}
-                alt="Blood Test"
               />
-            </Col>
-          </Card>
+          </Row>
+          <p style={{ margin: 0, fontSize: 16 }}>
+            {interestingFacts[item.name]}
+          </p>
+        </Card>
         ))}
       </div>
     </div>
