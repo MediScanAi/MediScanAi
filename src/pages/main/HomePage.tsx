@@ -217,7 +217,7 @@ function HomePage() {
             <Row gutter={[24, 24]} style={{ marginTop: '40px' }}>
               {activities.map(({ title, text, icon }, index) => (
                 <Col key={index} xs={24} sm={24} md={12} lg={6}>
-                  <Card className="activity-card" bodyStyle={{ padding: 0 }}>
+                  <Card className={"activity-card"+(theme?' dark-mode-text dark-theme':'')} bodyStyle={{ padding: 0 }}>
                     <div className="activity-card-content">
                       <div className="activity-icon">{icon}</div>
                       <Title level={4} className="activity-card-title">
@@ -246,7 +246,7 @@ function HomePage() {
         </Row>
         <Row className="faq-section">
           <Col style={{ marginTop: 50, padding: '24px' }} span={24}>
-            <Title level={1} className="faq-title">
+            <Title level={1} className={"faq-title"+(theme?' dark-theme':'')}>
               Frequently Asked Questions
             </Title>
             <List

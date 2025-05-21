@@ -1,15 +1,15 @@
 import {
-  Avatar,
-  Dropdown,
-  Flex,
-  type MenuProps,
-  Select,
-  Switch,
-  Menu,
-  Button,
+    Avatar,
+    Dropdown,
+    Flex,
+    type MenuProps,
+    Select,
+    Switch,
+    Menu,
+    Button, Space, Image,
 } from 'antd';
 import { NavLink } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import {useEffect, useState} from 'react';
 import {
   DownOutlined,
   ExperimentOutlined,
@@ -28,11 +28,12 @@ import '../assets/styles/header.css';
 import { useAppDispatch, useAppSelector } from '../app/hooks.ts';
 import { toggleTheme } from '../app/slices/theme';
 import { logoutUser } from '../app/slices/authSlice';
+import Logo from '../assets/photos/Logo.svg'
 
 
 const options = [
     {
-        label:(<div className={'language-options'} ><img style={{height:'20px'}} src={'src/assets/photos/united-kingdom.png'}/> ENG</div>),
+        label:(<div className={'language-options'} ><img style={{width:'20px'}} src={'src/assets/photos/united-kingdom.png'}/><span>ENG</span></div>),
         value: 'english',
     },
     {
@@ -165,6 +166,15 @@ function Header() {
     dispatch(toggleTheme());
   };
 
+  useEffect(() => {
+      window.addEventListener('resize', () => {
+      setWidth(window.innerWidth);
+      })
+      return () => {
+          window.removeEventListener('resize', () => {})
+      }
+  })
+
   const handleMenuClick: MenuProps['onClick'] = ({ key }) => {
     switch (key) {
       case 'home':
@@ -219,6 +229,13 @@ function Header() {
                 justify="space-around"
                 align="middle"
             >
+            <div style={{display:'flex',alignItems:'center',justifyContent:'space-between',width:(width<820?'30%':'50%')}}>
+                <Image
+                  preview={false}
+                  src={Logo}
+                  alt="Logo"
+                  height={30}
+                />
                 {width < 820 ? (
                     <Dropdown trigger={["click"]} menu={{items: burgerItems}}>
                         <MenuOutlined style={{fontSize: 30}}/>
@@ -232,6 +249,7 @@ function Header() {
                             items={menuItems}
                         />
                 )}
+            </div>
                 <div className={'Right-buttons'}>
                     {user ? <Dropdown trigger={['click']} menu={{items: userItems}} onOpenChange={toggleArrow}>
                         <div
@@ -251,7 +269,7 @@ function Header() {
                           Log In
                         </Button>}
                     <Switch
-                        defaultChecked={theme}
+                        defaultChecked={!theme}
                         checkedChildren={<SunOutlined/>}
                         unCheckedChildren={<MoonOutlined/>}
                         onClick={handleThemeChange}
