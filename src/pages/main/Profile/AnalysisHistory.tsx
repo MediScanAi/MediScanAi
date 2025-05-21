@@ -41,7 +41,8 @@ type AnalysisHistoryProps = {
   width: number;
 };
 
-const AnalysisHistory: React.FC<AnalysisHistoryProps> = ({ theme }) => {
+const AnalysisHistory: React.FC<AnalysisHistoryProps> = ({theme,width}) => {
+
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const [bloodTestData, setBloodTestData] =
@@ -273,65 +274,55 @@ const AnalysisHistory: React.FC<AnalysisHistoryProps> = ({ theme }) => {
       normalRange: string;
       icon: React.ReactNode;
     }[]
-  ) => (
+  ) =>{
+    const fontSize=(width<800?'10px':width<1200?'14px':'20px');
+    return(
     <Row gutter={[16, 16]}>
       {testArray.map(
         (test, index) =>
           test.value !== undefined &&
           test.value !== null &&
           test.value !== '' && (
-            <Col xs={24} sm={12} md={8} lg={6} xl={6} key={index}>
-              <Card
-                hoverable
-                style={{ border: 'none', backgroundColor: 'transparent' }}
-              >
-                <div style={{ fontSize: 24, marginBottom: 8 }}>{test.icon}</div>
-                <Text strong>{test.name}</Text>
-                <Title level={3} style={{ margin: '8px 0' }}>
+            <Col xs={12} sm={8} md={6} lg={6} xl={6} key={index}>
+              <Card hoverable style={{ border: 'none' ,backgroundColor:'transparent',padding:'5px'}}>
+                <div style={{ fontSize: fontSize, marginBottom: 8 }}>{test.icon}</div>
+                <Text style={{fontSize: fontSize}} strong>{test.name}</Text>
+                <Title level={3} style={{ margin: '8px 0',fontSize: fontSize }}>
+
                   {test.value}{' '}
                   {test.unit && (
-                    <Text type="secondary" style={{ fontSize: 25 }}>
+                    <Text type="secondary" style={{ fontSize: fontSize }}>
                       ({test.unit})
                     </Text>
                   )}
                 </Title>
 
                 {test.normalRange && (
-                  <Text type="secondary">Normal: {test.normalRange}</Text>
+                  <Text style={{fontSize: fontSize}} type="secondary">Normal: {test.normalRange}</Text>
                 )}
               </Card>
             </Col>
           )
       )}
     </Row>
-  );
+  )};
 
   const hasAnyTestData =
     bloodTestData || urineTestData || vitaminTestData || geneticTestData;
 
   return (
-    <div
-      style={{
-        maxWidth: 1200,
-        margin: '0 auto',
-        padding: '16px',
-        minHeight: '57.5vh',
-        backgroundColor: 'transparent',
-      }}
-    >
+    <div style={{ maxWidth: 1200, margin: '0 auto', padding: '16px',backgroundColor:'transparent' }}>
       <Col>
-        <Card
-          className={theme ? 'dark-mode-text' : ''}
-          style={{ border: 'none', backgroundColor: 'transparent' }}
-        >
-          <Title level={2} style={{ marginBottom: 24, color: '#3498db' }}>
+        <Card className={theme?'dark-mode-text':''  } style={{ border: 'none',backgroundColor:'transparent' }}>
+          <Title level={2} style={{ marginBottom: 24, color: '#3498db',fontSize:width<800?'18px':'32px' }}>
+
             Patient Analysis History
           </Title>
 
           {!hasAnyTestData && (
             <Text
               type="secondary"
-              style={{ display: 'block', marginBottom: 24 }}
+              style={{ display: 'block', marginBottom: 24,fontSize:width<800?'10px':'20px' }}
             >
               No test results available. You haven't completed any tests yet.
             </Text>
@@ -340,24 +331,25 @@ const AnalysisHistory: React.FC<AnalysisHistoryProps> = ({ theme }) => {
           <Row gutter={[24, 32]}>
             {bloodTestData && (
               <Col span={24}>
-                <div
-                  style={{ marginBottom: 8, backgroundColor: 'transparent' }}
-                >
-                  <Text strong style={{ fontSize: 16 }}>
+                <div  style={{ marginBottom: 8 ,backgroundColor:'transparent',}}>
+                  <Text strong style={{ fontSize:width<800?'10px':'16px' }}>
+
                     Blood Test
                   </Text>
-                  <Text type="secondary" style={{ marginLeft: 12 }}>
+                  <Text type="secondary" style={{marginLeft: 12, fontSize:width<800?'10px':'16px'}}>
                     Last updated: {bloodTestData.date || 'Date not specified'}
                   </Text>
                   <Button
                     onClick={handleDeleteBloodTestData}
-                    style={{ marginLeft: 12, backgroundColor: 'transparent' }}
+                    style={{ marginLeft: 12 ,backgroundColor:'transparent',fontSize:width<800?'10px':'16px',padding:'0 5px',minWidth:40  }}
+
                   >
                     Delete
                   </Button>
                   <Button
                     onClick={sendBloodTestData}
-                    style={{ marginLeft: 12, backgroundColor: 'transparent' }}
+                    style={{ marginLeft: 12,backgroundColor:'transparent',fontSize:width<800?'10px':'16px',padding:'0 5px',minWidth:40  }}
+
                   >
                     Edit
                   </Button>
@@ -375,21 +367,23 @@ const AnalysisHistory: React.FC<AnalysisHistoryProps> = ({ theme }) => {
             {urineTestData && (
               <Col span={24}>
                 <div style={{ marginBottom: 8 }}>
-                  <Text strong style={{ fontSize: 16 }}>
+                  <Text strong style={{ fontSize:width<800?'10px':'16px' }}>
                     Urine Test
                   </Text>
-                  <Text type="secondary" style={{ marginLeft: 12 }}>
+                  <Text type="secondary" style={{marginLeft: 12, fontSize:width<800?'10px':'16px'}}>
                     Last updated: {urineTestData.date || 'Date not specified'}
                   </Text>
                   <Button
                     onClick={handleDeleteUrineTestData}
-                    style={{ marginLeft: 12, backgroundColor: 'transparent' }}
+                    style={{ marginLeft: 12 ,backgroundColor:'transparent',fontSize:width<800?'10px':'16px',padding:'0 5px',minWidth:40  }}
+
                   >
                     Delete
                   </Button>
                   <Button
                     onClick={sendUrineTestData}
-                    style={{ marginLeft: 12, backgroundColor: 'transparent' }}
+                    style={{ marginLeft: 12 ,backgroundColor:'transparent',fontSize:width<800?'10px':'16px',padding:'0 5px',minWidth:40  }}
+
                   >
                     Edit
                   </Button>
@@ -407,21 +401,23 @@ const AnalysisHistory: React.FC<AnalysisHistoryProps> = ({ theme }) => {
             {vitaminTestData && (
               <Col span={24}>
                 <div style={{ marginBottom: 8 }}>
-                  <Text strong style={{ fontSize: 16 }}>
+                  <Text strong style={{ fontSize:width<800?'10px':'16px' }}>
                     Vitamin Test
                   </Text>
-                  <Text type="secondary" style={{ marginLeft: 12 }}>
+                  <Text type="secondary" style={{ marginLeft: 12,fontSize:width<800?'10px':'16px' }}>
                     Last updated: {vitaminTestData.date || 'Date not specified'}
                   </Text>
                   <Button
                     onClick={handleDeleteVitaminTestData}
-                    style={{ marginLeft: 12, backgroundColor: 'transparent' }}
+                    style={{ marginLeft: 12 ,backgroundColor:'transparent',fontSize:width<800?'10px':'16px',padding:'0 5px',minWidth:40  }}
+
                   >
                     Delete
                   </Button>
                   <Button
                     onClick={sendVitaminTestData}
-                    style={{ marginLeft: 12, backgroundColor: 'transparent' }}
+                    style={{ marginLeft: 12 ,backgroundColor:'transparent',fontSize:width<800?'10px':'16px',padding:'0 5px',minWidth:40  }}
+
                   >
                     Edit
                   </Button>
@@ -439,21 +435,23 @@ const AnalysisHistory: React.FC<AnalysisHistoryProps> = ({ theme }) => {
             {geneticTestData && (
               <Col span={24}>
                 <div style={{ marginBottom: 8 }}>
-                  <Text strong style={{ fontSize: 16 }}>
+                  <Text strong style={{ fontSize:width<800?'10px':'16px' }}>
                     Genetic Test
                   </Text>
-                  <Text type="secondary" style={{ marginLeft: 12 }}>
+                  <Text type="secondary" style={{marginLeft: 12, fontSize:width<800?'10px':'16px'}}>
                     Last updated: {geneticTestData.date || 'Date not specified'}
                   </Text>
                   <Button
                     onClick={handleDeleteGeneticTestData}
-                    style={{ marginLeft: 12, backgroundColor: 'transparent' }}
+                    style={{ marginLeft: 12 ,backgroundColor:'transparent',fontSize:width<800?'10px':'16px',padding:'0 5px',minWidth:40  }}
+
                   >
                     Delete
                   </Button>
                   <Button
                     onClick={sendGeneticTestData}
-                    style={{ marginLeft: 12, backgroundColor: 'transparent' }}
+                    style={{ marginLeft: 12 ,backgroundColor:'transparent',fontSize:width<800?'10px':'16px',padding:'0 5px',minWidth:40  }}
+
                   >
                     Edit
                   </Button>

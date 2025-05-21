@@ -37,30 +37,3 @@
 .dark-theme {
   background-color: #2d3748;
 }
-
-.title-design {
-  font-family: 'Poppins', sans-serif;
-}
-
-.first-col-design {
-  background-color: white;
-  margin: 0 auto;
-  margin-bottom: 20px;
-  font-family: 'Poppins', sans-serif;
-}
-
-.card2-design {
-  flex: 4;
-  border-radius: 15px;
-  margin-right: 25px;
-  border: none;
-  width: 90%;
-  margin: 0 auto;
-}
-
-.card2-col-design {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin: 0 auto;
-}

@@ -6,6 +6,8 @@ import {
   sendVerificationEmail,
   type PlainUser,
 } from '../../api/authApi';
+import { updateProfile } from 'firebase/auth';
+import type { RootState } from '../store';
 
 interface AuthState {
   user: PlainUser | null;
@@ -42,8 +44,23 @@ export const authSlice = createAppSlice({
       }
     ),
     registerUser: create.asyncThunk(
-      async ({ email, password }: { email: string; password: string }) => {
+      async ({
+        name,
+        surname,
+        email,
+        password,
+      }: {
+        name: string;
+        surname: string;
+        email: string;
+        password: string;
+      }) => {
         const fbUser = await register(email, password);
+        if (fbUser) {
+          await updateProfile(fbUser, {
+            displayName: `${name} ${surname}`,
+          });
+        }
         await sendVerificationEmail(fbUser);
         return null;
       },
@@ -62,6 +79,7 @@ export const authSlice = createAppSlice({
         },
       }
     ),
+
     logoutUser: create.asyncThunk(async () => await logout(), {
       pending: (state) => {
         state.loading = true;
@@ -87,6 +105,12 @@ export const authSlice = createAppSlice({
     }),
   }),
 });
+
+/**
+ *
+ * @returns currently logged in user
+ */
+export const selectCurrentUser = (state: RootState) => state.auth.user;
 
 export const {
   loginUser,

@@ -1,4 +1,13 @@
-import { Form, Input, Button, Card, Typography, message, Grid } from 'antd';
+import {
+  Form,
+  Input,
+  Button,
+  Card,
+  Typography,
+  message,
+  Grid,
+  Spin,
+} from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
 import { loginUser } from '../../app/slices/authSlice';
 import type { AppDispatch, RootState } from '../../app/store';
@@ -7,6 +16,7 @@ import { motion } from 'framer-motion';
 import backgroundImage from '../../assets/photos/background.png';
 import { useState } from 'react';
 import ForgotPasswordForm from '../../components/ForgotPasswordForm';
+import LoginWithGoogleButton from '../../components/LoginWithGoogleButton';
 const { Title, Text } = Typography;
 const { useBreakpoint } = Grid;
 
@@ -21,6 +31,7 @@ const LoginPage: React.FC = () => {
   const { loading } = useSelector((state: RootState) => state.auth);
   const screens = useBreakpoint();
   const [isForgotPassword, setIsForgotPassword] = useState(false);
+  const [googleLoading, setGoogleLoading] = useState(false);
 
   const onFinish = async (values: LoginFormValues) => {
     const { email, password } = values;
@@ -39,6 +50,10 @@ const LoginPage: React.FC = () => {
 
   const toggleForgotPassword = () => {
     setIsForgotPassword((prev) => !prev);
+  };
+
+  const toggleGoogleLoading = async (isLoading: boolean) => {
+    setGoogleLoading(isLoading);
   };
   return (
     <div
@@ -63,61 +78,67 @@ const LoginPage: React.FC = () => {
           transition={{ duration: 0.6 }}
           style={{ width: '100%', maxWidth: 400 }}
         >
-          <Card
-            style={{
-              borderRadius: '16px',
-              boxShadow: '0 8px 16px rgba(0,0,0,0.15)',
-            }}
-          >
-            <Title level={2} style={{ fontWeight: 'bold', marginBottom: 24 }}>
-              Login
-            </Title>
-            <Form layout="vertical" onFinish={onFinish}>
-              <Form.Item
-                label="Email"
-                name="email"
-                rules={[
-                  { required: true, message: 'Enter your email' },
-                  { type: 'email', message: 'Invalid email' },
-                ]}
-              >
-                <Input placeholder="Email" />
-              </Form.Item>
-
-              <Form.Item
-                label="Password"
-                name="password"
-                rules={[{ required: true, message: 'Enter your password' }]}
-              >
-                <Input.Password placeholder="Password" />
-              </Form.Item>
-
-              <Form.Item style={{ textAlign: 'right', marginBottom: 16 }}>
-                <Button
-                  type="text"
-                  style={{ color: '#1677ff' }}
-                  onClick={toggleForgotPassword}
+          <Spin spinning={googleLoading} tip="Waiting for Google response...">
+            <Card
+              style={{
+                borderRadius: '16px',
+                boxShadow: '0 8px 16px rgba(0,0,0,0.15)',
+              }}
+            >
+              <Title level={2} style={{ fontWeight: 'bold', marginBottom: 24 }}>
+                Log in
+              </Title>
+              <Form layout="vertical" onFinish={onFinish}>
+                <Form.Item
+                  label="Email"
+                  name="email"
+                  rules={[
+                    { required: true, message: 'Enter your email' },
+                    { type: 'email', message: 'Invalid email' },
+                  ]}
                 >
-                  Forgot your password?
-                </Button>
-              </Form.Item>
+                  <Input placeholder="Email" />
+                </Form.Item>
 
-              <Form.Item>
-                <Button
-                  block
-                  type="primary"
-                  htmlType="submit"
-                  loading={loading}
+                <Form.Item
+                  label="Password"
+                  name="password"
+                  rules={[{ required: true, message: 'Enter your password' }]}
                 >
-                  Login
-                </Button>
-              </Form.Item>
+                  <Input.Password placeholder="Password" />
+                </Form.Item>
 
-              <Text style={{ display: 'block', textAlign: 'center' }}>
-                Don't have an account? <Link to="/auth/register">Register</Link>
-              </Text>
-            </Form>
-          </Card>
+                <Form.Item style={{ textAlign: 'right', marginBottom: 16 }}>
+                  <Button
+                    type="text"
+                    style={{ color: '#1677ff' }}
+                    onClick={toggleForgotPassword}
+                  >
+                    Forgot your password?
+                  </Button>
+                </Form.Item>
+
+                <Form.Item>
+                  <Button
+                    block
+                    type="primary"
+                    htmlType="submit"
+                    loading={loading}
+                  >
+                    Login
+                  </Button>
+                </Form.Item>
+
+                <Form.Item>
+                  <LoginWithGoogleButton toggleLoading={toggleGoogleLoading} />
+                </Form.Item>
+                <Text style={{ display: 'block', textAlign: 'center' }}>
+                  Don't have an account?{' '}
+                  <Link to="/auth/register">Register</Link>
+                </Text>
+              </Form>
+            </Card>
+          </Spin>
         </motion.div>
       )}
 

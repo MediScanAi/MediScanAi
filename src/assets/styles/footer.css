@@ -3,7 +3,6 @@ footer {
   padding: 24px 0;
   margin-top: auto;
   width: 100%;
-  border-top: 1px solid #e8e8e8;
   height: 14vh;
 }
 .info {
@@ -20,8 +19,7 @@ footer {
   margin-right: 10px;
 }
 .dark-footer {
-  background-color: #102739;
-  border-top-color: black;
+  background-color: rgba(0, 0, 0, 0.65);
   .info-icons {
     color: white;
   }

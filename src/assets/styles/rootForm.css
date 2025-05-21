@@ -1,58 +1,184 @@
-.medical-form-container {
-  background: #f8fafc;
-  min-height: 100vh;
-  font-family: 'Roboto', 'Helvetica Neue', Arial, sans-serif;
-}
-
-.welcome-banner {
-  background: linear-gradient(135deg, #95abd6 0%, #344888 100%);
-  color: white;
-  padding: 3rem 2rem;
-  text-align: center;
-  margin-bottom: 2rem;
-}
-
-.welcome-content {
-  max-width: 800px;
+.form-welcome-section {
+  width: 100%;
+  padding: 30px 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 220px;
   margin: 0 auto;
+  position: relative;
+  overflow: hidden;
 }
 
-.welcome-title {
-  color: white !important;
-  font-weight: 600;
-  margin-bottom: 1rem !important;
-  font-size: 2.2rem;
+.welcome-top-row {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 50px;
+  margin-bottom: 1.5rem;
 }
 
-.welcome-message {
-  color: rgba(255, 255, 255, 0.9);
-  font-size: 1.2rem;
+
+.welcome-content-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  height: 100%;
+}
+
+.image-column {
+  flex: 1;
+  padding-right: 40px;
+  animation: slideInLeft 0.8s ease-out;
+}
+
+.text-column {
+  flex: 1;
+  animation: slideInRight 0.8s ease-out;
+}
+
+.form-welcome-title {
+  color: #1a365d;
+  font-weight: 700;
+  font-size: 42px;
+  font-family: 'Poppins', sans-serif;
+  margin-bottom: 15px;
+  line-height: 1.2;
+}
+
+.form-welcome-message {
+  color: #0c0d0d;
+  font-size: 20px;
+  font-weight: 700;
+  font-family: 'Poppins', sans-serif;
   line-height: 1.6;
 }
 
-.form-content {
+.form-platform-image {
+  width: 100%;
+  max-width: 450px;
+  height: auto;
+}
+
+@keyframes fadeInDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  0% {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@media (max-width: 992px) {
+  .welcome-content-container {
+    flex-direction: column;
+  }
+
+  .image-column {
+    padding-right: 0;
+    margin-bottom: 30px;
+    text-align: center;
+  }
+
+  .form-welcome-title {
+    font-size: 36px;
+    text-align: center;
+  }
+
+  .form-welcome-message {
+    text-align: center;
+  }
+}
+
+@media (max-width: 576px) {
+  .form-welcome-section {
+    padding: 20px;
+  }
+
+  .form-welcome-title {
+    font-size: 28px;
+  }
+
+  .form-welcome-message {
+    font-size: 18px;
+  }
+
+  .welcome-user-greeting {
+    font-size: 20px;
+  }
+}
+
+.form-main-container {
+  width: 100%;
+  display: flex;
   padding: 0 2rem 2rem;
 }
 
+.form-left-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 2rem 1rem;
+}
+
 .form-header {
-  max-width: 1200px;
-  margin: 0 auto 2rem;
-  position: relative;
+  max-width: 600px;
+  margin-bottom: 2rem;
 }
 
 .back-button {
   background: #3b82f6;
   border: none;
   padding: 0.5rem 1.5rem;
-  border-radius: 8px;
+  border-radius: 22px;
   font-weight: 500;
   display: flex;
   align-items: center;
   transition: all 0.2s ease;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  font-size: 16px;
+  margin-top: 10px;
   width: 160px;
   height: 40px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  margin-top: 10px;
 }
+
 
 .back-button:hover {
   background: #2563eb;
@@ -73,7 +199,7 @@
 }
 
 .medical-subtitle {
-  font-size: 1.1rem;
+  font-size: 1.3rem;
   color: #4b5563;
   margin-top: 0.5rem;
   font-weight: 400;
@@ -84,12 +210,25 @@
 
 .medical-form-card {
   max-width: 1200px;
+  height: auto;
   margin: 0 auto;
-  border-radius: 12px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  border-radius: 20px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
   border: none;
   background: white;
   overflow: hidden;
+}
+
+.medical-image-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.medical-image-container img {
+  width: 100%;
+  max-width: 450px;
+  height: auto;
 }
 
 .medical-tabs .ant-tabs-nav {
