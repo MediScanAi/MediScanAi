@@ -19,155 +19,159 @@ import '../../assets/styles/homepage.css';
 import { useEffect, useState } from 'react';
 import { useAppSelector } from '../../app/hooks.ts';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 const { Title, Text } = Typography;
 
-const activities = [
-  {
-    title: 'Data Upload',
-    text: 'Securely upload your genomic data via encrypted portal',
-    icon: (
-      <img
-        src={fileUpload}
-        alt="frame"
-        style={{ width: '110px', height: '100%' }}
-      />
-    ),
-    color: '#e6f7ff',
-  },
-  {
-    title: 'AI Analysis',
-    text: 'AI analyzes genomic data using multi-omic integration techniques',
-    icon: (
-      <img
-        src={aiAnalysis}
-        alt="frame1"
-        style={{ width: '110px', height: '100%' }}
-      />
-    ),
-    color: '#fff1b8',
-  },
-  {
-    title: 'Insights Report',
-    text: 'Receive biomarkers and recommendations in a detailed report',
-    icon: (
-      <img
-        src={insightsReport}
-        alt="frame2"
-        style={{ width: '110px', height: '100%' }}
-      />
-    ),
-    color: '#f4ffb8',
-  },
-  {
-    title: 'Clinical Decision',
-    text: 'Physicians apply findings for personalized treatment decision',
-    icon: (
-      <img
-        src={clinicalDecision}
-        alt="frame3"
-        style={{ width: '125px', height: '110px' }}
-      />
-    ),
-    color: '#ffd6e7',
-  },
-];
 
-const questions = [
-  {
-    title: 'What is Mediscan AI?',
-    text: 'Mediscan AI is an advanced web-based health integration platform that uses artificial intelligence to analyze medical and genomic data. It supports clinicians with fast, accurate, and personalized insights for better patient care.',
-  },
-  {
-    title: 'How does Mediscan AI ensure data security?',
-    text: 'We prioritize data privacy and security. Mediscan AI is built with enterprise-level encryption and complies with HIPAA, GDPR, and other global standards, ensuring all health data is fully protected.',
-  },
-  {
-    title: 'Who can use Mediscan AI?',
-    text: 'Mediscan AI is designed for healthcare professionals, researchers, and institutions. Its user-friendly interface allows clinicians of all levels to easily access, interpret, and apply AI-driven insights in their workflow.',
-  },
-  {
-    title: 'How accurate are the AI diagnostics?',
-    text: 'Our AI models are trained on vast, high-quality datasets and continuously updated to ensure clinical accuracy. Mediscan AI provides detailed, clinician-ready reports backed by real-world medical intelligence.',
-  },
-  {
-    title: 'What makes Mediscan AI different?',
-    text: 'Mediscan AI stands out with its seamless integration, fast turnaround times, intuitive design, and trusted clinical accuracy. We bring advanced diagnostics within reach — no specialized training required.',
-  },
-];
-
-const partners = [
-  {
-    id: 1,
-    image: partner1,
-    link: 'https://www.mcastghik.com/',
-    name: 'Astghik Medical Center',
-    description:
-      'Astghik Medical Center is a modern, multidisciplinary hospital offering advanced medical services with international standards and cutting-edge technologies.',
-  },
-  {
-    id: 2,
-    image: partner2,
-    link: 'https://i-mc.am/',
-    name: 'Izmirlyan Medical Center',
-    description:
-      'Izmirlyan Medical Center is a multifunctional hospital known for specialties like urology, cardiology, and surgery, affiliated with the Mother See of Holy Etchmiadzin.',
-  },
-  {
-    id: 3,
-    image: partner3,
-    name: 'Erebuni Medical Center',
-    link: 'https://www.erebunimed.com/',
-    description:
-      'Erebuni Medical Center is Armenia’s largest hospital, providing full-spectrum care including emergency services, diagnostics, and surgery since 1991.',
-  },
-  {
-    id: 4,
-    image: partner4,
-    name: 'Davidyants Laboratory',
-    link: 'https://davlab.am/hy',
-    description:
-      'Davidyants Laboratory specializes in clinical diagnostics, offering services like histology, immunohistochemistry, and infectious disease testing.',
-  },
-  {
-    id: 5,
-    image: partner5,
-    link: 'https://slavmed.am/en/',
-    name: 'Slawmed Medical Center',
-    description:
-      'Slawmed is a multidisciplinary medical center offering treatments in gynecology, urology, ENT, ophthalmology, and other fields with modern equipment.',
-  },
-  {
-    id: 6,
-    image: partner6,
-    link: 'https://wigmore.am/en/',
-    name: 'Wigmore Medical Center',
-    description:
-      'Wigmore Medical Center provides top-quality care in orthopedics, spine surgery, vascular surgery, cardiology, and more, with a patient-focused approach.',
-  },
-  {
-    id: 7,
-    image: partner7,
-    name: 'Nairi Medical Center',
-    link: 'https://nairimed.com/hy',
-    description:
-      'Nairi Medical Center is a leading Armenian hospital offering high-standard medical care across multiple specialties and promoting medical research and education.',
-  },
-  {
-    id: 8,
-    image: partner8,
-    link: 'https://blood.am/arm',
-    name: ' Hematological Center',
-    description:
-      'The Armenian Hematological Center specializes in diagnosing and treating blood disorders, providing advanced care for both children and adults.',
-  },
-];
 
 function HomePage() {
+  const { t } = useTranslation("global");
   const [width, setWidth] = useState(window.innerWidth);
   const [openIndex, setOpenIndex] = useState<number | null>(null);
   const navigate = useNavigate();
   const theme = useAppSelector((state) => state.theme.isDarkMode);
+
+  const activities = [
+    {
+      title: t('activity.dataUpload.title'),
+      text: t('activity.dataUpload.text'),
+      icon: (
+        <img
+          src={fileUpload}
+          alt="frame"
+          style={{ width: '110px', height: '100%' }}
+        />
+      ),
+      color: '#e6f7ff',
+    },
+    {
+      title: t('activity.aiAnalysis.title'),
+      text: t('activity.aiAnalysis.text'),
+      icon: (
+        <img
+          src={aiAnalysis}
+          alt="frame1"
+          style={{ width: '110px', height: '100%' }}
+        />
+      ),
+      color: '#fff1b8',
+    },
+    {
+      title: t('activity.insightsReport.title'),
+      text: t('activity.insightsReport.text'),
+      icon: (
+        <img
+          src={insightsReport}
+          alt="frame2"
+          style={{ width: '110px', height: '100%' }}
+        />
+      ),
+      color: '#f4ffb8',
+    },
+    {
+      title: t('activity.clinicalDecision.title'),
+      text: t('activity.clinicalDecision.text'),
+      icon: (
+        <img
+          src={clinicalDecision}
+          alt="frame3"
+          style={{ width: '125px', height: '110px' }}
+        />
+      ),
+      color: '#ffd6e7',
+    },
+  ];
+
+  const questions = [
+    {
+      title: t('faqs.items.0.question'),
+      text: t('faqs.items.0.answer'),
+    },
+    {
+      title: t('faqs.items.1.question'),
+      text: t('faqs.items.1.answer'),
+    },
+    {
+      title: t('faqs.items.2.question'),
+      text: t('faqs.items.2.answer'),
+    },
+    {
+      title: t('faqs.items.3.question'),
+      text: t('faqs.items.3.answer'),
+    },
+    {
+      title: t('faqs.items.4.question'),
+      text: t('faqs.items.4.answer'),
+    },
+  ];
+
+  const partners = [
+    {
+      id: 0 ,
+      image: partner1,
+      link: t('partners.0.link'),
+      name: t('partners.0.name'),
+      description:
+        t('partners.0.description'),
+    },
+    {
+      id: 1,
+      image: partner2,
+      link: t('partners.1.link'),
+      name: t('partners.1.name'),
+      description:
+        t('partners.1.description'),
+    },
+    {
+      id: 2,
+      image: partner3,
+      link: t('partners.2.link'),
+      name: t('partners.2.name'),
+      description:
+        t('partners.2.description'),
+    },
+    {
+      id: 3,
+      image: partner4,
+      link: t('partners.3.link'),
+      name: t('partners.3.name'),
+      description:
+        t('partners.3.description'),
+    },
+    {
+      id: 4,
+      image: partner5,
+      link: t('partners.4.link'),
+      name: t('partners.4.name'),
+      description:
+        t('partners.4.description'),
+    },
+    {
+      id: 5,
+      image: partner6,
+      link: t('partners.5.link'),
+      name: t('partners.5.name'),
+      description:
+        t('partners.5.description'),
+    },
+    {
+      id: 7,
+      image: partner7,
+      link: t('partners.6.link'),
+      name: t('partners.6.name'),
+      description:
+        t('partners.6.description'),
+    },
+    {
+      id: 8,
+      image: partner8,
+      link: t('partners.7.link'),
+      name: t('partners.7.name'),
+      description:
+        t('partners.7.description'),
+    },
+  ];
 
   useEffect(() => {
     const handleResize = () => {
@@ -185,20 +189,19 @@ function HomePage() {
     <Row className={`homepage ${theme ? 'dark-theme' : ''}`}>
       <Col style={{ width: '100%' }}>
         <Row className="welcome-section">
-          <Col className="welcome-section-column">
-            <Text className="welcome-text">Welcome</Text>
-            <Title className="platform-title">MediScanAi Platform</Title>
-            <Text className="platform-description">
-              Advanced AI-powered diagnostics and medical
-              <br /> analysis for healthcare professionals.
-            </Text>
+          <Col lg={12} sm={24} className="welcome-section-column">
+            <Text className="welcome-text">{t('homepage.welcome')}</Text>
+            <Title className="platform-title">{t('homepage.platformTitle')}</Title>
+            <p className="platform-description">
+              {t('homepage.platformDescription')}
+            </p>
             <Button
               className="consult-button"
               type="primary"
               size="large"
               onClick={() => navigate('/tests-form/blood-test')}
             >
-              Consult Today
+              {t('homepage.consultButton')}
             </Button>
           </Col>
           <Col>
@@ -208,11 +211,10 @@ function HomePage() {
         <Row className="activity-section">
           <Col className="activity-section-column">
             <Title level={1} className="activity-section-column-title">
-              Our Activity
+              {t('activity.title')}
             </Title>
             <Text className="activity-section-column-text">
-              Problems trying to resolve the conflict between the two major
-              realms of Classical physics: Newtonian mechanics.
+              {t('activity.description')}
             </Text>
             <Row gutter={[24, 24]} style={{ marginTop: '40px' }}>
               {activities.map(({ title, text, icon }, index) => (
@@ -232,12 +234,13 @@ function HomePage() {
           </Col>
         </Row>
         <Row className="leading-medicine-section">
-          <Col className="leading-medicine-content">
+          <Col lg={12} sm={24} className="leading-medicine-content">
             <LineOutlined className="leading-medicine-icon" />
-            <Title className="leading-medicine-title">Leading Medicine</Title>
+            <Title className="leading-medicine-title">
+              {t('leadingMedicine.title')}
+            </Title>
             <Text className="leading-medicine-description">
-              Advanced AI-powered diagnostics and medical
-              <br /> analysis for healthcare professionals.
+              {t('leadingMedicine.description')}
             </Text>
           </Col>
           <Col>
@@ -294,7 +297,7 @@ function HomePage() {
         <Row gutter={[24, 24]} className="partners-section">
           <Col span={24}>
             <Title level={1} className="partners-title">
-              Partner With Us
+              {t('homepage.partnerTitle')}
             </Title>
             <Carousel
               autoplay
@@ -328,10 +331,10 @@ function HomePage() {
                         className="partner-image"
                       />
                       <Title level={4} className="partner-name">
-                        {partner.name}
+                        {t(`partners.${index}.name`)}
                       </Title>
                       <Text className="partner-description">
-                        {partner.description}
+                        {t(`partners.${index}.description`)}
                       </Text>
                     </div>
                     <Button
@@ -340,11 +343,11 @@ function HomePage() {
                       size="large"
                     >
                       <a
-                        href={partner.link}
+                        href={t(`partners.${index}.link`)}
                         target="_blank"
                         rel="noopener noreferrer"
                       >
-                        Read More
+                        {t('homepage.readMore')}
                       </a>
                     </Button>
                   </Card>
