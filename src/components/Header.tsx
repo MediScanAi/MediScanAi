@@ -251,26 +251,52 @@ function Header() {
             <div
               className={'user-button' + (theme ? ' dark-user-button' : '')}
             >
-              <Avatar style={{ fontSize: 20 }}>
-                {user?.email ? user?.email[0].toUpperCase() : 'Profile'}
-              </Avatar>
-              {
-                isDropdownOpen ?
-                  <UpOutlined /> :
-                  <DownOutlined />
-              }
+            <div style={{display:'flex',alignItems:'center',justifyContent:'space-between',width:(width<820?'30%':'50%')}}>
+                <Image
+                  preview={false}
+                  src={Logo}
+                  alt="Logo"
+                  height={30}
+                />
+                {width < 820 ? (
+                    <Dropdown trigger={["click"]} menu={{items: burgerItems}}>
+                        <MenuOutlined style={{fontSize: 30}}/>
+                    </Dropdown>
+                ) : (
+                        <Menu
+                            onClick={handleMenuClick}
+                            className="custom-menu"
+                            mode="horizontal"
+                            selectedKeys={[activeKey.includes('analysis/') ? 'analysis' : activeKey]}
+                            items={menuItems}
+                        />
+                )}
             </div>
-          </Dropdown> :
-            <Button onClick={() => navigate('/auth/login')} ghost variant={"text"} style={{ border: 'none', color: (theme ? 'white' : 'black') }}>
-              Log In
-            </Button>}
-          <Switch
-            defaultChecked={theme}
-            checkedChildren={<SunOutlined />}
-            unCheckedChildren={<MoonOutlined />}
-            onClick={handleThemeChange}
-          />
-          <Select onChange={(value) => {
+                <div className={'Right-buttons'}>
+                    {user ? <Dropdown trigger={['click']} menu={{items: userItems}} onOpenChange={toggleArrow}>
+                        <div
+                            className={'user-button' + (theme ? ' dark-user-button' : '')}
+                        >
+                            <Avatar style={{fontSize: 20}}>
+                                {user?.email ? user?.email[0].toUpperCase() : 'Profile'}
+                            </Avatar>
+                            {
+                                isDropdownOpen ?
+                                    <UpOutlined/> :
+                                    <DownOutlined/>
+                            }
+                        </div>
+                    </Dropdown> :
+                        <Button onClick={()=>navigate('/auth/login')}  ghost variant={"text"} style={{border:'none',color:(theme?'white':'black')}}>
+                          Log In
+                        </Button>}
+                    <Switch
+                        defaultChecked={!theme}
+                        checkedChildren={<SunOutlined/>}
+                        unCheckedChildren={<MoonOutlined/>}
+                        onClick={handleThemeChange}
+                    />
+                    <Select onChange={(value) => {
             i18n.changeLanguage(value);
             localStorage.setItem('language', value);
           }}
@@ -281,10 +307,10 @@ function Header() {
                 </Space>
               )
             }} className={theme ? 'dark-select-selector' : ''} style={{ width: 100, backgroundColor: 'transparent' }} />
-        </div>
-      </Flex>
-    </header>
-  )
+                </div>
+            </Flex>
+        </header>
+    );
 }
 
-export { Header };
+export {Header};
