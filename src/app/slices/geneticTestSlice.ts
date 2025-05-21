@@ -5,12 +5,12 @@ interface GeneticTestState {
 }
 
 export interface GeneticTestFormValues {
-  brca1: number | null;
-  brca2: number | null;
-  apoe: number | null;
-  mthfr: number | null;
-  factor_v_leiden: number | null;
-  cyp2c19: number | null;
+  brca1: string | null;
+  brca2: string | null;
+  apoe: string | null;
+  mthfr: string | null;
+  factor_v_leiden: string | null;
+  cyp2c19: string | null;
   date: string | null;
 }
 
