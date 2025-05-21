@@ -23,7 +23,7 @@ export default await tseslint.config({
       rules: {
         'react/react-in-jsx-scope': 'off',
         '@typescript-eslint/no-unused-vars': 'warn',
-        'no-constant-condition': 'warn',
+        'no-constant-condition': 'error',
         'react-refresh/only-export-components': [
           'warn',
           { allowConstantExport: true },
