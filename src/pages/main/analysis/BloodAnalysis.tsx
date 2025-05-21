@@ -13,8 +13,13 @@ import {
   Bar,
 } from 'recharts';
 import '../../../assets/styles/analysis.css';
-import type { BloodTestFormValues } from '../../../app/slices/bloodTestSlice';
-
+import { useEffect } from 'react';
+import { useAppDispatch, useAppSelector } from '../../../app/hooks';
+import { fetchBloodTestData } from '../../../app/slices/bloodTestSlice';
+import { onAuthStateChanged } from 'firebase/auth';
+import { auth } from '../../../api/authApi';
+import { collection } from 'firebase/firestore';
+import { db } from '../../../api/authApi';
 interface TrendData {
   date: string;
   value: number;
@@ -66,111 +71,129 @@ const CustomBarChart = ({ data }: { data: ChartData[] }) => (
 const { Title } = Typography;
 
 function BloodAnalysis() {
-  const mockAnalysisData: BloodTestFormValues = JSON.parse(
-    localStorage.getItem('bloodTestData') || '{}'
+  const dispatch = useAppDispatch();
+  const bloodTestData = useAppSelector(
+    (state) => state.bloodTest.bloodTestData
   );
 
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        collection(db, 'users', user.uid, 'bloodTest');
+        dispatch(fetchBloodTestData(user.uid));
+      }
+    });
+    return () => unsubscribe();
+  }, [dispatch]);
+
+  if (!bloodTestData) {
+    return (
+      <div style={{ textAlign: 'center', marginTop: 100 }}>
+        Loading your blood test data...
+      </div>
+    );
+  }
   //   const data = {
-  //     Cholesterol: mockAnalysisData.cholesterol || 0,
-  //     Glucose: mockAnalysisData.glucose || 0,
-  //     Hemoglobin: mockAnalysisData.hemoglobin || 0,
-  //     Platelets: mockAnalysisData.platelets || 0,
-  //     RBC: mockAnalysisData.rbc || 0,
-  //     WBC: mockAnalysisData.wbc || 0,
+  //     Cholesterol: bloodTestData.cholesterol || 0,
+  //     Glucose: bloodTestData.glucose || 0,
+  //     Hemoglobin: bloodTestData.hemoglobin || 0,
+  //     Platelets: bloodTestData.platelets || 0,
+  //     RBC: bloodTestData.rbc || 0,
+  //     WBC: bloodTestData.wbc || 0,
   //   };
 
   const PieData: ChartData[] = [
     {
       name: 'Cholesterol',
-      value: mockAnalysisData.cholesterol || 0,
+      value: bloodTestData.cholesterol || 0,
       color: '#8884d8',
     },
-    { name: 'Glucose', value: mockAnalysisData.glucose || 0, color: '#82ca9d' },
+    { name: 'Glucose', value: bloodTestData.glucose || 0, color: '#82ca9d' },
     {
       name: 'Hemoglobin',
-      value: mockAnalysisData.hemoglobin || 0,
+      value: bloodTestData.hemoglobin || 0,
       color: '#ffc658',
     },
     {
       name: 'Platelets',
-      value: mockAnalysisData.platelets || 0,
+      value: bloodTestData.platelets || 0,
       color: '#ff8042',
     },
-    { name: 'RBC', value: mockAnalysisData.rbc || 0, color: '#0088FE' },
-    { name: 'WBC', value: mockAnalysisData.wbc || 0, color: '#0088FE' },
+    { name: 'RBC', value: bloodTestData.rbc || 0, color: '#0088FE' },
+    { name: 'WBC', value: bloodTestData.wbc || 0, color: '#0088FE' },
   ];
 
   const BarData: ChartData[] = [
     {
       name: 'Cholesterol',
-      value: mockAnalysisData.cholesterol || 0,
+      value: bloodTestData.cholesterol || 0,
       color: '#8884d8',
     },
-    { name: 'Glucose', value: mockAnalysisData.glucose || 0, color: '#82ca9d' },
+    { name: 'Glucose', value: bloodTestData.glucose || 0, color: '#82ca9d' },
     {
       name: 'Hemoglobin',
-      value: mockAnalysisData.hemoglobin || 0,
+      value: bloodTestData.hemoglobin || 0,
       color: '#ffc658',
     },
     {
       name: 'Platelets',
-      value: mockAnalysisData.platelets || 0,
+      value: bloodTestData.platelets || 0,
       color: '#ff8042',
     },
-    { name: 'RBC', value: mockAnalysisData.rbc || 0, color: '#0088FE' },
-    { name: 'WBC', value: mockAnalysisData.wbc || 0, color: '#0088FE' },
+    { name: 'RBC', value: bloodTestData.rbc || 0, color: '#0088FE' },
+    { name: 'WBC', value: bloodTestData.wbc || 0, color: '#0088FE' },
   ];
 
   const scorecards = [
     {
       label:
         'Hemoglobin (g/dL) - Normal range: 13.8-17.2 (men), 12.1-15.1 (women), 14.5-18.5 (children), and 14.5-16.5 (pregnant women)',
-      value: mockAnalysisData.hemoglobin,
+      value: bloodTestData.hemoglobin,
       percent: 85,
     },
     {
       label:
         'Glucose (mg/dL) - Normal range: 70-100 (fasting), 140-180 (post-meal), and 80-120 (random, fasting), and 180-220 (random, post-meal)',
-      value: mockAnalysisData.glucose,
+      value: bloodTestData.glucose,
       percent: 70,
     },
     {
       label:
         'Platelets (10^9/L) - Normal range: 150-450 (men), 150-400 (women), 180-500 (children), and 150-350 (pregnant women)',
-      value: mockAnalysisData.platelets,
+      value: bloodTestData.platelets,
       percent: 90,
     },
   ];
 
   const trendData: TrendData[] = [
     {
-      date: `Cholesterol: ${mockAnalysisData.date}`,
-      value: mockAnalysisData.cholesterol || 0,
+      date: `Cholesterol: ${bloodTestData.date || 0}`,
+      value: bloodTestData.cholesterol || 0,
       color: '#8884d8',
     },
     {
-      date: `Glucose: ${mockAnalysisData.date}`,
-      value: mockAnalysisData.glucose || 0,
+      date: `Glucose: ${bloodTestData.date || 0}`,
+      value: bloodTestData.glucose || 0,
       color: '#82ca9d',
     },
     {
-      date: `Hemoglobin: ${mockAnalysisData.date}`,
-      value: mockAnalysisData.hemoglobin || 0,
+      date: `Hemoglobin: ${bloodTestData.date || 0}`,
+      value: bloodTestData.hemoglobin || 0,
       color: '#ffc658',
     },
     {
-      date: `Platelets: ${mockAnalysisData.date}`,
-      value: mockAnalysisData.platelets || 0,
+      date: `Platelets: ${bloodTestData.date || 0}`,
+      value: bloodTestData.platelets || 0,
       color: '#ff8042',
     },
     {
-      date: `RBC: ${mockAnalysisData.date}`,
-      value: mockAnalysisData.rbc || 0,
+      date: `RBC: ${bloodTestData.date || 0}`,
+      value: bloodTestData.rbc || 0,
       color: '#0088FE',
     },
     {
-      date: `WBC: ${mockAnalysisData.date}`,
-      value: mockAnalysisData.wbc || 0,
+      date: `WBC: ${bloodTestData.date || 0}`,
+      value: bloodTestData.wbc || 0,
       color: '#0088FE',
     },
   ];

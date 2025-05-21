@@ -13,6 +13,9 @@ import { setBloodTestData } from '../../../app/slices/bloodTestSlice';
 import type { BloodTestFormValues } from '../../../app/slices/bloodTestSlice';
 import { useLocation } from 'react-router';
 import { useNavigate } from 'react-router-dom';
+import { saveBloodTestData } from '../../../app/slices/bloodTestSlice';
+import { auth } from '../../../api/authApi';
+
 const { Title } = Typography;
 
 const bloodTestFields = [
@@ -73,17 +76,22 @@ function BloodTestsForm() {
   const updatedData = useLocation()?.state?.bloodTestData || undefined;
 
   const onFinish = (values: BloodTestFormValues) => {
-    dispatch(
-      setBloodTestData({
-        ...values,
-      })
-    );
+    const uid = auth.currentUser?.uid;
+
+    if (!uid) {
+      message.error('User is not authenticated');
+      return;
+    }
+
+    dispatch(saveBloodTestData({ uid, data: values }));
+    dispatch(setBloodTestData(values));
 
     if (updatedData) {
       message.success('Blood test updated successfully');
     } else {
       message.success('Blood test submitted successfully');
     }
+
     setTimeout(() => {
       navigate('/profile/analysis-history');
     }, 1000);
