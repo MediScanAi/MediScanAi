@@ -10,7 +10,7 @@ import {
   Space
 } from 'antd';
 import { NavLink } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useState,useEffect } from 'react';
 import {
   DownOutlined,
   ExperimentOutlined,
@@ -29,6 +29,10 @@ import '../assets/styles/header.css';
 import { useAppDispatch, useAppSelector } from '../app/hooks.ts';
 import { toggleTheme } from '../app/slices/theme';
 import { logoutUser } from '../app/slices/authSlice';
+import { useTranslation } from 'react-i18next';
+import engFlag from '../assets/photos/united-kingdom.png'
+import rusFlag from '../assets/photos/russia.png'
+import armFlag from '../assets/photos/armenia.png'
 
 function Header() {
   const { t, i18n } = useTranslation("global");
@@ -181,6 +185,15 @@ function Header() {
     setIsDropdownOpen(!isDropdownOpen);
   };
 
+  useEffect(() => {
+    window.addEventListener('resize', () => {
+      setWidth(window.innerWidth);
+    })
+    return () => {
+      window.removeEventListener('resize', () => { })
+    }
+  })
+
   const userItems: MenuProps['items'] = [
     {
       key: 'profile',
@@ -198,98 +211,80 @@ function Header() {
     },
   ];
 
-    return (
-        <header>
-            <Flex
-                className={'Header' + ' ' + (theme ? 'dark-Header' : '')}
-                justify="space-around"
-                align="middle"
+  const options = [
+    {
+      label: (<div className={'language-options'} ><img style={{ height: '20px' }} src={engFlag} /> ENG</div>),
+      value: 'english',
+    },
+    {
+      label: (<div className={'language-options'}><img style={{ height: '20px' }} src={rusFlag} /> RUS</div>),
+      value: 'russian',
+    },
+    {
+      label: (<div className={'language-options'}><img style={{ height: '20px' }} src={armFlag} /> ARM</div>),
+      value: 'armenia',
+    },
+  ];
+
+  return (
+    <header>
+      <Flex
+        className={'Header' + ' ' + (theme ? 'dark-Header' : '')}
+        justify="space-around"
+        align="middle"
+      >
+        {width < 820 ? (
+          <Dropdown trigger={["click"]} menu={{ items: burgerItems }}>
+            <MenuOutlined style={{ fontSize: 30 }} />
+          </Dropdown>
+        ) : (
+          <Menu
+            onClick={handleMenuClick}
+            className="custom-menu"
+            mode="horizontal"
+            selectedKeys={[activeKey.includes('analysis/') ? 'analysis' : activeKey]}
+            items={menuItems}
+          />
+        )}
+        <div className={'Right-buttons'}>
+          {user ? <Dropdown trigger={['click']} menu={{ items: userItems }} onOpenChange={toggleArrow}>
+            <div
+              className={'user-button' + (theme ? ' dark-user-button' : '')}
             >
-              <div
-                className={'user-button' + (theme ? ' dark-user-button' : '')}
-              >
-                <Avatar style={{ fontSize: 20 }}>
-                  {user?.email ? user?.email[0].toUpperCase() : 'Profile'}
-                </Avatar>
-                {isDropdownOpen ? <UpOutlined /> : <DownOutlined />}
-              </div>
-            </Dropdown>
-          ) : (
-            <Button ghost variant={'text'} style={{ border: 'none' }}>
-              <NavLink to={'/auth/login'}>{t('menu.login')}</NavLink>
-            </Button>
-          )}
+              <Avatar style={{ fontSize: 20 }}>
+                {user?.email ? user?.email[0].toUpperCase() : 'Profile'}
+              </Avatar>
+              {
+                isDropdownOpen ?
+                  <UpOutlined /> :
+                  <DownOutlined />
+              }
+            </div>
+          </Dropdown> :
+            <Button onClick={() => navigate('/auth/login')} ghost variant={"text"} style={{ border: 'none', color: (theme ? 'white' : 'black') }}>
+              Log In
+            </Button>}
           <Switch
             defaultChecked={theme}
             checkedChildren={<SunOutlined />}
             unCheckedChildren={<MoonOutlined />}
             onClick={handleThemeChange}
           />
-          <Select
-            onChange={(value) => {
-              i18n.changeLanguage(value);
-              localStorage.setItem('language', value);
-            }}
-            defaultValue={i18n.language}
-            className={theme ? 'dark-select-selector' : ''}
-            style={{ width: 75, backgroundColor: 'transparent' }}
-          >
-            <Select.Option value="en">ENG</Select.Option>
-            <Select.Option value="ru">RUS</Select.Option>
-            <Select.Option value="hy">ARM</Select.Option>
-          </Select>
-
+          <Select onChange={(value) => {
+            i18n.changeLanguage(value);
+            localStorage.setItem('language', value);
+          }}
+            defaultValue={"english"} variant={'borderless'} options={options} optionRender={(option) => {
+              return (
+                <Space>
+                  {option.data.label}
+                </Space>
+              )
+            }} className={theme ? 'dark-select-selector' : ''} style={{ width: 100, backgroundColor: 'transparent' }} />
         </div>
       </Flex>
     </header>
-  );
-                {width < 820 ? (
-                    <Dropdown trigger={["click"]} menu={{items: burgerItems}}>
-                        <MenuOutlined style={{fontSize: 30}}/>
-                    </Dropdown>
-                ) : (
-                        <Menu
-                            onClick={handleMenuClick}
-                            className="custom-menu"
-                            mode="horizontal"
-                            selectedKeys={[activeKey.includes('analysis/') ? 'analysis' : activeKey]}
-                            items={menuItems}
-                        />
-                )}
-                <div className={'Right-buttons'}>
-                    {user ? <Dropdown trigger={['click']} menu={{items: userItems}} onOpenChange={toggleArrow}>
-                        <div
-                            className={'user-button' + (theme ? ' dark-user-button' : '')}
-                        >
-                            <Avatar style={{fontSize: 20}}>
-                                {user?.email ? user?.email[0].toUpperCase() : 'Profile'}
-                            </Avatar>
-                            {
-                                isDropdownOpen ?
-                                    <UpOutlined/> :
-                                    <DownOutlined/>
-                            }
-                        </div>
-                    </Dropdown> :
-                        <Button onClick={()=>navigate('/auth/login')}  ghost variant={"text"} style={{border:'none',color:(theme?'white':'black')}}>
-                          Log In
-                        </Button>}
-                    <Switch
-                        defaultChecked={theme}
-                        checkedChildren={<SunOutlined/>}
-                        unCheckedChildren={<MoonOutlined/>}
-                        onClick={handleThemeChange}
-                    />
-                    <Select variant={'borderless'} options={options} optionRender={(option)=>{
-                        return(
-                        <Space>
-                            {option.data.label}
-                        </Space>
-                    )}}  defaultValue="english" className={theme?'dark-select-selector':''} style={{width: 100,backgroundColor:'transparent'}}/>
-                </div>
-            </Flex>
-        </header>
-    );
+  )
 }
 
-export {Header};
+export { Header };
