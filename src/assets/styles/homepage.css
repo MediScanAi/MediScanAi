@@ -359,6 +359,13 @@
 .dark-theme .faq-answer {
   color: white;
 }
+.dark-theme {
+  h1{
+    color: white;
+  }
+
+}
+
 
 /* Animation */
 @keyframes fadeInUp {
