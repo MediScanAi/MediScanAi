@@ -15,7 +15,8 @@ import { fetchBloodTestData } from '../../../app/slices/bloodTestSlice';
 import { onAuthStateChanged } from 'firebase/auth';
 import { auth } from '../../../api/authApi';
 import { collection } from 'firebase/firestore';
-import { db } from '../../../api/authApi';import BloodMultic from '../../../assets/photos/BloodMultic.png';
+import { db } from '../../../api/authApi';
+import BloodMultic from '../../../assets/photos/BloodMultic.png';
 import Done from '../../../assets/photos/Done.webp';
 import { Button } from 'antd';
 import { useNavigate } from 'react-router-dom';
@@ -110,7 +111,7 @@ function BloodAnalysis() {
     (state) => state.bloodTest.bloodTestData
   );
   const [width, setWidth] = useState(window.innerWidth);
-  
+
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
@@ -118,13 +119,9 @@ function BloodAnalysis() {
         dispatch(fetchBloodTestData(user.uid));
       }
     });
-    
 
     return () => unsubscribe();
   }, [dispatch]);
-
-  
-
 
   const [expandedWarnings, setExpandedWarnings] = useState<{
     [key: string]: boolean;
@@ -377,15 +374,17 @@ function BloodAnalysis() {
       <div>
         {bloodTestData?.cholesterol ? (
           <div>
-            <Card className="card2-design" style={{ border: "none" }}>
+            <Card className="card2-design" style={{ border: 'none' }}>
               <Col className="card2-col-design">
-                <div style={{ 
-                  display: 'flex',
-                  justifyContent: 'center',
-                  width: '100%',
-                  marginBottom: '20px'
-                }}>
-                  <Button 
+                <div
+                  style={{
+                    display: 'flex',
+                    justifyContent: 'center',
+                    width: '100%',
+                    marginBottom: '20px',
+                  }}
+                >
+                  <Button
                     className="consult-button"
                     type="primary"
                     size="large"

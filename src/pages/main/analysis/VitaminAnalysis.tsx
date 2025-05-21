@@ -67,7 +67,7 @@ const CustomLegend = ({ payload }: { payload: LegendPayload[] }) => (
 );
 
 const CustomBarChart = ({ data }: { data: ChartData[] }) => (
-  <ResponsiveContainer width="100%" height={300}>
+  <ResponsiveContainer width="90%" height={300} >
     <BarChart data={data} margin={{ top: 20, right: 30, left: 0, bottom: 5 }}>
       <defs>
         <linearGradient id="barGradient" x1="0" y1="0" x2="0" y2="1">
@@ -354,8 +354,9 @@ function VitaminAnalysis() {
       <div>
         {mockAnalysisData.vitaminA ? (
           <>
-            <Card className="card2-design">
+            <Card className="card2-design" style={{border:"none"}}>
               <Col className="card2-col-design">
+                <div style={{ display: 'flex', justifyContent: 'center' }}>
                 <Button
                   className="consult-button"
                   type="primary"
@@ -363,7 +364,8 @@ function VitaminAnalysis() {
                   onClick={() => navigate('/ai-doctor')}
                 >
                   Analyze with AI
-                </Button>
+                  </Button>
+                  </div>
               </Col>
               <Col
                 style={{

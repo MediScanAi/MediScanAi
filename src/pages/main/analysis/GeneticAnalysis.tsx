@@ -296,8 +296,9 @@ function GeneticAnalysis() {
       <div>
         {mockAnalysisData.brca1 ? (
           <div>
-            <Card className="card2-design">
+            <Card className="card2-design" style={{border:"none"}}>
               <Col className="card2-col-design">
+                <div style={{display: 'flex', justifyContent: 'center', marginBottom: 20}}>
                 <Button
                   className="consult-button"
                   type="primary"
@@ -306,6 +307,7 @@ function GeneticAnalysis() {
                 >
                   Analyze with AI
                 </Button>
+                </div>
               </Col>
               <Col
                 style={{

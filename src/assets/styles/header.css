@@ -15,15 +15,15 @@ header {
     color: white;
   }
 }
-.css-dev-only-do-not-override-1m2bkf9.ant-menu-horizontal{
+.css-dev-only-do-not-override-1m2bkf9.ant-menu-horizontal {
   border: none;
 }
 
-.language-options{
+.language-options {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width:55px;
+  width: 55px;
 }
 .Header {
   width: 100%;
@@ -98,4 +98,3 @@ header {
 .custom-menu {
   width: 500px;
 }
-
