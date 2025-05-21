@@ -7,6 +7,7 @@ import {
   Switch,
   Menu,
   Button,
+  Space
 } from 'antd';
 import { NavLink } from 'react-router-dom';
 import { useEffect, useState } from 'react';
@@ -28,7 +29,6 @@ import '../assets/styles/header.css';
 import { useAppDispatch, useAppSelector } from '../app/hooks.ts';
 import { toggleTheme } from '../app/slices/theme';
 import { logoutUser } from '../app/slices/authSlice';
-import { useTranslation } from 'react-i18next';
 
 function Header() {
   const { t, i18n } = useTranslation("global");
@@ -198,42 +198,12 @@ function Header() {
     },
   ];
 
-  useEffect(() => {
-    const handleResize = () => {
-      setWidth(window.innerWidth);
-    };
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
-
-  return (
-    <header>
-      <Flex
-        className={'Header' + ' ' + (theme ? 'dark-Header' : '')}
-        justify="space-around"
-        align="middle"
-      >
-        {width < 820 ? (
-          <Dropdown trigger={['click']} menu={{ items: burgerItems }}>
-            <MenuOutlined style={{ fontSize: 30 }} />
-          </Dropdown>
-        ) : (
-          <Menu
-            onClick={handleMenuClick}
-            className="custom-menu"
-            mode="horizontal"
-            defaultSelectedKeys={[
-              activeKey.includes('analysis') ? 'analysis' : activeKey,
-            ]}
-            items={menuItems}
-          />
-        )}
-        <div className={'Right-buttons'}>
-          {user ? (
-            <Dropdown
-              trigger={['click']}
-              menu={{ items: userItems }}
-              onOpenChange={toggleArrow}
+    return (
+        <header>
+            <Flex
+                className={'Header' + ' ' + (theme ? 'dark-Header' : '')}
+                justify="space-around"
+                align="middle"
             >
               <div
                 className={'user-button' + (theme ? ' dark-user-button' : '')}
@@ -273,6 +243,53 @@ function Header() {
       </Flex>
     </header>
   );
+                {width < 820 ? (
+                    <Dropdown trigger={["click"]} menu={{items: burgerItems}}>
+                        <MenuOutlined style={{fontSize: 30}}/>
+                    </Dropdown>
+                ) : (
+                        <Menu
+                            onClick={handleMenuClick}
+                            className="custom-menu"
+                            mode="horizontal"
+                            selectedKeys={[activeKey.includes('analysis/') ? 'analysis' : activeKey]}
+                            items={menuItems}
+                        />
+                )}
+                <div className={'Right-buttons'}>
+                    {user ? <Dropdown trigger={['click']} menu={{items: userItems}} onOpenChange={toggleArrow}>
+                        <div
+                            className={'user-button' + (theme ? ' dark-user-button' : '')}
+                        >
+                            <Avatar style={{fontSize: 20}}>
+                                {user?.email ? user?.email[0].toUpperCase() : 'Profile'}
+                            </Avatar>
+                            {
+                                isDropdownOpen ?
+                                    <UpOutlined/> :
+                                    <DownOutlined/>
+                            }
+                        </div>
+                    </Dropdown> :
+                        <Button onClick={()=>navigate('/auth/login')}  ghost variant={"text"} style={{border:'none',color:(theme?'white':'black')}}>
+                          Log In
+                        </Button>}
+                    <Switch
+                        defaultChecked={theme}
+                        checkedChildren={<SunOutlined/>}
+                        unCheckedChildren={<MoonOutlined/>}
+                        onClick={handleThemeChange}
+                    />
+                    <Select variant={'borderless'} options={options} optionRender={(option)=>{
+                        return(
+                        <Space>
+                            {option.data.label}
+                        </Space>
+                    )}}  defaultValue="english" className={theme?'dark-select-selector':''} style={{width: 100,backgroundColor:'transparent'}}/>
+                </div>
+            </Flex>
+        </header>
+    );
 }
 
-export { Header };
+export {Header};
