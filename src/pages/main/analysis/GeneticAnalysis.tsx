@@ -1,30 +1,22 @@
-import { Card, Progress, Row, Col, Typography } from 'antd';
-import { LineChart } from '../../../components/charts/index';
-import {
-  ResponsiveContainer,
-  PieChart,
-  Pie,
-  Cell,
-  Tooltip,
-  Legend,
-  BarChart,
-  XAxis,
-  YAxis,
-  Bar,
-} from 'recharts';
+import { Card, Row, Col, Typography, Progress } from 'antd';
 import '../../../assets/styles/analysis.css';
+import { Button } from 'antd';
+import { useNavigate } from 'react-router-dom';
+import ChartGoingDown from '../../../assets/photos/ChartGoingDown.webp';
+import Syringe from '../../../assets/photos/Syringe.webp';
+import Bilirubin from '../../../assets/photos/Bilirubin.webp';
+import BRCA1 from '../../../assets/photos/BRCA1.webp';
+import APOE from '../../../assets/photos/APOE.webp';
+import { useEffect } from 'react';
+import { useState } from 'react';
+import Gen from '../../../assets/photos/Gen.webp';
 import type { GeneticTestFormValues } from '../../../app/slices/geneticTestSlice';
-
-interface TrendData {
-  date: string;
-  value: number;
-  color: string;
-}
 
 interface ChartData {
   name: string;
-  value: number;
+  value: number | string;
   color: string;
+  image: string;
 }
 
 interface Scorecard {
@@ -33,351 +25,442 @@ interface Scorecard {
   percent: number;
 }
 
-const CustomPieChart = ({ data }: { data: ChartData[] }) => (
-  <ResponsiveContainer width={300} height={300}>
-    <PieChart>
-      <Pie data={data} dataKey="value" nameKey="name" outerRadius={100} label>
-        {data.map((entry, index) => (
-          <Cell key={index} fill={entry.color || '#8884d8'} />
-        ))}
-      </Pie>
-      <Tooltip />
-      <Legend />
-    </PieChart>
-  </ResponsiveContainer>
-);
-
-const CustomBarChart = ({ data }: { data: ChartData[] }) => (
-  <ResponsiveContainer width="100%" height={300}>
-    <BarChart data={data} margin={{ top: 20, right: 30, left: 0, bottom: 5 }}>
-      <XAxis dataKey="name" />
-      <YAxis />
-      <Tooltip />
-      <Legend />
-      <Bar dataKey="value">
-        {data.map((entry, index) => (
-          <Cell key={index} fill={entry.color || '#1890ff'} />
-        ))}
-      </Bar>
-    </BarChart>
-  </ResponsiveContainer>
-);
-
 const { Title } = Typography;
-
-const convertGeneticValue = (field: string, value: string | null): number => {
-  if (!value) return 0;
-
-  switch (field) {
-    case 'brca1':
-    case 'brca2':
-    case 'factor_v_leiden':
-      return value === 'positive' ? 1 : 0;
-
-    case 'apoe':
-      return (
-        {
-          'ε2/ε2': 1,
-          'ε3/ε3': 2,
-          'ε3/ε4': 3,
-          'ε4/ε4': 4,
-        }[value] || 0
-      );
-
-    case 'mthfr':
-      return (
-        {
-          Normal: 1,
-          Heterozygous: 2,
-          Homozygous: 3,
-        }[value] || 0
-      );
-
-    case 'cyp2c19':
-      return (
-        {
-          'Category I': 1,
-          'Category II': 2,
-          'Category III': 3,
-        }[value] || 0
-      );
-
-    default:
-      return 0;
-  }
-};
 
 function GeneticAnalysis() {
   const mockAnalysisData: GeneticTestFormValues = JSON.parse(
     localStorage.getItem('geneticTestData') || '{}'
   );
+  const [width, setWidth] = useState(window.innerWidth);
 
-  if (!mockAnalysisData) {
-    return <div>No data found</div>;
-  }
+  const [expandedWarnings, setExpandedWarnings] = useState<{
+    [key: string]: boolean;
+  }>({});
+
+  const toggleWarning = (warning: string) => {
+    setExpandedWarnings((prev) => ({
+      ...prev,
+      [warning]: !prev[warning],
+    }));
+  };
+
+  useEffect(() => {
+    const handleResize = () => {
+      setWidth(window.innerWidth);
+    };
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   const PieData: ChartData[] = [
     {
-      name: 'APOE',
-      value: convertGeneticValue(
-        'apoe',
-        mockAnalysisData.apoe?.toString() || null
-      ),
-      color: '#8884d8',
-    },
-    {
       name: 'BRCA1',
-      value: convertGeneticValue(
-        'brca1',
-        mockAnalysisData.brca1?.toString() || null
-      ),
-      color: '#82ca9d',
+      value: mockAnalysisData.brca1 || 0,
+      color: '#f39c12',
+      image: BRCA1,
     },
     {
       name: 'BRCA2',
-      value: convertGeneticValue(
-        'brca2',
-        mockAnalysisData.brca2?.toString() || null
-      ),
-      color: '#ffc658',
+      value: mockAnalysisData.brca2 || 0,
+      color: '#16a085',
+      image: Gen,
     },
     {
-      name: 'CYP2C19',
-      value: convertGeneticValue(
-        'cyp2c19',
-        mockAnalysisData.cyp2c19?.toString() || null
-      ),
-      color: '#ff8042',
+      name: 'Factor V Leiden',
+      value: mockAnalysisData.factor_v_leiden || 0,
+      color: '#e74c3c',
+      image: Syringe,
     },
     {
-      name: 'FACTORV',
-      value: convertGeneticValue(
-        'factor_v_leiden',
-        mockAnalysisData.factor_v_leiden?.toString() || null
-      ),
-      color: '#0088FE',
+      name: 'APOE',
+      value: mockAnalysisData.apoe || 0,
+      color: '#8e44ad',
+      image: APOE,
     },
     {
       name: 'MTHFR',
-      value: convertGeneticValue(
-        'mthfr',
-        mockAnalysisData.mthfr?.toString() || null
-      ),
-      color: '#00C49F',
+      value: mockAnalysisData.mthfr || 0,
+      color: '#2980b9',
+      image: ChartGoingDown,
+    },
+    {
+      name: 'CYP2C19',
+      value: mockAnalysisData.cyp2c19 || 0,
+      color: '#27ae60',
+      image: Bilirubin,
     },
   ];
 
-  const BarData = [...PieData];
+  const navigate = useNavigate();
 
-  const scorecards: Scorecard[] = [
-    {
-      label: `APOE: ${mockAnalysisData.apoe}`,
-      value: mockAnalysisData.apoe?.toString() || null,
-      percent:
-        convertGeneticValue('apoe', mockAnalysisData.apoe?.toString() || null) *
-        25,
-    },
-    {
-      label: `BRCA1: ${mockAnalysisData.brca1}`,
-      value: mockAnalysisData.brca1?.toString() || null,
-      percent:
-        convertGeneticValue(
-          'brca1',
-          mockAnalysisData.brca1?.toString() || null
-        ) * 100,
-    },
-    {
-      label: `BRCA2: ${mockAnalysisData.brca2}`,
-      value: mockAnalysisData.brca2?.toString() || null,
-      percent:
-        convertGeneticValue(
-          'brca2',
-          mockAnalysisData.brca2?.toString() || null
-        ) * 100,
-    },
-    {
-      label: `CYP2C19: ${mockAnalysisData.cyp2c19}`,
-      value: mockAnalysisData.cyp2c19?.toString() || null,
-      percent:
-        convertGeneticValue(
-          'cyp2c19',
-          mockAnalysisData.cyp2c19?.toString() || null
-        ) * 33.33,
-    },
-    {
-      label: `FACTOR V Leiden: ${mockAnalysisData.factor_v_leiden}`,
-      value: mockAnalysisData.factor_v_leiden?.toString() || null,
-      percent:
-        convertGeneticValue(
-          'factor_v_leiden',
-          mockAnalysisData.factor_v_leiden?.toString() || null
-        ) * 100,
-    },
-    {
-      label: `MTHFR: ${mockAnalysisData.mthfr}`,
-      value: mockAnalysisData.mthfr?.toString() || null,
-      percent:
-        convertGeneticValue(
-          'mthfr',
-          mockAnalysisData.mthfr?.toString() || null
-        ) * 33.33,
-    },
-  ];
+  const interestingFacts: { [key: string]: string[] } = {
+    BRCA1: [
+      'BRCA1 mutations increase breast cancer risk by up to 72% and ovarian cancer risk by up to 44%.',
+      'The BRCA1 gene helps repair damaged DNA and maintain genomic stability.',
+      'Men with BRCA1 mutations have increased risk of breast and prostate cancer.',
+      'BRCA1 mutations are more common in certain ethnic groups like Ashkenazi Jews.',
+      'Not all BRCA1 mutation carriers will develop cancer—other factors play a role.',
+      'BRCA1 was the first breast cancer gene identified, discovered in 1994.',
+    ],
+    BRCA2: [
+      'BRCA2 mutations increase breast cancer risk by up to 69% and ovarian cancer risk by up to 17%.',
+      'BRCA2 plays a crucial role in DNA repair through homologous recombination.',
+      'BRCA2 mutations significantly increase pancreatic cancer risk in both genders.',
+      'BRCA2 carriers may respond better to certain chemotherapy drugs like platinum agents.',
+      'BRCA2 mutations can cause Fanconi anemia when inherited from both parents.',
+      'Male BRCA2 carriers have a 7% lifetime risk of breast cancer (vs 0.1% general population).',
+    ],
+    'Factor V Leiden': [
+      'Factor V Leiden is the most common inherited blood clotting disorder.',
+      'About 5% of Caucasians carry at least one copy of the mutation.',
+      'Heterozygous carriers have 5-10x higher risk of blood clots; homozygous have 50-100x risk.',
+      'The mutation originated in a single ancestor about 30,000 years ago.',
+      'Hormonal contraception significantly increases clot risk in carriers.',
+      'Factor V Leiden may have provided survival advantage against sepsis in the past.',
+    ],
+    APOE: [
+      "APOE ε4 is the strongest genetic risk factor for late-onset Alzheimer's disease.",
+      'APOE helps transport cholesterol and fats in the bloodstream.',
+      'About 25% of people carry one ε4 allele; 2-3% carry two copies.',
+      "APOE ε2 may be protective against Alzheimer's but increases cardiovascular risk.",
+      'APOE genotype affects response to dietary fats and statin medications.',
+      'The ε4 allele is more common in populations with historically high-fat diets.',
+    ],
+    MTHFR: [
+      'MTHFR mutations affect folate metabolism and homocysteine levels.',
+      'C677T is the most common variant, present in 30-40% of some populations.',
+      'Homozygous C677T may increase risk of heart disease, stroke, and birth defects.',
+      'MTHFR status affects requirements for folic acid and other B vitamins.',
+      'The mutation may influence depression risk through neurotransmitter synthesis.',
+      "MTHFR testing is controversial—many experts don't recommend routine screening.",
+    ],
+    CYP2C19: [
+      'CYP2C19 metabolizes many drugs including antidepressants, clopidogrel, and proton pump inhibitors.',
+      'Poor metabolizers may need alternative medications or dose adjustments.',
+      'About 2-15% of people are poor metabolizers, varying by ethnicity.',
+      'Ultrarapid metabolizers may process drugs too quickly, reducing effectiveness.',
+      'Testing is particularly important for clopidogrel (Plavix) effectiveness.',
+      'CYP2C19 status can affect antidepressant response and side effects.',
+    ],
+  };
 
-  const trendData: TrendData[] = [
+  const geneticExplanations: { [key: string]: string } = {
+    '⚠️ BRCA1 Positive — Increased Cancer Risk':
+      'A positive BRCA1 result indicates a mutation in this tumor suppressor gene, significantly increasing lifetime risk of breast (up to 72%), ovarian (up to 44%), and other cancers. BRCA1 helps repair DNA damage; mutations impair this function. Management includes enhanced screening (MRI/mammograms), risk-reducing medications, or preventive surgeries. Not all carriers develop cancer, but vigilance is crucial. Genetic counseling helps interpret results and guide family testing.',
+
+    '⚠️ BRCA2 Positive — Increased Cancer Risk':
+      "BRCA2 mutations elevate risks for breast (up to 69%), ovarian (up to 17%), pancreatic, and other cancers. Like BRCA1, it's involved in DNA repair.Male carriers have increased breast and prostate cancer risks.Management parallels BRCA1, with consideration of pancreatic cancer screening for high - risk families.PARP inhibitors are particularly effective treatments for BRCA - related cancers.",
+
+    '⚠️ Factor V Leiden Positive — Clotting Risk':
+      "Factor V Leiden makes blood resistant to protein C, increasing clotting risk 5-10x (heterozygous) or 50-100x (homozygous). Most carriers never clot, but risks rise with surgery, pregnancy, or hormones. Symptoms include DVT or PE. Management focuses on clot prevention during high-risk situations. Lifelong anticoagulation isn't usually needed without clotting history.",
+
+    "⚠️ APOE ε4/ε4 — High Alzheimer's Risk":
+      "Two ε4 alleles confer the highest Alzheimer's risk (up to 15x increased). The ε4 protein clears amyloid plaques less effectively. However, not all carriers develop dementia. Prevention focuses on heart-healthy lifestyle (exercise, Mediterranean diet, cognitive engagement). Testing is generally not recommended predictively due to limited clinical utility.",
+
+    '⚠️ MTHFR Homozygous — Folate Metabolism Impact':
+      "Homozygous C677T mutations reduce enzyme activity by ~70%, potentially elevating homocysteine. The clinical significance is debated, but may modestly increase cardiovascular and pregnancy risks. Management may include methylfolate (not folic acid) supplementation if homocysteine is elevated, though routine treatment isn't universally recommended.",
+
+    '⚠️ CYP2C19 Poor Metabolizer — Drug Response Altered':
+      'Poor metabolizers process certain drugs very slowly, increasing side effects or requiring dose reductions. Affected medications include clopidogrel (reduced effectiveness), many antidepressants, and proton pump inhibitors. Pharmacogenetic testing can guide alternative drug selection (e.g., prasugrel instead of clopidogrel) or dosing adjustments.',
+  };
+
+  const getGeneticRisks = (data: GeneticTestFormValues) => {
+    const risks: string[] = [];
+
+    if (data.brca1 === 'positive') {
+      risks.push('⚠️ BRCA1 Positive — Increased Cancer Risk');
+    }
+
+    if (data.brca2 === 'positive') {
+      risks.push('⚠️ BRCA2 Positive — Increased Cancer Risk');
+    }
+
+    if (data.factor_v_leiden === 'positive') {
+      risks.push('⚠️ Factor V Leiden Positive — Clotting Risk');
+    }
+
+    if (data.apoe === 'ε4/ε4') {
+      risks.push("⚠️ APOE ε4/ε4 — High Alzheimer's Risk");
+    }
+
+    if (data.mthfr === 'Homozygous') {
+      risks.push('⚠️ MTHFR Homozygous — Folate Metabolism Impact');
+    }
+
+    if (data.cyp2c19 === 'Category III') {
+      risks.push('⚠️ CYP2C19 Poor Metabolizer — Drug Response Altered');
+    }
+
+    return risks;
+  };
+
+  const scorecards = [
     {
-      date: `APOE: ${mockAnalysisData.date}`,
-      value: convertGeneticValue(
-        'apoe',
-        mockAnalysisData.apoe?.toString() || null
-      ),
-      color: '#8884d8',
+      label: 'BRCA1',
+      value: mockAnalysisData.brca1,
+      percent: mockAnalysisData.brca1 === 'positive' ? 100 : 0,
     },
     {
-      date: `BRCA1: ${mockAnalysisData.date}`,
-      value: convertGeneticValue(
-        'brca1',
-        mockAnalysisData.brca1?.toString() || null
-      ),
-      color: '#82ca9d',
+      label: 'BRCA2',
+      value: mockAnalysisData.brca2,
+      percent: mockAnalysisData.brca2 === 'positive' ? 100 : 0,
     },
     {
-      date: `BRCA2: ${mockAnalysisData.date}`,
-      value: convertGeneticValue(
-        'brca2',
-        mockAnalysisData.brca2?.toString() || null
-      ),
-      color: '#ffc658',
+      label: 'APOE',
+      value: mockAnalysisData.apoe,
+      percent:
+        mockAnalysisData.apoe === 'E1/ε1'
+          ? 100
+          : mockAnalysisData.apoe === 'E2/ε2'
+            ? 50
+            : mockAnalysisData.apoe === 'ε3/ε3'
+              ? 25
+              : mockAnalysisData.apoe === 'E4/ε4'
+                ? 0
+                : 0,
     },
     {
-      date: `CYP2C19: ${mockAnalysisData.date}`,
-      value: convertGeneticValue(
-        'cyp2c19',
-        mockAnalysisData.cyp2c19?.toString() || null
-      ),
-      color: '#ff8042',
+      label: 'MTHFR',
+      value: mockAnalysisData.mthfr,
+      percent:
+        mockAnalysisData.mthfr === 'Homozygous'
+          ? 0
+          : mockAnalysisData.mthfr === 'Heterozygous'
+            ? 50
+            : mockAnalysisData.mthfr === 'Normal'
+              ? 100
+              : 0,
     },
     {
-      date: `FACTORV: ${mockAnalysisData.date}`,
-      value: convertGeneticValue(
-        'factor_v_leiden',
-        mockAnalysisData.factor_v_leiden?.toString() || null
-      ),
-      color: '#0088FE',
+      label: 'Factor V Leiden',
+      value: mockAnalysisData.factor_v_leiden,
+      percent: mockAnalysisData.factor_v_leiden === 'positive' ? 100 : 0,
     },
     {
-      date: `MTHFR: ${mockAnalysisData.date}`,
-      value: convertGeneticValue(
-        'mthfr',
-        mockAnalysisData.mthfr?.toString() || null
-      ),
-      color: '#00C49F',
+      label: 'CYP2C19',
+      value: mockAnalysisData.cyp2c19,
+      percent:
+        mockAnalysisData.cyp2c19 === 'Category I'
+          ? 100
+          : mockAnalysisData.cyp2c19 === 'Category II'
+            ? 50
+            : mockAnalysisData.cyp2c19 === 'Category III'
+              ? 0
+              : 0,
     },
   ];
 
   return (
     <div>
-      <Col
+      <Row
+        className="welcome-section"
         style={{
-          backgroundColor: 'white',
-          margin: '0 auto',
-          marginTop: '60px',
+          alignItems: 'center',
+          justifyContent: 'center',
+          marginTop: -45,
         }}
       >
-        <div className="inside-dev">
-          <Col className="row-col">
-            <Title level={3} style={{ color: 'black' }}>
-              Genetic Test Results
-            </Title>
-            <h5 style={{ color: 'black', margin: '10px' }}>
-              Genetic test results show categorical gene risk factors.
-            </h5>
-          </Col>
-        </div>
-      </Col>
+        <Col className="welcome-section-column">
+          <Typography
+            className="welcome-text"
+            style={{
+              fontSize: width > 768 ? '30px' : '20px',
+              marginTop: 50,
+              marginLeft: 5,
+            }}
+          >
+            Genetic Test Results
+          </Typography>
+          <Typography
+            className="platform-title"
+            style={{ fontSize: width > 768 ? '50px' : '30px' }}
+          >
+            Analysis with AI
+          </Typography>
+        </Col>
+        <Col>
+          <img
+            src={Gen}
+            alt="platform"
+            style={{
+              marginBottom: -50,
+              width: width > 768 ? '300px' : '80px',
+              height: width > 768 ? '300px' : '80px',
+              objectFit: 'cover',
+              borderRadius: 15,
+            }}
+          />
+        </Col>
+      </Row>
 
-      <Card
-        style={{
-          flex: 4,
-          borderRadius: '15px',
-          marginRight: '25px',
-          border: 'none',
-          width: '90%',
-          margin: '0 auto',
-        }}
-      >
-        <CustomBarChart data={BarData} />
-      </Card>
+      <div>
+        {mockAnalysisData.brca1 ? (
+          <div>
+            <Card className="card2-design">
+              <Col className="card2-col-design">
+                <Button
+                  className="consult-button"
+                  type="primary"
+                  size="large"
+                  onClick={() => navigate('/ai-doctor')}
+                >
+                  Analyze with AI
+                </Button>
+              </Col>
+              <Col
+                style={{
+                  display: 'flex',
+                  flexDirection: width > 768 ? 'row' : 'column',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                }}
+              >
+                {scorecards.map((item: Scorecard, idx) => (
+                  <Card
+                    key={idx}
+                    style={{
+                      textAlign: 'center',
+                      borderRadius: '15px',
+                      border: 'none',
+                    }}
+                  >
+                    <div style={{ marginTop: 10 }}>{item.value}</div>
+                    <Progress
+                      type="circle"
+                      percent={Math.min(item.percent, 100)}
+                      strokeWidth={7}
+                    />
+                    <div style={{ marginTop: 30 }}>{item.label}</div>
+                  </Card>
+                ))}
+              </Col>
+            </Card>
 
-      <Row style={{ marginTop: '80px', margin: '0 auto', display: 'flex' }}>
-        <div
-          style={{
-            display: 'flex',
-            gap: 32,
-            margin: '0 auto',
-            width: '96.5%',
-            justifyContent: 'center',
-          }}
-        >
-          <Card className="cholesterol-breakdown">
-            <CustomPieChart data={PieData} />
-          </Card>
-
+            <Card
+              style={{
+                margin: '20px auto',
+                width: '90%',
+                backgroundColor: '#fffbe6',
+                border: '1px solid #faad14',
+                borderRadius: 10,
+                padding: 16,
+              }}
+            >
+              <Title
+                level={3}
+                style={{ color: 'rgb(255, 0, 0)', fontFamily: 'Poppins' }}
+              >
+                🚨 Health Risk Warnings
+              </Title>
+              <ul style={{ paddingLeft: 20 }}>
+                {getGeneticRisks(mockAnalysisData).length > 0 ? (
+                  getGeneticRisks(mockAnalysisData).map((risk, index) => (
+                    <li key={index} style={{ fontSize: 16, marginBottom: 8 }}>
+                      {risk}
+                      {geneticExplanations[risk] && (
+                        <div>
+                          <Button
+                            type="link"
+                            style={{ padding: 0 }}
+                            onClick={() => toggleWarning(risk)}
+                          >
+                            {expandedWarnings[risk] ? 'Show less' : 'Show more'}
+                          </Button>
+                          {expandedWarnings[risk] && (
+                            <p
+                              style={{
+                                marginTop: 5,
+                                fontSize: 14,
+                                color: '#555',
+                              }}
+                            >
+                              {geneticExplanations[risk]}
+                            </p>
+                          )}
+                        </div>
+                      )}
+                    </li>
+                  ))
+                ) : (
+                  <p style={{ fontSize: 16 }}>
+                    ✅ All your values are within normal range. Great job!
+                  </p>
+                )}
+              </ul>
+            </Card>
+          </div>
+        ) : (
           <div
             style={{
               display: 'flex',
               flexDirection: 'column',
-              gap: 16,
+              alignItems: 'center',
               justifyContent: 'center',
+              height: '100%',
             }}
           >
-            {PieData.map((item) => (
-              <h3 key={item.name} style={{ fontSize: 16, color: item.color }}>
-                {`This chart shows the breakdown of your ${item.name} levels.`}
-              </h3>
-            ))}
-          </div>
-        </div>
-
-        <div
-          style={{
-            display: 'flex',
-            gap: 16,
-            justifyContent: 'center',
-            margin: '0 auto',
-            flexWrap: 'wrap',
-          }}
-        >
-          {scorecards.map((item: Scorecard, idx) => (
-            <Card
-              key={idx}
-              style={{
-                textAlign: 'center',
-                borderRadius: '15px',
-                border: 'none',
-              }}
+            <Title style={{ textAlign: 'center' }} level={2}>
+              Please fill a genetic test results to get your analytic results
+            </Title>
+            <Button
+              className="consult-button"
+              type="primary"
+              size="large"
+              onClick={() => navigate('/tests-form/genetic-test')}
             >
-              <Progress
-                type="circle"
-                percent={Math.min(item.percent, 100)}
-                format={() => item.value || 'N/A'}
-                strokeWidth={15}
-              />
-              <div style={{ marginTop: 45 }}>{item.label}</div>
-            </Card>
-          ))}
-        </div>
-      </Row>
+              Fill Genetic Test Results
+            </Button>
+          </div>
+        )}
+      </div>
 
-      <Col style={{ marginTop: 32, textAlign: 'center' }}>
-        <h2 style={{ fontSize: 24, fontWeight: 'bold', color: '#3498db' }}>
-          Genetic Marker Trends
-        </h2>
-        <p style={{ fontSize: 16, color: '#666' }}>
-          This chart shows gene trends based on latest test results.
-        </p>
-        <LineChart data={trendData} />
-      </Col>
+      <div
+        style={{
+          width: '90%',
+          margin: '20px auto 40px auto',
+          display: 'flex',
+          flexWrap: 'wrap',
+          justifyContent: 'space-between',
+          gap: '20px',
+        }}
+      >
+        {PieData.map((item) => (
+          <Card
+            key={item.name}
+            style={{
+              flex: width > 900 ? '0 1 calc(50% - 10px)' : '1 1 100%',
+              backgroundColor: 'white',
+              padding: 20,
+              borderRadius: 10,
+              boxShadow: '0 4px 15px rgba(0, 0, 0, 0.2)',
+            }}
+          >
+            <Row style={{ alignItems: 'center', justifyContent: 'center' }}>
+              <Title
+                level={2}
+                style={{
+                  color: '#3498db',
+                  fontFamily: 'Poppins',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                }}
+              >
+                {item.name}
+              </Title>
+              <img
+                style={{
+                  width: '16%',
+                  height: '16%',
+                }}
+                src={item.image}
+              />
+            </Row>
+            <p style={{ margin: 0, fontSize: 16 }}>
+              {interestingFacts[item.name]}
+            </p>
+          </Card>
+        ))}
+      </div>
     </div>
   );
 }
