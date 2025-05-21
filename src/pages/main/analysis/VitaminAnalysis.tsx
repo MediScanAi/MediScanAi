@@ -321,7 +321,11 @@ function VitaminAnalysis() {
         <Col className="welcome-section-column">
           <Typography
             className="welcome-text"
-            style={{ fontSize: width > 768 ? '30px' : '20px', marginTop: 50, marginLeft: 5 }}
+            style={{
+              fontSize: width > 768 ? '30px' : '20px',
+              marginTop: 50,
+              marginLeft: 5,
+            }}
           >
             Vitamin Test Results
           </Typography>
@@ -456,37 +460,39 @@ function VitaminAnalysis() {
         )}
       </div>
 
-      <div style={{
-        width: '90%',
-        margin: '20px auto 40px auto',
-        display: 'flex',
-        flexWrap: 'wrap',
-        justifyContent: 'space-between',
-        gap: '20px',
-      }}>
+      <div
+        style={{
+          width: '90%',
+          margin: '20px auto 40px auto',
+          display: 'flex',
+          flexWrap: 'wrap',
+          justifyContent: 'space-between',
+          gap: '20px',
+        }}
+      >
         {PieData.map((item) => (
           <Card
-          key={item.name}
-          style={{
-            flex: width > 900 ? '0 1 calc(50% - 10px)' : '1 1 100%',
-            backgroundColor: 'white',
-            padding: 20,
-            borderRadius: 10,
-            boxShadow: '0 4px 15px rgba(0, 0, 0, 0.2)',
-          }}
-        >
-          <Row style={{ alignItems: 'center', justifyContent: 'center' }}>
-            <Title
-              level={2}
-              style={{
-                color: '#3498db',
-                fontFamily: 'Poppins',
-                alignItems: 'center',
-                justifyContent: 'center',
-              }}
-            >
-              {item.name}
-            </Title>
+            key={item.name}
+            style={{
+              flex: width > 900 ? '0 1 calc(50% - 10px)' : '1 1 100%',
+              backgroundColor: 'white',
+              padding: 20,
+              borderRadius: 10,
+              boxShadow: '0 4px 15px rgba(0, 0, 0, 0.2)',
+            }}
+          >
+            <Row style={{ alignItems: 'center', justifyContent: 'center' }}>
+              <Title
+                level={2}
+                style={{
+                  color: '#3498db',
+                  fontFamily: 'Poppins',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                }}
+              >
+                {item.name}
+              </Title>
               <img
                 style={{
                   width: '16%',
@@ -494,11 +500,11 @@ function VitaminAnalysis() {
                 }}
                 src={item.image}
               />
-          </Row>
-          <p style={{ margin: 0, fontSize: 16 }}>
-            {interestingFacts[item.name]}
-          </p>
-        </Card>
+            </Row>
+            <p style={{ margin: 0, fontSize: 16 }}>
+              {interestingFacts[item.name]}
+            </p>
+          </Card>
         ))}
       </div>
     </div>

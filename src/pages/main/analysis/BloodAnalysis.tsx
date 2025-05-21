@@ -307,7 +307,7 @@ function BloodAnalysis() {
       <Row
         className="welcome-section"
         style={{
-           flexDirection: 'row',
+          flexDirection: 'row',
           justifyContent: 'center',
           marginTop: -45,
         }}
@@ -315,7 +315,11 @@ function BloodAnalysis() {
         <Col className="welcome-section-column">
           <Typography
             className="welcome-text"
-            style={{ fontSize: width > 768 ? '30px' : '20px', marginTop: 50, marginLeft: 5 }}
+            style={{
+              fontSize: width > 768 ? '30px' : '20px',
+              marginTop: 50,
+              marginLeft: 5,
+            }}
           >
             Blood Test Results
           </Typography>
@@ -399,7 +403,11 @@ function BloodAnalysis() {
                           </Button>
                           {expandedWarnings[risk] && (
                             <p
-                              style={{ marginTop: 5, fontSize: 14, color: '#555' }}
+                              style={{
+                                marginTop: 5,
+                                fontSize: 14,
+                                color: '#555',
+                              }}
                             >
                               {diseaseExplanations[risk]}
                             </p>
@@ -441,14 +449,16 @@ function BloodAnalysis() {
         )}
       </div>
 
-      <div style={{
-        width: '90%',
-        margin: '20px auto 40px auto',
-        display: 'flex',
-        flexWrap: 'wrap',
-        justifyContent: 'space-between',
-        gap: '20px',
-      }}>
+      <div
+        style={{
+          width: '90%',
+          margin: '20px auto 40px auto',
+          display: 'flex',
+          flexWrap: 'wrap',
+          justifyContent: 'space-between',
+          gap: '20px',
+        }}
+      >
         {PieData.map((item) => (
           <Card
             key={item.name}
@@ -472,13 +482,13 @@ function BloodAnalysis() {
               >
                 {item.name}
               </Title>
-                <img
-                  style={{
-                    width: '16%',
-                    height: '16%',
-                  }}
-                  src={item.image}
-                />
+              <img
+                style={{
+                  width: '16%',
+                  height: '16%',
+                }}
+                src={item.image}
+              />
             </Row>
             <p style={{ margin: 0, fontSize: 16 }}>
               {interestingFacts[item.name]}
