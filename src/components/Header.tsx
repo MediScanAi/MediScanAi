@@ -30,127 +30,8 @@ import { useAppDispatch, useAppSelector } from '../app/hooks.ts';
 import { toggleTheme } from '../app/slices/theme';
 import { logoutUser } from '../app/slices/authSlice';
 
-
-const options = [
-    {
-        label:(<div className={'language-options'} ><img style={{height:'20px'}} src={'src/assets/photos/united-kingdom.png'}/> ENG</div>),
-        value: 'english',
-    },
-    {
-        label: (<div className={'language-options'}><img style={{height:'20px'}} src={'src/assets/photos/russia.png'}/> RUS</div>),
-        value: 'russian',
-    },
-    {
-        label: (<div className={'language-options'}><img style={{height:'20px'}} src={'src/assets/photos/armenia.png'}/> ARM</div>),
-        value: 'armenia',
-    },
-];
-
-const menuItems: MenuProps['items'] = [
-  {
-    label: (
-      <span>
-        <HomeOutlined /> Home
-      </span>
-    ),
-    key: 'home',
-  },
-  {
-    label: (
-      <span>
-        <ExperimentOutlined /> Analysis
-      </span>
-    ),
-    key: 'analysis',
-    children: [
-      {
-        label: 'Blood Test',
-        key: 'blood-test',
-      },
-      {
-        label: 'Urine Test',
-        key: 'urine-test',
-      },
-      {
-        label: 'Vitamin Test',
-        key: 'vitamin-test',
-      },
-      {
-        label: 'Genetic Test',
-        key: 'genetic-test',
-      },
-    ],
-  },
-  {
-    label: (
-      <span>
-        <MedicineBoxOutlined /> Your AI Doctor
-      </span>
-    ),
-    key: 'ai-doctor',
-  },
-  {
-    label: (
-      <span>
-        <TeamOutlined /> About Us
-      </span>
-    ),
-    key: 'about-us',
-  },
-];
-
-const analysisItems: MenuProps['items'] = [
-  {
-    label: <NavLink to={'/analysis/blood-test'}>Blood Test</NavLink>,
-    key: 'blood-test',
-    icon: <MedicineBoxOutlined />,
-  },
-  {
-    label: <NavLink to={'/analysis/urine-test'}>Urine Test</NavLink>,
-    key: 'urine-test',
-    icon: <MedicineBoxOutlined />,
-  },
-  {
-    label: <NavLink to={'/analysis/vitamin-test'}>Vitamin Test</NavLink>,
-    key: 'vitamin-test',
-    icon: <MedicineBoxOutlined />,
-  },
-  {
-    label: <NavLink to={'/analysis/genetic-test'}>Genetic Test</NavLink>,
-    key: 'genetic-test',
-    icon: <MedicineBoxOutlined />,
-  },
-];
-
-const burgerItems: MenuProps['items'] = [
-  {
-    label: <NavLink to={'/'}>Home</NavLink>,
-    key: 'home',
-    icon: <HomeOutlined />,
-  },
-  {
-    label: (
-      <Dropdown trigger={['hover']} menu={{ items: analysisItems }}>
-        <div style={{ height: '100%', width: '100%' }}>
-          <ExperimentOutlined /> Analysis
-        </div>
-      </Dropdown>
-    ),
-    key: 'analysis',
-  },
-  {
-    label: <NavLink to="/ai-doctor">Your AI Doctor</NavLink>,
-    key: 'ai-doctor',
-    icon: <MedicineBoxOutlined />,
-  },
-  {
-    label: <NavLink to="/about-us">About Us</NavLink>,
-    key: 'about-us\n',
-    icon: <TeamOutlined />,
-  },
-];
-
 function Header() {
+  const { t, i18n } = useTranslation("global");
   const [width, setWidth] = useState(window.innerWidth);
   const navigate = useNavigate();
   const activeKey =
@@ -165,6 +46,110 @@ function Header() {
   const handleThemeChange = () => {
     dispatch(toggleTheme());
   };
+
+  const menuItems: MenuProps['items'] = [
+    {
+      label: (
+        <span>
+          <HomeOutlined /> {t('menu.home')}
+        </span>
+      ),
+      key: 'home',
+    },
+    {
+      label: (
+        <span>
+          <ExperimentOutlined /> {t('menu.analysis')}
+        </span>
+      ),
+      key: 'analysis',
+      children: [
+        {
+          label: t('menu.bloodTest'),
+          key: 'blood-test',
+        },
+        {
+          label: t('menu.urineTest'),
+          key: 'urine-test',
+        },
+        {
+          label: t('menu.vitaminTest'),
+          key: 'vitamin-test',
+        },
+        {
+          label: t('menu.geneticTest'),
+          key: 'genetic-test',
+        },
+      ],
+    },
+    {
+      label: (
+        <span>
+          <MedicineBoxOutlined /> {t('menu.aiDoctor')}
+        </span>
+      ),
+      key: 'ai-doctor',
+    },
+    {
+      label: (
+        <span>
+          <TeamOutlined /> {t('menu.aboutUs')}
+        </span>
+      ),
+      key: 'about-us',
+    },
+  ];
+
+  const analysisItems: MenuProps['items'] = [
+    {
+      label: <NavLink to={'/analysis/blood-test'}>{t('menu.bloodTest')}</NavLink>,
+      key: 'blood-test',
+      icon: <MedicineBoxOutlined />,
+    },
+    {
+      label: <NavLink to={'/analysis/urine-test'}>{t('menu.urineTest')}</NavLink>,
+      key: 'urine-test',
+      icon: <MedicineBoxOutlined />,
+    },
+    {
+      label: <NavLink to={'/analysis/vitamin-test'}>{t('menu.vitaminTest')}</NavLink>,
+      key: 'vitamin-test',
+      icon: <MedicineBoxOutlined />,
+    },
+    {
+      label: <NavLink to={'/analysis/genetic-test'}>{t('menu.geneticTest')}</NavLink>,
+      key: 'genetic-test',
+      icon: <MedicineBoxOutlined />,
+    },
+  ];
+
+  const burgerItems: MenuProps['items'] = [
+    {
+      label: <NavLink to={'/'}>{t('menu.home')}</NavLink>,
+      key: 'home',
+      icon: <HomeOutlined />,
+    },
+    {
+      label: (
+        <Dropdown trigger={['hover']} menu={{ items: analysisItems }}>
+          <div style={{ height: '100%', width: '100%' }}>
+            <ExperimentOutlined /> {t('menu.analysis')}
+          </div>
+        </Dropdown>
+      ),
+      key: 'analysis',
+    },
+    {
+      label: <NavLink to="/ai-doctor">{t('menu.aiDoctor')}</NavLink>,
+      key: 'ai-doctor',
+      icon: <MedicineBoxOutlined />,
+    },
+    {
+      label: <NavLink to="/about-us">{t('menu.aboutUs')}</NavLink>,
+      key: 'about-us\n',
+      icon: <TeamOutlined />,
+    },
+  ];
 
   const handleMenuClick: MenuProps['onClick'] = ({ key }) => {
     switch (key) {
@@ -199,14 +184,14 @@ function Header() {
   const userItems: MenuProps['items'] = [
     {
       key: 'profile',
-      label: <NavLink to={'/profile/info'}>Profile</NavLink>,
+      label: <NavLink to={'/profile/info'}>{t('menu.profile')}</NavLink>,
       icon: <SettingOutlined />,
     },
     {
       key: 'logout',
       label: (
         <NavLink onClick={() => dispatch(logoutUser())} to={'/'}>
-          Logout
+          {t('menu.logout')}
         </NavLink>
       ),
       icon: <LogoutOutlined />,
@@ -220,6 +205,44 @@ function Header() {
                 justify="space-around"
                 align="middle"
             >
+              <div
+                className={'user-button' + (theme ? ' dark-user-button' : '')}
+              >
+                <Avatar style={{ fontSize: 20 }}>
+                  {user?.email ? user?.email[0].toUpperCase() : 'Profile'}
+                </Avatar>
+                {isDropdownOpen ? <UpOutlined /> : <DownOutlined />}
+              </div>
+            </Dropdown>
+          ) : (
+            <Button ghost variant={'text'} style={{ border: 'none' }}>
+              <NavLink to={'/auth/login'}>{t('menu.login')}</NavLink>
+            </Button>
+          )}
+          <Switch
+            defaultChecked={theme}
+            checkedChildren={<SunOutlined />}
+            unCheckedChildren={<MoonOutlined />}
+            onClick={handleThemeChange}
+          />
+          <Select
+            onChange={(value) => {
+              i18n.changeLanguage(value);
+              localStorage.setItem('language', value);
+            }}
+            defaultValue={i18n.language}
+            className={theme ? 'dark-select-selector' : ''}
+            style={{ width: 75, backgroundColor: 'transparent' }}
+          >
+            <Select.Option value="en">ENG</Select.Option>
+            <Select.Option value="ru">RUS</Select.Option>
+            <Select.Option value="hy">ARM</Select.Option>
+          </Select>
+
+        </div>
+      </Flex>
+    </header>
+  );
                 {width < 820 ? (
                     <Dropdown trigger={["click"]} menu={{items: burgerItems}}>
                         <MenuOutlined style={{fontSize: 30}}/>
