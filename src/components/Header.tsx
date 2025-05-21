@@ -214,15 +214,15 @@ function Header() {
   const options = [
     {
       label: (<div className={'language-options'} ><img style={{ height: '20px' }} src={engFlag} /> ENG</div>),
-      value: 'english',
+      value: 'en',
     },
     {
       label: (<div className={'language-options'}><img style={{ height: '20px' }} src={rusFlag} /> RUS</div>),
-      value: 'russian',
+      value: 'ru',
     },
     {
       label: (<div className={'language-options'}><img style={{ height: '20px' }} src={armFlag} /> ARM</div>),
-      value: 'armenia',
+      value: 'hy',
     },
   ];
 
@@ -274,7 +274,7 @@ function Header() {
             i18n.changeLanguage(value);
             localStorage.setItem('language', value);
           }}
-            defaultValue={"english"} variant={'borderless'} options={options} optionRender={(option) => {
+            defaultValue={i18n.language} variant={'borderless'} options={options} optionRender={(option) => {
               return (
                 <Space>
                   {option.data.label}
