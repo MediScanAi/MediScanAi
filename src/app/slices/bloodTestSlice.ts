@@ -83,7 +83,7 @@ export const editBloodTestData = createAsyncThunk(
     updatedFields,
   }: {
     uid: string;
-    updatedFields: Partial<Omit<BloodTestFormValues, 'date'>>;
+    updatedFields: Partial<Omit<BloodTestFormValues, 'date'>>
   }) => {
     const ref = doc(db, 'users', uid, 'bloodTest', 'latest');
 

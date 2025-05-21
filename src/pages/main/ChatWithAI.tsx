@@ -224,7 +224,7 @@ const ChatWithAi = () => {
   const grouped = groupChatsByDate(chats);
 
   return (
-    <Layout style={{ height: '95vh' }}>
+    <Layout style={{ height: '94vh', borderBottom: '1px solid #ddd' }}>
       <Sider
         width={240}
         style={{

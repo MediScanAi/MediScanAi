@@ -15,18 +15,18 @@ import MainTests from './MainTests';
 import ContactUs from './ContactUs';
 import React, { useEffect, useState } from 'react';
 import { useAppSelector, useAppDispatch } from '../../../app/hooks';
-// import { fetchBloodTestData } from '../../../app/slices/bloodTestSlice';
-// import { onAuthStateChanged } from 'firebase/auth';
-// import { auth } from '../../../api/authApi';
-// import { collection } from 'firebase/firestore';
-// import { db } from '../../../api/authApi';
+import { fetchBloodTestData } from '../../../app/slices/bloodTestSlice';
+import { onAuthStateChanged } from 'firebase/auth';
+import { auth } from '../../../api/authApi';
+import { collection } from 'firebase/firestore';
+import { db } from '../../../api/authApi';
 
 const Profile: React.FC = () => {
   const theme = useAppSelector((state) => state.theme.isDarkMode);
   const { type } = useParams();
   const navigate = useNavigate();
   const [width, setWidth] = useState(window.innerWidth);
-  // const dispatch = useAppDispatch();
+  const dispatch = useAppDispatch();
   useEffect(() => {
     const handleResize = () => {
       setWidth(window.innerWidth);
@@ -35,15 +35,15 @@ const Profile: React.FC = () => {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  // useEffect(() => {
-  //   const unsubscribe = onAuthStateChanged(auth, (user) => {
-  //     if (user) {
-  //       // collection(db, 'users', user.uid, 'bloodTest');
-  //       dispatch(fetchBloodTestData(user.uid));
-  //     }
-  //   });
-  //   return () => unsubscribe();
-  // }, [dispatch]);
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        collection(db, 'users', user.uid, 'bloodTest');
+        dispatch(fetchBloodTestData(user.uid));
+      }
+    });
+    return () => unsubscribe();
+  }, [dispatch]);
 
   const items: TabsProps['items'] = [
     {

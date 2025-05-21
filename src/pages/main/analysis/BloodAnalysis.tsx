@@ -83,6 +83,7 @@ function BloodAnalysis() {
         dispatch(fetchBloodTestData(user.uid));
       }
     });
+
     return () => unsubscribe();
   }, [dispatch]);
 
