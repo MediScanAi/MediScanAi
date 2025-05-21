@@ -360,12 +360,10 @@
   color: white;
 }
 .dark-theme {
-  h1{
+  h1 {
     color: white;
   }
-
 }
-
 
 /* Animation */
 @keyframes fadeInUp {

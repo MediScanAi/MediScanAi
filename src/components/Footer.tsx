@@ -1,7 +1,9 @@
 import { Col, Row, Typography } from 'antd';
 import {
   FacebookFilled,
-  InstagramOutlined, LinkedinFilled, MailFilled,
+  InstagramOutlined,
+  LinkedinFilled,
+  MailFilled,
 } from '@ant-design/icons';
 import '../assets/styles/footer.css';
 import { useAppSelector } from '../app/hooks.ts';
@@ -14,11 +16,7 @@ const Footer = () => {
   return (
     <footer className={theme ? 'dark-footer' : ''}>
       <Row justify="space-around" align="middle">
-        <Col
-          xs={24}
-          sm={12}
-          style={{ textAlign: 'center'}}
-        >
+        <Col xs={24} sm={12} style={{ textAlign: 'center' }}>
           <Text className={'info'}>© 2025 Your AI Doctor.</Text>
           <Text className={'info'}> All rights reserved.</Text>
         </Col>
@@ -34,8 +32,8 @@ const Footer = () => {
           </Link>
         </Col>
       </Row>
-      <Row  justify={'center'}>
-        <Col xs={12} sm={12} className={'info'} >
+      <Row justify={'center'}>
+        <Col xs={12} sm={12} className={'info'}>
           <InstagramOutlined className={'info-icons'} />
           <FacebookFilled className={'info-icons'} />
           <MailFilled className={'info-icons'} />

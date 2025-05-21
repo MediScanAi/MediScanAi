@@ -23,10 +23,8 @@ import { useTranslation } from 'react-i18next';
 
 const { Title, Text } = Typography;
 
-
-
 function HomePage() {
-  const { t } = useTranslation("global");
+  const { t } = useTranslation('global');
   const [width, setWidth] = useState(window.innerWidth);
   const [openIndex, setOpenIndex] = useState<number | null>(null);
   const navigate = useNavigate();
@@ -108,68 +106,60 @@ function HomePage() {
 
   const partners = [
     {
-      id: 0 ,
+      id: 0,
       image: partner1,
       link: t('partners.0.link'),
       name: t('partners.0.name'),
-      description:
-        t('partners.0.description'),
+      description: t('partners.0.description'),
     },
     {
       id: 1,
       image: partner2,
       link: t('partners.1.link'),
       name: t('partners.1.name'),
-      description:
-        t('partners.1.description'),
+      description: t('partners.1.description'),
     },
     {
       id: 2,
       image: partner3,
       link: t('partners.2.link'),
       name: t('partners.2.name'),
-      description:
-        t('partners.2.description'),
+      description: t('partners.2.description'),
     },
     {
       id: 3,
       image: partner4,
       link: t('partners.3.link'),
       name: t('partners.3.name'),
-      description:
-        t('partners.3.description'),
+      description: t('partners.3.description'),
     },
     {
       id: 4,
       image: partner5,
       link: t('partners.4.link'),
       name: t('partners.4.name'),
-      description:
-        t('partners.4.description'),
+      description: t('partners.4.description'),
     },
     {
       id: 5,
       image: partner6,
       link: t('partners.5.link'),
       name: t('partners.5.name'),
-      description:
-        t('partners.5.description'),
+      description: t('partners.5.description'),
     },
     {
       id: 7,
       image: partner7,
       link: t('partners.6.link'),
       name: t('partners.6.name'),
-      description:
-        t('partners.6.description'),
+      description: t('partners.6.description'),
     },
     {
       id: 8,
       image: partner8,
       link: t('partners.7.link'),
       name: t('partners.7.name'),
-      description:
-        t('partners.7.description'),
+      description: t('partners.7.description'),
     },
   ];
 
@@ -191,7 +181,9 @@ function HomePage() {
         <Row className="welcome-section">
           <Col lg={12} sm={24} className="welcome-section-column">
             <Text className="welcome-text">{t('homepage.welcome')}</Text>
-            <Title className="platform-title">{t('homepage.platformTitle')}</Title>
+            <Title className="platform-title">
+              {t('homepage.platformTitle')}
+            </Title>
             <p className="platform-description">
               {t('homepage.platformDescription')}
             </p>
@@ -219,7 +211,13 @@ function HomePage() {
             <Row gutter={[24, 24]} style={{ marginTop: '40px' }}>
               {activities.map(({ title, text, icon }, index) => (
                 <Col key={index} xs={24} sm={24} md={12} lg={6}>
-                  <Card className={"activity-card"+(theme?' dark-mode-text dark-theme':'')} bodyStyle={{ padding: 0 }}>
+                  <Card
+                    className={
+                      'activity-card' +
+                      (theme ? ' dark-mode-text dark-theme' : '')
+                    }
+                    bodyStyle={{ padding: 0 }}
+                  >
                     <div className="activity-card-content">
                       <div className="activity-icon">{icon}</div>
                       <Title level={4} className="activity-card-title">
@@ -249,7 +247,10 @@ function HomePage() {
         </Row>
         <Row className="faq-section">
           <Col style={{ marginTop: 50, padding: '24px' }} span={24}>
-            <Title level={1} className={"faq-title"+(theme?' dark-theme':'')}>
+            <Title
+              level={1}
+              className={'faq-title' + (theme ? ' dark-theme' : '')}
+            >
               Frequently Asked Questions
             </Title>
             <List

@@ -1,26 +1,35 @@
 import React from 'react';
 import { Descriptions, Typography } from 'antd';
 import { HeartOutlined } from '@ant-design/icons';
-import Title from "antd/es/typography/Title";
+import Title from 'antd/es/typography/Title';
 
 interface ColorfulPatientDescriptionProps {
   theme: boolean;
   width?: number;
 }
 
-const ColorfulPatientDescription: React.FC<ColorfulPatientDescriptionProps> = ({theme,width}) => {
+const ColorfulPatientDescription: React.FC<ColorfulPatientDescriptionProps> = ({
+  theme,
+  width,
+}) => {
   return (
     <Descriptions
       title={
-        <Title style={{marginBottom: 0, color: '#3498db',fontSize:(width || 1200)<1200?20:30}}>
+        <Title
+          style={{
+            marginBottom: 0,
+            color: '#3498db',
+            fontSize: (width || 1200) < 1200 ? 20 : 30,
+          }}
+        >
           User Information
         </Title>
       }
       bordered
       column={1}
       size={'small'}
-      className={''+(theme?'dark-mode-text':'')}
-      style={{backgroundColor:'transparent',minHeight:'50vh',}}
+      className={'' + (theme ? 'dark-mode-text' : '')}
+      style={{ backgroundColor: 'transparent', minHeight: '50vh' }}
     >
       <Descriptions.Item className={theme ? 'dark-mode-text' : ''} label="Name">
         <div>HERE WILL BE NAME</div>
