@@ -10,12 +10,6 @@ import {
   Bar,
 } from 'recharts';
 import '../../../assets/styles/analysis.css';
-import { useAppDispatch, useAppSelector } from '../../../app/hooks';
-import { fetchBloodTestData } from '../../../app/slices/bloodTestSlice';
-import { onAuthStateChanged } from 'firebase/auth';
-import { auth } from '../../../api/authApi';
-import { collection } from 'firebase/firestore';
-import { db } from '../../../api/authApi';
 import BloodMultic from '../../../assets/photos/BloodMultic.png';
 import Done from '../../../assets/photos/Done.webp';
 import { Button } from 'antd';
@@ -27,6 +21,7 @@ import Cholesterol from '../../../assets/photos/Cholesterol.webp';
 import Chocolate from '../../../assets/photos/Chocolate.webp';
 import { useEffect } from 'react';
 import { useState } from 'react';
+import { useAppSelector } from '../../../app/hooks';
 
 interface ChartData {
   name: string;
@@ -106,22 +101,10 @@ const CustomBarChart = ({ data }: { data: ChartData[] }) => (
 const { Title } = Typography;
 
 function BloodAnalysis() {
-  const dispatch = useAppDispatch();
   const bloodTestData = useAppSelector(
-    (state) => state.bloodTest.bloodTestData
-  );
+    (state) => state.tests.blood
+  ) as unknown as BloodTestFormValues;
   const [width, setWidth] = useState(window.innerWidth);
-
-  useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
-      if (user) {
-        collection(db, 'users', user.uid, 'bloodTest');
-        dispatch(fetchBloodTestData(user.uid));
-      }
-    });
-
-    return () => unsubscribe();
-  }, [dispatch]);
 
   const [expandedWarnings, setExpandedWarnings] = useState<{
     [key: string]: boolean;

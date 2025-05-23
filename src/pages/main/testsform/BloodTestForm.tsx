@@ -9,11 +9,10 @@ import {
   Col,
 } from 'antd';
 import { useAppDispatch } from '../../../app/hooks';
-import { setBloodTestData } from '../../../app/slices/bloodTestSlice';
-import type { BloodTestFormValues } from '../../../app/slices/bloodTestSlice';
+import type { BloodTestFormValues } from '../../../app/slices/testSlice';
 import { useLocation } from 'react-router';
 import { useNavigate } from 'react-router-dom';
-import { saveBloodTestData } from '../../../app/slices/bloodTestSlice';
+import { saveTestData } from '../../../app/slices/testSlice';
 import { auth } from '../../../api/authApi';
 
 const { Title } = Typography;
@@ -83,8 +82,8 @@ function BloodTestsForm() {
       return;
     }
 
-    dispatch(saveBloodTestData({ uid, data: values }));
-    dispatch(setBloodTestData(values));
+    const testData = { ...values, date: new Date().toISOString() };
+    dispatch(saveTestData({ uid, testType: 'blood', data: testData }));
 
     if (updatedData) {
       message.success('Blood test updated successfully');

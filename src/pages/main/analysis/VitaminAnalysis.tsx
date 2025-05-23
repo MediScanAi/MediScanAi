@@ -10,7 +10,7 @@ import {
   Bar,
 } from 'recharts';
 import '../../../assets/styles/analysis.css';
-import type { VitaminTestFormValues } from '../../../app/slices/vitaminTestSlice';
+import type { VitaminTestFormValues } from '../../../app/slices/testSlice';
 import Drugs from '../../../assets/photos/Drugs.webp';
 import VitaminK from '../../../assets/photos/VitaminK.webp';
 import { Button } from 'antd';
@@ -21,6 +21,7 @@ import Cow from '../../../assets/photos/Cow.webp';
 import Protein from '../../../assets/photos/Protein.webp';
 import PopCorn from '../../../assets/photos/PopCorn.webp';
 import { useEffect, useState } from 'react';
+import { useAppSelector } from '../../../app/hooks';
 
 interface ChartData {
   name: string;
@@ -67,7 +68,7 @@ const CustomLegend = ({ payload }: { payload: LegendPayload[] }) => (
 );
 
 const CustomBarChart = ({ data }: { data: ChartData[] }) => (
-  <ResponsiveContainer width="90%" height={300} >
+  <ResponsiveContainer width="90%" height={300}>
     <BarChart data={data} margin={{ top: 20, right: 30, left: 0, bottom: 5 }}>
       <defs>
         <linearGradient id="barGradient" x1="0" y1="0" x2="0" y2="1">
@@ -91,9 +92,8 @@ const CustomBarChart = ({ data }: { data: ChartData[] }) => (
 const { Title } = Typography;
 
 function VitaminAnalysis() {
-  const mockAnalysisData: VitaminTestFormValues = JSON.parse(
-    localStorage.getItem('vitaminTestData') || '{}'
-  );
+  const vitaminTestData = useAppSelector((state) => state.tests.vitamin);
+
   const [width, setWidth] = useState(window.innerWidth);
   const [expandedWarnings, setExpandedWarnings] = useState<{
     [key: string]: boolean;
@@ -217,37 +217,37 @@ function VitaminAnalysis() {
   const PieData: ChartData[] = [
     {
       name: 'Vitamin A',
-      value: mockAnalysisData.vitaminA || 0,
+      value: vitaminTestData?.vitaminA || 0,
       color: '#f39c12',
       image: Cholesterol,
     },
     {
       name: 'Vitamin B12',
-      value: mockAnalysisData.vitaminB12 || 0,
+      value: vitaminTestData?.vitaminB12 || 0,
       color: '#16a085',
       image: Cow,
     },
     {
       name: 'Vitamin C',
-      value: mockAnalysisData.vitaminC || 0,
+      value: vitaminTestData?.vitaminC || 0,
       color: '#e74c3c',
       image: Apple,
     },
     {
       name: 'Vitamin D',
-      value: mockAnalysisData.vitaminD || 0,
+      value: vitaminTestData?.vitaminD || 0,
       color: '#8e44ad',
       image: Protein,
     },
     {
       name: 'Vitamin E',
-      value: mockAnalysisData.vitaminE || 0,
+      value: vitaminTestData?.vitaminE || 0,
       color: '#2980b9',
       image: PopCorn,
     },
     {
       name: 'Vitamin K',
-      value: mockAnalysisData.vitaminK || 0,
+      value: vitaminTestData?.vitaminK || 0,
       color: '#27ae60',
       image: VitaminK,
     },
@@ -352,20 +352,20 @@ function VitaminAnalysis() {
       </Row>
 
       <div>
-        {mockAnalysisData.vitaminA ? (
+        {vitaminTestData?.vitaminA ? (
           <>
-            <Card className="card2-design" style={{border:"none"}}>
+            <Card className="card2-design" style={{ border: 'none' }}>
               <Col className="card2-col-design">
                 <div style={{ display: 'flex', justifyContent: 'center' }}>
-                <Button
-                  className="consult-button"
-                  type="primary"
-                  size="large"
-                  onClick={() => navigate('/ai-doctor')}
-                >
-                  Analyze with AI
+                  <Button
+                    className="consult-button"
+                    type="primary"
+                    size="large"
+                    onClick={() => navigate('/ai-doctor')}
+                  >
+                    Analyze with AI
                   </Button>
-                  </div>
+                </div>
               </Col>
               <Col
                 style={{
@@ -379,7 +379,7 @@ function VitaminAnalysis() {
               </Col>
             </Card>
 
-            {mockAnalysisData.vitaminA && (
+            {vitaminTestData.vitaminA && (
               <Card
                 style={{
                   margin: '20px auto',
@@ -397,8 +397,11 @@ function VitaminAnalysis() {
                   🚨 Vitamin Health Warnings
                 </Title>
                 <ul style={{ paddingLeft: 20 }}>
-                  {getVitaminRisks(mockAnalysisData).length > 0 ? (
-                    getVitaminRisks(mockAnalysisData).map((risk, index) => (
+                  {getVitaminRisks(vitaminTestData as VitaminTestFormValues)
+                    .length > 0 ? (
+                    getVitaminRisks(
+                      vitaminTestData as VitaminTestFormValues
+                    ).map((risk, index) => (
                       <li key={index} style={{ fontSize: 16, marginBottom: 8 }}>
                         {risk}
                         {vitaminExplanations[risk] && (

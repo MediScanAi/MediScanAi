@@ -15,28 +15,10 @@ import {
   SunOutlined,
 } from '@ant-design/icons';
 import { useAppDispatch, useAppSelector } from '../../../app/hooks';
-import {
-  deleteBloodTestData,
-  fetchBloodTestData,
-} from '../../../app/slices/bloodTestSlice';
-import { useState } from 'react';
+import { deleteTestData, clearTestData } from '../../../app/slices/testSlice';
 import { useNavigate } from 'react-router';
-import {
-  deleteUrineTestData,
-  type UrineTestFormValues,
-} from '../../../app/slices/urineTestSlice';
-import {
-  deleteVitaminTestData,
-  type VitaminTestFormValues,
-} from '../../../app/slices/vitaminTestSlice';
-import {
-  deleteGeneticTestData,
-  type GeneticTestFormValues,
-} from '../../../app/slices/geneticTestSlice';
-import { deleteBloodTestDataFromDB } from '../../../app/slices/bloodTestSlice';
-import { onAuthStateChanged } from 'firebase/auth';
+import { type TestType } from '../../../app/slices/testSlice';
 import { auth } from '../../../api/authApi';
-import { useEffect } from 'react';
 
 const { Title, Text } = Typography;
 
@@ -48,39 +30,25 @@ type AnalysisHistoryProps = {
 const AnalysisHistory: React.FC<AnalysisHistoryProps> = ({ theme, width }) => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const bloodTestData = useAppSelector(
-    (state) => state.bloodTest.bloodTestData
-  );
 
-  useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
-      if (user) {
-        dispatch(fetchBloodTestData(user.uid));
-      }
-    });
-    return () => unsubscribe();
-  }, [dispatch]);
+  const bloodTestData = useAppSelector((state) => state.tests.blood);
+  const urineTestData = useAppSelector((state) => state.tests.urine);
+  const vitaminTestData = useAppSelector((state) => state.tests.vitamin);
+  const geneticTestData = useAppSelector((state) => state.tests.genetic);
 
-  const [urineTestData, setUrineTestData] =
-    useState<UrineTestFormValues | null>(
-      useAppSelector((state) => state.urineTest.urineTestData)
-    );
-  const [vitaminTestData, setVitaminTestData] =
-    useState<VitaminTestFormValues | null>(
-      useAppSelector((state) => state.vitaminTest.vitaminTestData)
-    );
-  const [geneticTestData, setGeneticTestData] =
-    useState<GeneticTestFormValues | null>(
-      useAppSelector((state) => state.geneticTest.geneticTestData)
-    );
+  const handleDeleteTest = async (testType: TestType) => {
+    const uid = auth.currentUser?.uid;
+    if (!uid) {
+      console.error('No user logged in');
+      return;
+    }
 
-  const handleDeleteBloodTestData = () => {
-    onAuthStateChanged(auth, (user) => {
-      if (user) {
-        dispatch(deleteBloodTestDataFromDB(user.uid));
-      }
-    });
-    dispatch(deleteBloodTestData());
+    try {
+      dispatch(deleteTestData({ uid, testType }));
+      dispatch(clearTestData(testType));
+    } catch (error) {
+      console.error(`Error deleting ${testType} test:`, error);
+    }
   };
 
   const sendBloodTestData = () => {
@@ -89,31 +57,16 @@ const AnalysisHistory: React.FC<AnalysisHistoryProps> = ({ theme, width }) => {
     });
   };
 
-  const handleDeleteUrineTestData = () => {
-    dispatch(deleteUrineTestData());
-    setUrineTestData(null);
-  };
-
   const sendUrineTestData = () => {
     navigate('/tests-form/urine-test', {
       state: { urineTestData: urineTestData },
     });
   };
 
-  const handleDeleteVitaminTestData = () => {
-    dispatch(deleteVitaminTestData());
-    setVitaminTestData(null);
-  };
-
   const sendVitaminTestData = () => {
     navigate('/tests-form/vitamin-test', {
       state: { vitaminTestData: vitaminTestData },
     });
-  };
-
-  const handleDeleteGeneticTestData = () => {
-    dispatch(deleteGeneticTestData());
-    setGeneticTestData(null);
   };
 
   const sendGeneticTestData = () => {
@@ -402,7 +355,7 @@ const AnalysisHistory: React.FC<AnalysisHistoryProps> = ({ theme, width }) => {
                     Last updated: {bloodTestData.date || 'Date not specified'}
                   </Text>
                   <Button
-                    onClick={handleDeleteBloodTestData}
+                    onClick={() => handleDeleteTest('blood')}
                     style={{
                       marginLeft: 12,
                       backgroundColor: 'transparent',
@@ -455,7 +408,7 @@ const AnalysisHistory: React.FC<AnalysisHistoryProps> = ({ theme, width }) => {
                     Last updated: {urineTestData.date || 'Date not specified'}
                   </Text>
                   <Button
-                    onClick={handleDeleteUrineTestData}
+                    onClick={() => handleDeleteTest('urine')}
                     style={{
                       marginLeft: 12,
                       backgroundColor: 'transparent',
@@ -508,7 +461,7 @@ const AnalysisHistory: React.FC<AnalysisHistoryProps> = ({ theme, width }) => {
                     Last updated: {vitaminTestData.date || 'Date not specified'}
                   </Text>
                   <Button
-                    onClick={handleDeleteVitaminTestData}
+                    onClick={() => handleDeleteTest('vitamin')}
                     style={{
                       marginLeft: 12,
                       backgroundColor: 'transparent',
@@ -561,7 +514,7 @@ const AnalysisHistory: React.FC<AnalysisHistoryProps> = ({ theme, width }) => {
                     Last updated: {geneticTestData.date || 'Date not specified'}
                   </Text>
                   <Button
-                    onClick={handleDeleteGeneticTestData}
+                    onClick={() => handleDeleteTest('genetic')}
                     style={{
                       marginLeft: 12,
                       backgroundColor: 'transparent',

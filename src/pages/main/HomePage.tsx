@@ -17,7 +17,6 @@ import insightsReport from '../../assets/photos/Finance 5.webp';
 import clinicalDecision from '../../assets/photos/m11.webp';
 import '../../assets/styles/homepage.css';
 import { useEffect, useState } from 'react';
-import { useAppSelector } from '../../app/hooks.ts';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
@@ -27,8 +26,8 @@ function HomePage() {
   const { t } = useTranslation('global');
   const [width, setWidth] = useState(window.innerWidth);
   const [openIndex, setOpenIndex] = useState<number | null>(null);
+  const [theme, setTheme] = useState(false);
   const navigate = useNavigate();
-  const theme = useAppSelector((state) => state.theme.isDarkMode);
 
   const activities = [
     {

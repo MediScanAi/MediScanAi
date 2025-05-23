@@ -8,12 +8,12 @@ import {
   Row,
   Col,
 } from 'antd';
-import {
-  setGeneticTestData,
-  type GeneticTestFormValues,
-} from '../../../app/slices/geneticTestSlice';
 import { useAppDispatch } from '../../../app/hooks';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { saveTestData } from '../../../app/slices/testSlice';
+import { auth } from '../../../api/authApi';
+import type { GeneticTestFormValues } from '../../../app/slices/testSlice';
+
 const { Title } = Typography;
 const { Option } = Select;
 
@@ -63,11 +63,15 @@ function GeneticTestForm() {
   const updatedData = useLocation()?.state?.geneticTestData || undefined;
 
   const onFinish = (values: GeneticTestFormValues) => {
-    dispatch(
-      setGeneticTestData({
-        ...values,
-      })
-    );
+    const uid = auth.currentUser?.uid;
+
+    if (!uid) {
+      message.error('User is not authenticated');
+      return;
+    }
+
+    const testData = { ...values, date: new Date().toISOString() };
+    dispatch(saveTestData({ uid, testType: 'genetic', data: testData }));
 
     if (updatedData) {
       message.success('Genetic test updated successfully');
