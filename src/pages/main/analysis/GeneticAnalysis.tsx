@@ -10,7 +10,8 @@ import APOE from '../../../assets/photos/APOE.webp';
 import { useEffect } from 'react';
 import { useState } from 'react';
 import Gen from '../../../assets/photos/Gen.webp';
-import type { GeneticTestFormValues } from '../../../app/slices/geneticTestSlice';
+import type { GeneticTestFormValues } from '../../../app/slices/testSlice';
+import { useAppSelector } from '../../../app/hooks';
 
 interface ChartData {
   name: string;
@@ -21,16 +22,15 @@ interface ChartData {
 
 interface Scorecard {
   label: string;
-  value: string | null;
+  value: string | null | undefined;
   percent: number;
 }
 
 const { Title } = Typography;
 
 function GeneticAnalysis() {
-  const mockAnalysisData: GeneticTestFormValues = JSON.parse(
-    localStorage.getItem('geneticTestData') || '{}'
-  );
+  const geneticTestData = useAppSelector((state) => state.tests.genetic);
+
   const [width, setWidth] = useState(window.innerWidth);
 
   const [expandedWarnings, setExpandedWarnings] = useState<{
@@ -55,37 +55,37 @@ function GeneticAnalysis() {
   const PieData: ChartData[] = [
     {
       name: 'BRCA1',
-      value: mockAnalysisData.brca1 || 0,
+      value: geneticTestData?.brca1 || 0,
       color: '#f39c12',
       image: BRCA1,
     },
     {
       name: 'BRCA2',
-      value: mockAnalysisData.brca2 || 0,
+      value: geneticTestData?.brca2 || 0,
       color: '#16a085',
       image: Gen,
     },
     {
       name: 'Factor V Leiden',
-      value: mockAnalysisData.factor_v_leiden || 0,
+      value: geneticTestData?.factor_v_leiden || 0,
       color: '#e74c3c',
       image: Syringe,
     },
     {
       name: 'APOE',
-      value: mockAnalysisData.apoe || 0,
+      value: geneticTestData?.apoe || 0,
       color: '#8e44ad',
       image: APOE,
     },
     {
       name: 'MTHFR',
-      value: mockAnalysisData.mthfr || 0,
+      value: geneticTestData?.mthfr || 0,
       color: '#2980b9',
       image: ChartGoingDown,
     },
     {
       name: 'CYP2C19',
-      value: mockAnalysisData.cyp2c19 || 0,
+      value: geneticTestData?.cyp2c19 || 0,
       color: '#27ae60',
       image: Bilirubin,
     },
@@ -197,54 +197,54 @@ function GeneticAnalysis() {
   const scorecards = [
     {
       label: 'BRCA1',
-      value: mockAnalysisData.brca1,
-      percent: mockAnalysisData.brca1 === 'positive' ? 100 : 0,
+      value: geneticTestData?.brca1,
+      percent: geneticTestData?.brca1 === 'positive' ? 100 : 0,
     },
     {
       label: 'BRCA2',
-      value: mockAnalysisData.brca2,
-      percent: mockAnalysisData.brca2 === 'positive' ? 100 : 0,
+      value: geneticTestData?.brca2,
+      percent: geneticTestData?.brca2 === 'positive' ? 100 : 0,
     },
     {
       label: 'APOE',
-      value: mockAnalysisData.apoe,
+      value: geneticTestData?.apoe,
       percent:
-        mockAnalysisData.apoe === 'E1/ε1'
+        geneticTestData?.apoe === 'E1/ε1'
           ? 100
-          : mockAnalysisData.apoe === 'E2/ε2'
+          : geneticTestData?.apoe === 'E2/ε2'
             ? 50
-            : mockAnalysisData.apoe === 'ε3/ε3'
+            : geneticTestData?.apoe === 'ε3/ε3'
               ? 25
-              : mockAnalysisData.apoe === 'E4/ε4'
+              : geneticTestData?.apoe === 'E4/ε4'
                 ? 0
                 : 0,
     },
     {
       label: 'MTHFR',
-      value: mockAnalysisData.mthfr,
+      value: geneticTestData?.mthfr,
       percent:
-        mockAnalysisData.mthfr === 'Homozygous'
+        geneticTestData?.mthfr === 'Homozygous'
           ? 0
-          : mockAnalysisData.mthfr === 'Heterozygous'
+          : geneticTestData?.mthfr === 'Heterozygous'
             ? 50
-            : mockAnalysisData.mthfr === 'Normal'
+            : geneticTestData?.mthfr === 'Normal'
               ? 100
               : 0,
     },
     {
       label: 'Factor V Leiden',
-      value: mockAnalysisData.factor_v_leiden,
-      percent: mockAnalysisData.factor_v_leiden === 'positive' ? 100 : 0,
+      value: geneticTestData?.factor_v_leiden,
+      percent: geneticTestData?.factor_v_leiden === 'positive' ? 100 : 0,
     },
     {
       label: 'CYP2C19',
-      value: mockAnalysisData.cyp2c19,
+      value: geneticTestData?.cyp2c19,
       percent:
-        mockAnalysisData.cyp2c19 === 'Category I'
+        geneticTestData?.cyp2c19 === 'Category I'
           ? 100
-          : mockAnalysisData.cyp2c19 === 'Category II'
+          : geneticTestData?.cyp2c19 === 'Category II'
             ? 50
-            : mockAnalysisData.cyp2c19 === 'Category III'
+            : geneticTestData?.cyp2c19 === 'Category III'
               ? 0
               : 0,
     },
@@ -294,19 +294,25 @@ function GeneticAnalysis() {
       </Row>
 
       <div>
-        {mockAnalysisData.brca1 ? (
+        {geneticTestData?.brca1 ? (
           <div>
-            <Card className="card2-design" style={{border:"none"}}>
+            <Card className="card2-design" style={{ border: 'none' }}>
               <Col className="card2-col-design">
-                <div style={{display: 'flex', justifyContent: 'center', marginBottom: 20}}>
-                <Button
-                  className="consult-button"
-                  type="primary"
-                  size="large"
-                  onClick={() => navigate('/ai-doctor')}
+                <div
+                  style={{
+                    display: 'flex',
+                    justifyContent: 'center',
+                    marginBottom: 20,
+                  }}
                 >
-                  Analyze with AI
-                </Button>
+                  <Button
+                    className="consult-button"
+                    type="primary"
+                    size="large"
+                    onClick={() => navigate('/ai-doctor')}
+                  >
+                    Analyze with AI
+                  </Button>
                 </div>
               </Col>
               <Col
@@ -354,35 +360,40 @@ function GeneticAnalysis() {
               >
                 🚨 Health Risk Warnings
               </Title>
-              <ul style={{ paddingLeft: 20 }}>
-                {getGeneticRisks(mockAnalysisData).length > 0 ? (
-                  getGeneticRisks(mockAnalysisData).map((risk, index) => (
-                    <li key={index} style={{ fontSize: 16, marginBottom: 8 }}>
-                      {risk}
-                      {geneticExplanations[risk] && (
-                        <div>
-                          <Button
-                            type="link"
-                            style={{ padding: 0 }}
-                            onClick={() => toggleWarning(risk)}
-                          >
-                            {expandedWarnings[risk] ? 'Show less' : 'Show more'}
-                          </Button>
-                          {expandedWarnings[risk] && (
-                            <p
-                              style={{
-                                marginTop: 5,
-                                fontSize: 14,
-                                color: '#555',
-                              }}
+              <ul style={{ listStyleType: 'none', padding: 0 }}>
+                {getGeneticRisks(geneticTestData as GeneticTestFormValues)
+                  .length > 0 ? (
+                  getGeneticRisks(geneticTestData as GeneticTestFormValues).map(
+                    (risk, index) => (
+                      <li key={index} style={{ fontSize: 16, marginBottom: 8 }}>
+                        {risk}
+                        {geneticExplanations[risk] && (
+                          <div>
+                            <Button
+                              type="link"
+                              style={{ padding: 0 }}
+                              onClick={() => toggleWarning(risk)}
                             >
-                              {geneticExplanations[risk]}
-                            </p>
-                          )}
-                        </div>
-                      )}
-                    </li>
-                  ))
+                              {expandedWarnings[risk]
+                                ? 'Show less'
+                                : 'Show more'}
+                            </Button>
+                            {expandedWarnings[risk] && (
+                              <p
+                                style={{
+                                  marginTop: 5,
+                                  fontSize: 14,
+                                  color: '#555',
+                                }}
+                              >
+                                {geneticExplanations[risk]}
+                              </p>
+                            )}
+                          </div>
+                        )}
+                      </li>
+                    )
+                  )
                 ) : (
                   <p style={{ fontSize: 16 }}>
                     ✅ All your values are within normal range. Great job!

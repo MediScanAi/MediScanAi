@@ -25,7 +25,8 @@ import Urine from '../../../assets/photos/Urine.webp';
 import LeukocyteEsterase from '../../../assets/photos/LeukocyteEsterase.webp';
 import { useEffect } from 'react';
 import { useState } from 'react';
-import type { UrineTestFormValues } from '../../../app/slices/urineTestSlice';
+import type { UrineTestFormValues } from '../../../app/slices/testSlice';
+import { useAppSelector } from '../../../app/hooks';
 
 interface ChartData {
   name: string;
@@ -36,7 +37,7 @@ interface ChartData {
 
 interface Scorecard {
   label: string;
-  value: string | null;
+  value: string | number | null | undefined;
   percent: number;
 }
 
@@ -102,9 +103,8 @@ const CustomBarChart = ({ data }: { data: ChartData[] }) => (
 const { Title } = Typography;
 
 function UrineAnalysis() {
-  const mockAnalysisData: UrineTestFormValues = JSON.parse(
-    localStorage.getItem('urineTestData') || '{}'
-  );
+  const urineTestData = useAppSelector((state) => state.tests.urine);
+
   const [width, setWidth] = useState(window.innerWidth);
 
   useEffect(() => {
@@ -129,61 +129,61 @@ function UrineAnalysis() {
   const BarData: ChartData[] = [
     {
       name: 'Bilirubin',
-      value: mockAnalysisData.bilirubin || 0,
+      value: urineTestData?.bilirubin || 0,
       color: '#f39c12',
       image: Bilirubin,
     },
     {
       name: 'Blood',
-      value: mockAnalysisData.blood || 0,
+      value: urineTestData?.blood || 0,
       color: '#16a085',
       image: BloodMultic,
     },
     {
       name: 'Nitrites',
-      value: mockAnalysisData.nitrites || 0,
+      value: urineTestData?.nitrites || 0,
       color: '#e74c3c',
       image: Nitrites,
     },
     {
       name: 'LeukocyteEsterase',
-      value: mockAnalysisData.leukocyteEsterase || 0,
+      value: urineTestData?.leukocyteEsterase || 0,
       color: '#8e44ad',
       image: LeukocyteEsterase,
     },
     {
       name: 'Glucose',
-      value: mockAnalysisData.glucose || 0,
+      value: urineTestData?.glucose || 0,
       color: '#2980b9',
       image: Chocolate,
     },
     {
       name: 'Ketones',
-      value: mockAnalysisData.ketones || 0,
+      value: urineTestData?.ketones || 0,
       color: '#27ae60',
       image: Ketones,
     },
     {
       name: 'ph',
-      value: mockAnalysisData.ph || 0,
+      value: urineTestData?.ph || 0,
       color: '#27ae60',
       image: PH,
     },
     {
       name: 'Protein',
-      value: mockAnalysisData.protein || 0,
+      value: urineTestData?.protein || 0,
       color: '#27ae60',
       image: Protein,
     },
     {
       name: 'Specific Gravity',
-      value: mockAnalysisData.specificGravity || 0,
+      value: urineTestData?.specificGravity || 0,
       color: '#27ae60',
       image: Done,
     },
     {
       name: 'Urobilinogen',
-      value: mockAnalysisData.urobilinogen || 0,
+      value: urineTestData?.urobilinogen || 0,
       color: '#27ae60',
       image: Urobilinogen,
     },
@@ -192,47 +192,49 @@ function UrineAnalysis() {
   const scorecards = [
     {
       label: 'Bilirubin',
-      value: mockAnalysisData.bilirubin,
+      value: urineTestData?.bilirubin,
       percent:
-        mockAnalysisData.bilirubin === 'positive'
+        urineTestData?.bilirubin === 'positive'
           ? 100
-          : mockAnalysisData.bilirubin === 'negative'
+          : urineTestData?.bilirubin === 'negative'
             ? 0
             : 52,
     },
     {
       label: 'Blood',
-      value: mockAnalysisData.blood,
+      value: urineTestData?.blood,
       percent:
-        mockAnalysisData.blood === 'positive'
+        urineTestData?.blood === 'positive'
           ? 100
-          : mockAnalysisData.blood === 'negative'
+          : urineTestData?.blood === 'negative'
             ? 0
             : 52,
     },
     {
       label: 'Nitrites',
-      value: mockAnalysisData.nitrites,
+      value: urineTestData?.nitrites,
       percent:
-        mockAnalysisData.nitrites === 'positive'
+        urineTestData?.nitrites === 'positive'
           ? 100
-          : mockAnalysisData.nitrites === 'negative'
+          : urineTestData?.nitrites === 'negative'
             ? 0
             : 52,
     },
     {
       label: 'LeukocyteEsterase',
-      value: mockAnalysisData.leukocyteEsterase,
+      value: urineTestData?.leukocyteEsterase,
       percent:
-        mockAnalysisData.leukocyteEsterase === 'positive'
+        urineTestData?.leukocyteEsterase === 'positive'
           ? 100
-          : mockAnalysisData.leukocyteEsterase === 'negative'
+          : urineTestData?.leukocyteEsterase === 'negative'
             ? 0
             : 52,
     },
   ];
 
-  const getUrineDiseaseRisks = (data: UrineTestFormValues) => {
+  const getUrineDiseaseRisks = (data: UrineTestFormValues | null) => {
+    if (!data) return [];
+
     const risks: string[] = [];
 
     if (data.bilirubin !== undefined && Number(data.bilirubin) > 0) {
@@ -395,7 +397,9 @@ function UrineAnalysis() {
 
   const navigate = useNavigate();
 
-  const urineWarnings = getUrineDiseaseRisks(mockAnalysisData);
+  const urineWarnings = urineTestData
+    ? getUrineDiseaseRisks(urineTestData as UrineTestFormValues)
+    : [];
 
   return (
     <div>
@@ -441,20 +445,27 @@ function UrineAnalysis() {
       </Row>
 
       <div>
-        {mockAnalysisData.bilirubin ? (
+        {urineTestData ? (
           <div>
-            <Card className="card2-design" style={{border:"none"}}>
+            <Card className="card2-design" style={{ border: 'none' }}>
               <Col className="card2-col-design">
-                <div style = {{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                <Button
-                  className="consult-button"
-                  type="primary"
-                  size="large"
-                  onClick={() => navigate('/ai-doctor')}
+                <div
+                  style={{
+                    display: 'flex',
+                    justifyContent: 'center',
+                    width: '100%',
+                    marginBottom: '20px',
+                  }}
                 >
-                  Analyze with AI
+                  <Button
+                    className="consult-button"
+                    type="primary"
+                    size="large"
+                    onClick={() => navigate('/ai-doctor')}
+                  >
+                    Analyze with AI
                   </Button>
-                  </div>
+                </div>
               </Col>
               <Col
                 style={{
@@ -564,7 +575,7 @@ function UrineAnalysis() {
               className="consult-button"
               type="primary"
               size="large"
-              onClick={() => navigate('/tests-form/blood-test')}
+              onClick={() => navigate('/tests-form/urine-test')} // Fixed navigation path
             >
               Fill Urine Test Results
             </Button>

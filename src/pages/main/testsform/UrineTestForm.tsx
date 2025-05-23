@@ -10,9 +10,11 @@ import {
   Row,
 } from 'antd';
 import { useAppDispatch } from '../../../app/hooks';
-import { setUrineTestData } from '../../../app/slices/urineTestSlice';
-import type { UrineTestFormValues } from '../../../app/slices/urineTestSlice';
+import type { UrineTestFormValues } from '../../../app/slices/testSlice';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { saveTestData } from '../../../app/slices/testSlice';
+import { auth } from '../../../api/authApi';
+
 const { Option } = Select;
 const { Title } = Typography;
 
@@ -115,16 +117,22 @@ const UrineTestForm = () => {
   const updatedData = useLocation()?.state?.urineTestData || undefined;
 
   const onFinish = (values: UrineTestFormValues) => {
-    dispatch(
-      setUrineTestData({
-        ...values,
-      })
-    );
+    const uid = auth.currentUser?.uid;
+
+    if (!uid) {
+      message.error('User is not authenticated');
+      return;
+    }
+
+    const testData = { ...values, date: new Date().toISOString() };
+    dispatch(saveTestData({ uid, testType: 'urine', data: testData }));
+
     if (updatedData) {
       message.success('Urine test updated successfully');
     } else {
       message.success('Urine test submitted successfully');
     }
+
     setTimeout(() => {
       navigate('/profile/analysis-history');
     }, 1000);

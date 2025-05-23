@@ -9,9 +9,10 @@ import {
   Col,
 } from 'antd';
 import { useAppDispatch } from '../../../app/hooks';
-import { setVitaminTestData } from '../../../app/slices/vitaminTestSlice';
-import type { VitaminTestFormValues } from '../../../app/slices/vitaminTestSlice';
+import { saveTestData } from '../../../app/slices/testSlice';
+import type { VitaminTestFormValues } from '../../../app/slices/testSlice';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { auth } from '../../../api/authApi';
 
 const { Title } = Typography;
 
@@ -79,16 +80,22 @@ const VitaminTestForm = () => {
   const updatedData = useLocation()?.state?.vitaminTestData || undefined;
 
   const onFinish = (values: VitaminTestFormValues) => {
-    dispatch(
-      setVitaminTestData({
-        ...values,
-      })
-    );
+    const uid = auth.currentUser?.uid;
+
+    if (!uid) {
+      message.error('User is not authenticated');
+      return;
+    }
+
+    const testData = { ...values, date: new Date().toISOString() };
+    dispatch(saveTestData({ uid, testType: 'vitamin', data: testData }));
+
     if (updatedData) {
       message.success('Vitamin test updated successfully');
     } else {
       message.success('Vitamin test submitted successfully');
     }
+
     setTimeout(() => {
       navigate('/profile/analysis-history');
     }, 1000);
