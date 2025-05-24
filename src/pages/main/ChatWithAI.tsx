@@ -8,10 +8,14 @@ import {
   message as antdMsg,
   Dropdown,
   Menu,
+  type MenuProps,
+  type UploadProps,
+  message,
 } from 'antd';
-import { PlusOutlined, SendOutlined, MoreOutlined } from '@ant-design/icons';
+import { PlusOutlined, SendOutlined, MoreOutlined, PlusCircleOutlined, UploadOutlined } from '@ant-design/icons';
 import { v4 as uuidv4 } from 'uuid';
 import axios from 'axios';
+import * as pdfjsLib from 'pdfjs-dist';
 import {
   doc,
   setDoc,
@@ -23,6 +27,10 @@ import { onAuthStateChanged } from 'firebase/auth';
 import { db, auth } from '../../api/authApi';
 import '../../assets/styles/chatwithai.css';
 import { format, isToday, isYesterday, differenceInDays } from 'date-fns';
+import { Upload } from 'antd';
+import { DiffOutlined } from '@ant-design/icons';
+import { useAppSelector } from '../../app/hooks';
+import { Spin } from 'antd';
 
 const { Sider, Content } = Layout;
 const { Text } = Typography;
@@ -48,6 +56,7 @@ const ChatWithAi = () => {
   const [editingChatId, setEditingChatId] = useState<string | null>(null);
   const [editingTitle, setEditingTitle] = useState('');
   const messagesEndRef = useRef<HTMLDivElement | null>(null);
+  const tests = useAppSelector((state) => state.tests);
 
   const selectedChat = chats.find((chat) => chat.id === selectedChatId);
 
@@ -223,6 +232,128 @@ const ChatWithAi = () => {
 
   const grouped = groupChatsByDate(chats);
 
+  // const handlePdfUpload = (file: File) => {
+  //   if (file.type !== 'application/pdf') {
+  //     message.error('You can only upload PDF files!');
+  //     return;
+  //   }
+
+  //   const reader = new FileReader();
+  //   reader.onload = async (e) => {
+  //     try {
+  //       const typedarray = new Uint8Array(e.target?.result as ArrayBuffer);
+  //       const pdf = await pdfjsLib.getDocument(typedarray).promise;
+
+  //       let fullText = '';
+  //       for (let i = 1; i <= pdf.numPages; i++) {
+  //         const page = await pdf.getPage(i);
+  //         const textContent = await page.getTextContent();
+  //         const pageText = textContent.items.map((item: any) => item.str).join(' ');
+  //         fullText += pageText + '\n';
+  //       }
+
+  //       // Set the input with extracted PDF text for analysis
+  //       setInput(`Analyze the following PDF content:\n${fullText}`);
+
+  //       // Optionally, send the message automatically
+  //       sendMessage();
+  //     } catch (error) {
+  //       message.error('Failed to parse PDF file');
+  //       console.error(error);
+  //     }
+  //   };
+
+  //   reader.readAsArrayBuffer(file);
+  // };
+
+  const props: UploadProps = {
+    accept: 'application/pdf',
+    beforeUpload: (file) => {
+      const isPdf = file.type === 'application/pdf';
+      if (!isPdf) {
+        message.error('You can only upload PDF files!');
+      }
+      return isPdf || Upload.LIST_IGNORE;
+    },
+    // onChange(info) {
+    //   if (info.file.status === 'done' || info.file.originFileObj) {
+    //     handlePdfUpload(info.file.originFileObj as File);
+    //   }
+    // },
+  };  
+
+  const analysisItems: MenuProps['items'] = [
+    {
+      label: <Text>Blood Tests</Text>,
+      key: 'blood-test',
+      onClick: () => {
+        if (tests.blood) {
+          const bloodTests = Object.entries(tests?.blood || '');
+          setInput(`${(bloodTests.map(([key, value]) => `${key}: ${value}`).join(', '))} 
+          Describe my results in detail and recommend a plan of action about my health warnings.`);
+        }
+      },
+    },
+    {
+      label: <Text>Urine Tests</Text>,
+      key: 'urine-test',
+      onClick: () => {
+        if (tests.urine) {
+          const urineTests = Object.entries(tests?.urine || '');
+          setInput(`${(urineTests.map(([key, value]) => `${key}: ${value}`).join(', '))} 
+          Describe my results in detail and recommend a plan of action about my health warnings.`);
+        }
+      },
+    },
+    {
+      label: <Text>Vitamin Tests</Text>,
+      key: 'vitamin-test',
+      onClick: () => {
+        if (tests.vitamin) {
+          const vitaminsTests = Object.entries(tests?.vitamin || '');
+          setInput(`${(vitaminsTests.map(([key, value]) => `${key}: ${value}`).join(', '))} 
+          Describe my results in detail and recommend a plan of action about my health warnings.`);
+        }
+      },
+    },
+    {
+      label: <Text>Genetic Tests</Text>,
+      key: 'genetic-test',
+      onClick: () => {
+        if (tests.genetic) {
+          const geneticTests = Object.entries(tests?.genetic || '');
+          setInput(`${(geneticTests.map(([key, value]) => `${key}: ${value}`).join(', '))} 
+          Describe my results in detail and recommend a plan of action about my health warnings.`);
+        }
+      },
+    },
+  ];
+
+  const featureItems: MenuProps['items'] = [
+    {
+      label: (
+        <Dropdown trigger={['hover']} menu={{ items: analysisItems }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+            <DiffOutlined />
+            <Text>Scan Analysis</Text>
+          </div>
+        </Dropdown>
+      ),
+      key: 'scan-analysis',
+    },
+    {
+      label: (
+        <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+          <UploadOutlined />
+          <Upload {...props}>
+            <Text>PDF Upload</Text>
+          </Upload>
+        </div>
+      ),
+      key: 'upload-pdf',
+    }
+  ];
+
   return (
     <Layout style={{ height: '94vh', borderBottom: '1px solid #ddd' }}>
       <Sider
@@ -390,37 +521,69 @@ const ChatWithAi = () => {
               </div>
             </div>
           ))}
+          {loading && (
+            <div
+              style={{
+                width: '100%',
+                display: 'flex',
+                justifyContent: 'center',
+                padding: '10px',
+              }}
+            >
+              <Spin tip="MediScan AI is thinking..." />
+            </div>
+          )}
           <div ref={messagesEndRef} />
         </div>
 
-        <Input
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
-          onPressEnter={(e) => {
-            if (!e.shiftKey) {
-              e.preventDefault();
-              sendMessage();
-            }
-          }}
-          placeholder="Type your message..."
-          suffix={
-            <SendOutlined
-              onClick={sendMessage}
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-evenly' }}>
+          <div style={{ display: 'flex', alignItems: 'center' }}>
+            <Dropdown trigger={['click']} menu={{ items: featureItems }}>
+              <PlusCircleOutlined
+                style={{
+                  fontSize: 20,
+                  color: loading ? '#ccc' : '#1890ff',
+                  cursor: 'pointer',
+                  marginRight: 10,
+                }}
+              />
+            </Dropdown>
+
+            <Input
+              value={input}
+              onChange={(e) => setInput(e.target.value)}
+              onPressEnter={(e) => {
+                if (!e.shiftKey) {
+                  e.preventDefault();
+                  sendMessage();
+                }
+              }}
+              placeholder="Type your message..."
+              suffix={
+                loading ? (
+                  <Spin size="small" />
+                ) : (
+                  <SendOutlined
+                    onClick={sendMessage}
+                    style={{
+                      fontSize: 20,
+                      color: '#1890ff',
+                      cursor: 'pointer',
+                    }}
+                  />
+                )
+              }
+              disabled={loading}
               style={{
-                fontSize: 20,
-                color: loading ? '#ccc' : '#1890ff',
-                cursor: 'pointer',
+                borderRadius: 24,
+                padding: '10px 16px',
+                maxWidth: 600,
+                minWidth: 600,
+                margin: '16px auto',
               }}
             />
-          }
-          disabled={loading}
-          style={{
-            borderRadius: 24,
-            padding: '10px 16px',
-            maxWidth: 600,
-            margin: '16px auto',
-          }}
-        />
+          </div>
+        </div>
       </Content>
     </Layout>
   );
