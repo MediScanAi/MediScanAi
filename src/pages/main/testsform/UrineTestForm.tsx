@@ -19,14 +19,12 @@ import { useTranslation } from 'react-i18next';
 const { Option } = Select;
 const { Title } = Typography;
 
-
 const UrineTestForm = () => {
   const navigate = useNavigate();
   const [form] = Form.useForm();
   const dispatch = useAppDispatch();
   const updatedData = useLocation()?.state?.urineTestData || undefined;
   const { t } = useTranslation();
-
 
   const urineTestFields = [
     {
@@ -82,7 +80,11 @@ const UrineTestForm = () => {
       type: 'select',
       label: t('urineTest.bilirubin'),
       name: 'bilirubin',
-      options: [t('urineTest.negative'), t('urineTest.trace'), t('urineTest.positive')],
+      options: [
+        t('urineTest.negative'),
+        t('urineTest.trace'),
+        t('urineTest.positive'),
+      ],
       placeholder: t('urineTest.urineTestbilirubinPlaceholder'),
       unit: 'mg/dL',
     },
@@ -108,7 +110,11 @@ const UrineTestForm = () => {
       type: 'select',
       label: t('urineTest.leukocyteEsterase'),
       name: 'leukocyteEsterase',
-      options: [t('urineTest.negative'), t('urineTest.trace'), t('urineTest.positive')],
+      options: [
+        t('urineTest.negative'),
+        t('urineTest.trace'),
+        t('urineTest.positive'),
+      ],
       placeholder: t('urineTest.urineTestleukocyteEsterasePlaceholder'),
       unit: 'mg/dL',
     },
@@ -116,7 +122,11 @@ const UrineTestForm = () => {
       type: 'select',
       label: t('urineTest.blood'),
       name: 'blood',
-      options: [t('urineTest.negative'), t('urineTest.trace'), t('urineTest.positive')],
+      options: [
+        t('urineTest.negative'),
+        t('urineTest.trace'),
+        t('urineTest.positive'),
+      ],
       placeholder: t('urineTest.urineTestbloodPlaceholder'),
       unit: 'mg/dL',
     },

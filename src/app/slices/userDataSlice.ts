@@ -1,4 +1,8 @@
-import { createSlice, createAsyncThunk, type PayloadAction } from '@reduxjs/toolkit';
+import {
+    createSlice,
+    createAsyncThunk,
+    type PayloadAction,
+} from '@reduxjs/toolkit';
 import { doc, getDoc, setDoc, updateDoc, deleteDoc } from 'firebase/firestore';
 import { db } from '../../api/authApi';
 
@@ -31,7 +35,7 @@ const initialState: UserDataState = {
 export const fetchUserData = createAsyncThunk<UserData | null, { uid: string }>(
     'user/fetchUserData',
     async ({ uid }) => {
-        const ref = doc(db, 'users', uid, 'userData');
+        const ref = doc(db, 'users', uid, 'userData', 'info');
         const snap = await getDoc(ref);
         if (snap.exists()) {
             return snap.data() as UserData;
@@ -40,24 +44,24 @@ export const fetchUserData = createAsyncThunk<UserData | null, { uid: string }>(
     }
 );
 
-export const saveUserData = createAsyncThunk<UserData, { uid: string; data: UserData }>(
-    'user/saveUserData',
-    async ({ uid, data }) => {
-        const ref = doc(db, 'users', uid, 'userData');
-        await setDoc(ref, data);
-        return data;
-    }
-);
+export const saveUserData = createAsyncThunk<
+    UserData,
+    { uid: string; data: UserData }
+>('user/saveUserData', async ({ uid, data }) => {
+    const ref = doc(db, 'users', uid, 'userData', 'info');
+    await setDoc(ref, data);
+    return data;
+});
 
-export const editUserData = createAsyncThunk<UserData, { uid: string; data: Partial<UserData> }>(
-    'user/editUserData',
-    async ({ uid, data }) => {
-        const ref = doc(db, 'users', uid, 'userData');
-        await updateDoc(ref, data);
-        const snap = await getDoc(ref);
-        return snap.data() as UserData;
-    }
-);
+export const editUserData = createAsyncThunk<
+    UserData,
+    { uid: string; data: Partial<UserData> }
+>('user/editUserData', async ({ uid, data }) => {
+    const ref = doc(db, 'users', uid, 'userData', 'info');
+    await updateDoc(ref, data);
+    const snap = await getDoc(ref);
+    return snap.data() as UserData;
+});
 
 export const deleteUserData = createAsyncThunk<void, { uid: string }>(
     'user/deleteUserData',
@@ -83,10 +87,13 @@ const userDataSlice = createSlice({
                 state.loading = true;
                 state.error = null;
             })
-            .addCase(fetchUserData.fulfilled, (state, action: PayloadAction<UserData | null>) => {
-                state.loading = false;
-                state.data = action.payload;
-            })
+            .addCase(
+                fetchUserData.fulfilled,
+                (state, action: PayloadAction<UserData | null>) => {
+                    state.loading = false;
+                    state.data = action.payload;
+                }
+            )
             .addCase(fetchUserData.rejected, (state, action) => {
                 state.loading = false;
                 state.error = action.error.message || 'Failed to fetch user data';
@@ -96,10 +103,13 @@ const userDataSlice = createSlice({
                 state.loading = true;
                 state.error = null;
             })
-            .addCase(saveUserData.fulfilled, (state, action: PayloadAction<UserData>) => {
-                state.loading = false;
-                state.data = action.payload;
-            })
+            .addCase(
+                saveUserData.fulfilled,
+                (state, action: PayloadAction<UserData>) => {
+                    state.loading = false;
+                    state.data = action.payload;
+                }
+            )
             .addCase(saveUserData.rejected, (state, action) => {
                 state.loading = false;
                 state.error = action.error.message || 'Failed to save user data';
@@ -109,10 +119,13 @@ const userDataSlice = createSlice({
                 state.loading = true;
                 state.error = null;
             })
-            .addCase(editUserData.fulfilled, (state, action: PayloadAction<UserData>) => {
-                state.loading = false;
-                state.data = action.payload;
-            })
+            .addCase(
+                editUserData.fulfilled,
+                (state, action: PayloadAction<UserData>) => {
+                    state.loading = false;
+                    state.data = action.payload;
+                }
+            )
             .addCase(editUserData.rejected, (state, action) => {
                 state.loading = false;
                 state.error = action.error.message || 'Failed to edit user data';

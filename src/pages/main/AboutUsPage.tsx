@@ -3,8 +3,8 @@ import { useAppSelector } from '../../app/hooks.ts';
 import '../../assets/styles/aboutUs.css';
 import mission from '../../assets/photos/target.png';
 import vision from '../../assets/photos/opportunity.png';
-import values from "../../assets/photos/core-values.png";
-import opinionImage from "../../assets/photos/quotes.png";
+import values from '../../assets/photos/core-values.png';
+import opinionImage from '../../assets/photos/quotes.png';
 import { useNavigate } from 'react-router';
 import { useEffect } from 'react';
 import { useState } from 'react';
@@ -29,36 +29,36 @@ function AboutUsPage() {
   const opinions = [
     {
       name: t('aboutUs.opinions.0.name'),
-      description: t('aboutUs.opinions.0.description')
+      description: t('aboutUs.opinions.0.description'),
     },
     {
       name: t('aboutUs.opinions.1.name'),
-      description: t('aboutUs.opinions.1.description')
+      description: t('aboutUs.opinions.1.description'),
     },
     {
       name: t('aboutUs.opinions.2.name'),
-      description: t('aboutUs.opinions.2.description')
+      description: t('aboutUs.opinions.2.description'),
     },
     {
       name: t('aboutUs.opinions.3.name'),
-      description: t('aboutUs.opinions.3.description')
+      description: t('aboutUs.opinions.3.description'),
     },
     {
       name: t('aboutUs.opinions.4.name'),
-      description: t('aboutUs.opinions.4.description')
+      description: t('aboutUs.opinions.4.description'),
     },
     {
       name: t('aboutUs.opinions.5.name'),
-      description: t('aboutUs.opinions.5.description')
+      description: t('aboutUs.opinions.5.description'),
     },
     {
       name: t('aboutUs.opinions.6.name'),
-      description: t('aboutUs.opinions.6.description')
+      description: t('aboutUs.opinions.6.description'),
     },
     {
       name: t('aboutUs.opinions.7.name'),
-      description: t('aboutUs.opinions.7.description')
-    }
+      description: t('aboutUs.opinions.7.description'),
+    },
   ];
 
   const cardItems = [
@@ -69,7 +69,7 @@ function AboutUsPage() {
       alt: 'mission',
     },
     {
-      title: t('aboutUs.vision.title'), 
+      title: t('aboutUs.vision.title'),
       text: t('aboutUs.vision.text'),
       img: vision,
       alt: 'vision',
@@ -102,7 +102,9 @@ function AboutUsPage() {
       </Row>
       <Row className="about-us-cards" justify="center">
         <Col span={24}>
-          <Title level={1} className="about-us-cards-title">{t('aboutUs.coreValues')}</Title>
+          <Title level={1} className="about-us-cards-title">
+            {t('aboutUs.coreValues')}
+          </Title>
         </Col>
 
         {cardItems.map((item, index) => (
@@ -112,8 +114,14 @@ function AboutUsPage() {
               bodyStyle={{ padding: 0 }}
             >
               <div className="about-us-card-content">
-                <img className="about-us-card-icon" src={item.img} alt={item.alt} />
-                <Title level={2} className="about-us-card-title">{item.title}</Title>
+                <img
+                  className="about-us-card-icon"
+                  src={item.img}
+                  alt={item.alt}
+                />
+                <Title level={2} className="about-us-card-title">
+                  {item.title}
+                </Title>
                 <Text className="about-us-card-text">{item.text}</Text>
               </div>
             </Card>
@@ -123,7 +131,9 @@ function AboutUsPage() {
 
       <Row className="opinions-section">
         <Col span={24}>
-          <Title level={1} className="opinions-title">{t('aboutUs.clientOpinions')}</Title>
+          <Title level={1} className="opinions-title">
+            {t('aboutUs.clientOpinions')}
+          </Title>
           <Carousel
             autoplay
             autoplaySpeed={2000}
@@ -148,7 +158,11 @@ function AboutUsPage() {
                   }}
                 >
                   <div className="opinion-item-container">
-                    <img src={opinionImage} alt="opinion" className="opinion-image" />
+                    <img
+                      src={opinionImage}
+                      alt="opinion"
+                      className="opinion-image"
+                    />
                     <Text className="opinion-description">
                       {opinion.description}
                     </Text>
@@ -165,27 +179,26 @@ function AboutUsPage() {
       </Row>
       <Row justify="center" gutter={[32, 32]} className="location-section">
         <Col xs={24} md={10} className="location-text">
-          <Title level={1} className="location-title">{t('aboutUs.location.title')}</Title>
+          <Title level={1} className="location-title">
+            {t('aboutUs.location.title')}
+          </Title>
           <Text className="location-description">
             {t('aboutUs.location.description')}
           </Text>
-          <Text className="location-phone">
-            {t('aboutUs.location.phone')}
-          </Text>
+          <Text className="location-phone">{t('aboutUs.location.phone')}</Text>
         </Col>
         <Col xs={24} md={14} className="location-map-wrapper">
           <iframe
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3048.123456789!2d44.4904102!3d40.1986492!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x406abce69a1b0d77%3A0x31ea9da813693c2e!2sArmenian%20Code%20Academy!5e0!3m2!1sen!2sam!4v1716491835202!5m2!1sen!2sam"
             width="100%"
             height="320"
-            style={{ border: 0, borderRadius: "10px" }}
+            style={{ border: 0, borderRadius: '10px' }}
             allowFullScreen={true}
             referrerPolicy="no-referrer-when-downgrade"
             title="MediScanAI Map"
           ></iframe>
         </Col>
       </Row>
-
     </Row>
   );
 }

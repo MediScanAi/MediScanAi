@@ -18,8 +18,6 @@ import { useTranslation } from 'react-i18next';
 const { Title } = Typography;
 const { Option } = Select;
 
-
-
 function GeneticTestForm() {
   const navigate = useNavigate();
   const [form] = Form.useForm();
@@ -43,13 +41,22 @@ function GeneticTestForm() {
       type: 'select',
       name: 'apoe',
       label: t('geneticTest.apoe'),
-      options: [t('geneticTest.ε2/ε2'), t('geneticTest.ε3/ε3'), t('geneticTest.ε3/ε4'), t('geneticTest.ε4/ε4')],
+      options: [
+        t('geneticTest.ε2/ε2'),
+        t('geneticTest.ε3/ε3'),
+        t('geneticTest.ε3/ε4'),
+        t('geneticTest.ε4/ε4'),
+      ],
     },
     {
       type: 'select',
       name: 'mthfr',
       label: t('geneticTest.mthfr'),
-      options: [t('geneticTest.homozygous'), t('geneticTest.heterozygous'), t('geneticTest.normal')],
+      options: [
+        t('geneticTest.homozygous'),
+        t('geneticTest.heterozygous'),
+        t('geneticTest.normal'),
+      ],
     },
     {
       type: 'select',
@@ -61,7 +68,11 @@ function GeneticTestForm() {
       type: 'select',
       name: 'cyp2c19',
       label: t('geneticTest.cyp2c19'),
-      options: [t('geneticTest.categoryI'), t('geneticTest.categoryII'), t('geneticTest.categoryIII')],
+      options: [
+        t('geneticTest.categoryI'),
+        t('geneticTest.categoryII'),
+        t('geneticTest.categoryIII'),
+      ],
     },
   ];
 

@@ -17,10 +17,7 @@ import { useTranslation } from 'react-i18next';
 
 const { Title } = Typography;
 
-
-
 const VitaminTestForm = () => {
-
   const navigate = useNavigate();
   const [form] = Form.useForm();
   const dispatch = useAppDispatch();
