@@ -3,6 +3,7 @@
     "home": "Home",
     "analysis": "Analysis",
     "aiDoctor": "Your AI Doctor",
+    "myHealth": "Medi Health",
     "aboutUs": "About Us",
     "logout": "Logout",
     "profile": "Profile",
@@ -17,6 +18,7 @@
     "platformTitle": "MediScanAi Platform",
     "platformDescription": "Advanced AI-powered diagnostics and medical analysis for healthcare professionals.",
     "consultButton": "Consult Today",
+    "myHealthTitle": "Medi Health",
     "ourActivity": "Our Activity",
     "activityDescription": "Our activity is to provide a platform for healthcare professionals to use AI-powered diagnostics and medical analysis.",
     "faqTitle": "Frequently Asked Questions",
@@ -42,6 +44,11 @@
       "title": "Clinical Decision",
       "text": "Physicians apply findings for personalized treatment decision"
     }
+  },
+  "myHealth": {
+    "title": "My Health",
+    "description": "Fill in the form and get your health report by a few seconds",
+    "button": "Fill and get report"
   },
   "leadingMedicine": {
     "title": "Leading Medicine",

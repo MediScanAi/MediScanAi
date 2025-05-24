@@ -65,6 +65,14 @@ function Header() {
     {
       label: (
         <span>
+          <MedicineBoxOutlined /> {t('menu.myHealth')}
+        </span>
+      ),
+      key: 'my-health',
+    },
+    {
+      label: (
+        <span>
           <ExperimentOutlined /> {t('menu.analysis')}
         </span>
       ),
@@ -144,6 +152,11 @@ function Header() {
       icon: <HomeOutlined />,
     },
     {
+      label: <NavLink to={'/my-health'}>{t('menu.myHealth')}</NavLink>,
+      key: 'my-health',
+      icon: <MedicineBoxOutlined />,
+    },
+    {
       label: (
         <Dropdown trigger={['hover']} menu={{ items: analysisItems }}>
           <div style={{ height: '100%', width: '100%' }}>
@@ -175,6 +188,9 @@ function Header() {
         break;
       case 'ai-doctor':
         navigate('/ai-doctor');
+        break;
+      case 'my-health':
+        navigate('/my-health');
         break;
       case 'blood-test':
         navigate('/analysis/blood-test');

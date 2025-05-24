@@ -9,6 +9,8 @@ import partner5 from '../../assets/photos/partner5.webp';
 import partner6 from '../../assets/photos/partner6.webp';
 import partner7 from '../../assets/photos/partner7.webp';
 import partner8 from '../../assets/photos/partner8.webp';
+import myHealth from '../../assets/photos/my-health.webp';
+import myHealth2 from '../../assets/photos/my-health-second.webp';
 import group99 from '../../assets/photos/Group 99.svg';
 import group101 from '../../assets/photos/Group 101.png';
 import fileUpload from '../../assets/photos/Folder.webp';
@@ -230,6 +232,33 @@ function HomePage() {
             </Row>
           </Col>
         </Row>
+        <Row className="my-health-section">
+          <Col span={24} className="my-health-title-container">
+            <Title
+              level={1}
+              className={'my-health-title' + (theme ? ' dark-theme' : '')}
+            >
+              {t('myHealth.title')}
+            </Title>
+          </Col>
+          <p className="my-health-description">{t('myHealth.description')}</p>
+          <div className="my-health-step-images">
+            <img src={myHealth} alt="Step 1" className="my-health-image" />
+            <div className="arrow">→</div>
+            <img src={myHealth2} alt="Step 2" className="my-health-image" />
+          </div>
+          <div className="my-health-text-content">
+            <Button
+              className="my-health-button"
+              type="primary"
+              size="large"
+              onClick={() => navigate('/profile/info')}
+            >
+              {t('myHealth.button')}
+            </Button>
+          </div>
+        </Row>
+
         <Row className="leading-medicine-section">
           <Col lg={12} sm={24} className="leading-medicine-content">
             <LineOutlined className="leading-medicine-icon" />
