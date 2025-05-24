@@ -12,7 +12,15 @@ import {
   type UploadProps,
   message,
 } from 'antd';
-import { PlusOutlined, SendOutlined, MoreOutlined, PlusCircleOutlined, UploadOutlined } from '@ant-design/icons';
+import {
+  PlusOutlined,
+  SendOutlined,
+  MoreOutlined,
+  PlusCircleOutlined,
+  UploadOutlined,
+  SoundOutlined,
+  GlobalOutlined,
+} from '@ant-design/icons';
 import { v4 as uuidv4 } from 'uuid';
 import axios from 'axios';
 import * as pdfjsLib from 'pdfjs-dist';
@@ -31,6 +39,7 @@ import { Upload } from 'antd';
 import { DiffOutlined } from '@ant-design/icons';
 import { useAppSelector } from '../../app/hooks';
 import { Spin } from 'antd';
+import { CopyOutlined } from '@ant-design/icons';
 
 const { Sider, Content } = Layout;
 const { Text } = Typography;
@@ -55,10 +64,67 @@ const ChatWithAi = () => {
   const [loading, setLoading] = useState(false);
   const [editingChatId, setEditingChatId] = useState<string | null>(null);
   const [editingTitle, setEditingTitle] = useState('');
+  const [language, setLanguage] = useState<'en' | 'ru'>('en');
   const messagesEndRef = useRef<HTMLDivElement | null>(null);
   const tests = useAppSelector((state) => state.tests);
-
+  const [currentUtterance, setCurrentUtterance] =
+    useState<SpeechSynthesisUtterance | null>(null);
   const selectedChat = chats.find((chat) => chat.id === selectedChatId);
+
+  // Get appropriate voice for selected language
+  const getVoice = () => {
+    const synth = window.speechSynthesis;
+    const voices = synth.getVoices();
+
+    if (language === 'ru') {
+      // Find Russian voice
+      const russianVoice = voices.find(
+        (voice) => voice.lang === 'ru-RU' || voice.lang.startsWith('ru-')
+      );
+      return (
+        russianVoice || voices.find((voice) => voice.lang === 'en-US') || null
+      );
+    } else {
+      // Default to English voice
+      return voices.find((voice) => voice.lang === 'en-US') || null;
+    }
+  };
+
+  const speakMessage = (e: React.MouseEvent, msg: Message) => {
+    e.stopPropagation();
+    const synth = window.speechSynthesis;
+
+    if (currentUtterance && synth.speaking) {
+      synth.cancel();
+      setCurrentUtterance(null);
+      return;
+    }
+
+    synth.cancel();
+    const utterance = new SpeechSynthesisUtterance(msg.content);
+
+    // Set voice based on language
+    const voice = getVoice();
+    if (voice) {
+      utterance.voice = voice;
+      utterance.lang = voice.lang;
+    }
+
+    // Adjust speech parameters
+    utterance.rate = 0.9; // Slower speed for better comprehension
+    utterance.pitch = 1; // Normal pitch
+
+    setCurrentUtterance(utterance);
+    synth.speak(utterance);
+
+    utterance.onend = () => {
+      setCurrentUtterance(null);
+    };
+  };
+
+  const toggleLanguage = () => {
+    setLanguage((prev) => (prev === 'en' ? 'ru' : 'en'));
+  };
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
@@ -280,7 +346,7 @@ const ChatWithAi = () => {
     //     handlePdfUpload(info.file.originFileObj as File);
     //   }
     // },
-  };  
+  };
 
   const analysisItems: MenuProps['items'] = [
     {
@@ -289,7 +355,7 @@ const ChatWithAi = () => {
       onClick: () => {
         if (tests.blood) {
           const bloodTests = Object.entries(tests?.blood || '');
-          setInput(`${(bloodTests.map(([key, value]) => `${key}: ${value}`).join(', '))} 
+          setInput(`${bloodTests.map(([key, value]) => `${key}: ${value}`).join(', ')} 
           Describe my results in detail and recommend a plan of action about my health warnings.`);
         }
       },
@@ -300,7 +366,7 @@ const ChatWithAi = () => {
       onClick: () => {
         if (tests.urine) {
           const urineTests = Object.entries(tests?.urine || '');
-          setInput(`${(urineTests.map(([key, value]) => `${key}: ${value}`).join(', '))} 
+          setInput(`${urineTests.map(([key, value]) => `${key}: ${value}`).join(', ')} 
           Describe my results in detail and recommend a plan of action about my health warnings.`);
         }
       },
@@ -311,7 +377,7 @@ const ChatWithAi = () => {
       onClick: () => {
         if (tests.vitamin) {
           const vitaminsTests = Object.entries(tests?.vitamin || '');
-          setInput(`${(vitaminsTests.map(([key, value]) => `${key}: ${value}`).join(', '))} 
+          setInput(`${vitaminsTests.map(([key, value]) => `${key}: ${value}`).join(', ')} 
           Describe my results in detail and recommend a plan of action about my health warnings.`);
         }
       },
@@ -322,7 +388,7 @@ const ChatWithAi = () => {
       onClick: () => {
         if (tests.genetic) {
           const geneticTests = Object.entries(tests?.genetic || '');
-          setInput(`${(geneticTests.map(([key, value]) => `${key}: ${value}`).join(', '))} 
+          setInput(`${geneticTests.map(([key, value]) => `${key}: ${value}`).join(', ')} 
           Describe my results in detail and recommend a plan of action about my health warnings.`);
         }
       },
@@ -351,7 +417,7 @@ const ChatWithAi = () => {
         </div>
       ),
       key: 'upload-pdf',
-    }
+    },
   ];
 
   return (
@@ -500,6 +566,7 @@ const ChatWithAi = () => {
               }}
             >
               <div
+                className="message-container"
                 style={{
                   backgroundColor:
                     msg.role === 'user' ? 'rgb(255, 255, 255)' : '#f7f9ff',
@@ -510,9 +577,33 @@ const ChatWithAi = () => {
                   maxWidth: 720,
                   boxShadow: '0 1px 2px rgba(0, 0, 0, 0.5)',
                   whiteSpace: 'pre-wrap',
+                  marginBottom: '36px',
+                  position: 'relative',
                 }}
               >
-                <Text style={{ width: '100%' }}>
+                <div className="message-buttons">
+                  <Button
+                    type="text"
+                    icon={<CopyOutlined />}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      navigator.clipboard.writeText(msg.content);
+                      message.success('Copied to clipboard!');
+                    }}
+                  />
+                  <Button
+                    type="text"
+                    icon={<SoundOutlined />}
+                    onClick={(e) => speakMessage(e, msg)}
+                  />
+                </div>
+                <Text
+                  style={{
+                    width: '100%',
+                    color: msg.role === 'user' ? '#000' : '#000',
+                    paddingRight: '24px',
+                  }}
+                >
                   <strong>
                     {msg.role === 'user' ? 'You' : 'MediScan AI'}:
                   </strong>{' '}
@@ -536,7 +627,13 @@ const ChatWithAi = () => {
           <div ref={messagesEndRef} />
         </div>
 
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-evenly' }}>
+        <div
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-evenly',
+          }}
+        >
           <div style={{ display: 'flex', alignItems: 'center' }}>
             <Dropdown trigger={['click']} menu={{ items: featureItems }}>
               <PlusCircleOutlined

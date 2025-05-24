@@ -2,3 +2,23 @@
   background-color: #cac9c9 !important;
   transition: background-color 0.2s ease;
 }
+
+.message-buttons {
+  position: absolute;
+  right: 8px;
+  top: 8px;
+  display: flex;
+  gap: 4px;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  z-index: 1;
+  background-color: transparent;
+}
+
+.message-container:hover .message-buttons {
+  opacity: 1;
+}
+
+.message-container {
+  position: relative;
+}
