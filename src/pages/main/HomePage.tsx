@@ -209,7 +209,7 @@ function HomePage() {
             </Text>
             <Row gutter={[24, 24]} style={{ marginTop: '40px' }}>
               {activities.map(({ title, text, icon }, index) => (
-                <Col key={index} xs={24} sm={24} md={12} lg={6}>
+                <Col key={index} xs={24} sm={24} md={8} lg={6}>
                   <Card
                     className={
                       'activity-card' +
@@ -250,7 +250,7 @@ function HomePage() {
               level={1}
               className={'faq-title' + (theme ? ' dark-theme' : '')}
             >
-              Frequently Asked Questions
+              {t('faqs.title')}
             </Title>
             <List
               itemLayout="horizontal"
