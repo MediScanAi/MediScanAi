@@ -9,12 +9,14 @@ import { useNavigate } from 'react-router';
 import { useEffect } from 'react';
 import { useState } from 'react';
 import { LineOutlined } from '@ant-design/icons';
+import { useTranslation } from 'react-i18next';
 const { Title, Paragraph, Text } = Typography;
 
 function AboutUsPage() {
   const theme = useAppSelector((state) => state.theme.isDarkMode);
   const navigate = useNavigate();
   const [width, setWidth] = useState(window.innerWidth);
+  const { t } = useTranslation('global');
 
   useEffect(() => {
     const handleResize = () => {
@@ -26,63 +28,55 @@ function AboutUsPage() {
 
   const opinions = [
     {
-      name: 'Dr. Emily Carter',
-      description:
-        'Medical AI has completely transformed the way I approach diagnostics. The insights are fast, accurate, and help me make better decisions for my patients.',
+      name: t('aboutUs.opinions.0.name'),
+      description: t('aboutUs.opinions.0.description')
     },
     {
-      name: 'Michael Nguyen',
-      description:
-        'As a patient, I found the symptom checker extremely helpful. Within minutes, I had a clear idea of what might be wrong and what steps to take next.',
+      name: t('aboutUs.opinions.1.name'),
+      description: t('aboutUs.opinions.1.description')
     },
     {
-      name: 'Sophia Rodriguez',
-      description:
-        'This platform made me feel empowered. I could describe my issues in simple terms and the AI guided me to relevant information before even visiting a clinic.',
+      name: t('aboutUs.opinions.2.name'),
+      description: t('aboutUs.opinions.2.description')
     },
     {
-      name: 'Dr. Ahmed Al-Karim',
-      description:
-        'I use Medical AI regularly to double-check symptoms and get evidence-based suggestions. It’s a reliable assistant in my daily workflow.',
+      name: t('aboutUs.opinions.3.name'),
+      description: t('aboutUs.opinions.3.description')
     },
     {
-      name: 'Liam Thompson',
-      description:
-        'The form-based approach is intuitive and user-friendly. I was surprised how accurately the system matched my symptoms with the right advice.',
+      name: t('aboutUs.opinions.4.name'),
+      description: t('aboutUs.opinions.4.description')
     },
     {
-      name: 'Nora Ishikawa',
-      description:
-        'Medical AI gave me peace of mind when I couldn’t reach a doctor immediately. The recommendations were clear, professional, and useful.',
+      name: t('aboutUs.opinions.5.name'),
+      description: t('aboutUs.opinions.5.description')
     },
     {
-      name: 'Dr. Anna Müller',
-      description:
-        'This tool is not here to replace doctors — it’s here to assist us. It helps speed up the diagnostic process and reduce errors.',
+      name: t('aboutUs.opinions.6.name'),
+      description: t('aboutUs.opinions.6.description')
     },
     {
-      name: 'Carlos Mendoza',
-      description:
-        'I’ve tried multiple online health tools, but this is by far the most accurate and easiest to use. The AI feedback feels personal and thoughtful.',
-    },
+      name: t('aboutUs.opinions.7.name'),
+      description: t('aboutUs.opinions.7.description')
+    }
   ];
 
   const cardItems = [
     {
-      title: 'Our mission',
-      text: 'Our mission is to create innovative solutions in the healthcare system that simplify life for doctors and patients.',
+      title: t('aboutUs.mission.title'),
+      text: t('aboutUs.mission.text'),
       img: mission,
       alt: 'mission',
     },
     {
-      title: 'Our vision',
-      text: 'We see a future where healthcare is accessible to everyone, regardless of location or time.',
+      title: t('aboutUs.vision.title'), 
+      text: t('aboutUs.vision.text'),
       img: vision,
       alt: 'vision',
     },
     {
-      title: 'Our values',
-      text: 'Transparency, innovation, and user-focus guide everything we do.',
+      title: t('aboutUs.values.title'),
+      text: t('aboutUs.values.text'),
       img: values,
       alt: 'values',
     },
@@ -92,9 +86,9 @@ function AboutUsPage() {
     <Row className={`about-us ${theme ? 'dark-theme' : ''}`}>
       <Row className="welcome-section-about-us">
         <Col xs={22} md={16}>
-          <Text className="welcome-section-title">About Us</Text>
+          <Text className="welcome-section-title">{t('aboutUs.title')}</Text>
           <Paragraph className="welcome-section-description">
-            We combine artificial intelligence and medicine with the goal of making healthcare accessible, fast, and clear for everyone.
+            {t('aboutUs.description')}
           </Paragraph>
           <Button
             className="contact-us-button"
@@ -102,13 +96,13 @@ function AboutUsPage() {
             size="large"
             onClick={() => navigate('/profile/contact-us')}
           >
-            Contact Us
+            {t('aboutUs.contactButton')}
           </Button>
         </Col>
       </Row>
       <Row className="about-us-cards" justify="center">
         <Col span={24}>
-          <Title level={1} className="about-us-cards-title">Our Core Values</Title>
+          <Title level={1} className="about-us-cards-title">{t('aboutUs.coreValues')}</Title>
         </Col>
 
         {cardItems.map((item, index) => (
@@ -129,7 +123,7 @@ function AboutUsPage() {
 
       <Row className="opinions-section">
         <Col span={24}>
-          <Title level={1} className="opinions-title">What Clients Say About Us</Title>
+          <Title level={1} className="opinions-title">{t('aboutUs.clientOpinions')}</Title>
           <Carousel
             autoplay
             autoplaySpeed={2000}
@@ -171,12 +165,12 @@ function AboutUsPage() {
       </Row>
       <Row justify="center" gutter={[32, 32]} className="location-section">
         <Col xs={24} md={10} className="location-text">
-          <Title level={1} className="location-title">Our Location</Title>
+          <Title level={1} className="location-title">{t('aboutUs.location.title')}</Title>
           <Text className="location-description">
-            Visit us at our MediScanAI office to learn more about our services!
+            {t('aboutUs.location.description')}
           </Text>
           <Text className="location-phone">
-            Tel: +374 91 234 567
+            {t('aboutUs.location.phone')}
           </Text>
         </Col>
         <Col xs={24} md={14} className="location-map-wrapper">
