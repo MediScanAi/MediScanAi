@@ -263,7 +263,8 @@
 .partner-card {
   border-radius: 20px;
   margin: 10px;
-  height: 590px;
+  height: 600px;
+  width: 330px;
 }
 
 .partner-card-dark {
