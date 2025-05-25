@@ -8,8 +8,17 @@ import {
   message as antdMsg,
   Dropdown,
   Menu,
+  type MenuProps,
+  message,
 } from 'antd';
-import { PlusOutlined, SendOutlined, MoreOutlined } from '@ant-design/icons';
+import {
+  PlusOutlined,
+  SendOutlined,
+  MoreOutlined,
+  PlusCircleOutlined,
+  UploadOutlined,
+  SoundOutlined,
+} from '@ant-design/icons';
 import { v4 as uuidv4 } from 'uuid';
 import axios from 'axios';
 import {
@@ -23,6 +32,12 @@ import { onAuthStateChanged } from 'firebase/auth';
 import { db, auth } from '../../api/authApi';
 import '../../assets/styles/chatwithai.css';
 import { format, isToday, isYesterday, differenceInDays } from 'date-fns';
+import { Upload } from 'antd';
+import { DiffOutlined } from '@ant-design/icons';
+import { useAppSelector } from '../../app/hooks';
+import { Spin } from 'antd';
+import { CopyOutlined } from '@ant-design/icons';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const { Sider, Content } = Layout;
 const { Text } = Typography;
@@ -47,9 +62,138 @@ const ChatWithAi = () => {
   const [loading, setLoading] = useState(false);
   const [editingChatId, setEditingChatId] = useState<string | null>(null);
   const [editingTitle, setEditingTitle] = useState('');
+  const [language, setLanguage] = useState<'en' | 'ru'>('en');
   const messagesEndRef = useRef<HTMLDivElement | null>(null);
-
+  const tests = useAppSelector((state) => state.tests);
+  const [currentUtterance, setCurrentUtterance] =
+    useState<SpeechSynthesisUtterance | null>(null);
   const selectedChat = chats.find((chat) => chat.id === selectedChatId);
+  const location = useLocation();
+  const {
+    bloodTests,
+    healthWarnings,
+    geneticTests,
+    geneticWarnings,
+    vitaminTests,
+    vitaminWarnings,
+    urineTests,
+    urineWarnings,
+  } = location.state || {};
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    let testDescription = '';
+    let warningsDescription = '';
+
+    if (bloodTests) {
+      const bloodTestsString = Object.entries(bloodTests)
+        .map(([key, value]) => `${key}: ${value}`)
+        .join(', ');
+      testDescription += `Blood Test Results: ${bloodTestsString}. `;
+
+      if (healthWarnings?.length > 0) {
+        warningsDescription += `Blood Test Warnings: ${healthWarnings.join('; ')}. `;
+      }
+    }
+
+    if (geneticTests) {
+      const geneticTestsString = Object.entries(geneticTests)
+        .map(([key, value]) => `${key}: ${value}`)
+        .join(', ');
+      testDescription += `Genetic Test Results: ${geneticTestsString}. `;
+
+      if (geneticWarnings?.length > 0) {
+        warningsDescription += `Genetic Test Warnings: ${geneticWarnings.join('; ')}. `;
+      }
+    }
+
+    if (vitaminTests) {
+      const vitaminTestsString = Object.entries(vitaminTests)
+        .map(([key, value]) => `${key}: ${value}`)
+        .join(', ');
+      testDescription += `Vitamin Test Results: ${vitaminTestsString}. `;
+
+      if (vitaminWarnings?.length > 0) {
+        warningsDescription += `Vitamin Test Warnings: ${vitaminWarnings.join('; ')}. `;
+      }
+    }
+
+    if (urineTests) {
+      const urineTestsString = Object.entries(urineTests)
+        .map(([key, value]) => `${key}: ${value}`)
+        .join(', ');
+      testDescription += `Urine Test Results: ${urineTestsString}. `;
+
+      if (urineWarnings?.length > 0) {
+        warningsDescription += `Urine Test Warnings: ${urineWarnings.join('; ')}. `;
+      }
+    }
+
+    if (testDescription) {
+      const finalPrompt = `${testDescription}${warningsDescription || 'No significant health warnings.'} Describe these results in detail and recommend a comprehensive plan of action.`;
+      setInput(finalPrompt);
+
+      navigate(location.pathname, { replace: true, state: {} });
+    }
+  }, [
+    bloodTests,
+    healthWarnings,
+    geneticTests,
+    geneticWarnings,
+    vitaminTests,
+    vitaminWarnings,
+    urineTests,
+    urineWarnings,
+    location.pathname,
+    navigate,
+  ]);
+
+  const getVoice = () => {
+    const synth = window.speechSynthesis;
+    const voices = synth.getVoices();
+
+    if (language === 'ru') {
+      const russianVoice = voices.find(
+        (voice) => voice.lang === 'ru-RU' || voice.lang.startsWith('ru-')
+      );
+      return (
+        russianVoice || voices.find((voice) => voice.lang === 'en-US') || null
+      );
+    } else {
+      return voices.find((voice) => voice.lang === 'en-US') || null;
+    }
+  };
+
+  const speakMessage = (e: React.MouseEvent, msg: Message) => {
+    e.stopPropagation();
+    const synth = window.speechSynthesis;
+
+    if (currentUtterance && synth.speaking) {
+      synth.cancel();
+      setCurrentUtterance(null);
+      return;
+    }
+
+    synth.cancel();
+    const utterance = new SpeechSynthesisUtterance(msg.content);
+
+    const voice = getVoice();
+    if (voice) {
+      utterance.voice = voice;
+      utterance.lang = voice.lang;
+    }
+
+    utterance.rate = 0.9;
+    utterance.pitch = 1;
+
+    setCurrentUtterance(utterance);
+    synth.speak(utterance);
+
+    utterance.onend = () => {
+      setCurrentUtterance(null);
+    };
+  };
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
@@ -159,18 +303,36 @@ const ChatWithAi = () => {
   };
 
   const sendMessage = async () => {
-    if (!input.trim() || !selectedChatId) return;
+    if (!input.trim()) return;
     const user = auth.currentUser;
     if (!user) {
       antdMsg.error('You must be logged in.');
       return;
     }
 
-    const userMsg: Message = { role: 'user', content: input };
-    const chatIndex = chats.findIndex((chat) => chat.id === selectedChatId);
-    if (chatIndex === -1) return;
+    let chatId = selectedChatId;
+    let chatIndex = chats.findIndex((chat) => chat.id === chatId);
+    let originalChat: Chat;
 
-    const originalChat = chats[chatIndex];
+    if (!chatId || chatIndex === -1) {
+      const now = new Date().toISOString();
+      chatId = uuidv4();
+      originalChat = {
+        id: chatId,
+        title: input.slice(0, 20) + '...',
+        createdAt: now,
+        lastUpdated: now,
+        messages: [],
+      };
+      await setDoc(doc(db, 'users', user.uid, 'chats', chatId), originalChat);
+      setChats([originalChat, ...chats]);
+      setSelectedChatId(chatId);
+      chatIndex = 0;
+    } else {
+      originalChat = chats[chatIndex];
+    }
+
+    const userMsg: Message = { role: 'user', content: input };
     const updatedUserMessages = [...originalChat.messages, userMsg];
 
     const updatedChat: Chat = {
@@ -208,11 +370,9 @@ const ChatWithAi = () => {
       finalChats[chatIndex] = finalChat;
       setChats(finalChats);
 
-      await setDoc(
-        doc(db, 'users', user.uid, 'chats', selectedChatId),
-        finalChat,
-        { merge: true }
-      );
+      await setDoc(doc(db, 'users', user.uid, 'chats', chatId), finalChat, {
+        merge: true,
+      });
     } catch (err) {
       console.error(err);
       antdMsg.error('Failed to send message');
@@ -222,6 +382,111 @@ const ChatWithAi = () => {
   };
 
   const grouped = groupChatsByDate(chats);
+
+  const analysisItems: MenuProps['items'] = [
+    {
+      label: <Text>Blood Tests</Text>,
+      key: 'blood-test',
+      onClick: () => {
+        if (tests.blood) {
+          const bloodTests = Object.entries(tests?.blood || '');
+          setInput(`Your blood test results: ${bloodTests.map(([key, value]) => `${key}: ${value}`).join(', ')} 
+          Describe my results in detail and recommend a plan of action about my health warnings.`);
+        }
+      },
+    },
+    {
+      label: <Text>Urine Tests</Text>,
+      key: 'urine-test',
+      onClick: () => {
+        if (tests.urine) {
+          const urineTests = Object.entries(tests?.urine || '');
+          setInput(`Your urine test results: ${urineTests.map(([key, value]) => `${key}: ${value}`).join(', ')} 
+          Describe my results in detail and recommend a plan of action about my health warnings.`);
+        }
+      },
+    },
+    {
+      label: <Text>Vitamin Tests</Text>,
+      key: 'vitamin-test',
+      onClick: () => {
+        if (tests.vitamin) {
+          const vitaminsTests = Object.entries(tests?.vitamin || '');
+          setInput(`Your vitamin test results: ${vitaminsTests.map(([key, value]) => `${key}: ${value}`).join(', ')} 
+          Describe my results in detail and recommend a plan of action about my health warnings.`);
+        }
+      },
+    },
+    {
+      label: <Text>Genetic Tests</Text>,
+      key: 'genetic-test',
+      onClick: () => {
+        if (tests.genetic) {
+          const geneticTests = Object.entries(tests?.genetic || '');
+          setInput(`Your genetic test results: ${geneticTests.map(([key, value]) => `${key}: ${value}`).join(', ')} 
+          Describe my results in detail and recommend a plan of action about my health warnings.`);
+        }
+      },
+    },
+  ];
+  const featureItems: MenuProps['items'] = [
+    {
+      label: (
+        <Dropdown trigger={['hover']} menu={{ items: analysisItems }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+            <DiffOutlined />
+            <Text>Scan Analysis</Text>
+          </div>
+        </Dropdown>
+      ),
+      key: 'scan-analysis',
+    },
+    {
+      label: (
+        <Upload
+          showUploadList={false}
+          accept=".pdf,.word"
+          customRequest={async ({ file, onSuccess }) => {
+            setLoading(true);
+            const hide = message.loading('Parsing PDF...', 0);
+            const reader = new FileReader();
+
+            reader.onload = async () => {
+              try {
+                const base64 = (reader.result as string).split(',')[1];
+                const res = await axios.post('/api/parse-pdf', {
+                  fileBase64: base64,
+                });
+                setInput(res.data.text.trim());
+                message.success('PDF parsed successfully');
+                onSuccess?.({}, new XMLHttpRequest());
+              } catch {
+                message.error('Failed to parse PDF');
+              } finally {
+                hide();
+                setLoading(false);
+              }
+            };
+
+            reader.onerror = () => {
+              hide();
+              message.error('Failed to read PDF file');
+              setLoading(false);
+            };
+
+            reader.readAsDataURL(file as Blob);
+          }}
+        >
+          <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+            <UploadOutlined />
+            <Text>PDF Upload</Text>
+            {loading && <Spin size="small" style={{ marginLeft: 8 }} />}
+          </div>
+        </Upload>
+      ),
+      key: 'upload-pdf',
+    },
+  ];
 
   return (
     <Layout style={{ height: '94vh', borderBottom: '1px solid #ddd' }}>
@@ -349,7 +614,6 @@ const ChatWithAi = () => {
         <div
           style={{
             borderTop: '1px solid #ddd',
-            borderBottom: '1px solid #ddd',
             flex: 1,
             overflowY: 'auto',
             padding: '16px 0',
@@ -369,6 +633,7 @@ const ChatWithAi = () => {
               }}
             >
               <div
+                className="message-container"
                 style={{
                   backgroundColor:
                     msg.role === 'user' ? 'rgb(255, 255, 255)' : '#f7f9ff',
@@ -379,9 +644,33 @@ const ChatWithAi = () => {
                   maxWidth: 720,
                   boxShadow: '0 1px 2px rgba(0, 0, 0, 0.5)',
                   whiteSpace: 'pre-wrap',
+                  marginBottom: '36px',
+                  position: 'relative',
                 }}
               >
-                <Text style={{ width: '100%' }}>
+                <div className="message-buttons">
+                  <Button
+                    type="text"
+                    icon={<CopyOutlined />}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      navigator.clipboard.writeText(msg.content);
+                      message.success('Copied to clipboard!');
+                    }}
+                  />
+                  <Button
+                    type="text"
+                    icon={<SoundOutlined />}
+                    onClick={(e) => speakMessage(e, msg)}
+                  />
+                </div>
+                <Text
+                  style={{
+                    width: '100%',
+                    color: msg.role === 'user' ? '#000' : '#000',
+                    paddingRight: '24px',
+                  }}
+                >
                   <strong>
                     {msg.role === 'user' ? 'You' : 'MediScan AI'}:
                   </strong>{' '}
@@ -390,37 +679,90 @@ const ChatWithAi = () => {
               </div>
             </div>
           ))}
+          {loading && (
+            <div
+              style={{
+                width: '100%',
+                display: 'flex',
+                justifyContent: 'center',
+                padding: '10px',
+              }}
+            >
+              <Spin tip="MediScan AI is thinking..." />
+            </div>
+          )}
           <div ref={messagesEndRef} />
         </div>
 
-        <Input
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
-          onPressEnter={(e) => {
-            if (!e.shiftKey) {
-              e.preventDefault();
-              sendMessage();
-            }
-          }}
-          placeholder="Type your message..."
-          suffix={
-            <SendOutlined
-              onClick={sendMessage}
-              style={{
-                fontSize: 20,
-                color: loading ? '#ccc' : '#1890ff',
-                cursor: 'pointer',
-              }}
-            />
-          }
-          disabled={loading}
+        <div
           style={{
-            borderRadius: 24,
-            padding: '10px 16px',
-            maxWidth: 600,
-            margin: '16px auto',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-evenly',
+            background: 'none',
           }}
-        />
+        >
+          <div style={{ display: 'flex', alignItems: 'center' }}>
+            <Dropdown trigger={['click']} menu={{ items: featureItems }}>
+              <PlusCircleOutlined
+                style={{
+                  fontSize: 20,
+                  color: loading ? '#ccc' : '#1890ff',
+                  cursor: 'pointer',
+                  marginRight: 10,
+                }}
+              />
+            </Dropdown>
+
+            <div
+              style={{
+                position: 'relative',
+                width: '100%',
+                minWidth: 600,
+              }}
+            >
+              <Input.TextArea
+                value={input}
+                onChange={(e) => setInput(e.target.value)}
+                onPressEnter={(e) => {
+                  if (!e.shiftKey) {
+                    e.preventDefault();
+                    sendMessage();
+                  }
+                }}
+                placeholder="Type your message..."
+                autoSize={{ minRows: 1, maxRows: 7 }}
+                style={{
+                  borderRadius: 24,
+                  padding: '10px 16px',
+                  margin: '16px auto',
+                  maxHeight: 10,
+                }}
+                className="custom-scrollbar"
+                disabled={loading}
+              />
+              {loading ? (
+                <Spin
+                  size="small"
+                  style={{ position: 'absolute', right: 16, bottom: 28 }}
+                />
+              ) : (
+                <SendOutlined
+                  onClick={sendMessage}
+                  style={{
+                    fontSize: 20,
+                    color: '#1890ff',
+                    cursor: 'pointer',
+                    position: 'absolute',
+                    right: 16,
+                    bottom: 28,
+                    zIndex: 1000,
+                  }}
+                />
+              )}
+            </div>
+          </div>
+        </div>
       </Content>
     </Layout>
   );
