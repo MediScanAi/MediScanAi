@@ -12,7 +12,7 @@ import {
   Divider,
   Statistic,
   Alert,
-  Spin
+  Spin,
 } from 'antd';
 import {
   SmileOutlined,
@@ -71,9 +71,9 @@ const HealthPage: React.FC = () => {
           const logBase10 = (val: number) => Math.log(val) / Math.LN10;
           const fatPercent =
             495 /
-            (1.0324 -
-              0.19077 * logBase10(waist - neck) +
-              0.15456 * logBase10(height)) -
+              (1.0324 -
+                0.19077 * logBase10(waist - neck) +
+                0.15456 * logBase10(height)) -
             450;
           setBodyFat(Number(fatPercent.toFixed(1)));
         }
@@ -108,7 +108,7 @@ const HealthPage: React.FC = () => {
       underweight: '#FFD700',
       healthy: '#52C41A',
       overweight: '#FA8C16',
-      obese: '#F5222D'
+      obese: '#F5222D',
     };
 
     return (
@@ -178,7 +178,6 @@ const HealthPage: React.FC = () => {
             <Text strong className="metric-label">
               BMR
             </Text>
-
           </motion.div>
         </motion.div>
       </div>
@@ -200,7 +199,7 @@ const HealthPage: React.FC = () => {
       excellent: '#52C41A',
       good: '#73d13d',
       average: '#FA8C16',
-      high: '#F5222D'
+      high: '#F5222D',
     };
 
     return (
@@ -250,7 +249,7 @@ const HealthPage: React.FC = () => {
     const colors = {
       ideal: '#52C41A',
       over: '#FA8C16',
-      under: '#FFD700'
+      under: '#FFD700',
     };
 
     return (
@@ -286,7 +285,6 @@ const HealthPage: React.FC = () => {
   };
 
   const renderSuggestions = () => {
-
     if (bmi === null) return null;
     const status = getBmiStatus();
 
@@ -314,7 +312,7 @@ const HealthPage: React.FC = () => {
         color: 'red',
         title: 'Obese',
         text: "It's important to take action now. Please consult with a healthcare provider.",
-      }
+      },
     };
 
     const suggestion = suggestions[status as keyof typeof suggestions];
@@ -327,13 +325,15 @@ const HealthPage: React.FC = () => {
         className="suggestion-card"
       >
         <div className="suggestion-header">
-          <Tag icon={suggestion.icon} color={suggestion.color} className="suggestion-tag">
+          <Tag
+            icon={suggestion.icon}
+            color={suggestion.color}
+            className="suggestion-tag"
+          >
             {suggestion.title}
           </Tag>
         </div>
-        <Paragraph className="suggestion-text">
-          {suggestion.text}
-        </Paragraph>
+        <Paragraph className="suggestion-text">{suggestion.text}</Paragraph>
         <Divider className="suggestion-divider" />
         <div className="suggestion-stats">
           <Space size="large">
@@ -352,7 +352,13 @@ const HealthPage: React.FC = () => {
             <Statistic
               className="suggestion-statistic"
               title="3-month Goal"
-              value={status === 'healthy' ? 'Maintain' : status === 'underweight' ? '+2-4kg' : '-5-10kg'}
+              value={
+                status === 'healthy'
+                  ? 'Maintain'
+                  : status === 'underweight'
+                    ? '+2-4kg'
+                    : '-5-10kg'
+              }
               prefix={<LineChartOutlined />}
             />
           </Space>
@@ -402,9 +408,7 @@ const HealthPage: React.FC = () => {
   if (loading) {
     return (
       <div className="loading-state">
-        <Spin
-          className="loading-spinner"
-        />
+        <Spin className="loading-spinner" />
         <Title level={3} className="loading-title">
           Analyzing Your Health Profile
         </Title>
@@ -422,7 +426,8 @@ const HealthPage: React.FC = () => {
           Welcome to Your Health Dashboard
         </Title>
         <Paragraph className="empty-message">
-          Complete your health profile to unlock personalized insights and recommendations.
+          Complete your health profile to unlock personalized insights and
+          recommendations.
         </Paragraph>
         <Button
           type="primary"
@@ -484,27 +489,43 @@ const HealthPage: React.FC = () => {
                 size="small"
               >
                 <Descriptions.Item label="Age">
-                  <Text>{userData?.age ? `${userData?.age} years` : 'Not set'} </Text>
+                  <Text>
+                    {userData?.age ? `${userData?.age} years` : 'Not set'}{' '}
+                  </Text>
                 </Descriptions.Item>
                 <Descriptions.Item label="Weight">
-                  <Text>{userData?.weight ? `${userData?.weight} kg` : 'Not set'} </Text>
+                  <Text>
+                    {userData?.weight
+                      ? `${userData?.weight} kg`
+                      : 'Not set'}{' '}
+                  </Text>
                 </Descriptions.Item>
                 <Descriptions.Item label="Height">
-                  <Text>{userData?.height ? `${userData?.height} cm` : 'Not set'} </Text>
+                  <Text>
+                    {userData?.height
+                      ? `${userData?.height} cm`
+                      : 'Not set'}{' '}
+                  </Text>
                 </Descriptions.Item>
                 <Descriptions.Item label="Waist Size">
-                  <Text>{userData?.waistSize ? `${userData?.waistSize} cm` : 'Not set'} </Text>
+                  <Text>
+                    {userData?.waistSize
+                      ? `${userData?.waistSize} cm`
+                      : 'Not set'}{' '}
+                  </Text>
                 </Descriptions.Item>
                 <Descriptions.Item label="Neck Size">
-                  <Text>{userData?.neckSize ? `${userData?.neckSize} cm` : 'Not set'} </Text>
+                  <Text>
+                    {userData?.neckSize
+                      ? `${userData?.neckSize} cm`
+                      : 'Not set'}{' '}
+                  </Text>
                 </Descriptions.Item>
               </Descriptions>
 
               <Divider className="profile-divider" />
 
-              <div className="profile-summary">
-                {renderWeightAdvice()}
-              </div>
+              <div className="profile-summary">{renderWeightAdvice()}</div>
             </Card>
           </motion.div>
         </Col>
@@ -518,7 +539,15 @@ const HealthPage: React.FC = () => {
             <Card className="visualization-card">
               <div className="visualization-container">
                 <img
-                  src={userData?.weight && userData.weight > 80 && userData.weight < 100 ? midPerson : userData?.weight && userData.weight > 100 ? bigPerson : person}
+                  src={
+                    userData?.weight &&
+                    userData.weight > 80 &&
+                    userData.weight < 100
+                      ? midPerson
+                      : userData?.weight && userData.weight > 100
+                        ? bigPerson
+                        : person
+                  }
                   alt="Health visualization"
                   className="health-visualization"
                 />
@@ -539,19 +568,10 @@ const HealthPage: React.FC = () => {
               </Title>
 
               <div className="metrics-grid">
-                <div className="metric-item">
-                  {renderBmiStatus()}
-                </div>
-                <div className="metric-item">
-                  {renderBmrStatus()}
-                </div>
-                <div className="metric-item">
-                  {renderIdealWeightStatus()}
-
-                </div>
-                <div className="metric-item">
-                  {renderBodyFatStatus()}
-                </div>
+                <div className="metric-item">{renderBmiStatus()}</div>
+                <div className="metric-item">{renderBmrStatus()}</div>
+                <div className="metric-item">{renderIdealWeightStatus()}</div>
+                <div className="metric-item">{renderBodyFatStatus()}</div>
               </div>
 
               <Divider className="metrics-divider" />

@@ -1,7 +1,7 @@
 .health-dashboard {
   padding: 20px;
   width: 100%;
-  font-family: "Poppins";
+  font-family: 'Poppins';
 }
 
 .empty-state {
@@ -59,14 +59,13 @@
   width: 100vw;
 }
 
-
 .loading-container {
   text-align: center;
 }
 
 .loading-spinner {
   margin-bottom: 24px;
-  color: #6B73FF;
+  color: #6b73ff;
 }
 
 .loading-title {
@@ -75,7 +74,6 @@
   font-weight: 600;
   text-align: center;
 }
-
 
 .loading-subtitle {
   color: #7f8c8d;
@@ -106,7 +104,9 @@
   height: 100%;
   border-radius: 16px !important;
   border: none;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
 }
 
 .profile-header {
@@ -126,7 +126,7 @@
 
 .profile-title .anticon {
   margin-right: 8px;
-  color: #6B73FF;
+  color: #6b73ff;
 }
 
 .profile-descriptions .ant-descriptions-item-label {

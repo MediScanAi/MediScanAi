@@ -82,7 +82,6 @@ const UserInfo: React.FC<Props> = ({ theme }) => {
   };
 
   const saveData = async () => {
-
     try {
       if (!user?.uid) {
         message.error('User is not authenticated');
@@ -100,11 +99,15 @@ const UserInfo: React.FC<Props> = ({ theme }) => {
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
-
-
       <Descriptions
         title={
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+          <div
+            style={{
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+            }}
+          >
             <Title level={4} style={{ color: '#3498db', margin: 0 }}>
               User Info
             </Title>
@@ -154,8 +157,8 @@ const UserInfo: React.FC<Props> = ({ theme }) => {
           {isEditing ? (
             <InputNumber
               style={{ width: '100%' }}
-              min={"1"}
-              max={"90"}
+              min={'1'}
+              max={'90'}
               value={formData.age}
               onChange={(value) => handleChange('age', value?.toString() || '')}
               placeholder="Enter age"
@@ -184,11 +187,13 @@ const UserInfo: React.FC<Props> = ({ theme }) => {
         <Descriptions.Item label="Weight (kg)">
           {isEditing ? (
             <InputNumber
-              min={"40"}
-              max={"200"}
+              min={'40'}
+              max={'200'}
               style={{ width: '100%' }}
               value={formData.weight}
-              onChange={(value) => handleChange('weight', value?.toString() || '')}
+              onChange={(value) =>
+                handleChange('weight', value?.toString() || '')
+              }
               placeholder="Enter weight"
             />
           ) : (
@@ -200,10 +205,12 @@ const UserInfo: React.FC<Props> = ({ theme }) => {
           {isEditing ? (
             <InputNumber
               style={{ width: '100%' }}
-              min={"140"}
-              max={"220"}
+              min={'140'}
+              max={'220'}
               value={formData.height}
-              onChange={(value) => handleChange('height', value?.toString() || '')}
+              onChange={(value) =>
+                handleChange('height', value?.toString() || '')
+              }
               placeholder="Enter height"
             />
           ) : (
@@ -215,8 +222,10 @@ const UserInfo: React.FC<Props> = ({ theme }) => {
           label={
             <>
               Waist Size (cm)&nbsp;
-              <Tooltip     title="Measure around the narrowest part of your waist, usually just above the belly button. Keep the tape snug but not tight.">
-                <QuestionCircleOutlined style={{ color: '#1890ff', cursor: 'pointer' }} />
+              <Tooltip title="Measure around the narrowest part of your waist, usually just above the belly button. Keep the tape snug but not tight.">
+                <QuestionCircleOutlined
+                  style={{ color: '#1890ff', cursor: 'pointer' }}
+                />
               </Tooltip>
             </>
           }
@@ -224,10 +233,12 @@ const UserInfo: React.FC<Props> = ({ theme }) => {
           {isEditing ? (
             <InputNumber
               style={{ width: '100%' }}
-              min={"65"}
-              max={"100"}
+              min={'65'}
+              max={'100'}
               value={formData.waistSize}
-              onChange={(value) => handleChange('waistSize', value?.toString() || '')}
+              onChange={(value) =>
+                handleChange('waistSize', value?.toString() || '')
+              }
               placeholder="Enter waist size"
             />
           ) : (
@@ -239,8 +250,10 @@ const UserInfo: React.FC<Props> = ({ theme }) => {
           label={
             <>
               Neck Size (cm)&nbsp;
-              <Tooltip   title="Measure around the widest part of your neck, just below the Adam's apple. Keep the tape horizontal and snug.">
-                <QuestionCircleOutlined style={{ color: '#1890ff', cursor: 'pointer' }} />
+              <Tooltip title="Measure around the widest part of your neck, just below the Adam's apple. Keep the tape horizontal and snug.">
+                <QuestionCircleOutlined
+                  style={{ color: '#1890ff', cursor: 'pointer' }}
+                />
               </Tooltip>
             </>
           }
@@ -248,10 +261,12 @@ const UserInfo: React.FC<Props> = ({ theme }) => {
           {isEditing ? (
             <InputNumber
               style={{ width: '100%' }}
-              min={"35"}
-              max={"45"}
+              min={'35'}
+              max={'45'}
               value={formData.neckSize}
-              onChange={(value) => handleChange('neckSize', value?.toString() || '')}
+              onChange={(value) =>
+                handleChange('neckSize', value?.toString() || '')
+              }
               placeholder="Enter neck size"
             />
           ) : (
@@ -261,7 +276,6 @@ const UserInfo: React.FC<Props> = ({ theme }) => {
       </Descriptions>
     </div>
   );
-
 };
 
 export default UserInfo;
