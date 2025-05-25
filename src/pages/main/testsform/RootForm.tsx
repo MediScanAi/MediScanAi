@@ -119,7 +119,10 @@ function RootForm(): ReactNode | null {
           </div>
 
           <div className="medical-image-container">
-            <img src={laboratoryImage} alt={t('rootform.medicalIllustration')} />
+            <img
+              src={laboratoryImage}
+              alt={t('rootform.medicalIllustration')}
+            />
           </div>
         </Col>
 

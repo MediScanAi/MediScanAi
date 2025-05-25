@@ -3,6 +3,7 @@
     "home": "Home",
     "analysis": "Analysis",
     "aiDoctor": "Your AI Doctor",
+    "myHealth": "My Health",
     "aboutUs": "About Us",
     "logout": "Logout",
     "profile": "Profile",
@@ -17,6 +18,7 @@
     "platformTitle": "MediScanAi Platform",
     "platformDescription": "Advanced AI-powered diagnostics and medical analysis for healthcare professionals.",
     "consultButton": "Consult Today",
+    "myHealthTitle": "Medi Health",
     "ourActivity": "Our Activity",
     "activityDescription": "Our activity is to provide a platform for healthcare professionals to use AI-powered diagnostics and medical analysis.",
     "faqTitle": "Frequently Asked Questions",
@@ -43,13 +45,19 @@
       "text": "Physicians apply findings for personalized treatment decision"
     }
   },
+  "myHealth": {
+    "title": "My Health",
+    "description": "Fill in the form and get your health report by a few seconds",
+    "button": "Fill and get report"
+  },
   "leadingMedicine": {
     "title": "Leading Medicine",
     "description": "Advanced AI-powered diagnostics and medical analysis for healthcare professionals."
   },
   "faqs": {
     "title": "Frequently Asked Questions",
-    "items": [{
+    "items": [
+      {
         "question": "What is Mediscan AI?",
         "answer": "Mediscan AI is an advanced web-based health integration platform that uses artificial intelligence to analyze medical and genomic data. It supports clinicians with fast, accurate, and personalized insights for better patient care."
       },

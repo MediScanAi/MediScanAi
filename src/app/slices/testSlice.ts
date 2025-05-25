@@ -36,7 +36,6 @@ interface TestData {
   cyp2c19?: string | null;
 }
 
-
 export interface UrineTestFormValues {
   ph: number | null;
   specificGravity: number | null;
