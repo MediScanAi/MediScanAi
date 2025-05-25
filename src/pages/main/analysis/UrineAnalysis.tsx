@@ -401,6 +401,10 @@ function UrineAnalysis() {
     ? getUrineDiseaseRisks(urineTestData as UrineTestFormValues)
     : [];
 
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, []);
+
   return (
     <div>
       <Row
@@ -457,14 +461,6 @@ function UrineAnalysis() {
                     marginBottom: '20px',
                   }}
                 >
-                  <Button
-                    className="consult-button"
-                    type="primary"
-                    size="large"
-                    onClick={() => navigate('/ai-doctor')}
-                  >
-                    Analyze with AI
-                  </Button>
                 </div>
               </Col>
               <Col
@@ -520,6 +516,23 @@ function UrineAnalysis() {
                 style={{ color: 'rgb(255, 0, 0)', fontFamily: 'Poppins' }}
               >
                 🚨 Health Risk Warnings
+                <Button
+                  className="consult-button"
+                  type="primary"
+                  size="large"
+                  style={{ marginLeft: 20 }}
+                  onClick={() => {
+                    const warnings = getUrineDiseaseRisks(urineTestData as UrineTestFormValues);
+                    navigate('/ai-doctor', {
+                      state: {
+                        urineTests: urineTestData,
+                        urineWarnings: warnings,
+                      },
+                    });
+                  }}
+                >
+                  Analyze with AI
+                </Button>
               </Title>
               <ul style={{ paddingLeft: 20 }}>
                 {urineWarnings.length > 0 ? (

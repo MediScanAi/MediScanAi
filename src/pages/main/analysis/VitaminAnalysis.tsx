@@ -308,6 +308,10 @@ function VitaminAnalysis() {
 
   const navigate = useNavigate();
 
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, []);
+
   return (
     <div>
       <Row
@@ -357,14 +361,6 @@ function VitaminAnalysis() {
             <Card className="card2-design" style={{ border: 'none' }}>
               <Col className="card2-col-design">
                 <div style={{ display: 'flex', justifyContent: 'center' }}>
-                  <Button
-                    className="consult-button"
-                    type="primary"
-                    size="large"
-                    onClick={() => navigate('/ai-doctor')}
-                  >
-                    Analyze with AI
-                  </Button>
                 </div>
               </Col>
               <Col
@@ -395,6 +391,23 @@ function VitaminAnalysis() {
                   style={{ color: 'rgb(255, 0, 0)', fontFamily: 'Poppins' }}
                 >
                   🚨 Vitamin Health Warnings
+                  <Button
+                  className="consult-button"
+                  type="primary"
+                  size="large"
+                  style={{ marginLeft: 20 }}
+                  onClick={() => {
+                    const warnings = getVitaminRisks(vitaminTestData as VitaminTestFormValues);
+                    navigate('/ai-doctor', {
+                      state: {
+                        vitaminTests: vitaminTestData,
+                        vitaminWarnings: warnings,
+                      },
+                    });
+                  }}
+                >
+                  Analyze with AI
+                </Button>
                 </Title>
                 <ul style={{ paddingLeft: 20 }}>
                   {getVitaminRisks(vitaminTestData as VitaminTestFormValues)

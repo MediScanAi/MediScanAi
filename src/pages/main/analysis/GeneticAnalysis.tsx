@@ -249,6 +249,10 @@ function GeneticAnalysis() {
               : 0,
     },
   ];
+  
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, []);
 
   return (
     <div>
@@ -305,14 +309,6 @@ function GeneticAnalysis() {
                     marginBottom: 20,
                   }}
                 >
-                  <Button
-                    className="consult-button"
-                    type="primary"
-                    size="large"
-                    onClick={() => navigate('/ai-doctor')}
-                  >
-                    Analyze with AI
-                  </Button>
                 </div>
               </Col>
               <Col
@@ -359,6 +355,23 @@ function GeneticAnalysis() {
                 style={{ color: 'rgb(255, 0, 0)', fontFamily: 'Poppins' }}
               >
                 🚨 Health Risk Warnings
+                <Button
+                  className="consult-button"
+                  type="primary"
+                  size="large"
+                  style={{ marginLeft: 20 }}
+                  onClick={() => {
+                    const warnings = getGeneticRisks(geneticTestData as GeneticTestFormValues);
+                    navigate('/ai-doctor', {
+                      state: {
+                        geneticTests: geneticTestData,
+                        geneticWarnings: warnings,
+                      },
+                    });
+                  }}
+                >
+                  Analyze with AI
+                </Button>
               </Title>
               <ul style={{ listStyleType: 'none', padding: 0 }}>
                 {getGeneticRisks(geneticTestData as GeneticTestFormValues)

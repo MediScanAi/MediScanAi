@@ -9,7 +9,6 @@ import {
   Dropdown,
   Menu,
   type MenuProps,
-  type UploadProps,
   message,
 } from 'antd';
 import {
@@ -38,6 +37,7 @@ import { DiffOutlined } from '@ant-design/icons';
 import { useAppSelector } from '../../app/hooks';
 import { Spin } from 'antd';
 import { CopyOutlined } from '@ant-design/icons';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const { Sider, Content } = Layout;
 const { Text } = Typography;
@@ -68,6 +68,87 @@ const ChatWithAi = () => {
   const [currentUtterance, setCurrentUtterance] =
     useState<SpeechSynthesisUtterance | null>(null);
   const selectedChat = chats.find((chat) => chat.id === selectedChatId);
+  const location = useLocation();
+  const {
+    bloodTests,
+    healthWarnings,
+    geneticTests,
+    geneticWarnings,
+    vitaminTests,
+    vitaminWarnings,
+    urineTests,
+    urineWarnings
+  } = location.state || {};
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    let testDescription = '';
+    let warningsDescription = '';
+
+    if (bloodTests) {
+      const bloodTestsString = Object.entries(bloodTests)
+        .map(([key, value]) => `${key}: ${value}`)
+        .join(', ');
+      testDescription += `Blood Test Results: ${bloodTestsString}. `;
+
+      if (healthWarnings?.length > 0) {
+        warningsDescription += `Blood Test Warnings: ${healthWarnings.join('; ')}. `;
+      }
+    }
+
+    if (geneticTests) {
+      const geneticTestsString = Object.entries(geneticTests)
+        .map(([key, value]) => `${key}: ${value}`)
+        .join(', ');
+      testDescription += `Genetic Test Results: ${geneticTestsString}. `;
+
+      if (geneticWarnings?.length > 0) {
+        warningsDescription += `Genetic Test Warnings: ${geneticWarnings.join('; ')}. `;
+      }
+    }
+
+    if (vitaminTests) {
+      const vitaminTestsString = Object.entries(vitaminTests)
+        .map(([key, value]) => `${key}: ${value}`)
+        .join(', ');
+      testDescription += `Vitamin Test Results: ${vitaminTestsString}. `;
+
+      if (vitaminWarnings?.length > 0) {
+        warningsDescription += `Vitamin Test Warnings: ${vitaminWarnings.join('; ')}. `;
+      }
+    }
+
+    if (urineTests) {
+      const urineTestsString = Object.entries(urineTests)
+        .map(([key, value]) => `${key}: ${value}`)
+        .join(', ');
+      testDescription += `Urine Test Results: ${urineTestsString}. `;
+
+      if (urineWarnings?.length > 0) {
+        warningsDescription += `Urine Test Warnings: ${urineWarnings.join('; ')}. `;
+      }
+    }
+
+    if (testDescription) {
+      const finalPrompt = `${testDescription}${warningsDescription || 'No significant health warnings.'} Describe these results in detail and recommend a comprehensive plan of action.`;
+      setInput(finalPrompt);
+
+      navigate(location.pathname, { replace: true, state: {} });
+    }
+
+  }, [
+    bloodTests,
+    healthWarnings,
+    geneticTests,
+    geneticWarnings,
+    vitaminTests,
+    vitaminWarnings,
+    urineTests,
+    urineWarnings,
+    location.pathname,
+    navigate
+  ]);
 
   const getVoice = () => {
     const synth = window.speechSynthesis;
@@ -310,7 +391,7 @@ const ChatWithAi = () => {
       onClick: () => {
         if (tests.blood) {
           const bloodTests = Object.entries(tests?.blood || '');
-          setInput(`${bloodTests.map(([key, value]) => `${key}: ${value}`).join(', ')} 
+          setInput(`Your blood test results: ${bloodTests.map(([key, value]) => `${key}: ${value}`).join(', ')} 
           Describe my results in detail and recommend a plan of action about my health warnings.`);
         }
       },
@@ -321,7 +402,7 @@ const ChatWithAi = () => {
       onClick: () => {
         if (tests.urine) {
           const urineTests = Object.entries(tests?.urine || '');
-          setInput(`${urineTests.map(([key, value]) => `${key}: ${value}`).join(', ')} 
+          setInput(`Your urine test results: ${urineTests.map(([key, value]) => `${key}: ${value}`).join(', ')} 
           Describe my results in detail and recommend a plan of action about my health warnings.`);
         }
       },
@@ -332,7 +413,7 @@ const ChatWithAi = () => {
       onClick: () => {
         if (tests.vitamin) {
           const vitaminsTests = Object.entries(tests?.vitamin || '');
-          setInput(`${vitaminsTests.map(([key, value]) => `${key}: ${value}`).join(', ')} 
+          setInput(`Your vitamin test results: ${vitaminsTests.map(([key, value]) => `${key}: ${value}`).join(', ')} 
           Describe my results in detail and recommend a plan of action about my health warnings.`);
         }
       },
@@ -343,7 +424,7 @@ const ChatWithAi = () => {
       onClick: () => {
         if (tests.genetic) {
           const geneticTests = Object.entries(tests?.genetic || '');
-          setInput(`${geneticTests.map(([key, value]) => `${key}: ${value}`).join(', ')} 
+          setInput(`Your genetic test results: ${geneticTests.map(([key, value]) => `${key}: ${value}`).join(', ')} 
           Describe my results in detail and recommend a plan of action about my health warnings.`);
         }
       },
@@ -364,7 +445,13 @@ const ChatWithAi = () => {
     {
       label: (
         <Upload>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 8, padding: '4px 8px' }}>
+          <div
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: 8,
+            }}
+          >
             <UploadOutlined />
             <Text>PDF Upload</Text>
           </div>
@@ -500,7 +587,6 @@ const ChatWithAi = () => {
         <div
           style={{
             borderTop: '1px solid #ddd',
-            borderBottom: '1px solid #ddd',
             flex: 1,
             overflowY: 'auto',
             padding: '16px 0',
@@ -586,6 +672,7 @@ const ChatWithAi = () => {
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'space-evenly',
+            background: 'none',
           }}
         >
           <div style={{ display: 'flex', alignItems: 'center' }}>
@@ -600,39 +687,48 @@ const ChatWithAi = () => {
               />
             </Dropdown>
 
-            <Input
-              value={input}
-              onChange={(e) => setInput(e.target.value)}
-              onPressEnter={(e) => {
-                if (!e.shiftKey) {
-                  e.preventDefault();
-                  sendMessage();
-                }
-              }}
-              placeholder="Type your message..."
-              suffix={
-                loading ? (
-                  <Spin size="small" />
-                ) : (
-                  <SendOutlined
-                    onClick={sendMessage}
-                    style={{
-                      fontSize: 20,
-                      color: '#1890ff',
-                      cursor: 'pointer',
-                    }}
-                  />
-                )
-              }
-              disabled={loading}
-              style={{
-                borderRadius: 24,
-                padding: '10px 16px',
-                maxWidth: 600,
-                minWidth: 600,
-                margin: '16px auto',
-              }}
-            />
+            <div style={{
+              position: 'relative',
+              width: '100%',
+              minWidth: 600,
+            }}>
+              <Input.TextArea
+                value={input}
+                onChange={(e) => setInput(e.target.value)}
+                onPressEnter={(e) => {
+                  if (!e.shiftKey) {
+                    e.preventDefault();
+                    sendMessage();
+                  }
+                }}
+                placeholder="Type your message..."
+                autoSize={{ minRows: 1, maxRows: 7 }}
+                style={{
+                  borderRadius: 24,
+                  padding: '10px 16px',
+                  margin: '16px auto',
+                  maxHeight: 10,
+                }}
+                className="custom-scrollbar"
+                disabled={loading}
+              />
+              {loading ? (
+                <Spin size="small" style={{ position: 'absolute', right: 16, bottom: 28 }} />
+              ) : (
+                <SendOutlined
+                  onClick={sendMessage}
+                  style={{
+                    fontSize: 20,
+                    color: '#1890ff',
+                    cursor: 'pointer',
+                    position: 'absolute',
+                    right: 16,
+                    bottom: 28,
+                    zIndex: 1000,
+                  }}
+                />
+              )}
+            </div>
           </div>
         </div>
       </Content>
