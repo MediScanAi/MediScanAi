@@ -77,7 +77,7 @@ const ChatWithAi = () => {
     vitaminTests,
     vitaminWarnings,
     urineTests,
-    urineWarnings
+    urineWarnings,
   } = location.state || {};
 
   const navigate = useNavigate();
@@ -136,7 +136,6 @@ const ChatWithAi = () => {
 
       navigate(location.pathname, { replace: true, state: {} });
     }
-
   }, [
     bloodTests,
     healthWarnings,
@@ -147,7 +146,7 @@ const ChatWithAi = () => {
     urineTests,
     urineWarnings,
     location.pathname,
-    navigate
+    navigate,
   ]);
 
   const getVoice = () => {
@@ -444,16 +443,44 @@ const ChatWithAi = () => {
     },
     {
       label: (
-        <Upload>
-          <div
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: 8,
-            }}
-          >
+        <Upload
+          showUploadList={false}
+          accept=".pdf,.word"
+          customRequest={async ({ file, onSuccess }) => {
+            setLoading(true);
+            const hide = message.loading('Parsing PDF...', 0);
+            const reader = new FileReader();
+
+            reader.onload = async () => {
+              try {
+                const base64 = (reader.result as string).split(',')[1];
+                const res = await axios.post('/api/parse-pdf', {
+                  fileBase64: base64,
+                });
+                setInput(res.data.text.trim());
+                message.success('PDF parsed successfully');
+                onSuccess?.({}, new XMLHttpRequest());
+              } catch {
+                message.error('Failed to parse PDF');
+              } finally {
+                hide();
+                setLoading(false);
+              }
+            };
+
+            reader.onerror = () => {
+              hide();
+              message.error('Failed to read PDF file');
+              setLoading(false);
+            };
+
+            reader.readAsDataURL(file as Blob);
+          }}
+        >
+          <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
             <UploadOutlined />
             <Text>PDF Upload</Text>
+            {loading && <Spin size="small" style={{ marginLeft: 8 }} />}
           </div>
         </Upload>
       ),
@@ -687,11 +714,13 @@ const ChatWithAi = () => {
               />
             </Dropdown>
 
-            <div style={{
-              position: 'relative',
-              width: '100%',
-              minWidth: 600,
-            }}>
+            <div
+              style={{
+                position: 'relative',
+                width: '100%',
+                minWidth: 600,
+              }}
+            >
               <Input.TextArea
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
@@ -713,7 +742,10 @@ const ChatWithAi = () => {
                 disabled={loading}
               />
               {loading ? (
-                <Spin size="small" style={{ position: 'absolute', right: 16, bottom: 28 }} />
+                <Spin
+                  size="small"
+                  style={{ position: 'absolute', right: 16, bottom: 28 }}
+                />
               ) : (
                 <SendOutlined
                   onClick={sendMessage}
