@@ -23,7 +23,7 @@ import {
 } from '@ant-design/icons';
 import { v4 as uuidv4 } from 'uuid';
 import axios from 'axios';
-import * as pdfjsLib from 'pdfjs-dist';
+// import * as pdfjsLib from 'pdfjs-dist';
 import {
   doc,
   setDoc,
@@ -71,13 +71,11 @@ const ChatWithAi = () => {
     useState<SpeechSynthesisUtterance | null>(null);
   const selectedChat = chats.find((chat) => chat.id === selectedChatId);
 
-  // Get appropriate voice for selected language
   const getVoice = () => {
     const synth = window.speechSynthesis;
     const voices = synth.getVoices();
 
     if (language === 'ru') {
-      // Find Russian voice
       const russianVoice = voices.find(
         (voice) => voice.lang === 'ru-RU' || voice.lang.startsWith('ru-')
       );
@@ -85,7 +83,6 @@ const ChatWithAi = () => {
         russianVoice || voices.find((voice) => voice.lang === 'en-US') || null
       );
     } else {
-      // Default to English voice
       return voices.find((voice) => voice.lang === 'en-US') || null;
     }
   };
@@ -103,7 +100,6 @@ const ChatWithAi = () => {
     synth.cancel();
     const utterance = new SpeechSynthesisUtterance(msg.content);
 
-    // Set voice based on language
     const voice = getVoice();
     if (voice) {
       utterance.voice = voice;
@@ -234,18 +230,36 @@ const ChatWithAi = () => {
   };
 
   const sendMessage = async () => {
-    if (!input.trim() || !selectedChatId) return;
+    if (!input.trim()) return;
     const user = auth.currentUser;
     if (!user) {
       antdMsg.error('You must be logged in.');
       return;
     }
 
-    const userMsg: Message = { role: 'user', content: input };
-    const chatIndex = chats.findIndex((chat) => chat.id === selectedChatId);
-    if (chatIndex === -1) return;
+    let chatId = selectedChatId;
+    let chatIndex = chats.findIndex((chat) => chat.id === chatId);
+    let originalChat: Chat;
 
-    const originalChat = chats[chatIndex];
+    if (!chatId || chatIndex === -1) {
+      const now = new Date().toISOString();
+      chatId = uuidv4();
+      originalChat = {
+        id: chatId,
+        title: input.slice(0, 20) + '...',
+        createdAt: now,
+        lastUpdated: now,
+        messages: [],
+      };
+      await setDoc(doc(db, 'users', user.uid, 'chats', chatId), originalChat);
+      setChats([originalChat, ...chats]);
+      setSelectedChatId(chatId);
+      chatIndex = 0;
+    } else {
+      originalChat = chats[chatIndex];
+    }
+
+    const userMsg: Message = { role: 'user', content: input };
     const updatedUserMessages = [...originalChat.messages, userMsg];
 
     const updatedChat: Chat = {
@@ -283,11 +297,9 @@ const ChatWithAi = () => {
       finalChats[chatIndex] = finalChat;
       setChats(finalChats);
 
-      await setDoc(
-        doc(db, 'users', user.uid, 'chats', selectedChatId),
-        finalChat,
-        { merge: true }
-      );
+      await setDoc(doc(db, 'users', user.uid, 'chats', chatId), finalChat, {
+        merge: true,
+      });
     } catch (err) {
       console.error(err);
       antdMsg.error('Failed to send message');
