@@ -3,6 +3,7 @@
     "home": "Home",
     "analysis": "Analysis",
     "aiDoctor": "Your AI Doctor",
+    "myHealth": "My Health",
     "aboutUs": "About Us",
     "logout": "Logout",
     "profile": "Profile",
@@ -17,15 +18,16 @@
     "platformTitle": "MediScanAi Platform",
     "platformDescription": "Advanced AI-powered diagnostics and medical analysis for healthcare professionals.",
     "consultButton": "Consult Today",
+    "myHealthTitle": "Medi Health",
     "ourActivity": "Our Activity",
-    "activityDescription": "Problems trying to resolve the conflict between the two major realms of Classical physics: Newtonian mechanics.",
+    "activityDescription": "Our activity is to provide a platform for healthcare professionals to use AI-powered diagnostics and medical analysis.",
     "faqTitle": "Frequently Asked Questions",
     "partnerTitle": "Partner With Us",
     "readMore": "Read More"
   },
   "activity": {
     "title": "Our Activity",
-    "description": "Problems trying to resolve the conflict between the two major realms of Classical physics: Newtonian mechanics.",
+    "description": "Our activity is to provide a platform for healthcare professionals to use AI-powered diagnostics and medical analysis.",
     "dataUpload": {
       "title": "Data Upload",
       "text": "Securely upload your genomic data via encrypted portal"
@@ -42,6 +44,11 @@
       "title": "Clinical Decision",
       "text": "Physicians apply findings for personalized treatment decision"
     }
+  },
+  "myHealth": {
+    "title": "My Health",
+    "description": "Fill in the form and get your health report by a few seconds",
+    "button": "Fill and get report"
   },
   "leadingMedicine": {
     "title": "Leading Medicine",
@@ -86,7 +93,7 @@
     "2": {
       "name": "Erebuni Medical Center",
       "link": "https://www.erebunimed.com/",
-      "description": "Erebuni Medical Center is Armenia’s largest hospital, providing full-spectrum care including emergency services, diagnostics, and surgery since 1991."
+      "description": "Erebuni Medical Center is Armenia's largest hospital, providing full-spectrum care including emergency services, diagnostics, and surgery since 1991."
     },
     "3": {
       "name": "Davidyants Laboratory",
@@ -113,5 +120,189 @@
       "name": "Hematological Center",
       "description": "The Armenian Hematological Center specializes in diagnosing and treating blood disorders, providing advanced care for both children and adults."
     }
+  },
+  "aboutUs": {
+    "title": "About Us",
+    "description": "We are a pioneering healthcare technology company leveraging artificial intelligence to revolutionize medical diagnostics and patient care.",
+    "contactButton": "Contact Us",
+    "coreValues": "Our Core Values",
+    "clientOpinions": "What Our Clients Say",
+    "mission": {
+      "title": "Our Mission",
+      "text": "To empower healthcare professionals with AI-driven tools that enhance diagnostic accuracy and improve patient outcomes through data-driven insights."
+    },
+    "vision": {
+      "title": "Our Vision",
+      "text": "To be the global leader in AI-powered medical diagnostics, making advanced healthcare analytics accessible and actionable for medical professionals worldwide."
+    },
+    "values": {
+      "title": "Our Values",
+      "text": "Innovation, accuracy, and trust are at our core. We are committed to developing cutting-edge solutions while maintaining the highest standards of data security and clinical precision."
+    },
+    "opinions": {
+      "0": {
+        "name": "Dr. Sarah Chen",
+        "description": "MediScanAI has transformed how we analyze medical data. The AI insights have proven invaluable for making informed clinical decisions."
+      },
+      "1": {
+        "name": "Dr. Michael Roberts",
+        "description": "The platform's accuracy and speed in processing complex medical data have significantly improved our diagnostic capabilities."
+      },
+      "2": {
+        "name": "Dr. Anna Petrosyan",
+        "description": "An excellent tool that has streamlined our workflow and enhanced our ability to provide precise patient care."
+      },
+      "3": {
+        "name": "Dr. James Wilson",
+        "description": "The integration of AI in medical diagnostics through MediScanAI has revolutionized our approach to patient care."
+      },
+      "4": {
+        "name": "Dr. Maria Garcia",
+        "description": "Impressive accuracy in analysis and an intuitive interface make this platform essential for modern healthcare."
+      },
+      "5": {
+        "name": "Dr. David Kim",
+        "description": "The platform's comprehensive reports have greatly improved our diagnostic efficiency and patient communication."
+      },
+      "6": {
+        "name": "Dr. Lisa Thompson",
+        "description": "MediScanAI provides reliable, fast results that have become integral to our clinical decision-making process."
+      },
+      "7": {
+        "name": "Dr. Robert Brown",
+        "description": "An innovative solution that has significantly enhanced our diagnostic capabilities and patient care quality."
+      }
+    },
+    "location": {
+      "title": "Our Location",
+      "description": "Visit our MediScanAI headquarters to discover how we're transforming healthcare through AI innovation",
+      "phone": "Tel: +374 91 234 567"
+    }
+  },
+  "rootform": {
+    "blood": "Blood Test",
+    "urine": "Urine Test",
+    "vitamin": "Vitamin Test",
+    "genetic": "Genetic Test",
+    "welcomeTitle": "Welcome to MediScanAI Test Forms",
+    "welcomeMessage": "Please select a test type to begin your analysis",
+    "backButton": "Back to Profile",
+    "updateTest": "Update Test",
+    "selectTestType": "Select a test type and provide the required specimen information",
+    "medicalIllustration": "Medical illustration",
+    "medicalLaboratoryTestForm": "Medical Laboratory Test Form",
+    "comprehensiveMedicalTestAnalysis": "Comprehensive medical test analysis powered by AI Receive accurate results and personalized insights within 24 hours.",
+    "mediScanAIDiagnosticPortal": "MediScanAI Diagnostic Portal"
+  },
+  "messages": {
+    "bloodTestUpdated": "Blood test updated successfully",
+    "bloodTestSubmitted": "Blood test submitted successfully",
+    "bloodTestError": "Blood test cannot be updated",
+    "geneticTestUpdated": "Genetic test updated successfully",
+    "geneticTestSubmitted": "Genetic test submitted successfully",
+    "geneticTestError": "Genetic test cannot be updated",
+    "urineTestUpdated": "Urine test updated successfully",
+    "urineTestSubmitted": "Urine test submitted successfully",
+    "urineTestError": "Urine test cannot be updated",
+    "vitaminTestUpdated": "Vitamin test updated successfully",
+    "vitaminTestSubmitted": "Vitamin test submitted successfully",
+    "vitaminTestError": "Vitamin test cannot be updated"
+  },
+  "forms": {
+    "required": "This field is required"
+  },
+  "bloodTest": {
+    "hemoglobin": "Hemoglobin",
+    "wbc": "White Blood Cells (WBC)",
+    "rbc": "Red Blood Cells (RBC)",
+    "platelets": "Platelets",
+    "glucose": "Glucose",
+    "cholesterol": "Total Cholesterol",
+    "submit": "Submit Blood Test",
+    "update": "Update Blood Test",
+    "bloodTesthemoglobinPlaceholder": "Please enter the hemoglobin value",
+    "bloodTestwbcPlaceholder": "Please enter the white blood cell count",
+    "bloodTestrbcPlaceholder": "Please enter the red blood cell count",
+    "bloodTestplateletsPlaceholder": "Please enter the platelet count",
+    "bloodTestglucosePlaceholder": "Please enter the glucose level",
+    "bloodTestcholesterolPlaceholder": "Please enter the cholesterol level"
+  },
+  "geneticTest": {
+    "title": "Genetic Test",
+    "brca1": "BRCA1 Gene Mutation",
+    "brca2": "BRCA2 Gene Mutation",
+    "apoe": "APOE Genotype Risk Score",
+    "mthfr": "MTHFR Mutation Level",
+    "factor_v_leiden": "Factor V Leiden Mutation",
+    "cyp2c19": "CYP2C19 Enzyme Activity",
+    "placeholder": "Select result",
+    "submit": "Submit Genetic Test",
+    "update": "Update Genetic Test",
+    "success": "Genetic test submitted successfully",
+    "updateSuccess": "Genetic test updated successfully",
+    "notAuthenticated": "User is not authenticated",
+    "negative": "negative",
+    "positive": "positive",
+    "ε2/ε2": "ε2/ε2",
+    "ε3/ε3": "ε3/ε3",
+    "ε3/ε4": "ε3/ε4",
+    "ε4/ε4": "ε4/ε4",
+    "homozygous": "Homozygous",
+    "heterozygous": "Heterozygous",
+    "normal": "Normal",
+    "categoryI": "Category I",
+    "categoryII": "Category II",
+    "categoryIII": "Category III"
+  },
+  "urineTest": {
+    "title": "Urine Test",
+    "submit": "Submit Urine Test",
+    "update": "Update Urine Test",
+    "success": "Urine test submitted successfully",
+    "updateSuccess": "Urine test updated successfully",
+    "ph": "pH",
+    "gravity": "Specific Gravity",
+    "protein": "Protein",
+    "glucose": "Glucose",
+    "ketones": "Ketones",
+    "bilirubin": "Bilirubin",
+    "urobilinogen": "Urobilinogen",
+    "nitrites": "Nitrites",
+    "leukocyteEsterase": "Leukocyte Esterase",
+    "blood": "Blood",
+    "negative": "Negative",
+    "positive": "Positive",
+    "trace": "Trace",
+    "placeholder": "Select an option",
+    "urineTestphPlaceholder": "Enter pH value (4.5-8.0)",
+    "urineTestgravityPlaceholder": "Enter specific gravity (1.0-1.03 g/dL)",
+    "urineTestproteinPlaceholder": "Enter protein level (0-300 mg/dL)",
+    "urineTestglucosePlaceholder": "Enter glucose level (0-1000 mg/dL)",
+    "urineTestketonesPlaceholder": "Enter ketones level (0-160 mg/dL)",
+    "urineTestbilirubinPlaceholder": "Select bilirubin result",
+    "urineTesturobilinogenPlaceholder": "Enter urobilinogen level (0.1-8.0 EU/dL)",
+    "urineTestnitritesPlaceholder": "Select nitrites result",
+    "urineTestleukocyteEsterasePlaceholder": "Select leukocyte esterase result",
+    "urineTestbloodPlaceholder": "Select blood result"
+  },
+  "vitaminTest": {
+    "title": "Vitamin Test",
+    "submit": "Submit Vitamin Test",
+    "update": "Update Vitamin Test",
+    "success": "Vitamin test submitted successfully",
+    "updateSuccess": "Vitamin test updated successfully",
+    "notAuthenticated": "User is not authenticated",
+    "vitaminA": "Vitamin A",
+    "vitaminB12": "Vitamin B12",
+    "vitaminC": "Vitamin C",
+    "vitaminD": "Vitamin D",
+    "vitaminE": "Vitamin E",
+    "vitaminK": "Vitamin K",
+    "vitaminAPlaceholder": "Enter vitamin A level",
+    "vitaminB12Placeholder": "Enter vitamin B12 level",
+    "vitaminCPlaceholder": "Enter vitamin C level",
+    "vitaminDPlaceholder": "Enter vitamin D level",
+    "vitaminEPlaceholder": "Enter vitamin E level",
+    "vitaminKPlaceholder": "Enter vitamin K level"
   }
 }

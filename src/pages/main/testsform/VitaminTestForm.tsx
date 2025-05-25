@@ -13,77 +13,79 @@ import { saveTestData } from '../../../app/slices/testSlice';
 import type { VitaminTestFormValues } from '../../../app/slices/testSlice';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { auth } from '../../../api/authApi';
+import { useTranslation } from 'react-i18next';
 
 const { Title } = Typography;
-
-const vitaminTestFields = [
-  {
-    label: 'Vitamin A',
-    name: 'vitaminA',
-    min: 10,
-    max: 80,
-    step: 1,
-    unit: 'mcg/dL',
-    placeholder: 'e.g. 50',
-  },
-  {
-    label: 'Vitamin B12',
-    name: 'vitaminB12',
-    min: 200,
-    max: 900,
-    step: 1,
-    unit: 'pg/mL',
-    placeholder: 'e.g. 300',
-  },
-  {
-    label: 'Vitamin C',
-    name: 'vitaminC',
-    min: 0.2,
-    max: 2.0,
-    step: 0.1,
-    unit: 'mg/dL',
-    placeholder: 'e.g. 1.5',
-  },
-  {
-    label: 'Vitamin D',
-    name: 'vitaminD',
-    min: 10,
-    max: 100,
-    step: 1,
-    unit: 'ng/mL',
-    placeholder: 'e.g. 50',
-  },
-  {
-    label: 'Vitamin E',
-    name: 'vitaminE',
-    min: 5,
-    max: 20,
-    step: 0.1,
-    unit: 'mg/L',
-    placeholder: 'e.g. 10',
-  },
-  {
-    label: 'Vitamin K',
-    name: 'vitaminK',
-    min: 0.1,
-    max: 3.2,
-    step: 0.1,
-    unit: 'ng/mL',
-    placeholder: 'e.g. 1.5',
-  },
-];
 
 const VitaminTestForm = () => {
   const navigate = useNavigate();
   const [form] = Form.useForm();
   const dispatch = useAppDispatch();
   const updatedData = useLocation()?.state?.vitaminTestData || undefined;
+  const { t } = useTranslation();
+
+  const vitaminTestFields = [
+    {
+      label: t('vitaminTest.vitaminA'),
+      name: 'vitaminA',
+      min: 10,
+      max: 80,
+      step: 1,
+      unit: 'mcg/dL',
+      placeholder: t('vitaminTest.vitaminAPlaceholder'),
+    },
+    {
+      label: t('vitaminTest.vitaminB12'),
+      name: 'vitaminB12',
+      min: 200,
+      max: 900,
+      step: 1,
+      unit: 'pg/mL',
+      placeholder: t('vitaminTest.vitaminB12Placeholder'),
+    },
+    {
+      label: t('vitaminTest.vitaminC'),
+      name: 'vitaminC',
+      min: 0.2,
+      max: 2.0,
+      step: 0.1,
+      unit: 'mg/dL',
+      placeholder: t('vitaminTest.vitaminCPlaceholder'),
+    },
+    {
+      label: t('vitaminTest.vitaminD'),
+      name: 'vitaminD',
+      min: 10,
+      max: 100,
+      step: 1,
+      unit: 'ng/mL',
+      placeholder: t('vitaminTest.vitaminDPlaceholder'),
+    },
+    {
+      label: t('vitaminTest.vitaminE'),
+      name: 'vitaminE',
+      min: 5,
+      max: 20,
+      step: 0.1,
+      unit: 'mg/L',
+      placeholder: t('vitaminTest.vitaminEPlaceholder'),
+    },
+    {
+      label: t('vitaminTest.vitaminK'),
+      name: 'vitaminK',
+      min: 0.1,
+      max: 3.2,
+      step: 0.1,
+      unit: 'ng/mL',
+      placeholder: t('vitaminTest.vitaminKPlaceholder'),
+    },
+  ];
 
   const onFinish = (values: VitaminTestFormValues) => {
     const uid = auth.currentUser?.uid;
 
     if (!uid) {
-      message.error('User is not authenticated');
+      message.error(t('vitaminTest.notAuthenticated'));
       return;
     }
 
@@ -91,9 +93,9 @@ const VitaminTestForm = () => {
     dispatch(saveTestData({ uid, testType: 'vitamin', data: testData }));
 
     if (updatedData) {
-      message.success('Vitamin test updated successfully');
+      message.success(t('vitaminTest.updateSuccess'));
     } else {
-      message.success('Vitamin test submitted successfully');
+      message.success(t('vitaminTest.success'));
     }
 
     setTimeout(() => {
@@ -104,7 +106,7 @@ const VitaminTestForm = () => {
   return (
     <Card
       style={{ border: 'none' }}
-      title={<Title level={3}>Vitamin Test</Title>}
+      title={<Title level={3}>{t('vitaminTest.title')}</Title>}
     >
       <Form
         form={form}
@@ -135,7 +137,7 @@ const VitaminTestForm = () => {
 
         <Form.Item style={{ textAlign: 'center', marginTop: 32 }}>
           <Button type="primary" htmlType="submit">
-            {updatedData ? 'Update Vitamin Test' : 'Submit Vitamin Test'}
+            {updatedData ? t('vitaminTest.update') : t('vitaminTest.submit')}
           </Button>
         </Form.Item>
       </Form>

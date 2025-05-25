@@ -14,6 +14,7 @@ import ChatWithAI from './pages/main/ChatWithAI';
 import RootForm from './pages/main/testsform/RootForm';
 import Profile from './pages/main/profile/Profile';
 import PageNotFound from './pages/main/PageNotFound';
+import MyHealth from './pages/main/MyHealth';
 
 const router = createBrowserRouter([
   {
@@ -46,6 +47,14 @@ const router = createBrowserRouter([
   {
     element: <ProtectedRoute />,
     children: [
+      {
+        path: '/my-health',
+        element: (
+          <Layout>
+            <MyHealth />
+          </Layout>
+        ),
+      },
       {
         path: '/analysis/blood-test',
         element: (
