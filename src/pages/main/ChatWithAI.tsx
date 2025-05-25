@@ -19,11 +19,9 @@ import {
   PlusCircleOutlined,
   UploadOutlined,
   SoundOutlined,
-  GlobalOutlined,
 } from '@ant-design/icons';
 import { v4 as uuidv4 } from 'uuid';
 import axios from 'axios';
-// import * as pdfjsLib from 'pdfjs-dist';
 import {
   doc,
   setDoc,
@@ -106,9 +104,8 @@ const ChatWithAi = () => {
       utterance.lang = voice.lang;
     }
 
-    // Adjust speech parameters
-    utterance.rate = 0.9; // Slower speed for better comprehension
-    utterance.pitch = 1; // Normal pitch
+    utterance.rate = 0.9;
+    utterance.pitch = 1;
 
     setCurrentUtterance(utterance);
     synth.speak(utterance);
@@ -116,10 +113,6 @@ const ChatWithAi = () => {
     utterance.onend = () => {
       setCurrentUtterance(null);
     };
-  };
-
-  const toggleLanguage = () => {
-    setLanguage((prev) => (prev === 'en' ? 'ru' : 'en'));
   };
 
   useEffect(() => {
@@ -310,56 +303,6 @@ const ChatWithAi = () => {
 
   const grouped = groupChatsByDate(chats);
 
-  // const handlePdfUpload = (file: File) => {
-  //   if (file.type !== 'application/pdf') {
-  //     message.error('You can only upload PDF files!');
-  //     return;
-  //   }
-
-  //   const reader = new FileReader();
-  //   reader.onload = async (e) => {
-  //     try {
-  //       const typedarray = new Uint8Array(e.target?.result as ArrayBuffer);
-  //       const pdf = await pdfjsLib.getDocument(typedarray).promise;
-
-  //       let fullText = '';
-  //       for (let i = 1; i <= pdf.numPages; i++) {
-  //         const page = await pdf.getPage(i);
-  //         const textContent = await page.getTextContent();
-  //         const pageText = textContent.items.map((item: any) => item.str).join(' ');
-  //         fullText += pageText + '\n';
-  //       }
-
-  //       // Set the input with extracted PDF text for analysis
-  //       setInput(`Analyze the following PDF content:\n${fullText}`);
-
-  //       // Optionally, send the message automatically
-  //       sendMessage();
-  //     } catch (error) {
-  //       message.error('Failed to parse PDF file');
-  //       console.error(error);
-  //     }
-  //   };
-
-  //   reader.readAsArrayBuffer(file);
-  // };
-
-  const props: UploadProps = {
-    accept: 'application/pdf',
-    beforeUpload: (file) => {
-      const isPdf = file.type === 'application/pdf';
-      if (!isPdf) {
-        message.error('You can only upload PDF files!');
-      }
-      return isPdf || Upload.LIST_IGNORE;
-    },
-    // onChange(info) {
-    //   if (info.file.status === 'done' || info.file.originFileObj) {
-    //     handlePdfUpload(info.file.originFileObj as File);
-    //   }
-    // },
-  };
-
   const analysisItems: MenuProps['items'] = [
     {
       label: <Text>Blood Tests</Text>,
@@ -406,7 +349,6 @@ const ChatWithAi = () => {
       },
     },
   ];
-
   const featureItems: MenuProps['items'] = [
     {
       label: (
@@ -421,12 +363,12 @@ const ChatWithAi = () => {
     },
     {
       label: (
-        <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-          <UploadOutlined />
-          <Upload {...props}>
+        <Upload>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 8, padding: '4px 8px' }}>
+            <UploadOutlined />
             <Text>PDF Upload</Text>
-          </Upload>
-        </div>
+          </div>
+        </Upload>
       ),
       key: 'upload-pdf',
     },
