@@ -290,19 +290,28 @@ const HealthPage: React.FC = () => {
           <Title level={2} className="centered-title">
             Your Health Dashboard
           </Title>
-
         </Col>
       </Row>
       <Row className="health-content" gutter={[32, 32]}>
         <Col xs={24} md={8}>
           <Card className="health-card">
             <div className="section">
-              <Title level={4} className="section-title">Personal Information</Title>
+              <Title level={4} className="section-title">
+                Personal Information
+              </Title>
               <Descriptions bordered column={1} className="health-descriptions">
-                <Descriptions.Item label="Weight">{state.weight} kg</Descriptions.Item>
-                <Descriptions.Item label="Height">{state.height} cm</Descriptions.Item>
-                <Descriptions.Item label="Blood Pressure">{state.bloodPressure}</Descriptions.Item>
-                <Descriptions.Item label="Heart Rate">{state.heartRate} bpm</Descriptions.Item>
+                <Descriptions.Item label="Weight">
+                  {state.weight} kg
+                </Descriptions.Item>
+                <Descriptions.Item label="Height">
+                  {state.height} cm
+                </Descriptions.Item>
+                <Descriptions.Item label="Blood Pressure">
+                  {state.bloodPressure}
+                </Descriptions.Item>
+                <Descriptions.Item label="Heart Rate">
+                  {state.heartRate} bpm
+                </Descriptions.Item>
               </Descriptions>
             </div>
           </Card>
@@ -310,14 +319,20 @@ const HealthPage: React.FC = () => {
 
         <Col xs={24} md={8}>
           <Card className="visual-card">
-            <img  src={isFat ? mecMarduk : marduk} alt="health visualization" className="health-image" />
+            <img
+              src={isFat ? mecMarduk : marduk}
+              alt="health visualization"
+              className="health-image"
+            />
           </Card>
         </Col>
 
         <Col xs={24} md={8}>
           <Card className="health-card">
             <div className="section">
-              <Title level={4} className="section-title">Health Metrics</Title>
+              <Title level={4} className="section-title">
+                Health Metrics
+              </Title>
               <div className="metrics-container">{renderBmiStatus()}</div>
               <div className="suggestions-box">{renderSuggestions()}</div>
               <div className="recommendations">
@@ -325,11 +340,9 @@ const HealthPage: React.FC = () => {
                 <Divider className="divider" />
                 {renderWeightAdvice()}
               </div>
-
             </div>
           </Card>
         </Col>
-
       </Row>
     </div>
   );

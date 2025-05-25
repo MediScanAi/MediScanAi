@@ -16,11 +16,12 @@ const AppInitFetcher = () => {
 
         try {
           await Promise.all(
-            testTypes.map((type) =>
-              dispatch(
-                fetchTestData({ uid: user.uid, testType: type })
-              ).unwrap(),
-              dispatch(fetchUserData({uid: user.uid})).unwrap()
+            testTypes.map(
+              (type) =>
+                dispatch(
+                  fetchTestData({ uid: user.uid, testType: type })
+                ).unwrap(),
+              dispatch(fetchUserData({ uid: user.uid })).unwrap()
             )
           );
         } catch (error) {

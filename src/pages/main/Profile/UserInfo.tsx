@@ -38,7 +38,7 @@ const UserInfo: React.FC<Props> = ({ theme }) => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const user = useAppSelector(selectCurrentUser);
-  const userData = useAppSelector(state => state.userData.data);
+  const userData = useAppSelector((state) => state.userData.data);
 
   const initialData = {
     name: user?.firstName,
@@ -178,9 +178,9 @@ const UserInfo: React.FC<Props> = ({ theme }) => {
           {isEditing ? (
             <InputNumber
               style={{ width: '100%' }}
-              min={1}
-              max={100}
-              value={userData?.age}
+              min={'1'}
+              max={'100'}
+              value={formData.age}
               onChange={(value) => handleChange('age', value?.toString() || '')}
               placeholder="Enter age"
             />
@@ -192,7 +192,7 @@ const UserInfo: React.FC<Props> = ({ theme }) => {
         <Descriptions.Item label="Sex">
           {isEditing ? (
             <Select
-              value={userData?.sex || undefined}
+              value={formData.sex || undefined}
               onChange={(value) => handleChange('sex', value)}
               style={{ width: '100%' }}
               placeholder="Select sex"
@@ -207,12 +207,14 @@ const UserInfo: React.FC<Props> = ({ theme }) => {
 
         <Descriptions.Item label="Weight (kg)">
           {isEditing ? (
-            <InputNumber 
-              min={40}
-              max={200}
+            <InputNumber
+              min={'40'}
+              max={'200'}
               style={{ width: '100%' }}
-              value={userData?.weight}
-              onChange={(value) => handleChange('weight', value?.toString() || '')}
+              value={formData.weight}
+              onChange={(value) =>
+                handleChange('weight', value?.toString() || '')
+              }
               placeholder="Enter weight"
             />
           ) : (
@@ -224,10 +226,12 @@ const UserInfo: React.FC<Props> = ({ theme }) => {
           {isEditing ? (
             <InputNumber
               style={{ width: '100%' }}
-              min={140}
-              max={220}
-              value={userData?.height}
-              onChange={(value) => handleChange('height', value?.toString() || '')}
+              min={'140'}
+              max={'220'}
+              value={formData.height}
+              onChange={(value) =>
+                handleChange('height', value?.toString() || '')
+              }
               placeholder="Enter height"
             />
           ) : (
@@ -238,7 +242,7 @@ const UserInfo: React.FC<Props> = ({ theme }) => {
         <Descriptions.Item label="Blood Pressure">
           {isEditing ? (
             <Select
-              value={userData?.bloodPressure || undefined}
+              value={formData.bloodPressure || undefined}
               onChange={(value) => handleChange('bloodPressure', value)}
               style={{ width: '100%' }}
               placeholder="Select blood pressure"
@@ -256,9 +260,9 @@ const UserInfo: React.FC<Props> = ({ theme }) => {
           {isEditing ? (
             <InputNumber
               style={{ width: '100%' }}
-              min={1}
-              max={100}
-              value={userData?.heartRate}
+              min={'1'}
+              max={'100'}
+              value={formData.heartRate}
               onChange={(value) =>
                 handleChange('heartRate', value?.toString() || '')
               }
