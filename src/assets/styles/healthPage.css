@@ -1,198 +1,196 @@
-
 .loading-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    text-align: center;
-    background: #f8f9fa;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  text-align: center;
+  background: #f8f9fa;
 }
 
 .loading-spinner {
-    margin-bottom: 24px;
+  margin-bottom: 24px;
 }
 
 .loading-title {
-    color: #2c3e50;
-    margin-bottom: 8px !important;
-    font-weight: 600;
+  color: #2c3e50;
+  margin-bottom: 8px !important;
+  font-weight: 600;
 }
 
 .loading-subtitle {
-    color: #7f8c8d;
-    font-size: 16px;
+  color: #7f8c8d;
+  font-size: 16px;
 }
 
 .empty-container {
-    text-align: center;
-    padding: 80px 20px;
-    max-width: 600px;
-    margin: 0 auto;
+  text-align: center;
+  padding: 80px 20px;
+  max-width: 600px;
+  margin: 0 auto;
 }
 
 .empty-button {
-    height: 50px;
-    font-size: 16px;
-    padding: 0 40px;
-    border-radius: 30px;
-    background: linear-gradient(to right, #64b5f6, #0052d9) !important;
-    color: white;
-    border: none;
-    box-shadow: 0 6px 20px rgba(0, 82, 217, 0.2);
-    margin-top: 20px;
-  }
-
-.empty-message {
-    color: #7f8c8d;
-    font-size: 16px;
-    margin-bottom: 24px;
+  height: 50px;
+  font-size: 16px;
+  padding: 0 40px;
+  border-radius: 30px;
+  background: linear-gradient(to right, #64b5f6, #0052d9) !important;
+  color: white;
+  border: none;
+  box-shadow: 0 6px 20px rgba(0, 82, 217, 0.2);
+  margin-top: 20px;
 }
 
-/* Main Container */
+.empty-message {
+  color: #7f8c8d;
+  font-size: 16px;
+  margin-bottom: 24px;
+}
+
 .health-container {
-    padding: 40px 20px;
-    max-width: 1200px;
-    margin: 0 auto;
+  padding: 40px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .header-row {
-    margin-bottom: 40px;
+  margin-bottom: 40px;
 }
 
 .centered-title {
-    text-align: center;
-    font-family: 'Poppins', sans-serif;
-    color: #2c3e50;
-    margin-bottom: 24px !important;
-    font-weight: 600;
+  text-align: center;
+  font-family: 'Poppins', sans-serif;
+  color: #2c3e50;
+  margin-bottom: 24px !important;
+  font-weight: 600;
 }
 
 .health-content {
-    margin-top: 20px;
+  margin-top: 20px;
 }
 
 .health-card {
-    padding: 32px;
-    border-radius: 16px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-    border: none;
+  padding: 32px;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  border: none;
 }
 
 .visual-card {
-    height: 100%;
-    padding: 0;
-    border-radius: 16px !important;
-    overflow: hidden;
-    border: none;
+  height: 100%;
+  padding: 0;
+  border-radius: 16px !important;
+  overflow: hidden;
+  border: none;
 }
 
 .section {
-    margin-bottom: 32px;
+  margin-bottom: 32px;
 }
 
 .section:last-child {
-    margin-bottom: 0;
+  margin-bottom: 0;
 }
 
 .section-title {
-    color: #2c3e50;
-    margin-bottom: 16px !important;
-    font-weight: 500;
-    font-size: 20px;
+  color: #2c3e50;
+  margin-bottom: 16px !important;
+  font-weight: 500;
+  font-size: 20px;
 }
 
 .bmi-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-bottom: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 24px;
 }
 
 .bmi-badge {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-    position: relative;
-    margin-bottom: 20px;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  position: relative;
+  margin-bottom: 20px;
 }
 
 .suggestions-box {
-    padding: 24px;
-    border-radius: 12px;
-    margin-top: 16px;
-    width: 100%;
+  padding: 24px;
+  border-radius: 12px;
+  margin-top: 16px;
+  width: 100%;
 }
 
 .suggestions-tag {
-    width: 120px;
-    height: 32px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 16px;
-    font-family: 'Poppins', sans-serif;
-    font-size: 14px;
-    font-weight: 500;
-    margin-bottom: 12px;
+  width: 120px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 16px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 12px;
 }
 
 .suggestions-text {
-    font-family: 'Poppins', sans-serif;
-    font-size: 15px;
-    line-height: 1.6;
-    color: #34495e;
+  font-family: 'Poppins', sans-serif;
+  font-size: 15px;
+  line-height: 1.6;
+  color: #34495e;
 }
 
 .advice-container {
-    width: 100%;
+  width: 100%;
 }
 
 .heart-advice,
 .pressure-advice,
 .weight-advice {
-    font-family: 'Poppins', sans-serif;
-    font-size: 15px;
-    line-height: 1.6;
-    padding: 12px 16px;
-    border-radius: 8px;
-    display: block;
-    margin-bottom: 8px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 15px;
+  line-height: 1.6;
+  padding: 12px 16px;
+  border-radius: 8px;
+  display: block;
+  margin-bottom: 8px;
 }
 
 .warning-text {
-    border-left: 4px solid #faad14;
-    color: #d48806;
+  border-left: 4px solid #faad14;
+  color: #d48806;
 }
 
 .danger-text {
-    border-left: 4px solid #ff4d4f;
-    color: #cf1322;
+  border-left: 4px solid #ff4d4f;
+  color: #cf1322;
 }
 
 .success-text {
-    border-left: 4px solid #52c41a;
-    color: #389e0d;
+  border-left: 4px solid #52c41a;
+  color: #389e0d;
 }
 
 .divider {
-    margin: 24px 0;
-    border-color: #f0f0f0;
+  margin: 24px 0;
+  border-color: #f0f0f0;
 }
 
 .health-image {
-    width: 500px;
-    height: 700px;
-    object-fit: cover;
+  width: 400px;
+  height: 700px;
+  object-fit: cover;
 }
 
 .image-text {
-    color: white;
-    font-size: 24px;
-    font-weight: 500;
+  color: white;
+  font-size: 24px;
+  font-weight: 500;
 }

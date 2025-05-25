@@ -4,6 +4,7 @@ import { onAuthStateChanged } from 'firebase/auth';
 import { auth } from '../api/authApi';
 import { fetchTestData } from '../app/slices/testSlice';
 import type { TestType } from '../app/slices/testSlice';
+import { fetchUserData } from '../app/slices/userDataSlice';
 
 const AppInitFetcher = () => {
   const dispatch = useAppDispatch();
@@ -18,7 +19,8 @@ const AppInitFetcher = () => {
             testTypes.map((type) =>
               dispatch(
                 fetchTestData({ uid: user.uid, testType: type })
-              ).unwrap()
+              ).unwrap(),
+              dispatch(fetchUserData({uid: user.uid})).unwrap()
             )
           );
         } catch (error) {

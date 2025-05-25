@@ -6,6 +6,7 @@ import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import authReducer from './slices/authSlice';
 import theme from './slices/theme';
 import testReducer from './slices/testSlice';
+import userDataReducer from './slices/userDataSlice';
 
 export const store = configureStore({
   reducer: combineReducers({
@@ -16,6 +17,7 @@ export const store = configureStore({
     auth: authReducer,
     theme: theme,
     tests: testReducer,
+    userData: userDataReducer,
   }),
 });
 
