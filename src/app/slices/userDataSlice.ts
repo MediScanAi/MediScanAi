@@ -11,8 +11,8 @@ export interface UserData {
   sex?: string | null;
   weight?: number | null;
   height?: number | null;
-  bloodPressure?: number | null;
-  heartRate?: number | null;
+  waistSize?: number | null;
+  neckSize?: number | null;
 }
 
 interface UserDataState {

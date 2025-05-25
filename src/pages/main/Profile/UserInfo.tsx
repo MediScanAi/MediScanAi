@@ -7,14 +7,14 @@ import {
   message,
   Space,
   InputNumber,
+  Tooltip,
 } from 'antd';
 import Title from 'antd/es/typography/Title';
-import { useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../../app/hooks';
 import { saveUserData, type UserData } from '../../../app/slices/userDataSlice';
 import pencilIcon from '../../../assets/photos/pencil.png';
 import { selectCurrentUser } from '../../../app/slices/authSlice';
-
+import { QuestionCircleOutlined } from '@ant-design/icons';
 const { Text } = Typography;
 const { Option } = Select;
 
@@ -26,8 +26,8 @@ interface FormData {
   sex: string;
   weight: string;
   height: string;
-  bloodPressure: string;
-  heartRate: string;
+  waistSize: string;
+  neckSize: string;
 }
 
 interface Props {
@@ -35,7 +35,6 @@ interface Props {
 }
 
 const UserInfo: React.FC<Props> = ({ theme }) => {
-  const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const user = useAppSelector(selectCurrentUser);
   const userData = useAppSelector((state) => state.userData.data);
@@ -48,8 +47,8 @@ const UserInfo: React.FC<Props> = ({ theme }) => {
     sex: '',
     weight: '',
     height: '',
-    bloodPressure: '',
-    heartRate: '',
+    waistSize: '',
+    neckSize: '',
   };
 
   const [formData, setFormData] = useState<FormData>(initialData);
@@ -60,8 +59,6 @@ const UserInfo: React.FC<Props> = ({ theme }) => {
     setFormData({ ...formData, [field]: value });
   };
 
-  const isNumeric = (value: string) => /^\d+$/.test(value);
-
   const startEdit = () => {
     const convertedData: FormData = {
       name: user?.firstName,
@@ -71,8 +68,8 @@ const UserInfo: React.FC<Props> = ({ theme }) => {
       sex: userData?.sex || '',
       weight: userData?.weight?.toString() || '',
       height: userData?.height?.toString() || '',
-      bloodPressure: userData?.bloodPressure?.toString() || '',
-      heartRate: userData?.heartRate?.toString() || '',
+      waistSize: userData?.waistSize?.toString() || '',
+      neckSize: userData?.neckSize?.toString() || '',
     };
     setBackupData(convertedData);
     setFormData(convertedData);
@@ -85,32 +82,6 @@ const UserInfo: React.FC<Props> = ({ theme }) => {
   };
 
   const saveData = async () => {
-    const requiredFields = [
-      'age',
-      'sex',
-      'weight',
-      'height',
-      'bloodPressure',
-      'heartRate',
-    ];
-    const emptyFields = requiredFields.filter(
-      (field) => !formData[field as keyof typeof formData]
-    );
-
-    if (emptyFields.length > 0) {
-      message.error('Please fill in all required fields.');
-      return;
-    }
-
-    if (
-      !isNumeric(userData?.age?.toString() || '') ||
-      !isNumeric(userData?.weight?.toString() || '') ||
-      !isNumeric(userData?.height?.toString() || '') ||
-      !isNumeric(userData?.heartRate?.toString() || '')
-    ) {
-      message.error('Numeric fields must contain numbers only.');
-      return;
-    }
 
     try {
       if (!user?.uid) {
@@ -122,38 +93,43 @@ const UserInfo: React.FC<Props> = ({ theme }) => {
       ).unwrap();
       message.success('Data saved successfully!');
       setIsEditing(false);
-      navigate('/my-health', { state: formData });
     } catch {
       message.error('Failed to save user data.');
     }
   };
 
   return (
-    <>
-      {!isEditing && (
-        <Button onClick={startEdit}>
-          Edit{' '}
-          <img
-            src={pencilIcon}
-            alt="edit"
-            style={{ width: 16, marginLeft: 4 }}
-          />
-        </Button>
-      )}
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
 
-      {isEditing && (
-        <Space style={{ marginBottom: 16 }}>
-          <Button type="primary" onClick={saveData}>
-            Save
-          </Button>
-          <Button onClick={cancelEdit}>Cancel</Button>
-        </Space>
-      )}
 
       <Descriptions
-        title={<Title style={{ color: '#3498db' }}>User Info</Title>}
+        title={
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+            <Title level={4} style={{ color: '#3498db', margin: 0 }}>
+              User Info
+            </Title>
+            {!isEditing && (
+              <Button onClick={startEdit}>
+                Edit{' '}
+                <img
+                  src={pencilIcon}
+                  alt="edit"
+                  style={{ width: 16, marginLeft: 4 }}
+                />
+              </Button>
+            )}
+            {isEditing && (
+              <Space style={{ marginBottom: 16 }}>
+                <Button type="primary" onClick={saveData}>
+                  Save
+                </Button>
+                <Button onClick={cancelEdit}>Cancel</Button>
+              </Space>
+            )}
+          </div>
+        }
         bordered
-        column={1}
+        column={1} // սա կարևոր է՝ input-ները լինելու են իրար տակ
         size="small"
         className={theme ? 'dark-mode-text' : ''}
         style={{
@@ -178,8 +154,8 @@ const UserInfo: React.FC<Props> = ({ theme }) => {
           {isEditing ? (
             <InputNumber
               style={{ width: '100%' }}
-              min={'1'}
-              max={'100'}
+              min={"1"}
+              max={"90"}
               value={formData.age}
               onChange={(value) => handleChange('age', value?.toString() || '')}
               placeholder="Enter age"
@@ -208,13 +184,11 @@ const UserInfo: React.FC<Props> = ({ theme }) => {
         <Descriptions.Item label="Weight (kg)">
           {isEditing ? (
             <InputNumber
-              min={'40'}
-              max={'200'}
+              min={"40"}
+              max={"200"}
               style={{ width: '100%' }}
               value={formData.weight}
-              onChange={(value) =>
-                handleChange('weight', value?.toString() || '')
-              }
+              onChange={(value) => handleChange('weight', value?.toString() || '')}
               placeholder="Enter weight"
             />
           ) : (
@@ -226,12 +200,10 @@ const UserInfo: React.FC<Props> = ({ theme }) => {
           {isEditing ? (
             <InputNumber
               style={{ width: '100%' }}
-              min={'140'}
-              max={'220'}
+              min={"140"}
+              max={"220"}
               value={formData.height}
-              onChange={(value) =>
-                handleChange('height', value?.toString() || '')
-              }
+              onChange={(value) => handleChange('height', value?.toString() || '')}
               placeholder="Enter height"
             />
           ) : (
@@ -239,42 +211,57 @@ const UserInfo: React.FC<Props> = ({ theme }) => {
           )}
         </Descriptions.Item>
 
-        <Descriptions.Item label="Blood Pressure">
-          {isEditing ? (
-            <Select
-              value={formData.bloodPressure || undefined}
-              onChange={(value) => handleChange('bloodPressure', value)}
-              style={{ width: '100%' }}
-              placeholder="Select blood pressure"
-            >
-              <Option value="Normal">Normal (120/80)</Option>
-              <Option value="Elevated">Elevated (130/80)</Option>
-              <Option value="High">High (140/90+)</Option>
-            </Select>
-          ) : (
-            <Text>{userData?.bloodPressure || 'Not set'}</Text>
-          )}
-        </Descriptions.Item>
-
-        <Descriptions.Item label="Heart Rate">
+        <Descriptions.Item
+          label={
+            <>
+              Waist Size (cm)&nbsp;
+              <Tooltip     title="Measure around the narrowest part of your waist, usually just above the belly button. Keep the tape snug but not tight.">
+                <QuestionCircleOutlined style={{ color: '#1890ff', cursor: 'pointer' }} />
+              </Tooltip>
+            </>
+          }
+        >
           {isEditing ? (
             <InputNumber
               style={{ width: '100%' }}
-              min={'1'}
-              max={'100'}
-              value={formData.heartRate}
-              onChange={(value) =>
-                handleChange('heartRate', value?.toString() || '')
-              }
-              placeholder="Beats per minute"
+              min={"65"}
+              max={"100"}
+              value={formData.waistSize}
+              onChange={(value) => handleChange('waistSize', value?.toString() || '')}
+              placeholder="Enter waist size"
             />
           ) : (
-            <Text>{userData?.heartRate || 'Not set'}</Text>
+            <Text>{userData?.waistSize || 'Not set'}</Text>
+          )}
+        </Descriptions.Item>
+
+        <Descriptions.Item
+          label={
+            <>
+              Neck Size (cm)&nbsp;
+              <Tooltip   title="Measure around the widest part of your neck, just below the Adam's apple. Keep the tape horizontal and snug.">
+                <QuestionCircleOutlined style={{ color: '#1890ff', cursor: 'pointer' }} />
+              </Tooltip>
+            </>
+          }
+        >
+          {isEditing ? (
+            <InputNumber
+              style={{ width: '100%' }}
+              min={"35"}
+              max={"45"}
+              value={formData.neckSize}
+              onChange={(value) => handleChange('neckSize', value?.toString() || '')}
+              placeholder="Enter neck size"
+            />
+          ) : (
+            <Text>{userData?.neckSize || 'Not set'}</Text>
           )}
         </Descriptions.Item>
       </Descriptions>
-    </>
+    </div>
   );
+
 };
 
 export default UserInfo;
