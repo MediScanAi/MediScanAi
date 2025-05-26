@@ -55,8 +55,7 @@
   },
   "faqs": {
     "title": "Часто задаваемые вопросы",
-    "items": [
-      {
+    "items": [{
         "question": "Что такое Mediscan AI?",
         "answer": "Mediscan AI — это платформа для интеграции медицинских данных, использующая искусственный интеллект для анализа медицинских и генетических данных. Она поддерживает врачей, предоставляя быстрые, точные и персонализированные выводы для лучшего ухода за пациентами."
       },
@@ -309,7 +308,7 @@
     "vitaminEPlaceholder": "Введите уровень витамина E",
     "vitaminKPlaceholder": "Введите уровень витамина K"
   },
-  "userInfo":{
+  "userInfo": {
     "title": "Информация о пользователе",
     "name": "Имя",
     "namePlaceholder": "Введите имя",
@@ -341,5 +340,56 @@
     "saveError": "Информация о пользователе не может быть сохранена",
     "cancelError": "Информация о пользователе не может быть отменена",
     "cancelSuccess": "Информация о пользователе успешно отменена"
+  },
+  "analysisHistory": {
+    "title": "История анализа",
+    "noTestResults": "Еще нет результатов анализа",
+    "lastUpdated": "Последнее обновление: ",
+    "delete": "Удалить",
+    "edit": "Редактировать",
+    "bloodTest": "Анализ крови",
+    "urineTest": "Анализ мочи",
+    "vitaminTest": "Витаминный анализ",
+    "geneticTest": "Генетический анализ",
+    "hemoglobin": "Гемоглобин",
+    "hemoglobinUnit": "г/дл",
+    "whiteBloodCells": "Лейкоциты (WBC)",
+    "whiteBloodCellsUnit": "10^9/мкл",
+    "redBloodCells": "Эритроциты (RBC)",
+    "redBloodCellsUnit": "10^6/мкл",
+    "platelets": "Тромбоциты",
+    "plateletsUnit": "10^9/мкл",
+    "glucose": "Глюкоза",
+    "glucoseUnit": "мг/дл",
+    "cholesterol": "Холестерин",
+    "cholesterolUnit": "мг/дл",
+    "ph": "pH",
+    "phUnit": "",
+    "specificGravity": "Удельный вес",
+    "specificGravityUnit": "",
+    "protein": "Протеин",
+    "proteinUnit": "мг/дл",
+    "ketones": "Кетоны",
+    "ketonesUnit": "мг/дл",
+    "bilirubin": "Билирубин",
+    "bilirubinUnit": "mg/дл",
+    "vitaminA": "Витамин A",
+    "vitaminAUnit": "мкг/л",
+    "vitaminB12": "Витамин B12",
+    "vitaminB12Unit": "пг/л",
+    "vitaminC": "Витамин C",
+    "vitaminCUnit": "мг/дл",
+    "vitaminD": "Витамин D",
+    "vitaminDUnit": "нг/мл",
+    "vitaminE": "Витамин E",
+    "vitaminEUnit": "мг/дл",
+    "vitaminK": "Витамин K",
+    "vitaminKUnit": "мкг/л",
+    "brca1": "BRCA1",
+    "brca2": "BRCA2",
+    "apoe": "APOE",
+    "mthfr": "MTHFR",
+    "factorVLeiden": "Фактор V Леден",
+    "cyp2c19": "CYP2C19"
   }
 }
