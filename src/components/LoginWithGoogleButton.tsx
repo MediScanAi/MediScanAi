@@ -44,6 +44,9 @@ const LoginWithGoogleButton: React.FC<PropsTypes> = ({ toggleLoading }) => {
         background: '#fff',
         color: '#4666e5',
         border: '1.5px solid #a9baf7',
+        animation: 'fadeInUp 0.9s ease-out 0.5s forwards',
+        opacity: 0,
+        transition: 'all 0.4s ease',
       }}
       icon={<GoogleOutlined />}
       onClick={handleGoogleLogin}

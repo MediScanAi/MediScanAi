@@ -1,3 +1,4 @@
+import React from 'react';
 import {
   Form,
   Input,
@@ -7,6 +8,7 @@ import {
   message,
   Grid,
   Spin,
+  Switch,
 } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
 import { loginUser } from '../../app/slices/authSlice';
@@ -17,6 +19,8 @@ import { useState } from 'react';
 import ForgotPasswordForm from '../../components/ForgotPasswordForm';
 import LoginWithGoogleButton from '../../components/LoginWithGoogleButton';
 import Rocket3D from '../../assets/photos/rocket.png';
+import '../../assets/styles/LoginPage.css';
+import { toggleTheme } from '../../app/slices/theme';
 
 const { Title, Text } = Typography;
 const { useBreakpoint } = Grid;
@@ -30,115 +34,67 @@ const LoginPage: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
   const { loading } = useSelector((state: RootState) => state.auth);
+  const isDarkMode = useSelector((state: RootState) => state.theme.isDarkMode);
   const screens = useBreakpoint();
   const [isForgotPassword, setIsForgotPassword] = useState(false);
   const [googleLoading, setGoogleLoading] = useState(false);
 
   const onFinish = async (values: LoginFormValues) => {
-    const { email, password } = values;
     try {
-      await dispatch(loginUser({ email, password })).unwrap();
+      await dispatch(loginUser(values)).unwrap();
       message.success('Login successful!');
       navigate('/');
     } catch (error: unknown) {
-      if (error instanceof Error) {
-        message.error(error.message);
-      } else {
-        message.error('Login failed');
-      }
+      message.error(error instanceof Error ? error.message : 'Login failed');
     }
   };
 
-  const toggleForgotPassword = () => {
-    setIsForgotPassword((prev) => !prev);
-  };
+  const toggleForgotPassword = () => setIsForgotPassword((prev) => !prev);
 
   const toggleGoogleLoading = async (isLoading: boolean) => {
     setGoogleLoading(isLoading);
   };
 
+  const handleThemeChange = () => dispatch(toggleTheme());
+
   return (
-    <div
-      style={{
-        minHeight: '100vh',
-        width: '100vw',
-        display: 'flex',
-        flexDirection: screens.md ? 'row' : 'column',
-        background: `
-          radial-gradient(
-            circle at 10% 30%,
-            #4666e5 0%,
-            #2b398b 50%,
-            #161c3d 100%
-          )
-        `,
-        alignItems: 'center',
-        justifyContent: 'center',
-        padding: 0,
-        overflow: 'hidden',
-      }}
-    >
+    <div className={`login-page-container ${isDarkMode ? 'dark' : 'light'}`}>
+      <Switch
+        className="theme-toggle"
+        checked={isDarkMode}
+        checkedChildren="🌙"
+        unCheckedChildren="☀️"
+        onChange={handleThemeChange}
+      />
       {screens.md && (
-        <div
-          style={{
-            flex: 1,
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            minHeight: '100vh',
-            background: 'transparent',
-            flexDirection: 'column',
-          }}
-        >
+        <div className="welcome-section">
           <motion.div
-            initial={{ opacity: 0, x: -40 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.9 }}
-            style={{
-              width: '100%',
-              maxWidth: '400px',
-            }}
+            initial={{ opacity: 0, y: 45 }}
+            animate={{ opacity: 1, y: 30 }}
+            transition={{ duration: 0.5 }}
+            className="welcome-text-container fade-in"
           >
-            <Title
-              level={3}
-              style={{
-                fontWeight: 'bold',
-                textAlign: 'center',
-                color: '#fff',
-              }}
-            >
+            <Title level={3} className="welcome-title">
               Welcome back to MediScan AI
             </Title>
+            <Text className="welcome-description">
+              Log in to continue your journey with us.
+              Your health insights all in one place!
+            </Text>
           </motion.div>
           <motion.img
             src={Rocket3D}
-            alt="3D Rocket"
-            style={{
-              width: '440px',
-              maxWidth: '95%',
-              height: 'auto',
-              objectFit: 'contain',
-              userSelect: 'none',
-            }}
-            initial={{ opacity: 0, x: -40 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.9 }}
-            draggable={false}
+            alt="Rocket"
+            className="welcome-rocket"
+            initial={{ opacity: 0, rotate: 25, x: -45, y: 45 }}
+            animate={{ opacity: 1, rotate: -5, x: 0, y: 0 }}
+            whileHover={{ scale: 1.05 }}
+            transition={{ duration: 1.2 }}
           />
         </div>
       )}
 
-      <div
-        style={{
-          flex: 1,
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          minHeight: '100vh',
-          padding: screens.md ? '0 7vw' : '40px 0 0 0',
-          background: 'transparent',
-        }}
-      >
+      <div className="login-card-section">
         {isForgotPassword ? (
           <ForgotPasswordForm goBack={toggleForgotPassword} />
         ) : (
@@ -146,97 +102,52 @@ const LoginPage: React.FC = () => {
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            style={{
-              width: '100%',
-              maxWidth: 400,
-              position: 'relative',
-            }}
+            className={`login-spin-container ${isDarkMode ? 'dark' : ''}`}
           >
             <Spin spinning={googleLoading} tip="Waiting for Google response...">
-              <Card
-                style={{
-                  borderRadius: '32px',
-                  boxShadow: '0 8px 32px 0 rgba(34,56,122,0.25)',
-                  background: 'rgba(28, 52, 125, 0.80)',
-                  color: '#fff',
-                  padding: 48,
-                  border: '1.5px solid rgba(255,255,255,0.18)',
-                  backdropFilter: 'blur(14px)',
-                  transition: 'box-shadow 0.2s, border 0.2s',
-                }}
-              >
-                <Title
-                  level={2}
-                  style={{
-                    fontWeight: 'bold',
-                    marginBottom: 18,
-                    textAlign: 'center',
-                    color: '#fff',
-                  }}
-                >
+              <Card className={`login-card ${isDarkMode ? 'dark' : ''}`}>
+                <Title level={2} className="login-title">
                   Log in
                 </Title>
                 <Form
                   layout="vertical"
                   onFinish={onFinish}
-                  style={{ marginTop: 18 }}
                   requiredMark={false}
                 >
                   <Form.Item
-                    label={
-                      <span style={{ fontWeight: 500, color: '#e1e7fa' }}>
-                        Email
-                      </span>
-                    }
+                    label="Email"
                     name="email"
                     rules={[
-                      { required: true, message: 'Enter your email' },
-                      { type: 'email', message: 'Invalid email' },
+                      {
+                        required: true,
+                        type: 'email',
+                        message: 'Invalid email',
+                      },
                     ]}
                   >
                     <Input
                       size="large"
                       placeholder="Email"
-                      style={{
-                        borderRadius: 12,
-                        borderColor: '#5271c3',
-                        background: '#e6ecfa',
-                        fontSize: 16,
-                      }}
+                      className="login-input"
                     />
                   </Form.Item>
 
                   <Form.Item
-                    label={
-                      <span style={{ fontWeight: 500, color: '#e1e7fa' }}>
-                        Password
-                      </span>
-                    }
+                    label="Password"
                     name="password"
                     rules={[{ required: true, message: 'Enter your password' }]}
                   >
                     <Input.Password
                       size="large"
                       placeholder="Password"
-                      style={{
-                        borderRadius: 12,
-                        borderColor: '#5271c3',
-                        background: '#e6ecfa',
-                        fontSize: 16,
-                      }}
+                      className="login-input"
                     />
                   </Form.Item>
 
                   <Form.Item style={{ textAlign: 'right', marginBottom: 10 }}>
                     <Button
                       type="link"
-                      style={{
-                        color: '#92c4ff',
-                        fontWeight: 500,
-                        padding: 0,
-                        height: 'auto',
-                        fontSize: 15,
-                      }}
+                      className="forgot-password-link"
                       onClick={toggleForgotPassword}
                       tabIndex={-1}
                     >
@@ -258,16 +169,7 @@ const LoginPage: React.FC = () => {
                         htmlType="submit"
                         loading={loading}
                         size="large"
-                        style={{
-                          flex: 1,
-                          borderRadius: 12,
-                          fontWeight: 600,
-                          fontSize: 16,
-                          height: 44,
-                          background:
-                            'linear-gradient(90deg, #5e8fff 0%, #4368e2 100%)',
-                          border: 'none',
-                        }}
+                        className="login-button"
                       >
                         Login
                       </Button>
@@ -276,19 +178,10 @@ const LoginPage: React.FC = () => {
                       />
                     </div>
                   </Form.Item>
-                  <Text
-                    style={{
-                      display: 'block',
-                      textAlign: 'center',
-                      marginTop: 10,
-                      color: '#e6ecfa',
-                    }}
-                  >
+
+                  <Text className="register-text">
                     Don't have an account?{' '}
-                    <Link
-                      to="/auth/register"
-                      style={{ color: '#b3d1ff', fontWeight: 500 }}
-                    >
+                    <Link to="/auth/register" className="register-link">
                       Register
                     </Link>
                   </Text>
