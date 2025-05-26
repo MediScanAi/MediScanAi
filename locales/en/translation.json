@@ -387,5 +387,26 @@
     "mthfr": "MTHFR",
     "factorVLeiden": "Factor V Leiden",
     "cyp2c19": "CYP2C19"
+  },
+  "mainTests": {
+    "bloodTest": "Blood Test",
+    "urineTest": "Urine Test",
+    "vitaminTest": "Vitamin Test",
+    "geneticTest": "Genetic Test",
+    "bloodTestSubtitle": "Complete blood count & biochemistry",
+    "urineTestSubtitle": "Urinalysis & microalbumin test",
+    "vitaminTestSubtitle": "Vitamin D, B12 & minerals",
+    "geneticTestSubtitle": "DNA analysis & health risks",
+    "fillForm": "Fill the form to get your test results",
+    "viewMore": "View More",
+    "getStarted": "Get Started"
+  },
+  "contactUs": {
+    "title": "Contact Us",
+    "phone": "Tel: +374 91 234 567",
+    "email": "Email:",
+    "address": "Address: 123 Main St, Anytown, USA",
+    "hours": "Hours: Mon - Fri: 9:00 AM - 5:00 PM",
+    "linkedin": "LinkedIn։ "
   }
 }

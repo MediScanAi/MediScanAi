@@ -389,5 +389,26 @@
     "mthfr": "MTHFR",
     "factorVLeiden": "Factor V Leiden",
     "cyp2c19": "CYP2C19"
+  },
+  "mainTests": {
+    "bloodTest": "Արյան անալիզ",
+    "urineTest": "Մեզի անալիզ",
+    "vitaminTest": "Վիտամին անալիզ",
+    "geneticTest": "Գենետիկ անալիզ",
+    "bloodTestSubtitle": "Հանձնիր արյան անալիզը այստեղ",
+    "urineTestSubtitle": "Հանձնիր մեզի անալիզը այստեղ",
+    "vitaminTestSubtitle": "Հանձնիր Վիտամին անալիզը այստեղ",
+    "geneticTestSubtitle": "Հանձնիր Գենետիկ անալիզը այստեղ",
+    "fillForm": "Մուտքագրեք ձեր տվյալները այստեղ",
+    "viewMore": "Դիտեք ավելին",
+    "getStarted": "Սկսեք"
+  },
+  "contactUs": {
+    "title": "Կապ մեզ հետ",
+    "phone": "Հեռախոսահամար: +374 91 234 567",
+    "email": "Էլ-հասցե: ",
+    "address": "Հասցե: Հայաստան, Երևան",
+    "hours": "Ժամեր: Երկ-Հնգ: 9:00 AM - 5:00 PM",
+    "linkedin": "LinkedIn։ "
   }
 }

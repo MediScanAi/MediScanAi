@@ -391,5 +391,26 @@
     "mthfr": "MTHFR",
     "factorVLeiden": "Фактор V Леден",
     "cyp2c19": "CYP2C19"
+  },
+  "mainTests": {
+    "bloodTest": "Анализ крови",
+    "urineTest": "Анализ мочи",
+    "vitaminTest": "Витаминный анализ",
+    "geneticTest": "Генетический анализ",
+    "bloodTestSubtitle": "Полный анализ крови и биохимия",
+    "urineTestSubtitle": "Анализ мочи и микроальбумин тест",
+    "vitaminTestSubtitle": "Витамин D, B12 и минералы",
+    "geneticTestSubtitle": "ДНК анализ и риски здоровья",
+    "fillForm": "Заполните форму, чтобы получить результаты анализа",
+    "viewMore": "Подробнее",
+    "getStarted": "Начать"
+  },
+  "contactUs": {
+    "title": "Свяжитесь с нами",
+    "phone": "Телефон: +374 91 234 567",
+    "email": "Электронная почта: ",
+    "address": "Адрес: Армения, Ереван",
+    "hours": "Часы: Пн-Пт: 9:00 AM - 5:00 PM",
+    "linkedin": "LinkedIn։ "
   }
 }
