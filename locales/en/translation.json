@@ -56,8 +56,7 @@
   },
   "faqs": {
     "title": "Frequently Asked Questions",
-    "items": [
-      {
+    "items": [{
         "question": "What is Mediscan AI?",
         "answer": "Mediscan AI is an advanced web-based health integration platform that uses artificial intelligence to analyze medical and genomic data. It supports clinicians with fast, accurate, and personalized insights for better patient care."
       },
@@ -304,5 +303,38 @@
     "vitaminDPlaceholder": "Enter vitamin D level",
     "vitaminEPlaceholder": "Enter vitamin E level",
     "vitaminKPlaceholder": "Enter vitamin K level"
+  },
+  "userInfo": {
+    "title": "User Info",
+    "name": "Name",
+    "namePlaceholder": "Enter name",
+    "surname": "Surname",
+    "surnamePlaceholder": "Enter surname",
+    "email": "Email",
+    "emailPlaceholder": "Enter email",
+    "age": "Age",
+    "agePlaceholder": "Enter age",
+    "sex": "Sex",
+    "male": "Male",
+    "notSet": "Not set",
+    "female": "Female",
+    "sexPlaceholder": "Select sex",
+    "weight": "Weight",
+    "weightPlaceholder": "Enter weight",
+    "height": "Height",
+    "heightPlaceholder": "Enter height",
+    "waistSize": "Waist Size",
+    "waistSizePlaceholder": "Enter waist size",
+    "waistSizeTooltip": "Measure around the narrowest part of your waist, usually just above the belly button. Keep the tape snug but not tight.",
+    "neckSize": "Neck Size",
+    "neckSizePlaceholder": "Enter neck size",
+    "neckSizeTooltip": "Չափեք պարանոցի ամենալայն հատվածի շուրջը՝ Ադամի խնձորի տակ։ Պահեք ժապավենը հորիզոնական և ամուր։",
+    "edit": "Edit",
+    "save": "Save",
+    "cancel": "Cancel",
+    "saveSuccess": "User info saved successfully",
+    "saveError": "User info cannot be saved",
+    "cancelError": "User info cannot be canceled",
+    "cancelSuccess": "User info canceled successfully"
   }
 }
