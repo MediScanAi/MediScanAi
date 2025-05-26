@@ -15,7 +15,9 @@ import { saveUserData, type UserData } from '../../../app/slices/userDataSlice';
 import pencilIcon from '../../../assets/photos/pencil.png';
 import { selectCurrentUser } from '../../../app/slices/authSlice';
 import { QuestionCircleOutlined } from '@ant-design/icons';
+import { useTranslation } from 'react-i18next';
 const { Text } = Typography;
+
 const { Option } = Select;
 
 interface FormData {
@@ -35,6 +37,7 @@ interface Props {
 }
 
 const UserInfo: React.FC<Props> = ({ theme }) => {
+  const { t } = useTranslation();
   const dispatch = useAppDispatch();
   const user = useAppSelector(selectCurrentUser);
   const userData = useAppSelector((state) => state.userData.data);
@@ -109,11 +112,11 @@ const UserInfo: React.FC<Props> = ({ theme }) => {
             }}
           >
             <Title level={4} style={{ color: '#3498db', margin: 0 }}>
-              User Info
+              {t('userInfo.title')}
             </Title>
             {!isEditing && (
               <Button onClick={startEdit}>
-                Edit{' '}
+                {t('userInfo.edit')}
                 <img
                   src={pencilIcon}
                   alt="edit"
@@ -124,15 +127,15 @@ const UserInfo: React.FC<Props> = ({ theme }) => {
             {isEditing && (
               <Space style={{ marginBottom: 16 }}>
                 <Button type="primary" onClick={saveData}>
-                  Save
+                  {t('userInfo.save')}
                 </Button>
-                <Button onClick={cancelEdit}>Cancel</Button>
+                <Button onClick={cancelEdit}>{t('userInfo.cancel')}</Button>
               </Space>
             )}
           </div>
         }
         bordered
-        column={1} // սա կարևոր է՝ input-ները լինելու են իրար տակ
+        column={1}
         size="small"
         className={theme ? 'dark-mode-text' : ''}
         style={{
@@ -141,19 +144,19 @@ const UserInfo: React.FC<Props> = ({ theme }) => {
           width: '100%',
         }}
       >
-        <Descriptions.Item label="Name">
-          <Text>{formData.name || 'Not set'}</Text>
+        <Descriptions.Item label={t('userInfo.name')}>
+          <Text>{formData.name || t('userInfo.notSet')}</Text>
         </Descriptions.Item>
 
-        <Descriptions.Item label="Surname">
-          <Text>{formData.surname || 'Not set'}</Text>
+        <Descriptions.Item label={t('userInfo.surname')}>
+          <Text>{formData.surname || t('userInfo.notSet')}</Text>
         </Descriptions.Item>
 
-        <Descriptions.Item label="Email">
-          <Text>{formData.email || 'Not set'}</Text>
+        <Descriptions.Item label={t('userInfo.email')}>
+          <Text>{formData.email || t('userInfo.notSet')}</Text>
         </Descriptions.Item>
 
-        <Descriptions.Item label="Age">
+        <Descriptions.Item label={t('userInfo.age')}>
           {isEditing ? (
             <InputNumber
               style={{ width: '100%' }}
@@ -161,30 +164,34 @@ const UserInfo: React.FC<Props> = ({ theme }) => {
               max={'90'}
               value={formData.age}
               onChange={(value) => handleChange('age', value?.toString() || '')}
-              placeholder="Enter age"
+              placeholder={t('userInfo.agePlaceholder')}
             />
           ) : (
-            <Text>{userData?.age || 'Not set'}</Text>
+            <Text>{userData?.age || t('userInfo.notSet')}</Text>
           )}
         </Descriptions.Item>
 
-        <Descriptions.Item label="Sex">
+        <Descriptions.Item label={t('userInfo.sex')}>
           {isEditing ? (
             <Select
               value={formData.sex || undefined}
-              onChange={(value) => handleChange('sex', value)}
+              onChange={(value) => handleChange('sex', value || '')}
               style={{ width: '100%' }}
-              placeholder="Select sex"
+              placeholder={t('userInfo.sexPlaceholder')}
             >
-              <Option value="Male">Male</Option>
-              <Option value="Female">Female</Option>
+              <Option value="Male">{t('userInfo.male')}</Option>
+              <Option value="Female">{t('userInfo.female')}</Option>
             </Select>
           ) : (
-            <Text>{userData?.sex || 'Not set'}</Text>
+            <Text>
+              {userData?.sex
+                ? t(`userInfo.${userData.sex.toLowerCase()}`)
+                : t('userInfo.notSet')}
+            </Text>
           )}
         </Descriptions.Item>
 
-        <Descriptions.Item label="Weight (kg)">
+        <Descriptions.Item label={t('userInfo.weight')}>
           {isEditing ? (
             <InputNumber
               min={'40'}
@@ -194,14 +201,14 @@ const UserInfo: React.FC<Props> = ({ theme }) => {
               onChange={(value) =>
                 handleChange('weight', value?.toString() || '')
               }
-              placeholder="Enter weight"
+              placeholder={t('userInfo.weightPlaceholder')}
             />
           ) : (
-            <Text>{userData?.weight || 'Not set'}</Text>
+            <Text>{userData?.weight || t('userInfo.notSet')}</Text>
           )}
         </Descriptions.Item>
 
-        <Descriptions.Item label="Height (cm)">
+        <Descriptions.Item label={t('userInfo.height')}>
           {isEditing ? (
             <InputNumber
               style={{ width: '100%' }}
@@ -211,18 +218,18 @@ const UserInfo: React.FC<Props> = ({ theme }) => {
               onChange={(value) =>
                 handleChange('height', value?.toString() || '')
               }
-              placeholder="Enter height"
+              placeholder={t('userInfo.heightPlaceholder')}
             />
           ) : (
-            <Text>{userData?.height || 'Not set'}</Text>
+            <Text>{userData?.height || t('userInfo.notSet')}</Text>
           )}
         </Descriptions.Item>
 
         <Descriptions.Item
           label={
             <>
-              Waist Size (cm)&nbsp;
-              <Tooltip title="Measure around the narrowest part of your waist, usually just above the belly button. Keep the tape snug but not tight.">
+              {t('userInfo.waistSize')} (cm)&nbsp;
+              <Tooltip title={t('userInfo.waistSizeTooltip')}>
                 <QuestionCircleOutlined
                   style={{ color: '#1890ff', cursor: 'pointer' }}
                 />
@@ -239,18 +246,18 @@ const UserInfo: React.FC<Props> = ({ theme }) => {
               onChange={(value) =>
                 handleChange('waistSize', value?.toString() || '')
               }
-              placeholder="Enter waist size"
+              placeholder={t('userInfo.waistSizePlaceholder')}
             />
           ) : (
-            <Text>{userData?.waistSize || 'Not set'}</Text>
+            <Text>{userData?.waistSize || t('userInfo.notSet')}</Text>
           )}
         </Descriptions.Item>
 
         <Descriptions.Item
           label={
             <>
-              Neck Size (cm)&nbsp;
-              <Tooltip title="Measure around the widest part of your neck, just below the Adam's apple. Keep the tape horizontal and snug.">
+              {t('userInfo.neckSize')} (cm)&nbsp;
+              <Tooltip title={t('userInfo.neckSizeTooltip')}>
                 <QuestionCircleOutlined
                   style={{ color: '#1890ff', cursor: 'pointer' }}
                 />
@@ -267,10 +274,10 @@ const UserInfo: React.FC<Props> = ({ theme }) => {
               onChange={(value) =>
                 handleChange('neckSize', value?.toString() || '')
               }
-              placeholder="Enter neck size"
+              placeholder={t('userInfo.neckSizePlaceholder')}
             />
           ) : (
-            <Text>{userData?.neckSize || 'Not set'}</Text>
+            <Text>{userData?.neckSize || t('userInfo.notSet')}</Text>
           )}
         </Descriptions.Item>
       </Descriptions>
