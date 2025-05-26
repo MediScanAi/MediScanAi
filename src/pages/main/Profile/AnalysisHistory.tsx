@@ -18,6 +18,7 @@ import { useAppDispatch, useAppSelector } from '../../../app/hooks';
 import { deleteTestData, clearTestData } from '../../../app/slices/testSlice';
 import { useNavigate } from 'react-router';
 import { type TestType } from '../../../app/slices/testSlice';
+import { useTranslation } from 'react-i18next';
 import { auth } from '../../../api/authApi';
 
 const { Title, Text } = Typography;
@@ -30,7 +31,7 @@ type AnalysisHistoryProps = {
 const AnalysisHistory: React.FC<AnalysisHistoryProps> = ({ theme, width }) => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-
+  const { t } = useTranslation();
   const bloodTestData = useAppSelector((state) => state.tests.blood);
   const urineTestData = useAppSelector((state) => state.tests.urine);
   const vitaminTestData = useAppSelector((state) => state.tests.vitamin);
@@ -77,44 +78,44 @@ const AnalysisHistory: React.FC<AnalysisHistoryProps> = ({ theme, width }) => {
 
   const testBloodResults = [
     {
-      name: 'Hemoglobin',
+      name: t('analysisHistory.hemoglobin'),
       value: bloodTestData?.hemoglobin,
-      unit: 'g/dL',
+      unit: t('analysisHistory.hemoglobinUnit'),
       normalRange: '13.5-17.5',
       icon: <HeartOutlined />,
     },
     {
-      name: 'White Blood Cells',
+      name: t('analysisHistory.whiteBloodCells'),
       value: bloodTestData?.wbc,
-      unit: '10³/μL',
+      unit: t('analysisHistory.whiteBloodCellsUnit'),
       normalRange: '4.5-11.0',
       icon: <AlertOutlined />,
     },
     {
-      name: 'Red Blood Cells',
+      name: t('analysisHistory.redBloodCells'),
       value: bloodTestData?.rbc,
-      unit: '10⁶/μL',
+      unit: t('analysisHistory.redBloodCellsUnit'),
       normalRange: '4.5-5.9',
       icon: <FundOutlined />,
     },
     {
-      name: 'Platelets',
+      name: t('analysisHistory.platelets'),
       value: bloodTestData?.platelets,
-      unit: '10³/μL',
+      unit: t('analysisHistory.plateletsUnit'),
       normalRange: '150-450',
       icon: <DashboardOutlined />,
     },
     {
-      name: 'Glucose',
+      name: t('analysisHistory.glucose'),
       value: bloodTestData?.glucose,
-      unit: 'mg/dL',
+      unit: t('analysisHistory.glucoseUnit'),
       normalRange: '70-99',
       icon: <ExperimentOutlined />,
     },
     {
-      name: 'Cholesterol',
+      name: t('analysisHistory.cholesterol'),
       value: bloodTestData?.cholesterol,
-      unit: 'mg/dL',
+      unit: t('analysisHistory.cholesterolUnit'),
       normalRange: '<200',
       icon: <HeartOutlined />,
     },
@@ -122,44 +123,44 @@ const AnalysisHistory: React.FC<AnalysisHistoryProps> = ({ theme, width }) => {
 
   const testUrineResults = [
     {
-      name: 'pH',
+      name: t('analysisHistory.ph'),
       value: urineTestData?.ph,
-      unit: 'pH',
+      unit: t('analysisHistory.phUnit'),
       normalRange: '4.5-7.5',
       icon: <ExperimentOutlined />,
     },
     {
-      name: 'Specific Gravity',
+      name: t('analysisHistory.specificGravity'),
       value: urineTestData?.specificGravity,
-      unit: 'g/dL',
+      unit: t('analysisHistory.specificGravityUnit'),
       normalRange: '1.005-1.030',
       icon: <DashboardOutlined />,
     },
     {
-      name: 'Protein',
+      name: t('analysisHistory.protein'),
       value: urineTestData?.protein,
-      unit: 'mg/dL',
+      unit: t('analysisHistory.proteinUnit'),
       normalRange: '0-150',
       icon: <MedicineBoxOutlined />,
     },
     {
-      name: 'Glucose',
+      name: t('analysisHistory.glucose'),
       value: urineTestData?.glucose,
-      unit: 'mg/dL',
+      unit: t('analysisHistory.glucoseUnit'),
       normalRange: '50-100',
       icon: <ExperimentOutlined />,
     },
     {
-      name: 'Ketones',
+      name: t('analysisHistory.ketones'),
       value: urineTestData?.ketones,
-      unit: 'mg/dL',
+      unit: t('analysisHistory.ketonesUnit'),
       normalRange: '0-5',
       icon: <FireOutlined />,
     },
     {
-      name: 'Bilirubin',
+      name: t('analysisHistory.bilirubin'),
       value: urineTestData?.bilirubin,
-      unit: 'mg/dL',
+      unit: t('analysisHistory.bilirubinUnit'),
       normalRange: '0.3-1.0',
       icon: <MedicineBoxOutlined />,
     },
@@ -167,69 +168,69 @@ const AnalysisHistory: React.FC<AnalysisHistoryProps> = ({ theme, width }) => {
 
   const testVitaminResults = [
     {
-      name: 'Vitamin A',
+      name: t('analysisHistory.vitaminA'),
       value: vitaminTestData?.vitaminA,
-      unit: 'mg/dL',
+      unit: t('analysisHistory.vitaminAUnit'),
       normalRange: '0-10',
       icon: <EyeOutlined />,
     },
     {
-      name: 'Vitamin B12',
+      name: t('analysisHistory.vitaminB12'),
       value: vitaminTestData?.vitaminB12,
-      unit: 'mg/dL',
+      unit: t('analysisHistory.vitaminB12Unit'),
       normalRange: '0-10',
       icon: <ThunderboltOutlined />,
     },
     {
-      name: 'Vitamin C',
+      name: t('analysisHistory.vitaminC'),
       value: vitaminTestData?.vitaminC,
-      unit: 'mg/dL',
+      unit: t('analysisHistory.vitaminCUnit'),
       normalRange: '0-10',
       icon: <SmileOutlined />,
     },
     {
-      name: 'Vitamin D',
+      name: t('analysisHistory.vitaminD'),
       value: vitaminTestData?.vitaminD,
-      unit: 'mg/dL',
+      unit: t('analysisHistory.vitaminDUnit'),
       normalRange: '0-10',
       icon: <SunOutlined />,
     },
     {
-      name: 'Vitamin E',
+      name: t('analysisHistory.vitaminE'),
       value: vitaminTestData?.vitaminE,
-      unit: 'mg/dL',
+      unit: t('analysisHistory.vitaminEUnit'),
       normalRange: '0-10',
       icon: <MedicineBoxOutlined />,
     },
     {
-      name: 'Vitamin K',
+      name: t('analysisHistory.vitaminK'),
       value: vitaminTestData?.vitaminK,
-      unit: 'mg/dL',
+      unit: t('analysisHistory.vitaminKUnit'),
       normalRange: '0-10',
       icon: <SolutionOutlined />,
     },
   ];
 
   const testGeneticResults = [
-    { name: 'BRCA1', value: geneticTestData?.brca1, icon: <HeartOutlined /> },
-    { name: 'BRCA2', value: geneticTestData?.brca2, icon: <HeartOutlined /> },
+    { name: t('analysisHistory.brca1'), value: geneticTestData?.brca1, icon: <HeartOutlined /> },
+    { name: t('analysisHistory.brca2'), value: geneticTestData?.brca2, icon: <HeartOutlined /> },
     {
-      name: 'APOE',
+      name: t('analysisHistory.apoe'),
       value: geneticTestData?.apoe,
       icon: <SafetyCertificateOutlined />,
     },
     {
-      name: 'MTHFR',
+      name: t('analysisHistory.mthfr'),
       value: geneticTestData?.mthfr,
       icon: <SafetyCertificateOutlined />,
     },
     {
-      name: 'Factor V Leiden',
+      name: t('analysisHistory.factorVLeiden'),
       value: geneticTestData?.factor_v_leiden,
       icon: <SafetyCertificateOutlined />,
     },
     {
-      name: 'CYP2C19',
+      name: t('analysisHistory.cyp2c19'),
       value: geneticTestData?.cyp2c19,
       icon: <SafetyCertificateOutlined />,
     },
@@ -317,7 +318,7 @@ const AnalysisHistory: React.FC<AnalysisHistoryProps> = ({ theme, width }) => {
               fontSize: width < 800 ? '18px' : '32px',
             }}
           >
-            Patient Analysis History
+            {t('analysisHistory.title')}
           </Title>
 
           {!hasAnyTestData && (
@@ -329,7 +330,7 @@ const AnalysisHistory: React.FC<AnalysisHistoryProps> = ({ theme, width }) => {
                 fontSize: width < 800 ? '10px' : '20px',
               }}
             >
-              No test results available. You haven't completed any tests yet.
+              {t('analysisHistory.noTestResults')}
             </Text>
           )}
 
@@ -343,7 +344,7 @@ const AnalysisHistory: React.FC<AnalysisHistoryProps> = ({ theme, width }) => {
                     strong
                     style={{ fontSize: width < 800 ? '10px' : '16px' }}
                   >
-                    Blood Test
+                    {t('analysisHistory.bloodTest')}
                   </Text>
                   <Text
                     type="secondary"
@@ -352,7 +353,8 @@ const AnalysisHistory: React.FC<AnalysisHistoryProps> = ({ theme, width }) => {
                       fontSize: width < 800 ? '10px' : '16px',
                     }}
                   >
-                    Last updated: {bloodTestData.date || 'Date not specified'}
+                    {t('analysisHistory.lastUpdated')}
+                    {bloodTestData.date || t('analysisHistory.dateNotSpecified')}
                   </Text>
                   <Button
                     onClick={() => handleDeleteTest('blood')}
@@ -364,7 +366,7 @@ const AnalysisHistory: React.FC<AnalysisHistoryProps> = ({ theme, width }) => {
                       minWidth: 40,
                     }}
                   >
-                    Delete
+                    {t('analysisHistory.delete')}
                   </Button>
                   <Button
                     onClick={sendBloodTestData}
@@ -376,7 +378,7 @@ const AnalysisHistory: React.FC<AnalysisHistoryProps> = ({ theme, width }) => {
                       minWidth: 40,
                     }}
                   >
-                    Edit
+                    {t('analysisHistory.edit')}
                   </Button>
                 </div>
                 <Divider style={{ margin: '12px 0' }} />
@@ -396,7 +398,7 @@ const AnalysisHistory: React.FC<AnalysisHistoryProps> = ({ theme, width }) => {
                     strong
                     style={{ fontSize: width < 800 ? '10px' : '16px' }}
                   >
-                    Urine Test
+                    {t('analysisHistory.urineTest')}
                   </Text>
                   <Text
                     type="secondary"
@@ -405,7 +407,8 @@ const AnalysisHistory: React.FC<AnalysisHistoryProps> = ({ theme, width }) => {
                       fontSize: width < 800 ? '10px' : '16px',
                     }}
                   >
-                    Last updated: {urineTestData.date || 'Date not specified'}
+                    {t('analysisHistory.lastUpdated')}
+                    {urineTestData.date || t('analysisHistory.dateNotSpecified')}
                   </Text>
                   <Button
                     onClick={() => handleDeleteTest('urine')}
@@ -417,7 +420,7 @@ const AnalysisHistory: React.FC<AnalysisHistoryProps> = ({ theme, width }) => {
                       minWidth: 40,
                     }}
                   >
-                    Delete
+                    {t('analysisHistory.delete')}
                   </Button>
                   <Button
                     onClick={sendUrineTestData}
@@ -429,7 +432,7 @@ const AnalysisHistory: React.FC<AnalysisHistoryProps> = ({ theme, width }) => {
                       minWidth: 40,
                     }}
                   >
-                    Edit
+                    {t('analysisHistory.edit')}
                   </Button>
                 </div>
                 <Divider style={{ margin: '12px 0' }} />
@@ -449,7 +452,7 @@ const AnalysisHistory: React.FC<AnalysisHistoryProps> = ({ theme, width }) => {
                     strong
                     style={{ fontSize: width < 800 ? '10px' : '16px' }}
                   >
-                    Vitamin Test
+                    {t('analysisHistory.vitaminTest')}
                   </Text>
                   <Text
                     type="secondary"
@@ -458,7 +461,8 @@ const AnalysisHistory: React.FC<AnalysisHistoryProps> = ({ theme, width }) => {
                       fontSize: width < 800 ? '10px' : '16px',
                     }}
                   >
-                    Last updated: {vitaminTestData.date || 'Date not specified'}
+                    {t('analysisHistory.lastUpdated')}
+                    {vitaminTestData.date || t('analysisHistory.dateNotSpecified')}
                   </Text>
                   <Button
                     onClick={() => handleDeleteTest('vitamin')}
@@ -470,7 +474,7 @@ const AnalysisHistory: React.FC<AnalysisHistoryProps> = ({ theme, width }) => {
                       minWidth: 40,
                     }}
                   >
-                    Delete
+                    {t('analysisHistory.delete')}
                   </Button>
                   <Button
                     onClick={sendVitaminTestData}
@@ -482,7 +486,7 @@ const AnalysisHistory: React.FC<AnalysisHistoryProps> = ({ theme, width }) => {
                       minWidth: 40,
                     }}
                   >
-                    Edit
+                    {t('analysisHistory.edit')}
                   </Button>
                 </div>
                 <Divider style={{ margin: '12px 0' }} />
@@ -502,7 +506,7 @@ const AnalysisHistory: React.FC<AnalysisHistoryProps> = ({ theme, width }) => {
                     strong
                     style={{ fontSize: width < 800 ? '10px' : '16px' }}
                   >
-                    Genetic Test
+                    {t('analysisHistory.geneticTest')}
                   </Text>
                   <Text
                     type="secondary"
@@ -511,7 +515,8 @@ const AnalysisHistory: React.FC<AnalysisHistoryProps> = ({ theme, width }) => {
                       fontSize: width < 800 ? '10px' : '16px',
                     }}
                   >
-                    Last updated: {geneticTestData.date || 'Date not specified'}
+                    {t('analysisHistory.lastUpdated')}
+                    {geneticTestData.date || t('analysisHistory.dateNotSpecified')}
                   </Text>
                   <Button
                     onClick={() => handleDeleteTest('genetic')}
@@ -523,7 +528,7 @@ const AnalysisHistory: React.FC<AnalysisHistoryProps> = ({ theme, width }) => {
                       minWidth: 40,
                     }}
                   >
-                    Delete
+                    {t('analysisHistory.delete')}
                   </Button>
                   <Button
                     onClick={sendGeneticTestData}
@@ -535,7 +540,7 @@ const AnalysisHistory: React.FC<AnalysisHistoryProps> = ({ theme, width }) => {
                       minWidth: 40,
                     }}
                   >
-                    Edit
+                    {t('analysisHistory.edit')}
                   </Button>
                 </div>
                 <Divider style={{ margin: '12px 0' }} />
