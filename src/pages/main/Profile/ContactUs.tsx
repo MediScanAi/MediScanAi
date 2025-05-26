@@ -7,7 +7,7 @@ import {
   ClockCircleOutlined,
   LinkedinOutlined,
 } from '@ant-design/icons';
-
+import { useTranslation } from 'react-i18next';
 const { Title, Text } = Typography;
 
 interface ContactUsProps {
@@ -15,6 +15,7 @@ interface ContactUsProps {
 }
 
 const ContactUs: React.FC<ContactUsProps> = ({ theme }) => {
+  const { t } = useTranslation();
   return (
     <div style={{ minHeight: '50vh' }}>
       <Card
@@ -22,9 +23,9 @@ const ContactUs: React.FC<ContactUsProps> = ({ theme }) => {
           <Title
             className={theme ? 'dark-mode-text' : ''}
             level={2}
-            style={{ marginBottom: 0, color: '#3498db' }}
+            style={{ marginBottom: 0, color: '#3498db', fontWeight: 600,fontFamily: 'Poppins' }}
           >
-            Contact Us
+            {t('contactUs.title')}
           </Title>
         }
         variant={'borderless'}
@@ -37,7 +38,7 @@ const ContactUs: React.FC<ContactUsProps> = ({ theme }) => {
               style={{ fontSize: 16 }}
             >
               <PhoneOutlined style={{ marginRight: 8 }} />
-              Phone: +1234567890
+              {t('contactUs.phone')}
             </Text>
           </Col>
           <Col span={24}>
@@ -46,7 +47,7 @@ const ContactUs: React.FC<ContactUsProps> = ({ theme }) => {
               style={{ fontSize: 16 }}
             >
               <MailOutlined style={{ marginRight: 8 }} />
-              Email:{' '}
+              {t('contactUs.email')}
               <a href="mailto:mediscan@center.com">mediscan@center.com</a>
             </Text>
           </Col>
@@ -56,7 +57,7 @@ const ContactUs: React.FC<ContactUsProps> = ({ theme }) => {
               style={{ fontSize: 16 }}
             >
               <EnvironmentOutlined style={{ marginRight: 8 }} />
-              Address: 123 Main St, Anytown, USA
+              {t('contactUs.address')}
             </Text>
           </Col>
           <Col span={24}>
@@ -65,7 +66,7 @@ const ContactUs: React.FC<ContactUsProps> = ({ theme }) => {
               style={{ fontSize: 16 }}
             >
               <ClockCircleOutlined style={{ marginRight: 8 }} />
-              Hours: Mon - Fri: 9:00 AM - 5:00 PM
+              {t('contactUs.hours')}
             </Text>
           </Col>
           <Col span={24}>
@@ -74,7 +75,7 @@ const ContactUs: React.FC<ContactUsProps> = ({ theme }) => {
               style={{ fontSize: 16 }}
             >
               <LinkedinOutlined style={{ marginRight: 8 }} />
-              LinkedIn:{' '}
+              {t('contactUs.linkedin')}
               <a
                 href="https://www.linkedin.com/company/mediscan-center"
                 target="_blank"

@@ -1,6 +1,7 @@
 import { Col, Card, Typography, Row, Button, Space } from 'antd';
 import { useNavigate } from 'react-router-dom';
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 const { Title, Text } = Typography;
 
 interface MainTestsProps {
@@ -10,25 +11,26 @@ interface MainTestsProps {
 
 const MainTests: React.FC<MainTestsProps> = ({ theme, width }) => {
   const navigate = useNavigate();
+  const { t } = useTranslation();
   const testCards = [
     {
-      title: 'Blood Test',
-      subtitle: 'Complete blood count & biochemistry',
+      title: t('mainTests.bloodTest'),
+      subtitle: t('mainTests.bloodTestSubtitle'),
       onClick: () => navigate('/tests-form/blood-test'),
     },
     {
-      title: 'Urine Test',
-      subtitle: 'Urinalysis & microalbumin test',
+      title: t('mainTests.urineTest'),
+      subtitle: t('mainTests.urineTestSubtitle'),
       onClick: () => navigate('/tests-form/urine-test'),
     },
     {
-      title: 'Vitamin Test',
-      subtitle: 'Vitamin D, B12 & minerals',
+      title: t('mainTests.vitaminTest'),
+      subtitle: t('mainTests.vitaminTestSubtitle'),
       onClick: () => navigate('/tests-form/vitamin-test'),
     },
     {
-      title: 'Genetic Test',
-      subtitle: 'DNA analysis & health risks',
+      title: t('mainTests.geneticTest'),
+      subtitle: t('mainTests.geneticTestSubtitle'),
       onClick: () => navigate('/tests-form/genetic-test'),
     },
   ];
@@ -43,7 +45,7 @@ const MainTests: React.FC<MainTestsProps> = ({ theme, width }) => {
           fontSize: width && width < 1200 ? '22px' : '36px',
         }}
       >
-        Fill the form to get your test results
+        {t('mainTests.fillForm')}
       </Title>
 
       <Row gutter={[32, 32]} justify="center">
@@ -95,7 +97,7 @@ const MainTests: React.FC<MainTestsProps> = ({ theme, width }) => {
                   {card.subtitle}
                 </Text>
                 <Button type="link" style={{ padding: 0, fontWeight: 500 }}>
-                  View More
+                  {t('mainTests.viewMore')}
                 </Button>
               </div>
             </Card>
@@ -127,7 +129,7 @@ const MainTests: React.FC<MainTestsProps> = ({ theme, width }) => {
             border: 'none',
           }}
         >
-          Get Started
+          {t('mainTests.getStarted')}
         </Button>
       </Space>
     </div>
