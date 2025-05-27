@@ -70,6 +70,12 @@
   scrollbar-width: none;
   -ms-overflow-style: none;
 }
+.ant-typography {
+  font-family: 'Poppins', sans-serif !important;
+}
+.ant-input {
+  font-family: 'Poppins', sans-serif !important;
+}
 
 .register-title,
 .register-card .ant-typography,

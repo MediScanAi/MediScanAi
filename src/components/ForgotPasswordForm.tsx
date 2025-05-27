@@ -45,7 +45,7 @@ const ForgotPasswordForm: React.FC<ForgotPasswordFormProps> = ({
       className={`login-spin-container${isDarkMode ? ' dark' : ''}`}
     >
       <Card className={`login-card${isDarkMode ? ' dark' : ''}`}>
-        <Title level={2} className="login-title">
+        <Title level={3} className="login-title">
           Reset your password
         </Title>
         <Form layout="vertical" onFinish={onFinish} requiredMark={false}>
@@ -65,6 +65,7 @@ const ForgotPasswordForm: React.FC<ForgotPasswordFormProps> = ({
           </Form.Item>
           <Text
             className="login-description"
+            type="secondary"
             style={{ marginBottom: 20, display: 'block' }}
           >
             You will receive an email with a link to reset your password.
