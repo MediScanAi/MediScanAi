@@ -32,6 +32,7 @@ import '../../assets/styles/healthPage.css';
 import { motion } from 'framer-motion';
 const { Title, Text, Paragraph } = Typography;
 import { useAppSelector } from '../../app/hooks';
+import { useTranslation } from 'react-i18next';
 
 const HealthPage: React.FC = () => {
   const [bmi, setBmi] = useState<number | null>(null);
@@ -39,6 +40,7 @@ const HealthPage: React.FC = () => {
   const [bodyFat, setBodyFat] = useState<number | null>(null);
   const [idealWeight, setIdealWeight] = useState<number | null>(null);
   const [loading, setLoading] = useState(true);
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const userData = useAppSelector((state) => state.userData.data);
 
@@ -51,7 +53,6 @@ const HealthPage: React.FC = () => {
         const waist = parseFloat(userData?.waistSize?.toString() || '');
         const neck = parseFloat(userData?.neckSize?.toString() || '');
         const gender = userData?.sex?.toLowerCase();
-
         const heightM = height / 100;
 
         if (weight > 0 && height > 0) {
@@ -71,9 +72,9 @@ const HealthPage: React.FC = () => {
           const logBase10 = (val: number) => Math.log(val) / Math.LN10;
           const fatPercent =
             495 /
-              (1.0324 -
-                0.19077 * logBase10(waist - neck) +
-                0.15456 * logBase10(height)) -
+            (1.0324 -
+              0.19077 * logBase10(waist - neck) +
+              0.15456 * logBase10(height)) -
             450;
           setBodyFat(Number(fatPercent.toFixed(1)));
         }
@@ -135,7 +136,7 @@ const HealthPage: React.FC = () => {
               {bmi}
             </Title>
             <Text strong className="metric-label">
-              BMI
+              {t("health.bmi")}
             </Text>
           </motion.div>
         </motion.div>
@@ -176,7 +177,7 @@ const HealthPage: React.FC = () => {
               {bmr}
             </Title>
             <Text strong className="metric-label">
-              BMR
+              {t("health.bmr")}
             </Text>
           </motion.div>
         </motion.div>
@@ -226,7 +227,7 @@ const HealthPage: React.FC = () => {
               {bodyFat}%
             </Title>
             <Text strong className="metric-label">
-              Body Fat
+              {t("health.bodyFat")}
             </Text>
           </motion.div>
         </motion.div>
@@ -276,7 +277,7 @@ const HealthPage: React.FC = () => {
               {idealWeight}kg
             </Title>
             <Text strong className="metric-label">
-              Ideal Weight
+              {t("health.idealWeight")}
             </Text>
           </motion.div>
         </motion.div>
@@ -292,26 +293,26 @@ const HealthPage: React.FC = () => {
       underweight: {
         icon: <WarningOutlined />,
         color: 'gold',
-        title: 'Underweight',
-        text: 'Your BMI is below normal. Focus on nutrient-dense foods like avocados, nuts, lean proteins, and whole grains.',
+        title: t('health.status.underweight'),
+        text: t('health.suggestions.underweight'),
       },
       healthy: {
         icon: <SmileOutlined />,
         color: 'green',
-        title: 'Healthy',
-        text: 'Great job! Maintain your current habits of balanced eating and regular exercise.',
+        title: t('health.status.healthy'),
+        text: t('health.suggestions.healthy'),
       },
       overweight: {
         icon: <WarningOutlined />,
         color: 'orange',
-        title: 'Overweight',
-        text: 'Try incorporating more physical activity and reducing high-calorie processed foods.',
+        title: t('health.status.overweight'),
+        text: t('health.suggestions.overweight'),
       },
       obese: {
         icon: <FrownOutlined />,
         color: 'red',
-        title: 'Obese',
-        text: "It's important to take action now. Please consult with a healthcare provider.",
+        title: t('health.status.obese'),
+        text: t('health.suggestions.obese'),
       },
     };
 
@@ -339,25 +340,25 @@ const HealthPage: React.FC = () => {
           <Space size="large">
             <Statistic
               className="suggestion-statistic"
-              title="Daily Calories"
+              title={t("health.dailyCalories")}
               value={bmr ? bmr + 300 : '--'}
               prefix={<FireOutlined />}
             />
             <Statistic
               className="suggestion-statistic"
-              title="Exercise Goal"
-              value="150 min"
+              title={t("health.exerciseGoal")}
+              value={t("health.minutes", { minutes: 150 })}
               prefix={<HeartOutlined />}
             />
             <Statistic
               className="suggestion-statistic"
-              title="3-month Goal"
+              title={t("health.threeMonthGoal")}
               value={
                 status === 'healthy'
-                  ? 'Maintain'
+                  ? t("health.maintain")
                   : status === 'underweight'
-                    ? '+2-4kg'
-                    : '-5-10kg'
+                    ? t("health.gainWeight", { kg: "2-4" })
+                    : t("health.loseWeight", { kg: "5-10" })
               }
               prefix={<LineChartOutlined />}
             />
@@ -375,8 +376,8 @@ const HealthPage: React.FC = () => {
     if (weight < 45) {
       return (
         <Alert
-          message="Low Weight Advisory"
-          description="Your weight is significantly below average. Consider increasing intake of healthy high-calorie foods like nuts, avocados, and lean proteins."
+          message={t("health.alerts.lowWeight.title")}
+          description={t("health.alerts.lowWeight.description")}
           type="warning"
           showIcon
           className="health-alert"
@@ -385,8 +386,8 @@ const HealthPage: React.FC = () => {
     } else if (weight > 100 || bmi > 30) {
       return (
         <Alert
-          message="Weight Management Recommended"
-          description="Your weight is above healthy ranges. Focus on whole foods, portion control, and regular physical activity. Consult a healthcare provider for personalized advice."
+          message={t("health.alerts.highWeight.title")}
+          description={t("health.alerts.highWeight.description")}
           type="error"
           showIcon
           className="health-alert"
@@ -395,8 +396,8 @@ const HealthPage: React.FC = () => {
     } else {
       return (
         <Alert
-          message="Healthy Weight Range"
-          description="Your weight is within acceptable parameters. Maintain balanced nutrition and regular physical activity for optimal health."
+          message={t("health.alerts.healthyWeight.title")}
+          description={t("health.alerts.healthyWeight.description")}
           type="success"
           showIcon
           className="health-alert"
@@ -410,10 +411,10 @@ const HealthPage: React.FC = () => {
       <div className="loading-state">
         <Spin className="loading-spinner" />
         <Title level={3} className="loading-title">
-          Analyzing Your Health Profile
+          {t("health.loading.title")}
         </Title>
         <Text className="loading-subtitle">
-          We're crunching the numbers to provide personalized insights
+          {t("health.loading.subtitle")}
         </Text>
       </div>
     );
@@ -423,11 +424,10 @@ const HealthPage: React.FC = () => {
     return (
       <div className="empty-state">
         <Title level={2} className="empty-title">
-          Welcome to Your Health Dashboard
+          {t("health.emptyState.title")}
         </Title>
         <Paragraph className="empty-message">
-          Complete your health profile to unlock personalized insights and
-          recommendations.
+          {t("health.emptyState.message")}
         </Paragraph>
         <Button
           type="primary"
@@ -437,7 +437,7 @@ const HealthPage: React.FC = () => {
           onClick={() => navigate('/profile/user-info')}
           className="empty-button"
         >
-          Complete Your Profile
+          {t("health.emptyState.button")}
         </Button>
       </div>
     );
@@ -453,10 +453,10 @@ const HealthPage: React.FC = () => {
             transition={{ duration: 0.5 }}
           >
             <Title level={2} className="dashboard-title">
-              Your Health Dashboard
+              {t("health.dashboard.title")}
             </Title>
             <Text className="dashboard-subtitle">
-              Personalized insights based on your health metrics
+              {t("health.dashboard.subtitle")}
             </Text>
           </motion.div>
         </Col>
@@ -472,7 +472,7 @@ const HealthPage: React.FC = () => {
             <Card className="profile-card">
               <div className="profile-header">
                 <Title level={4} className="profile-title">
-                  <UserOutlined /> Personal Profile
+                  <UserOutlined /> {t("health.profile.title")}
                 </Title>
                 <Button
                   type="text"
@@ -488,37 +488,37 @@ const HealthPage: React.FC = () => {
                 labelStyle={{ fontWeight: 100 }}
                 size="small"
               >
-                <Descriptions.Item label="Age">
+                <Descriptions.Item label={t("health.profile.age")}>
                   <Text>
-                    {userData?.age ? `${userData?.age} years` : 'Not set'}{' '}
+                    {userData?.age ? t("health.years", { years: userData.age }) : t("health.notSet")}
                   </Text>
                 </Descriptions.Item>
-                <Descriptions.Item label="Weight">
+                <Descriptions.Item label={t("health.profile.weight")}>
                   <Text>
                     {userData?.weight
-                      ? `${userData?.weight} kg`
-                      : 'Not set'}{' '}
+                      ? t("health.kg", { kg: userData.weight })
+                      : t("health.notSet")}
                   </Text>
                 </Descriptions.Item>
-                <Descriptions.Item label="Height">
+                <Descriptions.Item label={t("health.profile.height")}>
                   <Text>
                     {userData?.height
-                      ? `${userData?.height} cm`
-                      : 'Not set'}{' '}
+                      ? t("health.cm", { cm: userData.height })
+                      : t("health.notSet")}
                   </Text>
                 </Descriptions.Item>
-                <Descriptions.Item label="Waist Size">
+                <Descriptions.Item label={t("health.profile.waistSize")}>
                   <Text>
                     {userData?.waistSize
-                      ? `${userData?.waistSize} cm`
-                      : 'Not set'}{' '}
+                      ? t("health.cm", { cm: userData.waistSize })
+                      : t("health.notSet")}
                   </Text>
                 </Descriptions.Item>
-                <Descriptions.Item label="Neck Size">
+                <Descriptions.Item label={t("health.profile.neckSize")}>
                   <Text>
                     {userData?.neckSize
-                      ? `${userData?.neckSize} cm`
-                      : 'Not set'}{' '}
+                      ? t("health.cm", { cm: userData.neckSize })
+                      : t("health.notSet")}
                   </Text>
                 </Descriptions.Item>
               </Descriptions>
@@ -541,14 +541,14 @@ const HealthPage: React.FC = () => {
                 <img
                   src={
                     userData?.weight &&
-                    userData.weight > 80 &&
-                    userData.weight < 100
+                      userData.weight > 80 &&
+                      userData.weight < 100
                       ? midPerson
                       : userData?.weight && userData.weight > 100
                         ? bigPerson
                         : person
                   }
-                  alt="Health visualization"
+                  alt={t("health.visualization.alt")}
                   className="health-visualization"
                 />
               </div>
@@ -564,7 +564,7 @@ const HealthPage: React.FC = () => {
           >
             <Card className="metrics-card">
               <Title level={4} className="metrics-title">
-                <DashboardOutlined /> Health Metrics
+                <DashboardOutlined /> {t("health.metrics.title")}
               </Title>
 
               <div className="metrics-grid">

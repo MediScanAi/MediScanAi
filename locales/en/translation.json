@@ -408,5 +408,82 @@
     "address": "Address: 123 Main St, Anytown, USA",
     "hours": "Hours: Mon - Fri: 9:00 AM - 5:00 PM",
     "linkedin": "LinkedIn։ "
+  },
+  "chat": {
+    "newChat": "New Chat",
+    "rename": "Rename",
+    "delete": "Delete",
+    "scanAnalysis": "Scan Analysis",
+    "pdfUpload": "PDF Upload"
+  },
+  "health": {
+    "bmi": "BMI",
+    "bmr": "BMR",
+    "bodyFat": "Body Fat",
+    "idealWeight": "Ideal Weight",
+    "status": {
+      "underweight": "Underweight",
+      "healthy": "Healthy",
+      "overweight": "Overweight",
+      "obese": "Obese"
+    },
+    "suggestions": {
+      "underweight": "Your BMI is below normal. Focus on nutrient-dense foods like avocados, nuts, lean proteins, and whole grains.",
+      "healthy": "Great job! Maintain your current habits of balanced eating and regular exercise.",
+      "overweight": "Try incorporating more physical activity and reducing high-calorie processed foods.",
+      "obese": "It's important to take action now. Please consult with a healthcare provider."
+    },
+    "dailyCalories": "Daily Calories",
+    "exerciseGoal": "Exercise Goal",
+    "threeMonthGoal": "3-month Goal",
+    "maintain": "Maintain",
+    "gainWeight": "+{{kg}}kg",
+    "loseWeight": "-{{kg}}kg",
+    "minutes": "{{minutes}} min",
+    "alerts": {
+      "lowWeight": {
+        "title": "Low Weight Advisory",
+        "description": "Your weight is significantly below average. Consider increasing intake of healthy high-calorie foods like nuts, avocados, and lean proteins."
+      },
+      "highWeight": {
+        "title": "Weight Management Recommended",
+        "description": "Your weight is above healthy ranges. Focus on whole foods, portion control, and regular physical activity. Consult a healthcare provider for personalized advice."
+      },
+      "healthyWeight": {
+        "title": "Healthy Weight Range",
+        "description": "Your weight is within acceptable parameters. Maintain balanced nutrition and regular physical activity for optimal health."
+      }
+    },
+    "loading": {
+      "title": "Analyzing Your Health Profile",
+      "subtitle": "We're crunching the numbers to provide personalized insights"
+    },
+    "emptyState": {
+      "title": "Welcome to Your Health Dashboard",
+      "message": "Complete your health profile to unlock personalized insights and recommendations.",
+      "button": "Complete Your Profile"
+    },
+    "dashboard": {
+      "title": "Your Health Dashboard",
+      "subtitle": "Personalized insights based on your health metrics"
+    },
+    "profile": {
+      "title": "Personal Profile",
+      "age": "Age",
+      "weight": "Weight",
+      "height": "Height",
+      "waistSize": "Waist Size",
+      "neckSize": "Neck Size"
+    },
+    "years": "{{years}} years",
+    "kg": "{{kg}} kg",
+    "cm": "{{cm}} cm",
+    "notSet": "Not set",
+    "metrics": {
+      "title": "Health Metrics"
+    },
+    "visualization": {
+      "alt": "Health visualization"
+    }
   }
 }
