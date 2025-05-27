@@ -16,12 +16,14 @@ import VitaminTestForm from './VitaminTestForm';
 import UrineTestForm from './UrineTestForm';
 import BloodTestsForm from './BloodTestForm';
 import GeneticTestForm from './GeneticTestForm';
+import { useTranslation } from 'react-i18next';
 
 const { Title, Text } = Typography;
 
 function RootForm(): ReactNode | null {
   const navigate = useNavigate();
   const { testType } = useParams();
+  const { t } = useTranslation();
 
   const theme = useAppSelector((state) => state.theme.isDarkMode);
   const items: TabsProps['items'] = [
@@ -29,7 +31,7 @@ function RootForm(): ReactNode | null {
       label: (
         <span>
           <HeartFilled style={{ marginRight: 8 }} />
-          Blood Test
+          {t('rootform.blood')}
         </span>
       ),
       key: 'blood-test',
@@ -39,7 +41,7 @@ function RootForm(): ReactNode | null {
       label: (
         <span>
           <MonitorOutlined style={{ marginRight: 8 }} />
-          Urine Test
+          {t('rootform.urine')}
         </span>
       ),
       key: 'urine-test',
@@ -49,7 +51,7 @@ function RootForm(): ReactNode | null {
       label: (
         <span>
           <SafetyOutlined style={{ marginRight: 8 }} />
-          Vitamin Test
+          {t('rootform.vitamin')}
         </span>
       ),
       key: 'vitamin-test',
@@ -59,7 +61,7 @@ function RootForm(): ReactNode | null {
       label: (
         <span>
           <HeatMapOutlined style={{ marginRight: 8 }} />
-          Genetic Test
+          {t('rootform.genetic')}
         </span>
       ),
       key: 'genetic-test',
@@ -83,7 +85,7 @@ function RootForm(): ReactNode | null {
             onClick={() => navigate('/profile/info')}
             type="primary"
           >
-            Back to Profile
+            {t('rootform.backButton')}
           </Button>
         </div>
 
@@ -91,17 +93,16 @@ function RootForm(): ReactNode | null {
           <Col className="image-column">
             <img
               src={formImage}
-              alt="platform"
+              alt={t('platform')}
               className="form-platform-image"
             />
           </Col>
           <Col className="text-column">
             <Title className="form-welcome-title">
-              MediScanAI Diagnostic Portal
+              {t('rootform.welcomeTitle')}
             </Title>
             <Text className="form-welcome-message">
-              Comprehensive medical test analysis powered by AI Receive accurate
-              results and personalized insights within 24 hours.
+              {t('rootform.welcomeMessage')}
             </Text>
           </Col>
         </Row>
@@ -110,15 +111,18 @@ function RootForm(): ReactNode | null {
         <Col xs={24} md={10} className="form-left-content">
           <div className="form-header">
             <Title level={2} className="medical-title">
-              Medical Laboratory Test Form
+              {t('rootform.medicalLaboratoryTestForm')}
             </Title>
             <Text className="medical-subtitle">
-              Select a test type and provide the required specimen information
+              {t('rootform.selectTestType')}
             </Text>
           </div>
 
           <div className="medical-image-container">
-            <img src={laboratoryImage} alt="Medical illustration" />
+            <img
+              src={laboratoryImage}
+              alt={t('rootform.medicalIllustration')}
+            />
           </div>
         </Col>
 

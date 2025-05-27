@@ -73,7 +73,9 @@ export const sendResetPasswordEmail = async (email: string) => {
 };
 
 export const onAuthChange = (cb: (u: PlainUser | null) => void) =>
-  onAuthStateChanged(auth, (u) => u?.emailVerified ? cb(mapFirebaseUser(u)) : cb(null));
+  onAuthStateChanged(auth, (u) =>
+    u?.emailVerified ? cb(mapFirebaseUser(u)) : cb(null)
+  );
 
 export const sendVerificationEmail = async (u: FirebaseUser) =>
   sendEmailVerification(u);

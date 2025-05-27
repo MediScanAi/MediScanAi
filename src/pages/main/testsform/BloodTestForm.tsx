@@ -9,81 +9,90 @@ import {
   Col,
 } from 'antd';
 import { useAppDispatch } from '../../../app/hooks';
-import { setBloodTestData } from '../../../app/slices/bloodTestSlice';
-import type { BloodTestFormValues } from '../../../app/slices/bloodTestSlice';
+import type { BloodTestFormValues } from '../../../app/slices/testSlice';
 import { useLocation } from 'react-router';
 import { useNavigate } from 'react-router-dom';
-const { Title } = Typography;
+import { saveTestData } from '../../../app/slices/testSlice';
+import { auth } from '../../../api/authApi';
+import { useTranslation } from 'react-i18next';
 
-const bloodTestFields = [
-  {
-    name: 'hemoglobin',
-    label: 'Hemoglobin (g/dL)',
-    min: 0,
-    max: 25,
-    step: 0.1,
-    placeholder: 'e.g. 14.5',
-  },
-  {
-    name: 'wbc',
-    label: 'White Blood Cells (×10⁹/L)',
-    min: 0,
-    max: 20,
-    step: 0.1,
-    placeholder: 'e.g. 6.8',
-  },
-  {
-    name: 'rbc',
-    label: 'Red Blood Cells (×10¹²/L)',
-    min: 0,
-    max: 10,
-    step: 0.1,
-    placeholder: 'e.g. 4.7',
-  },
-  {
-    name: 'platelets',
-    label: 'Platelets (×10⁹/L)',
-    min: 0,
-    max: 1000,
-    step: 1,
-    placeholder: 'e.g. 250',
-  },
-  {
-    name: 'glucose',
-    label: 'Glucose (mg/dL)',
-    min: 50,
-    max: 500,
-    step: 1,
-    placeholder: 'e.g. 95',
-  },
-  {
-    name: 'cholesterol',
-    label: 'Cholesterol (mg/dL)',
-    min: 50,
-    max: 400,
-    step: 1,
-    placeholder: 'e.g. 190',
-  },
-];
+const { Title } = Typography;
 
 function BloodTestsForm() {
   const navigate = useNavigate();
   const [form] = Form.useForm();
   const dispatch = useAppDispatch();
   const updatedData = useLocation()?.state?.bloodTestData || undefined;
+  const { t } = useTranslation();
+
+  const bloodTestFields = [
+    {
+      name: 'hemoglobin',
+      label: t('bloodTest.hemoglobin'),
+      min: 0,
+      max: 25,
+      step: 0.1,
+      placeholder: t('bloodTest.bloodTesthemoglobinPlaceholder'),
+    },
+    {
+      name: 'wbc',
+      label: t('bloodTest.wbc'),
+      min: 0,
+      max: 20,
+      step: 0.1,
+      placeholder: t('bloodTest.bloodTestwbcPlaceholder'),
+    },
+    {
+      name: 'rbc',
+      label: t('bloodTest.rbc'),
+      min: 0,
+      max: 10,
+      step: 0.1,
+      placeholder: t('bloodTest.bloodTestrbcPlaceholder'),
+    },
+    {
+      name: 'platelets',
+      label: t('bloodTest.platelets'),
+      min: 0,
+      max: 1000,
+      step: 1,
+      placeholder: t('bloodTest.bloodTestplateletsPlaceholder'),
+    },
+    {
+      name: 'glucose',
+      label: t('bloodTest.glucose'),
+      min: 50,
+      max: 500,
+      step: 1,
+      placeholder: t('bloodTest.bloodTestglucosePlaceholder'),
+    },
+    {
+      name: 'cholesterol',
+      label: t('bloodTest.cholesterol'),
+      min: 50,
+      max: 400,
+      step: 1,
+      placeholder: t('bloodTest.bloodTestcholesterolPlaceholder'),
+    },
+  ];
 
   const onFinish = (values: BloodTestFormValues) => {
-    dispatch(
-      setBloodTestData({
-        ...values,
-      })
-    );
+    const uid = auth.currentUser?.uid;
+
+    if (!uid) {
+      message.error(t('errors.userNotAuthenticated'));
+      return;
+    }
+
+    const testData = { ...values, date: new Date().toISOString() };
+    dispatch(saveTestData({ uid, testType: 'blood', data: testData }));
 
     if (updatedData) {
-      message.success('Blood test updated successfully');
+      message.success(t('messages.bloodTestUpdated'));
     } else {
-      message.success('Blood test submitted successfully');
+      message.success(t('messages.bloodTestSubmitted'));
     }
+
     setTimeout(() => {
       navigate('/profile/analysis-history');
     }, 1000);
@@ -92,7 +101,7 @@ function BloodTestsForm() {
   return (
     <Card
       style={{ border: 'none' }}
-      title={<Title level={3}>Blood Test</Title>}
+      title={<Title level={3}>{t('rootform.blood')}</Title>}
     >
       <Form
         form={form}
@@ -107,7 +116,7 @@ function BloodTestsForm() {
               <Form.Item
                 label={field.label}
                 name={field.name}
-                rules={[{ required: true }]}
+                rules={[{ required: true, message: t('forms.required') }]}
               >
                 <InputNumber
                   min={field.min}
@@ -123,7 +132,7 @@ function BloodTestsForm() {
 
         <Form.Item style={{ textAlign: 'center', marginTop: 32 }}>
           <Button type="primary" htmlType="submit">
-            {updatedData ? 'Update Blood Test' : 'Submit Blood Test'}
+            {updatedData ? t('bloodTest.update') : t('bloodTest.submit')}
           </Button>
         </Form.Item>
       </Form>

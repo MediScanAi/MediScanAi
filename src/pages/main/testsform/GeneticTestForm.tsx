@@ -8,71 +8,89 @@ import {
   Row,
   Col,
 } from 'antd';
-import {
-  setGeneticTestData,
-  type GeneticTestFormValues,
-} from '../../../app/slices/geneticTestSlice';
 import { useAppDispatch } from '../../../app/hooks';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { saveTestData } from '../../../app/slices/testSlice';
+import { auth } from '../../../api/authApi';
+import type { GeneticTestFormValues } from '../../../app/slices/testSlice';
+import { useTranslation } from 'react-i18next';
+
 const { Title } = Typography;
 const { Option } = Select;
-
-const geneticFields = [
-  {
-    type: 'select',
-    name: 'brca1',
-    label: 'BRCA1 Gene Mutation',
-    options: ['negative', 'positive'],
-  },
-  {
-    type: 'select',
-    name: 'brca2',
-    label: 'BRCA2 Gene Mutation',
-    options: ['negative', 'positive'],
-  },
-  {
-    type: 'select',
-    name: 'apoe',
-    label: 'APOE Genotype Risk Score',
-    options: ['ε2/ε2', 'ε3/ε3', 'ε3/ε4', 'ε4/ε4'],
-  },
-  {
-    type: 'select',
-    name: 'mthfr',
-    label: 'MTHFR Mutation Level',
-    options: ['Homozygous', 'Heterozygous', 'Normal'],
-  },
-  {
-    type: 'select',
-    name: 'factor_v_leiden',
-    label: 'Factor V Leiden Mutation',
-    options: ['negative', 'positive'],
-  },
-  {
-    type: 'select',
-    name: 'cyp2c19',
-    label: 'CYP2C19 Enzyme Activity',
-    options: ['Category I', 'Category II', 'Category III'],
-  },
-];
 
 function GeneticTestForm() {
   const navigate = useNavigate();
   const [form] = Form.useForm();
+  const { t } = useTranslation();
   const dispatch = useAppDispatch();
   const updatedData = useLocation()?.state?.geneticTestData || undefined;
+  const geneticFields = [
+    {
+      type: 'select',
+      name: 'brca1',
+      label: t('geneticTest.brca1'),
+      options: [t('geneticTest.negative'), t('geneticTest.positive')],
+    },
+    {
+      type: 'select',
+      name: 'brca2',
+      label: t('geneticTest.brca2'),
+      options: [t('geneticTest.negative'), t('geneticTest.positive')],
+    },
+    {
+      type: 'select',
+      name: 'apoe',
+      label: t('geneticTest.apoe'),
+      options: [
+        t('geneticTest.ε2/ε2'),
+        t('geneticTest.ε3/ε3'),
+        t('geneticTest.ε3/ε4'),
+        t('geneticTest.ε4/ε4'),
+      ],
+    },
+    {
+      type: 'select',
+      name: 'mthfr',
+      label: t('geneticTest.mthfr'),
+      options: [
+        t('geneticTest.homozygous'),
+        t('geneticTest.heterozygous'),
+        t('geneticTest.normal'),
+      ],
+    },
+    {
+      type: 'select',
+      name: 'factor_v_leiden',
+      label: t('geneticTest.factor_v_leiden'),
+      options: [t('geneticTest.negative'), t('geneticTest.positive')],
+    },
+    {
+      type: 'select',
+      name: 'cyp2c19',
+      label: t('geneticTest.cyp2c19'),
+      options: [
+        t('geneticTest.categoryI'),
+        t('geneticTest.categoryII'),
+        t('geneticTest.categoryIII'),
+      ],
+    },
+  ];
 
   const onFinish = (values: GeneticTestFormValues) => {
-    dispatch(
-      setGeneticTestData({
-        ...values,
-      })
-    );
+    const uid = auth.currentUser?.uid;
+
+    if (!uid) {
+      message.error(t('geneticTest.notAuthenticated'));
+      return;
+    }
+
+    const testData = { ...values, date: new Date().toISOString() };
+    dispatch(saveTestData({ uid, testType: 'genetic', data: testData }));
 
     if (updatedData) {
-      message.success('Genetic test updated successfully');
+      message.success(t('geneticTest.updateSuccess'));
     } else {
-      message.success('Genetic test submitted successfully');
+      message.success(t('geneticTest.success'));
     }
 
     setTimeout(() => {
@@ -83,7 +101,7 @@ function GeneticTestForm() {
   return (
     <Card
       style={{ border: 'none' }}
-      title={<Title level={3}>Genetic Test</Title>}
+      title={<Title level={3}>{t('geneticTest.title')}</Title>}
     >
       <Form
         form={form}
@@ -100,7 +118,7 @@ function GeneticTestForm() {
                 name={field.name}
                 rules={[{ required: true }]}
               >
-                <Select placeholder="Select result">
+                <Select placeholder={t('geneticTest.placeholder')}>
                   {field.options?.map((opt) => (
                     <Option key={opt} value={opt}>
                       {opt.charAt(0).toUpperCase() + opt.slice(1)}
@@ -114,7 +132,7 @@ function GeneticTestForm() {
 
         <Form.Item style={{ textAlign: 'center', marginTop: 32 }}>
           <Button type="primary" htmlType="submit" size="large">
-            {updatedData ? 'Update Genetic Test' : 'Submit Genetic Test'}
+            {updatedData ? t('geneticTest.update') : t('geneticTest.submit')}
           </Button>
         </Form.Item>
       </Form>

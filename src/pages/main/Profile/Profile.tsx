@@ -9,18 +9,19 @@ import '../../../assets/styles/Profile.css';
 import { useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 
-import UserInfo from '../profile/UserInfo';
-import AnalysisHistory from '../profile/AnalysisHistory';
-import MainTests from '../profile/MainTests';
-import ContactUs from '../profile/ContactUs';
-import { useAppSelector } from '../../../app/hooks.ts';
+import UserInfo from './UserInfo';
+import AnalysisHistory from './AnalysisHistory';
+import MainTests from './MainTests';
+import ContactUs from './ContactUs';
 import React, { useEffect, useState } from 'react';
+import { useAppSelector } from '../../../app/hooks';
 
 const Profile: React.FC = () => {
   const theme = useAppSelector((state) => state.theme.isDarkMode);
   const { type } = useParams();
   const navigate = useNavigate();
   const [width, setWidth] = useState(window.innerWidth);
+
   useEffect(() => {
     const handleResize = () => {
       setWidth(window.innerWidth);
@@ -31,24 +32,52 @@ const Profile: React.FC = () => {
 
   const items: TabsProps['items'] = [
     {
-      label: <span style={{fontSize:width<1200?'16px':'20px'}} className={(theme?' dark-mode-text':'')}><UserOutlined />  Info</span>,
+      label: (
+        <span
+          style={{ fontSize: width < 1200 ? '16px' : '20px' }}
+          className={theme ? ' dark-mode-text' : ''}
+        >
+          <UserOutlined /> Info
+        </span>
+      ),
       key: 'info',
       children: <UserInfo width={width} theme={theme} />,
     },
     {
-      label: <span style={{fontSize:width<1200?'16px':'20px'}} className={(theme?' dark-mode-text':'')}><ExperimentOutlined />  Analysis History</span>,
+      label: (
+        <span
+          style={{ fontSize: width < 1200 ? '16px' : '20px' }}
+          className={theme ? ' dark-mode-text' : ''}
+        >
+          <ExperimentOutlined /> Analysis History
+        </span>
+      ),
       key: 'analysis-history',
       children: <AnalysisHistory width={width} theme={theme} />,
     },
     {
       key: 'tests',
-      label: <span style={{fontSize:width<1200?'16px':'20px'}} className={(theme?' dark-mode-text':'')}><MedicineBoxOutlined />  Tests</span>,
+      label: (
+        <span
+          style={{ fontSize: width < 1200 ? '16px' : '20px' }}
+          className={theme ? ' dark-mode-text' : ''}
+        >
+          <MedicineBoxOutlined /> Tests
+        </span>
+      ),
       children: <MainTests width={width} theme={theme} />,
     },
     {
       key: 'contact-us',
-      label: <span style={{fontSize:width<1200?'16px':'20px'}} className={(theme?' dark-mode-text':'')}><PhoneOutlined />  Contact Us</span>,
-      children: <ContactUs width={width}  theme={theme}/>,
+      label: (
+        <span
+          style={{ fontSize: width < 1200 ? '16px' : '20px' }}
+          className={theme ? ' dark-mode-text' : ''}
+        >
+          <PhoneOutlined /> Contact Us
+        </span>
+      ),
+      children: <ContactUs width={width} theme={theme} />,
     },
   ];
 

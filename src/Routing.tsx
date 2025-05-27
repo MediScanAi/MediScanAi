@@ -6,7 +6,6 @@ import HomePage from './pages/main/HomePage';
 import AboutUsPage from './pages/main/AboutUsPage';
 import RegisterPage from './pages/auth/RegisterPage';
 import LoginPage from './pages/auth/LoginPage';
-import AnalysisPage from './pages/main/analysis/AnalysisPage';
 import BloodAnalysis from './pages/main/analysis/BloodAnalysis';
 import VitaminAnalysis from './pages/main/analysis/VitaminAnalysis';
 import UrineAnalysis from './pages/main/analysis/UrineAnalysis';
@@ -15,6 +14,7 @@ import ChatWithAI from './pages/main/ChatWithAI';
 import RootForm from './pages/main/testsform/RootForm';
 import Profile from './pages/main/profile/Profile';
 import PageNotFound from './pages/main/PageNotFound';
+import MyHealth from './pages/main/MyHealth';
 
 const router = createBrowserRouter([
   {
@@ -48,10 +48,10 @@ const router = createBrowserRouter([
     element: <ProtectedRoute />,
     children: [
       {
-        path: '/analysis',
+        path: '/my-health',
         element: (
           <Layout>
-            <AnalysisPage />
+            <MyHealth />
           </Layout>
         ),
       },

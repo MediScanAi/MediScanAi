@@ -20,7 +20,6 @@
   margin-bottom: 1.5rem;
 }
 
-
 .welcome-content-container {
   display: flex;
   justify-content: space-between;
@@ -171,14 +170,13 @@
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   font-size: 16px;
   margin-top: 10px;
-  width: 160px;
-  height: 40px;
+  width: 200px;
+  height: 45px;
   position: absolute;
   left: 0;
   top: 0;
   margin-top: 10px;
 }
-
 
 .back-button:hover {
   background: #2563eb;
