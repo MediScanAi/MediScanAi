@@ -21,6 +21,8 @@ import LoginWithGoogleButton from '../../components/LoginWithGoogleButton';
 import Rocket3D from '../../assets/photos/rocket.png';
 import '../../assets/styles/LoginPage.css';
 import { toggleTheme } from '../../app/slices/theme';
+import PrimaryButton from '../../components/common/PrimaryButton';
+import { MoonOutlined, SunOutlined } from '@ant-design/icons';
 
 const { Title, Text } = Typography;
 const { useBreakpoint } = Grid;
@@ -62,8 +64,8 @@ const LoginPage: React.FC = () => {
       <Switch
         className="theme-toggle"
         checked={isDarkMode}
-        checkedChildren="🌙"
-        unCheckedChildren="☀️"
+        checkedChildren={<MoonOutlined/>}
+        unCheckedChildren={<SunOutlined />}
         onChange={handleThemeChange}
       />
       {screens.md && (
@@ -74,12 +76,12 @@ const LoginPage: React.FC = () => {
             transition={{ duration: 0.5 }}
             className="welcome-text-container fade-in"
           >
-            <Title level={3} className="welcome-title">
+            <Title level={2} className="welcome-title">
               Welcome back to MediScan AI
             </Title>
             <Text className="welcome-description">
-              Log in to continue your journey with us.
-              Your health insights all in one place!
+              Log in to continue your journey with us. Your health insights all
+              in one place!
             </Text>
           </motion.div>
           <motion.img
@@ -88,15 +90,17 @@ const LoginPage: React.FC = () => {
             className="welcome-rocket"
             initial={{ opacity: 0, rotate: 25, x: -45, y: 45 }}
             animate={{ opacity: 1, rotate: -5, x: 0, y: 0 }}
-            whileHover={{ scale: 1.05 }}
-            transition={{ duration: 1.2 }}
+            transition={{ duration: 0.9, ease: 'easeInOut' }}
           />
         </div>
       )}
 
       <div className="login-card-section">
         {isForgotPassword ? (
-          <ForgotPasswordForm goBack={toggleForgotPassword} />
+          <ForgotPasswordForm
+            onCancel={toggleForgotPassword}
+            isDarkMode={isDarkMode}
+          />
         ) : (
           <motion.div
             initial={{ opacity: 0, y: 40 }}
@@ -164,15 +168,13 @@ const LoginPage: React.FC = () => {
                         marginBottom: 8,
                       }}
                     >
-                      <Button
-                        type="primary"
+                      <PrimaryButton
                         htmlType="submit"
                         loading={loading}
                         size="large"
-                        className="login-button"
                       >
                         Login
-                      </Button>
+                      </PrimaryButton>
                       <LoginWithGoogleButton
                         toggleLoading={toggleGoogleLoading}
                       />

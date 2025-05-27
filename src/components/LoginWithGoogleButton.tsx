@@ -1,9 +1,10 @@
-import { Button, message } from 'antd';
+import { message } from 'antd';
 import { GoogleOutlined } from '@ant-design/icons';
 import { loginWithGoogle } from '../api/authApi';
 import { setUser } from '../app/slices/authSlice';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router';
+import SecondaryButton from './common/SecondaryButton';
 
 interface PropsTypes {
   toggleLoading: (isLoading: boolean) => void;
@@ -11,6 +12,7 @@ interface PropsTypes {
 const LoginWithGoogleButton: React.FC<PropsTypes> = ({ toggleLoading }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
   const handleGoogleLogin = async () => {
     toggleLoading(true);
     try {
@@ -30,29 +32,13 @@ const LoginWithGoogleButton: React.FC<PropsTypes> = ({ toggleLoading }) => {
   };
 
   return (
-    <Button
+    <SecondaryButton
       block
-      type="default"
-      htmlType="button"
-      size="large"
-      style={{
-        flex: 1,
-        borderRadius: 12,
-        fontWeight: 600,
-        fontSize: 16,
-        height: 44,
-        background: '#fff',
-        color: '#4666e5',
-        border: '1.5px solid #a9baf7',
-        animation: 'fadeInUp 0.9s ease-out 0.5s forwards',
-        opacity: 0,
-        transition: 'all 0.4s ease',
-      }}
       icon={<GoogleOutlined />}
       onClick={handleGoogleLogin}
     >
       Continue with Google
-    </Button>
+    </SecondaryButton>
   );
 };
 

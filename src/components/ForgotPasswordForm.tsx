@@ -1,17 +1,25 @@
-import { Form, Typography, Button, Input, message, Card } from 'antd';
+import { Form, Typography, Input, Card, message } from 'antd';
 import { motion } from 'framer-motion';
 import type React from 'react';
 import { sendResetPasswordEmail } from '../api/authApi';
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
 import { useState } from 'react';
+import PrimaryButton from './common/PrimaryButton';
+import SecondaryButton from './common/SecondaryButton';
 
 const { Title, Text } = Typography;
+
 interface ForgotPasswordFormProps {
-  goBack: () => void;
+  onCancel: () => void;
+  isDarkMode?: boolean;
 }
 
-const ForgotPasswordForm: React.FC<ForgotPasswordFormProps> = ({ goBack }) => {
+const ForgotPasswordForm: React.FC<ForgotPasswordFormProps> = ({
+  onCancel,
+  isDarkMode,
+}) => {
   const [loading, setLoading] = useState(false);
+
   const handleForgotPassword = async (email: string) => {
     setLoading(true);
     try {
@@ -26,25 +34,21 @@ const ForgotPasswordForm: React.FC<ForgotPasswordFormProps> = ({ goBack }) => {
 
   const onFinish = async (values: { resetEmail: string }) => {
     await handleForgotPassword(values.resetEmail);
-    goBack();
+    onCancel();
   };
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 40 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6 }}
-      style={{ width: '100%', maxWidth: 400 }}
+      className={`login-spin-container${isDarkMode ? ' dark' : ''}`}
     >
-      <Card
-        style={{
-          borderRadius: '16px',
-          boxShadow: '0 8px 16px rgba(0,0,0,0.15)',
-        }}
-      >
-        <Title level={2} style={{ fontWeight: 'bold', marginBottom: 24 }}>
+      <Card className={`login-card${isDarkMode ? ' dark' : ''}`}>
+        <Title level={2} className="login-title">
           Reset your password
         </Title>
-        <Form layout="vertical" onFinish={onFinish}>
+        <Form layout="vertical" onFinish={onFinish} requiredMark={false}>
           <Form.Item
             label="Email"
             name="resetEmail"
@@ -53,35 +57,45 @@ const ForgotPasswordForm: React.FC<ForgotPasswordFormProps> = ({ goBack }) => {
               { type: 'email', message: 'Please enter a valid email' },
             ]}
           >
-            <Input placeholder="Enter your email" />
+            <Input
+              placeholder="Enter your email"
+              className="login-input"
+              size="large"
+            />
           </Form.Item>
-
-          <Text type="secondary" style={{ display: 'block', marginBottom: 24 }}>
+          <Text
+            className="login-description"
+            style={{ marginBottom: 20, display: 'block' }}
+          >
             You will receive an email with a link to reset your password.
           </Text>
-
           <Form.Item
-            layout="horizontal"
             style={{
               display: 'flex',
+              gap: 10,
+              marginTop: 5,
+              marginBottom: 8,
               justifyContent: 'center',
             }}
           >
-            <Button
-              htmlType="submit"
-              type="primary"
-              style={{ marginRight: '12px' }}
-              loading={loading}
-            >
+            <PrimaryButton htmlType="submit" loading={loading}>
               Reset Password
-            </Button>
-            <Button htmlType="button" onClick={goBack}>
+            </PrimaryButton>
+            <SecondaryButton
+              htmlType="button"
+              onClick={onCancel}
+              style={{
+                marginLeft: 10,
+              }}
+            >
               Cancel
-            </Button>
+            </SecondaryButton>
           </Form.Item>
-
-          <Text style={{ display: 'block', textAlign: 'center' }}>
-            Don't have an account? <Link to="/auth/register">Register</Link>
+          <Text className="register-text">
+            Don't have an account?{' '}
+            <Link to="/auth/register" className="register-link">
+              Register
+            </Link>
           </Text>
         </Form>
       </Card>
