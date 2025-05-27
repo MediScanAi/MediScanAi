@@ -261,7 +261,6 @@ function HomePage() {
 
         <Row className="leading-medicine-section">
           <Col lg={12} sm={24} className="leading-medicine-content">
-            <LineOutlined className="leading-medicine-icon" />
             <Title className="leading-medicine-title">
               {t('leadingMedicine.title')}
             </Title>

@@ -249,7 +249,7 @@ function GeneticAnalysis() {
               : 0,
     },
   ];
-  
+
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, []);
@@ -308,8 +308,7 @@ function GeneticAnalysis() {
                     justifyContent: 'center',
                     marginBottom: 20,
                   }}
-                >
-                </div>
+                ></div>
               </Col>
               <Col
                 style={{
@@ -361,7 +360,9 @@ function GeneticAnalysis() {
                   size="large"
                   style={{ marginLeft: 20 }}
                   onClick={() => {
-                    const warnings = getGeneticRisks(geneticTestData as GeneticTestFormValues);
+                    const warnings = getGeneticRisks(
+                      geneticTestData as GeneticTestFormValues
+                    );
                     navigate('/ai-doctor', {
                       state: {
                         geneticTests: geneticTestData,

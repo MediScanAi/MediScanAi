@@ -264,19 +264,6 @@
   width: 100%;
 }
 
-.leading-medicine-content {
-  text-align: left;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: space-around;
-}
-
-.leading-medicine-icon {
-  font-size: 68px;
-  color: rgb(210, 46, 18);
-}
-
 .leading-medicine-title {
   color: black;
   font-weight: bold;
