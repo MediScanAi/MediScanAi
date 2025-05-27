@@ -15,6 +15,7 @@ import {
   browserLocalPersistence,
 } from 'firebase/auth';
 import { getFirestore } from 'firebase/firestore';
+import { doc, setDoc, serverTimestamp, getDoc } from 'firebase/firestore';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyDJENrior6OVxgHHT0xkitZp-Xj12_By20',
@@ -61,6 +62,13 @@ export const login = async (email: string, password: string) => {
 
 export const register = async (email: string, password: string) => {
   const { user } = await createUserWithEmailAndPassword(auth, email, password);
+
+  await setDoc(doc(db, 'users', user.uid), {
+    email: user.email,
+    createdAt: serverTimestamp(),
+    role: 'user',
+  });
+
   return user;
 };
 
@@ -92,13 +100,21 @@ function isFirebaseAuthError(error: unknown): error is { code: string } {
   );
 }
 
-/**
- * Opens a Google sign-in popup.
- */
 export const loginWithGoogle = async (): Promise<PlainUser | null> => {
   const googleProvider = new GoogleAuthProvider();
   try {
     const { user } = await signInWithPopup(auth, googleProvider);
+
+    const userRef = doc(db, 'users', user.uid);
+    const snap = await getDoc(userRef);
+    if (!snap.exists()) {
+      await setDoc(userRef, {
+        email: user.email,
+        createdAt: serverTimestamp(),
+        role: 'user',
+      });
+    }
+
     return mapFirebaseUser(user);
   } catch (e: unknown) {
     if (isFirebaseAuthError(e)) {
