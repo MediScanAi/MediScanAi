@@ -64,7 +64,7 @@ const LoginPage: React.FC = () => {
       <Switch
         className="theme-toggle"
         checked={isDarkMode}
-        checkedChildren={<MoonOutlined/>}
+        checkedChildren={<MoonOutlined />}
         unCheckedChildren={<SunOutlined />}
         onChange={handleThemeChange}
       />
@@ -88,8 +88,8 @@ const LoginPage: React.FC = () => {
             src={Rocket3D}
             alt="Rocket"
             className="welcome-rocket"
-            initial={{ opacity: 0, rotate: 25, x: -45, y: 45 }}
-            animate={{ opacity: 1, rotate: -5, x: 0, y: 0 }}
+            initial={{ opacity: 0, x: -45, y: 45 }}
+            animate={{ opacity: 1, x: 0, y: 0 }}
             transition={{ duration: 0.9, ease: 'easeInOut' }}
           />
         </div>
