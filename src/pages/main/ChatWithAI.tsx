@@ -38,6 +38,7 @@ import { useAppSelector } from '../../app/hooks';
 import { Spin } from 'antd';
 import { CopyOutlined } from '@ant-design/icons';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 const { Sider, Content } = Layout;
 const { Text } = Typography;
@@ -63,6 +64,7 @@ const ChatWithAi = () => {
   const [editingChatId, setEditingChatId] = useState<string | null>(null);
   const [editingTitle, setEditingTitle] = useState('');
   const [language, setLanguage] = useState<'en' | 'ru'>('en');
+  const { t } = useTranslation();
   const messagesEndRef = useRef<HTMLDivElement | null>(null);
   const tests = useAppSelector((state) => state.tests);
   const [currentUtterance, setCurrentUtterance] =
@@ -435,7 +437,7 @@ const ChatWithAi = () => {
         <Dropdown trigger={['hover']} menu={{ items: analysisItems }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
             <DiffOutlined />
-            <Text>Scan Analysis</Text>
+            <Text>{t('chat.scanAnalysis')}</Text>
           </div>
         </Dropdown>
       ),
@@ -479,7 +481,7 @@ const ChatWithAi = () => {
         >
           <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
             <UploadOutlined />
-            <Text>PDF Upload</Text>
+            <Text>{t('chat.pdfUpload')}</Text>
             {loading && <Spin size="small" style={{ marginLeft: 8 }} />}
           </div>
         </Upload>
@@ -509,7 +511,7 @@ const ChatWithAi = () => {
           }}
           onClick={createNewChat}
         >
-          New Chat
+          {t('chat.newChat')}
         </Button>
         {Object.entries(grouped).map(([label, chats]) => (
           <div key={label} style={{ marginBottom: 12 }}>
@@ -588,9 +590,9 @@ const ChatWithAi = () => {
                                 }
                               }}
                             >
-                              <Menu.Item key="rename">Rename</Menu.Item>
+                              <Menu.Item key="rename">{t('chat.rename')}</Menu.Item>
                               <Menu.Item key="delete" danger>
-                                Delete
+                                {t('chat.delete')}
                               </Menu.Item>
                             </Menu>
                           }
