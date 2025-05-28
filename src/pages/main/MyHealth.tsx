@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import dayjs from 'dayjs';
 import {
   Typography,
   Descriptions,
@@ -13,6 +14,7 @@ import {
   Statistic,
   Alert,
   Spin,
+  DatePicker,
 } from 'antd';
 import {
   SmileOutlined,
@@ -30,11 +32,18 @@ import bigPerson from '../../assets/photos/fat.png';
 import midPerson from '../../assets/photos/mid.png';
 import '../../assets/styles/healthPage.css';
 import { motion } from 'framer-motion';
-const { Title, Text, Paragraph } = Typography;
-import { useAppSelector } from '../../app/hooks';
+import { useAppSelector, useAppDispatch } from '../../app/hooks';
 import { useTranslation } from 'react-i18next';
+import {
+  fetchHealthData,
+  type HealthDataEntry,
+} from '../../app/slices/healthSlice';
+import { Timestamp } from 'firebase/firestore';
+
+const { Title, Text, Paragraph } = Typography;
 
 const HealthPage: React.FC = () => {
+  const dispatch = useAppDispatch();
   const [bmi, setBmi] = useState<number | null>(null);
   const [bmr, setBmr] = useState<number | null>(null);
   const [bodyFat, setBodyFat] = useState<number | null>(null);
@@ -43,6 +52,30 @@ const HealthPage: React.FC = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const userData = useAppSelector((state) => state.userData.data);
+  const healthData = useAppSelector((state) => state.healthData);
+  const user = useAppSelector((state) => state.auth.user);
+  const [selectedDate, setSelectedDate] = useState<Date | null>(null);
+  const [fetchedHealthData, setFetchedHealthData] = useState<HealthDataEntry[]>(
+    Array.isArray(healthData.data?.entries) ? healthData.data.entries : []
+  );
+
+  useEffect(() => {
+    if (user && user.uid) {
+      const dateStr = dayjs(selectedDate || new Date()).format('YYYY-MM-DD');
+      dispatch(fetchHealthData({ uid: user.uid, date: dateStr }))
+        .unwrap()
+        .then((data) => {
+          if (Array.isArray(data?.entries)) {
+            setFetchedHealthData(data.entries);
+          } else {
+            setFetchedHealthData([]);
+          }
+        })
+        .catch((error) => {
+          console.error('Failed to fetch health data:', error);
+        });
+    }
+  }, [user, dispatch, selectedDate]);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -72,9 +105,9 @@ const HealthPage: React.FC = () => {
           const logBase10 = (val: number) => Math.log(val) / Math.LN10;
           const fatPercent =
             495 /
-            (1.0324 -
-              0.19077 * logBase10(waist - neck) +
-              0.15456 * logBase10(height)) -
+              (1.0324 -
+                0.19077 * logBase10(waist - neck) +
+                0.15456 * logBase10(height)) -
             450;
           setBodyFat(Number(fatPercent.toFixed(1)));
         }
@@ -136,7 +169,7 @@ const HealthPage: React.FC = () => {
               {bmi}
             </Title>
             <Text strong className="metric-label">
-              {t("health.bmi")}
+              {t('health.bmi')}
             </Text>
           </motion.div>
         </motion.div>
@@ -177,7 +210,7 @@ const HealthPage: React.FC = () => {
               {bmr}
             </Title>
             <Text strong className="metric-label">
-              {t("health.bmr")}
+              {t('health.bmr')}
             </Text>
           </motion.div>
         </motion.div>
@@ -227,7 +260,7 @@ const HealthPage: React.FC = () => {
               {bodyFat}%
             </Title>
             <Text strong className="metric-label">
-              {t("health.bodyFat")}
+              {t('health.bodyFat')}
             </Text>
           </motion.div>
         </motion.div>
@@ -277,7 +310,7 @@ const HealthPage: React.FC = () => {
               {idealWeight}kg
             </Title>
             <Text strong className="metric-label">
-              {t("health.idealWeight")}
+              {t('health.idealWeight')}
             </Text>
           </motion.div>
         </motion.div>
@@ -340,25 +373,25 @@ const HealthPage: React.FC = () => {
           <Space size="large">
             <Statistic
               className="suggestion-statistic"
-              title={t("health.dailyCalories")}
+              title={t('health.dailyCalories')}
               value={bmr ? bmr + 300 : '--'}
               prefix={<FireOutlined />}
             />
             <Statistic
               className="suggestion-statistic"
-              title={t("health.exerciseGoal")}
-              value={t("health.minutes", { minutes: 150 })}
+              title={t('health.exerciseGoal')}
+              value={t('health.minutes', { minutes: 150 })}
               prefix={<HeartOutlined />}
             />
             <Statistic
               className="suggestion-statistic"
-              title={t("health.threeMonthGoal")}
+              title={t('health.threeMonthGoal')}
               value={
                 status === 'healthy'
-                  ? t("health.maintain")
+                  ? t('health.maintain')
                   : status === 'underweight'
-                    ? t("health.gainWeight", { kg: "2-4" })
-                    : t("health.loseWeight", { kg: "5-10" })
+                    ? t('health.gainWeight', { kg: '2-4' })
+                    : t('health.loseWeight', { kg: '5-10' })
               }
               prefix={<LineChartOutlined />}
             />
@@ -376,8 +409,8 @@ const HealthPage: React.FC = () => {
     if (weight < 45) {
       return (
         <Alert
-          message={t("health.alerts.lowWeight.title")}
-          description={t("health.alerts.lowWeight.description")}
+          message={t('health.alerts.lowWeight.title')}
+          description={t('health.alerts.lowWeight.description')}
           type="warning"
           showIcon
           className="health-alert"
@@ -386,8 +419,8 @@ const HealthPage: React.FC = () => {
     } else if (weight > 100 || bmi > 30) {
       return (
         <Alert
-          message={t("health.alerts.highWeight.title")}
-          description={t("health.alerts.highWeight.description")}
+          message={t('health.alerts.highWeight.title')}
+          description={t('health.alerts.highWeight.description')}
           type="error"
           showIcon
           className="health-alert"
@@ -396,8 +429,8 @@ const HealthPage: React.FC = () => {
     } else {
       return (
         <Alert
-          message={t("health.alerts.healthyWeight.title")}
-          description={t("health.alerts.healthyWeight.description")}
+          message={t('health.alerts.healthyWeight.title')}
+          description={t('health.alerts.healthyWeight.description')}
           type="success"
           showIcon
           className="health-alert"
@@ -411,11 +444,9 @@ const HealthPage: React.FC = () => {
       <div className="loading-state">
         <Spin className="loading-spinner" />
         <Title level={3} className="loading-title">
-          {t("health.loading.title")}
+          {t('health.loading.title')}
         </Title>
-        <Text className="loading-subtitle">
-          {t("health.loading.subtitle")}
-        </Text>
+        <Text className="loading-subtitle">{t('health.loading.subtitle')}</Text>
       </div>
     );
   }
@@ -424,10 +455,10 @@ const HealthPage: React.FC = () => {
     return (
       <div className="empty-state">
         <Title level={2} className="empty-title">
-          {t("health.emptyState.title")}
+          {t('health.emptyState.title')}
         </Title>
         <Paragraph className="empty-message">
-          {t("health.emptyState.message")}
+          {t('health.emptyState.message')}
         </Paragraph>
         <Button
           type="primary"
@@ -437,7 +468,7 @@ const HealthPage: React.FC = () => {
           onClick={() => navigate('/profile/user-info')}
           className="empty-button"
         >
-          {t("health.emptyState.button")}
+          {t('health.emptyState.button')}
         </Button>
       </div>
     );
@@ -453,10 +484,10 @@ const HealthPage: React.FC = () => {
             transition={{ duration: 0.5 }}
           >
             <Title level={2} className="dashboard-title">
-              {t("health.dashboard.title")}
+              {t('health.dashboard.title')}
             </Title>
             <Text className="dashboard-subtitle">
-              {t("health.dashboard.subtitle")}
+              {t('health.dashboard.subtitle')}
             </Text>
           </motion.div>
         </Col>
@@ -472,7 +503,7 @@ const HealthPage: React.FC = () => {
             <Card className="profile-card">
               <div className="profile-header">
                 <Title level={4} className="profile-title">
-                  <UserOutlined /> {t("health.profile.title")}
+                  <UserOutlined /> {t('health.profile.title')}
                 </Title>
                 <Button
                   type="text"
@@ -485,46 +516,84 @@ const HealthPage: React.FC = () => {
                 bordered
                 column={1}
                 className="profile-descriptions"
-                labelStyle={{ fontWeight: 100 }}
+                styles={{ label: { fontWeight: 100 } }}
                 size="small"
               >
-                <Descriptions.Item label={t("health.profile.age")}>
+                <Descriptions.Item label={t('health.profile.age')}>
                   <Text>
-                    {userData?.age ? t("health.years", { years: userData.age }) : t("health.notSet")}
+                    {userData?.age
+                      ? t('health.years', { years: userData.age })
+                      : t('health.notSet')}
                   </Text>
                 </Descriptions.Item>
-                <Descriptions.Item label={t("health.profile.weight")}>
+                <Descriptions.Item label={t('health.profile.weight')}>
                   <Text>
                     {userData?.weight
-                      ? t("health.kg", { kg: userData.weight })
-                      : t("health.notSet")}
+                      ? t('health.kg', { kg: userData.weight })
+                      : t('health.notSet')}
                   </Text>
                 </Descriptions.Item>
-                <Descriptions.Item label={t("health.profile.height")}>
+                <Descriptions.Item label={t('health.profile.height')}>
                   <Text>
                     {userData?.height
-                      ? t("health.cm", { cm: userData.height })
-                      : t("health.notSet")}
+                      ? t('health.cm', { cm: userData.height })
+                      : t('health.notSet')}
                   </Text>
                 </Descriptions.Item>
-                <Descriptions.Item label={t("health.profile.waistSize")}>
+                <Descriptions.Item label={t('health.profile.waistSize')}>
                   <Text>
                     {userData?.waistSize
-                      ? t("health.cm", { cm: userData.waistSize })
-                      : t("health.notSet")}
+                      ? t('health.cm', { cm: userData.waistSize })
+                      : t('health.notSet')}
                   </Text>
                 </Descriptions.Item>
-                <Descriptions.Item label={t("health.profile.neckSize")}>
+                <Descriptions.Item label={t('health.profile.neckSize')}>
                   <Text>
                     {userData?.neckSize
-                      ? t("health.cm", { cm: userData.neckSize })
-                      : t("health.notSet")}
+                      ? t('health.cm', { cm: userData.neckSize })
+                      : t('health.notSet')}
                   </Text>
                 </Descriptions.Item>
               </Descriptions>
 
               <Divider className="profile-divider" />
 
+              <DatePicker
+                onChange={(date) => {
+                  setSelectedDate(date?.toDate() || null);
+                }}
+                disabledDate={(current) => {
+                  return (
+                    current && current > dayjs().endOf('day').subtract(1, 'day')
+                  );
+                }}
+              />
+              <div className="health-entries">
+                {fetchedHealthData.map(
+                  (entry: HealthDataEntry, index: number) => (
+                    <div
+                      key={`${entry.date}-${index}`}
+                      className="health-entry"
+                    >
+                      <h3>{dayjs(entry.date).format('MMMM D, YYYY')}</h3>
+                      <div className="entry-details">
+                        {Object.entries(entry).map(([key, value]) => {
+                          if (key === 'date') return null;
+                          const displayValue = value instanceof Timestamp 
+                            ? value.toDate().toISOString()
+                            : value;
+                          return (
+                            <p key={key}>
+                              <strong>{key}:</strong> {displayValue}
+                            </p>
+                          );
+                        })}
+                      </div>
+                    </div>
+                  )
+                )}
+              </div>
+              <Divider className="profile-divider" />
               <div className="profile-summary">{renderWeightAdvice()}</div>
             </Card>
           </motion.div>
@@ -541,14 +610,14 @@ const HealthPage: React.FC = () => {
                 <img
                   src={
                     userData?.weight &&
-                      userData.weight > 80 &&
-                      userData.weight < 100
+                    userData.weight > 80 &&
+                    userData.weight < 100
                       ? midPerson
                       : userData?.weight && userData.weight > 100
                         ? bigPerson
                         : person
                   }
-                  alt={t("health.visualization.alt")}
+                  alt={t('health.visualization.alt')}
                   className="health-visualization"
                 />
               </div>
@@ -564,7 +633,7 @@ const HealthPage: React.FC = () => {
           >
             <Card className="metrics-card">
               <Title level={4} className="metrics-title">
-                <DashboardOutlined /> {t("health.metrics.title")}
+                <DashboardOutlined /> {t('health.metrics.title')}
               </Title>
 
               <div className="metrics-grid">
