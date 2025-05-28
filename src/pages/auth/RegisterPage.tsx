@@ -61,14 +61,14 @@ const RegisterPage: React.FC = () => {
   const onFinish = async ({
     name,
     surname,
-    gender,
-    age,
     email,
     password,
+    gender,
+    age,
   }: RegisterFormValues) => {
     try {
       await dispatch(
-        registerUser({ name, surname, email, password }) // add gender and age
+        registerUser({ name, surname, email, password, gender, age })
       ).unwrap();
       message.info(
         "We've sent a verification e-mail. Please check your inbox."

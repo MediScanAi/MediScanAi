@@ -1,0 +1,70 @@
+.user-info-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 16px;
+  min-width: 250px;
+  width: 500px;
+}
+.user-info-list.dark {
+  box-shadow:
+    0 8px 32px rgba(74, 144, 226, 0.12),
+    0 0 0 3px rgba(114, 167, 255, 0.15);
+  border-radius: 10px;
+}
+
+.user-info-list.dark .user-info-label,
+.user-info-list.dark .user-info-static,
+.user-info-list.dark .ant-typography,
+.user-info-list.dark .ant-input,
+.user-info-list.dark .ant-select-selector {
+  color: white !important;
+  border-color: #4a90e2 !important;
+}
+
+.user-info-row {
+  padding: 8px 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+.user-info-label {
+  font-weight: 500;
+}
+.user-info-static {
+  cursor: default;
+}
+.user-info-static.editable {
+  cursor: pointer;
+}
+.editable-cell {
+  display: flex;
+  align-items: center;
+}
+.cell-input {
+  flex: 1;
+  margin-right: 8px;
+  width: 100%;
+  min-width: fit-content;
+}
+.cell-actions {
+  display: flex;
+  gap: 4px;
+}
+
+
+.user-info-list.dark .user-info-label,
+.user-info-list.dark .user-info-static,
+.user-info-list.dark .ant-typography {
+  color: #fff;
+}
+
+.user-info-list.light {
+  background-color: #fff;
+  color: #000;
+}
+.dark-spin .ant-spin-dot-item {
+  background-color: white !important;
+}
+
+.dark-spin .ant-spin-text {
+  color: white !important;
+}
