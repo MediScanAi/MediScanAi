@@ -212,8 +212,16 @@ const AnalysisHistory: React.FC<AnalysisHistoryProps> = ({ theme, width }) => {
   ];
 
   const testGeneticResults = [
-    { name: t('analysisHistory.brca1'), value: geneticTestData?.brca1, icon: <HeartOutlined /> },
-    { name: t('analysisHistory.brca2'), value: geneticTestData?.brca2, icon: <HeartOutlined /> },
+    {
+      name: t('analysisHistory.brca1'),
+      value: geneticTestData?.brca1,
+      icon: <HeartOutlined />,
+    },
+    {
+      name: t('analysisHistory.brca2'),
+      value: geneticTestData?.brca2,
+      icon: <HeartOutlined />,
+    },
     {
       name: t('analysisHistory.apoe'),
       value: geneticTestData?.apoe,
@@ -354,7 +362,8 @@ const AnalysisHistory: React.FC<AnalysisHistoryProps> = ({ theme, width }) => {
                     }}
                   >
                     {t('analysisHistory.lastUpdated')}
-                    {bloodTestData.date || t('analysisHistory.dateNotSpecified')}
+                    {bloodTestData.date ||
+                      t('analysisHistory.dateNotSpecified')}
                   </Text>
                   <Button
                     onClick={() => handleDeleteTest('blood')}
@@ -408,7 +417,8 @@ const AnalysisHistory: React.FC<AnalysisHistoryProps> = ({ theme, width }) => {
                     }}
                   >
                     {t('analysisHistory.lastUpdated')}
-                    {urineTestData.date || t('analysisHistory.dateNotSpecified')}
+                    {urineTestData.date ||
+                      t('analysisHistory.dateNotSpecified')}
                   </Text>
                   <Button
                     onClick={() => handleDeleteTest('urine')}
@@ -462,7 +472,8 @@ const AnalysisHistory: React.FC<AnalysisHistoryProps> = ({ theme, width }) => {
                     }}
                   >
                     {t('analysisHistory.lastUpdated')}
-                    {vitaminTestData.date || t('analysisHistory.dateNotSpecified')}
+                    {vitaminTestData.date ||
+                      t('analysisHistory.dateNotSpecified')}
                   </Text>
                   <Button
                     onClick={() => handleDeleteTest('vitamin')}
@@ -516,7 +527,8 @@ const AnalysisHistory: React.FC<AnalysisHistoryProps> = ({ theme, width }) => {
                     }}
                   >
                     {t('analysisHistory.lastUpdated')}
-                    {geneticTestData.date || t('analysisHistory.dateNotSpecified')}
+                    {geneticTestData.date ||
+                      t('analysisHistory.dateNotSpecified')}
                   </Text>
                   <Button
                     onClick={() => handleDeleteTest('genetic')}

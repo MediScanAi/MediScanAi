@@ -23,7 +23,12 @@ const ContactUs: React.FC<ContactUsProps> = ({ theme }) => {
           <Title
             className={theme ? 'dark-mode-text' : ''}
             level={2}
-            style={{ marginBottom: 0, color: '#3498db', fontWeight: 600,fontFamily: 'Poppins' }}
+            style={{
+              marginBottom: 0,
+              color: '#3498db',
+              fontWeight: 600,
+              fontFamily: 'Poppins',
+            }}
           >
             {t('contactUs.title')}
           </Title>

@@ -460,8 +460,7 @@ function UrineAnalysis() {
                     width: '100%',
                     marginBottom: '20px',
                   }}
-                >
-                </div>
+                ></div>
               </Col>
               <Col
                 style={{
@@ -522,7 +521,9 @@ function UrineAnalysis() {
                   size="large"
                   style={{ marginLeft: 20 }}
                   onClick={() => {
-                    const warnings = getUrineDiseaseRisks(urineTestData as UrineTestFormValues);
+                    const warnings = getUrineDiseaseRisks(
+                      urineTestData as UrineTestFormValues
+                    );
                     navigate('/ai-doctor', {
                       state: {
                         urineTests: urineTestData,

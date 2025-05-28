@@ -56,7 +56,8 @@
   },
   "faqs": {
     "title": "Frequently Asked Questions",
-    "items": [{
+    "items": [
+      {
         "question": "What is Mediscan AI?",
         "answer": "Mediscan AI is an advanced web-based health integration platform that uses artificial intelligence to analyze medical and genomic data. It supports clinicians with fast, accurate, and personalized insights for better patient care."
       },

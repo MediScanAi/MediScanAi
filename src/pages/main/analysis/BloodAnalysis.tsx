@@ -370,8 +370,7 @@ function BloodAnalysis() {
                     width: '100%',
                     marginBottom: '20px',
                   }}
-                >
-                </div>
+                ></div>
               </Col>
               <Col
                 style={{
@@ -406,7 +405,9 @@ function BloodAnalysis() {
                   size="large"
                   style={{ marginLeft: 20 }}
                   onClick={() => {
-                    const warnings = getDiseaseRisks(bloodTestData as BloodTestFormValues);
+                    const warnings = getDiseaseRisks(
+                      bloodTestData as BloodTestFormValues
+                    );
                     navigate('/ai-doctor', {
                       state: {
                         bloodTests: bloodTestData,
