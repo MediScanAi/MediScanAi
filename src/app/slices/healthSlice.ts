@@ -1,6 +1,13 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
-import { doc, getDoc, setDoc, updateDoc, deleteDoc, Timestamp } from 'firebase/firestore';
+import {
+  doc,
+  getDoc,
+  setDoc,
+  updateDoc,
+  deleteDoc,
+  Timestamp,
+} from 'firebase/firestore';
 import { db } from '../../api/authApi';
 
 export interface HealthDataEntry {
@@ -16,9 +23,15 @@ export interface HealthDataState {
   error: string | null;
 }
 
-const convertTimestampToString = (data: HealthDataEntry | null): HealthDataEntry | null => {
+const convertTimestampToString = (
+  data: HealthDataEntry | null
+): HealthDataEntry | null => {
   if (!data) return data;
-  if (data.updatedAt && typeof data.updatedAt === 'object' && 'toDate' in data.updatedAt) {
+  if (
+    data.updatedAt &&
+    typeof data.updatedAt === 'object' &&
+    'toDate' in data.updatedAt
+  ) {
     return {
       ...data,
       updatedAt: data.updatedAt.toDate().toISOString(),
@@ -55,7 +68,9 @@ export const updateHealthData = createAsyncThunk<
   const ref = doc(db, 'users', uid, 'healthData', date.slice(0, 10));
   await updateDoc(ref, data);
   const updatedSnap = await getDoc(ref);
-  return convertTimestampToString(updatedSnap.data() as HealthDataEntry) as HealthDataEntry;
+  return convertTimestampToString(
+    updatedSnap.data() as HealthDataEntry
+  ) as HealthDataEntry;
 });
 
 export const deleteHealthData = createAsyncThunk<

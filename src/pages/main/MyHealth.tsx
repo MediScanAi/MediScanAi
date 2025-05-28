@@ -579,9 +579,10 @@ const HealthPage: React.FC = () => {
                       <div className="entry-details">
                         {Object.entries(entry).map(([key, value]) => {
                           if (key === 'date') return null;
-                          const displayValue = value instanceof Timestamp 
-                            ? value.toDate().toISOString()
-                            : value;
+                          const displayValue =
+                            value instanceof Timestamp
+                              ? value.toDate().toISOString()
+                              : value;
                           return (
                             <p key={key}>
                               <strong>{key}:</strong> {displayValue}
