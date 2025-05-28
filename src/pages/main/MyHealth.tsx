@@ -10,11 +10,13 @@ import {
   Button,
   Tag,
   Space,
-  Divider,
   Statistic,
   Alert,
   Spin,
   DatePicker,
+  Progress,
+  Input,
+  Modal,
 } from 'antd';
 import {
   SmileOutlined,
@@ -26,6 +28,7 @@ import {
   UserOutlined,
   EditOutlined,
   DashboardOutlined,
+  SnippetsOutlined,
 } from '@ant-design/icons';
 import person from '../../assets/photos/marduk.webp';
 import bigPerson from '../../assets/photos/fat.png';
@@ -38,7 +41,7 @@ import {
   fetchHealthData,
   type HealthDataEntry,
 } from '../../app/slices/healthSlice';
-import { Timestamp } from 'firebase/firestore';
+import confetti from 'canvas-confetti';
 
 const { Title, Text, Paragraph } = Typography;
 
@@ -58,6 +61,55 @@ const HealthPage: React.FC = () => {
   const [fetchedHealthData, setFetchedHealthData] = useState<HealthDataEntry[]>(
     Array.isArray(healthData.data?.entries) ? healthData.data.entries : []
   );
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedMetricIndex, setSelectedMetricIndex] = useState<number | null>(null);
+  const [goalInputs, setGoalInputs] = useState<{ [key: number]: string }>({});
+  const [showConfetti, setShowConfetti] = useState<{ [key: number]: boolean }>({});
+  const [tempGoalInput, setTempGoalInput] = useState<string>('');
+
+  useEffect(() => {
+    const initialGoals: { [key: number]: string } = {};
+    fetchedHealthData.forEach((metric, index) => {
+      initialGoals[index] = String(metric.max || '');
+    });
+    setGoalInputs(initialGoals);
+  }, [fetchedHealthData]);
+
+  const openModal = (index: number) => {
+    setSelectedMetricIndex(index);
+    setTempGoalInput(goalInputs[index] || '');
+    setIsModalOpen(true);
+  };
+
+  const handleOk = () => {
+    if (selectedMetricIndex !== null) {
+      const newGoal = tempGoalInput;
+      setGoalInputs(prev => ({
+        ...prev,
+        [selectedMetricIndex]: newGoal
+      }));
+
+      const metric = fetchedHealthData[selectedMetricIndex];
+      if (metric) {
+        const goal = Number(newGoal || 0);
+        const value = Number(metric.value || 0);
+        if (goal > 0 && value >= goal) {
+          triggerConfettiAnimation();
+        }
+      }
+    }
+    setIsModalOpen(false);
+    setTempGoalInput('');
+  };
+
+  const handleCancel = () => {
+    setIsModalOpen(false);
+    setTempGoalInput('');
+  };
+
+  const handleGoalInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setTempGoalInput(e.target.value);
+  };
 
   useEffect(() => {
     if (user && user.uid) {
@@ -105,9 +157,9 @@ const HealthPage: React.FC = () => {
           const logBase10 = (val: number) => Math.log(val) / Math.LN10;
           const fatPercent =
             495 /
-              (1.0324 -
-                0.19077 * logBase10(waist - neck) +
-                0.15456 * logBase10(height)) -
+            (1.0324 -
+              0.19077 * logBase10(waist - neck) +
+              0.15456 * logBase10(height)) -
             450;
           setBodyFat(Number(fatPercent.toFixed(1)));
         }
@@ -125,6 +177,51 @@ const HealthPage: React.FC = () => {
 
     return () => clearTimeout(timer);
   }, [userData]);
+
+  useEffect(() => {
+    const newConfettiState: { [key: number]: boolean } = {};
+    let anyGoalAchieved = false;
+
+    fetchedHealthData.forEach((metric, index) => {
+      const goal = Number(goalInputs[index] || 0);
+      const value = Number(metric.value || 0);
+      const achieved = goal > 0 && value >= goal;
+      newConfettiState[index] = achieved;
+
+      if (achieved) {
+        anyGoalAchieved = true;
+      }
+    });
+
+    setShowConfetti(newConfettiState);
+  }, [fetchedHealthData, goalInputs]);
+
+  const triggerConfettiAnimation = () => {
+    const colors = ['#bb0000', '#ffffff', '#00bb00', '#0000bb'];
+    const duration = 2000;
+    const startTime = Date.now();
+
+    const frame = () => {
+      const elapsed = Date.now() - startTime;
+
+      if (elapsed < duration) {
+        confetti({
+          particleCount: 4,
+          angle: Math.random() * 360,
+          spread: 60,
+          origin: {
+            x: Math.random(),
+            y: Math.random() * 0.6,
+          },
+          colors,
+        });
+
+        requestAnimationFrame(frame);
+      }
+    };
+
+    frame();
+  };
 
   const getBmiStatus = () => {
     if (bmi === null) return 'default';
@@ -153,7 +250,7 @@ const HealthPage: React.FC = () => {
           transition={{
             type: 'spring',
             stiffness: 260,
-            damping: 20,
+            damping: 60,
             delay: 0.5,
           }}
           className="metric-badge"
@@ -368,7 +465,6 @@ const HealthPage: React.FC = () => {
           </Tag>
         </div>
         <Paragraph className="suggestion-text">{suggestion.text}</Paragraph>
-        <Divider className="suggestion-divider" />
         <div className="suggestion-stats">
           <Space size="large">
             <Statistic
@@ -474,6 +570,100 @@ const HealthPage: React.FC = () => {
     );
   }
 
+  const healthCircles = () => {
+    return (
+      <>
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(2, 1fr)',
+            gap: '20px',
+            marginTop: '-10px',
+          }}
+        >
+          {fetchedHealthData.map((metric, index) => {
+            const isGoalMetric = ['Steps', 'Active Calories', 'Resting Calories'].includes(String(metric.type));
+
+            return (
+              <Card key={index} style={{ border: 'none', width: '150px' }}>
+                {showConfetti[index] && (
+                  <div style={{
+                    position: 'absolute',
+                    top: 0,
+                    left: 0,
+                    right: 0,
+                    bottom: 0,
+                    pointerEvents: 'none',
+                    zIndex: 10
+                  }} />
+                )}
+                {['Steps', 'Active Calories', 'Resting Calories'].includes(String(metric.type)) ? (
+                  <div
+                    onClick={() => openModal(index)}
+                    style={{
+                      display: 'flex',
+                      flexDirection: 'row',
+                      justifyContent: 'center',
+                      cursor: 'pointer',
+                      color: '#1890ff',
+                      marginLeft: '110px',
+                    }}
+                  >
+                    <EditOutlined />
+                  </div>
+                ) : null}
+                <Progress
+                  type="circle"
+                  percent={isGoalMetric ? (Number(goalInputs[index] || 0) > 0 ?
+                    Math.min((Number(metric.value || 0) / Number(goalInputs[index] || 0)) * 100, 100) : 0) : 100}
+                  strokeColor={{
+                    '0%': 'white',
+                    '100%': isGoalMetric && Number(goalInputs[index] || 0) > 0 &&
+                      Number(metric.value || 0) >= Number(goalInputs[index] || 0) ?
+                      '#52c41a' : 'rgb(20, 102, 255)',
+                  }}
+                  format={() => (
+                    <>
+                      <div>
+                        <div>{Math.round(Number(metric.value || 0))}</div>
+                        <div style={{ fontSize: '15px' }}>
+                          {String(metric.unit || '')}
+                        </div>
+                      </div>
+                    </>
+                  )}
+                  strokeWidth={7}
+                />
+                <div>{String(metric.type || '')}</div>
+                {isGoalMetric && (
+                  <>
+                    <div>Your Goal: {Number(goalInputs[index] || 0) > 0 ? goalInputs[index] : '--'}</div>
+                  </>
+                )}
+              </Card>
+            );
+          })}
+        </div>
+        <Modal
+          title="Set Your Goal"
+          open={isModalOpen}
+          onOk={handleOk}
+          onCancel={handleCancel}
+          okText="Save"
+        >
+          {selectedMetricIndex !== null && (
+            <Input
+              type="number"
+              value={tempGoalInput}
+              onChange={handleGoalInputChange}
+              placeholder="Enter goal value"
+            />
+          )}
+        </Modal>
+      </>
+    );
+  };
+
   return (
     <div className="health-dashboard">
       <Row justify="center" className="dashboard-header">
@@ -493,114 +683,102 @@ const HealthPage: React.FC = () => {
         </Col>
       </Row>
 
-      <Row gutter={[32, 32]} className="dashboard-content">
-        <Col xs={24} md={8}>
-          <motion.div
-            initial={{ x: -50, opacity: 0 }}
-            animate={{ x: 0, opacity: 1 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-          >
-            <Card className="profile-card">
-              <div className="profile-header">
-                <Title level={4} className="profile-title">
-                  <UserOutlined /> {t('health.profile.title')}
+      <Row gutter={[4, 4]}>
+        <div style={{ display: 'flex', flexDirection: 'row', marginRight: '-210px' }}>
+          <Col>
+            <motion.div
+              initial={{ x: -50, opacity: 0 }}
+              animate={{ x: 0, opacity: 1 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              style={{ maxWidth: '300px' }}
+            >
+              <Card className="profile-card">
+                <div className="profile-header">
+                  <Title level={4} className="profile-title">
+                    <UserOutlined /> {t('health.profile.title')}
+                  </Title>
+                  <Button
+                    type="text"
+                    icon={<EditOutlined />}
+                    onClick={() => navigate('/profile/user-info')}
+                  />
+                </div>
+
+                <Descriptions
+                  bordered
+                  column={1}
+                  className="profile-descriptions mb-20"
+                  styles={{ label: { fontWeight: 100 } }}
+                  size="small"
+                >
+                  <Descriptions.Item label={t('health.profile.age')}>
+                    <Text>
+                      {userData?.age
+                        ? t('health.years', { years: userData.age })
+                        : t('health.notSet')}
+                    </Text>
+                  </Descriptions.Item>
+                  <Descriptions.Item label={t('health.profile.weight')}>
+                    <Text>
+                      {userData?.weight
+                        ? t('health.kg', { kg: userData.weight })
+                        : t('health.notSet')}
+                    </Text>
+                  </Descriptions.Item>
+                  <Descriptions.Item label={t('health.profile.height')}>
+                    <Text>
+                      {userData?.height
+                        ? t('health.cm', { cm: userData.height })
+                        : t('health.notSet')}
+                    </Text>
+                  </Descriptions.Item>
+                  <Descriptions.Item label={t('health.profile.waistSize')}>
+                    <Text>
+                      {userData?.waistSize
+                        ? t('health.cm', { cm: userData.waistSize })
+                        : t('health.notSet')}
+                    </Text>
+                  </Descriptions.Item>
+                  <Descriptions.Item label={t('health.profile.neckSize')}>
+                    <Text>
+                      {userData?.neckSize
+                        ? t('health.cm', { cm: userData.neckSize })
+                        : t('health.notSet')}
+                    </Text>
+                  </Descriptions.Item>
+                </Descriptions>
+
+                <div style={{ marginTop: '20px' }} className="profile-summary">{renderWeightAdvice()}</div>
+              </Card>
+            </motion.div>
+          </Col>
+
+          <Col style={{ minWidth: '40%', display: 'flex', flexDirection: 'row' }} xs={18} md={8}>
+            <motion.div
+              initial={{ x: 50, opacity: 0 }}
+              animate={{ x: 0, opacity: 1 }}
+              transition={{ duration: 0.5, delay: 0.6 }}
+            >
+              <Card className="metrics-card">
+                <Title level={4} className="metrics-title">
+                  <DashboardOutlined /> {t('health.metrics.title')}
                 </Title>
-                <Button
-                  type="text"
-                  icon={<EditOutlined />}
-                  onClick={() => navigate('/profile/user-info')}
-                />
-              </div>
 
-              <Descriptions
-                bordered
-                column={1}
-                className="profile-descriptions"
-                styles={{ label: { fontWeight: 100 } }}
-                size="small"
-              >
-                <Descriptions.Item label={t('health.profile.age')}>
-                  <Text>
-                    {userData?.age
-                      ? t('health.years', { years: userData.age })
-                      : t('health.notSet')}
-                  </Text>
-                </Descriptions.Item>
-                <Descriptions.Item label={t('health.profile.weight')}>
-                  <Text>
-                    {userData?.weight
-                      ? t('health.kg', { kg: userData.weight })
-                      : t('health.notSet')}
-                  </Text>
-                </Descriptions.Item>
-                <Descriptions.Item label={t('health.profile.height')}>
-                  <Text>
-                    {userData?.height
-                      ? t('health.cm', { cm: userData.height })
-                      : t('health.notSet')}
-                  </Text>
-                </Descriptions.Item>
-                <Descriptions.Item label={t('health.profile.waistSize')}>
-                  <Text>
-                    {userData?.waistSize
-                      ? t('health.cm', { cm: userData.waistSize })
-                      : t('health.notSet')}
-                  </Text>
-                </Descriptions.Item>
-                <Descriptions.Item label={t('health.profile.neckSize')}>
-                  <Text>
-                    {userData?.neckSize
-                      ? t('health.cm', { cm: userData.neckSize })
-                      : t('health.notSet')}
-                  </Text>
-                </Descriptions.Item>
-              </Descriptions>
+                <div className="metrics-grid">
+                  <div className="metric-item">{renderBmiStatus()}</div>
+                  <div className="metric-item">{renderBmrStatus()}</div>
+                  <div className="metric-item">{renderIdealWeightStatus()}</div>
+                  <div className="metric-item">{renderBodyFatStatus()}</div>
+                </div>
+                <div className="recommendations-section">
+                  {renderSuggestions()}
+                </div>
+              </Card>
+            </motion.div>
+          </Col>
+        </div>
 
-              <Divider className="profile-divider" />
-
-              <DatePicker
-                onChange={(date) => {
-                  setSelectedDate(date?.toDate() || null);
-                }}
-                disabledDate={(current) => {
-                  return (
-                    current && current > dayjs().endOf('day').subtract(1, 'day')
-                  );
-                }}
-              />
-              <div className="health-entries">
-                {fetchedHealthData.map(
-                  (entry: HealthDataEntry, index: number) => (
-                    <div
-                      key={`${entry.date}-${index}`}
-                      className="health-entry"
-                    >
-                      <h3>{dayjs(entry.date).format('MMMM D, YYYY')}</h3>
-                      <div className="entry-details">
-                        {Object.entries(entry).map(([key, value]) => {
-                          if (key === 'date') return null;
-                          const displayValue =
-                            value instanceof Timestamp
-                              ? value.toDate().toISOString()
-                              : value;
-                          return (
-                            <p key={key}>
-                              <strong>{key}:</strong> {displayValue}
-                            </p>
-                          );
-                        })}
-                      </div>
-                    </div>
-                  )
-                )}
-              </div>
-              <Divider className="profile-divider" />
-              <div className="profile-summary">{renderWeightAdvice()}</div>
-            </Card>
-          </motion.div>
-        </Col>
-
-        <Col xs={24} md={8}>
+        <Col style={{ maxWidth: '16%', marginLeft: '35px' }} xs={18} md={8}>
           <motion.div
             initial={{ y: 50, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
@@ -611,8 +789,8 @@ const HealthPage: React.FC = () => {
                 <img
                   src={
                     userData?.weight &&
-                    userData.weight > 80 &&
-                    userData.weight < 100
+                      userData.weight > 80 &&
+                      userData.weight < 100
                       ? midPerson
                       : userData?.weight && userData.weight > 100
                         ? bigPerson
@@ -620,37 +798,81 @@ const HealthPage: React.FC = () => {
                   }
                   alt={t('health.visualization.alt')}
                   className="health-visualization"
+                  style={{ height: '30vw', width: '15vw' }}
                 />
               </div>
             </Card>
           </motion.div>
         </Col>
 
-        <Col xs={24} md={8}>
-          <motion.div
-            initial={{ x: 50, opacity: 0 }}
-            animate={{ x: 0, opacity: 1 }}
-            transition={{ duration: 0.5, delay: 0.6 }}
+        <motion.div
+          initial={{ x: 50, opacity: 0 }}
+          animate={{ x: 0, opacity: 1 }}
+          transition={{ duration: 0.5, delay: 0.6 }}
+          style={{ width: '40%', position: 'relative' }}
+        >
+          <Title
+            style={{
+              display: 'flex',
+              flexDirection: 'row',
+              justifyContent: 'center',
+            }}
+            level={4}
+            className="metrics-title"
           >
-            <Card className="metrics-card">
-              <Title level={4} className="metrics-title">
-                <DashboardOutlined /> {t('health.metrics.title')}
-              </Title>
+            <SnippetsOutlined /> {t('health.metrics.title')}
+            <DatePicker
+              style={{ width: '150px', marginLeft: '20px' }}
+              onChange={(date) => {
+                setSelectedDate(date?.toDate() || null);
+              }}
+              disabledDate={(current) => current && current > dayjs().endOf('day').subtract(1, 'day')}
+            />
+          </Title>
 
-              <div className="metrics-grid">
-                <div className="metric-item">{renderBmiStatus()}</div>
-                <div className="metric-item">{renderBmrStatus()}</div>
-                <div className="metric-item">{renderIdealWeightStatus()}</div>
-                <div className="metric-item">{renderBodyFatStatus()}</div>
+          <div style={{ position: 'relative' }}>
+            {!selectedDate && (
+              <div
+                style={{
+                  backgroundColor: 'rgba(255, 255, 255, 0.9)',
+                  borderRadius: '10px',
+                  fontSize: '16px',
+                  justifyContent: 'center',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                  padding: '20px',
+                  marginLeft: '20px',
+                  marginRight: '20px',
+                }}
+              >
+                <Text>Select a date of your health data</Text>
+                <Text>To see and make Goals for them</Text>
               </div>
+            )}
 
-              <Divider className="metrics-divider" />
-              <div className="recommendations-section">
-                {renderSuggestions()}
+            <div
+              style={{
+                borderRadius: '10px',
+                zIndex: 1,
+                opacity: selectedDate ? 1 : 0.5,
+                pointerEvents: selectedDate ? 'auto' : 'none',
+              }}
+            >
+              <div
+                style={{
+                  display: 'flex',
+                  flexDirection: 'row',
+                  justifyContent: 'center',
+                  flexWrap: 'wrap',
+                  gap: '20px',
+                }}
+              >
+                {healthCircles()}
               </div>
-            </Card>
-          </motion.div>
-        </Col>
+            </div>
+          </div>
+        </motion.div>
       </Row>
     </div>
   );
