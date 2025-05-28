@@ -590,7 +590,9 @@ const ChatWithAi = () => {
                                 }
                               }}
                             >
-                              <Menu.Item key="rename">{t('chat.rename')}</Menu.Item>
+                              <Menu.Item key="rename">
+                                {t('chat.rename')}
+                              </Menu.Item>
                               <Menu.Item key="delete" danger>
                                 {t('chat.delete')}
                               </Menu.Item>

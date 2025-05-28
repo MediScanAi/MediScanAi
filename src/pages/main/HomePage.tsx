@@ -12,7 +12,7 @@ import partner8 from '../../assets/photos/partner8.webp';
 import myHealth from '../../assets/photos/my-health.webp';
 import myHealth2 from '../../assets/photos/my-health-second.webp';
 import group99 from '../../assets/photos/Group 99.svg';
-import group101 from '../../assets/photos/Group 101.png';
+import group101 from '../../assets/photos/Group 101.svg';
 import fileUpload from '../../assets/photos/Folder.webp';
 import aiAnalysis from '../../assets/photos/Productivity 4.webp';
 import insightsReport from '../../assets/photos/Finance 5.webp';
@@ -261,7 +261,6 @@ function HomePage() {
 
         <Row className="leading-medicine-section">
           <Col lg={12} sm={24} className="leading-medicine-content">
-            <LineOutlined className="leading-medicine-icon" />
             <Title className="leading-medicine-title">
               {t('leadingMedicine.title')}
             </Title>

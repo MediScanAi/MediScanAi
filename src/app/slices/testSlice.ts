@@ -170,8 +170,6 @@ export const deleteTestData = createAsyncThunk<
   return { testType };
 });
 
-// === Slice ===
-
 const testSlice = createSlice({
   name: 'tests',
   initialState,
