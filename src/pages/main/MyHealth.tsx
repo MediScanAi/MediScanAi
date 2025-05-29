@@ -62,9 +62,13 @@ const HealthPage: React.FC = () => {
     Array.isArray(healthData.data?.entries) ? healthData.data.entries : []
   );
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedMetricIndex, setSelectedMetricIndex] = useState<number | null>(null);
+  const [selectedMetricIndex, setSelectedMetricIndex] = useState<number | null>(
+    null
+  );
   const [goalInputs, setGoalInputs] = useState<{ [key: number]: string }>({});
-  const [showConfetti, setShowConfetti] = useState<{ [key: number]: boolean }>({});
+  const [showConfetti, setShowConfetti] = useState<{ [key: number]: boolean }>(
+    {}
+  );
   const [tempGoalInput, setTempGoalInput] = useState<string>('');
 
   useEffect(() => {
@@ -84,9 +88,9 @@ const HealthPage: React.FC = () => {
   const handleOk = () => {
     if (selectedMetricIndex !== null) {
       const newGoal = tempGoalInput;
-      setGoalInputs(prev => ({
+      setGoalInputs((prev) => ({
         ...prev,
-        [selectedMetricIndex]: newGoal
+        [selectedMetricIndex]: newGoal,
       }));
 
       const metric = fetchedHealthData[selectedMetricIndex];
@@ -157,9 +161,9 @@ const HealthPage: React.FC = () => {
           const logBase10 = (val: number) => Math.log(val) / Math.LN10;
           const fatPercent =
             495 /
-            (1.0324 -
-              0.19077 * logBase10(waist - neck) +
-              0.15456 * logBase10(height)) -
+              (1.0324 -
+                0.19077 * logBase10(waist - neck) +
+                0.15456 * logBase10(height)) -
             450;
           setBodyFat(Number(fatPercent.toFixed(1)));
         }
@@ -582,22 +586,30 @@ const HealthPage: React.FC = () => {
           }}
         >
           {fetchedHealthData.map((metric, index) => {
-            const isGoalMetric = ['Steps', 'Active Calories', 'Resting Calories'].includes(String(metric.type));
+            const isGoalMetric = [
+              'Steps',
+              'Active Calories',
+              'Resting Calories',
+            ].includes(String(metric.type));
 
             return (
               <Card key={index} style={{ border: 'none', width: '150px' }}>
                 {showConfetti[index] && (
-                  <div style={{
-                    position: 'absolute',
-                    top: 0,
-                    left: 0,
-                    right: 0,
-                    bottom: 0,
-                    pointerEvents: 'none',
-                    zIndex: 10
-                  }} />
+                  <div
+                    style={{
+                      position: 'absolute',
+                      top: 0,
+                      left: 0,
+                      right: 0,
+                      bottom: 0,
+                      pointerEvents: 'none',
+                      zIndex: 10,
+                    }}
+                  />
                 )}
-                {['Steps', 'Active Calories', 'Resting Calories'].includes(String(metric.type)) ? (
+                {['Steps', 'Active Calories', 'Resting Calories'].includes(
+                  String(metric.type)
+                ) ? (
                   <div
                     onClick={() => openModal(index)}
                     style={{
@@ -614,13 +626,27 @@ const HealthPage: React.FC = () => {
                 ) : null}
                 <Progress
                   type="circle"
-                  percent={isGoalMetric ? (Number(goalInputs[index] || 0) > 0 ?
-                    Math.min((Number(metric.value || 0) / Number(goalInputs[index] || 0)) * 100, 100) : 0) : 100}
+                  percent={
+                    isGoalMetric
+                      ? Number(goalInputs[index] || 0) > 0
+                        ? Math.min(
+                            (Number(metric.value || 0) /
+                              Number(goalInputs[index] || 0)) *
+                              100,
+                            100
+                          )
+                        : 0
+                      : 100
+                  }
                   strokeColor={{
                     '0%': 'white',
-                    '100%': isGoalMetric && Number(goalInputs[index] || 0) > 0 &&
-                      Number(metric.value || 0) >= Number(goalInputs[index] || 0) ?
-                      '#52c41a' : 'rgb(20, 102, 255)',
+                    '100%':
+                      isGoalMetric &&
+                      Number(goalInputs[index] || 0) > 0 &&
+                      Number(metric.value || 0) >=
+                        Number(goalInputs[index] || 0)
+                        ? '#52c41a'
+                        : 'rgb(20, 102, 255)',
                   }}
                   format={() => (
                     <>
@@ -637,7 +663,12 @@ const HealthPage: React.FC = () => {
                 <div>{String(metric.type || '')}</div>
                 {isGoalMetric && (
                   <>
-                    <div>Your Goal: {Number(goalInputs[index] || 0) > 0 ? goalInputs[index] : '--'}</div>
+                    <div>
+                      Your Goal:{' '}
+                      {Number(goalInputs[index] || 0) > 0
+                        ? goalInputs[index]
+                        : '--'}
+                    </div>
                   </>
                 )}
               </Card>
@@ -684,7 +715,13 @@ const HealthPage: React.FC = () => {
       </Row>
 
       <Row gutter={[4, 4]}>
-        <div style={{ display: 'flex', flexDirection: 'row', marginRight: '-210px' }}>
+        <div
+          style={{
+            display: 'flex',
+            flexDirection: 'row',
+            marginRight: '-210px',
+          }}
+        >
           <Col>
             <motion.div
               initial={{ x: -50, opacity: 0 }}
@@ -748,12 +785,18 @@ const HealthPage: React.FC = () => {
                   </Descriptions.Item>
                 </Descriptions>
 
-                <div style={{ marginTop: '20px' }} className="profile-summary">{renderWeightAdvice()}</div>
+                <div style={{ marginTop: '20px' }} className="profile-summary">
+                  {renderWeightAdvice()}
+                </div>
               </Card>
             </motion.div>
           </Col>
 
-          <Col style={{ minWidth: '40%', display: 'flex', flexDirection: 'row' }} xs={18} md={8}>
+          <Col
+            style={{ minWidth: '40%', display: 'flex', flexDirection: 'row' }}
+            xs={18}
+            md={8}
+          >
             <motion.div
               initial={{ x: 50, opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
@@ -789,8 +832,8 @@ const HealthPage: React.FC = () => {
                 <img
                   src={
                     userData?.weight &&
-                      userData.weight > 80 &&
-                      userData.weight < 100
+                    userData.weight > 80 &&
+                    userData.weight < 100
                       ? midPerson
                       : userData?.weight && userData.weight > 100
                         ? bigPerson
@@ -826,7 +869,9 @@ const HealthPage: React.FC = () => {
               onChange={(date) => {
                 setSelectedDate(date?.toDate() || null);
               }}
-              disabledDate={(current) => current && current > dayjs().endOf('day').subtract(1, 'day')}
+              disabledDate={(current) =>
+                current && current > dayjs().endOf('day').subtract(1, 'day')
+              }
             />
           </Title>
 
