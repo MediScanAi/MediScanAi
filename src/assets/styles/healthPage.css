@@ -179,20 +179,20 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 100%;
 }
 
 .metric-badge {
-  width: 160px;
-  height: 160px;
+  width: 120px;
+  height: 120px;
   border-radius: 50%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-  position: relative;
-  margin-bottom: 12px;
-  overflow: hidden;
+  margin-bottom: -12px;
+  margin-left: -12px;
 }
 
 .metric-content {
@@ -226,7 +226,7 @@
 
 .suggestion-card {
   border-radius: 12px;
-  padding: 20px;
+  padding: 10px;
 }
 
 .suggestion-header {
@@ -244,18 +244,18 @@
 }
 
 .suggestion-text {
-  font-size: 14px;
+  font-size: 12px;
   line-height: 1.6;
   color: #4a5568;
   margin-bottom: 0;
 }
 
 .suggestion-statistic .ant-statistic-title {
-  font-size: 18px;
+  font-size: 13px;
 }
 
 .suggestion-statistic .ant-statistic-content {
-  font-size: 20px;
+  font-size: 16px;
 }
 
 .suggestion-divider {
@@ -264,7 +264,308 @@
   border-color: #edf2f7;
 }
 
-.suggestion-stats {
+/* Steps Component */
+.steps-container {
+  margin-bottom: 2rem;
+}
+
+.vertical-steps {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.step-item {
+  display: flex;
+  position: relative;
+  padding-bottom: 1.5rem;
+}
+
+.step-item:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  left: 9px;
+  top: 28px;
+  height: calc(100% - 20px);
+  width: 2px;
+  background-color: #e8e8e8;
+}
+
+.step-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  margin-right: 16px;
+  z-index: 1;
+}
+
+.step-content {
+  flex: 1;
+}
+
+.step-title {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #333;
+  margin-bottom: 4px;
+}
+
+.step-description {
+  font-size: 0.85rem;
+  color: #666;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* MyHealthGuide.css */
+.guide-page {
+  background: white;
+  min-height: 100vh;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.header-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.header-title {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.header-image {
+  height: 300px;
+  margin-bottom: -20px;
+  margin-top: -40px;
+}
+
+.guides-container {
+  display: flex;
+  flex-direction: row;
+  gap: 24px;
+  width: 100%;
+  max-width: 1000px;
+  justify-content: center;
+  align-items: stretch;
+  margin-top: 20px;
+}
+
+.guide-card {
+  background: white;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(0, 0, 0, 0.03);
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.card-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.icon-container {
+  background: linear-gradient(135deg, rgb(0, 81, 255) 0%, rgb(0, 153, 255) 100%);
+  width: 48px;
+  height: 48px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+
+.card-title {
+  font-size: 1.25rem;
+  margin-bottom: 12px;
+  margin-left: 16px;
+  color: rgb(1, 1, 1);
+}
+
+.card-description {
+  color: #666;
+  margin-bottom: 20px;
+  font-size: 0.85rem;
+}
+
+.steps-container {
+  margin-bottom: 24px;
+  flex: 1;
+}
+
+.info-box {
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  padding: 12px;
   margin-top: 16px;
-  font-size: 6px;
+  font-size: 0.8rem;
+}
+
+.info-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 6px;
+}
+
+.info-icon {
+  color: #1890ff;
+  margin-right: 6px;
+  font-size: 14px;
+}
+
+.info-text {
+  font-size: 0.75rem;
+}
+
+@media (max-width: 766px) {
+  .header-container {
+    flex-direction: column;
+  }
+
+  .header-image {
+    height: 200px;
+    margin-top: 0;
+  }
+
+  .guides-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .guide-card {
+    width: 100%;
+    max-width: 400px;
+    margin-bottom: 24px;
+  }
+}
+
+.modal-content {
+  padding: 20px;
+
+}
+
+.modal-steps {
+  margin-top: 20px;
+}
+
+.modal-step {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+  padding: 10px;
+  border-radius: 8px;
+  background-color: #f8f8f8;
+}
+
+.step-number {
+  width: 24px;
+  height: 24px;
+  background-color: #1890ff;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 15px;
+  font-weight: bold;
+}
+
+.step-content {
+  flex: 1;
+}
+
+.copy-button {
+  margin-left: 10px;
+}
+
+.download-link {
+  color: #1890ff;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.uid-display {
+  display: flex;
+  align-items: center;
+  background-color: #f0f0f0;
+  padding: 8px 12px;
+  border-radius: 4px;
+  font-family: monospace;
+  margin-top: 5px;
+}
+
+.modal-content {
+  padding: 20px;
+}
+
+.modal-steps-container {
+  margin-bottom: 24px;
+  flex: 1;
+}
+
+.modal-step-description {
+  color: #666;
+  margin-bottom: 20px;
+  font-size: 0.85rem;
+}
+
+.modal-steps .ant-steps-item-icon {
+  background: transparent;
+  border-color: #1890ff;
+}
+
+.modal-steps .ant-steps-item-title {
+  font-size: 0.85rem;
+  color: #333;
+}
+
+.modal-steps .ant-steps-item-description {
+  font-size: 0.8rem;
+  color: #666;
+}
+
+.uid-container {
+  display: flex;
+  align-items: center;
+  margin-top: 8px;
+}
+
+.uid-text {
+  font-family: monospace;
+  background: #f5f5f5;
+  padding: 4px 8px;
+  border-radius: 4px;
+  margin-right: 8px;
+}
+
+.download-link-container {
+  margin-top: 8px;
+}
+
+.download-link {
+  color: #1890ff;
+  text-decoration: underline;
+  cursor: pointer;
+  font-size: 0.85rem;
+}
+
+.modal-footer-note {
+  margin-top: 20px;
+  padding: 15px;
+  background: #f5f5f5;
+  border-radius: 4px;
+  font-size: 0.85rem;
 }

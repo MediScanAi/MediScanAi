@@ -498,5 +498,67 @@
     "visualization": {
       "alt": "Health visualization"
     }
+  },
+  "healthGuide": {
+    "guide": {
+      "title": "Let's Get Your Health Profile Set Up",
+      "subtitle": "Complete these simple steps to unlock personalized health insights and tracking.",
+      "profileTitle": "Personal Profile",
+      "profileDescription": "Tell us about yourself to help us personalize your experience. ",
+      "ageGender": "Age & Gender",
+      "heightWeight": "Height & Weight",
+      "activityLevel": "Activity Level",
+      "waistSize": "Waist Circumference",
+      "neckSize": "Neck Circumference",
+      "hipSize": "Hip Circumference",
+      "bodyFat": "Body Fat %",
+      "idealWeight": "Ideal Weight",
+      "dailyCalories": "Daily Calories",
+      "exerciseGoal": "Exercise Goal",
+      "completeProfile": "Complete Profile",
+      "dataPrivacyTitle": "Health Data Analysis",
+      "dataPrivacyText": "Your health data is encrypted end-to-end. We never sell your data or share it without your consent.",
+      "privacyPolicy": "Read our privacy policy",
+      "connectHealthTitle": "Sync Health Data",
+      "connectHealthDescription": "Securely sync your health data in just a few steps.",
+      "step1Title": "Authorize Data Sharing",
+      "step1Description": "In Apple Health, select which data types to share (activity, vitals, nutrition, etc.)",
+      "step2Title": "Set Sync Frequency",
+      "step2Description": "Choose automatic daily syncs or manual updates as needed",
+      "step3Title": "Secure Data Storage",
+      "step3Description": "Your health data will be securely saved in our encrypted database",
+      "step4Title": "Data Processing",
+      "step4Description": "MediScanAI will analyze your data (takes 2-5 minutes for initial sync)",
+      "step5Title": "View Insights",
+      "step5Description": "Access personalized health reports and AI recommendations",
+      "connectButton": "Connect Apple Health",
+      "learnMore": "Learn More",
+      "connectModal": {
+        "title": "Connect Your Health Data",
+        "description": "Follow these steps to connect your health data with MediScanAI",
+        "steps": {
+          "download": {
+            "title": "Download the Shortcut",
+            "linkText": "Download Shortcut"
+          },
+          "copyUid": {
+            "title": "Copy Your Unique ID",
+            "button": {
+              "copy": "Copy"
+            }
+          },
+          "runShortcut": {
+            "title": "Run the Shortcut",
+            "description": "Open the Shortcuts app and run the downloaded shortcut"
+          },
+          "enjoy": {
+            "title": "Enjoy Your Health Insights",
+            "description": "Your health data will be automatically synced with MediScanAI"
+          }
+        },
+        "privacyNote": "Your data is encrypted and secure. We never share your personal health information with third parties.",
+        "closeButton": "Close"
+      }
+    }
   }
 }
