@@ -69,14 +69,16 @@ export const authSlice = createAppSlice({
 
         await sendVerificationEmail(fbUser);
 
-        const userRef = doc(db, 'users', fbUser.uid);
+        const infoRef = doc(db, 'users', fbUser.uid, 'personalData', 'info');
         await setDoc(
-          userRef,
+          infoRef,
           {
-            info: { age: age ?? null, gender: gender ?? null },
+            age: age ?? null,
+            gender: gender ?? null,
           },
           { merge: true }
         );
+
         await sendVerificationEmail(fbUser);
         return null;
       },
