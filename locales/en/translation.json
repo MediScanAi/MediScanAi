@@ -486,5 +486,73 @@
     "visualization": {
       "alt": "Health visualization"
     }
+  },
+  "bloodAnalysis": {
+    "title": "Blood Test Results",
+    "subtitle": "Analysis with AI",
+    "noData": {
+      "title": "Please fill a blood test results to get your analytic results",
+      "button": "Fill Blood Test Results"
+    },
+    "warnings": {
+      "title": "🚨 Health Risk Warnings",
+      "analyzeButton": "Analyze with AI",
+      "allGood": "✅ All your values are within normal range. Great job!",
+      "showMore": "Show more",
+      "showLess": "Show less",
+      "conditions": {
+        "lowHemoglobin": "⚠️ Low Hemoglobin — Possible Anemia or Nutritional Deficiency",
+        "highHemoglobin": "⚠️ High Hemoglobin — Possible Polycythemia or Chronic Hypoxia",
+        "lowWbc": "⚠️ Low WBC — Possible Bone Marrow Suppression or Viral Infection",
+        "highWbc": "⚠️ High WBC — Possible Infection, Inflammation, or Leukemia",
+        "lowRbc": "⚠️ Low RBC — Possible Anemia or Blood Loss",
+        "highRbc": "⚠️ High RBC — Possible Polycythemia or Heart Disease",
+        "lowPlatelets": "⚠️ Low Platelets — Possible ITP or Liver Disease",
+        "highPlatelets": "⚠️ High Platelets — Possible Chronic Inflammation or Thrombocythemia",
+        "lowGlucose": "⚠️ Low Glucose — Possible Hypoglycemia",
+        "highGlucose": "⚠️ High Glucose — Possible Diabetes",
+        "highCholesterol": "⚠️ High Cholesterol — Increased Risk of Heart Disease or Stroke"
+      },
+      "explanations": {
+        "lowHemoglobin": "Anemia is a condition where the blood lacks enough healthy red blood cells or hemoglobin...",
+        "highHemoglobin": "High hemoglobin can result from living at high altitudes, smoking, or conditions like polycythemia vera...",
+        "lowWbc": "Low white blood cell count can be caused by viral infections or bone marrow issues...",
+        "highWbc": "A high white blood cell count often signals infection or inflammation...",
+        "lowRbc": "Red blood cells carry oxygen. Low RBCs can be caused by anemia, blood loss, or nutritional deficiencies...",
+        "highRbc": "High RBC count might suggest dehydration, lung or heart disease, or polycythemia vera...",
+        "lowPlatelets": "Low platelet levels (thrombocytopenia) may occur from immune disorders, liver issues, or medications...",
+        "highPlatelets": "High platelet count might indicate inflammation, iron deficiency, or a bone marrow disorder...",
+        "lowGlucose": "Low blood sugar can result in shakiness, confusion, or fainting...",
+        "highGlucose": "High glucose levels may signal diabetes or prediabetes...",
+        "highCholesterol": "Excess cholesterol can build up in arteries, leading to heart attacks or strokes..."
+      }
+    },
+    "facts": {
+      "Cholesterol": [
+        "Cholesterol is essential for producing sex hormones like estrogen and testosterone...",
+        "Your brain is made up of nearly 60% fat..."
+      ],
+      "Glucose": [
+        "The pancreas releases insulin to help cells absorb glucose from the bloodstream...",
+        "Hypoglycemia (low blood sugar) can cause dizziness..."
+      ],
+      "Hemoglobin": [
+        "Athletes often monitor hemoglobin levels to ensure efficient oxygen delivery...",
+        "Folic acid and vitamin B12 are important nutrients..."
+      ],
+      "Platelets": [
+        "Platelets change shape and become \"sticky\" when they detect a blood vessel injury...",
+        "Thrombocytopenia is a condition where you have abnormally low platelet counts..."
+      ],
+      "RBC": [
+        "RBCs are produced in the bone marrow in a process called erythropoiesis...",
+        "Erythropoietin (EPO), a hormone from the kidneys, stimulates RBC production..."
+      ],
+      "WBC": [
+        "WBCs include several subtypes, such as neutrophils, eosinophils, and basophils...",
+        "Lymphocytes are the WBCs responsible for antibody production and immune memory..."
+      ]
+    }
   }
+
 }
