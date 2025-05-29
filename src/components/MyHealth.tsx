@@ -17,31 +17,43 @@ import {
   Progress,
   Input,
   Modal,
+  message,
+  Steps,
 } from 'antd';
 import {
   SmileOutlined,
   WarningOutlined,
   FrownOutlined,
   FireOutlined,
-  HeartOutlined,
   LineChartOutlined,
   UserOutlined,
   EditOutlined,
   DashboardOutlined,
   SnippetsOutlined,
+  HeartOutlined,
+  FundOutlined,
+  DatabaseOutlined,
+  SafetyOutlined,
+  SyncOutlined,
+  InfoCircleOutlined,
+  CheckOutlined,
+  CopyOutlined,
 } from '@ant-design/icons';
-import person from '../../assets/photos/marduk.webp';
-import bigPerson from '../../assets/photos/fat.png';
-import midPerson from '../../assets/photos/mid.png';
-import '../../assets/styles/healthPage.css';
+
+import person from '../assets/photos/marduk.webp';
+import bigPerson from '../assets/photos/fat.png';
+import midPerson from '../assets/photos/mid.png';
+import '../assets/styles/healthPage.css';
 import { motion } from 'framer-motion';
-import { useAppSelector, useAppDispatch } from '../../app/hooks';
+import { useAppSelector, useAppDispatch } from '../app/hooks';
 import { useTranslation } from 'react-i18next';
 import {
   fetchHealthData,
   type HealthDataEntry,
-} from '../../app/slices/healthSlice';
+} from '../app/slices/healthSlice';
 import confetti from 'canvas-confetti';
+import MyHealthGuide from '../pages/main/profile/MyHealthGuide';
+import { auth } from '../api/authApi';
 
 const { Title, Text, Paragraph } = Typography;
 
@@ -70,6 +82,25 @@ const HealthPage: React.FC = () => {
     {}
   );
   const [tempGoalInput, setTempGoalInput] = useState<string>('');
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [uidCopied, setUidCopied] = useState(false);
+  const currentUser = auth.currentUser?.uid;
+
+  const showModal = () => {
+    setIsModalVisible(true);
+  };
+
+  const handleCancelModal = () => {
+    setIsModalVisible(false);
+    setUidCopied(false);
+  };
+
+  const copyUid = () => {
+    navigator.clipboard.writeText(currentUser || 'No UID found');
+    setUidCopied(true);
+    message.success('UID copied to clipboard!');
+    setTimeout(() => setUidCopied(false), 2000);
+  };
 
   useEffect(() => {
     const initialGoals: { [key: number]: string } = {};
@@ -161,9 +192,9 @@ const HealthPage: React.FC = () => {
           const logBase10 = (val: number) => Math.log(val) / Math.LN10;
           const fatPercent =
             495 /
-              (1.0324 -
-                0.19077 * logBase10(waist - neck) +
-                0.15456 * logBase10(height)) -
+            (1.0324 -
+              0.19077 * logBase10(waist - neck) +
+              0.15456 * logBase10(height)) -
             450;
           setBodyFat(Number(fatPercent.toFixed(1)));
         }
@@ -185,7 +216,7 @@ const HealthPage: React.FC = () => {
   useEffect(() => {
     const newConfettiState: { [key: number]: boolean } = {};
     let anyGoalAchieved = false;
-    
+
     fetchedHealthData.forEach((metric, index) => {
       const goal = Number(goalInputs[index] || 0);
       const value = Number(metric.value || 0);
@@ -552,26 +583,7 @@ const HealthPage: React.FC = () => {
   }
 
   if (!userData) {
-    return (
-      <div className="empty-state">
-        <Title level={2} className="empty-title">
-          {t('health.emptyState.title')}
-        </Title>
-        <Paragraph className="empty-message">
-          {t('health.emptyState.message')}
-        </Paragraph>
-        <Button
-          type="primary"
-          size="large"
-          shape="round"
-          icon={<UserOutlined />}
-          onClick={() => navigate('/profile/user-info')}
-          className="empty-button"
-        >
-          {t('health.emptyState.button')}
-        </Button>
-      </div>
-    );
+    return <MyHealthGuide />;
   }
 
   const healthCircles = () => {
@@ -630,11 +642,11 @@ const HealthPage: React.FC = () => {
                     isGoalMetric
                       ? Number(goalInputs[index] || 0) > 0
                         ? Math.min(
-                            (Number(metric.value || 0) /
-                              Number(goalInputs[index] || 0)) *
-                              100,
-                            100
-                          )
+                          (Number(metric.value || 0) /
+                            Number(goalInputs[index] || 0)) *
+                          100,
+                          100
+                        )
                         : 0
                       : 100
                   }
@@ -642,8 +654,8 @@ const HealthPage: React.FC = () => {
                     '0%': 'white',
                     '100%':
                       isGoalMetric &&
-                      Number(goalInputs[index] || 0) > 0 &&
-                      Number(metric.value || 0) >=
+                        Number(goalInputs[index] || 0) > 0 &&
+                        Number(metric.value || 0) >=
                         Number(goalInputs[index] || 0)
                         ? '#52c41a'
                         : 'rgb(20, 102, 255)',
@@ -710,10 +722,100 @@ const HealthPage: React.FC = () => {
             <Text className="dashboard-subtitle">
               {t('health.dashboard.subtitle')}
             </Text>
-            <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', marginTop: '20px'}}>
-              <Button style={{ borderRadius: '25px', height: '40px', marginBottom: '20px' }} type="primary" onClick={() => {}}>
+            <div
+              style={{
+                display: 'flex',
+                flexDirection: 'row',
+                justifyContent: 'center',
+                marginTop: '20px',
+              }}
+            >
+              <Button
+                style={{
+                  borderRadius: '25px',
+                  height: '40px',
+                  marginBottom: '20px',
+                }}
+                type="primary"
+                onClick={showModal}
+              >
                 Get your health data export instruction
               </Button>
+
+              <Modal
+                title={t('healthGuide.guide.connectModal.title')}
+                visible={isModalVisible}
+                onCancel={handleCancelModal}
+                footer={[
+                  <Button key="close" onClick={handleCancelModal}>
+                    {t('healthGuide.guide.connectModal.closeButton')}
+                  </Button>,
+                ]}
+                width={700}
+                zIndex={1000}
+              >
+                <div className="modal-content">
+                  <p className="modal-step-description">
+                    {t('healthGuide.guide.connectModal.description')}
+                  </p>
+
+                  <div className="modal-steps-container">
+                    <Steps direction="vertical" current={-1} size="small" className="modal-steps">
+                      <Steps.Step
+                        title={t('healthGuide.guide.connectModal.steps.download.title')}
+                        description={
+                          <div className="download-link-container">
+                            <a
+                              href="https://www.icloud.com/shortcuts/e6269ab0fef447f498eeac823f764deb"
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="download-link"
+                            >
+                              {t('healthGuide.guide.connectModal.steps.download.linkText')}
+                            </a>
+                          </div>
+                        }
+                        icon={<SafetyOutlined />}
+                      />
+                      <Steps.Step
+                        title={t('healthGuide.guide.connectModal.steps.copyUid.title')}
+                        description={
+                          <div className="uid-container">
+                            <Text className="uid-text">{currentUser}</Text>
+                            <Button
+                              icon={uidCopied ? <CheckOutlined /> : <CopyOutlined />}
+                              size="small"
+                              onClick={copyUid}
+                            >
+                              {uidCopied
+                                ? t('healthGuide.guide.connectModal.steps.copyUid.button.copied')
+                                : t('healthGuide.guide.connectModal.steps.copyUid.button.copy')}
+                            </Button>
+                          </div>
+                        }
+                        icon={<SyncOutlined />}
+                      />
+                      <Steps.Step
+                        title={t('healthGuide.guide.connectModal.steps.runShortcut.title')}
+                        description={t('healthGuide.guide.connectModal.steps.runShortcut.description')}
+                        icon={<DatabaseOutlined />}
+                      />
+                      <Steps.Step
+                        title={t('healthGuide.guide.connectModal.steps.enjoy.title')}
+                        description={t('healthGuide.guide.connectModal.steps.enjoy.description')}
+                        icon={<FundOutlined />}
+                      />
+                    </Steps>
+                  </div>
+
+                  <div className="modal-footer-note">
+                    <InfoCircleOutlined style={{ marginRight: '8px', color: '#1890ff' }} />
+                    <Text type="secondary">
+                      {t('healthGuide.guide.connectModal.privacyNote')}
+                    </Text>
+                  </div>
+                </div>
+              </Modal>
             </div>
           </motion.div>
         </Col>
@@ -837,8 +939,8 @@ const HealthPage: React.FC = () => {
                 <img
                   src={
                     userData?.weight &&
-                    userData.weight > 80 &&
-                    userData.weight < 100
+                      userData.weight > 80 &&
+                      userData.weight < 100
                       ? midPerson
                       : userData?.weight && userData.weight > 100
                         ? bigPerson

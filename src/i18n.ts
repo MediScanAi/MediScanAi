@@ -18,8 +18,12 @@ i18n
       loadPath: '/locales/{{lng}}/translation.json',
     },
     react: {
-      useSuspense: true,
+      useSuspense: false,
     },
+    interpolation: {
+      escapeValue: false,
+    },
+    debug: true,
   });
 
 export default i18n;
