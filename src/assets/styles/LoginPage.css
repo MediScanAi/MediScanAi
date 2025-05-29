@@ -1,0 +1,212 @@
+.login-page-container {
+  min-height: 100vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.login-page-container.dark .ant-form-item-label > label,
+.login-page-container.dark .ant-input,
+.login-page-container.dark .ant-input-password input,
+.login-page-container.dark .ant-input::placeholder,
+.login-page-container.dark .ant-input-password input::placeholder,
+.login-page-container.dark .ant-typography {
+  color: #fff !important;
+}
+
+.login-page-container.dark .ant-input-password input {
+  background: #283868 !important;
+  color: #fff !important;
+  border: none !important;
+}
+
+.login-page-container.dark .ant-input-password {
+  background: #283868 !important;
+  border-radius: 12px !important;
+  border: 1px solid #5271c3 !important;
+}
+
+.login-page-container.dark .ant-input-password-icon {
+  color: #fff !important;
+}
+
+.login-page-container.dark input {
+  background: #283868 !important;
+}
+
+.login-page-container.dark .ant-input:focus,
+.login-page-container.dark .ant-input-password input:focus {
+  border-color: #92c4ff !important;
+}
+
+.login-page-container.dark .ant-form-item-label > label {
+  color: #dbeafe !important;
+}
+
+.login-page-container.dark {
+  background: radial-gradient(circle at 10% 30%, #4666e5, #2b398b, #161c3d);
+  color: #ffffff;
+}
+
+.login-page-container.light {
+  background: radial-gradient(circle at 10% 30%, #b3d1ff, #e6ecfa, #ffffff);
+  color: #161c3d;
+}
+
+.welcome-section {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 0 20px;
+}
+
+.welcome-text-container {
+  max-width: 500px;
+  width: 100%;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.welcome-title {
+  font-weight: bold;
+  color: white;
+}
+
+.welcome-description {
+  color: inherit;
+  font-size: 18px;
+  font-weight: 500;;
+  opacity: 0.9;
+}
+
+.fade-in {
+  opacity: 0;
+  animation: fadeIn 1.2s ease-in-out forwards;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+.welcome-rocket {
+  width: 440px;
+  max-width: 95%;
+  height: auto;
+  object-fit: contain;
+  user-select: none;
+}
+
+.login-card-section {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 7vw;
+}
+
+.login-spin-container {
+  width: 100%;
+  max-width: 400px;
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.login-spin-container .ant-spin-nested-loading-children {
+  filter: blur(16px);
+  border-radius: inherit;
+}
+
+.login-spin-container.dark .ant-spin-dot-item {
+  background-color: #ffffff;
+}
+
+.login-spin-container .ant-spin-dot {
+  font-size: 24px;
+}
+
+.login-spin-container .ant-spin-text {
+  margin-top: 8px;
+  font-size: 15px;
+  font-weight: 500;
+  text-shadow: none;
+}
+
+.login-spin-container.dark .ant-spin-text {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.login-card {
+  min-width: fit-content;
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(34, 56, 122, 0.25);
+  padding: 48px;
+  border: 1.5px solid rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(14px);
+  transition:
+    box-shadow 0.2s,
+    border 0.2s;
+}
+
+.login-card.dark {
+  background: rgba(28, 52, 125, 0.8);
+  border: 1.5px solid rgba(255, 255, 255, 0.18);
+}
+
+.login-title {
+  font-weight: bold;
+  margin-bottom: 10px;
+  text-align: center;
+  color: inherit;
+}
+
+.login-input {
+  border-radius: 12px;
+  border-color: #5271c3;
+  background: #e6ecfa;
+  font-size: 16px;
+}
+
+.forgot-password-link {
+  color: #92c4ff;
+  font-weight: 500;
+  padding: 0;
+  height: auto;
+  font-size: 15px;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.register-text {
+  display: block;
+  text-align: center;
+  margin-top: 10px;
+  color: inherit;
+  opacity: 0.9;
+}
+
+.register-link {
+  color: #92c4ff;
+  font-weight: 500;
+}
+
+.theme-toggle {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 999;
+}

@@ -7,9 +7,9 @@ const AuthProvider = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const unsub = onAuthChange((plainUser) => {
-      if (plainUser) {
-        dispatch(setUser(plainUser));
+    const unsub = onAuthChange((authUser) => {
+      if (authUser) {
+        dispatch(setUser(authUser));
       } else {
         dispatch(setUser(null));
       }

@@ -1,287 +1,311 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
-  Descriptions,
   Typography,
-  Button,
-  Select,
-  message,
-  Space,
   InputNumber,
+  Select,
+  Button,
+  message,
+  Row,
+  Col,
+  Space,
   Tooltip,
+  Spin,
 } from 'antd';
-import Title from 'antd/es/typography/Title';
+import {
+  CheckOutlined,
+  CloseOutlined,
+  EditOutlined,
+  QuestionCircleOutlined,
+} from '@ant-design/icons';
 import { useAppDispatch, useAppSelector } from '../../../app/hooks';
-import { saveUserData, type UserData } from '../../../app/slices/userDataSlice';
-import pencilIcon from '../../../assets/photos/pencil.png';
+import {
+  saveUserData,
+  fetchUserData,
+  type UserData,
+} from '../../../app/slices/userDataSlice';
 import { selectCurrentUser } from '../../../app/slices/authSlice';
-import { QuestionCircleOutlined } from '@ant-design/icons';
+import type { RootState } from '../../../app/store';
 import { useTranslation } from 'react-i18next';
-const { Text } = Typography;
+import '../../../assets/styles/UserInfo.css';
 
+const { Text } = Typography;
 const { Option } = Select;
 
-interface FormData {
-  name: string | undefined;
-  surname: string | undefined;
-  email: string | null | undefined;
-  age: string;
-  sex: string;
-  weight: string;
-  height: string;
-  waistSize: string;
-  neckSize: string;
-}
-
-interface Props {
-  theme: boolean;
-}
-
-const UserInfo: React.FC<Props> = ({ theme }) => {
+const UserInfo: React.FC = () => {
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
   const user = useAppSelector(selectCurrentUser);
-  const userData = useAppSelector((state) => state.userData.data);
+  const userData = useAppSelector((s) => s.userData.data);
+  const isDarkMode = useAppSelector((s: RootState) => s.theme.isDarkMode);
+  const [editingKey, setEditingKey] = useState<keyof UserData | null>(null);
+  const loading = useAppSelector((s: RootState) => s.userData.loading);
 
-  const initialData = {
-    name: user?.firstName,
-    surname: user?.lastName,
-    email: user?.email,
-    age: '',
-    sex: '',
-    weight: '',
-    height: '',
-    waistSize: '',
-    neckSize: '',
+  const [editingValue, setEditingValue] = useState<string | number | null>(
+    null
+  );
+  const [isEditingAll, setIsEditingAll] = useState(false);
+  const [formState, setFormState] = useState<UserData>({
+    age: null,
+    gender: null,
+    weight: null,
+    height: null,
+    waistSize: null,
+    neckSize: null,
+  });
+
+  useEffect(() => {
+    if (user?.uid) {
+      dispatch(fetchUserData({ uid: user.uid }));
+    }
+  }, [dispatch, user?.uid]);
+
+  useEffect(() => {
+    setFormState({
+      age: userData?.age ?? null,
+      gender: userData?.gender ?? null,
+      weight: userData?.weight ?? null,
+      height: userData?.height ?? null,
+      waistSize: userData?.waistSize ?? null,
+      neckSize: userData?.neckSize ?? null,
+    });
+  }, [userData]);
+
+  const getPlaceholder = (key: keyof UserData): string | undefined => {
+    return t(`userInfo.placeholders.${key}`);
   };
 
-  const [formData, setFormData] = useState<FormData>(initialData);
-  const [backupData, setBackupData] = useState<FormData>(initialData);
-  const [isEditing, setIsEditing] = useState(false);
+  const fields: Array<{
+    key: keyof UserData | 'name' | 'surname' | 'email';
+    label: string;
+    value?: string;
+    editable?: boolean;
+    tooltip?: string;
+  }> = [
+    {
+      key: 'name',
+      label: t('userInfo.name'),
+      value: user?.firstName || '',
+      editable: false,
+    },
+    {
+      key: 'surname',
+      label: t('userInfo.surname'),
+      value: user?.lastName || '',
+      editable: false,
+    },
+    {
+      key: 'email',
+      label: t('userInfo.email'),
+      value: user?.email || '',
+      editable: false,
+    },
+    { key: 'age', label: t('userInfo.age'), editable: true },
+    { key: 'gender', label: t('userInfo.gender'), editable: true },
+    { key: 'weight', label: t('userInfo.weight'), editable: true },
+    { key: 'height', label: t('userInfo.height'), editable: true },
+    {
+      key: 'waistSize',
+      label: t('userInfo.waistSize'),
+      editable: true,
+      tooltip: t('userInfo.waistSizeTooltip'),
+    },
+    {
+      key: 'neckSize',
+      label: t('userInfo.neckSize'),
+      editable: true,
+      tooltip: t('userInfo.neckSizeTooltip'),
+    },
+  ];
 
-  const handleChange = (field: string, value: string) => {
-    setFormData({ ...formData, [field]: value });
+  const handleInputChange = (key: keyof UserData, value: number | null) => {
+    setFormState({ ...formState, [key]: value });
   };
 
-  const startEdit = () => {
-    const convertedData: FormData = {
-      name: user?.firstName,
-      surname: user?.lastName,
-      email: user?.email,
-      age: userData?.age?.toString() || '',
-      sex: userData?.sex || '',
-      weight: userData?.weight?.toString() || '',
-      height: userData?.height?.toString() || '',
-      waistSize: userData?.waistSize?.toString() || '',
-      neckSize: userData?.neckSize?.toString() || '',
-    };
-    setBackupData(convertedData);
-    setFormData(convertedData);
-    setIsEditing(true);
+  const startSingleEdit = (
+    key: keyof UserData,
+    value: number | string | null
+  ) => {
+    setEditingKey(key);
+    setEditingValue(value);
   };
 
-  const cancelEdit = () => {
-    setFormData(backupData);
-    setIsEditing(false);
+  const cancelSingleEdit = () => {
+    setEditingKey(null);
+    setEditingValue(null);
   };
 
-  const saveData = async () => {
+  const saveSingleEdit = async () => {
+    if (!user || editingKey === null) return;
     try {
-      if (!user?.uid) {
-        message.error('User is not authenticated');
-        return;
-      }
       await dispatch(
-        saveUserData({ uid: user.uid, data: formData as unknown as UserData })
+        saveUserData({
+          uid: user.uid,
+          data: { [editingKey]: editingValue ?? null } as Partial<UserData>,
+        })
       ).unwrap();
-      message.success('Data saved successfully!');
-      setIsEditing(false);
+      message.success(t('userInfo.saveSuccess'));
+      cancelSingleEdit();
     } catch {
-      message.error('Failed to save user data.');
+      message.error(t('userInfo.saveFail'));
     }
   };
 
+  const saveAll = async () => {
+    if (!user) return;
+    try {
+      await dispatch(saveUserData({ uid: user.uid, data: formState })).unwrap();
+      message.success(t('userInfo.saveSuccess'));
+      setIsEditingAll(false);
+    } catch {
+      message.error(t('userInfo.saveFail'));
+    }
+  };
+
+  const cancelAll = () => {
+    setFormState({
+      age: userData?.age ?? null,
+      gender: userData?.gender ?? null,
+      weight: userData?.weight ?? null,
+      height: userData?.height ?? null,
+      waistSize: userData?.waistSize ?? null,
+      neckSize: userData?.neckSize ?? null,
+    });
+    setIsEditingAll(false);
+  };
+
+  const renderValue = (key: string, value: unknown): string | number => {
+    if (value === null || value === '' || value === undefined)
+      return t('userInfo.notSet');
+    if (key === 'gender' && typeof value === 'string')
+      return t(`userInfo.${value.toLowerCase()}`);
+    return value as string | number;
+  };
+
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
-      <Descriptions
-        title={
-          <div
-            style={{
-              display: 'flex',
-              justifyContent: 'space-between',
-              alignItems: 'center',
-            }}
-          >
-            <Title level={4} style={{ color: '#3498db', margin: 0 }}>
+    <Spin spinning={loading} tip={t('userInfo.loading')} className={isDarkMode ? 'dark-spin' : ''}>
+      <div className={`user-info-list ${isDarkMode ? 'dark' : 'light'}`}>
+        <Row
+          justify="space-between"
+          align="middle"
+          style={{ marginBottom: 16 }}
+        >
+          <Col>
+            <Text strong style={{ fontSize: 18 }}>
               {t('userInfo.title')}
-            </Title>
-            {!isEditing && (
-              <Button onClick={startEdit}>
+            </Text>
+          </Col>
+          <Col>
+            {!isEditingAll ? (
+              <Button
+                icon={<EditOutlined />}
+                onClick={() => setIsEditingAll(true)}
+              >
                 {t('userInfo.edit')}
-                <img
-                  src={pencilIcon}
-                  alt="edit"
-                  style={{ width: 16, marginLeft: 4 }}
-                />
               </Button>
-            )}
-            {isEditing && (
-              <Space style={{ marginBottom: 16 }}>
-                <Button type="primary" onClick={saveData}>
+            ) : (
+              <Space>
+                <Button type="primary" onClick={saveAll}>
                   {t('userInfo.save')}
                 </Button>
-                <Button onClick={cancelEdit}>{t('userInfo.cancel')}</Button>
+                <Button onClick={cancelAll}>{t('userInfo.cancel')}</Button>
               </Space>
             )}
-          </div>
-        }
-        bordered
-        column={1}
-        size="small"
-        className={theme ? 'dark-mode-text' : ''}
-        style={{
-          backgroundColor: 'transparent',
-          minHeight: '50vh',
-          width: '100%',
-        }}
-      >
-        <Descriptions.Item label={t('userInfo.name')}>
-          <Text>{formData.name || t('userInfo.notSet')}</Text>
-        </Descriptions.Item>
+          </Col>
+        </Row>
 
-        <Descriptions.Item label={t('userInfo.surname')}>
-          <Text>{formData.surname || t('userInfo.notSet')}</Text>
-        </Descriptions.Item>
-
-        <Descriptions.Item label={t('userInfo.email')}>
-          <Text>{formData.email || t('userInfo.notSet')}</Text>
-        </Descriptions.Item>
-
-        <Descriptions.Item label={t('userInfo.age')}>
-          {isEditing ? (
-            <InputNumber
-              style={{ width: '100%' }}
-              min={'1'}
-              max={'90'}
-              value={formData.age}
-              onChange={(value) => handleChange('age', value?.toString() || '')}
-              placeholder={t('userInfo.agePlaceholder')}
-            />
-          ) : (
-            <Text>{userData?.age || t('userInfo.notSet')}</Text>
-          )}
-        </Descriptions.Item>
-
-        <Descriptions.Item label={t('userInfo.sex')}>
-          {isEditing ? (
-            <Select
-              value={formData.sex || undefined}
-              onChange={(value) => handleChange('sex', value || '')}
-              style={{ width: '100%' }}
-              placeholder={t('userInfo.sexPlaceholder')}
-            >
-              <Option value="Male">{t('userInfo.male')}</Option>
-              <Option value="Female">{t('userInfo.female')}</Option>
-            </Select>
-          ) : (
-            <Text>
-              {userData?.sex
-                ? t(`userInfo.${userData.sex.toLowerCase()}`)
-                : t('userInfo.notSet')}
-            </Text>
-          )}
-        </Descriptions.Item>
-
-        <Descriptions.Item label={t('userInfo.weight')}>
-          {isEditing ? (
-            <InputNumber
-              min={'40'}
-              max={'200'}
-              style={{ width: '100%' }}
-              value={formData.weight}
-              onChange={(value) =>
-                handleChange('weight', value?.toString() || '')
-              }
-              placeholder={t('userInfo.weightPlaceholder')}
-            />
-          ) : (
-            <Text>{userData?.weight || t('userInfo.notSet')}</Text>
-          )}
-        </Descriptions.Item>
-
-        <Descriptions.Item label={t('userInfo.height')}>
-          {isEditing ? (
-            <InputNumber
-              style={{ width: '100%' }}
-              min={'140'}
-              max={'220'}
-              value={formData.height}
-              onChange={(value) =>
-                handleChange('height', value?.toString() || '')
-              }
-              placeholder={t('userInfo.heightPlaceholder')}
-            />
-          ) : (
-            <Text>{userData?.height || t('userInfo.notSet')}</Text>
-          )}
-        </Descriptions.Item>
-
-        <Descriptions.Item
-          label={
-            <>
-              {t('userInfo.waistSize')} (cm)&nbsp;
-              <Tooltip title={t('userInfo.waistSizeTooltip')}>
-                <QuestionCircleOutlined
-                  style={{ color: '#1890ff', cursor: 'pointer' }}
-                />
-              </Tooltip>
-            </>
-          }
-        >
-          {isEditing ? (
-            <InputNumber
-              style={{ width: '100%' }}
-              min={'65'}
-              max={'100'}
-              value={formData.waistSize}
-              onChange={(value) =>
-                handleChange('waistSize', value?.toString() || '')
-              }
-              placeholder={t('userInfo.waistSizePlaceholder')}
-            />
-          ) : (
-            <Text>{userData?.waistSize || t('userInfo.notSet')}</Text>
-          )}
-        </Descriptions.Item>
-
-        <Descriptions.Item
-          label={
-            <>
-              {t('userInfo.neckSize')} (cm)&nbsp;
-              <Tooltip title={t('userInfo.neckSizeTooltip')}>
-                <QuestionCircleOutlined
-                  style={{ color: '#1890ff', cursor: 'pointer' }}
-                />
-              </Tooltip>
-            </>
-          }
-        >
-          {isEditing ? (
-            <InputNumber
-              style={{ width: '100%' }}
-              min={'35'}
-              max={'45'}
-              value={formData.neckSize}
-              onChange={(value) =>
-                handleChange('neckSize', value?.toString() || '')
-              }
-              placeholder={t('userInfo.neckSizePlaceholder')}
-            />
-          ) : (
-            <Text>{userData?.neckSize || t('userInfo.notSet')}</Text>
-          )}
-        </Descriptions.Item>
-      </Descriptions>
-    </div>
+        {fields.map(({ key, label, value, editable, tooltip }) => (
+          <Row key={key} className="user-info-row" gutter={16} align="middle">
+            <Col span={8} className="user-info-label">
+              <Text strong>
+                {label}{' '}
+                {tooltip && (
+                  <Tooltip title={tooltip}>
+                    <QuestionCircleOutlined />
+                  </Tooltip>
+                )}
+              </Text>
+            </Col>
+            <Col span={16} className="user-info-value">
+              {editingKey === key ? (
+                <div className="editable-cell">
+                  {key === 'gender' ? (
+                    <Select
+                      value={editingValue as string}
+                      onChange={(v) => setEditingValue(v)}
+                      className="cell-input"
+                      placeholder={getPlaceholder(key)}
+                    >
+                      <Option value="Male">{t('userInfo.male')}</Option>
+                      <Option value="Female">{t('userInfo.female')}</Option>
+                    </Select>
+                  ) : (
+                    <InputNumber
+                      value={editingValue as number}
+                      onChange={(v) => setEditingValue(v)}
+                      className="cell-input"
+                      min={0}
+                      placeholder={getPlaceholder(key as keyof UserData)}
+                    />
+                  )}
+                  <div className="cell-actions">
+                    <Button
+                      icon={<CheckOutlined />}
+                      size="small"
+                      onClick={saveSingleEdit}
+                    />
+                    <Button
+                      icon={<CloseOutlined />}
+                      size="small"
+                      onClick={cancelSingleEdit}
+                    />
+                  </div>
+                </div>
+              ) : isEditingAll && editable ? (
+                key === 'gender' ? (
+                  <Select
+                    value={formState[key as keyof UserData] as string}
+                    onChange={(v) => setFormState({ ...formState, [key]: v })}
+                    className="cell-input"
+                    placeholder={getPlaceholder(key as keyof UserData)}
+                  >
+                    <Option value="Male">{t('userInfo.male')}</Option>
+                    <Option value="Female">{t('userInfo.female')}</Option>
+                  </Select>
+                ) : (
+                  <InputNumber
+                    value={formState[key as keyof UserData] as number}
+                    onChange={(v) =>
+                      handleInputChange(key as keyof UserData, v)
+                    }
+                    className="cell-input"
+                    min={0}
+                    placeholder={getPlaceholder(key as keyof UserData)}
+                  />
+                )
+              ) : (
+                <div
+                  onDoubleClick={() =>
+                    editable &&
+                    startSingleEdit(
+                      key as keyof UserData,
+                      (formState[key as keyof UserData] ?? value) || ''
+                    )
+                  }
+                  className={`user-info-static ${editable ? 'editable' : 'readonly'}`}
+                >
+                  <Text>
+                    {renderValue(
+                      key,
+                      formState[key as keyof UserData] ?? value
+                    )}
+                  </Text>
+                </div>
+              )}
+            </Col>
+          </Row>
+        ))}
+      </div>
+    </Spin>
   );
 };
 

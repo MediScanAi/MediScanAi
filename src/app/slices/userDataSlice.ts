@@ -8,7 +8,7 @@ import { db } from '../../api/authApi';
 
 export interface UserData {
   age?: number | null;
-  sex?: string | null;
+  gender?: string | null;
   weight?: number | null;
   height?: number | null;
   waistSize?: number | null;
@@ -32,7 +32,7 @@ const initialState: UserDataState = {
 export const fetchUserData = createAsyncThunk<UserData | null, { uid: string }>(
   'user/fetchUserData',
   async ({ uid }) => {
-    const ref = doc(db, 'users', uid, 'userData', 'info');
+    const ref = doc(db, 'users', uid, 'personalData', 'info');
     const snap = await getDoc(ref);
     if (snap.exists()) {
       return snap.data() as UserData;
@@ -45,8 +45,8 @@ export const saveUserData = createAsyncThunk<
   UserData,
   { uid: string; data: UserData }
 >('user/saveUserData', async ({ uid, data }) => {
-  const ref = doc(db, 'users', uid, 'userData', 'info');
-  await setDoc(ref, data);
+  const ref = doc(db, 'users', uid, 'personalData', 'info');
+  await setDoc(ref, data, { merge: true });
   return data;
 });
 
@@ -54,7 +54,7 @@ export const editUserData = createAsyncThunk<
   UserData,
   { uid: string; data: Partial<UserData> }
 >('user/editUserData', async ({ uid, data }) => {
-  const ref = doc(db, 'users', uid, 'userData', 'info');
+  const ref = doc(db, 'users', uid, 'personalData', 'info');
   await updateDoc(ref, data);
   const snap = await getDoc(ref);
   return snap.data() as UserData;
@@ -63,7 +63,7 @@ export const editUserData = createAsyncThunk<
 export const deleteUserData = createAsyncThunk<void, { uid: string }>(
   'user/deleteUserData',
   async ({ uid }) => {
-    const ref = doc(db, 'users', uid, 'userData');
+    const ref = doc(db, 'users', uid, 'personalData', 'info');
     await deleteDoc(ref);
   }
 );
