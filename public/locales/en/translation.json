@@ -306,258 +306,293 @@
     "vitaminKPlaceholder": "Enter vitamin K level"
   },
   "userInfo": {
-    "title": "User Info",
-    "name": "Name",
-    "namePlaceholder": "Enter name",
-    "surname": "Surname",
-    "surnamePlaceholder": "Enter surname",
-    "email": "Email",
-    "emailPlaceholder": "Enter email",
-    "age": "Age",
-    "agePlaceholder": "Enter age",
-    "gender": "Gender",
-    "male": "Male",
+    "loading": "Loading...",
     "notSet": "Not set",
-    "female": "Female",
-    "genderPlaceholder": "Select gender",
-    "weight": "Weight",
-    "weightPlaceholder": "Enter weight",
-    "height": "Height",
-    "heightPlaceholder": "Enter height",
-    "waistSize": "Waist Size",
-    "waistSizePlaceholder": "Enter waist size",
-    "waistSizeTooltip": "Measure around the narrowest part of your waist, usually just above the belly button. Keep the tape snug but not tight.",
-    "neckSize": "Neck Size",
-    "neckSizePlaceholder": "Enter neck size",
-    "neckSizeTooltip": "Չափեք պարանոցի ամենալայն հատվածի շուրջը՝ Ադամի խնձորի տակ։ Պահեք ժապավենը հորիզոնական և ամուր։",
-    "edit": "Edit",
-    "save": "Save",
-    "cancel": "Cancel",
-    "saveSuccess": "User info saved successfully",
-    "saveError": "User info cannot be saved",
-    "cancelError": "User info cannot be canceled",
-    "cancelSuccess": "User info canceled successfully",
-    "loading": "Loading user info...",
-    "placeholders": {
-      "name": "Enter your name",
-      "surname": "Enter your surname",
-      "email": "Enter your email",
-      "age": "Enter your age",
-      "weight": "Enter your weight (kg)",
-      "height": "Enter your height (cm)",
-      "gender": "Please select your gender",
-      "waistSize": "Enter your waist size (cm)",
-      "neckSize": "Enter your neck size (cm)"
-    }
-  },
-  "analysisHistory": {
-    "title": "Analysis History",
-    "noTestResults": "No test results yet",
-    "lastUpdated": "Last updated: ",
-    "delete": "Delete",
-    "edit": "Edit",
-    "bloodTest": "Blood Test",
-    "urineTest": "Urine Test",
-    "vitaminTest": "Vitamin Test",
-    "geneticTest": "Genetic Test",
-    "hemoglobin": "Hemoglobin",
-    "hemoglobinUnit": "g/dL",
-    "whiteBloodCells": "White Blood Cells (WBC)",
-    "whiteBloodCellsUnit": "10^9/L",
-    "redBloodCells": "Red Blood Cells (RBC)",
-    "redBloodCellsUnit": "10^6/L",
-    "platelets": "Platelets",
-    "plateletsUnit": "10^9/L",
-    "glucose": "Glucose",
-    "glucoseUnit": "mg/dL",
-    "cholesterol": "Cholesterol",
-    "cholesterolUnit": "mg/dL",
-    "ph": "pH",
-    "phUnit": "",
-    "specificGravity": "Specific Gravity",
-    "specificGravityUnit": "",
-    "protein": "Protein",
-    "proteinUnit": "mg/dL",
-    "ketones": "Ketones",
-    "ketonesUnit": "mg/dL",
-    "bilirubin": "Bilirubin",
-    "bilirubinUnit": "mg/dL",
-    "vitaminA": "Vitamin A",
-    "vitaminAUnit": "μg/L",
-    "vitaminB12": "Vitamin B12",
-    "vitaminB12Unit": "pg/L",
-    "vitaminC": "Vitamin C",
-    "vitaminCUnit": "mg/dL",
-    "vitaminD": "Vitamin D",
-    "vitaminDUnit": "ng/mL",
-    "vitaminE": "Vitamin E",
-    "vitaminEUnit": "mg/dL",
-    "vitaminK": "Vitamin K",
-    "vitaminKUnit": "μg/L",
-    "brca1": "BRCA1",
-    "brca2": "BRCA2",
-    "apoe": "APOE",
-    "mthfr": "MTHFR",
-    "factorVLeiden": "Factor V Leiden",
-    "cyp2c19": "CYP2C19"
-  },
-  "mainTests": {
-    "bloodTest": "Blood Test",
-    "urineTest": "Urine Test",
-    "vitaminTest": "Vitamin Test",
-    "geneticTest": "Genetic Test",
-    "bloodTestSubtitle": "Complete blood count & biochemistry",
-    "urineTestSubtitle": "Urinalysis & microalbumin test",
-    "vitaminTestSubtitle": "Vitamin D, B12 & minerals",
-    "geneticTestSubtitle": "DNA analysis & health risks",
-    "fillForm": "Fill the form to get your test results",
-    "viewMore": "View More",
-    "getStarted": "Get Started"
-  },
-  "contactUs": {
-    "title": "Contact Us",
-    "phone": "Tel: +374 91 234 567",
-    "email": "Email:",
-    "address": "Address: 123 Main St, Anytown, USA",
-    "hours": "Hours: Mon - Fri: 9:00 AM - 5:00 PM",
-    "linkedin": "LinkedIn։ "
-  },
-  "chat": {
-    "newChat": "New Chat",
-    "rename": "Rename",
-    "delete": "Delete",
-    "scanAnalysis": "Scan Analysis",
-    "pdfUpload": "PDF Upload"
-  },
-  "health": {
-    "bmi": "BMI",
-    "bmr": "BMR",
-    "bodyFat": "Body Fat",
-    "idealWeight": "Ideal Weight",
-    "status": {
-      "underweight": "Underweight",
-      "healthy": "Healthy",
-      "overweight": "Overweight",
-      "obese": "Obese"
+    "badges": {
+      "premiumMember": "Premium Member"
     },
-    "suggestions": {
-      "underweight": "Your BMI is below normal. Focus on nutrient-dense foods like avocados, nuts, lean proteins, and whole grains.",
-      "healthy": "Great job! Maintain your current habits of balanced eating and regular exercise.",
-      "overweight": "Try incorporating more physical activity and reducing high-calorie processed foods.",
-      "obese": "It's important to take action now. Please consult with a healthcare provider."
+    "actions": {
+      "save": "Save",
+      "cancel": "Cancel"
     },
-    "dailyCalories": "Daily Calories",
-    "exerciseGoal": "Exercise Goal",
-    "threeMonthGoal": "3-month Goal",
-    "maintain": "Maintain",
-    "gainWeight": "+{{kg}}kg",
-    "loseWeight": "-{{kg}}kg",
-    "minutes": "{{minutes}} min",
-    "alerts": {
-      "lowWeight": {
-        "title": "Low Weight Advisory",
-        "description": "Your weight is significantly below average. Consider increasing intake of healthy high-calorie foods like nuts, avocados, and lean proteins."
-      },
-      "highWeight": {
-        "title": "Weight Management Recommended",
-        "description": "Your weight is above healthy ranges. Focus on whole foods, portion control, and regular physical activity. Consult a healthcare provider for personalized advice."
-      },
-      "healthyWeight": {
-        "title": "Healthy Weight Range",
-        "description": "Your weight is within acceptable parameters. Maintain balanced nutrition and regular physical activity for optimal health."
-      }
+    "messages": {
+      "saveSuccess": "Data saved successfully",
+      "saveFail": "Failed to save data",
+      "comingSoon": "Coming soon...",
+      "updateSuccess": "Field updated successfully!",
+      "updateError": "Failed to update field."
     },
-    "loading": {
-      "title": "Analyzing Your Health Profile",
-      "subtitle": "We're crunching the numbers to provide personalized insights"
-    },
-    "emptyState": {
-      "title": "Welcome to Your Health Dashboard",
-      "message": "Complete your health profile to unlock personalized insights and recommendations.",
-      "button": "Complete Your Profile"
-    },
-    "dashboard": {
-      "title": "Your Health Dashboard",
-      "subtitle": "Personalized insights based on your health metrics"
-    },
-    "profile": {
-      "title": "Personal Profile",
+    "fields": {
+      "name": "Name",
+      "surname": "Surname",
+      "email": "Email",
       "age": "Age",
+      "gender": "Gender",
       "weight": "Weight",
       "height": "Height",
       "waistSize": "Waist Size",
       "neckSize": "Neck Size"
     },
-    "years": "{{years}} years",
-    "kg": "{{kg}} kg",
-    "cm": "{{cm}} cm",
-    "notSet": "Not set",
-    "metrics": {
-      "title": "Health Metrics"
+    "genders": {
+      "male": "Male",
+      "female": "Female"
     },
-    "visualization": {
-      "alt": "Health visualization"
-    }
-  },
-  "healthGuide": {
-    "guide": {
-      "title": "Let's Get Your Health Profile Set Up",
-      "subtitle": "Complete these simple steps to unlock personalized health insights and tracking.",
-      "profileTitle": "Personal Profile",
-      "profileDescription": "Tell us about yourself to help us personalize your experience. ",
-      "ageGender": "Age & Gender",
-      "heightWeight": "Height & Weight",
-      "activityLevel": "Activity Level",
-      "waistSize": "Waist Circumference",
-      "neckSize": "Neck Circumference",
-      "hipSize": "Hip Circumference",
-      "bodyFat": "Body Fat %",
+    "placeholders": {
+      "age": "Enter age",
+      "gender": "Select gender",
+      "weight": "Enter weight",
+      "height": "Enter height",
+      "waistSize": "Enter waist size",
+      "neckSize": "Enter neck size"
+    },
+    "units": {
+      "years": "yrs",
+      "kg": "kg",
+      "cm": "cm"
+    },
+    "tooltips": {
+      "waistSize": "Measure around the narrowest point",
+      "neckSize": "Measure around the base of the neck"
+    },
+    "tabs": {
+      "profile": "Profile",
+      "health": "Health",
+      "settings": "Settings"
+    },
+    "sections": {
+      "personalInfo": "Personal Information",
+      "healthMetrics": "Health Metrics",
+      "accountSettings": "Account Settings"
+    },
+    "timePeriods": {
+      "week": "Week",
+      "month": "Month",
+      "year": "Year"
+    },
+    "metrics": {
+      "bmi": {
+        "label": "BMI",
+        "healthyRange": "Healthy range: {{min}} - {{max}}"
+      },
+      "bodyFat": {
+        "label": "Body Fat",
+        "healthyRange": "Healthy range: {{min}}% - {{max}}%"
+      },
+      "metabolicAge": {
+        "label": "Metabolic Age"
+      },
+      "average": "average",
+      "comparison": "{{difference}} vs {{comparison}}"
+    },
+    "analysisHistory": {
+      "title": "Analysis History",
+      "noTestResults": "No test results yet",
+      "lastUpdated": "Last updated: ",
+      "delete": "Delete",
+      "edit": "Edit",
+      "bloodTest": "Blood Test",
+      "urineTest": "Urine Test",
+      "vitaminTest": "Vitamin Test",
+      "geneticTest": "Genetic Test",
+      "hemoglobin": "Hemoglobin",
+      "hemoglobinUnit": "g/dL",
+      "whiteBloodCells": "White Blood Cells (WBC)",
+      "whiteBloodCellsUnit": "10^9/L",
+      "redBloodCells": "Red Blood Cells (RBC)",
+      "redBloodCellsUnit": "10^6/L",
+      "platelets": "Platelets",
+      "plateletsUnit": "10^9/L",
+      "glucose": "Glucose",
+      "glucoseUnit": "mg/dL",
+      "cholesterol": "Cholesterol",
+      "cholesterolUnit": "mg/dL",
+      "ph": "pH",
+      "phUnit": "",
+      "specificGravity": "Specific Gravity",
+      "specificGravityUnit": "",
+      "protein": "Protein",
+      "proteinUnit": "mg/dL",
+      "ketones": "Ketones",
+      "ketonesUnit": "mg/dL",
+      "bilirubin": "Bilirubin",
+      "bilirubinUnit": "mg/dL",
+      "vitaminA": "Vitamin A",
+      "vitaminAUnit": "μg/L",
+      "vitaminB12": "Vitamin B12",
+      "vitaminB12Unit": "pg/L",
+      "vitaminC": "Vitamin C",
+      "vitaminCUnit": "mg/dL",
+      "vitaminD": "Vitamin D",
+      "vitaminDUnit": "ng/mL",
+      "vitaminE": "Vitamin E",
+      "vitaminEUnit": "mg/dL",
+      "vitaminK": "Vitamin K",
+      "vitaminKUnit": "μg/L",
+      "brca1": "BRCA1",
+      "brca2": "BRCA2",
+      "apoe": "APOE",
+      "mthfr": "MTHFR",
+      "factorVLeiden": "Factor V Leiden",
+      "cyp2c19": "CYP2C19"
+    },
+    "mainTests": {
+      "bloodTest": "Blood Test",
+      "urineTest": "Urine Test",
+      "vitaminTest": "Vitamin Test",
+      "geneticTest": "Genetic Test",
+      "bloodTestSubtitle": "Complete blood count & biochemistry",
+      "urineTestSubtitle": "Urinalysis & microalbumin test",
+      "vitaminTestSubtitle": "Vitamin D, B12 & minerals",
+      "geneticTestSubtitle": "DNA analysis & health risks",
+      "fillForm": "Fill the form to get your test results",
+      "viewMore": "View More",
+      "getStarted": "Get Started"
+    },
+    "contactUs": {
+      "title": "Contact Us",
+      "phone": "Tel: +374 91 234 567",
+      "email": "Email:",
+      "address": "Address: 123 Main St, Anytown, USA",
+      "hours": "Hours: Mon - Fri: 9:00 AM - 5:00 PM",
+      "linkedin": "LinkedIn։ "
+    },
+    "chat": {
+      "newChat": "New Chat",
+      "rename": "Rename",
+      "delete": "Delete",
+      "scanAnalysis": "Scan Analysis",
+      "pdfUpload": "PDF Upload"
+    },
+    "health": {
+      "bmi": "BMI",
+      "bmr": "BMR",
+      "bodyFat": "Body Fat",
       "idealWeight": "Ideal Weight",
+      "status": {
+        "underweight": "Underweight",
+        "healthy": "Healthy",
+        "overweight": "Overweight",
+        "obese": "Obese"
+      },
+      "suggestions": {
+        "underweight": "Your BMI is below normal. Focus on nutrient-dense foods like avocados, nuts, lean proteins, and whole grains.",
+        "healthy": "Great job! Maintain your current habits of balanced eating and regular exercise.",
+        "overweight": "Try incorporating more physical activity and reducing high-calorie processed foods.",
+        "obese": "It's important to take action now. Please consult with a healthcare provider."
+      },
       "dailyCalories": "Daily Calories",
       "exerciseGoal": "Exercise Goal",
-      "completeProfile": "Complete Profile",
-      "dataPrivacyTitle": "Health Data Analysis",
-      "dataPrivacyText": "Your health data is encrypted end-to-end. We never sell your data or share it without your consent.",
-      "privacyPolicy": "Read our privacy policy",
-      "connectHealthTitle": "Sync Health Data",
-      "connectHealthDescription": "Securely sync your health data in just a few steps.",
-      "step1Title": "Authorize Data Sharing",
-      "step1Description": "In Apple Health, select which data types to share (activity, vitals, nutrition, etc.)",
-      "step2Title": "Set Sync Frequency",
-      "step2Description": "Choose automatic daily syncs or manual updates as needed",
-      "step3Title": "Secure Data Storage",
-      "step3Description": "Your health data will be securely saved in our encrypted database",
-      "step4Title": "Data Processing",
-      "step4Description": "MediScanAI will analyze your data (takes 2-5 minutes for initial sync)",
-      "step5Title": "View Insights",
-      "step5Description": "Access personalized health reports and AI recommendations",
-      "connectButton": "Connect Apple Health",
-      "learnMore": "Learn More",
-      "connectModal": {
-        "title": "Connect Your Health Data",
-        "description": "Follow these steps to connect your health data with MediScanAI",
-        "steps": {
-          "download": {
-            "title": "Download the Shortcut",
-            "linkText": "Download Shortcut"
-          },
-          "copyUid": {
-            "title": "Copy Your Unique ID",
-            "button": {
-              "copy": "Copy"
+      "threeMonthGoal": "3-month Goal",
+      "maintain": "Maintain",
+      "gainWeight": "+{{kg}}kg",
+      "loseWeight": "-{{kg}}kg",
+      "minutes": "{{minutes}} min",
+      "alerts": {
+        "lowWeight": {
+          "title": "Low Weight Advisory",
+          "description": "Your weight is significantly below average. Consider increasing intake of healthy high-calorie foods like nuts, avocados, and lean proteins."
+        },
+        "highWeight": {
+          "title": "Weight Management Recommended",
+          "description": "Your weight is above healthy ranges. Focus on whole foods, portion control, and regular physical activity. Consult a healthcare provider for personalized advice."
+        },
+        "healthyWeight": {
+          "title": "Healthy Weight Range",
+          "description": "Your weight is within acceptable parameters. Maintain balanced nutrition and regular physical activity for optimal health."
+        }
+      },
+      "loading": {
+        "title": "Analyzing Your Health Profile",
+        "subtitle": "We're crunching the numbers to provide personalized insights"
+      },
+      "emptyState": {
+        "title": "Welcome to Your Health Dashboard",
+        "message": "Complete your health profile to unlock personalized insights and recommendations.",
+        "button": "Complete Your Profile"
+      },
+      "dashboard": {
+        "title": "Your Health Dashboard",
+        "subtitle": "Personalized insights based on your health metrics"
+      },
+      "profile": {
+        "title": "Personal Profile",
+        "age": "Age",
+        "weight": "Weight",
+        "height": "Height",
+        "waistSize": "Waist Size",
+        "neckSize": "Neck Size"
+      },
+      "years": "{{years}} years",
+      "kg": "{{kg}} kg",
+      "cm": "{{cm}} cm",
+      "notSet": "Not set",
+      "metrics": {
+        "title": "Health Metrics"
+      },
+      "visualization": {
+        "alt": "Health visualization"
+      }
+    },
+    "healthGuide": {
+      "guide": {
+        "title": "Let's Get Your Health Profile Set Up",
+        "subtitle": "Complete these simple steps to unlock personalized health insights and tracking.",
+        "profileTitle": "Personal Profile",
+        "profileDescription": "Tell us about yourself to help us personalize your experience. ",
+        "ageGender": "Age & Gender",
+        "heightWeight": "Height & Weight",
+        "activityLevel": "Activity Level",
+        "waistSize": "Waist Circumference",
+        "neckSize": "Neck Circumference",
+        "hipSize": "Hip Circumference",
+        "bodyFat": "Body Fat %",
+        "idealWeight": "Ideal Weight",
+        "dailyCalories": "Daily Calories",
+        "exerciseGoal": "Exercise Goal",
+        "completeProfile": "Complete Profile",
+        "dataPrivacyTitle": "Health Data Analysis",
+        "dataPrivacyText": "Your health data is encrypted end-to-end. We never sell your data or share it without your consent.",
+        "privacyPolicy": "Read our privacy policy",
+        "connectHealthTitle": "Sync Health Data",
+        "connectHealthDescription": "Securely sync your health data in just a few steps.",
+        "step1Title": "Authorize Data Sharing",
+        "step1Description": "In Apple Health, select which data types to share (activity, vitals, nutrition, etc.)",
+        "step2Title": "Set Sync Frequency",
+        "step2Description": "Choose automatic daily syncs or manual updates as needed",
+        "step3Title": "Secure Data Storage",
+        "step3Description": "Your health data will be securely saved in our encrypted database",
+        "step4Title": "Data Processing",
+        "step4Description": "MediScanAI will analyze your data (takes 2-5 minutes for initial sync)",
+        "step5Title": "View Insights",
+        "step5Description": "Access personalized health reports and AI recommendations",
+        "connectButton": "Connect Apple Health",
+        "learnMore": "Learn More",
+        "connectModal": {
+          "title": "Connect Your Health Data",
+          "description": "Follow these steps to connect your health data with MediScanAI",
+          "steps": {
+            "download": {
+              "title": "Download the Shortcut",
+              "linkText": "Download Shortcut"
+            },
+            "copyUid": {
+              "title": "Copy Your Unique ID",
+              "button": {
+                "copy": "Copy"
+              }
+            },
+            "runShortcut": {
+              "title": "Run the Shortcut",
+              "description": "Open the Shortcuts app and run the downloaded shortcut"
+            },
+            "enjoy": {
+              "title": "Enjoy Your Health Insights",
+              "description": "Your health data will be automatically synced with MediScanAI"
             }
           },
-          "runShortcut": {
-            "title": "Run the Shortcut",
-            "description": "Open the Shortcuts app and run the downloaded shortcut"
-          },
-          "enjoy": {
-            "title": "Enjoy Your Health Insights",
-            "description": "Your health data will be automatically synced with MediScanAI"
-          }
-        },
-        "privacyNote": "Your data is encrypted and secure. We never share your personal health information with third parties.",
-        "closeButton": "Close"
+          "privacyNote": "Your data is encrypted and secure. We never share your personal health information with third parties.",
+          "closeButton": "Close"
+        }
       }
     }
   }
