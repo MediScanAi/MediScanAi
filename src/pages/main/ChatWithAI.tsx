@@ -435,7 +435,7 @@ const ChatWithAi = () => {
           Describe my results in detail and recommend a plan of action about my health warnings.`);
         } else {
           message.error('You have no genetic tests.');
-          }
+        }
       },
     },
   ];

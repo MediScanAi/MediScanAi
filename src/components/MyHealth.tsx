@@ -38,6 +38,7 @@ import {
   InfoCircleOutlined,
   CheckOutlined,
   CopyOutlined,
+  InboxOutlined,
 } from '@ant-design/icons';
 
 import person from '../assets/photos/marduk.webp';
@@ -603,7 +604,6 @@ const HealthPage: React.FC = () => {
               'Active Calories',
               'Resting Calories',
             ].includes(String(metric.type));
-
             return (
               <Card key={index} style={{ border: 'none', width: '150px' }}>
                 {showConfetti[index] && (
@@ -708,7 +708,17 @@ const HealthPage: React.FC = () => {
   };
 
   return (
-    <div className="health-dashboard">
+    <div
+      className="health-dashboard"
+      style={{
+        margin: '0 auto',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: '100vw'
+      }}
+    >
       <Row justify="center" className="dashboard-header">
         <Col span={24}>
           <motion.div
@@ -986,7 +996,7 @@ const HealthPage: React.FC = () => {
           initial={{ x: 50, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.6 }}
-          style={{ width: '40%', position: 'relative' }}
+          style={{ width: '30%', position: 'relative', marginLeft: '30px' }}
         >
           <Title
             style={{
@@ -1010,7 +1020,7 @@ const HealthPage: React.FC = () => {
           </Title>
 
           <div style={{ position: 'relative' }}>
-            {!selectedDate && (
+            {!selectedDate || fetchedHealthData.length === 0 ? (
               <div
                 style={{
                   backgroundColor: 'rgba(255, 255, 255, 0.9)',
@@ -1025,31 +1035,31 @@ const HealthPage: React.FC = () => {
                   marginRight: '20px',
                 }}
               >
-                <Text>Select a date of your health data</Text>
-                <Text>To see and make Goals for them</Text>
+                <Text>There is no data</Text>
+                <InboxOutlined style={{ fontSize: '100px', marginTop: '20px' }} />
               </div>
-            )}
-
-            <div
-              style={{
-                borderRadius: '10px',
-                zIndex: 1,
-                opacity: selectedDate ? 1 : 0.5,
-                pointerEvents: selectedDate ? 'auto' : 'none',
-              }}
-            >
+            ) : (
               <div
                 style={{
-                  display: 'flex',
-                  flexDirection: 'row',
-                  justifyContent: 'center',
-                  flexWrap: 'wrap',
-                  gap: '20px',
+                  borderRadius: '10px',
+                  zIndex: 1,
+                  opacity: selectedDate ? 1 : 0.5,
+                  pointerEvents: selectedDate ? 'auto' : 'none',
                 }}
               >
-                {healthCircles()}
+                <div
+                  style={{
+                    display: 'flex',
+                    flexDirection: 'row',
+                    justifyContent: 'center',
+                    flexWrap: 'wrap',
+                    gap: '20px',
+                  }}
+                >
+                  {healthCircles()}
+                </div>
               </div>
-            </div>
+            )}
           </div>
         </motion.div>
       </Row>
