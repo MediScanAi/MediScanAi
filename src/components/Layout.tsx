@@ -1,4 +1,4 @@
-import { Header } from './Header.tsx';
+import AppHeader from './Header.tsx';
 import { Footer } from './Footer.tsx';
 import { useLocation } from 'react-router-dom';
 
@@ -8,7 +8,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
 
   return (
     <>
-      <Header />
+      <AppHeader />
       {children}
       {!hideFooter && <Footer />}
     </>
