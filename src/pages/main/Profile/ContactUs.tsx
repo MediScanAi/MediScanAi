@@ -10,11 +10,12 @@ import {
 import { useTranslation } from 'react-i18next';
 const { Title, Text } = Typography;
 
-interface ContactUsProps {
+export interface ContactUsProps {
   theme: boolean;
+  width: number;
 }
 
-const ContactUs: React.FC<ContactUsProps> = ({ theme }) => {
+const ContactUs: React.FC<ContactUsProps> = ({ theme, width }) => {
   const { t } = useTranslation();
   return (
     <div style={{ minHeight: '50vh' }}>

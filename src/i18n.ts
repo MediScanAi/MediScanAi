@@ -8,6 +8,12 @@ i18n
   .use(LanguageDetector)
   .use(initReactI18next)
   .init({
+    debug: true,
+    saveMissing: true,
+    missingKeyHandler: (lng, key) => {
+      console.error(`[i18n] Missing ${lng} translation for: ${key}`);
+      return key;
+    },
     supportedLngs: ['en', 'ru', 'hy'],
     fallbackLng: 'en',
     detection: {
@@ -23,7 +29,6 @@ i18n
     interpolation: {
       escapeValue: false,
     },
-    debug: true,
   });
 
 export default i18n;

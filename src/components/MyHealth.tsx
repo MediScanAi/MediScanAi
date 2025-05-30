@@ -173,7 +173,7 @@ const HealthPage: React.FC = () => {
         const age = parseFloat(userData?.age?.toString() || '');
         const waist = parseFloat(userData?.waistSize?.toString() || '');
         const neck = parseFloat(userData?.neckSize?.toString() || '');
-        const gender = userData?.sex?.toLowerCase();
+        const gender = userData?.gender?.toLowerCase();
         const heightM = height / 100;
 
         if (weight > 0 && height > 0) {
@@ -216,17 +216,12 @@ const HealthPage: React.FC = () => {
 
   useEffect(() => {
     const newConfettiState: { [key: number]: boolean } = {};
-    let anyGoalAchieved = false;
 
     fetchedHealthData.forEach((metric, index) => {
       const goal = Number(goalInputs[index] || 0);
       const value = Number(metric.value || 0);
       const achieved = goal > 0 && value >= goal;
       newConfettiState[index] = achieved;
-
-      if (achieved) {
-        anyGoalAchieved = true;
-      }
     });
 
     setShowConfetti(newConfettiState);
