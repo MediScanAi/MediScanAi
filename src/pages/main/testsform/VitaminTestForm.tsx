@@ -9,7 +9,7 @@ import {
   Col,
 } from 'antd';
 import { useAppDispatch } from '../../../app/hooks';
-import { saveTestData } from '../../../app/slices/testSlice';
+import { saveTestData, setTestData } from '../../../app/slices/testSlice';
 import type { VitaminTestFormValues } from '../../../app/slices/testSlice';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { auth } from '../../../api/authApi';
@@ -81,7 +81,7 @@ const VitaminTestForm = () => {
     },
   ];
 
-  const onFinish = (values: VitaminTestFormValues) => {
+  const onFinish = async (values: VitaminTestFormValues) => {
     const uid = auth.currentUser?.uid;
 
     if (!uid) {
@@ -90,7 +90,9 @@ const VitaminTestForm = () => {
     }
 
     const testData = { ...values, date: new Date().toISOString() };
-    dispatch(saveTestData({ uid, testType: 'vitamin', data: testData }));
+    await dispatch(saveTestData({ uid, testType: 'vitamin', data: testData }));
+
+    dispatch(setTestData({ testType: 'vitamin', data: testData }));
 
     if (updatedData) {
       message.success(t('vitaminTest.updateSuccess'));

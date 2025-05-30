@@ -12,7 +12,7 @@ import {
 import { useAppDispatch } from '../../../app/hooks';
 import type { UrineTestFormValues } from '../../../app/slices/testSlice';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { saveTestData } from '../../../app/slices/testSlice';
+import { saveTestData, setTestData } from '../../../app/slices/testSlice';
 import { auth } from '../../../api/authApi';
 import { useTranslation } from 'react-i18next';
 
@@ -132,7 +132,7 @@ const UrineTestForm = () => {
     },
   ];
 
-  const onFinish = (values: UrineTestFormValues) => {
+  const onFinish = async (values: UrineTestFormValues) => {
     const uid = auth.currentUser?.uid;
 
     if (!uid) {
@@ -141,7 +141,9 @@ const UrineTestForm = () => {
     }
 
     const testData = { ...values, date: new Date().toISOString() };
-    dispatch(saveTestData({ uid, testType: 'urine', data: testData }));
+    await dispatch(saveTestData({ uid, testType: 'urine', data: testData }));
+
+    dispatch(setTestData({ testType: 'urine', data: testData }));
 
     if (updatedData) {
       message.success(t('urineTest.updateSuccess'));
