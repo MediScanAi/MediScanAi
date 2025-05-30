@@ -10,7 +10,7 @@ import {
 } from 'antd';
 import { useAppDispatch } from '../../../app/hooks';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { saveTestData } from '../../../app/slices/testSlice';
+import { saveTestData, setTestData } from '../../../app/slices/testSlice';
 import { auth } from '../../../api/authApi';
 import type { GeneticTestFormValues } from '../../../app/slices/testSlice';
 import { useTranslation } from 'react-i18next';
@@ -76,7 +76,7 @@ function GeneticTestForm() {
     },
   ];
 
-  const onFinish = (values: GeneticTestFormValues) => {
+  const onFinish = async (values: GeneticTestFormValues) => {
     const uid = auth.currentUser?.uid;
 
     if (!uid) {
@@ -85,7 +85,9 @@ function GeneticTestForm() {
     }
 
     const testData = { ...values, date: new Date().toISOString() };
-    dispatch(saveTestData({ uid, testType: 'genetic', data: testData }));
+    await dispatch(saveTestData({ uid, testType: 'genetic', data: testData }));
+
+    dispatch(setTestData({ testType: 'genetic', data: testData }));
 
     if (updatedData) {
       message.success(t('geneticTest.updateSuccess'));
