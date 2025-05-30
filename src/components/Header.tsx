@@ -42,9 +42,33 @@ const { Header } = Layout;
 const { Text } = Typography;
 
 const languageOptions = [
-  { label: <img src={engFlag} alt="EN" style={{ height: 16 }} />, value: 'en' },
-  { label: <img src={rusFlag} alt="RU" style={{ height: 16 }} />, value: 'ru' },
-  { label: <img src={armFlag} alt="HY" style={{ height: 16 }} />, value: 'hy' },
+  {
+    label: (
+      <div className="language-option">
+        <img src={engFlag} alt="EN" style={{ height: 16 }} />
+        <span style={{ marginLeft: 8 }}>ENG</span>
+      </div>
+    ),
+    value: 'en',
+  },
+  {
+    label: (
+      <div className="language-option">
+        <img src={rusFlag} alt="RU" style={{ height: 16 }} />
+        <span style={{ marginLeft: 8 }}>РУС</span>
+      </div>
+    ),
+    value: 'ru',
+  },
+  {
+    label: (
+      <div className="language-option">
+        <img src={armFlag} alt="HY" style={{ height: 16 }} />
+        <span style={{ marginLeft: 8 }}>ՀԱՅ</span>
+      </div>
+    ),
+    value: 'hy',
+  },
 ];
 
 const mainMenuItems = [
@@ -114,8 +138,13 @@ export default function AppHeader() {
             i18n.changeLanguage(lng);
             localStorage.setItem('language', lng);
           }}
-          className="lang-select"
+          className={`lang-select ${isDarkMode ? 'dark' : ''}`}
           popupMatchSelectWidth={false}
+          classNames={{
+            popup: {
+              root: isDarkMode ? 'lang-dropdown-dark' : undefined,
+            },
+          }}
         />
       </div>
       <div className="preference-item">
@@ -165,9 +194,18 @@ export default function AppHeader() {
               popupRender={() => prefsContent}
               onOpenChange={setPrefMenuOpen}
               placement="bottomRight"
+              overlayClassName={isDarkMode ? 'dropdown-dark' : 'dropdown-light'}
             >
-              <div className="settings-btn">
-                <Button type="text" icon={<SettingOutlined />} size="large" />
+              <div className={`settings-btn ${isDarkMode ? 'dark' : ''}`}>
+                <Button
+                  type="text"
+                  size="large"
+                  icon={
+                    <SettingOutlined
+                      className={`settings-icon ${prefMenuOpen ? 'spinning' : 're-spinning'}`}
+                    />
+                  }
+                ></Button>
                 <span className={`arrow-icon ${prefMenuOpen ? 'rotated' : ''}`}>
                   <DownOutlined />
                 </span>
@@ -206,10 +244,13 @@ export default function AppHeader() {
                 open={usrMenuOpen}
                 onOpenChange={setUsrMenuOpen}
                 placement="bottomRight"
+                overlayClassName={
+                  isDarkMode ? 'dropdown-dark' : 'dropdown-light'
+                }
               >
-                <div className="user-profile">
+                <div className={`user-profile ${isDarkMode ? 'dark' : ''}`}>
                   <Avatar size="small">{(user.firstName ?? ' ')[0]}</Avatar>
-                  <Text className="username">
+                  <Text className={`username ${isDarkMode ? 'dark' : ''}`}>
                     {user.firstName} {user.lastName}
                   </Text>
                   <span
