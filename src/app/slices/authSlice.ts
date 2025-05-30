@@ -4,11 +4,15 @@ import {
   register,
   logout,
   sendVerificationEmail,
-  type PlainUser,
+  type AuthUser,
+  db,
 } from '../../api/authApi';
+import { updateProfile } from 'firebase/auth';
+import type { RootState } from '../store';
+import { doc, setDoc } from 'firebase/firestore';
 
 interface AuthState {
-  user: PlainUser | null;
+  user: AuthUser | null;
   loading: boolean;
   error: string | null;
 }
@@ -42,8 +46,39 @@ export const authSlice = createAppSlice({
       }
     ),
     registerUser: create.asyncThunk(
-      async ({ email, password }: { email: string; password: string }) => {
+      async ({
+        name,
+        surname,
+        email,
+        password,
+        gender,
+        age,
+      }: {
+        name: string;
+        surname: string;
+        email: string;
+        password: string;
+        gender?: string | undefined;
+        age?: number | undefined;
+      }) => {
         const fbUser = await register(email, password);
+        if (!fbUser) throw new Error('Auth failed');
+        await updateProfile(fbUser, {
+          displayName: `${name} ${surname}`,
+        });
+
+        await sendVerificationEmail(fbUser);
+
+        const infoRef = doc(db, 'users', fbUser.uid, 'personalData', 'info');
+        await setDoc(
+          infoRef,
+          {
+            age: age ?? null,
+            gender: gender ?? null,
+          },
+          { merge: true }
+        );
+
         await sendVerificationEmail(fbUser);
         return null;
       },
@@ -62,6 +97,7 @@ export const authSlice = createAppSlice({
         },
       }
     ),
+
     logoutUser: create.asyncThunk(async () => await logout(), {
       pending: (state) => {
         state.loading = true;
@@ -76,7 +112,7 @@ export const authSlice = createAppSlice({
         state.error = action.error.message || 'Logout failed';
       },
     }),
-    setUser: create.reducer((state, action: { payload: PlainUser | null }) => {
+    setUser: create.reducer((state, action: { payload: AuthUser | null }) => {
       state.user = action.payload;
     }),
     clearUser: create.reducer((state) => {
@@ -87,6 +123,12 @@ export const authSlice = createAppSlice({
     }),
   }),
 });
+
+/**
+ *
+ * @returns currently logged in user
+ */
+export const selectCurrentUser = (state: RootState) => state.auth.user;
 
 export const {
   loginUser,

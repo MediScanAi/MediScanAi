@@ -1,11 +1,6 @@
 import { Typography, Row, Col, Card, Carousel, List, Button } from 'antd';
 import 'antd/dist/reset.css';
-import {
-  CloudUploadOutlined,
-  FileTextOutlined,
-  SolutionOutlined,
-  BarChartOutlined,
-} from '@ant-design/icons';
+import { DownOutlined } from '@ant-design/icons';
 import partner1 from '../../assets/photos/partner1.webp';
 import partner2 from '../../assets/photos/partner2.webp';
 import partner3 from '../../assets/photos/partner3.webp';
@@ -14,134 +9,160 @@ import partner5 from '../../assets/photos/partner5.webp';
 import partner6 from '../../assets/photos/partner6.webp';
 import partner7 from '../../assets/photos/partner7.webp';
 import partner8 from '../../assets/photos/partner8.webp';
-import dataUpload from '../../assets/photos/dataUpload.webp';
-import aiAnalysis from '../../assets/photos/aiAnalysis.webp';
-import insightsReport from '../../assets/photos/insightsReport.webp';
-import clinicalDecision from '../../assets/photos/clinicalDecision.webp';
-import backGroundPlatform from '../../assets/photos/backGroundPlatform.webp';
-import mission from '../../assets/photos/ourMission.webp';
-import getStartedBackground from '../../assets/photos/getStartedBackground.webp';
+import myHealth from '../../assets/photos/my-health.webp';
+import myHealth2 from '../../assets/photos/my-health-second.webp';
+import group99 from '../../assets/photos/Group 99.svg';
+import group101 from '../../assets/photos/Group 101.svg';
+import fileUpload from '../../assets/photos/Folder.webp';
+import aiAnalysis from '../../assets/photos/Productivity 4.webp';
+import insightsReport from '../../assets/photos/Finance 5.webp';
+import clinicalDecision from '../../assets/photos/m11.webp';
 import '../../assets/styles/homepage.css';
 import { useEffect, useState } from 'react';
-import { useAppSelector } from '../../app/hooks.ts';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 const { Title, Text } = Typography;
 
-const steps = [
-  {
-    title: 'Data Upload',
-    text: 'Securely upload your genomic data via encrypted portal',
-    icon: <CloudUploadOutlined style={{ fontSize: 40 }} />,
-    backgroundImage: dataUpload,
-  },
-  {
-    title: 'AI Analysis',
-    text: 'AI analyzes genomic data using multi-omic integration techniques',
-    icon: <BarChartOutlined style={{ fontSize: 40 }} />,
-    backgroundImage: aiAnalysis,
-  },
-  {
-    title: 'Insights Report',
-    text: 'Receive biomarkers and recommendations in a detailed report',
-    icon: <FileTextOutlined style={{ fontSize: 40 }} />,
-    backgroundImage: insightsReport,
-  },
-  {
-    title: 'Clinical Decision',
-    text: 'Physicians apply findings for personalized treatment decision-making',
-    icon: <SolutionOutlined style={{ fontSize: 40 }} />,
-    backgroundImage: clinicalDecision,
-  },
-];
-
-const chooseUs = [
-  {
-    title: 'Advanced AI Technology',
-    text: 'We leverage state-of-the-art artificial intelligence to process and interpret complex medical and genomic data. Our models are continuously updated to ensure accurate diagnostics and personalized recommendations, helping clinicians stay ahead in a rapidly evolving field.',
-  },
-  {
-    title: 'Secure & Compliant',
-    text: 'Your privacy is our priority. Our platform is built with enterprise-grade encryption and adheres strictly to HIPAA and GDPR standards. We ensure that all sensitive health data remains protected and compliant with global healthcare regulations.',
-  },
-  {
-    title: 'Clinician-Ready Reports',
-    text: 'Our reports are designed with healthcare professionals in mind — easy to read, focused on what matters, and integrated with clinical insights. Each report highlights key findings and suggests next steps, supporting better-informed decisions at the point of care.',
-  },
-  {
-    title: 'Fast Turnaround',
-    text: 'In healthcare, time is critical. Our system delivers detailed analysis and comprehensive results quickly — without compromising accuracy. This means patients can get timely care, and clinicians can act with confidence.',
-  },
-  {
-    title: 'Easy to Use',
-    text: 'Designed for simplicity, our platform requires no specialized training. With an intuitive interface, healthcare providers can upload data, run analyses, and review results in just a few steps, making advanced insights accessible to all.',
-  },
-];
-
-const partners = [
-  {
-    id: 1,
-    image: partner1,
-    name: 'Astghik Medical Center',
-    description:
-      'Astghik Medical Center is a modern, multidisciplinary hospital offering advanced medical services with international standards and cutting-edge technologies.',
-  },
-  {
-    id: 2,
-    image: partner2,
-    name: 'Izmirlyan Medical Center',
-    description:
-      'Izmirlyan Medical Center is a multifunctional hospital known for specialties like urology, cardiology, and surgery, affiliated with the Mother See of Holy Etchmiadzin.',
-  },
-  {
-    id: 3,
-    image: partner3,
-    name: 'Erebuni Medical Center',
-    description:
-      'Erebuni Medical Center is Armenia’s largest hospital, providing full-spectrum care including emergency services, diagnostics, and surgery since 1991.',
-  },
-  {
-    id: 4,
-    image: partner4,
-    name: 'Davidyants Laboratory',
-    description:
-      'Davidyants Laboratory specializes in clinical diagnostics, offering services like histology, immunohistochemistry, and infectious disease testing.',
-  },
-  {
-    id: 5,
-    image: partner5,
-    name: 'Slawmed Medical Center',
-    description:
-      'Slawmed is a multidisciplinary medical center offering treatments in gynecology, urology, ENT, ophthalmology, and other fields with modern equipment.',
-  },
-  {
-    id: 6,
-    image: partner6,
-    name: 'Wigmore Medical Center',
-    description:
-      'Wigmore Medical Center provides top-quality care in orthopedics, spine surgery, vascular surgery, cardiology, and more, with a patient-focused approach.',
-  },
-  {
-    id: 7,
-    image: partner7,
-    name: 'Nairi Medical Center',
-    description:
-      'Nairi Medical Center is a leading Armenian hospital offering high-standard medical care across multiple specialties and promoting medical research and education.',
-  },
-  {
-    id: 8,
-    image: partner8,
-    name: 'Armenian Hematological Center',
-    description:
-      'The Armenian Hematological Center specializes in diagnosing and treating blood disorders, providing advanced care for both children and adults.',
-  },
-];
-
-
 function HomePage() {
+  const { t } = useTranslation('global');
   const [width, setWidth] = useState(window.innerWidth);
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
+  const [theme, setTheme] = useState(false);
   const navigate = useNavigate();
-  const theme = useAppSelector((state) => state.theme.isDarkMode);
+
+  const activities = [
+    {
+      title: t('activity.dataUpload.title'),
+      text: t('activity.dataUpload.text'),
+      icon: (
+        <img
+          src={fileUpload}
+          alt="frame"
+          style={{ width: '110px', height: '100%' }}
+        />
+      ),
+      color: '#e6f7ff',
+    },
+    {
+      title: t('activity.aiAnalysis.title'),
+      text: t('activity.aiAnalysis.text'),
+      icon: (
+        <img
+          src={aiAnalysis}
+          alt="frame1"
+          style={{ width: '110px', height: '100%' }}
+        />
+      ),
+      color: '#fff1b8',
+    },
+    {
+      title: t('activity.insightsReport.title'),
+      text: t('activity.insightsReport.text'),
+      icon: (
+        <img
+          src={insightsReport}
+          alt="frame2"
+          style={{ width: '110px', height: '100%' }}
+        />
+      ),
+      color: '#f4ffb8',
+    },
+    {
+      title: t('activity.clinicalDecision.title'),
+      text: t('activity.clinicalDecision.text'),
+      icon: (
+        <img
+          src={clinicalDecision}
+          alt="frame3"
+          style={{ width: '125px', height: '110px' }}
+        />
+      ),
+      color: '#ffd6e7',
+    },
+  ];
+
+  const questions = [
+    {
+      title: t('faqs.items.0.question'),
+      text: t('faqs.items.0.answer'),
+    },
+    {
+      title: t('faqs.items.1.question'),
+      text: t('faqs.items.1.answer'),
+    },
+    {
+      title: t('faqs.items.2.question'),
+      text: t('faqs.items.2.answer'),
+    },
+    {
+      title: t('faqs.items.3.question'),
+      text: t('faqs.items.3.answer'),
+    },
+    {
+      title: t('faqs.items.4.question'),
+      text: t('faqs.items.4.answer'),
+    },
+  ];
+
+  const partners = [
+    {
+      id: 0,
+      image: partner1,
+      link: t('partners.0.link'),
+      name: t('partners.0.name'),
+      description: t('partners.0.description'),
+    },
+    {
+      id: 1,
+      image: partner2,
+      link: t('partners.1.link'),
+      name: t('partners.1.name'),
+      description: t('partners.1.description'),
+    },
+    {
+      id: 2,
+      image: partner3,
+      link: t('partners.2.link'),
+      name: t('partners.2.name'),
+      description: t('partners.2.description'),
+    },
+    {
+      id: 3,
+      image: partner4,
+      link: t('partners.3.link'),
+      name: t('partners.3.name'),
+      description: t('partners.3.description'),
+    },
+    {
+      id: 4,
+      image: partner5,
+      link: t('partners.4.link'),
+      name: t('partners.4.name'),
+      description: t('partners.4.description'),
+    },
+    {
+      id: 5,
+      image: partner6,
+      link: t('partners.5.link'),
+      name: t('partners.5.name'),
+      description: t('partners.5.description'),
+    },
+    {
+      id: 7,
+      image: partner7,
+      link: t('partners.6.link'),
+      name: t('partners.6.name'),
+      description: t('partners.6.description'),
+    },
+    {
+      id: 8,
+      image: partner8,
+      link: t('partners.7.link'),
+      name: t('partners.7.name'),
+      description: t('partners.7.description'),
+    },
+  ];
 
   useEffect(() => {
     const handleResize = () => {
@@ -151,351 +172,218 @@ function HomePage() {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
+  const toggleOpen = (index: number | null) => {
+    setOpenIndex(openIndex === index ? null : index);
+  };
+
   return (
-    <Row
-      className={theme ? 'dark-theme' : ''}
-      justify="center"
-      align="middle"
-      style={{
-        minHeight: '100vh',
-        padding: '20px',
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-      }}
-    >
+    <Row className={`homepage ${theme ? 'dark-theme' : ''}`}>
       <Col style={{ width: '100%' }}>
-        <Row
-          style={{
-            width: '96.5%',
-            padding: '20px',
-            display: 'flex',
-            justifyContent: 'space-around',
-            alignItems: 'center',
-            flexDirection: 'row',
-            backgroundImage: `url(${backGroundPlatform})`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-            minHeight: '220px',
-            borderRadius: '15px',
-            margin: '0 auto',
-          }}
-        >
-          <Col
-            style={{
-              textAlign: 'center',
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-            }}
-          >
-            <Title
-              style={{ color: 'black', marginBottom: 16, fontWeight: 500 }}
-            >
-              <b>Medical Analysis Platform</b>
+        <Row className="welcome-section">
+          <Col lg={12} sm={24} className="welcome-section-column">
+            <Text className="welcome-text">{t('homepage.welcome')}</Text>
+            <Title className="platform-title">
+              {t('homepage.platformTitle')}
             </Title>
-            <Text
-              type="secondary"
-              style={{ fontSize: 23, color: 'black', fontWeight: 500 }}
-            >
-              Advanced AI-powered diagnostics and medical analysis for
-              healthcare professionals. The platform uses the latest AI to
-              analyze complex medical and genomic data accurately.
-            </Text>
-          </Col>
-        </Row>
-        <Row
-          style={{
-            width: '96.5%',
-            display: 'flex',
-            justifyContent: 'space-around',
-            alignItems: 'center',
-            flexDirection: 'row',
-            backgroundImage: `url(${getStartedBackground})`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-            minHeight: '220px',
-            borderRadius: '15px',
-            margin: '0 auto',
-            marginTop: '20px',
-            position: 'relative',
-            overflow: 'hidden',
-            boxShadow: '0 10px 30px rgba(0,0,0,0.1)',
-          }}
-        >
-          <div
-            style={{
-              position: 'absolute',
-              top: 0,
-              left: 0,
-              right: 0,
-              bottom: 0,
-              zIndex: 1,
-            }}
-          ></div>
-
-          <Col
-            style={{
-              textAlign: 'center',
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-              zIndex: 2,
-              padding: '20px',
-            }}
-          >
-            <Title
-              style={{ color: 'black', marginBottom: 16, fontWeight: 700 }}
-            >
-              Ready to Get Started?
-            </Title>
-
-            <Text
-              style={{
-                fontSize: 23,
-                color: 'black',
-                fontWeight: 500,
-                marginBottom: 20,
-              }}
-            >
-              Embrace wellness with us - where health meets happiness in every
-              step of your journey.
-            </Text>
-
+            <p className="platform-description">
+              {t('homepage.platformDescription')}
+            </p>
             <Button
+              className="consult-button"
               type="primary"
               size="large"
-              style={{
-                height: '50px',
-                padding: '0 40px',
-                fontSize: '1.1rem',
-                fontWeight: 600,
-                borderRadius: '25px',
-                boxShadow: '0 4px 15px rgba(0,0,0,0.1)',
-                background: 'linear-gradient(45deg, #1890ff, #0052d9)',
-                border: 'none',
-                animation: 'fadeInUp 1s ease-out 0.4s forwards',
-                opacity: 0,
-                transition: 'all 0.3s ease',
-              }}
               onClick={() => navigate('/tests-form/blood-test')}
             >
-              Hand over your first test
+              {t('homepage.consultButton')}
             </Button>
           </Col>
+          <Col>
+            <img src={group99} alt="platform" className="platform-image" />
+          </Col>
         </Row>
-        <Col
-          style={{
-            textAlign: 'center',
-            marginTop: 25,
-            padding: '0 24px',
-          }}
-        >
-          <Title level={2} style={{ color: '#3498db', marginBottom: 32 }}>
-            How It Works ?
-          </Title>
-          <Row gutter={[16, 16]} justify="space-around" align="top">
-            {steps.map(({ title, text, icon, backgroundImage }, index) => (
-              <Col key={index} xs={24} sm={14} md={12} lg={6}>
-                <Card
-                  style={{
-                    minHeight: '200px',
-                    borderRadius: 12,
-                    overflow: 'hidden',
-                    padding: 0,
-                    position: 'relative',
-                  }}
-                >
-                  <div
-                    style={{
-                      position: 'absolute',
-                      top: 0,
-                      left: 0,
-                      right: 0,
-                      bottom: 0,
-                      backgroundImage: `url(${backgroundImage})`,
-                      backgroundSize: 'cover',
-                      backgroundPosition: 'center',
-                      filter: 'blur(2px)',
-                      zIndex: 1,
-                    }}
-                  />
-                  <div style={{ position: 'relative', zIndex: 2 }}>
-                    <div
-                      style={{
-                        display: 'flex',
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                        marginBottom: 16,
-                      }}
-                    >
-                      {icon}
+        <Row className="activity-section">
+          <Col className="activity-section-column">
+            <Title level={1} className="activity-section-column-title">
+              {t('activity.title')}
+            </Title>
+            <Text className="activity-section-column-text">
+              {t('activity.description')}
+            </Text>
+            <Row gutter={[24, 24]} style={{ marginTop: '40px' }}>
+              {activities.map(({ title, text, icon }, index) => (
+                <Col key={index} xs={24} sm={24} md={12} lg={6}>
+                  <Card
+                    className={
+                      'activity-card' +
+                      (theme ? ' dark-mode-text dark-theme' : '')
+                    }
+                    bodyStyle={{ padding: 0 }}
+                  >
+                    <div className="activity-card-content">
+                      <div className="activity-icon">{icon}</div>
+                      <Title level={4} className="activity-card-title">
+                        {title}
+                      </Title>
+                      <Text className="activity-card-text">{text}</Text>
                     </div>
-                    <Title level={3} style={{ color: 'black' }}>
-                      {' '}
-                      {title}
-                    </Title>
-                    <Text style={{ color: 'black', fontSize: '15px' }}>
-                      {text}
-                    </Text>
-                  </div>
-                </Card>
-              </Col>
-            ))}
-          </Row>
-        </Col>
+                  </Card>
+                </Col>
+              ))}
+            </Row>
+          </Col>
+        </Row>
+        <Row className="my-health-section">
+          <Col span={24} className="my-health-title-container">
+            <Title
+              level={1}
+              className={'my-health-title' + (theme ? ' dark-theme' : '')}
+            >
+              {t('myHealth.title')}
+            </Title>
+          </Col>
+          <p className="my-health-description">{t('myHealth.description')}</p>
+          <div className="my-health-step-images">
+            <img src={myHealth} alt="Step 1" className="my-health-image" />
+            <div className="arrow">→</div>
+            <img src={myHealth2} alt="Step 2" className="my-health-image" />
+          </div>
+          <div className="my-health-text-content">
+            <Button
+              className="my-health-button"
+              type="primary"
+              size="large"
+              onClick={() => navigate('/profile/info')}
+            >
+              {t('myHealth.button')}
+            </Button>
+          </div>
+        </Row>
 
-        <Col style={{ textAlign: 'center', marginTop: 25, padding: '24px' }}>
-          <Title level={2} style={{ color: '#3498db', marginBottom: 32 }}>
-            Why Choose Us ?
-          </Title>
-
-          <List
-            itemLayout="horizontal"
-            dataSource={chooseUs}
-            split={false}
-            renderItem={({ title, text }) => (
-              <List.Item
-                style={{ padding: '16px 0', borderBottom: '1px solid #f0f0f0' }}
-              >
-                <Row gutter={[16, 16]} align="middle" style={{ width: '100%' }}>
-                  <Col xs={24} md={6}>
-                    <Title
-                      level={4}
-                      style={{
-                        color: theme ? 'gray' : '#2c3e50',
-                        margin: 0,
-                        textAlign: 'left',
-                      }}
-                    >
-                      {title}
-                    </Title>
-                  </Col>
-                  <Col xs={24} md={18}>
-                    <Text
-                      type="secondary"
-                      style={{
-                        fontSize: 16,
-                        textAlign: 'left',
-                        display: 'block',
-                        color: theme ? 'white' : 'black',
-                      }}
-                    >
-                      {text}
-                    </Text>
-                  </Col>
-                </Row>
-              </List.Item>
-            )}
-          />
-        </Col>
-
-        <Col style={{ textAlign: 'center', marginTop: 50 }}>
-          <Title style={{ color: '#3498db', marginBottom: 32 }}>
-            Our Mission
-          </Title>
-          <Row justify="center" align="middle" gutter={[32, 32]}>
-            <Col xs={24} md={12}>
-              <img
-                src={mission}
-                alt="mission"
-                style={{
-                  width: '96.5%',
-                  borderRadius: '25px',
-                  backgroundSize: 'cover',
-                  backgroundPosition: 'center',
-                }}
-              />
-            </Col>
-            <Col xs={24} md={12}>
-              <Text
-                type="secondary"
-                style={{
-                  fontSize: 20,
-                  display: 'block',
-                  textAlign: 'center',
-                  color: theme ? 'white' : 'black',
-                }}
-              >
-                Our mission is to provide healthcare professionals with
-                accurate, actionable insights to make informed decisions for
-                their patients. By leveraging advanced AI and genomic data, we
-                aim to improve patient care, enhance diagnostic accuracy, and
-                support personalized treatment plans.
-              </Text>
-            </Col>
-          </Row>
-        </Col>
-        <Col style={{ textAlign: 'center', marginTop: 25, padding: '24px' }}>
-          <Title level={1} style={{ color: '#3498db', marginBottom: 32 }}>
-            Partner With Us
-          </Title>
-          <Carousel
-            autoplay
-            autoplaySpeed={2000}
-            dots={false}
-            slidesToShow={
-              width > 1200 ? 4 : width > 900 ? 3 : width > 600 ? 2 : 1
-            }
-            slidesToScroll={1}
-            infinite
-            style={{ padding: '40px' }}
-          >
-            {partners.map((partner, index) => (
-              <Col
-                style={{
-                  borderRadius: '8px',
-                  overflow: 'hidden',
-                }}
-                key={index}
-              >
-                <Title
-                  level={4}
-                  style={{
-                    color: theme ? 'white' : '#2c3e50',
-                    textAlign: 'center',
-                    fontSize: '17px',
-                  }}
+        <Row className="leading-medicine-section">
+          <Col lg={12} sm={24} className="leading-medicine-content">
+            <Title className="leading-medicine-title">
+              {t('leadingMedicine.title')}
+            </Title>
+            <Text className="leading-medicine-description">
+              {t('leadingMedicine.description')}
+            </Text>
+          </Col>
+          <Col>
+            <img src={group101} alt="platform" className="platform-image" />
+          </Col>
+        </Row>
+        <Row className="faq-section">
+          <Col style={{ marginTop: 50, padding: '24px' }} span={24}>
+            <Title
+              level={1}
+              className={'faq-title' + (theme ? ' dark-theme' : '')}
+            >
+              {t('homepage.faqTitle')}
+            </Title>
+            <List
+              itemLayout="horizontal"
+              dataSource={questions}
+              split={false}
+              style={{ width: '100%', margin: '0 auto' }}
+              renderItem={({ title, text }, index) => (
+                <List.Item
+                  className={`faq-item ${theme ? 'faq-item-dark' : 'faq-item-light'}`}
+                  onClick={() => toggleOpen(index)}
                 >
-                  {partner.name}
-                </Title>
-                <Row
-                  style={{
-                    height: '250px',
-                    padding: '15px',
-                    display: 'flex',
-                    justifyContent: 'space-between',
-                    alignItems: 'center',
-                  }}
-                >
-                  <img
-                    src={partner.image}
-                    alt={partner.name}
-                    style={{
-                      width: '100%',
+                  <Row gutter={[16, 16]} style={{ width: '100%' }}>
+                    <Col xs={24}>
+                      <Row justify="space-between" style={{ width: '100%' }}>
+                        <Col span={22}>
+                          <Title level={3} className="faq-question">
+                            {title}
+                          </Title>
+                        </Col>
+                        <Col span={2} style={{ textAlign: 'right' }}>
+                          <DownOutlined
+                            style={{
+                              transition: 'transform 0.3s',
+                              transform:
+                                openIndex === index
+                                  ? 'rotate(180deg)'
+                                  : 'rotate(0deg)',
+                              fontSize: 20,
+                              color: theme ? 'white' : 'black',
+                            }}
+                          />
+                        </Col>
+                      </Row>
+                      {openIndex === index && (
+                        <Text className="faq-answer">{text}</Text>
+                      )}
+                    </Col>
+                  </Row>
+                </List.Item>
+              )}
+            />
+          </Col>
+        </Row>
+        <Row gutter={[24, 24]} className="partners-section">
+          <Col span={24}>
+            <Title level={1} className="partners-title">
+              {t('homepage.partnerTitle')}
+            </Title>
+            <Carousel
+              autoplay
+              autoplaySpeed={2000}
+              dots={false}
+              infinite
+              slidesToShow={
+                width > 1200 ? 4 : width > 900 ? 3 : width > 600 ? 2 : 1
+              }
+              slidesToScroll={1}
+              className="carousel-container"
+            >
+              {partners.map((partner, index) => (
+                <div key={index} className="partner-card-wrapper">
+                  <Card
+                    style={{ border: 'none' }}
+                    hoverable
+                    className={`partner-card ${theme ? 'partner-card-dark' : 'partner-card-light'}`}
+                    bodyStyle={{
+                      padding: 20,
+                      display: 'flex',
+                      flexDirection: 'column',
+                      justifyContent: 'space-between',
                       height: '100%',
-                      objectFit: 'cover',
-                      borderRadius: '25px',
                     }}
-                  />
-                </Row>
-                <Text
-                  type="secondary"
-                  style={{
-                    fontSize: 14,
-                    textAlign: 'center',
-                    marginTop: '10px',
-                    marginBottom: '10px',
-                    marginLeft: '10px',
-                    marginRight: '10px',
-                    color: theme ? 'white' : 'black',
-                  }}
-                >
-                  {partner.description}
-                </Text>
-              </Col>
-            ))}
-          </Carousel>
-        </Col>
+                  >
+                    <div className="partner-image-container">
+                      <img
+                        src={partner.image}
+                        alt={partner.name}
+                        className="partner-image"
+                      />
+                      <Title level={4} className="partner-name">
+                        {t(`partners.${index}.name`)}
+                      </Title>
+                      <Text className="partner-description">
+                        {t(`partners.${index}.description`)}
+                      </Text>
+                    </div>
+                    <Button
+                      className="partner-button"
+                      type="primary"
+                      size="large"
+                    >
+                      <a
+                        href={t(`partners.${index}.link`)}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        {t('homepage.readMore')}
+                      </a>
+                    </Button>
+                  </Card>
+                </div>
+              ))}
+            </Carousel>
+          </Col>
+        </Row>
       </Col>
     </Row>
   );

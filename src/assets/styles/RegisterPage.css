@@ -1,0 +1,316 @@
+.register-page-container {
+  min-height: 100vh;
+  width: 100vw;
+  align-items: stretch;
+  justify-content: center;
+  overflow-x: hidden;
+  overflow-y: auto;
+  transition: background 0.3s;
+}
+
+.register-page-container.light {
+  background: radial-gradient(circle at 10% 30%, #b3d1ff, #e6ecfa, #ffffff);
+  color: #161c3d;
+}
+
+.register-page-container.dark {
+  background: radial-gradient(circle at 10% 30%, #4666e5, #2b398b, #161c3d);
+  color: #ffffff;
+}
+
+.register-content-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 4vw;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  padding: 0 5vw;
+}
+
+.register-card-section {
+  flex: 1.5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+  height: 100%;
+  padding: 40px 0;
+  overflow: visible;
+}
+
+.register-card.wide {
+  width: 100%;
+  max-width: 600px;
+  min-width: 0;
+  padding: 44px 44px 30px 44px;
+  border-radius: 20px;
+  box-shadow: 0 8px 32px rgba(34, 56, 122, 0.23);
+  background: rgba(255, 255, 255, 0.94);
+  border: 1.5px solid #c2daff50;
+  transition: background 0.3s;
+  position: relative;
+  overflow: visible;
+  max-height: 800px;
+}
+
+.register-card.wide.dark {
+  background: rgba(28, 52, 125, 0.8);
+  color: #ffffff;
+  border: 1.5px solid rgba(255, 255, 255, 0.18);
+}
+
+.register-card.wide::-webkit-scrollbar {
+  width: 0;
+  background: transparent;
+}
+
+.register-card.wide {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.ant-typography {
+  font-family: 'Poppins', sans-serif !important;
+}
+
+.ant-input {
+  font-family: 'Poppins', sans-serif !important;
+}
+
+.register-title,
+.register-card .ant-typography,
+.register-card label {
+  color: inherit;
+}
+
+.register-title {
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 18px;
+  font-size: 2.1em;
+}
+
+.register-card.wide.dark .ant-form-item-label > label {
+  color: #dbeafe !important;
+}
+
+.register-input,
+.register-card .ant-input {
+  background: #e6ecfa;
+  color: #1a237e;
+  border-radius: 12px !important;
+  border: 1px solid #5271c3 !important;
+  font-size: 16px;
+  font-weight: 400 !important;
+  transition:
+    background 0.25s,
+    color 0.25s;
+  box-shadow: none !important;
+}
+
+.register-card .ant-select {
+  width: 100%;
+  border-radius: 12px !important;
+  border: 1px solid #5271c3 !important;
+  background: #e6ecfa !important;
+  box-shadow: none !important;
+}
+
+.register-card .ant-select-selector {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  color: #1a237e;
+  font-size: 16px;
+  font-weight: 400 !important;
+}
+
+.register-card .ant-input:focus,
+.register-card .ant-select-focused .ant-select-selector {
+  border-color: #92c4ff !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.register-card .ant-input-password {
+  background: #e6ecfa;
+  color: #1a237e;
+  border-radius: 12px !important;
+  border: 1px solid #5271c3 !important;
+  box-shadow: none !important;
+}
+
+.register-card .ant-input-password input {
+  background: transparent !important;
+  color: inherit !important;
+  border: none !important;
+  box-shadow: none !important;
+  height: 100%;
+}
+
+.register-card .ant-input-password-icon {
+  color: #5271c3;
+}
+
+.register-card.wide.dark .ant-input,
+.register-card.wide.dark .ant-select,
+.register-card.wide.dark .ant-input-password {
+  background: #283868 !important;
+  color: #ffffff !important;
+}
+
+.register-card.wide.dark .ant-input-password input {
+  background: transparent !important;
+  color: #ffffff !important;
+}
+
+.register-card.wide.dark .ant-select-selector {
+  background: transparent !important;
+  border: none !important;
+  color: #ffffff !important;
+}
+
+.register-card.wide.dark .ant-input-password-icon {
+  color: #ffffff !important;
+}
+
+.register-card .ant-input::placeholder,
+.register-card .ant-input-password input::placeholder {
+  color: #7f97c9 !important;
+  font-weight: 400 !important;
+  opacity: 1 !important;
+}
+
+.register-card.wide.dark .ant-input::placeholder,
+.register-card.wide.dark .ant-input-password input::placeholder {
+  color: #ffffff !important;
+  font-weight: 400 !important;
+  opacity: 1 !important;
+}
+
+.register-card.wide.dark .ant-select-selection-placeholder {
+  color: #ffffff !important;
+  font-weight: 400 !important;
+  opacity: 1 !important;
+}
+
+.register-page-container.dark .ant-select-dropdown {
+  background: #1e2954 !important;
+  color: #ffffff !important;
+}
+
+.register-page-container.dark .ant-select-item-option-content {
+  color: #dbeafe !important;
+}
+
+.register-card .ant-form-item {
+  margin-bottom: 16px;
+}
+
+.verification-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.96);
+  color: #111a2f;
+  border-radius: 20px;
+  z-index: 10;
+  display: grid;
+  place-items: center;
+  padding: 30px 20px;
+  text-align: center;
+}
+
+.register-card.wide.dark .verification-overlay {
+  background: rgba(16, 32, 64, 0.98);
+  color: #ffffff;
+}
+
+.welcome-register-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-width: 320px;
+  max-width: 520px;
+  padding: 40px 10px;
+  text-align: center;
+}
+
+.register-page-container.dark .welcome-register-section,
+.register-page-container.dark .welcome-register-title,
+.register-page-container.dark .welcome-register-description,
+.register-page-container.dark .register-register-text {
+  color: #ffffff !important;
+  opacity: 0.97;
+}
+
+.welcome-register-image {
+  width: 340px;
+  max-width: 100%;
+  margin-top: 28px;
+  filter: drop-shadow(0 6px 40px rgba(30, 60, 120, 0.15));
+  user-select: none;
+  pointer-events: none;
+}
+
+.register-text {
+  display: block;
+  text-align: center;
+  margin-top: 15px;
+  color: inherit;
+  opacity: 0.9;
+}
+
+.register-link {
+  color: #92c4ff;
+  font-weight: 600;
+}
+
+.register-page-container.dark .register-link {
+  color: #92c4ff;
+}
+
+.theme-toggle {
+  position: absolute;
+  top: 30px;
+  right: 50px;
+  z-index: 999;
+}
+
+@media (max-width: 992px) {
+  .register-content-row {
+    flex-direction: column-reverse;
+    align-items: center;
+    gap: 0;
+    padding: 12px;
+    height: auto;
+  }
+
+  .register-card-section {
+    min-width: unset;
+    width: 100%;
+    height: auto;
+    padding: 30px 0;
+  }
+
+  .register-card.wide {
+    max-width: 100vw;
+    min-width: unset;
+    padding: 18px 7vw 18px 7vw;
+  }
+
+  .welcome-register-section {
+    min-width: unset;
+    max-width: 100vw;
+    padding: 30px 0;
+  }
+
+  .theme-toggle {
+    top: 20px;
+    right: 16px;
+  }
+}

@@ -1,50 +1,67 @@
 import { Col, Card, Typography, Row, Button, Space } from 'antd';
 import { useNavigate } from 'react-router-dom';
+import React from 'react';
+import { useTranslation } from 'react-i18next';
 const { Title, Text } = Typography;
 
-const MainTests: React.FC = () => {
-  const navigate = useNavigate();
+export interface MainTestsProps {
+  theme: boolean;
+  width: number;
+}
 
+const MainTests: React.FC<MainTestsProps> = ({ theme, width }) => {
+  const navigate = useNavigate();
+  const { t } = useTranslation();
   const testCards = [
     {
-      title: 'Blood Test',
-      subtitle: 'Complete blood count & biochemistry',
+      title: t('mainTests.bloodTest'),
+      subtitle: t('mainTests.bloodTestSubtitle'),
       onClick: () => navigate('/tests-form/blood-test'),
     },
     {
-      title: 'Urine Test',
-      subtitle: 'Urinalysis & microalbumin test',
+      title: t('mainTests.urineTest'),
+      subtitle: t('mainTests.urineTestSubtitle'),
       onClick: () => navigate('/tests-form/urine-test'),
     },
     {
-      title: 'Vitamin Test',
-      subtitle: 'Vitamin D, B12 & minerals',
+      title: t('mainTests.vitaminTest'),
+      subtitle: t('mainTests.vitaminTestSubtitle'),
       onClick: () => navigate('/tests-form/vitamin-test'),
     },
     {
-      title: 'Genetic Test',
-      subtitle: 'DNA analysis & health risks',
+      title: t('mainTests.geneticTest'),
+      subtitle: t('mainTests.geneticTestSubtitle'),
       onClick: () => navigate('/tests-form/genetic-test'),
     },
   ];
 
   return (
-    <div style={{ padding: '40px 24px', maxWidth: 1200, margin: '0 auto' }}>
+    <div style={{ padding: '40px 24px' }}>
       <Title
+        className={'test-title' + (theme ? ' dark-mode-text' : '')}
         level={2}
         style={{
           marginBottom: '40px',
-          color: '#3498db',
-          fontWeight: 600,
+          fontSize: width && width < 1200 ? '22px' : '36px',
         }}
       >
-        Fill the form to get your test results
+        {t('mainTests.fillForm')}
       </Title>
 
       <Row gutter={[32, 32]} justify="center">
         {testCards.map((card, index) => (
-          <Col key={index} xs={24} sm={12} md={8} lg={6}>
+          <Col
+            key={index}
+            xs={24}
+            sm={24}
+            md={24}
+            lg={12}
+            xl={12}
+            xxl={6}
+            style={{ backgroundColor: 'transparent' }}
+          >
             <Card
+              className={theme ? 'dark-mode-text' : ''}
               hoverable
               onClick={card.onClick}
               style={{
@@ -58,17 +75,14 @@ const MainTests: React.FC = () => {
                 textAlign: 'center',
                 padding: '24px',
                 border: '2px solid #2BC0E4',
+                minWidth: '200px',
+                backgroundColor: 'transparent',
               }}
-              bodyStyle={{ padding: 0 }}
             >
               <div>
                 <Title
+                  className={'test-title' + (theme ? ' dark-mode-text' : '')}
                   level={4}
-                  style={{
-                    color: '#1e3a8a',
-                    fontWeight: 600,
-                    marginBottom: '12px',
-                  }}
                 >
                   {card.title}
                 </Title>
@@ -83,7 +97,7 @@ const MainTests: React.FC = () => {
                   {card.subtitle}
                 </Text>
                 <Button type="link" style={{ padding: 0, fontWeight: 500 }}>
-                  View More 
+                  {t('mainTests.viewMore')}
                 </Button>
               </div>
             </Card>
@@ -115,12 +129,11 @@ const MainTests: React.FC = () => {
             border: 'none',
           }}
         >
-          Get Started
+          {t('mainTests.getStarted')}
         </Button>
       </Space>
     </div>
   );
-
-}
+};
 
 export default MainTests;

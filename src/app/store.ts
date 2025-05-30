@@ -1,19 +1,17 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
-import bloodTestReducer from './slices/bloodTestSlice';
-import urineTestReducer from './slices/urineTestSlice';
-import vitaminTestReducer from './slices/vitaminTestSlice';
-import geneticTestReducer from './slices/geneticTestSlice';
 import authReducer from './slices/authSlice';
-import theme from './slices/theme';
+import themeReducer from './slices/theme';
+import testReducer from './slices/testSlice';
+import userDataReducer from './slices/userDataSlice';
+import healthReducer from './slices/healthSlice';
 
 export const store = configureStore({
   reducer: combineReducers({
-    bloodTest: bloodTestReducer,
-    urineTest: urineTestReducer,
-    vitaminTest: vitaminTestReducer,
-    geneticTest: geneticTestReducer,
     auth: authReducer,
-    theme: theme,
+    theme: themeReducer,
+    tests: testReducer,
+    userData: userDataReducer,
+    healthData: healthReducer,
   }),
 });
 

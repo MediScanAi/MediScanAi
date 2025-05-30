@@ -5,52 +5,102 @@ import {
   PhoneOutlined,
   UserOutlined,
 } from '@ant-design/icons';
-import UserInfo from './UserInfo';
 import '../../../assets/styles/Profile.css';
-import MainTests from './MainTests';
-import AnalysisHistory from './AnalysisHistory';
-import ContactUs from './ContactUs';
+import { useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
-const items: TabsProps['items'] = [
-  {
-    label: <span className={'menu-button'}>Info</span>,
-    key: 'info',
-    icon: <UserOutlined />,
-    children: <UserInfo />,
-  },
-  {
-    label: <span className={'menu-button'}>Analysis History</span>,
-    key: 'analysis',
-    icon: <ExperimentOutlined />,
-    children: <AnalysisHistory />,
-  },
-  {
-    key: 'doctor',
-    label: <span className={'menu-button'}>Tests</span>,
-    icon: <MedicineBoxOutlined />,
-    children: <MainTests />,
-  },
-  {
-    key: 'about',
-    label: <label className={'menu-button'}>Contact Us</label>,
-    icon: <PhoneOutlined />,
-    children: <ContactUs />,
-  },
-];
+import UserInfo from './UserInfo';
+import AnalysisHistory from './AnalysisHistory';
+import MainTests from './MainTests';
+import ContactUs from './ContactUs';
+import React, { useEffect, useState } from 'react';
+import { useAppSelector } from '../../../app/hooks';
 
 const Profile: React.FC = () => {
+  const theme = useAppSelector((state) => state.theme.isDarkMode);
+  const { type } = useParams();
+  const navigate = useNavigate();
+  const [width, setWidth] = useState(window.innerWidth);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setWidth(window.innerWidth);
+    };
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  const items: TabsProps['items'] = [
+    {
+      label: (
+        <span
+          style={{ fontSize: width < 1200 ? '16px' : '20px' }}
+          className={theme ? ' dark-mode-text' : ''}
+        >
+          <UserOutlined /> Info
+        </span>
+      ),
+      key: 'info',
+      children: <UserInfo width={width} theme={theme} />,
+    },
+    {
+      label: (
+        <span
+          style={{ fontSize: width < 1200 ? '16px' : '20px' }}
+          className={theme ? ' dark-mode-text' : ''}
+        >
+          <ExperimentOutlined /> Analysis History
+        </span>
+      ),
+      key: 'analysis-history',
+      children: <AnalysisHistory width={width} theme={theme} />,
+    },
+    {
+      key: 'tests',
+      label: (
+        <span
+          style={{ fontSize: width < 1200 ? '16px' : '20px' }}
+          className={theme ? ' dark-mode-text' : ''}
+        >
+          <MedicineBoxOutlined /> Tests
+        </span>
+      ),
+      children: <MainTests width={width} theme={theme} />,
+    },
+    {
+      key: 'contact-us',
+      label: (
+        <span
+          style={{ fontSize: width < 1200 ? '16px' : '20px' }}
+          className={theme ? ' dark-mode-text' : ''}
+        >
+          <PhoneOutlined /> Contact Us
+        </span>
+      ),
+      children: <ContactUs width={width} theme={theme} />,
+    },
+  ];
+
+  const activeKey = items.find((item) => item.key === type)?.key || 'info';
+
+  const handleTabChange = (key: string) => {
+    navigate(`/profile/${key}`);
+  };
+
   return (
-    <Row style={{ marginTop: '20px' }}>
+    <Row className={'Profile' + (theme ? ' dark-theme' : '')}>
       <Col className={'Column'}>
         <Tabs
-          tabPosition={'left'}
+          tabPosition={width < 820 ? 'top' : 'left'}
           defaultActiveKey="1"
-          style={{ padding: 40, marginTop: '20px' }}
+          style={{ padding: 40, marginTop: '20px', color: 'white' }}
           items={items}
+          activeKey={activeKey}
+          onChange={handleTabChange}
         />
       </Col>
     </Row>
   );
-}
+};
 
 export default Profile;
