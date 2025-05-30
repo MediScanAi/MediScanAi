@@ -6,6 +6,7 @@
   justify-content: center;
   overflow: hidden;
 }
+
 .login-page-container.dark .ant-form-item-label > label,
 .login-page-container.dark .ant-input,
 .login-page-container.dark .ant-input-password input,
@@ -54,7 +55,7 @@
   color: #161c3d;
 }
 
-.welcome-section {
+.welcome-section-login {
   flex: 1;
   display: flex;
   align-items: center;
@@ -70,15 +71,15 @@
   margin-bottom: 20px;
 }
 
-.welcome-title {
+.welcome-login-title {
   font-weight: bold;
   color: white;
 }
 
-.welcome-description {
+.welcome-login-description {
   color: inherit;
   font-size: 18px;
-  font-weight: 500;;
+  font-weight: 500;
   opacity: 0.9;
 }
 
@@ -93,10 +94,9 @@
   }
 }
 
-.welcome-rocket {
-  width: 440px;
-  max-width: 95%;
-  height: auto;
+.welcome-login-medical {
+  width: 100%;
+  max-width: 600px;
   object-fit: contain;
   user-select: none;
 }
@@ -155,7 +155,7 @@
 
 .login-card.dark {
   background: rgba(28, 52, 125, 0.8);
-  border: 1.5px solid rgba(255, 255, 255, 0.18);
+  border: rgba(28, 52, 125, 0.8);
 }
 
 .login-title {
@@ -185,6 +185,7 @@
     opacity: 0;
     transform: translateY(10px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);

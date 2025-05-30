@@ -287,17 +287,17 @@ const RegisterPage: React.FC = () => {
             </Spin>
           </motion.div>
         </div>
-        <div className="welcome-section">
+        <div className="welcome-register-section">
           <motion.div
             initial={{ opacity: 0, y: 45 }}
             animate={{ opacity: 1, y: 30 }}
             transition={{ duration: 0.5 }}
-            className="welcome-text-container fade-in"
+            className="welcome-register-text-container fade-in"
           >
-            <Title level={2} className="welcome-title">
+            <Title level={2} className="welcome-register-title">
               Welcome to MediScan AI
             </Title>
-            <Text className="welcome-description">
+            <Text className="welcome-register-description">
               Join us to unlock personalized healthcare insights powered by
               advanced AI analytics.
             </Text>
@@ -305,7 +305,7 @@ const RegisterPage: React.FC = () => {
           <motion.img
             src={Notebook3D}
             alt="Welcome"
-            className="welcome-image"
+            className="welcome-register-image"
             initial={{ opacity: 0, x: -45, y: 45 }}
             animate={{ opacity: 1, x: 0, y: 0 }}
             transition={{ duration: 0.9, ease: 'easeInOut' }}
