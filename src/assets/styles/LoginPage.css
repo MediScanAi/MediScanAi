@@ -6,7 +6,8 @@
   justify-content: center;
   overflow: hidden;
 }
-.login-page-container.dark .ant-form-item-label > label,
+
+.login-page-container.dark .ant-form-item-label>label,
 .login-page-container.dark .ant-input,
 .login-page-container.dark .ant-input-password input,
 .login-page-container.dark .ant-input::placeholder,
@@ -40,7 +41,7 @@
   border-color: #92c4ff !important;
 }
 
-.login-page-container.dark .ant-form-item-label > label {
+.login-page-container.dark .ant-form-item-label>label {
   color: #dbeafe !important;
 }
 
@@ -54,7 +55,7 @@
   color: #161c3d;
 }
 
-.welcome-section {
+.welcome-section-login {
   flex: 1;
   display: flex;
   align-items: center;
@@ -70,15 +71,16 @@
   margin-bottom: 20px;
 }
 
-.welcome-title {
+.welcome-login-title {
   font-weight: bold;
   color: white;
 }
 
-.welcome-description {
+.welcome-login-description {
   color: inherit;
   font-size: 18px;
-  font-weight: 500;;
+  font-weight: 500;
+  ;
   opacity: 0.9;
 }
 
@@ -93,7 +95,7 @@
   }
 }
 
-.welcome-rocket {
+.welcome-login-rocket {
   width: 440px;
   max-width: 95%;
   height: auto;
@@ -185,6 +187,7 @@
     opacity: 0;
     transform: translateY(10px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);

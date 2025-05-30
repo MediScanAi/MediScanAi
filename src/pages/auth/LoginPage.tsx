@@ -69,17 +69,17 @@ const LoginPage: React.FC = () => {
         onChange={handleThemeChange}
       />
       {screens.md && (
-        <div className="welcome-section">
+        <div className="welcome-section-login">
           <motion.div
             initial={{ opacity: 0, y: 45 }}
             animate={{ opacity: 1, y: 30 }}
             transition={{ duration: 0.5 }}
-            className="welcome-text-container fade-in"
+            className="welcome-login-text-container fade-in"
           >
-            <Title level={2} className="welcome-title">
+            <Title level={2} className="welcome-login-title">
               Welcome back to MediScan AI
             </Title>
-            <Text className="welcome-description">
+            <Text className="welcome-login-description">
               Log in to continue your journey with us. Your health insights all
               in one place!
             </Text>
@@ -87,7 +87,7 @@ const LoginPage: React.FC = () => {
           <motion.img
             src={Rocket3D}
             alt="Rocket"
-            className="welcome-rocket"
+            className="welcome-login-rocket"
             initial={{ opacity: 0, x: -45, y: 45 }}
             animate={{ opacity: 1, x: 0, y: 0 }}
             transition={{ duration: 0.9, ease: 'easeInOut' }}
