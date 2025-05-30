@@ -7,7 +7,7 @@
   overflow: hidden;
 }
 
-.login-page-container.dark .ant-form-item-label>label,
+.login-page-container.dark .ant-form-item-label > label,
 .login-page-container.dark .ant-input,
 .login-page-container.dark .ant-input-password input,
 .login-page-container.dark .ant-input::placeholder,
@@ -41,7 +41,7 @@
   border-color: #92c4ff !important;
 }
 
-.login-page-container.dark .ant-form-item-label>label {
+.login-page-container.dark .ant-form-item-label > label {
   color: #dbeafe !important;
 }
 
@@ -80,7 +80,6 @@
   color: inherit;
   font-size: 18px;
   font-weight: 500;
-  ;
   opacity: 0.9;
 }
 
@@ -156,7 +155,7 @@
 
 .login-card.dark {
   background: rgba(28, 52, 125, 0.8);
-  border: 1.5px solid rgba(255, 255, 255, 0.18);
+  border: rgba(28, 52, 125, 0.8);
 }
 
 .login-title {

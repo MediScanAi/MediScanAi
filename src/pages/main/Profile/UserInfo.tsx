@@ -182,7 +182,11 @@ const UserInfo: React.FC = () => {
   };
 
   return (
-    <Spin spinning={loading} tip={t('userInfo.loading')} className={isDarkMode ? 'dark-spin' : ''}>
+    <Spin
+      spinning={loading}
+      tip={t('userInfo.loading')}
+      className={isDarkMode ? 'dark-spin' : ''}
+    >
       <div className={`user-info-list ${isDarkMode ? 'dark' : 'light'}`}>
         <Row
           justify="space-between"
