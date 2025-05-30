@@ -378,7 +378,11 @@
 }
 
 .icon-container {
-  background: linear-gradient(135deg, rgb(0, 81, 255) 0%, rgb(0, 153, 255) 100%);
+  background: linear-gradient(
+    135deg,
+    rgb(0, 81, 255) 0%,
+    rgb(0, 153, 255) 100%
+  );
   width: 48px;
   height: 48px;
   border-radius: 10px;
@@ -454,7 +458,6 @@
 
 .modal-content {
   padding: 20px;
-
 }
 
 .modal-steps {

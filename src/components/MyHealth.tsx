@@ -760,9 +760,16 @@ const HealthPage: React.FC = () => {
                   </p>
 
                   <div className="modal-steps-container">
-                    <Steps direction="vertical" current={-1} size="small" className="modal-steps">
+                    <Steps
+                      direction="vertical"
+                      current={-1}
+                      size="small"
+                      className="modal-steps"
+                    >
                       <Steps.Step
-                        title={t('healthGuide.guide.connectModal.steps.download.title')}
+                        title={t(
+                          'healthGuide.guide.connectModal.steps.download.title'
+                        )}
                         description={
                           <div className="download-link-container">
                             <a
@@ -771,45 +778,65 @@ const HealthPage: React.FC = () => {
                               rel="noopener noreferrer"
                               className="download-link"
                             >
-                              {t('healthGuide.guide.connectModal.steps.download.linkText')}
+                              {t(
+                                'healthGuide.guide.connectModal.steps.download.linkText'
+                              )}
                             </a>
                           </div>
                         }
                         icon={<SafetyOutlined />}
                       />
                       <Steps.Step
-                        title={t('healthGuide.guide.connectModal.steps.copyUid.title')}
+                        title={t(
+                          'healthGuide.guide.connectModal.steps.copyUid.title'
+                        )}
                         description={
                           <div className="uid-container">
                             <Text className="uid-text">{currentUser}</Text>
                             <Button
-                              icon={uidCopied ? <CheckOutlined /> : <CopyOutlined />}
+                              icon={
+                                uidCopied ? <CheckOutlined /> : <CopyOutlined />
+                              }
                               size="small"
                               onClick={copyUid}
                             >
                               {uidCopied
-                                ? t('healthGuide.guide.connectModal.steps.copyUid.button.copied')
-                                : t('healthGuide.guide.connectModal.steps.copyUid.button.copy')}
+                                ? t(
+                                  'healthGuide.guide.connectModal.steps.copyUid.button.copied'
+                                )
+                                : t(
+                                  'healthGuide.guide.connectModal.steps.copyUid.button.copy'
+                                )}
                             </Button>
                           </div>
                         }
                         icon={<SyncOutlined />}
                       />
                       <Steps.Step
-                        title={t('healthGuide.guide.connectModal.steps.runShortcut.title')}
-                        description={t('healthGuide.guide.connectModal.steps.runShortcut.description')}
+                        title={t(
+                          'healthGuide.guide.connectModal.steps.runShortcut.title'
+                        )}
+                        description={t(
+                          'healthGuide.guide.connectModal.steps.runShortcut.description'
+                        )}
                         icon={<DatabaseOutlined />}
                       />
                       <Steps.Step
-                        title={t('healthGuide.guide.connectModal.steps.enjoy.title')}
-                        description={t('healthGuide.guide.connectModal.steps.enjoy.description')}
+                        title={t(
+                          'healthGuide.guide.connectModal.steps.enjoy.title'
+                        )}
+                        description={t(
+                          'healthGuide.guide.connectModal.steps.enjoy.description'
+                        )}
                         icon={<FundOutlined />}
                       />
                     </Steps>
                   </div>
 
                   <div className="modal-footer-note">
-                    <InfoCircleOutlined style={{ marginRight: '8px', color: '#1890ff' }} />
+                    <InfoCircleOutlined
+                      style={{ marginRight: '8px', color: '#1890ff' }}
+                    />
                     <Text type="secondary">
                       {t('healthGuide.guide.connectModal.privacyNote')}
                     </Text>

@@ -394,6 +394,8 @@ const ChatWithAi = () => {
           const bloodTests = Object.entries(tests?.blood || '');
           setInput(`Your blood test results: ${bloodTests.map(([key, value]) => `${key}: ${value}`).join(', ')} 
           Describe my results in detail and recommend a plan of action about my health warnings.`);
+        } else {
+          message.error('You have no blood tests.');
         }
       },
     },
@@ -405,6 +407,8 @@ const ChatWithAi = () => {
           const urineTests = Object.entries(tests?.urine || '');
           setInput(`Your urine test results: ${urineTests.map(([key, value]) => `${key}: ${value}`).join(', ')} 
           Describe my results in detail and recommend a plan of action about my health warnings.`);
+        } else {
+          message.error('You have no urine tests.');
         }
       },
     },
@@ -416,6 +420,8 @@ const ChatWithAi = () => {
           const vitaminsTests = Object.entries(tests?.vitamin || '');
           setInput(`Your vitamin test results: ${vitaminsTests.map(([key, value]) => `${key}: ${value}`).join(', ')} 
           Describe my results in detail and recommend a plan of action about my health warnings.`);
+        } else {
+          message.error('You have no vitamin tests.');
         }
       },
     },
@@ -427,7 +433,9 @@ const ChatWithAi = () => {
           const geneticTests = Object.entries(tests?.genetic || '');
           setInput(`Your genetic test results: ${geneticTests.map(([key, value]) => `${key}: ${value}`).join(', ')} 
           Describe my results in detail and recommend a plan of action about my health warnings.`);
-        }
+        } else {
+          message.error('You have no genetic tests.');
+          }
       },
     },
   ];
