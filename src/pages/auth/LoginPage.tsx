@@ -18,7 +18,7 @@ import { motion } from 'framer-motion';
 import { useState } from 'react';
 import ForgotPasswordForm from '../../components/ForgotPasswordForm';
 import LoginWithGoogleButton from '../../components/LoginWithGoogleButton';
-import Rocket3D from '../../assets/photos/rocket.png';
+import MedicalInstruments3D from '../../assets/photos/medical_instruments.png';
 import '../../assets/styles/LoginPage.css';
 import { toggleTheme } from '../../app/slices/theme';
 import PrimaryButton from '../../components/common/PrimaryButton';
@@ -85,9 +85,9 @@ const LoginPage: React.FC = () => {
             </Text>
           </motion.div>
           <motion.img
-            src={Rocket3D}
-            alt="Rocket"
-            className="welcome-login-rocket"
+            src={MedicalInstruments3D}
+            alt="Medical Instruments"
+            className="welcome-login-medical"
             initial={{ opacity: 0, x: -45, y: 45 }}
             animate={{ opacity: 1, x: 0, y: 0 }}
             transition={{ duration: 0.9, ease: 'easeInOut' }}

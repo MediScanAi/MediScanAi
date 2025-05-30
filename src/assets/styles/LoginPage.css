@@ -95,10 +95,9 @@
   }
 }
 
-.welcome-login-rocket {
-  width: 440px;
-  max-width: 95%;
-  height: auto;
+.welcome-login-medical {
+  width: 100%;
+  max-width: 600px;
   object-fit: contain;
   user-select: none;
 }
