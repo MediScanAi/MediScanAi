@@ -192,7 +192,6 @@ const MyHealthGuide: React.FC = () => {
               </Button>,
             ]}
             width={600}
-            // style={{ borderRadius: '15px !important' }}
           >
             <div className="modal-content">
               <p className="modal-step-description">
