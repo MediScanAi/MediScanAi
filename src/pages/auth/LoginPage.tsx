@@ -1,3 +1,4 @@
+import React from 'react';
 import {
   Form,
   Input,
@@ -7,16 +8,22 @@ import {
   message,
   Grid,
   Spin,
+  Switch,
 } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
 import { loginUser } from '../../app/slices/authSlice';
 import type { AppDispatch, RootState } from '../../app/store';
 import { useNavigate, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import backgroundImage from '../../assets/photos/background.png';
 import { useState } from 'react';
 import ForgotPasswordForm from '../../components/ForgotPasswordForm';
 import LoginWithGoogleButton from '../../components/LoginWithGoogleButton';
+import MedicalInstruments3D from '../../assets/photos/medical_instruments.png';
+import '../../assets/styles/LoginPage.css';
+import { toggleTheme } from '../../app/slices/theme';
+import PrimaryButton from '../../components/common/PrimaryButton';
+import { MoonOutlined, SunOutlined } from '@ant-design/icons';
+
 const { Title, Text } = Typography;
 const { useBreakpoint } = Grid;
 
@@ -29,137 +36,163 @@ const LoginPage: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
   const { loading } = useSelector((state: RootState) => state.auth);
+  const isDarkMode = useSelector((state: RootState) => state.theme.isDarkMode);
   const screens = useBreakpoint();
   const [isForgotPassword, setIsForgotPassword] = useState(false);
   const [googleLoading, setGoogleLoading] = useState(false);
 
   const onFinish = async (values: LoginFormValues) => {
-    const { email, password } = values;
     try {
-      await dispatch(loginUser({ email, password })).unwrap();
+      await dispatch(loginUser(values)).unwrap();
       message.success('Login successful!');
       navigate('/');
     } catch (error: unknown) {
-      if (error instanceof Error) {
-        message.error(error.message);
-      } else {
-        message.error('Login failed');
-      }
+      message.error(error instanceof Error ? error.message : 'Login failed');
     }
   };
 
-  const toggleForgotPassword = () => {
-    setIsForgotPassword((prev) => !prev);
-  };
+  const toggleForgotPassword = () => setIsForgotPassword((prev) => !prev);
 
   const toggleGoogleLoading = async (isLoading: boolean) => {
     setGoogleLoading(isLoading);
   };
+
+  const handleThemeChange = () => dispatch(toggleTheme());
+
   return (
-    <div
-      style={{
-        minHeight: '100vh',
-        display: 'flex',
-        flexDirection: screens.md ? 'row' : 'column-reverse',
-        backgroundImage: `linear-gradient(to right, rgba(255,255,255,1) 40%, rgba(255,255,255,0)), url('${backgroundImage}')`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        alignItems: 'center',
-        justifyContent: screens.md ? 'space-between' : 'center',
-        padding: screens.md ? '0 10%' : '20px',
-      }}
-    >
-      {isForgotPassword ? (
-        <ForgotPasswordForm goBack={toggleForgotPassword} />
-      ) : (
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          style={{ width: '100%', maxWidth: 400 }}
-        >
-          <Spin spinning={googleLoading} tip="Waiting for Google response...">
-            <Card
-              style={{
-                borderRadius: '16px',
-                boxShadow: '0 8px 16px rgba(0,0,0,0.15)',
-              }}
-            >
-              <Title level={2} style={{ fontWeight: 'bold', marginBottom: 24 }}>
-                Log in
-              </Title>
-              <Form layout="vertical" onFinish={onFinish}>
-                <Form.Item
-                  label="Email"
-                  name="email"
-                  rules={[
-                    { required: true, message: 'Enter your email' },
-                    { type: 'email', message: 'Invalid email' },
-                  ]}
-                >
-                  <Input placeholder="Email" />
-                </Form.Item>
-
-                <Form.Item
-                  label="Password"
-                  name="password"
-                  rules={[{ required: true, message: 'Enter your password' }]}
-                >
-                  <Input.Password placeholder="Password" />
-                </Form.Item>
-
-                <Form.Item style={{ textAlign: 'right', marginBottom: 16 }}>
-                  <Button
-                    type="text"
-                    style={{ color: '#1677ff' }}
-                    onClick={toggleForgotPassword}
-                  >
-                    Forgot your password?
-                  </Button>
-                </Form.Item>
-
-                <Form.Item>
-                  <Button
-                    block
-                    type="primary"
-                    htmlType="submit"
-                    loading={loading}
-                  >
-                    Login
-                  </Button>
-                </Form.Item>
-
-                <Form.Item>
-                  <LoginWithGoogleButton toggleLoading={toggleGoogleLoading} />
-                </Form.Item>
-                <Text style={{ display: 'block', textAlign: 'center' }}>
-                  Don't have an account?{' '}
-                  <Link to="/auth/register">Register</Link>
-                </Text>
-              </Form>
-            </Card>
-          </Spin>
-        </motion.div>
+    <div className={`login-page-container ${isDarkMode ? 'dark' : 'light'}`}>
+      <Switch
+        className="theme-toggle"
+        checked={isDarkMode}
+        checkedChildren={<MoonOutlined />}
+        unCheckedChildren={<SunOutlined />}
+        onChange={handleThemeChange}
+      />
+      {screens.md && (
+        <div className="welcome-section-login">
+          <motion.div
+            initial={{ opacity: 0, y: 45 }}
+            animate={{ opacity: 1, y: 30 }}
+            transition={{ duration: 0.5 }}
+            className="welcome-login-text-container fade-in"
+          >
+            <Title level={2} className="welcome-login-title">
+              Welcome back to MediScan AI
+            </Title>
+            <Text className="welcome-login-description">
+              Log in to continue your journey with us. Your health insights all
+              in one place!
+            </Text>
+          </motion.div>
+          <motion.img
+            src={MedicalInstruments3D}
+            alt="Medical Instruments"
+            className="welcome-login-medical"
+            initial={{ opacity: 0, x: -45, y: 45 }}
+            animate={{ opacity: 1, x: 0, y: 0 }}
+            transition={{ duration: 0.9, ease: 'easeInOut' }}
+          />
+        </div>
       )}
 
-      <motion.div
-        initial={{ opacity: 0, x: 40 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.8 }}
-        style={{
-          textAlign: screens.md ? 'right' : 'center',
-          margin: screens.md ? 0 : 20,
-          color: '#fff',
-        }}
-      >
-        <Title level={1} style={{ fontSize: screens.md ? 40 : 30 }}>
-          Welcome back to MediScan AI!
-        </Title>
-        <Text style={{ fontSize: screens.md ? 20 : 16 }}>
-          Your AI-powered companion in medical diagnostics. Log in and continue
-          exploring personalized health insights.
-        </Text>
-      </motion.div>
+      <div className="login-card-section">
+        {isForgotPassword ? (
+          <ForgotPasswordForm
+            onCancel={toggleForgotPassword}
+            isDarkMode={isDarkMode}
+          />
+        ) : (
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className={`login-spin-container ${isDarkMode ? 'dark' : ''}`}
+          >
+            <Spin spinning={googleLoading} tip="Waiting for Google response...">
+              <Card className={`login-card ${isDarkMode ? 'dark' : ''}`}>
+                <Title level={2} className="login-title">
+                  Log in
+                </Title>
+                <Form
+                  layout="vertical"
+                  onFinish={onFinish}
+                  requiredMark={false}
+                >
+                  <Form.Item
+                    label="Email"
+                    name="email"
+                    rules={[
+                      {
+                        required: true,
+                        type: 'email',
+                        message: 'Invalid email',
+                      },
+                    ]}
+                  >
+                    <Input
+                      size="large"
+                      placeholder="Email"
+                      className="login-input"
+                    />
+                  </Form.Item>
+
+                  <Form.Item
+                    label="Password"
+                    name="password"
+                    rules={[{ required: true, message: 'Enter your password' }]}
+                  >
+                    <Input.Password
+                      size="large"
+                      placeholder="Password"
+                      className="login-input"
+                    />
+                  </Form.Item>
+
+                  <Form.Item style={{ textAlign: 'right', marginBottom: 10 }}>
+                    <Button
+                      type="link"
+                      className="forgot-password-link"
+                      onClick={toggleForgotPassword}
+                      tabIndex={-1}
+                    >
+                      Forgot your password?
+                    </Button>
+                  </Form.Item>
+
+                  <Form.Item>
+                    <div
+                      style={{
+                        display: 'flex',
+                        gap: 10,
+                        marginTop: 5,
+                        marginBottom: 8,
+                      }}
+                    >
+                      <PrimaryButton
+                        htmlType="submit"
+                        loading={loading}
+                        size="large"
+                      >
+                        Login
+                      </PrimaryButton>
+                      <LoginWithGoogleButton
+                        toggleLoading={toggleGoogleLoading}
+                      />
+                    </div>
+                  </Form.Item>
+
+                  <Text className="register-text">
+                    Don't have an account?{' '}
+                    <Link to="/auth/register" className="register-link">
+                      Register
+                    </Link>
+                  </Text>
+                </Form>
+              </Card>
+            </Spin>
+          </motion.div>
+        )}
+      </div>
     </div>
   );
 };

@@ -31,14 +31,14 @@ export const auth = getAuth(app);
 export const db = getFirestore(app);
 await setPersistence(auth, browserLocalPersistence);
 
-export interface PlainUser {
+export interface AuthUser {
   firstName: string;
   lastName: string;
   uid: string;
   email: string | null;
 }
 
-export const mapFirebaseUser = (u: FirebaseUser | null): PlainUser | null => {
+export const mapFirebaseUser = (u: FirebaseUser | null): AuthUser | null => {
   if (!u) return null;
   let firstName = '',
     lastName = '';
@@ -80,7 +80,7 @@ export const sendResetPasswordEmail = async (email: string) => {
   await sendPasswordResetEmail(auth, email);
 };
 
-export const onAuthChange = (cb: (u: PlainUser | null) => void) =>
+export const onAuthChange = (cb: (u: AuthUser | null) => void) =>
   onAuthStateChanged(auth, (u) =>
     u?.emailVerified ? cb(mapFirebaseUser(u)) : cb(null)
   );
@@ -100,7 +100,10 @@ function isFirebaseAuthError(error: unknown): error is { code: string } {
   );
 }
 
-export const loginWithGoogle = async (): Promise<PlainUser | null> => {
+/**
+ * Opens a Google sign-in popup.
+ */
+export const loginWithGoogle = async (): Promise<AuthUser | null> => {
   const googleProvider = new GoogleAuthProvider();
   try {
     const { user } = await signInWithPopup(auth, googleProvider);

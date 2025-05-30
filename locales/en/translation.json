@@ -315,11 +315,11 @@
     "emailPlaceholder": "Enter email",
     "age": "Age",
     "agePlaceholder": "Enter age",
-    "sex": "Sex",
+    "gender": "Gender",
     "male": "Male",
     "notSet": "Not set",
     "female": "Female",
-    "sexPlaceholder": "Select sex",
+    "genderPlaceholder": "Select gender",
     "weight": "Weight",
     "weightPlaceholder": "Enter weight",
     "height": "Height",
@@ -336,7 +336,19 @@
     "saveSuccess": "User info saved successfully",
     "saveError": "User info cannot be saved",
     "cancelError": "User info cannot be canceled",
-    "cancelSuccess": "User info canceled successfully"
+    "cancelSuccess": "User info canceled successfully",
+    "loading": "Loading user info...",
+    "placeholders": {
+      "name": "Enter your name",
+      "surname": "Enter your surname",
+      "email": "Enter your email",
+      "age": "Enter your age",
+      "weight": "Enter your weight (kg)",
+      "height": "Enter your height (cm)",
+      "gender": "Please select your gender",
+      "waistSize": "Enter your waist size (cm)",
+      "neckSize": "Enter your neck size (cm)"
+    }
   },
   "analysisHistory": {
     "title": "Analysis History",

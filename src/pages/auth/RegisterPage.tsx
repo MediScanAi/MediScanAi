@@ -1,30 +1,39 @@
+import React, { useEffect, useState } from 'react';
 import {
   Form,
   Input,
-  Button,
   Card,
   Typography,
-  message,
-  Grid,
   Spin,
+  message,
+  Select,
+  Row,
+  Col,
+  Switch,
 } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
 import { registerUser, setUser } from '../../app/slices/authSlice';
 import type { AppDispatch, RootState } from '../../app/store';
 import { useNavigate, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import backgroundImage from '../../assets/photos/background.png';
-import { useEffect, useState } from 'react';
 import { getAuth, reload } from 'firebase/auth';
 import { mapFirebaseUser } from '../../api/authApi';
 import LoginWithGoogleButton from '../../components/LoginWithGoogleButton';
+import PrimaryButton from '../../components/common/PrimaryButton';
+import { MoonOutlined, SunOutlined } from '@ant-design/icons';
+import '../../assets/styles/RegisterPage.css';
+import Notebook3D from '../../assets/photos/notebook.png';
+import { toggleTheme } from '../../app/slices/theme';
+import '../../assets/styles/LoginPage.css';
 
 const { Title, Text } = Typography;
-const { useBreakpoint } = Grid;
+const { Option } = Select;
 
 interface RegisterFormValues {
   surname: string;
   name: string;
+  gender?: string;
+  age?: number;
   email: string;
   password: string;
 }
@@ -33,14 +42,15 @@ const RegisterPage: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
   const { loading } = useSelector((s: RootState) => s.auth);
-  const screens = useBreakpoint();
+  const isDarkMode = useSelector((s: RootState) => s.theme.isDarkMode);
 
   const [waitingVerification, setWaitingVerification] = useState(false);
   const [checking, setChecking] = useState(false);
   const [googleLoading, setGoogleLoading] = useState(false);
-  const toggleGoogleLoading = (isLoading: boolean) => {
+
+  const toggleGoogleLoading = (isLoading: boolean) =>
     setGoogleLoading(isLoading);
-  };
+
   useEffect(() => {
     const auth = getAuth();
     if (auth.currentUser && !auth.currentUser.emailVerified) {
@@ -53,9 +63,13 @@ const RegisterPage: React.FC = () => {
     surname,
     email,
     password,
+    gender,
+    age,
   }: RegisterFormValues) => {
     try {
-      await dispatch(registerUser({ name, surname, email, password })).unwrap();
+      await dispatch(
+        registerUser({ name, surname, email, password, gender, age })
+      ).unwrap();
       message.info(
         "We've sent a verification e-mail. Please check your inbox."
       );
@@ -64,6 +78,7 @@ const RegisterPage: React.FC = () => {
       message.error('Registration failed');
     }
   };
+
   const handleCheckVerification = async () => {
     const auth = getAuth();
     if (!auth.currentUser) return;
@@ -80,157 +95,223 @@ const RegisterPage: React.FC = () => {
     setChecking(false);
   };
 
+  const handleThemeChange = () => {
+    dispatch(toggleTheme());
+  };
+
   return (
-    <div
-      style={{
-        minHeight: '100vh',
-        display: 'flex',
-        flexDirection: screens.md ? 'row' : 'column-reverse',
-        backgroundImage: `linear-gradient(to right, rgba(255,255,255,1) 40%, rgba(255,255,255,0)), url('${backgroundImage}')`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        alignItems: 'center',
-        justifyContent: screens.md ? 'space-between' : 'center',
-        padding: screens.md ? '0 10%' : '20px',
-        overflowY: 'auto',
-      }}
-    >
-      <motion.div
-        initial={{ opacity: 0, y: 40 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-        style={{ width: '100%', maxWidth: 400, position: 'relative' }}
-      >
-        {waitingVerification && (
-          <div
-            style={{
-              position: 'absolute',
-              inset: 0,
-              background: 'rgba(255,255,255,0.85)',
-              borderRadius: 16,
-              zIndex: 10,
-              display: 'grid',
-              placeItems: 'center',
-              padding: 24,
-              textAlign: 'center',
-            }}
+    <div className={`register-page-container ${isDarkMode ? 'dark' : 'light'}`}>
+      <Switch
+        className="theme-toggle"
+        checked={isDarkMode}
+        checkedChildren={<MoonOutlined />}
+        unCheckedChildren={<SunOutlined />}
+        onChange={handleThemeChange}
+      />
+
+      <div className="register-content-row">
+        <div className="register-card-section wide">
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className={`register-spin-container ${isDarkMode ? 'dark' : ''}`}
           >
-            <div>
-              <Title level={4}>Check your e-mail</Title>
-              <Text>
-                Click the link we sent to verify your address, then press the
-                button below.
-              </Text>
-              <Button
-                type="primary"
-                block
-                style={{ marginTop: 24 }}
-                onClick={handleCheckVerification}
-                loading={checking}
+            <Spin spinning={googleLoading} tip="Waiting for Google response...">
+              <Card
+                className={`register-card wide ${isDarkMode ? 'dark' : ''}`}
               >
-                I've verified
-              </Button>
-            </div>
-          </div>
-        )}
-        <Spin spinning={googleLoading} tip="Waiting for Google response...">
-          <Card
-            style={{
-              borderRadius: 16,
-              boxShadow: '0 8px 16px rgba(0,0,0,0.15)',
-              maxHeight: '90vh',
-              overflowY: 'auto',
-              filter: waitingVerification ? 'blur(2px)' : undefined,
-              pointerEvents: waitingVerification ? 'none' : 'auto',
-            }}
-          >
-            <Title level={2} style={{ fontWeight: 'bold', marginBottom: 20 }}>
-              Create an Account
-            </Title>
-
-            <Form layout="vertical" onFinish={onFinish}>
-              <Form.Item
-                label="Surname"
-                name="surname"
-                rules={[{ required: true, message: 'Enter your surname' }]}
-              >
-                <Input placeholder="Surname" />
-              </Form.Item>
-
-              <Form.Item
-                label="Name"
-                name="name"
-                rules={[{ required: true, message: 'Enter your name' }]}
-              >
-                <Input placeholder="Name" />
-              </Form.Item>
-
-              <Form.Item
-                label="Email"
-                name="email"
-                rules={[
-                  { required: true, message: 'Enter your e-mail' },
-                  { type: 'email', message: 'Invalid e-mail' },
-                ]}
-              >
-                <Input placeholder="Email" />
-              </Form.Item>
-
-              <Form.Item
-                label="Password"
-                name="password"
-                rules={[
-                  { required: true, message: 'Enter your password' },
-                  {
-                    pattern: /^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*]).{8,}$/,
-                    message:
-                      'Min 8 chars with uppercase, digit and special character',
-                  },
-                ]}
-              >
-                <Input.Password placeholder="Password" />
-              </Form.Item>
-
-              <Form.Item>
-                <Button
-                  block
-                  type="primary"
-                  htmlType="submit"
-                  loading={loading}
+                <Title level={2} className="register-title">
+                  Create an account
+                </Title>
+                {waitingVerification && (
+                  <div className="verification-overlay">
+                    <div>
+                      <Title level={4}>Check your e-mail</Title>
+                      <Text>
+                        Please verify your e-mail address through the link we
+                        sent to your inbox. Once verified, click the button
+                        below.
+                      </Text>
+                      <br />
+                      <PrimaryButton
+                        style={{ marginTop: 24 }}
+                        onClick={handleCheckVerification}
+                        loading={checking}
+                      >
+                        I've verified
+                      </PrimaryButton>
+                    </div>
+                  </div>
+                )}
+                <Form
+                  layout="vertical"
+                  onFinish={onFinish}
+                  requiredMark={false}
+                  className={waitingVerification ? 'blurred' : ''}
                 >
-                  Register
-                </Button>
-              </Form.Item>
+                  <Row gutter={20}>
+                    <Col xs={24} sm={12}>
+                      <Form.Item
+                        label="Name"
+                        name="name"
+                        rules={[{ required: true, message: 'Enter your name' }]}
+                      >
+                        <Input
+                          placeholder="Enter your name"
+                          size="large"
+                          className="register-input"
+                        />
+                      </Form.Item>
+                    </Col>
+                    <Col xs={24} sm={12}>
+                      <Form.Item
+                        label="Surname"
+                        name="surname"
+                        rules={[
+                          { required: true, message: 'Enter your surname' },
+                        ]}
+                      >
+                        <Input
+                          placeholder="Enter your surname"
+                          size="large"
+                          className="register-input"
+                        />
+                      </Form.Item>
+                    </Col>
+                    <Col xs={24} sm={12}>
+                      <Form.Item label="Gender" name="gender">
+                        <Select
+                          placeholder="Select gender"
+                          size="large"
+                          className="register-input"
+                          allowClear
+                        >
+                          <Option value="male">Male</Option>
+                          <Option value="female">Female</Option>
+                        </Select>
+                      </Form.Item>
+                    </Col>
+                    <Col xs={24} sm={12}>
+                      <Form.Item
+                        label="Age"
+                        name="age"
+                        rules={[
+                          {
+                            required: true,
+                            message: 'Enter your age',
+                          },
+                          {
+                            type: 'number',
+                            min: 0,
+                            max: 120,
+                            transform: (value) => Number(value),
+                            message: 'Enter a valid age',
+                          },
+                        ]}
+                      >
+                        <Input
+                          placeholder="Enter your age"
+                          size="large"
+                          type="number"
+                          className="register-input"
+                        />
+                      </Form.Item>
+                    </Col>
+                    <Col xs={24} sm={12}>
+                      <Form.Item
+                        label="Email"
+                        name="email"
+                        rules={[
+                          { required: true, message: 'Enter your e-mail' },
+                          { type: 'email', message: 'Invalid e-mail' },
+                        ]}
+                      >
+                        <Input
+                          placeholder="Enter your e-mail"
+                          type="email"
+                          size="large"
+                          className="register-input"
+                        />
+                      </Form.Item>
+                    </Col>
+                    <Col xs={24} sm={12}>
+                      <Form.Item
+                        label="Password"
+                        name="password"
+                        rules={[
+                          { required: true, message: 'Enter your password' },
+                          {
+                            pattern:
+                              /^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*]).{8,}$/,
+                            message:
+                              'Min 8 chars with uppercase, digit and special character',
+                          },
+                        ]}
+                      >
+                        <Input.Password
+                          placeholder="Create a password"
+                          size="large"
+                          className="login-input"
+                        />
+                      </Form.Item>
+                    </Col>
+                  </Row>
+                  <Form.Item>
+                    <div
+                      style={{
+                        display: 'flex',
+                        gap: 10,
+                        marginBottom: 8,
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                      }}
+                    >
+                      <PrimaryButton htmlType="submit" loading={loading}>
+                        Register
+                      </PrimaryButton>
+                      <LoginWithGoogleButton
+                        toggleLoading={toggleGoogleLoading}
+                      />
+                    </div>
+                  </Form.Item>
 
-              <Form.Item style={{ marginTop: 20 }}>
-                <LoginWithGoogleButton toggleLoading={toggleGoogleLoading} />
-              </Form.Item>
-              <Text style={{ display: 'block', textAlign: 'center' }}>
-                Already have an account? <Link to="/auth/login">Login</Link>
-              </Text>
-            </Form>
-          </Card>
-        </Spin>
-      </motion.div>
-
-      <motion.div
-        initial={{ opacity: 0, x: 40 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.8 }}
-        style={{
-          textAlign: screens.md ? 'right' : 'center',
-          margin: screens.md ? 0 : 20,
-          color: '#fff',
-        }}
-      >
-        <Title level={1} style={{ fontSize: screens.md ? 40 : 30 }}>
-          Welcome to MediScan AI
-        </Title>
-        <Text style={{ fontSize: screens.md ? 20 : 16 }}>
-          Join us to unlock personalized healthcare insights powered by advanced
-          AI analytics.
-        </Text>
-      </motion.div>
+                  <Text className="register-text">
+                    Already have an account?{' '}
+                    <Link to="/auth/login" className="register-link">
+                      Login
+                    </Link>
+                  </Text>
+                </Form>
+              </Card>
+            </Spin>
+          </motion.div>
+        </div>
+        <div className="welcome-register-section">
+          <motion.div
+            initial={{ opacity: 0, y: 45 }}
+            animate={{ opacity: 1, y: 30 }}
+            transition={{ duration: 0.5 }}
+            className="welcome-register-text-container fade-in"
+          >
+            <Title level={2} className="welcome-register-title">
+              Welcome to MediScan AI
+            </Title>
+            <Text className="welcome-register-description">
+              Join us to unlock personalized healthcare insights powered by
+              advanced AI analytics.
+            </Text>
+          </motion.div>
+          <motion.img
+            src={Notebook3D}
+            alt="Welcome"
+            className="welcome-register-image"
+            initial={{ opacity: 0, x: -45, y: 45 }}
+            animate={{ opacity: 1, x: 0, y: 0 }}
+            transition={{ duration: 0.9, ease: 'easeInOut' }}
+          />
+        </div>
+      </div>
     </div>
   );
 };
