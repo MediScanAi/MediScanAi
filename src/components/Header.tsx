@@ -227,13 +227,14 @@ export default function AppHeader() {
                     },
                     {
                       key: 'logout',
-                      icon: <LogoutOutlined />,
+                      icon: <LogoutOutlined className='logout-link'/>,
                       label: (
                         <span
                           onClick={() => {
                             dispatch(logoutUser());
                             navigate('/');
                           }}
+                          className='logout-link'
                         >
                           {t('menu.logout')}
                         </span>
@@ -249,7 +250,9 @@ export default function AppHeader() {
                 }
               >
                 <div className={`user-profile ${isDarkMode ? 'dark' : ''}`}>
-                  <Avatar size="small">{(user.firstName ?? ' ')[0]}</Avatar>
+                  <Avatar size="small" src={user?.photoURL}>
+                    {!user.photoURL && (user.firstName ?? ' ')[0]}
+                  </Avatar>
                   <Text className={`username ${isDarkMode ? 'dark' : ''}`}>
                     {user.firstName} {user.lastName}
                   </Text>
@@ -261,7 +264,11 @@ export default function AppHeader() {
                 </div>
               </Dropdown>
             ) : (
-              <Button type="text" onClick={() => navigate('/auth/login')}>
+              <Button
+                type="primary"
+                className={`username ${isDarkMode ? 'dark' : ''}`}
+                onClick={() => navigate('/auth/login')}
+              >
                 {t('menu.login', 'Log In')}
               </Button>
             )}
@@ -274,7 +281,7 @@ export default function AppHeader() {
           placement="right"
           open={drawerOpen}
           onClose={() => setDrawerOpen(false)}
-          styles={{body: { padding: 0 }}}
+          styles={{ body: { padding: 0 } }}
         >
           <Menu
             theme={isDarkMode ? 'dark' : 'light'}

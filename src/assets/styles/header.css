@@ -104,6 +104,12 @@
 .user-profile.dark .anticon {
   color: #fff;
 }
+.logout-link{
+  color: red;
+}
+.logout-link .ant-icon {
+  color: red;
+}
 .username {
   font-size: 14px;
   color: inherit;
