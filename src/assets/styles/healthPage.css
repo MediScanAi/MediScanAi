@@ -3,7 +3,7 @@
 }
 
 .health-dashboard {
-  padding: 30px;
+  padding: 15px;
   width: 100%;
   font-family: "Poppins", sans-serif;
   background: var(--background-color, linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%));
@@ -49,16 +49,10 @@
 .dashboard-header {
   text-align: center;
   width: 100%;
-  /* Reduced from 100% for a narrower width */
   max-width: 1400px;
-  /* Reduced from 1400px */
   padding: 30px;
-  background: #ffffff;
   border-radius: 20px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
   margin: 0 auto 30px;
-  /* This is all we need for perfect centering */
-  /* Remove position: relative and transform properties */
 }
 
 .dashboard-title {
@@ -124,9 +118,10 @@
   box-shadow: var(--card-box-shadow, 0 8px 32px rgba(34, 56, 122, 0.15));
   border: var(--card-border, 1px solid rgba(255, 255, 255, 0.18));
   backdrop-filter: blur(8px);
-  height: 600px;
+  height: 100%;
   width: 100%;
-  min-height: 600px;
+  min-height: 650px;
+  max-height: 700px;
   min-width: 300px;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   display: flex;
@@ -769,7 +764,6 @@
 }
 
 @media (max-width: 768px) {
-
   .profile-card,
   .metrics-card,
   .daily-metrics-card {
