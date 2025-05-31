@@ -161,7 +161,7 @@ export default function AppHeader() {
 
   return (
     <Header className={`app-header ${isDarkMode ? 'dark' : 'light'}`}>
-      <div className="header-container">
+      <div className="app-header-container">
         <div className="header-left">
           <img src={Logo} alt="logo" className="logo" />
           {showDrawer && (

@@ -25,7 +25,7 @@
   background: rgba(16, 39, 57, 0.9);
 }
 
-.header-container {
+.app-header-container {
   display: flex;
   width: 100%;
   align-items: center;
