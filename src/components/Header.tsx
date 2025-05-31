@@ -148,7 +148,7 @@ export default function AppHeader() {
         />
       </div>
       <div className="preference-item">
-        <span>{t('menu.selectLanguage')}</span>
+        <span>{t('menu.selectTheme')}</span>
         <Switch
           checked={isDarkMode}
           onChange={() => dispatch(toggleTheme())}
