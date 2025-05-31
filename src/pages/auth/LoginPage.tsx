@@ -18,7 +18,7 @@ import { motion } from 'framer-motion';
 import { useState } from 'react';
 import ForgotPasswordForm from '../../components/ForgotPasswordForm';
 import LoginWithGoogleButton from '../../components/LoginWithGoogleButton';
-import Rocket3D from '../../assets/photos/rocket.png';
+import MedicalInstruments3D from '../../assets/photos/medical_instruments.png';
 import '../../assets/styles/LoginPage.css';
 import { toggleTheme } from '../../app/slices/theme';
 import PrimaryButton from '../../components/common/PrimaryButton';
@@ -69,25 +69,25 @@ const LoginPage: React.FC = () => {
         onChange={handleThemeChange}
       />
       {screens.md && (
-        <div className="welcome-section">
+        <div className="welcome-section-login">
           <motion.div
             initial={{ opacity: 0, y: 45 }}
             animate={{ opacity: 1, y: 30 }}
             transition={{ duration: 0.5 }}
-            className="welcome-text-container fade-in"
+            className="welcome-login-text-container fade-in"
           >
-            <Title level={2} className="welcome-title">
+            <Title level={2} className="welcome-login-title">
               Welcome back to MediScan AI
             </Title>
-            <Text className="welcome-description">
+            <Text className="welcome-login-description">
               Log in to continue your journey with us. Your health insights all
               in one place!
             </Text>
           </motion.div>
           <motion.img
-            src={Rocket3D}
-            alt="Rocket"
-            className="welcome-rocket"
+            src={MedicalInstruments3D}
+            alt="Medical Instruments"
+            className="welcome-login-medical"
             initial={{ opacity: 0, x: -45, y: 45 }}
             animate={{ opacity: 1, x: 0, y: 0 }}
             transition={{ duration: 0.9, ease: 'easeInOut' }}

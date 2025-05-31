@@ -4,9 +4,9 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 const { Title, Text } = Typography;
 
-interface MainTestsProps {
-  theme?: boolean;
-  width?: number;
+export interface MainTestsProps {
+  theme: boolean;
+  width: number;
 }
 
 const MainTests: React.FC<MainTestsProps> = ({ theme, width }) => {

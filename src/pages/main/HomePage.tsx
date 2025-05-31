@@ -1,6 +1,6 @@
 import { Typography, Row, Col, Card, Carousel, List, Button } from 'antd';
 import 'antd/dist/reset.css';
-import { DownOutlined, LineOutlined } from '@ant-design/icons';
+import { DownOutlined } from '@ant-design/icons';
 import partner1 from '../../assets/photos/partner1.webp';
 import partner2 from '../../assets/photos/partner2.webp';
 import partner3 from '../../assets/photos/partner3.webp';

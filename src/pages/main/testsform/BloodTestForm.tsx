@@ -9,10 +9,10 @@ import {
   Col,
 } from 'antd';
 import { useAppDispatch } from '../../../app/hooks';
+import { saveTestData, setTestData } from '../../../app/slices/testSlice';
 import type { BloodTestFormValues } from '../../../app/slices/testSlice';
 import { useLocation } from 'react-router';
 import { useNavigate } from 'react-router-dom';
-import { saveTestData } from '../../../app/slices/testSlice';
 import { auth } from '../../../api/authApi';
 import { useTranslation } from 'react-i18next';
 
@@ -76,16 +76,16 @@ function BloodTestsForm() {
     },
   ];
 
-  const onFinish = (values: BloodTestFormValues) => {
+  const onFinish = async (values: BloodTestFormValues) => {
     const uid = auth.currentUser?.uid;
-
     if (!uid) {
       message.error(t('errors.userNotAuthenticated'));
       return;
     }
-
     const testData = { ...values, date: new Date().toISOString() };
-    dispatch(saveTestData({ uid, testType: 'blood', data: testData }));
+    await dispatch(saveTestData({ uid, testType: 'blood', data: testData }));
+
+    dispatch(setTestData({ testType: 'blood', data: testData }));
 
     if (updatedData) {
       message.success(t('messages.bloodTestUpdated'));

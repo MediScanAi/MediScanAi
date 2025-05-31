@@ -7,15 +7,25 @@ import {
   message,
   Row,
   Col,
-  Space,
   Tooltip,
   Spin,
+  Card,
+  Avatar,
+  Form,
+  Tabs,
 } from 'antd';
 import {
-  CheckOutlined,
   CloseOutlined,
   EditOutlined,
   QuestionCircleOutlined,
+  UserOutlined,
+  ManOutlined,
+  WomanOutlined,
+  MailOutlined,
+  NumberOutlined,
+  ArrowUpOutlined,
+  ArrowDownOutlined,
+  CheckOutlined,
 } from '@ant-design/icons';
 import { useAppDispatch, useAppSelector } from '../../../app/hooks';
 import {
@@ -27,23 +37,26 @@ import { selectCurrentUser } from '../../../app/slices/authSlice';
 import type { RootState } from '../../../app/store';
 import { useTranslation } from 'react-i18next';
 import '../../../assets/styles/UserInfo.css';
+import { motion } from 'framer-motion';
 
-const { Text } = Typography;
+const { Text, Title } = Typography;
 const { Option } = Select;
+const { TabPane } = Tabs;
 
-const UserInfo: React.FC = () => {
+export type UserInfoProps = {
+  width: number;
+  theme: boolean;
+};
+
+const UserInfo: React.FC<UserInfoProps> = ({ width, theme }) => {
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
   const user = useAppSelector(selectCurrentUser);
   const userData = useAppSelector((s) => s.userData.data);
-  const isDarkMode = useAppSelector((s: RootState) => s.theme.isDarkMode);
-  const [editingKey, setEditingKey] = useState<keyof UserData | null>(null);
   const loading = useAppSelector((s: RootState) => s.userData.loading);
-
-  const [editingValue, setEditingValue] = useState<string | number | null>(
-    null
-  );
-  const [isEditingAll, setIsEditingAll] = useState(false);
+  const [form] = Form.useForm();
+  const [activeTab, setActiveTab] = useState('profile');
+  const [editingField, setEditingField] = useState<string | null>(null);
   const [formState, setFormState] = useState<UserData>({
     age: null,
     gender: null,
@@ -52,6 +65,7 @@ const UserInfo: React.FC = () => {
     waistSize: null,
     neckSize: null,
   });
+  const [tempValues, setTempValues] = useState<Record<string, number | null>>({});
 
   useEffect(() => {
     if (user?.uid) {
@@ -60,251 +74,332 @@ const UserInfo: React.FC = () => {
   }, [dispatch, user?.uid]);
 
   useEffect(() => {
-    setFormState({
+    const newState = {
       age: userData?.age ?? null,
       gender: userData?.gender ?? null,
       weight: userData?.weight ?? null,
       height: userData?.height ?? null,
       waistSize: userData?.waistSize ?? null,
       neckSize: userData?.neckSize ?? null,
-    });
-  }, [userData]);
+    };
+    setFormState(newState);
+    form.setFieldsValue(newState);
+  }, [userData, form]);
 
   const getPlaceholder = (key: keyof UserData): string | undefined => {
     return t(`userInfo.placeholders.${key}`);
   };
 
-  const fields: Array<{
-    key: keyof UserData | 'name' | 'surname' | 'email';
-    label: string;
-    value?: string;
-    editable?: boolean;
-    tooltip?: string;
-  }> = [
+  const fields = [
     {
       key: 'name',
-      label: t('userInfo.name'),
+      label: t('userInfo.fields.name'),
       value: user?.firstName || '',
       editable: false,
+      icon: <UserOutlined />,
     },
     {
       key: 'surname',
-      label: t('userInfo.surname'),
+      label: t('userInfo.fields.surname'),
       value: user?.lastName || '',
       editable: false,
+      icon: <UserOutlined />,
     },
     {
       key: 'email',
-      label: t('userInfo.email'),
+      label: t('userInfo.fields.email'),
       value: user?.email || '',
       editable: false,
+      icon: <MailOutlined />,
     },
-    { key: 'age', label: t('userInfo.age'), editable: true },
-    { key: 'gender', label: t('userInfo.gender'), editable: true },
-    { key: 'weight', label: t('userInfo.weight'), editable: true },
-    { key: 'height', label: t('userInfo.height'), editable: true },
+    {
+      key: 'age',
+      label: t('userInfo.fields.age'),
+      editable: true,
+      icon: <NumberOutlined />,
+      unit: t('userInfo.units.years'),
+    },
+    {
+      key: 'gender',
+      label: t('userInfo.fields.gender'),
+      editable: true,
+      icon: formState.gender === 'Male' ? <ManOutlined /> : <WomanOutlined />,
+    },
+    {
+      key: 'weight',
+      label: t('userInfo.fields.weight'),
+      editable: true,
+      icon: <ArrowUpOutlined />,
+      unit: t('userInfo.units.kg'),
+    },
+    {
+      key: 'height',
+      label: t('userInfo.fields.height'),
+      editable: true,
+      icon: <ArrowUpOutlined />,
+      unit: t('userInfo.units.cm'),
+    },
     {
       key: 'waistSize',
-      label: t('userInfo.waistSize'),
+      label: t('userInfo.fields.waistSize'),
       editable: true,
-      tooltip: t('userInfo.waistSizeTooltip'),
+      tooltip: t('userInfo.tooltips.waistSize'),
+      icon: <ArrowDownOutlined />,
+      unit: t('userInfo.units.cm'),
     },
     {
       key: 'neckSize',
-      label: t('userInfo.neckSize'),
+      label: t('userInfo.fields.neckSize'),
       editable: true,
-      tooltip: t('userInfo.neckSizeTooltip'),
+      tooltip: t('userInfo.tooltips.neckSize'),
+      icon: <ArrowDownOutlined />,
+      unit: t('userInfo.units.cm'),
     },
   ];
 
   const handleInputChange = (key: keyof UserData, value: number | null) => {
-    setFormState({ ...formState, [key]: value });
+    setTempValues({ ...tempValues, [key]: value });
   };
 
-  const startSingleEdit = (
-    key: keyof UserData,
-    value: number | string | null
-  ) => {
-    setEditingKey(key);
-    setEditingValue(value);
+  const startEditing = (key: string) => {
+    setEditingField(key);
+    setTempValues({ ...tempValues, [key]: formState[key as keyof UserData] as number | null });
   };
 
-  const cancelSingleEdit = () => {
-    setEditingKey(null);
-    setEditingValue(null);
+  const cancelEditing = (key: string) => {
+    setEditingField(null);
+    setTempValues({ ...tempValues, [key]: null });
   };
 
-  const saveSingleEdit = async () => {
-    if (!user || editingKey === null) return;
+  const saveField = async (key: keyof UserData) => {
+    if (!user) return;
+
+    const newValue = tempValues[key];
+    const newFormState = { ...formState, [key]: newValue };
+
     try {
       await dispatch(
-        saveUserData({
-          uid: user.uid,
-          data: { [editingKey]: editingValue ?? null } as Partial<UserData>,
-        })
+        saveUserData({ uid: user.uid, data: newFormState })
       ).unwrap();
-      message.success(t('userInfo.saveSuccess'));
-      cancelSingleEdit();
+      setFormState(newFormState);
+      setEditingField(null);
+      message.success(t('userInfo.messages.saveSuccess'));
     } catch {
-      message.error(t('userInfo.saveFail'));
+      message.error(t('userInfo.messages.saveFail'));
     }
-  };
-
-  const saveAll = async () => {
-    if (!user) return;
-    try {
-      await dispatch(saveUserData({ uid: user.uid, data: formState })).unwrap();
-      message.success(t('userInfo.saveSuccess'));
-      setIsEditingAll(false);
-    } catch {
-      message.error(t('userInfo.saveFail'));
-    }
-  };
-
-  const cancelAll = () => {
-    setFormState({
-      age: userData?.age ?? null,
-      gender: userData?.gender ?? null,
-      weight: userData?.weight ?? null,
-      height: userData?.height ?? null,
-      waistSize: userData?.waistSize ?? null,
-      neckSize: userData?.neckSize ?? null,
-    });
-    setIsEditingAll(false);
   };
 
   const renderValue = (key: string, value: unknown): string | number => {
     if (value === null || value === '' || value === undefined)
       return t('userInfo.notSet');
     if (key === 'gender' && typeof value === 'string')
-      return t(`userInfo.${value.toLowerCase()}`);
+      return t(`userInfo.genders.${value.toLowerCase()}`);
     return value as string | number;
   };
 
   return (
-    <Spin spinning={loading} tip={t('userInfo.loading')} className={isDarkMode ? 'dark-spin' : ''}>
-      <div className={`user-info-list ${isDarkMode ? 'dark' : 'light'}`}>
-        <Row
-          justify="space-between"
-          align="middle"
-          style={{ marginBottom: 16 }}
+    <Spin
+      spinning={loading}
+      tip={t('userInfo.loading')}
+      className={theme ? 'dark-spin' : ''}
+    >
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        className="modern-user-profile"
+      >
+        <Card
+          className={`profile-container ${theme ? 'dark' : 'light'}`}
+          style={{ border: 'none' }}
         >
-          <Col>
-            <Text strong style={{ fontSize: 18 }}>
-              {t('userInfo.title')}
-            </Text>
-          </Col>
-          <Col>
-            {!isEditingAll ? (
-              <Button
-                icon={<EditOutlined />}
-                onClick={() => setIsEditingAll(true)}
-              >
-                {t('userInfo.edit')}
-              </Button>
-            ) : (
-              <Space>
-                <Button type="primary" onClick={saveAll}>
-                  {t('userInfo.save')}
-                </Button>
-                <Button onClick={cancelAll}>{t('userInfo.cancel')}</Button>
-              </Space>
-            )}
-          </Col>
-        </Row>
+          <div className="profile-header-container">
+            <div className="profile-avatar-container">
+              <Avatar
+                size={80}
+                icon={<UserOutlined />}
+                className="profile-avatar"
+              />
+            </div>
 
-        {fields.map(({ key, label, value, editable, tooltip }) => (
-          <Row key={key} className="user-info-row" gutter={16} align="middle">
-            <Col span={8} className="user-info-label">
-              <Text strong>
-                {label}{' '}
-                {tooltip && (
-                  <Tooltip title={tooltip}>
-                    <QuestionCircleOutlined />
-                  </Tooltip>
-                )}
+            <div className="profile-info">
+              <Title level={3} className="profile-name">
+                {user?.firstName} {user?.lastName}
+              </Title>
+              <Text type="secondary" className="profile-email">
+                {user?.email}
               </Text>
-            </Col>
-            <Col span={16} className="user-info-value">
-              {editingKey === key ? (
-                <div className="editable-cell">
-                  {key === 'gender' ? (
-                    <Select
-                      value={editingValue as string}
-                      onChange={(v) => setEditingValue(v)}
-                      className="cell-input"
-                      placeholder={getPlaceholder(key)}
-                    >
-                      <Option value="Male">{t('userInfo.male')}</Option>
-                      <Option value="Female">{t('userInfo.female')}</Option>
-                    </Select>
-                  ) : (
-                    <InputNumber
-                      value={editingValue as number}
-                      onChange={(v) => setEditingValue(v)}
-                      className="cell-input"
-                      min={0}
-                      placeholder={getPlaceholder(key as keyof UserData)}
-                    />
-                  )}
-                  <div className="cell-actions">
-                    <Button
-                      icon={<CheckOutlined />}
-                      size="small"
-                      onClick={saveSingleEdit}
-                    />
-                    <Button
-                      icon={<CloseOutlined />}
-                      size="small"
-                      onClick={cancelSingleEdit}
-                    />
-                  </div>
-                </div>
-              ) : isEditingAll && editable ? (
-                key === 'gender' ? (
-                  <Select
-                    value={formState[key as keyof UserData] as string}
-                    onChange={(v) => setFormState({ ...formState, [key]: v })}
-                    className="cell-input"
-                    placeholder={getPlaceholder(key as keyof UserData)}
-                  >
-                    <Option value="Male">{t('userInfo.male')}</Option>
-                    <Option value="Female">{t('userInfo.female')}</Option>
-                  </Select>
-                ) : (
-                  <InputNumber
-                    value={formState[key as keyof UserData] as number}
-                    onChange={(v) =>
-                      handleInputChange(key as keyof UserData, v)
-                    }
-                    className="cell-input"
-                    min={0}
-                    placeholder={getPlaceholder(key as keyof UserData)}
-                  />
-                )
-              ) : (
-                <div
-                  onDoubleClick={() =>
-                    editable &&
-                    startSingleEdit(
-                      key as keyof UserData,
-                      (formState[key as keyof UserData] ?? value) || ''
-                    )
-                  }
-                  className={`user-info-static ${editable ? 'editable' : 'readonly'}`}
-                >
-                  <Text>
-                    {renderValue(
-                      key,
-                      formState[key as keyof UserData] ?? value
-                    )}
-                  </Text>
-                </div>
-              )}
-            </Col>
-          </Row>
-        ))}
-      </div>
+            </div>
+          </div>
+
+          <Tabs
+            activeKey={activeTab}
+            onChange={setActiveTab}
+            className="profile-tabs"
+          >
+            <TabPane
+              tab={
+                <span>
+                  <UserOutlined />
+                  {t('userInfo.tabs.profile')}
+                </span>
+              }
+              key="profile"
+            >
+              <div className="profile-section">
+                <Title level={4} className="section-title">
+                  {t('userInfo.sections.personalInfo')}
+                </Title>
+
+                <Row gutter={[24, 16]} className="info-grid">
+                  {fields.map((field) => (
+                    <Col xs={24} sm={12} md={8} key={field.key}>
+                      <div
+                        className={`info-card ${editingField === field.key ? 'editing' : ''}`}
+                      >
+                        <div className="info-label">
+                          {field.icon}
+                          <Text className={'info-label-text'} strong>
+                            {field.label}
+                          </Text>
+                          {field.tooltip && (
+                            <Tooltip title={field.tooltip}>
+                              <QuestionCircleOutlined />
+                            </Tooltip>
+                          )}
+                        </div>
+
+                        {editingField === field.key ? (
+                          <div className="edit-mode-container">
+                            {field.key === 'gender' ? (
+                              <div
+                                style={{
+                                  display: 'flex',
+                                  flexDirection: 'row',
+                                  alignItems: 'center',
+                                  justifyContent: 'space-between',
+                                }}
+                              >
+                                <Select
+                                  value={
+                                    tempValues[field.key] ||
+                                    formState[field.key as keyof UserData]
+                                  }
+                                  onChange={(v) =>
+                                    handleInputChange(
+                                      field.key as keyof UserData,
+                                      v as number | null
+                                    )
+                                  }
+                                  className="info-input"
+                                  placeholder={getPlaceholder(
+                                    field.key as keyof UserData
+                                  )}
+                                  suffixIcon={null}
+                                >
+                                  <Option value="Male">
+                                    {t('userInfo.genders.male')}
+                                  </Option>
+                                  <Option value="Female">
+                                    {t('userInfo.genders.female')}
+                                  </Option>
+                                </Select>
+                                <div className="edit-actions">
+                                  <Button
+                                    type="text"
+                                    icon={<CheckOutlined />}
+                                    onClick={() =>
+                                      saveField(field.key as keyof UserData)
+                                    }
+                                    className="save-btn"
+                                  />
+                                  <Button
+                                    type="text"
+                                    icon={<CloseOutlined />}
+                                    onClick={() => cancelEditing(field.key)}
+                                    className="cancel-btn"
+                                  />
+                                </div>
+                              </div>
+                            ) : (
+                              <div
+                                style={{
+                                  display: 'flex',
+                                  flexDirection: 'row',
+                                  alignItems: 'center',
+                                  justifyContent: 'space-between',
+                                }}
+                              >
+                                <InputNumber
+                                  value={
+                                    tempValues[field.key] ||
+                                    formState[field.key as keyof UserData]
+                                  }
+                                  onChange={(v) =>
+                                    handleInputChange(
+                                      field.key as keyof UserData,
+                                      v as number | null
+                                    )
+                                  }
+                                  className="info-input"
+                                  min={0}
+                                  placeholder={getPlaceholder(
+                                    field.key as keyof UserData
+                                  )}
+                                  addonAfter={field.unit}
+                                />
+                                <div className="edit-actions">
+                                  <Button
+                                    type="text"
+                                    icon={<CheckOutlined />}
+                                    onClick={() =>
+                                      saveField(field.key as keyof UserData)
+                                    }
+                                    className="save-btn"
+                                  />
+                                  <Button
+                                    type="text"
+                                    icon={<CloseOutlined />}
+                                    onClick={() => cancelEditing(field.key)}
+                                    className="cancel-btn"
+                                  />
+                                </div>
+                              </div>
+                            )}
+                          </div>
+                        ) : (
+                          <div className="view-mode-container">
+                            <div className="info-value">
+                              <Text className={'info-value-text'}>
+                                {renderValue(
+                                  field.key,
+                                  formState[field.key as keyof UserData] ??
+                                    field.value
+                                )}
+                                {field.unit && (
+                                  <span className="unit">{field.unit}</span>
+                                )}
+                              </Text>
+                            </div>
+                            {field.editable && (
+                              <Button
+                                type="text"
+                                icon={<EditOutlined />}
+                                onClick={() => startEditing(field.key)}
+                                className="edit-btn"
+                              />
+                            )}
+                          </div>
+                        )}
+                      </div>
+                    </Col>
+                  ))}
+                </Row>
+              </div>
+            </TabPane>
+          </Tabs>
+        </Card>
+      </motion.div>
     </Spin>
   );
 };
