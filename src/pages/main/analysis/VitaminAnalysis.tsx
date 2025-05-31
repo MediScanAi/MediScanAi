@@ -22,6 +22,9 @@ import Protein from '../../../assets/photos/Protein.webp';
 import PopCorn from '../../../assets/photos/PopCorn.webp';
 import { useEffect, useState } from 'react';
 import { useAppSelector } from '../../../app/hooks';
+import { useSelector } from 'react-redux';
+import type { RootState } from '../../../app/store';
+import PrimaryButton from '../../../components/common/PrimaryButton';
 
 interface ChartData {
   name: string;
@@ -93,7 +96,7 @@ const { Title } = Typography;
 
 function VitaminAnalysis() {
   const vitaminTestData = useAppSelector((state) => state.tests.vitamin);
-
+  const isDarkMode = useSelector((state: RootState) => state.theme.isDarkMode);
   const [width, setWidth] = useState(window.innerWidth);
   const [expandedWarnings, setExpandedWarnings] = useState<{
     [key: string]: boolean;
@@ -313,7 +316,7 @@ function VitaminAnalysis() {
   }, []);
 
   return (
-    <div>
+    <div className={`analysis-page ${isDarkMode ? 'dark' : ''}`}>
       <Row
         className="welcome-section"
         style={{
@@ -324,7 +327,7 @@ function VitaminAnalysis() {
       >
         <Col className="welcome-section-column">
           <Typography
-            className="welcome-text"
+            className={`welcome-text ${isDarkMode ? 'dark' : ''}`}
             style={{
               fontSize: width > 768 ? '30px' : '20px',
               marginTop: 50,
@@ -334,7 +337,7 @@ function VitaminAnalysis() {
             Vitamin Test Results
           </Typography>
           <Typography
-            className="platform-title"
+            className={`platform-title ${isDarkMode ? 'dark' : ''}`}
             style={{ fontSize: width > 768 ? '50px' : '30px' }}
           >
             Analysis with AI
@@ -358,7 +361,7 @@ function VitaminAnalysis() {
       <div>
         {vitaminTestData?.vitaminA ? (
           <>
-            <Card className="card2-design" style={{ border: 'none' }}>
+            <Card className={`card2-design ${isDarkMode ? 'dark' : ''}`} style={{ border: 'none' }}>
               <Col className="card2-col-design">
                 <div
                   style={{ display: 'flex', justifyContent: 'center' }}
@@ -377,25 +380,13 @@ function VitaminAnalysis() {
             </Card>
 
             {vitaminTestData.vitaminA && (
-              <Card
-                style={{
-                  margin: '20px auto',
-                  width: '90%',
-                  backgroundColor: '#fffbe6',
-                  border: '1px solid #faad14',
-                  borderRadius: 10,
-                  padding: 16,
-                }}
-              >
+              <Card className={`warning-section ${isDarkMode ? 'dark' : ''}`}>
                 <Title
                   level={3}
                   style={{ color: 'rgb(255, 0, 0)', fontFamily: 'Poppins' }}
                 >
                   🚨 Vitamin Health Warnings
-                  <Button
-                    className="consult-button"
-                    type="primary"
-                    size="large"
+                  <PrimaryButton
                     style={{ marginLeft: 20 }}
                     onClick={() => {
                       const warnings = getVitaminRisks(
@@ -410,7 +401,7 @@ function VitaminAnalysis() {
                     }}
                   >
                     Analyze with AI
-                  </Button>
+                  </PrimaryButton>
                 </Title>
                 <ul style={{ paddingLeft: 20 }}>
                   {getVitaminRisks(vitaminTestData as VitaminTestFormValues)
@@ -418,13 +409,13 @@ function VitaminAnalysis() {
                     getVitaminRisks(
                       vitaminTestData as VitaminTestFormValues
                     ).map((risk, index) => (
-                      <li key={index} style={{ fontSize: 16, marginBottom: 8 }}>
+                      <li className={`warning-section-text ${isDarkMode ? 'dark' : ''}`} key={index} style={{ fontSize: 16, marginBottom: 8 }}>
                         {risk}
                         {vitaminExplanations[risk] && (
                           <div>
                             <Button
                               type="link"
-                              style={{ padding: 0 }}
+                              style={{ padding: 0, color: '#3498db' }}
                               onClick={() => toggleWarning(risk)}
                             >
                               {expandedWarnings[risk]
@@ -433,6 +424,7 @@ function VitaminAnalysis() {
                             </Button>
                             {expandedWarnings[risk] && (
                               <p
+                                className={`warning-section-text ${isDarkMode ? 'dark' : ''}`}
                                 style={{
                                   marginTop: 5,
                                   fontSize: 14,
@@ -447,7 +439,7 @@ function VitaminAnalysis() {
                       </li>
                     ))
                   ) : (
-                    <p style={{ fontSize: 16 }}>
+                    <p className={`warning-section-text ${isDarkMode ? 'dark' : ''}`} style={{ fontSize: 16 }}>
                       ✅ All your vitamin levels are within normal range. Great
                       job!
                     </p>
@@ -466,17 +458,14 @@ function VitaminAnalysis() {
               height: '100%',
             }}
           >
-            <Title style={{ textAlign: 'center' }} level={width > 768 ? 2 : 4}>
+            <Title className={`platform-title ${isDarkMode ? 'dark' : ''}`} style={{ textAlign: 'center' }} level={width > 768 ? 2 : 4}>
               Please fill a vitamin test results to get your analytic results
             </Title>
-            <Button
-              className="consult-button"
-              type="primary"
-              size="large"
+            <PrimaryButton
               onClick={() => navigate('/tests-form/vitamin-test')}
             >
               Fill Vitamin Test Results
-            </Button>
+            </PrimaryButton>
           </div>
         )}
       </div>
@@ -494,23 +483,15 @@ function VitaminAnalysis() {
         {PieData.map((item) => (
           <Card
             key={item.name}
+            className={`interesting-card ${isDarkMode ? 'dark' : ''}`}
             style={{
               flex: width > 900 ? '0 1 calc(50% - 10px)' : '1 1 100%',
-              backgroundColor: 'white',
-              padding: 20,
-              borderRadius: 10,
-              boxShadow: '0 4px 15px rgba(0, 0, 0, 0.2)',
             }}
           >
             <Row style={{ alignItems: 'center', justifyContent: 'center' }}>
               <Title
                 level={2}
-                style={{
-                  color: '#3498db',
-                  fontFamily: 'Poppins',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                }}
+                className={`interesting-card-title ${isDarkMode ? 'dark' : ''}`}
               >
                 {item.name}
               </Title>
@@ -522,7 +503,7 @@ function VitaminAnalysis() {
                 src={item.image}
               />
             </Row>
-            <p style={{ margin: 0, fontSize: 16 }}>
+            <p className={`interesting-card-text ${isDarkMode ? 'dark' : ''}`} style={{ margin: 0, fontSize: 16 }}>
               {interestingFacts[item.name]}
             </p>
           </Card>

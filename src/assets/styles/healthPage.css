@@ -264,7 +264,6 @@
   border-color: #edf2f7;
 }
 
-/* Steps Component */
 .steps-container {
   margin-bottom: 2rem;
 }
@@ -312,6 +311,10 @@
   margin-bottom: 4px;
 }
 
+.step-title.dark {
+  color: #ffffff;
+}
+
 .step-description {
   font-size: 0.85rem;
   color: #666;
@@ -319,14 +322,21 @@
   margin: 0;
 }
 
-/* MyHealthGuide.css */
+.step-description.dark {
+  color: #ffffff;
+}
+
 .guide-page {
-  background: white;
+  background: radial-gradient(circle at 10% 30%, #b3d1ff, #e6ecfa, #ffffff);
   min-height: 100vh;
   padding: 24px;
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.guide-page.dark {
+  background: radial-gradient(circle at 10% 30%, rgba(28, 52, 125, 0.9), #121e63, rgba(28, 52, 125, 1));
 }
 
 .header-container {
@@ -340,6 +350,10 @@
   font-size: 2rem;
   font-weight: bold;
   margin-bottom: 20px;
+}
+
+.header-title.dark {
+  color: #ffffff;
 }
 
 .header-image {
@@ -368,7 +382,19 @@
   width: 400px;
   display: flex;
   flex-direction: column;
-  flex: 1;
+  height: 100%;
+}
+
+.guide-card.dark {
+  background: rgba(33, 57, 130, 0.9);
+} 
+
+.button-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
 }
 
 .card-header {
@@ -378,11 +404,7 @@
 }
 
 .icon-container {
-  background: linear-gradient(
-    135deg,
-    rgb(0, 81, 255) 0%,
-    rgb(0, 153, 255) 100%
-  );
+  background: linear-gradient(90deg, #5e8fff 0%, #4368e2 100%);
   width: 48px;
   height: 48px;
   border-radius: 10px;
@@ -399,10 +421,18 @@
   color: rgb(1, 1, 1);
 }
 
+.card-title.dark {
+  color: #ffffff;
+}
+
 .card-description {
   color: #666;
   margin-bottom: 20px;
   font-size: 0.85rem;
+}
+
+.card-description.dark {
+  color: #ffffff;
 }
 
 .steps-container {
@@ -418,10 +448,22 @@
   font-size: 0.8rem;
 }
 
+.info-box.dark {
+  background-color: rgba(28, 52, 125, 0.9);
+}
+
 .info-header {
   display: flex;
   align-items: center;
   margin-bottom: 6px;
+}
+
+.info-header-text {
+  color: #1b1b1b;
+}
+
+.info-header-text.dark {
+  color: #ffffff;
 }
 
 .info-icon {
@@ -432,6 +474,10 @@
 
 .info-text {
   font-size: 0.75rem;
+}
+
+.info-text.dark {
+  color: #ffffff;
 }
 
 @media (max-width: 766px) {

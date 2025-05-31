@@ -1,4 +1,9 @@
+.homepage.dark {
+  background: radial-gradient(circle at 10% 30%, rgba(28, 52, 125, 0.9), #121e63, rgba(28, 52, 125, 1));
+}
+
 .homepage {
+  background: radial-gradient(circle at 10% 30%, #b3d1ff, #e6ecfa, #ffffff);
   padding: 20px;
   background-size: cover;
   background-position: center;
@@ -7,11 +12,6 @@
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
-}
-
-.homepage.dark-theme {
-  background-color: #1a1a1a;
-  color: white;
 }
 
 .welcome-section {
@@ -37,7 +37,7 @@
 }
 
 .welcome-text {
-  color: #3498db;
+  color: #3498db !important;
   font-size: 22px;
   font-weight: bold;
   margin-bottom: 10px;
@@ -51,6 +51,10 @@
   font-family: 'Poppins';
 }
 
+.platform-title.dark {
+  color: #ffffff !important;
+}
+
 .platform-description {
   color: black;
   font-size: 22px;
@@ -58,20 +62,8 @@
   font-family: 'Poppins';
 }
 
-.consult-button {
-  margin-top: 20px;
-  height: 50px;
-  font-size: 16px;
-  font-family: 'Poppins';
-  font-weight: 500;
-  border-radius: 22px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-  background: linear-gradient(45deg, rgb(100, 157, 211), #0052d9) !important;
-  border: none;
-  animation: fadeInUp 1s ease-out 0.4s forwards;
-  opacity: 0;
-  transition: all 0.3s ease;
-  padding: 0 35px;
+.platform-description.dark {
+  color: #ffffff !important;
 }
 
 .platform-image {
@@ -83,30 +75,30 @@
 }
 
 .activity-section {
-  padding: 20px;
-  width: 100%;
+  width: 80%;
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
-  flex-direction: row;
-  background-size: cover;
-  background-position: center;
-  min-height: 220px;
   border-radius: 15px;
-  margin: 60px auto 0;
 }
 
 .activity-section-column {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-around;
+  justify-content: center;
+  margin: 0 auto;
+  width: 95%;
 }
 
 .activity-section-column-title {
   color: black;
   font-weight: bold;
   font-family: 'Poppins';
+}
+
+.activity-section-column-title.dark {
+  color: #ffffff !important;
 }
 
 .activity-section-column-text {
@@ -116,19 +108,22 @@
   font-family: 'Poppins';
 }
 
+.activity-section-column-text.dark {
+  color: #ffffff !important;
+}
+
 .activity-card {
   height: 280px;
-  width: 100%;
-  border-radius: 20px;
-  overflow: hidden;
-  padding: 16px;
-  position: relative;
+  border-radius: 12px;
+  padding: 20px;
   display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  background-color: white;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 8px 32px rgba(34, 56, 122, 0.25);
+  background-color:  #e6ecfa;
+}
+
+.activity-card.dark {
+  background-color:  rgba(28, 52, 125, 1);
+  border: none;
 }
 
 .activity-card-content {
@@ -149,11 +144,19 @@
   font-family: 'Poppins';
 }
 
+.activity-card-title.dark {
+  color: #ffffff !important;
+}
+
 .activity-card-text {
   color: #2c3e50;
   font-size: 15px;
   text-align: left;
   font-family: 'Poppins';
+}
+
+.activity-card-text.dark {
+  color: #ffffff !important;
 }
 
 .my-health-section {
@@ -164,6 +167,10 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+}
+
+.my-health-section.dark {
+  background-color: rgba(28, 52, 125, 1);
 }
 
 .my-health-title-container {
@@ -177,6 +184,10 @@
   font-size: 48px;
   font-weight: 700;
   color: #0052d9;
+}
+
+.my-health-title.dark {
+  color: #ffffff !important;
 }
 
 .my-health-step-images {
@@ -204,8 +215,11 @@
 
 .arrow {
   font-size: 36px;
-  color: #0052d9;
   font-weight: bold;
+}
+
+.arrow.dark {
+  color: #ffffff !important;
 }
 
 .my-health-image {
@@ -232,6 +246,10 @@
   font-family: 'Poppins', sans-serif;
   margin-bottom: 30px;
   line-height: 1.6;
+}
+
+.my-health-description.dark {
+  color: #ffffff !important;
 }
 
 .my-health-button {
@@ -271,6 +289,10 @@
   font-family: 'Poppins';
 }
 
+.leading-medicine-title.dark {
+  color: #ffffff !important;
+}
+
 .leading-medicine-description {
   color: black;
   font-size: 22px;
@@ -278,17 +300,14 @@
   font-family: 'Poppins';
 }
 
+.leading-medicine-description.dark {
+  color: #ffffff !important;
+}
+
 .faq-section {
-  padding: 20px;
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: row;
-  background-size: cover;
-  background-position: center;
-  min-height: 220px;
-  margin: 0 auto;
-  width: 100%;
 }
 
 .faq-title {
@@ -298,26 +317,12 @@
   text-align: center;
 }
 
-.faq-item {
-  padding: 16px;
-  cursor: pointer;
-  width: 100%;
-  border-radius: 12px;
-  transition: background 0.3s;
+.faq-title.dark {
+  color: #ffffff !important;
 }
 
-.faq-item-dark {
-  border-bottom: 1px solid rgb(52, 50, 50);
-}
-
-.faq-item-light {
-  border-bottom: 1px solid rgb(221, 219, 219);
-}
-
-.faq-question {
-  color: #2c3e50;
-  margin: 0;
-  font-family: 'Poppins';
+.faq-question.dark {
+  color: #ffffff !important;
 }
 
 .faq-answer {
@@ -328,6 +333,42 @@
   margin-top: 12px;
   font-weight: 300;
   line-height: 1.5;
+}
+
+.faq-answer.dark {
+  color: #ffffff !important;
+}
+
+.faq-collapse {
+  background: transparent;
+  width: 80%;
+  margin: 0 auto;
+  justify-content: center;
+  align-items: center;
+}
+
+.faq-panel {
+  margin-bottom: 16px;
+  border-radius: 8px !important;
+  overflow: hidden !important;
+}
+
+.ant-collapse-header {
+  padding: 16px 0 !important;
+  align-items: center !important;
+}
+
+.ant-collapse-content-box {
+  padding: 0 0 16px 0 !important;
+}
+
+.faq-question {
+  margin-bottom: 0;
+}
+
+.faq-answer {
+  padding-top: 8px;
+  display: block;
 }
 
 .partners-section {
@@ -342,19 +383,25 @@
   font-family: 'Poppins';
 }
 
+.partners-title.dark {
+  color: #ffffff !important;
+}
+
 .partner-card {
   border-radius: 20px;
   margin: 10px;
   height: 600px;
   width: 330px;
+  background-color: #e6ecfa;
 }
 
-.partner-card-dark {
-  background-color: #1c1c1e;
+.partner-card.dark {
+  background-color: rgba(28, 52, 125, 1);
+  border: 0.5px solid rgba(0, 64, 255, 0.5);
 }
 
-.partner-card-light {
-  background-color: #ffffff;
+.partner-card.dark {
+  background-color: rgba(28, 52, 125, 1);
 }
 
 .partner-card-body {
@@ -387,6 +434,10 @@
   font-weight: 600;
 }
 
+.partner-name.dark {
+  color: #ffffff !important;
+}
+
 .partner-description {
   font-size: 16px;
   color: #555555;
@@ -396,10 +447,13 @@
   margin-top: 30px;
 }
 
+.partner-description.dark {
+  color: #ffffff !important;
+}
+
 .partner-button {
   margin-top: 20px;
   border-radius: 30px;
-  background: linear-gradient(135deg, #64a7f0, #0052d9) !important;
   font-weight: 500;
   font-size: 16px;
   font-family: 'Poppins';

@@ -4,21 +4,29 @@
     0 8px 32px rgba(74, 144, 226, 0.12),
     0 0 0 3px rgba(114, 167, 255, 0.15);
   border-radius: 10px;
-  width: 90%;
 }
 .profile {
   padding: 30px 0;
-  min-height: 80vh;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  background: radial-gradient(circle at 10% 30%, #b3d1ff, #e6ecfa, #ffffff);
 }
+
+.profile.dark {
+  background: radial-gradient(circle at 10% 30%, rgba(28, 52, 125, 0.9), #121e63, rgba(28, 52, 125, 1));
+}
+
+.dark-theme {
+  background: radial-gradient(circle at 10% 30%, #b3d1ff, #e6ecfa, #ffffff);
+}
+
 .menu-button {
   font-size: 20px;
 }
 .test-title {
-  color: #1e3a8a !important;
+  color: #3498db !important;
   font-weight: 600;
   font-size: 2.25rem;
   margin-bottom: 1rem !important;

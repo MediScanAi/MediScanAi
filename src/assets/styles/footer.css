@@ -1,9 +1,9 @@
 footer {
-  background-color: white;
-  padding: 24px 0;
-  margin-top: auto;
+  background: radial-gradient(circle at 10% 30%, #f9fbff, #f9fbff, #f9fbff);
+  padding: 12px 0;
   width: 100%;
-  height: 14vh;
+  margin-top: auto;
+  flex-shrink: 0;
 }
 .info {
   color: black;
@@ -19,7 +19,7 @@ footer {
   margin-right: 10px;
 }
 .dark-footer {
-  background-color: rgba(0, 0, 0, 0.65);
+  background: radial-gradient(circle at 10% 30%,  rgb(31, 55, 128), #1d2970, rgba(28, 52, 125, 0.9));
   .info-icons {
     color: white;
   }

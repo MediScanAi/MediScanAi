@@ -31,9 +31,88 @@
 }
 
 .Analysis {
-  /* padding: 24px; */
   position: relative;
 }
-.dark-theme {
-  background-color: #3f3f3f;
+
+.analysis-page {
+  background: radial-gradient(circle at 10% 30%, #b3d1ff, #e6ecfa, #ffffff);
+  height: 100%;
+  padding-bottom: 50px;
+}
+
+.analysis-page.dark {
+  background: radial-gradient(circle at 10% 30%, rgba(28, 52, 125, 0.9), #121e63, rgba(28, 52, 125, 1));
+}
+
+.welcome-text.dark {
+  color: #ffffff !important;
+}
+
+.interesting-card {
+  background-color:  #e6ecfa;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+
+}
+
+.interesting-card.dark {
+  background-color: rgba(28, 52, 125, 1);
+  border: none;
+}
+
+.interesting-card-title {
+  color: #3498db !important;
+  font-size: 22px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  font-family: 'Poppins';
+}
+
+.interesting-card-text.dark {
+  color: #ffffff !important;
+}
+
+.card2-design {
+  background-color: transparent;
+}
+
+.card2-design.dark {
+  background-color: transparent;
+}
+
+.x-axis {
+  color: #3498db;
+}
+
+.x-axis.dark {
+  color: #ffffff;
+}
+
+.warning-section {
+  margin: 20px auto;
+  width: 90%;
+  background-color: #e6e8ff;
+  border-radius: 10px;
+  padding: 16px;
+}
+
+.warning-section.dark {
+  background-color: #483b3b92;
+}
+
+.warning-section-text {
+  color: #000000;
+}
+
+.warning-section-text.dark {
+  color: #ffffff;
+}
+
+.card2-design-text {
+  color: #000000;
+}
+
+.card2-design-text.dark {
+  color: #ffffff;
 }

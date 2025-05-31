@@ -1,4 +1,4 @@
-import { Col, Row, Tabs, type TabsProps } from 'antd';
+import { Col, Row, Tabs, theme, type TabsProps } from 'antd';
 import {
   ExperimentOutlined,
   MedicineBoxOutlined,
@@ -17,7 +17,7 @@ import React, { useEffect, useState } from 'react';
 import { useAppSelector } from '../../../app/hooks';
 
 const Profile: React.FC = () => {
-  const theme = useAppSelector((state) => state.theme.isDarkMode);
+  const isDarkMode = useAppSelector((state) => state.theme.isDarkMode);
   const { type } = useParams();
   const navigate = useNavigate();
   const [width, setWidth] = useState(window.innerWidth);
@@ -35,49 +35,49 @@ const Profile: React.FC = () => {
       label: (
         <span
           style={{ fontSize: width < 1200 ? '16px' : '20px' }}
-          className={theme ? ' dark-mode-text' : ''}
+          className={isDarkMode ? ' dark-mode-text' : ''}
         >
           <UserOutlined /> Info
         </span>
       ),
       key: 'info',
-      children: <UserInfo width={width} theme={theme} />,
+      children: <UserInfo width={width} theme={isDarkMode} />,
     },
     {
       label: (
         <span
           style={{ fontSize: width < 1200 ? '16px' : '20px' }}
-          className={theme ? ' dark-mode-text' : ''}
+          className={isDarkMode ? ' dark-mode-text' : ''}
         >
           <ExperimentOutlined /> Analysis History
         </span>
       ),
       key: 'analysis-history',
-      children: <AnalysisHistory width={width} theme={theme} />,
+      children: <AnalysisHistory width={width} theme={isDarkMode} />,
     },
     {
       key: 'tests',
       label: (
         <span
-          style={{ fontSize: width < 1200 ? '16px' : '20px' }}
-          className={theme ? ' dark-mode-text' : ''}
+          style={{ fontSize: width < 1200 ? '16px' : '20px'}}
+          className={isDarkMode ? ' dark-mode-text' : ''}
         >
           <MedicineBoxOutlined /> Tests
         </span>
       ),
-      children: <MainTests width={width} theme={theme} />,
+      children: <MainTests width={width} theme={isDarkMode} />,
     },
     {
       key: 'contact-us',
       label: (
         <span
           style={{ fontSize: width < 1200 ? '16px' : '20px' }}
-          className={theme ? ' dark-mode-text' : ''}
+          className={isDarkMode ? ' dark-mode-text' : ''}
         >
           <PhoneOutlined /> Contact Us
         </span>
       ),
-      children: <ContactUs width={width} theme={theme} />,
+      children: <ContactUs width={width} theme={isDarkMode} />,
     },
   ];
 
@@ -88,9 +88,10 @@ const Profile: React.FC = () => {
   };
 
   return (
-    <Row className={'Profile' + (theme ? ' dark-theme' : '')}>
+    <Row className={'profile' + (isDarkMode ? ' dark' : '')}>
       <Col className={'Column'}>
         <Tabs
+          className={`tabs ${isDarkMode ? 'dark' : ''}`}
           tabPosition={width < 820 ? 'top' : 'left'}
           defaultActiveKey="1"
           style={{ padding: 40, marginTop: '20px', color: 'white' }}

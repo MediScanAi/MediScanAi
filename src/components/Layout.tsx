@@ -6,7 +6,8 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
   const location = useLocation();
   const hideFooter =
     location.pathname.startsWith('/ai-doctor') ||
-    location.pathname.startsWith('/my-health');
+    location.pathname.startsWith('/my-health') || 
+    location.pathname.startsWith('/tests-form');
 
   return (
     <>

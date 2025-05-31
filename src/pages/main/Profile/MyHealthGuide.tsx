@@ -20,6 +20,10 @@ import { useTranslation } from 'react-i18next';
 import MyHealth from '../../../assets/photos/MyHealth.svg';
 import '../../../assets/styles/healthPage.css';
 import { auth } from '../../../api/authApi';
+import type { RootState } from '../../../app/store';
+import { useSelector } from 'react-redux';
+import PrimaryButton from '../../../components/common/PrimaryButton';
+
 
 const { Title, Text } = Typography;
 
@@ -29,6 +33,7 @@ const MyHealthGuide: React.FC = () => {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [uidCopied, setUidCopied] = useState(false);
   const currentUser = auth.currentUser?.uid;
+  const isDarkMode = useSelector((state: RootState) => state.theme.isDarkMode);
 
   const profileSteps = [
     { icon: <User className="w-4 h-4 text-green-500" />, key: 'ageGender' },
@@ -75,24 +80,24 @@ const MyHealthGuide: React.FC = () => {
   };
 
   return (
-    <div className="guide-page">
+    <div className={`guide-page ${isDarkMode ? 'dark' : ''}`}>
       <div className="header-container">
-        <p className="header-title">{t('healthGuide.guide.title')}</p>
+        <p className={`header-title ${isDarkMode ? 'dark' : ''}`}>{t('healthGuide.guide.title')}</p>
         <img src={MyHealth} alt="" className="header-image" />
       </div>
 
       <div className="guides-container">
-        <motion.div whileHover={{ y: -5 }} className="guide-card">
+        <motion.div whileHover={{ y: -5 }} className={`guide-card ${isDarkMode ? 'dark' : ''}`}>
           <div className="card-header">
             <div className="icon-container">
               <UserOutlined style={{ fontSize: '22px', color: 'white' }} />
             </div>
-            <Title level={4} className="card-title">
+            <Title level={4} className={`card-title ${isDarkMode ? 'dark' : ''}`}>
               {t('healthGuide.guide.profileTitle')}
             </Title>
           </div>
           <div className="steps-container">
-            <p className="card-description">
+            <p className={`card-description ${isDarkMode ? 'dark' : ''}`}>
               {t('healthGuide.guide.profileDescription')}
             </p>
             <Steps direction="vertical" current={-1} size="small">
@@ -100,9 +105,11 @@ const MyHealthGuide: React.FC = () => {
                 <Steps.Step
                   key={index}
                   title={
-                    step.key === 'step5'
-                      ? t('healthGuide.guide.completeProfile')
-                      : t(`healthGuide.guide.${step.key}`)
+                    <span className={`step-title ${isDarkMode ? 'dark' : ''}`}>
+                      {step.key === 'step5'
+                        ? t('healthGuide.guide.completeProfile')
+                        : t(`healthGuide.guide.${step.key}`)}
+                    </span>
                   }
                   icon={step.icon}
                 />
@@ -110,26 +117,25 @@ const MyHealthGuide: React.FC = () => {
             </Steps>
           </div>
 
-          <Button
-            type="primary"
-            size="small"
-            className="consult-button"
-            style={{
-              justifyContent: 'center',
-              width: '100%',
-              marginTop: 'auto',
-            }}
-            onClick={() => navigate('/profile/user-info')}
-          >
-            {t('healthGuide.guide.completeProfile')}
-          </Button>
-
-          <div className="info-box">
-            <div className="info-header">
+          <div className="button-container">
+            <PrimaryButton
+              style={{
+                width: '100%',
+                marginTop: 'auto',
+                display: 'flex',
+                justifyContent: 'center'
+              }}
+              onClick={() => navigate('/profile/user-info')}
+            >
+              {t('healthGuide.guide.completeProfile')}
+            </PrimaryButton>
+          </div>
+          <div className={`info-box ${isDarkMode ? 'dark' : ''}`}>
+            <div className={`info-header ${isDarkMode ? 'dark' : ''}`}>
               <InfoCircleOutlined className="info-icon" />
-              <Text strong>{t('healthGuide.guide.dataPrivacyTitle')}</Text>
+              <Text className={`info-header-text ${isDarkMode ? 'dark' : ''}`} strong>{t('healthGuide.guide.dataPrivacyTitle')}</Text>
             </div>
-            <Text type="secondary" className="info-text">
+            <Text type="secondary" className={`info-text ${isDarkMode ? 'dark' : ''}`}>
               {t('healthGuide.guide.dataPrivacyText')}
               <a
                 onClick={() => navigate('/about-us')}
@@ -141,16 +147,16 @@ const MyHealthGuide: React.FC = () => {
           </div>
         </motion.div>
 
-        <motion.div whileHover={{ y: -5 }} className="guide-card">
+        <motion.div whileHover={{ y: -5 }} className={`guide-card ${isDarkMode ? 'dark' : ''}`}>
           <div className="card-header">
             <div className="icon-container">
               <SyncOutlined style={{ fontSize: '22px', color: 'white' }} />
             </div>
-            <Title level={4} className="card-title">
+            <Title level={4} className={`card-title ${isDarkMode ? 'dark' : ''}`}>
               {t('healthGuide.guide.connectHealthTitle')}
             </Title>
           </div>
-          <p className="card-description">
+          <p className={`card-description ${isDarkMode ? 'dark' : ''}`}>
             {t('healthGuide.guide.connectHealthDescription')}
           </p>
 
@@ -159,28 +165,28 @@ const MyHealthGuide: React.FC = () => {
               {connectSteps.map((step, index) => (
                 <Steps.Step
                   key={index}
-                  title={t(`healthGuide.guide.${step.key}Title`)}
-                  description={t(`healthGuide.guide.${step.key}Description`)}
+                  title={<span className={`step-title ${isDarkMode ? 'dark' : ''}`}>{t(`healthGuide.guide.${step.key}Title`)}</span>}
+                  description={<span className={`step-description ${isDarkMode ? 'dark' : ''}`}>{t(`healthGuide.guide.${step.key}Description`)}</span>}
                   icon={step.icon}
                 />
               ))}
             </Steps>
           </div>
 
-          <Button
-            icon={<AppleOutlined />}
-            size="small"
-            type="primary"
-            className="consult-button"
-            onClick={showModal}
-            style={{
-              justifyContent: 'center',
-              width: '100%',
-              marginTop: 'auto',
-            }}
-          >
-            {t('healthGuide.guide.connectButton')}
-          </Button>
+          <div className="button-container">
+            <PrimaryButton
+              icon={<AppleOutlined />}
+              onClick={showModal}
+              style={{
+                width: '100%',
+                marginTop: 'auto',
+                display: 'flex',
+                justifyContent: 'center'
+              }}
+            >
+              {t('healthGuide.guide.connectButton')}
+            </PrimaryButton>
+          </div>
 
           <Modal
             title={t('healthGuide.guide.connectModal.title')}
@@ -241,11 +247,11 @@ const MyHealthGuide: React.FC = () => {
                         >
                           {uidCopied
                             ? t(
-                                'healthGuide.guide.connectModal.steps.copyUid.button.copied'
-                              )
+                              'healthGuide.guide.connectModal.steps.copyUid.button.copied'
+                            )
                             : t(
-                                'healthGuide.guide.connectModal.steps.copyUid.button.copy'
-                              )}
+                              'healthGuide.guide.connectModal.steps.copyUid.button.copy'
+                            )}
                         </Button>
                       </div>
                     }
@@ -283,12 +289,12 @@ const MyHealthGuide: React.FC = () => {
             </div>
           </Modal>
 
-          <div className="info-box">
-            <div className="info-header">
+          <div className={`info-box ${isDarkMode ? 'dark' : ''}`}>
+            <div className={`info-header ${isDarkMode ? 'dark' : ''}`}>
               <InfoCircleOutlined className="info-icon" />
-              <Text strong>{t('healthGuide.guide.dataPrivacyTitle')}</Text>
+              <Text className={`info-header-text ${isDarkMode ? 'dark' : ''}`} strong>{t('healthGuide.guide.dataPrivacyTitle')}</Text>
             </div>
-            <Text type="secondary" className="info-text">
+            <Text type="secondary" className={`info-text ${isDarkMode ? 'dark' : ''}`}>
               {t('healthGuide.guide.dataPrivacyText')}
               <a
                 onClick={() => navigate('/about-us')}

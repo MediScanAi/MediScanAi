@@ -37,6 +37,8 @@ import engFlag from '../assets/photos/united-kingdom.png';
 import rusFlag from '../assets/photos/russia.png';
 import armFlag from '../assets/photos/armenia.png';
 import Logo from '../assets/photos/Logo.svg';
+import type { RootState } from '../app/store.ts';
+import { useSelector } from 'react-redux';
 
 function Header() {
   const { t, i18n } = useTranslation('global');
@@ -46,7 +48,7 @@ function Header() {
     useLocation().pathname === '/'
       ? 'home'
       : useLocation().pathname.substring(1);
-  const theme = useAppSelector((state) => state.theme.isDarkMode);
+  const isDarkMode = useSelector((state: RootState) => state.theme.isDarkMode);
   const dispatch = useAppDispatch();
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const user = useAppSelector((state) => state.auth.user);
@@ -218,7 +220,7 @@ function Header() {
       setWidth(window.innerWidth);
     });
     return () => {
-      window.removeEventListener('resize', () => {});
+      window.removeEventListener('resize', () => { });
     };
   });
 
@@ -269,7 +271,7 @@ function Header() {
   return (
     <header>
       <Flex
-        className={'Header' + ' ' + (theme ? 'dark-Header' : '')}
+        className={'Header' + ' ' + (isDarkMode ? 'dark-Header' : '')}
         justify="space-around"
         align="middle"
       >
@@ -299,7 +301,7 @@ function Header() {
               onOpenChange={toggleArrow}
             >
               <div
-                className={'user-button' + (theme ? ' dark-user-button' : '')}
+                className={'user-button' + (isDarkMode ? ' dark-user-button' : '')}
               >
                 <Avatar style={{ fontSize: 20 }}>
                   {user?.email ? user?.email[0].toUpperCase() : 'Profile'}
@@ -312,13 +314,13 @@ function Header() {
               onClick={() => navigate('/auth/login')}
               ghost
               variant={'text'}
-              style={{ border: 'none', color: theme ? 'white' : 'black' }}
+              style={{ border: 'none', color: isDarkMode ? 'white' : 'black' }}
             >
               Log In
             </Button>
           )}
           <Switch
-            defaultChecked={!theme}
+            defaultChecked={!isDarkMode}
             checkedChildren={<SunOutlined />}
             unCheckedChildren={<MoonOutlined />}
             onClick={handleThemeChange}
@@ -334,7 +336,7 @@ function Header() {
             optionRender={(option) => {
               return <Space>{option.data.label}</Space>;
             }}
-            className={theme ? 'dark-select-selector' : ''}
+            className={isDarkMode ? 'dark-select-selector' : ''}
             style={{ width: 100, backgroundColor: 'transparent' }}
           />
         </div>
