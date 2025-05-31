@@ -274,7 +274,7 @@ export default function AppHeader() {
           placement="right"
           open={drawerOpen}
           onClose={() => setDrawerOpen(false)}
-          bodyStyle={{ padding: 0 }}
+          styles={{body: { padding: 0 }}}
         >
           <Menu
             theme={isDarkMode ? 'dark' : 'light'}

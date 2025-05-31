@@ -140,7 +140,6 @@
 }
 .settings-icon.spinning {
   animation: spin180 0.4s ease-in-out;
-
 }
 .settings-icon.re-spinning {
   animation: spin180reverse 0.4s ease-in-out;
@@ -154,6 +153,15 @@
   display: flex;
   justify-content: center;
 }
+.nav-menu .ant-menu-item,
+.nav-menu .ant-menu-item a,
+.nav-menu .ant-menu-submenu-title {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
 .app-header.dark .nav-menu {
   background: transparent;
 }
@@ -242,4 +250,15 @@
 .dropdown-dark .preferences-dropdown {
   background: transparent;
   border: none;
+}
+
+.dark-drawer .ant-drawer-header {
+  background: #1d2b40;
+  border-bottom: 1px solid #2e4a6b;
+}
+.dark-drawer .ant-drawer-header-title,
+.dark-drawer .ant-drawer-title,
+.dark-drawer .ant-drawer-close,
+.dark-drawer .ant-drawer-close .anticon {
+  color: #fff;
 }
