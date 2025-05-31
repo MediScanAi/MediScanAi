@@ -19,6 +19,7 @@ import {
   Modal,
   message,
   Steps,
+  Divider,
 } from 'antd';
 import {
   SmileOutlined,
@@ -29,7 +30,6 @@ import {
   UserOutlined,
   EditOutlined,
   DashboardOutlined,
-  SnippetsOutlined,
   HeartOutlined,
   FundOutlined,
   DatabaseOutlined,
@@ -39,11 +39,10 @@ import {
   CheckOutlined,
   CopyOutlined,
   InboxOutlined,
+  CalendarOutlined,
+  TrophyOutlined,
 } from '@ant-design/icons';
 
-import person from '../assets/photos/marduk.webp';
-import bigPerson from '../assets/photos/fat.png';
-import midPerson from '../assets/photos/mid.png';
 import '../assets/styles/healthPage.css';
 import { motion } from 'framer-motion';
 import { useAppSelector, useAppDispatch } from '../app/hooks';
@@ -53,7 +52,7 @@ import {
   type HealthDataEntry,
 } from '../app/slices/healthSlice';
 import confetti from 'canvas-confetti';
-import MyHealthGuide from '../pages/main/profile/MyHealthGuide';
+import MyHealthGuide from '../pages/main/Profile/MyHealthGuide';
 import { auth } from '../api/authApi';
 
 const { Title, Text, Paragraph } = Typography;
@@ -228,7 +227,7 @@ const HealthPage: React.FC = () => {
   }, [fetchedHealthData, goalInputs]);
 
   const triggerConfettiAnimation = () => {
-    const colors = ['#bb0000', '#ffffff', '#00bb00', '#0000bb'];
+    const colors = ['#4776E6', '#8E54E9', '#FF8C00', '#FF4500'];
     const duration = 2000;
     const startTime = Date.now();
 
@@ -237,9 +236,9 @@ const HealthPage: React.FC = () => {
 
       if (elapsed < duration) {
         confetti({
-          particleCount: 4,
+          particleCount: 6,
           angle: Math.random() * 360,
-          spread: 60,
+          spread: 70,
           origin: {
             x: Math.random(),
             y: Math.random() * 0.6,
@@ -585,52 +584,45 @@ const HealthPage: React.FC = () => {
   const healthCircles = () => {
     return (
       <>
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(2, 1fr)',
-            gap: '20px',
-            marginTop: '-10px',
-          }}
-        >
+        <div className="health-circles-grid">
           {fetchedHealthData.map((metric, index) => {
             const isGoalMetric = [
               'Steps',
               'Active Calories',
               'Resting Calories',
             ].includes(String(metric.type));
+
+            // Determine progress color based on completion percentage
+            const getProgressColor = () => {
+              if (!isGoalMetric) return { '0%': '#4776E6', '100%': '#8E54E9' };
+
+              const value = Number(metric.value || 0);
+              const goal = Number(goalInputs[index] || 0);
+
+              if (goal <= 0) return { '0%': '#4776E6', '100%': '#8E54E9' };
+
+              const percentage = Math.min((value / goal) * 100, 100);
+
+              if (percentage >= 100)
+                return { '0%': '#52C41A', '100%': '#52C41A' };
+              if (percentage >= 75)
+                return { '0%': '#4776E6', '100%': '#52C41A' };
+              if (percentage >= 50)
+                return { '0%': '#FAAD14', '100%': '#4776E6' };
+              return { '0%': '#FF4D4F', '100%': '#FAAD14' };
+            };
+
             return (
-              <Card key={index} style={{ border: 'none', width: '150px' }}>
-                {showConfetti[index] && (
-                  <div
-                    style={{
-                      position: 'absolute',
-                      top: 0,
-                      left: 0,
-                      right: 0,
-                      bottom: 0,
-                      pointerEvents: 'none',
-                      zIndex: 10,
-                    }}
-                  />
-                )}
-                {['Steps', 'Active Calories', 'Resting Calories'].includes(
-                  String(metric.type)
-                ) ? (
+              <Card key={index} className="health-metric-card">
+                {showConfetti[index] && <div className="confetti-container" />}
+                {isGoalMetric && (
                   <div
                     onClick={() => openModal(index)}
-                    style={{
-                      display: 'flex',
-                      flexDirection: 'row',
-                      justifyContent: 'center',
-                      cursor: 'pointer',
-                      color: '#1890ff',
-                      marginLeft: '110px',
-                    }}
+                    className="edit-goal-button"
                   >
                     <EditOutlined />
                   </div>
-                ) : null}
+                )}
                 <Progress
                   type="circle"
                   percent={
@@ -645,56 +637,49 @@ const HealthPage: React.FC = () => {
                         : 0
                       : 100
                   }
-                  strokeColor={{
-                    '0%': 'white',
-                    '100%':
-                      isGoalMetric &&
-                      Number(goalInputs[index] || 0) > 0 &&
-                      Number(metric.value || 0) >=
-                        Number(goalInputs[index] || 0)
-                        ? '#52c41a'
-                        : 'rgb(20, 102, 255)',
-                  }}
+                  strokeColor={getProgressColor()}
+                  strokeWidth={8}
                   format={() => (
-                    <>
-                      <div>
-                        <div>{Math.round(Number(metric.value || 0))}</div>
-                        <div style={{ fontSize: '15px' }}>
-                          {String(metric.unit || '')}
-                        </div>
+                    <div className="progress-content">
+                      <div className="progress-value">
+                        {Math.round(Number(metric.value || 0))}
                       </div>
-                    </>
-                  )}
-                  strokeWidth={7}
-                />
-                <div>{String(metric.type || '')}</div>
-                {isGoalMetric && (
-                  <>
-                    <div>
-                      Your Goal:{' '}
-                      {Number(goalInputs[index] || 0) > 0
-                        ? goalInputs[index]
-                        : '--'}
+                      <div className="progress-unit">
+                        {String(metric.unit || '')}
+                      </div>
                     </div>
-                  </>
+                  )}
+                />
+                <div className="metric-type">{String(metric.type || '')}</div>
+                {isGoalMetric && (
+                  <div className="metric-goal">
+                    {t('health.goal')}:{' '}
+                    {Number(goalInputs[index] || 0) > 0
+                      ? goalInputs[index]
+                      : '--'}
+                  </div>
                 )}
               </Card>
             );
           })}
         </div>
         <Modal
-          title="Set Your Goal"
+          title={t('health.setGoal')}
           open={isModalOpen}
           onOk={handleOk}
           onCancel={handleCancel}
-          okText="Save"
+          okText={t('health.save')}
+          cancelText={t('health.cancel')}
+          className="goal-modal"
         >
           {selectedMetricIndex !== null && (
             <Input
               type="number"
               value={tempGoalInput}
               onChange={handleGoalInputChange}
-              placeholder="Enter goal value"
+              placeholder={t('health.enterGoalValue')}
+              prefix={<TrophyOutlined className="goal-input-icon" />}
+              className="goal-input"
             />
           )}
         </Modal>
@@ -703,188 +688,58 @@ const HealthPage: React.FC = () => {
   };
 
   return (
-    <div
-      className="health-dashboard"
-      style={{
-        margin: '0 auto',
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center',
-        width: '100vw',
-      }}
-    >
-      <Row justify="center" className="dashboard-header">
-        <Col span={24}>
-          <motion.div
-            initial={{ y: -20, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.5 }}
-          >
-            <Title level={2} className="dashboard-title">
-              {t('health.dashboard.title')}
-            </Title>
-            <Text className="dashboard-subtitle">
-              {t('health.dashboard.subtitle')}
-            </Text>
-            <div
-              style={{
-                display: 'flex',
-                flexDirection: 'row',
-                justifyContent: 'center',
-                marginTop: '20px',
-              }}
-            >
-              <Button
-                style={{
-                  borderRadius: '25px',
-                  height: '40px',
-                  marginBottom: '20px',
-                }}
-                type="primary"
-                onClick={showModal}
-              >
-                Get your health data export instruction
-              </Button>
-
-              <Modal
-                title={t('healthGuide.guide.connectModal.title')}
-                visible={isModalVisible}
-                onCancel={handleCancelModal}
-                footer={[
-                  <Button key="close" onClick={handleCancelModal}>
-                    {t('healthGuide.guide.connectModal.closeButton')}
-                  </Button>,
-                ]}
-                width={700}
-                zIndex={1000}
-              >
-                <div className="modal-content">
-                  <p className="modal-step-description">
-                    {t('healthGuide.guide.connectModal.description')}
-                  </p>
-
-                  <div className="modal-steps-container">
-                    <Steps
-                      direction="vertical"
-                      current={-1}
-                      size="small"
-                      className="modal-steps"
-                    >
-                      <Steps.Step
-                        title={t(
-                          'healthGuide.guide.connectModal.steps.download.title'
-                        )}
-                        description={
-                          <div className="download-link-container">
-                            <a
-                              href="https://www.icloud.com/shortcuts/e6269ab0fef447f498eeac823f764deb"
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="download-link"
-                            >
-                              {t(
-                                'healthGuide.guide.connectModal.steps.download.linkText'
-                              )}
-                            </a>
-                          </div>
-                        }
-                        icon={<SafetyOutlined />}
-                      />
-                      <Steps.Step
-                        title={t(
-                          'healthGuide.guide.connectModal.steps.copyUid.title'
-                        )}
-                        description={
-                          <div className="uid-container">
-                            <Text className="uid-text">{currentUser}</Text>
-                            <Button
-                              icon={
-                                uidCopied ? <CheckOutlined /> : <CopyOutlined />
-                              }
-                              size="small"
-                              onClick={copyUid}
-                            >
-                              {uidCopied
-                                ? t(
-                                    'healthGuide.guide.connectModal.steps.copyUid.button.copied'
-                                  )
-                                : t(
-                                    'healthGuide.guide.connectModal.steps.copyUid.button.copy'
-                                  )}
-                            </Button>
-                          </div>
-                        }
-                        icon={<SyncOutlined />}
-                      />
-                      <Steps.Step
-                        title={t(
-                          'healthGuide.guide.connectModal.steps.runShortcut.title'
-                        )}
-                        description={t(
-                          'healthGuide.guide.connectModal.steps.runShortcut.description'
-                        )}
-                        icon={<DatabaseOutlined />}
-                      />
-                      <Steps.Step
-                        title={t(
-                          'healthGuide.guide.connectModal.steps.enjoy.title'
-                        )}
-                        description={t(
-                          'healthGuide.guide.connectModal.steps.enjoy.description'
-                        )}
-                        icon={<FundOutlined />}
-                      />
-                    </Steps>
-                  </div>
-
-                  <div className="modal-footer-note">
-                    <InfoCircleOutlined
-                      style={{ marginRight: '8px', color: '#1890ff' }}
-                    />
-                    <Text type="secondary">
-                      {t('healthGuide.guide.connectModal.privacyNote')}
-                    </Text>
-                  </div>
-                </div>
-              </Modal>
-            </div>
-          </motion.div>
-        </Col>
-      </Row>
-
-      <Row gutter={[4, 4]}>
-        <div
-          style={{
-            display: 'flex',
-            flexDirection: 'row',
-            marginRight: '-210px',
-          }}
+    <div className="health-dashboard">
+      <div className="dashboard-header">
+        <motion.div
+          initial={{ y: -20, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.5 }}
         >
-          <Col>
+          <Title level={2} className="dashboard-title">
+            {t('health.dashboard.title')}
+          </Title>
+          <Text className="dashboard-subtitle">
+            {t('health.dashboard.subtitle')}
+          </Text>
+          <div className="header-actions">
+            <Button
+              type="primary"
+              onClick={showModal}
+              icon={<DatabaseOutlined />}
+              className="connect-data-button"
+            >
+              {t('health.getDataExportInstructions')}
+            </Button>
+          </div>
+        </motion.div>
+      </div>
+
+      <div className="health-content">
+        <Row gutter={[24, 24]} className="health-main-row">
+          <Col xs={24} lg={8} className="profile-column">
             <motion.div
-              initial={{ x: -50, opacity: 0 }}
+              initial={{ x: -30, opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
               transition={{ duration: 0.5, delay: 0.2 }}
-              style={{ maxWidth: '300px' }}
             >
               <Card className="profile-card">
                 <div className="profile-header">
                   <Title level={4} className="profile-title">
-                    <UserOutlined /> {t('health.profile.title')}
+                    <UserOutlined className="profile-icon" />{' '}
+                    {t('health.profile.title')}
                   </Title>
                   <Button
                     type="text"
                     icon={<EditOutlined />}
                     onClick={() => navigate('/profile/user-info')}
+                    className="edit-profile-button"
                   />
                 </div>
 
                 <Descriptions
                   bordered
                   column={1}
-                  className="profile-descriptions mb-20"
-                  styles={{ label: { fontWeight: 100 } }}
+                  className="profile-descriptions"
                   size="small"
                 >
                   <Descriptions.Item label={t('health.profile.age')}>
@@ -924,33 +779,28 @@ const HealthPage: React.FC = () => {
                   </Descriptions.Item>
                 </Descriptions>
 
-                <div style={{ marginTop: '20px' }} className="profile-summary">
-                  {renderWeightAdvice()}
-                </div>
+                <div className="profile-summary">{renderWeightAdvice()}</div>
               </Card>
             </motion.div>
           </Col>
 
-          <Col
-            style={{ minWidth: '40%', display: 'flex', flexDirection: 'row' }}
-            xs={18}
-            md={8}
-          >
+          <Col xs={24} lg={8} className="metrics-column">
             <motion.div
-              initial={{ x: 50, opacity: 0 }}
-              animate={{ x: 0, opacity: 1 }}
-              transition={{ duration: 0.5, delay: 0.6 }}
+              initial={{ y: 30, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ duration: 0.5, delay: 0.3 }}
             >
               <Card className="metrics-card">
                 <Title level={4} className="metrics-title">
-                  <DashboardOutlined /> {t('health.metrics.title')}
+                  <DashboardOutlined className="metrics-icon" />{' '}
+                  {t('health.metrics.title')}
                 </Title>
 
                 <div className="metrics-grid">
                   <div className="metric-item">{renderBmiStatus()}</div>
                   <div className="metric-item">{renderBmrStatus()}</div>
-                  <div className="metric-item">{renderIdealWeightStatus()}</div>
                   <div className="metric-item">{renderBodyFatStatus()}</div>
+                  <div className="metric-item">{renderIdealWeightStatus()}</div>
                 </div>
                 <div className="recommendations-section">
                   {renderSuggestions()}
@@ -958,108 +808,152 @@ const HealthPage: React.FC = () => {
               </Card>
             </motion.div>
           </Col>
-        </div>
 
-        <Col style={{ maxWidth: '16%', marginLeft: '35px' }} xs={18} md={8}>
-          <motion.div
-            initial={{ y: 50, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.5, delay: 0.4 }}
-          >
-            <Card className="visualization-card">
-              <div className="visualization-container">
-                <img
-                  src={
-                    userData?.weight &&
-                    userData.weight > 80 &&
-                    userData.weight < 100
-                      ? midPerson
-                      : userData?.weight && userData.weight > 100
-                        ? bigPerson
-                        : person
-                  }
-                  alt={t('health.visualization.alt')}
-                  className="health-visualization"
-                  style={{ height: '30vw', width: '15vw' }}
-                />
-              </div>
-            </Card>
-          </motion.div>
-        </Col>
-
-        <motion.div
-          initial={{ x: 50, opacity: 0 }}
-          animate={{ x: 0, opacity: 1 }}
-          transition={{ duration: 0.5, delay: 0.6 }}
-          style={{ width: '30%', position: 'relative', marginLeft: '30px' }}
-        >
-          <Title
-            style={{
-              display: 'flex',
-              flexDirection: 'row',
-              justifyContent: 'center',
-            }}
-            level={4}
-            className="metrics-title"
-          >
-            <SnippetsOutlined /> {t('health.metrics.title')}
-            <DatePicker
-              style={{ width: '150px', marginLeft: '20px' }}
-              onChange={(date) => {
-                setSelectedDate(date?.toDate() || null);
-              }}
-              disabledDate={(current) =>
-                current && current > dayjs().endOf('day').subtract(1, 'day')
-              }
-            />
-          </Title>
-
-          <div style={{ position: 'relative' }}>
-            {!selectedDate || fetchedHealthData.length === 0 ? (
-              <div
-                style={{
-                  backgroundColor: 'rgba(255, 255, 255, 0.9)',
-                  borderRadius: '10px',
-                  fontSize: '16px',
-                  justifyContent: 'center',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  alignItems: 'center',
-                  padding: '20px',
-                  marginLeft: '20px',
-                  marginRight: '20px',
-                }}
-              >
-                <Text>There is no data</Text>
-                <InboxOutlined
-                  style={{ fontSize: '100px', marginTop: '20px' }}
-                />
-              </div>
-            ) : (
-              <div
-                style={{
-                  borderRadius: '10px',
-                  zIndex: 1,
-                  opacity: selectedDate ? 1 : 0.5,
-                  pointerEvents: selectedDate ? 'auto' : 'none',
-                }}
-              >
-                <div
-                  style={{
-                    display: 'flex',
-                    flexDirection: 'row',
-                    justifyContent: 'center',
-                    flexWrap: 'wrap',
-                    gap: '20px',
-                  }}
-                >
-                  {healthCircles()}
+          <Col xs={24} lg={8} className="daily-metrics-column">
+            <motion.div
+              initial={{ x: 30, opacity: 0 }}
+              animate={{ x: 0, opacity: 1 }}
+              transition={{ duration: 0.5, delay: 0.4 }}
+            >
+              <Card className="daily-metrics-card">
+                <div className="daily-metrics-header">
+                  <Title level={4} className="daily-metrics-title">
+                    <LineChartOutlined className="daily-metrics-icon" />{' '}
+                    {t('health.dailyMetrics')}
+                  </Title>
+                  <DatePicker
+                    onChange={(date) => {
+                      setSelectedDate(date?.toDate() || null);
+                    }}
+                    disabledDate={(current) =>
+                      current &&
+                      current > dayjs().endOf('day').subtract(1, 'day')
+                    }
+                    placeholder={t('health.selectDate')}
+                    suffixIcon={
+                      <CalendarOutlined className="date-picker-icon" />
+                    }
+                    className="date-picker"
+                  />
                 </div>
-              </div>
-            )}
+
+                <Divider className="metrics-divider" />
+
+                <div className="daily-metrics-content">
+                  {!selectedDate || fetchedHealthData.length === 0 ? (
+                    <div className="no-data-container">
+                      <InboxOutlined className="no-data-icon" />
+                      <Text className="no-data-text">{t('health.noData')}</Text>
+                    </div>
+                  ) : (
+                    <div className="health-circles-container">
+                      {healthCircles()}
+                    </div>
+                  )}
+                </div>
+              </Card>
+            </motion.div>
+          </Col>
+        </Row>
+      </div>
+
+      <Modal
+        title={t('healthGuide.guide.connectModal.title')}
+        visible={isModalVisible}
+        onCancel={handleCancelModal}
+        footer={[
+          <Button
+            key="close"
+            onClick={handleCancelModal}
+            className="modal-close-button"
+          >
+            {t('healthGuide.guide.connectModal.closeButton')}
+          </Button>,
+        ]}
+        width={700}
+        zIndex={1000}
+        className="connect-modal"
+      >
+        <div className="modal-content">
+          <p className="modal-step-description">
+            {t('healthGuide.guide.connectModal.description')}
+          </p>
+
+          <div className="modal-steps-container">
+            <Steps
+              direction="vertical"
+              current={-1}
+              size="small"
+              className="modal-steps"
+            >
+              <Steps.Step
+                title={t('healthGuide.guide.connectModal.steps.download.title')}
+                description={
+                  <div className="download-link-container">
+                    <a
+                      href="https://www.icloud.com/shortcuts/e6269ab0fef447f498eeac823f764deb"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="download-link"
+                    >
+                      {t(
+                        'healthGuide.guide.connectModal.steps.download.linkText'
+                      )}
+                    </a>
+                  </div>
+                }
+                icon={<SafetyOutlined />}
+              />
+              <Steps.Step
+                title={t('healthGuide.guide.connectModal.steps.copyUid.title')}
+                description={
+                  <div className="uid-container">
+                    <Text className="uid-text">{currentUser}</Text>
+                    <Button
+                      icon={uidCopied ? <CheckOutlined /> : <CopyOutlined />}
+                      size="small"
+                      onClick={copyUid}
+                      className="copy-uid-button"
+                    >
+                      {uidCopied
+                        ? t(
+                            'healthGuide.guide.connectModal.steps.copyUid.button.copied'
+                          )
+                        : t(
+                            'healthGuide.guide.connectModal.steps.copyUid.button.copy'
+                          )}
+                    </Button>
+                  </div>
+                }
+                icon={<SyncOutlined />}
+              />
+              <Steps.Step
+                title={t(
+                  'healthGuide.guide.connectModal.steps.runShortcut.title'
+                )}
+                description={t(
+                  'healthGuide.guide.connectModal.steps.runShortcut.description'
+                )}
+                icon={<DatabaseOutlined />}
+              />
+              <Steps.Step
+                title={t('healthGuide.guide.connectModal.steps.enjoy.title')}
+                description={t(
+                  'healthGuide.guide.connectModal.steps.enjoy.description'
+                )}
+                icon={<FundOutlined />}
+              />
+            </Steps>
           </div>
-        </motion.div>
-      </Row>
+
+          <div className="modal-footer-note">
+            <InfoCircleOutlined className="footer-note-icon" />
+            <Text type="secondary">
+              {t('healthGuide.guide.connectModal.privacyNote')}
+            </Text>
+          </div>
+        </div>
+      </Modal>
     </div>
   );
 };
