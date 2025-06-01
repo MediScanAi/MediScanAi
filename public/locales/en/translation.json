@@ -95,11 +95,7 @@
     },
     "visualization": {
       "alt": "Health visualization"
-    },
-    "getDataExportInstructions": "Connect Health Data",
-    "dailyMetrics": "Daily Metrics",
-    "selectDate": "Select Date",
-    "noData": "No data available for selected date"
+    }
   },
   "analysisHistory": {
     "title": "Analysis History",
