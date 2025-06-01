@@ -227,6 +227,7 @@
     "bloodTestglucosePlaceholder": "Please enter the glucose level",
     "bloodTestcholesterolPlaceholder": "Please enter the cholesterol level"
   },
+
   "geneticTest": {
     "title": "Genetic Test",
     "brca1": "BRCA1 Gene Mutation",
@@ -254,6 +255,7 @@
     "categoryII": "Category II",
     "categoryIII": "Category III"
   },
+
   "urineTest": {
     "title": "Urine Test",
     "submit": "Submit Urine Test",
@@ -285,6 +287,7 @@
     "urineTestleukocyteEsterasePlaceholder": "Select leukocyte esterase result",
     "urineTestbloodPlaceholder": "Select blood result"
   },
+
   "vitaminTest": {
     "title": "Vitamin Test",
     "submit": "Submit Vitamin Test",
@@ -305,6 +308,7 @@
     "vitaminEPlaceholder": "Enter vitamin E level",
     "vitaminKPlaceholder": "Enter vitamin K level"
   },
+
   "userInfo": {
     "title": "User Info",
     "name": "Name",
@@ -338,6 +342,7 @@
     "cancelError": "User info cannot be canceled",
     "cancelSuccess": "User info canceled successfully"
   },
+
   "analysisHistory": {
     "title": "Analysis History",
     "noTestResults": "No test results yet",
@@ -389,6 +394,7 @@
     "factorVLeiden": "Factor V Leiden",
     "cyp2c19": "CYP2C19"
   },
+
   "mainTests": {
     "bloodTest": "Blood Test",
     "urineTest": "Urine Test",
@@ -402,6 +408,7 @@
     "viewMore": "View More",
     "getStarted": "Get Started"
   },
+
   "contactUs": {
     "title": "Contact Us",
     "phone": "Tel: +374 91 234 567",
@@ -410,6 +417,7 @@
     "hours": "Hours: Mon - Fri: 9:00 AM - 5:00 PM",
     "linkedin": "LinkedIn։ "
   },
+
   "chat": {
     "newChat": "New Chat",
     "rename": "Rename",
@@ -417,6 +425,7 @@
     "scanAnalysis": "Scan Analysis",
     "pdfUpload": "PDF Upload"
   },
+
   "health": {
     "bmi": "BMI",
     "bmr": "BMR",
@@ -487,6 +496,7 @@
       "alt": "Health visualization"
     }
   },
+
   "bloodAnalysis": {
     "title": "Blood Test Results",
     "subtitle": "Analysis with AI",
@@ -552,6 +562,311 @@
         "WBCs include several subtypes, such as neutrophils, eosinophils, and basophils...",
         "Lymphocytes are the WBCs responsible for antibody production and immune memory..."
       ]
+    }
+  },
+
+  "genetic": {
+    "title": "Genetic Test Results",
+    "subtitle": "Analysis with AI",
+    "noDataMessage": "Please fill out genetic test results to get your analytic results",
+    "fillTestButton": "Fill Genetic Test Results",
+    "warnings": {
+      "title": "🚨 Health Risk Warnings",
+      "brca1": "A positive BRCA1 result indicates a mutation in this tumor suppressor gene, significantly increasing lifetime risk of breast (up to 72%), ovarian (up to 44%), and other cancers. BRCA1 helps repair DNA damage; mutations impair this function. Management includes enhanced screening (MRI/mammograms), risk-reducing medications, or preventive surgeries. Not all carriers develop cancer, but vigilance is crucial. Genetic counseling helps interpret results and guide family testing.",
+      "brca2": "BRCA2 mutations elevate risks for breast (up to 69%), ovarian (up to 17%), pancreatic, and other cancers. Like BRCA1, it's involved in DNA repair. Male carriers have increased breast and prostate cancer risks. Management parallels BRCA1, with consideration of pancreatic cancer screening for high-risk families. PARP inhibitors are particularly effective treatments for BRCA-related cancers.",
+      "factorV": "Factor V Leiden makes blood resistant to protein C, increasing clotting risk 5-10x (heterozygous) or 50-100x (homozygous). Most carriers never clot, but risks rise with surgery, pregnancy, or hormones. Symptoms include DVT or PE. Management focuses on clot prevention during high-risk situations. Lifelong anticoagulation isn't usually needed without clotting history.",
+      "apoe": "Two ε4 alleles confer the highest Alzheimer's risk (up to 15x increased). The ε4 protein clears amyloid plaques less effectively. However, not all carriers develop dementia. Prevention focuses on heart-healthy lifestyle (exercise, Mediterranean diet, cognitive engagement). Testing is generally not recommended predictively due to limited clinical utility.",
+      "mthfr": "Homozygous C677T mutations reduce enzyme activity by ~70%, potentially elevating homocysteine. The clinical significance is debated, but may modestly increase cardiovascular and pregnancy risks. Management may include methylfolate (not folic acid) supplementation if homocysteine is elevated, though routine treatment isn't universally recommended.",
+      "cyp2c19": "Poor metabolizers process certain drugs very slowly, increasing side effects or requiring dose reductions. Affected medications include clopidogrel (reduced effectiveness), many antidepressants, and proton pump inhibitors. Pharmacogenetic testing can guide alternative drug selection (e.g., prasugrel instead of clopidogrel) or dosing adjustments."
+    },
+    "riskTitles": {
+      "brca1": "⚠️ BRCA1 Positive — Increased Cancer Risk",
+      "brca2": "⚠️ BRCA2 Positive — Increased Cancer Risk",
+      "factorV": "⚠️ Factor V Leiden Positive — Clotting Risk",
+      "apoe": "⚠️ APOE ε4/ε4 — High Alzheimer's Risk",
+      "mthfr": "⚠️ MTHFR Homozygous — Folate Metabolism Impact",
+      "cyp2c19": "⚠️ CYP2C19 Poor Metabolizer — Drug Response Altered"
+    },
+    "showMore": "Show more",
+    "showLess": "Show less",
+    "allNormal": "✅ All your values are within normal range. Great job!",
+    "analyzeButton": "Analyze with AI",
+    "brca1": {
+      "fact1": "BRCA1 mutations increase breast cancer risk by up to 72% and ovarian cancer risk by up to 44%.",
+      "fact2": "The BRCA1 gene helps repair damaged DNA and maintain genomic stability.",
+      "fact3": "Men with BRCA1 mutations have increased risk of breast and prostate cancer.",
+      "fact4": "BRCA1 mutations are more common in certain ethnic groups like Ashkenazi Jews.",
+      "fact5": "Not all BRCA1 mutation carriers will develop cancer—other factors play a role.",
+      "fact6": "BRCA1 was the first breast cancer gene identified, discovered in 1994."
+    },
+    "brca2": {
+      "fact1": "BRCA2 mutations increase breast cancer risk by up to 69% and ovarian cancer risk by up to 17%.",
+      "fact2": "BRCA2 plays a crucial role in DNA repair through homologous recombination.",
+      "fact3": "BRCA2 mutations significantly increase pancreatic cancer risk in both genders.",
+      "fact4": "BRCA2 carriers may respond better to certain chemotherapy drugs like platinum agents.",
+      "fact5": "BRCA2 mutations can cause Fanconi anemia when inherited from both parents.",
+      "fact6": "Male BRCA2 carriers have a 7% lifetime risk of breast cancer (vs 0.1% general population)."
+    },
+    "factorV": {
+      "fact1": "Factor V Leiden is the most common inherited blood clotting disorder.",
+      "fact2": "About 5% of Caucasians carry at least one copy of the mutation.",
+      "fact3": "Heterozygous carriers have 5-10x higher risk of blood clots; homozygous have 50-100x risk.",
+      "fact4": "The mutation originated in a single ancestor about 30,000 years ago.",
+      "fact5": "Hormonal contraception significantly increases clot risk in carriers.",
+      "fact6": "Factor V Leiden may have provided survival advantage against sepsis in the past."
+    },
+    "apoe": {
+      "fact1": "APOE ε4 is the strongest genetic risk factor for late-onset Alzheimer's disease.",
+      "fact2": "APOE helps transport cholesterol and fats in the bloodstream.",
+      "fact3": "About 25% of people carry one ε4 allele; 2-3% carry two copies.",
+      "fact4": "APOE ε2 may be protective against Alzheimer's but increases cardiovascular risk.",
+      "fact5": "APOE genotype affects response to dietary fats and statin medications.",
+      "fact6": "The ε4 allele is more common in populations with historically high-fat diets."
+    },
+    "mthfr": {
+      "fact1": "MTHFR mutations affect folate metabolism and homocysteine levels.",
+      "fact2": "C677T is the most common variant, present in 30-40% of some populations.",
+      "fact3": "Homozygous C677T may increase risk of heart disease, stroke, and birth defects.",
+      "fact4": "MTHFR status affects requirements for folic acid and other B vitamins.",
+      "fact5": "The mutation may influence depression risk through neurotransmitter synthesis.",
+      "fact6": "MTHFR testing is controversial—many experts don't recommend routine screening."
+    },
+    "cyp2c19": {
+      "fact1": "CYP2C19 metabolizes many drugs including antidepressants, clopidogrel, and proton pump inhibitors.",
+      "fact2": "Poor metabolizers may need alternative medications or dose adjustments.",
+      "fact3": "About 2-15% of people are poor metabolizers, varying by ethnicity.",
+      "fact4": "Ultrarapid metabolizers may process drugs too quickly, reducing effectiveness.",
+      "fact5": "Testing is particularly important for clopidogrel (Plavix) effectiveness.",
+      "fact6": "CYP2C19 status can affect antidepressant response and side effects."
+    }
+  },
+
+  "urineAnalysis": {
+    "title": "Urine Test Results",
+    "subtitle": "Analysis with AI",
+    "parameters": {
+      "bilirubin": "Bilirubin",
+      "blood": "Blood",
+      "nitrites": "Nitrites",
+      "leukocyteEsterase": "Leukocyte Esterase",
+      "glucose": "Glucose",
+      "ketones": "Ketones",
+      "ph": "pH",
+      "protein": "Protein",
+      "specificGravity": "Specific Gravity",
+      "urobilinogen": "Urobilinogen"
+    },
+    "warnings": {
+      "title": "🚨 Health Risk Warnings",
+      "analyzeButton": "Analyze with AI",
+      "showMore": "Show more",
+      "showLess": "Show less",
+      "allGood": "✅ All your values are within normal range. Great job!",
+      "conditions": {
+        "bilirubin": "⚠️ Bilirubin — Possible Liver Disease or Biliary Obstruction",
+        "blood": "⚠️ Blood — Possible Infection, Kidney Stones, or Trauma",
+        "nitrites": "⚠️ Nitrites — Suggestive of Urinary Tract Infection (UTI)",
+        "leukocyteEsterase": "⚠️ Leukocyte Esterase — Indicative of Infection or Inflammation",
+        "glucose": "⚠️ Glucose — Possible Diabetes or Renal Glucosuria",
+        "ketones": "⚠️ Ketones — Possible Diabetes, Starvation, or Ketoacidosis",
+        "ph": "⚠️ Abnormal pH — Possible Infection, Kidney Stones, or Diet-related Issues",
+        "protein": "⚠️ Protein— Possible Kidney Disease or Hypertension",
+        "specificGravity": "⚠️ Abnormal Specific Gravity — May Indicate Hydration Issues or Kidney Dysfunction",
+        "urobilinogen": "⚠️ High Urobilinogen — Possible Liver Disease or Hemolytic Disorder"
+      },
+      "explanations": {
+        "bilirubin": "Bilirubin in urine can signal liver dysfunction, such as hepatitis or bile duct blockage.",
+        "blood": "Blood in urine may be caused by infection, stones, or injury to the urinary tract.",
+        "nitrites": "Nitrites in urine usually indicate bacteria that convert nitrates, common in UTIs.",
+        "leukocyteEsterase": "This enzyme signals white blood cells in urine, suggesting inflammation or infection.",
+        "glucose": "Sugar in urine can result from high blood sugar levels, commonly associated with diabetes.",
+        "ketones": "Ketones appear when the body uses fat instead of sugar for energy, often in diabetes or fasting.",
+        "ph": "Urine pH outside normal range may result from diet, infections, or kidney problems.",
+        "protein": "Proteinuria is often linked to kidney issues or chronic conditions like high blood pressure.",
+        "specificGravity": "Too dilute or too concentrated urine may suggest dehydration or impaired kidney function.",
+        "high urobilinogen": "Elevated urobilinogen might indicate liver damage or excess breakdown of red blood cells."
+      }
+    },
+    "interestingFacts": {
+      "bilirubin": [
+        "Bilirubin is a yellow compound that results from the breakdown of red blood cells.",
+        "Presence of bilirubin in urine can indicate liver disease or bile duct obstruction.",
+        "Normally, urine should not contain bilirubin—its presence may suggest hepatitis or cirrhosis.",
+        "High bilirubin levels can cause jaundice, giving skin and eyes a yellowish tint.",
+        "Urine test strips can detect even trace amounts of bilirubin, making them valuable for early diagnosis."
+      ],
+      "blood": [
+        "Blood in the urine (hematuria) can result from infections, kidney stones, or trauma.",
+        "Even microscopic amounts of blood in urine are detectable with urinalysis.",
+        "Strenuous exercise or menstruation can sometimes cause temporary blood presence in urine.",
+        "Visible blood in urine may indicate a more serious issue, such as bladder cancer or glomerulonephritis.",
+        "Early detection of hematuria is crucial for diagnosing kidney or urinary tract problems."
+      ],
+      "nitrites": [
+        "Nitrites in urine often indicate a bacterial infection, as some bacteria convert nitrates to nitrites.",
+        "Urinary tract infections (UTIs) are the most common cause of nitrites in urine.",
+        "A positive nitrite test combined with leukocyte esterase strongly suggests a UTI.",
+        "Not all bacteria produce nitrites, so a negative result doesn't always rule out infection.",
+        "Regular urinalysis can help catch asymptomatic UTIs, especially in pregnancy."
+      ],
+      "leukocyte esterase": [
+        "Leukocyte esterase is an enzyme released by white blood cells in response to infection.",
+        "Its presence in urine typically signals inflammation or a urinary tract infection.",
+        "False positives can occur due to contamination or improper sample handling.",
+        "A positive leukocyte esterase test without nitrites may suggest a non-bacterial infection.",
+        "Combining leukocyte esterase and nitrite tests improves the accuracy of UTI diagnosis."
+      ],
+      "glucose": [
+        "Glucose in urine (glycosuria) often indicates high blood sugar levels, such as in diabetes.",
+        "Normally, kidneys reabsorb all glucose, so it shouldn't appear in urine unless blood glucose is high.",
+        "Glycosuria can also result from kidney conditions affecting reabsorption.",
+        "During pregnancy, glucose may appear in urine even without gestational diabetes.",
+        "Regular glucose checks in urine are helpful in monitoring diabetic patients."
+      ],
+      "ketones": [
+        "Ketones in urine form when the body breaks down fat for energy due to lack of glucose.",
+        "They commonly appear in uncontrolled diabetes, fasting, or ketogenic diets.",
+        "High levels of ketones can lead to ketoacidosis, a potentially life-threatening condition.",
+        "Ketone testing is especially important for people with type 1 diabetes.",
+        "Strenuous exercise or prolonged vomiting can also cause temporary ketone spikes."
+      ],
+      "ph": [
+        "Urine pH reflects how acidic or alkaline your urine is, influenced by diet and health.",
+        "A very acidic pH may indicate dehydration, high protein diet, or diabetes.",
+        "Alkaline urine may be linked to UTIs or a vegetarian diet.",
+        "Kidney stones can be associated with consistently abnormal urine pH.",
+        "Urine pH helps guide treatment decisions for infections and metabolic disorders."
+      ],
+      "protein": [
+        "Protein in urine (proteinuria) can be a sign of kidney damage or disease.",
+        "Small, temporary amounts of protein can appear after exercise or stress.",
+        "Persistent proteinuria requires further testing to assess kidney function.",
+        "Diabetes and hypertension are major causes of chronic proteinuria.",
+        "Early detection helps prevent further kidney damage and preserve function."
+      ],
+      "specific gravity": [
+        "Urine specific gravity measures how concentrated your urine is.",
+        "It reflects hydration status and kidney ability to concentrate or dilute urine.",
+        "High specific gravity may suggest dehydration, heart failure, or glucose in urine.",
+        "Low values could point to overhydration or impaired kidney function.",
+        "This test helps assess how well kidneys are maintaining fluid and electrolyte balance."
+      ],
+      "urobilinogen": [
+        "Urobilinogen is formed from the breakdown of bilirubin in the intestines.",
+        "Small amounts are normal in urine, but too much can suggest liver or hemolytic disease.",
+        "Absence of urobilinogen may indicate bile duct obstruction.",
+        "Elevated urobilinogen can be an early sign of liver dysfunction, even before jaundice appears.",
+        "This marker helps distinguish between different types of liver and blood disorders."
+      ]
+    },
+    "noData": {
+      "title": "Please provide urine test results to get your analysis",
+      "button": "Fill Urine Test Results"
+    }
+  },
+
+  "vitaminAnalysis": {
+    "title": "Vitamin Test Results",
+    "subtitle": "Analysis with AI",
+    "parameters": {
+      "vitaminA": "Vitamin A",
+      "vitaminB12": "Vitamin B12",
+      "vitaminC": "Vitamin C",
+      "vitaminD": "Vitamin D",
+      "vitaminE": "Vitamin E",
+      "vitaminK": "Vitamin K"
+    },
+    "warnings": {
+      "title": "🚨 Vitamin Health Warnings",
+      "analyzeButton": "Analyze with AI",
+      "showMore": "Show more",
+      "showLess": "Show less",
+      "allGood": "✅ All your vitamin levels are within normal range. Great job!",
+      "conditions": {
+        "vitaminA": {
+          "low": "⚠️ Low Vitamin A — Possible Night Blindness or Immune Deficiency",
+          "high": "⚠️ High Vitamin A — Possible Liver Damage or Toxicity"
+        },
+        "vitaminB12": {
+          "low": "⚠️ Low Vitamin B12 — Possible Anemia or Neurological Issues",
+          "high": "⚠️ High Vitamin B12 — Possible Kidney or Liver Problems"
+        },
+        "vitaminC": {
+          "low": "⚠️ Low Vitamin C — Possible Scurvy or Poor Wound Healing",
+          "high": "⚠️ High Vitamin C — Possible Kidney Stones or Digestive Issues"
+        },
+        "vitaminD": {
+          "low": "⚠️ Low Vitamin D — Possible Bone Weakness or Immune Dysfunction",
+          "high": "⚠️ High Vitamin D — Possible Calcium Buildup or Kidney Damage"
+        },
+        "vitaminE": {
+          "low": "⚠️ Low Vitamin E — Possible Nerve Damage or Muscle Weakness",
+          "high": "⚠️ High Vitamin E — Possible Bleeding Risk or Hemorrhage"
+        },
+        "vitaminK": {
+          "low": "⚠️ Low Vitamin K — Possible Bleeding Disorders or Poor Clotting",
+          "high": "⚠️ High Vitamin K — Possible Blood Clotting Issues"
+        }
+      },
+      "explanations": {
+        "VitaminA": "Vitamin A deficiency can lead to night blindness, dry eyes, and increased susceptibility to infections. Excess vitamin A may cause nausea, dizziness, and in severe cases, liver damage.",
+        "VitaminB12": "B12 deficiency can cause megaloblastic anemia, fatigue, nerve damage, and cognitive issues. High levels may indicate liver disease or certain types of leukemia.",
+        "VitaminC": "Vitamin C deficiency results in scurvy with symptoms like bleeding gums and poor wound healing. Excessive amounts may lead to diarrhea and kidney stones.",
+        "VitaminD": "Low vitamin D causes bone softening (osteomalacia) and increases fracture risk. Toxicity can lead to hypercalcemia with symptoms like nausea and confusion.",
+        "VitaminE": "Vitamin E deficiency may cause nerve and muscle damage. High doses can interfere with blood clotting and increase hemorrhage risk.",
+        "VitaminK": "Vitamin K deficiency impairs blood clotting. Excess may interfere with anticoagulant medications and increase thrombosis risk."
+      }
+    },
+    "interestingFacts": {
+      "VitaminA": [
+        "Vitamin A is essential for good vision, especially night vision.",
+        "It supports immune function and helps maintain healthy skin and mucous membranes.",
+        "Sweet potatoes and carrots get their orange color from beta-carotene, a vitamin A precursor."
+      ],
+      "VitaminB12": [
+        "Vitamin B12 is crucial for red blood cell formation and neurological function.",
+        "It's naturally found only in animal products like meat, dairy, and eggs.",
+        "The body can store 3-5 years worth of vitamin B12 in the liver."
+      ],
+      "VitaminC": [
+        "Vitamin C is a powerful antioxidant that helps protect cells from damage.",
+        "Humans are among the few mammals that cannot synthesize vitamin C.",
+        "Vitamin C enhances iron absorption from plant foods."
+      ],
+      "VitaminD": [
+        "Vitamin D is actually a hormone that the body can produce from sunlight exposure.",
+        "It regulates calcium absorption and bone metabolism.",
+        "Many people worldwide are deficient, especially in winter months."
+      ],
+      "VitaminE": [
+        "Vitamin E is a group of fat-soluble compounds with antioxidant effects.",
+        "It helps protect cell membranes from oxidative damage.",
+        "Nuts, seeds, and vegetable oils are rich sources."
+      ],
+      "VitaminK": [
+        "Vitamin K is essential for blood clotting and bone metabolism.",
+        "There are two main forms: K1 (from plants) and K2 (from animal products and fermented foods).",
+        "Newborns often receive vitamin K shots to prevent bleeding disorders."
+      ]
+    },
+    "noData": {
+      "title": "Please fill a vitamin test results to get your analytic results",
+      "button": "Fill Vitamin Test Results"
+    },
+    "recommendations": {
+      "title": "Dietary Recommendations",
+      "improve": "To improve your {{vitamin}} levels:",
+      "foodSources": "Best food sources:",
+      "supplements": "Supplement advice:",
+      "lifestyle": "Lifestyle tips:"
+    },
+    "units": {
+      "vitaminA": "μg RAE",
+      "vitaminB12": "pg/mL",
+      "vitaminC": "mg/dL",
+      "vitaminD": "ng/mL",
+      "vitaminE": "mg/dL",
+      "vitaminK": "ng/mL"
     }
   }
 

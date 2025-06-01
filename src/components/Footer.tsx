@@ -1,4 +1,4 @@
-import { Col, Row, Typography } from 'antd';
+import {Col, Flex, Row, Typography} from 'antd';
 import {
   FacebookFilled,
   InstagramOutlined,
@@ -15,12 +15,13 @@ const Footer = () => {
 
   return (
     <footer className={theme ? 'dark-footer' : ''}>
-      <Row justify="space-around" align="middle">
-        <Col xs={24} sm={12} style={{ textAlign: 'center' }}>
+      <Row justify="center" align="middle">
+        <Col xs={24} sm={24} md={10} style={{ textAlign: 'center' }}>
           <Text className={'info'}>© 2025 Your AI Doctor.</Text>
           <Text className={'info'}> All rights reserved.</Text>
         </Col>
-        <Col xs={20} sm={12} lg={11} className={'info'}>
+        <Col xs={24} sm={24} md={10} className={'info'}>
+          <Flex justify={'center'}>
           <Link href="/about-us" className={'info'}>
             About US
           </Link>
@@ -30,14 +31,16 @@ const Footer = () => {
           <Link href="/profile/partner-with-us" className={'info'}>
             Partner With Us
           </Link>
+          </Flex>
         </Col>
-      </Row>
-      <Row justify={'center'}>
-        <Col xs={12} sm={12} className={'info'}>
-          <InstagramOutlined className={'info-icons'} />
-          <FacebookFilled className={'info-icons'} />
-          <MailFilled className={'info-icons'} />
-          <LinkedinFilled className={'info-icons'} />
+        <Col  xs={24} sm={24} md={4} className={'info'}>
+          <Flex justify={'center'} align={'middle'} style={{ height: '100%' }}>
+            <InstagramOutlined className={'info-icons'} />
+            <FacebookFilled className={'info-icons'} />
+            <MailFilled className={'info-icons'} />
+            <LinkedinFilled className={'info-icons'} />
+          </Flex>
+
         </Col>
       </Row>
     </footer>

@@ -185,7 +185,7 @@ const HealthPage: React.FC = () => {
   useEffect(() => {
     const newConfettiState: { [key: number]: boolean } = {};
     let anyGoalAchieved = false;
-    
+
     fetchedHealthData.forEach((metric, index) => {
       const goal = Number(goalInputs[index] || 0);
       const value = Number(metric.value || 0);
@@ -710,8 +710,23 @@ const HealthPage: React.FC = () => {
             <Text className="dashboard-subtitle">
               {t('health.dashboard.subtitle')}
             </Text>
-            <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', marginTop: '20px'}}>
-              <Button style={{ borderRadius: '25px', height: '40px', marginBottom: '20px' }} type="primary" onClick={() => {}}>
+            <div
+              style={{
+                display: 'flex',
+                flexDirection: 'row',
+                justifyContent: 'center',
+                marginTop: '20px',
+              }}
+            >
+              <Button
+                style={{
+                  borderRadius: '25px',
+                  height: '40px',
+                  marginBottom: '20px',
+                }}
+                type="primary"
+                onClick={() => {}}
+              >
                 Get your health data export instruction
               </Button>
             </div>

@@ -1,6 +1,6 @@
 import { Typography, Row, Col, Card, Carousel, List, Button } from 'antd';
 import 'antd/dist/reset.css';
-import { DownOutlined, LineOutlined } from '@ant-design/icons';
+import { DownOutlined } from '@ant-design/icons';
 import partner1 from '../../assets/photos/partner1.webp';
 import partner2 from '../../assets/photos/partner2.webp';
 import partner3 from '../../assets/photos/partner3.webp';
@@ -21,6 +21,7 @@ import '../../assets/styles/homepage.css';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import {useAppSelector} from "../../app/hooks.ts";
 
 const { Title, Text } = Typography;
 
@@ -28,7 +29,7 @@ function HomePage() {
   const { t } = useTranslation('global');
   const [width, setWidth] = useState(window.innerWidth);
   const [openIndex, setOpenIndex] = useState<number | null>(null);
-  const [theme, setTheme] = useState(false);
+  const theme = useAppSelector((state) => state.theme.isDarkMode);
   const navigate = useNavigate();
 
   const activities = [
