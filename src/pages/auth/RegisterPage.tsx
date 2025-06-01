@@ -24,6 +24,10 @@ import '../../assets/styles/RegisterPage.css';
 import Notebook3D from '../../assets/photos/notebook.png';
 import '../../assets/styles/LoginPage.css';
 import PreferencesDropdown from '../../components/common/PreferencesDropdown';
+import SecondaryButton from '../../components/common/SecondaryButton';
+import {
+  X,
+} from 'lucide-react';
 
 const { Title, Text } = Typography;
 const { Option } = Select;
@@ -98,6 +102,13 @@ const RegisterPage: React.FC = () => {
     <div className={`register-page-container ${isDarkMode ? 'dark' : 'light'}`}>
       <div className="register-preferences-dropdown">
         <PreferencesDropdown />
+      </div>
+      <div className='register-back-link-container'>
+        <SecondaryButton size="large">
+          <Link to="/" className="register-back-link">
+            <X />
+          </Link>
+        </SecondaryButton>
       </div>
 
       <div className="register-content-row">

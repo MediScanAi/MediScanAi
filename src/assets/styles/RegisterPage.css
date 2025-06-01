@@ -338,3 +338,15 @@
   right: 16px;
   z-index: 999;
 }
+
+.register-back-link {
+  display: flex;
+  align-items:center;
+}
+
+.register-back-link-container {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  z-index: 999;
+}

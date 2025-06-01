@@ -6,9 +6,7 @@
   max-width: max-content;
   padding: 0 12px;
   border-radius: 12px;
-  font-size: 16px;
   font-weight: 600;
-  height: 44px;
   gap: 12px;
 }
 
@@ -42,9 +40,7 @@
   color: #5e8fff;
   border: 2px solid #5e8fff;
   font-weight: 600;
-  font-size: 16px;
   border-radius: 12px;
-  height: 44px;
   transition:
     background 0.2s,
     color 0.2s,
@@ -65,6 +61,7 @@
     0 2px 8px 0 rgba(70, 102, 229, 0.14) !important;
   transform: translateY(-2px) scale(1.015) !important;
 }
+
 .custom-btn .anticon,
 .custom-btn .custom-btn-icon {
   font-size: 18px;

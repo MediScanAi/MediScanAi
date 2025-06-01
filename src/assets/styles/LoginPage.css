@@ -215,3 +215,16 @@
   right: 16px;
   z-index: 999;
 }
+
+
+.login-back-link {
+  display: flex;
+  align-items:center;
+}
+
+.login-back-link-container {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  z-index: 999;
+}

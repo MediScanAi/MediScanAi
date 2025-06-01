@@ -22,7 +22,7 @@ const SecondaryButton: React.FC<SecondaryButtonProps> = ({
     <Button
       className={`custom-btn secondary-btn ${theme} ${className}`}
       icon={icon}
-      size="large"
+      size={props.size ?? 'large'}
       {...props}
     >
       {children}
