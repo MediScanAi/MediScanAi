@@ -20,7 +20,7 @@ import ForgotPasswordForm from '../../components/ForgotPasswordForm';
 import LoginWithGoogleButton from '../../components/LoginWithGoogleButton';
 import MedicalInstruments3D from '../../assets/photos/medical_instruments.png';
 import '../../assets/styles/LoginPage.css';
-import { toggleTheme } from '../../app/slices/theme';
+// import { toggleTheme } from '../../app/slices/themeSlice';
 import PrimaryButton from '../../components/common/PrimaryButton';
 import { MoonOutlined, SunOutlined } from '@ant-design/icons';
 
@@ -57,7 +57,7 @@ const LoginPage: React.FC = () => {
     setGoogleLoading(isLoading);
   };
 
-  const handleThemeChange = () => dispatch(toggleTheme());
+  const handleThemeChange = () =>{}; //dispatch(toggleTheme());
 
   return (
     <div className={`login-page-container ${isDarkMode ? 'dark' : 'light'}`}>

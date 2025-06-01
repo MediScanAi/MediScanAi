@@ -1,20 +1,19 @@
 import {
   DownOutlined,
-  MoonOutlined,
   SettingOutlined,
-  SunOutlined,
 } from '@ant-design/icons';
-import { Button, Dropdown, Switch } from 'antd';
+import { Button, Dropdown } from 'antd';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import LanguagePicker from './LanguagePicker';
-import { useAppDispatch, useAppSelector } from '../../app/hooks';
-import { toggleTheme } from '../../app/slices/theme';
+import { useAppSelector } from '../../app/hooks';
 import '../../assets/styles/preferencesDropdown.css';
+import ThemePicker from './ThemePicker';
+
+
 const PreferencesDropdown = () => {
   const { t } = useTranslation('global');
   const isDarkMode = useAppSelector((state) => state.theme.isDarkMode);
-  const dispatch = useAppDispatch();
   const [prefMenuOpen, setPrefMenuOpen] = useState(false);
   const prefsContent = (
     <div className="preferences-dropdown">
@@ -24,12 +23,7 @@ const PreferencesDropdown = () => {
       </div>
       <div className="preference-item">
         <span>{t('menu.selectTheme')}</span>
-        <Switch
-          checked={isDarkMode}
-          onChange={() => dispatch(toggleTheme())}
-          checkedChildren={<MoonOutlined />}
-          unCheckedChildren={<SunOutlined />}
-        />
+        <ThemePicker/>
       </div>
     </div>
   );

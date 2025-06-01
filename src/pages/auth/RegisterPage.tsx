@@ -23,7 +23,7 @@ import PrimaryButton from '../../components/common/PrimaryButton';
 import { MoonOutlined, SunOutlined } from '@ant-design/icons';
 import '../../assets/styles/RegisterPage.css';
 import Notebook3D from '../../assets/photos/notebook.png';
-import { toggleTheme } from '../../app/slices/theme';
+// import { toggleTheme } from '../../app/slices/themeSlice';
 import '../../assets/styles/LoginPage.css';
 
 const { Title, Text } = Typography;
@@ -96,7 +96,7 @@ const RegisterPage: React.FC = () => {
   };
 
   const handleThemeChange = () => {
-    dispatch(toggleTheme());
+    // dispatch(toggleTheme());
   };
 
   return (

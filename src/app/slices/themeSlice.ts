@@ -1,26 +1,53 @@
-import { createSlice } from '@reduxjs/toolkit';
-import type { PayloadAction } from '@reduxjs/toolkit';
+import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
+
+type ThemeMode = 'light' | 'dark' | 'system';
 
 interface ThemeState {
+  themeMode: ThemeMode;
   isDarkMode: boolean;
 }
 
-const initialState: ThemeState = {
-  isDarkMode: false,
-};
+function getSystemDarkMode(): boolean {
+  if (typeof window !== 'undefined' && window.matchMedia) {
+    return window.matchMedia('(prefers-color-scheme: dark)').matches;
+  }
+  return false;
+}
+
+const savedMode = (localStorage.getItem('themeMode') as ThemeMode) || 'system';
+
+function getInitialThemeState(): ThemeState {
+  const mode: ThemeMode = savedMode;
+  let isDark = false;
+
+  if (mode === 'dark') isDark = true;
+  else if (mode === 'light') isDark = false;
+  else isDark = getSystemDarkMode();
+
+  return { themeMode: mode, isDarkMode: isDark };
+}
+
+const initialState: ThemeState = getInitialThemeState();
 
 const themeSlice = createSlice({
   name: 'theme',
   initialState,
   reducers: {
-    toggleTheme: (state) => {
-      state.isDarkMode = !state.isDarkMode;
+    setThemeMode(state, action: PayloadAction<ThemeMode>) {
+      state.themeMode = action.payload;
+      localStorage.setItem('themeMode', action.payload);
+
+      if (action.payload === 'system') {
+        state.isDarkMode = getSystemDarkMode();
+      } else {
+        state.isDarkMode = action.payload === 'dark';
+      }
     },
-    setTheme: (state, action: PayloadAction<boolean>) => {
+    setIsDarkMode(state, action: PayloadAction<boolean>) {
       state.isDarkMode = action.payload;
     },
   },
 });
 
-export const { toggleTheme, setTheme } = themeSlice.actions;
+export const { setThemeMode, setIsDarkMode } = themeSlice.actions;
 export default themeSlice.reducer;
