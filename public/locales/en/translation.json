@@ -11,7 +11,9 @@
     "bloodTest": "Blood Test",
     "urineTest": "Urine Test",
     "vitaminTest": "Vitamin Test",
-    "geneticTest": "Genetic Test"
+    "geneticTest": "Genetic Test",
+    "selectLanguage":"Select Language",
+    "selectTheme": "Select Theme"
   },
   "homepage": {
     "welcome": "Welcome",
