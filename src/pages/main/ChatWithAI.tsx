@@ -586,7 +586,7 @@ const ChatWithAi = () => {
                           : '#fff',
                     borderRadius: 10,
                     marginBottom: 8,
-                    padding: 8,
+                    padding: '8px 12px',
                     borderBottom: 'none',
                     boxShadow:
                       chat.id === selectedChatId
@@ -599,7 +599,9 @@ const ChatWithAi = () => {
                     style={{
                       display: 'flex',
                       justifyContent: 'space-between',
+                      alignItems: 'center',
                       width: '100%',
+                      gap: 8,
                     }}
                   >
                     {editingChatId === chat.id ? (
@@ -613,21 +615,19 @@ const ChatWithAi = () => {
                         onBlur={() => setEditingChatId(null)}
                         autoFocus
                         size="small"
+                        style={{ flex: 1 }}
                       />
                     ) : (
-                      <div
-                        style={{
-                          display: 'flex',
-                          alignItems: 'center',
-                          // flex: 1,
-                          gap: 8,
-                          borderTop: 'none',
-                        }}
-                      >
+                      <>
                         <Text
                           className={`chat-item-title ${isDarkMode ? 'dark' : ''}`}
                           strong
-                          style={{ flex: 1 }}
+                          style={{
+                            flex: 1,
+                            overflow: 'hidden',
+                            textOverflow: 'ellipsis',
+                            whiteSpace: 'nowrap',
+                          }}
                         >
                           {chat.title}
                         </Text>
@@ -676,10 +676,11 @@ const ChatWithAi = () => {
                             style={{
                               cursor: 'pointer',
                               color: isDarkMode ? '#ffffff' : '#000000',
+                              flexShrink: 0,
                             }}
                           />
                         </Dropdown>
-                      </div>
+                      </>
                     )}
                   </div>
                 </List.Item>
