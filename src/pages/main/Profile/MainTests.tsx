@@ -1,11 +1,10 @@
-import { Col, Card, Typography, Row, Button, Space } from 'antd';
+import { Col, Card, Typography, Row, Space } from 'antd';
 import { useNavigate } from 'react-router-dom';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useAppSelector } from '../../../app/hooks';
 import { motion } from 'framer-motion';
 import PrimaryButton from '../../../components/common/PrimaryButton';
-import SecondaryButton from '../../../components/common/SecondaryButton';
 
 const { Title, Text } = Typography;
 
@@ -43,7 +42,10 @@ const MainTests: React.FC<MainTestsProps> = ({ theme, width }) => {
   ];
 
   return (
-    <div style={{ width: '70vw' }} className={`modern-user-profile ${theme ? 'dark' : ''}`}>
+    <div
+      style={{ width: '70vw' }}
+      className={`modern-user-profile ${theme ? 'dark' : ''}`}
+    >
       <div
         style={{
           margin: '0 auto',

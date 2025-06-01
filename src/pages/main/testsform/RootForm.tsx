@@ -9,7 +9,7 @@ import {
   HeatMapOutlined,
   MonitorOutlined,
 } from '@ant-design/icons';
-import laboratoryImage from '../../../assets/photos/Education8.png';
+import laboratoryImage from '../../../assets/photos/Education8.webp';
 import '../../../assets/styles/rootForm.css';
 import VitaminTestForm from './VitaminTestForm';
 import UrineTestForm from './UrineTestForm';
@@ -88,7 +88,10 @@ function RootForm(): ReactNode | null {
       <Row className="form-main-container">
         <Col xs={24} md={10} className="form-left-content">
           <div className="form-header">
-            <Title level={2} className={`medical-title ${isDarkMode ? 'dark' : ''}`}>
+            <Title
+              level={2}
+              className={`medical-title ${isDarkMode ? 'dark' : ''}`}
+            >
               {t('rootform.medicalLaboratoryTestForm')}
             </Title>
             <Text className={`medical-subtitle ${isDarkMode ? 'dark' : ''}`}>

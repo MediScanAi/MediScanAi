@@ -190,8 +190,8 @@ const UserInfo: React.FC<UserInfoProps> = ({ theme }) => {
       message.error(t('userInfo.messages.saveFail'));
     }
   };
-  
-  console.log(user)
+
+  console.log(user);
 
   const renderValue = (key: string, value: unknown): string | number => {
     if (value === null || value === '' || value === undefined)
@@ -367,7 +367,7 @@ const UserInfo: React.FC<UserInfoProps> = ({ theme }) => {
                             {renderValue(
                               field.key,
                               formState[field.key as keyof UserData] ??
-                              field.value
+                                field.value
                             )}
                             {field.unit && (
                               <span className="unit">{field.unit}</span>

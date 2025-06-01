@@ -1,5 +1,4 @@
-import { Row, Typography, Col, Button, Card, Carousel } from 'antd';
-import { useAppSelector } from '../../app/hooks.ts';
+import { Row, Typography, Col, Card, Carousel } from 'antd';
 import '../../assets/styles/aboutUs.css';
 import mission from '../../assets/photos/target.png';
 import vision from '../../assets/photos/opportunity.png';
@@ -8,7 +7,6 @@ import opinionImage from '../../assets/photos/quotes.png';
 import { useNavigate } from 'react-router';
 import { useEffect } from 'react';
 import { useState } from 'react';
-import { LineOutlined } from '@ant-design/icons';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import type { RootState } from '../../app/store';
@@ -16,7 +14,6 @@ import PrimaryButton from '../../components/common/PrimaryButton.tsx';
 const { Title, Paragraph, Text } = Typography;
 
 function AboutUsPage() {
-  const theme = useAppSelector((state) => state.theme.isDarkMode);
   const navigate = useNavigate();
   const [width, setWidth] = useState(window.innerWidth);
   const { t } = useTranslation('global');

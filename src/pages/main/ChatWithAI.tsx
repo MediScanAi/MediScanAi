@@ -43,7 +43,8 @@ import { useTranslation } from 'react-i18next';
 import type { RootState } from '../../app/store';
 import { useSelector } from 'react-redux';
 import PrimaryButton from '../../components/common/PrimaryButton';
-import MediScanAILogo from '../../assets/photos/Logo.png';
+import MediScanAILogo from '../../assets/photos/Logo.webp';
+import i18n from '../../i18n';
 
 const { Sider, Content } = Layout;
 const { Text } = Typography;
@@ -68,7 +69,6 @@ const ChatWithAi = () => {
   const [loading, setLoading] = useState(false);
   const [editingChatId, setEditingChatId] = useState<string | null>(null);
   const [editingTitle, setEditingTitle] = useState('');
-  const [language, setLanguage] = useState<'en' | 'ru'>('en');
   const { t } = useTranslation();
   const messagesEndRef = useRef<HTMLDivElement | null>(null);
   const tests = useAppSelector((state) => state.tests);
@@ -162,7 +162,7 @@ const ChatWithAi = () => {
     const synth = window.speechSynthesis;
     const voices = synth.getVoices();
 
-    if (language === 'ru') {
+    if (i18n.language === 'ru') {
       const russianVoice = voices.find(
         (voice) => voice.lang === 'ru-RU' || voice.lang.startsWith('ru-')
       );
@@ -476,9 +476,7 @@ const ChatWithAi = () => {
           }}
         >
           <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-            <DiffOutlined
-              style={{ color: isDarkMode ? '#ffffff' : 'black' }}
-            />
+            <DiffOutlined style={{ color: isDarkMode ? '#ffffff' : 'black' }} />
             <Text className={`chat-with-ai-label ${isDarkMode ? 'dark' : ''}`}>
               {t('chat.scanAnalysis')}
             </Text>

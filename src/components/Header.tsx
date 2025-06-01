@@ -32,7 +32,7 @@ import { useAppDispatch, useAppSelector } from '../app/hooks';
 import { toggleTheme } from '../app/slices/theme';
 import { logoutUser } from '../app/slices/authSlice';
 import { useTranslation } from 'react-i18next';
-import Logo from '../assets/photos/Logo.svg'; 
+import Logo from '../assets/photos/Logo.svg';
 import engFlag from '../assets/photos/united-kingdom.png';
 import rusFlag from '../assets/photos/russia.png';
 import armFlag from '../assets/photos/armenia.png';
@@ -267,7 +267,7 @@ export default function AppHeader() {
             ) : (
               <PrimaryButton
                 style={{ height: '35px' }}
-                size='small'
+                size="small"
                 onClick={() => navigate('/auth/login')}
               >
                 {t('menu.login', 'Log In')}

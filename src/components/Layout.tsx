@@ -12,9 +12,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
   return (
     <>
       <AppHeader />
-      <div className="main-content">
-        {children}
-      </div>
+      <div className="main-content">{children}</div>
       {!hideFooter && <Footer />}
     </>
   );

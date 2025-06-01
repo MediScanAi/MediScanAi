@@ -4,8 +4,6 @@ import {
   Col,
   Card,
   Carousel,
-  List,
-  Button,
   Collapse,
 } from 'antd';
 import 'antd/dist/reset.css';
