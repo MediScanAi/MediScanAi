@@ -9,7 +9,7 @@ import {
   Select,
   Row,
   Col,
-  Switch,
+  InputNumber,
 } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
 import { registerUser, setUser } from '../../app/slices/authSlice';
@@ -20,11 +20,10 @@ import { getAuth, reload } from 'firebase/auth';
 import { mapFirebaseUser } from '../../api/authApi';
 import LoginWithGoogleButton from '../../components/LoginWithGoogleButton';
 import PrimaryButton from '../../components/common/PrimaryButton';
-import { MoonOutlined, SunOutlined } from '@ant-design/icons';
 import '../../assets/styles/RegisterPage.css';
 import Notebook3D from '../../assets/photos/notebook.png';
-// import { toggleTheme } from '../../app/slices/themeSlice';
 import '../../assets/styles/LoginPage.css';
+import PreferencesDropdown from '../../components/common/PreferencesDropdown';
 
 const { Title, Text } = Typography;
 const { Option } = Select;
@@ -95,19 +94,11 @@ const RegisterPage: React.FC = () => {
     setChecking(false);
   };
 
-  const handleThemeChange = () => {
-    // dispatch(toggleTheme());
-  };
-
   return (
     <div className={`register-page-container ${isDarkMode ? 'dark' : 'light'}`}>
-      <Switch
-        className="theme-toggle"
-        checked={isDarkMode}
-        checkedChildren={<MoonOutlined />}
-        unCheckedChildren={<SunOutlined />}
-        onChange={handleThemeChange}
-      />
+      <div className="register-preferences-dropdown">
+        <PreferencesDropdown />
+      </div>
 
       <div className="register-content-row">
         <div className="register-card-section wide">
@@ -184,8 +175,15 @@ const RegisterPage: React.FC = () => {
                         <Select
                           placeholder="Select gender"
                           size="large"
-                          className="register-input"
+                          className={`register-input register-select ${isDarkMode ? 'dark' : ''}`}
                           allowClear
+                          classNames={{
+                            popup: {
+                              root: isDarkMode
+                                ? 'register-select-dropdown-dark'
+                                : undefined,
+                            },
+                          }}
                         >
                           <Option value="male">Male</Option>
                           <Option value="female">Female</Option>
@@ -197,24 +195,20 @@ const RegisterPage: React.FC = () => {
                         label="Age"
                         name="age"
                         rules={[
-                          {
-                            required: true,
-                            message: 'Enter your age',
-                          },
-                          {
-                            type: 'number',
-                            min: 0,
-                            max: 120,
-                            transform: (value) => Number(value),
-                            message: 'Enter a valid age',
-                          },
+                          { required: true, message: 'Enter a valid age' },
                         ]}
                       >
-                        <Input
-                          placeholder="Enter your age"
+                        <InputNumber
+                          min={0}
+                          max={120}
                           size="large"
-                          type="number"
-                          className="register-input"
+                          placeholder="Enter your age"
+                          className={`register-input register-input-number ${isDarkMode ? 'dark' : ''}`}
+                          onKeyDown={(e) => {
+                            if (!/[0-9]/.test(e.key)) {
+                              e.preventDefault();
+                            }
+                          }}
                         />
                       </Form.Item>
                     </Col>
@@ -223,12 +217,12 @@ const RegisterPage: React.FC = () => {
                         label="Email"
                         name="email"
                         rules={[
-                          { required: true, message: 'Enter your e-mail' },
-                          { type: 'email', message: 'Invalid e-mail' },
+                          { required: true, message: 'Enter your email' },
+                          { type: 'email', message: 'Invalid email' },
                         ]}
                       >
                         <Input
-                          placeholder="Enter your e-mail"
+                          placeholder="Enter your email"
                           type="email"
                           size="large"
                           className="register-input"
@@ -276,12 +270,19 @@ const RegisterPage: React.FC = () => {
                     </div>
                   </Form.Item>
 
-                  <Text className="register-text">
-                    Already have an account?{' '}
-                    <Link to="/auth/login" className="register-link">
-                      Login
-                    </Link>
-                  </Text>
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.3, ease: 'easeInOut' }}
+                    className="login-suggestion-container"
+                  >
+                    <Text className="login-suggestion-text">
+                      Already have an account?{' '}
+                      <Link to="/auth/login" className="login-link">
+                        Login
+                      </Link>
+                    </Text>
+                  </motion.div>
                 </Form>
               </Card>
             </Spin>
@@ -290,9 +291,8 @@ const RegisterPage: React.FC = () => {
         <div className="welcome-register-section">
           <motion.div
             initial={{ opacity: 0, y: 45 }}
-            animate={{ opacity: 1, y: 30 }}
-            transition={{ duration: 0.5 }}
-            className="welcome-register-text-container fade-in"
+            animate={{ opacity: 1, y: 10 }}
+            transition={{ duration: 0.5, ease: 'easeInOut' }}
           >
             <Title level={2} className="welcome-register-title">
               Welcome to MediScan AI

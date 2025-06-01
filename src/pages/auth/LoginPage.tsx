@@ -57,7 +57,7 @@ const LoginPage: React.FC = () => {
 
   return (
     <div className={`login-page-container ${isDarkMode ? 'dark' : 'light'}`}>
-      <div className='login-preferences-dropdown'>
+      <div className="login-preferences-dropdown">
         <PreferencesDropdown />
       </div>
       {screens.md && (
@@ -65,7 +65,7 @@ const LoginPage: React.FC = () => {
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: -20 }}
-            transition={{ duration: 0.5 , ease: 'easeInOut' }}
+            transition={{ duration: 0.5, ease: 'easeInOut' }}
             className="welcome-text-container"
           >
             <Title level={2} className="welcome-login-title">
@@ -172,13 +172,18 @@ const LoginPage: React.FC = () => {
                       />
                     </div>
                   </Form.Item>
-
-                  <Text className="register-text">
-                    Don't have an account?{' '}
-                    <Link to="/auth/register" className="register-link">
-                      Register
-                    </Link>
-                  </Text>
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.3, ease: 'easeInOut' }}
+                  >
+                    <Text className="register-text">
+                      Don't have an account?{' '}
+                      <Link to="/auth/register" className="register-link">
+                        Register
+                      </Link>
+                    </Text>
+                  </motion.div>
                 </Form>
               </Card>
             </Spin>
