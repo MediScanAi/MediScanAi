@@ -22,7 +22,7 @@ import LoginWithGoogleButton from '../../components/LoginWithGoogleButton';
 import PrimaryButton from '../../components/common/PrimaryButton';
 import { MoonOutlined, SunOutlined } from '@ant-design/icons';
 import '../../assets/styles/RegisterPage.css';
-import Notebook3D from '../../assets/photos/notebook.png';
+import Notebook3D from '../../assets/photos/Notebook.webp';
 import { toggleTheme } from '../../app/slices/theme';
 import '../../assets/styles/LoginPage.css';
 

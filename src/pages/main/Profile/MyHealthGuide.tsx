@@ -207,13 +207,20 @@ const MyHealthGuide: React.FC = () => {
               ))}
             </Steps>
           </div>
-
-          <PrimaryButton
-            icon={<AppleOutlined />}
-            onClick={showModal}
-          >
-            {t('healthGuide.guide.connectButton')}
-          </PrimaryButton>
+          <div className="button-container">
+            <PrimaryButton
+              icon={<AppleOutlined />}
+              onClick={showModal}
+              style={{
+                width: '100%',
+                marginTop: 'auto',
+                display: 'flex',
+                justifyContent: 'center',
+              }}
+            >
+              {t('healthGuide.guide.connectButton')}
+            </PrimaryButton>
+          </div>
 
           <Modal
             title={t('healthGuide.guide.connectModal.title')}

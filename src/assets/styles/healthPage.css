@@ -529,6 +529,9 @@
 
 .health-circles-container {
   padding: 10px 0;
+.steps-container {
+  margin-bottom: 2rem;
+
 }
 
 .health-circles-grid {
@@ -915,6 +918,21 @@
 }
 
 
+.step-title.dark {
+  color: #ffffff;
+}
+
+.step-description {
+  font-size: 0.85rem;
+  color: #666;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.step-description.dark {
+  color: #ffffff;
+}
+
 .guide-page {
   background: radial-gradient(circle at 10% 30%, #b3d1ff, #e6ecfa, #ffffff);
   min-height: 100vh;
@@ -925,10 +943,12 @@
 }
 
 .guide-page.dark {
-  background: radial-gradient(circle at 10% 30%,
-      rgba(28, 52, 125, 0.9),
-      #121e63,
-      rgba(28, 52, 125, 1));
+  background: radial-gradient(
+    circle at 10% 30%,
+    rgba(28, 52, 125, 0.9),
+    #121e63,
+    rgba(28, 52, 125, 1)
+  );
 }
 
 .header-container {
@@ -944,6 +964,10 @@
   margin-bottom: 20px;
   margin-top: 70px;
   text-align: center;
+}
+
+.header-title.dark {
+  color: #ffffff;
 }
 
 .header-title.dark {

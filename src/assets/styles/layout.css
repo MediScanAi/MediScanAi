@@ -1,0 +1,3 @@
+.main-content > div {
+  min-height: calc(100vh - 134px);
+}
