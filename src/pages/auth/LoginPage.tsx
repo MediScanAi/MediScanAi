@@ -8,7 +8,6 @@ import {
   message,
   Grid,
   Spin,
-  Switch,
 } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
 import { loginUser } from '../../app/slices/authSlice';
@@ -20,9 +19,8 @@ import ForgotPasswordForm from '../../components/ForgotPasswordForm';
 import LoginWithGoogleButton from '../../components/LoginWithGoogleButton';
 import MedicalInstruments3D from '../../assets/photos/medical_instruments.png';
 import '../../assets/styles/LoginPage.css';
-// import { toggleTheme } from '../../app/slices/themeSlice';
 import PrimaryButton from '../../components/common/PrimaryButton';
-import { MoonOutlined, SunOutlined } from '@ant-design/icons';
+import PreferencesDropdown from '../../components/common/PreferencesDropdown';
 
 const { Title, Text } = Typography;
 const { useBreakpoint } = Grid;
@@ -57,24 +55,18 @@ const LoginPage: React.FC = () => {
     setGoogleLoading(isLoading);
   };
 
-  const handleThemeChange = () =>{}; //dispatch(toggleTheme());
-
   return (
     <div className={`login-page-container ${isDarkMode ? 'dark' : 'light'}`}>
-      <Switch
-        className="theme-toggle"
-        checked={isDarkMode}
-        checkedChildren={<MoonOutlined />}
-        unCheckedChildren={<SunOutlined />}
-        onChange={handleThemeChange}
-      />
+      <div className='login-preferences-dropdown'>
+        <PreferencesDropdown />
+      </div>
       {screens.md && (
         <div className="welcome-section-login">
           <motion.div
-            initial={{ opacity: 0, y: 45 }}
-            animate={{ opacity: 1, y: 30 }}
-            transition={{ duration: 0.5 }}
-            className="welcome-login-text-container fade-in"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: -20 }}
+            transition={{ duration: 0.5 , ease: 'easeInOut' }}
+            className="welcome-text-container"
           >
             <Title level={2} className="welcome-login-title">
               Welcome back to MediScan AI
@@ -89,7 +81,7 @@ const LoginPage: React.FC = () => {
             alt="Medical Instruments"
             className="welcome-login-medical"
             initial={{ opacity: 0, x: -45, y: 45 }}
-            animate={{ opacity: 1, x: 0, y: 0 }}
+            animate={{ opacity: 1, x: 0, y: -20 }}
             transition={{ duration: 0.9, ease: 'easeInOut' }}
           />
         </div>

@@ -1,5 +1,5 @@
 .login-page-container {
-  min-height: 100vh;
+  height: 100vh;
   width: 100vw;
   display: flex;
   align-items: center;
@@ -54,20 +54,24 @@
   background: radial-gradient(circle at 10% 30%, #b3d1ff, #e6ecfa, #ffffff);
   color: #161c3d;
 }
-
 .welcome-section-login {
   flex: 1;
-  display: flex;
   align-items: center;
   justify-content: center;
-  flex-direction: column;
-  padding: 0 20px;
+  height: 80vh;
+  padding: 30px;
+  text-align: center;
 }
 
+@media (max-width: 900px) {
+  .welcome-section-login {
+    height: auto;
+    min-height: 300px;
+  }
+}
 .welcome-text-container {
   max-width: 500px;
   width: 100%;
-  text-align: center;
   margin-bottom: 20px;
 }
 
@@ -97,6 +101,7 @@
 .welcome-login-medical {
   width: 100%;
   max-width: 600px;
+  max-height: 70vh;
   object-fit: contain;
   user-select: none;
 }
@@ -204,10 +209,9 @@
   color: #92c4ff;
   font-weight: 500;
 }
-
-.theme-toggle {
+.login-preferences-dropdown {
   position: absolute;
-  top: 20px;
-  right: 20px;
+  top: 16px;
+  right: 16px;
   z-index: 999;
 }
