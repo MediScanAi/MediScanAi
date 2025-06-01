@@ -1,4 +1,4 @@
-import { Col, Row, Tabs, theme, type TabsProps } from 'antd';
+import { Col, Row, Tabs, type TabsProps } from 'antd';
 import {
   ExperimentOutlined,
   MedicineBoxOutlined,
@@ -94,7 +94,7 @@ const Profile: React.FC = () => {
           className={`tabs ${isDarkMode ? 'dark' : ''}`}
           tabPosition={width < 820 ? 'top' : 'left'}
           defaultActiveKey="1"
-          style={{ padding: 40, marginTop: '20px', color: 'white' }}
+          style={{  color: 'white', minHeight: '70vh' }}
           items={items}
           activeKey={activeKey}
           onChange={handleTabChange}

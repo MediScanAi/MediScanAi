@@ -46,7 +46,7 @@ export type UserInfoProps = {
   theme: boolean;
 };
 
-const UserInfo: React.FC<UserInfoProps> = ({ width, theme }) => {
+const UserInfo: React.FC<UserInfoProps> = ({ theme }) => {
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
   const user = useAppSelector(selectCurrentUser);
@@ -190,6 +190,8 @@ const UserInfo: React.FC<UserInfoProps> = ({ width, theme }) => {
       message.error(t('userInfo.messages.saveFail'));
     }
   };
+  
+  console.log(user)
 
   const renderValue = (key: string, value: unknown): string | number => {
     if (value === null || value === '' || value === undefined)
@@ -217,12 +219,8 @@ const UserInfo: React.FC<UserInfoProps> = ({ width, theme }) => {
         >
           <div className="profile-header-container">
             <div className="profile-avatar-container">
-              <Avatar
-                className="profile-avatar"
-                size={80}
-                style={{ fontSize: 50 }}
-              >
-                {user?.firstName ? user?.firstName[0].toUpperCase() : 'Profile'}
+              <Avatar className="profile-avatar" size={80} src={user?.photoURL}>
+                {!user?.photoURL && (user?.firstName ?? ' ')[0]}
               </Avatar>
             </div>
 
@@ -369,7 +367,7 @@ const UserInfo: React.FC<UserInfoProps> = ({ width, theme }) => {
                             {renderValue(
                               field.key,
                               formState[field.key as keyof UserData] ??
-                                field.value
+                              field.value
                             )}
                             {field.unit && (
                               <span className="unit">{field.unit}</span>

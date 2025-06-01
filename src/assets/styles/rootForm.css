@@ -195,6 +195,10 @@
   font-size: 2.25rem;
 }
 
+.medical-title.dark {
+  color: #b3d1ff;
+}
+
 .medical-subtitle {
   font-size: 1.3rem;
   color: #4b5563;
@@ -203,6 +207,10 @@
   max-width: 600px;
   margin-left: auto;
   margin-right: auto;
+}
+
+.medical-subtitle.dark {
+  color: #ffffff;
 }
 
 .medical-form-card {
@@ -241,7 +249,7 @@
 
 .medical-tabs .ant-tabs-nav {
   margin-bottom: 0;
-  background: #f8fafc;
+  background: transparent;
   padding: 0 1rem;
 }
 
@@ -249,11 +257,15 @@
   padding: 1rem 1.75rem;
   font-size: 1rem;
   font-weight: 500;
-  color: #64748b;
+  color: #000000;
   transition: all 0.2s ease;
   border: none !important;
   margin: 0 0.25rem !important;
   border-radius: 8px 8px 0 0 !important;
+}
+
+.medical-tabs.dark .ant-tabs-tab {
+  color: #ffffff;
 }
 
 .medical-tabs .ant-tabs-tab:hover {
@@ -273,6 +285,33 @@
   background: #3b82f6;
 }
 
+.medical-tabs.dark .ant-tabs-tab-active {
+  background: transparent !important;
+  color: #ffffff !important;
+}
+
+.medical-tabs.dark .ant-card-body {
+  background: transparent !important;
+  color: #ffffff !important;
+}
+
+.ant-card-bordered {
+  background-color: transparent !important;
+  border: none !important;
+}
+
 .medical-tabs .ant-tabs-content {
   padding: 2rem;
+}
+
+.ant-typography.dark {
+  color: #ffffff !important;
+}
+
+.input-item.dark {
+  color: #ffffff !important;
+}
+
+.select-item.dark {
+  color: #ffffff !important;
 }

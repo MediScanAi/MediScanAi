@@ -32,11 +32,12 @@ import { useAppDispatch, useAppSelector } from '../app/hooks';
 import { toggleTheme } from '../app/slices/theme';
 import { logoutUser } from '../app/slices/authSlice';
 import { useTranslation } from 'react-i18next';
-import Logo from '../assets/photos/Logo.svg';
+import Logo from '../assets/photos/Logo.svg'; 
 import engFlag from '../assets/photos/united-kingdom.png';
 import rusFlag from '../assets/photos/russia.png';
 import armFlag from '../assets/photos/armenia.png';
 import '../assets/styles/Header.css';
+import PrimaryButton from './common/PrimaryButton.tsx';
 
 const { Header } = Layout;
 const { Text } = Typography;
@@ -227,14 +228,14 @@ export default function AppHeader() {
                     },
                     {
                       key: 'logout',
-                      icon: <LogoutOutlined className='logout-link'/>,
+                      icon: <LogoutOutlined className="logout-link" />,
                       label: (
                         <span
                           onClick={() => {
                             dispatch(logoutUser());
                             navigate('/');
                           }}
-                          className='logout-link'
+                          className="logout-link"
                         >
                           {t('menu.logout')}
                         </span>
@@ -264,13 +265,13 @@ export default function AppHeader() {
                 </div>
               </Dropdown>
             ) : (
-              <Button
-                type="primary"
-                className={`username ${isDarkMode ? 'dark' : ''}`}
+              <PrimaryButton
+                style={{ height: '35px' }}
+                size='small'
                 onClick={() => navigate('/auth/login')}
               >
                 {t('menu.login', 'Log In')}
-              </Button>
+              </PrimaryButton>
             )}
           </Space>
         </div>

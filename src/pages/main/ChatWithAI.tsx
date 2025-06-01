@@ -477,7 +477,7 @@ const ChatWithAi = () => {
         >
           <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
             <DiffOutlined
-              style={{ color: isDarkMode ? '#ffffff' : '#000000' }}
+              style={{ color: isDarkMode ? '#ffffff' : 'black' }}
             />
             <Text className={`chat-with-ai-label ${isDarkMode ? 'dark' : ''}`}>
               {t('chat.scanAnalysis')}
@@ -541,7 +541,7 @@ const ChatWithAi = () => {
   return (
     <Layout
       className={`chat-with-ai ${isDarkMode ? 'dark' : ''}`}
-      style={{ height: '94vh', borderBottom: '1px solid #ddd' }}
+      style={{ height: '94vh' }}
     >
       <Sider
         width={240}
@@ -621,8 +621,9 @@ const ChatWithAi = () => {
                         style={{
                           display: 'flex',
                           alignItems: 'center',
-                          flex: 1,
+                          // flex: 1,
                           gap: 8,
+                          borderTop: 'none',
                         }}
                       >
                         <Text
@@ -693,7 +694,6 @@ const ChatWithAi = () => {
       <Content style={{ display: 'flex', flexDirection: 'column' }}>
         <div
           style={{
-            borderTop: '1px solid #ddd',
             flex: 1,
             overflowY: 'auto',
             padding: '16px 0',

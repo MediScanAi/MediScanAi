@@ -304,7 +304,7 @@ const AnalysisHistory: React.FC<AnalysisHistoryProps> = ({ theme, width }) => {
   return (
     <div
       style={{
-        maxWidth: 1200,
+        width: '70vw',
         margin: '0 auto',
         padding: '16px',
         backgroundColor: 'transparent',
@@ -333,6 +333,7 @@ const AnalysisHistory: React.FC<AnalysisHistoryProps> = ({ theme, width }) => {
                 display: 'block',
                 marginBottom: 24,
                 fontSize: width < 800 ? '10px' : '20px',
+                width: '70vw',
               }}
             >
               {t('analysisHistory.noTestResults')}

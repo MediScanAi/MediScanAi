@@ -1,5 +1,6 @@
 .chat-with-ai {
   background: radial-gradient(circle at 10% 30%, #b3d1ff, #e6ecfa, #ffffff);
+  border-top: none;
 }
 
 .chat-with-ai.dark {
@@ -24,7 +25,7 @@
 }
 
 .chat-with-ai-label {
-  color: #e6e6e6;
+  color: #000000;
 }
 
 .chat-with-ai-label.dark {

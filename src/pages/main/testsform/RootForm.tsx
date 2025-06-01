@@ -88,10 +88,10 @@ function RootForm(): ReactNode | null {
       <Row className="form-main-container">
         <Col xs={24} md={10} className="form-left-content">
           <div className="form-header">
-            <Title level={2} className="medical-title">
+            <Title level={2} className={`medical-title ${isDarkMode ? 'dark' : ''}`}>
               {t('rootform.medicalLaboratoryTestForm')}
             </Title>
-            <Text className="medical-subtitle">
+            <Text className={`medical-subtitle ${isDarkMode ? 'dark' : ''}`}>
               {t('rootform.selectTestType')}
             </Text>
           </div>
@@ -106,14 +106,14 @@ function RootForm(): ReactNode | null {
         </Col>
 
         <Col xs={24} md={14}>
-          <Card className="medical-form-card">
+          <Card className={`medical-form-card ${isDarkMode ? 'dark' : ''}`}>
             <Tabs
               type="card"
               size="large"
               activeKey={activeKey}
               onChange={handleTabChange}
               items={items}
-              className="medical-tabs"
+              className={`medical-tabs ${isDarkMode ? 'dark' : ''}`}
             />
           </Card>
         </Col>
