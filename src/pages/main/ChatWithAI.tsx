@@ -43,7 +43,7 @@ import { useTranslation } from 'react-i18next';
 import type { RootState } from '../../app/store';
 import { useSelector } from 'react-redux';
 import PrimaryButton from '../../components/common/PrimaryButton';
-import MediScanAILogo from '../../assets/photos/Logo.png';
+import MediScanAILogo from '../../assets/photos/Logo.webp';
 
 const { Sider, Content } = Layout;
 const { Text } = Typography;

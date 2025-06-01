@@ -9,7 +9,7 @@ import {
   HeatMapOutlined,
   MonitorOutlined,
 } from '@ant-design/icons';
-import laboratoryImage from '../../../assets/photos/Education8.png';
+import laboratoryImage from '../../../assets/photos/Education8.webp';
 import '../../../assets/styles/rootForm.css';
 import VitaminTestForm from './VitaminTestForm';
 import UrineTestForm from './UrineTestForm';
