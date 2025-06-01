@@ -21,7 +21,7 @@ i18n
       caches: ['localStorage'],
     },
     backend: {
-      loadPath: '/locales/{{lng}}/translation.json',
+      loadPath: '../public/locales/{{lng}}/translation.json',
     },
     react: {
       useSuspense: false,

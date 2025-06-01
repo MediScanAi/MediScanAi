@@ -1,0 +1,51 @@
+.settings-btn {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+.settings-btn.dark .anticon {
+  color: #fff;
+}
+.settings-icon {
+  font-size: 17px;
+  transition: color 0.3s ease;
+}
+.settings-icon.spinning {
+  animation: spin180 0.4s ease-in-out;
+}
+.settings-icon.re-spinning {
+  animation: spin180reverse 0.4s ease-in-out;
+}
+.settings-btn.dark .settings-icon {
+  color: #fff;
+}
+
+.preferences-dropdown {
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-width: 200px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background: #fff;
+}
+.preference-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+.dropdown-dark .preferences-dropdown {
+  background: transparent;
+  border: none;
+  color: #fff;
+}
+.dropdown-dark .ant-select-selector {
+  background: #1d2b40;
+  border-color: #2e4a6b;
+  color: #fff;
+}
+.dropdown-dark .ant-select-arrow {
+  color: #fff;
+}
