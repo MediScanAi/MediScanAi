@@ -105,7 +105,7 @@ function RootForm(): ReactNode | null {
           </div>
         </Col>
 
-        <Col xs={24} md={14} >
+        <Col xs={24} md={14}>
           <Card className="medical-form-card">
             <Tabs
               type="card"

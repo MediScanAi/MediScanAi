@@ -15,7 +15,12 @@
 }
 
 .profile.dark {
-  background: radial-gradient(circle at 10% 30%, rgba(28, 52, 125, 0.9), #121e63, rgba(28, 52, 125, 1));
+  background: radial-gradient(
+    circle at 10% 30%,
+    rgba(28, 52, 125, 0.9),
+    #121e63,
+    rgba(28, 52, 125, 1)
+  );
 }
 
 .dark-theme {

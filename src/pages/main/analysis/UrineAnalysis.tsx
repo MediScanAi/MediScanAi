@@ -454,7 +454,10 @@ function UrineAnalysis() {
       <div>
         {urineTestData ? (
           <div>
-            <Card className={`card2-design ${isDarkMode ? 'dark' : ''}`} style={{ border: 'none' }}>
+            <Card
+              className={`card2-design ${isDarkMode ? 'dark' : ''}`}
+              style={{ border: 'none' }}
+            >
               <Col className="card2-col-design">
                 <div
                   style={{
@@ -496,17 +499,26 @@ function UrineAnalysis() {
                     <Progress
                       type="circle"
                       percent={Math.min(item.percent, 100)}
-                      format={ () => <span className={`card2-design-text ${isDarkMode ? 'dark' : ''}`}>{item.value || 'N/A'}</span>}
+                      format={() => (
+                        <span
+                          className={`card2-design-text ${isDarkMode ? 'dark' : ''}`}
+                        >
+                          {item.value || 'N/A'}
+                        </span>
+                      )}
                       strokeWidth={7}
                     />
-                    <div className={`card2-design-text ${isDarkMode ? 'dark' : ''}`} style={{ marginTop: 45 }}>{item.label}</div>
+                    <div
+                      className={`card2-design-text ${isDarkMode ? 'dark' : ''}`}
+                      style={{ marginTop: 45 }}
+                    >
+                      {item.label}
+                    </div>
                   </Card>
                 ))}
               </Col>
             </Card>
-            <Card
-              className={`warning-section ${isDarkMode ? 'dark' : ''}`}
-            >
+            <Card className={`warning-section ${isDarkMode ? 'dark' : ''}`}>
               <Title
                 level={3}
                 style={{ color: 'rgb(255, 0, 0)', fontFamily: 'Poppins' }}
@@ -532,7 +544,11 @@ function UrineAnalysis() {
               <ul style={{ paddingLeft: 20 }}>
                 {urineWarnings.length > 0 ? (
                   urineWarnings.map((risk, index) => (
-                    <li className={`warning-section-text ${isDarkMode ? 'dark' : ''}`} key={index} style={{ fontSize: 16, marginBottom: 8 }}>
+                    <li
+                      className={`warning-section-text ${isDarkMode ? 'dark' : ''}`}
+                      key={index}
+                      style={{ fontSize: 16, marginBottom: 8 }}
+                    >
                       {risk}
                       {diseaseExplanations[risk] && (
                         <div>
@@ -577,7 +593,11 @@ function UrineAnalysis() {
               height: '100%',
             }}
           >
-            <Title className={`platform-title ${isDarkMode ? 'dark' : ''}`} style={{ textAlign: 'center' }} level={2}>
+            <Title
+              className={`platform-title ${isDarkMode ? 'dark' : ''}`}
+              style={{ textAlign: 'center' }}
+              level={2}
+            >
               Please fill a Urine test results to get your analytic results
             </Title>
             <Button
@@ -625,7 +645,10 @@ function UrineAnalysis() {
                 src={item.image}
               />
             </Row>
-            <p className={`interesting-card-text ${isDarkMode ? 'dark' : ''}`} style={{ margin: 0, fontSize: 16 }}>
+            <p
+              className={`interesting-card-text ${isDarkMode ? 'dark' : ''}`}
+              style={{ margin: 0, fontSize: 16 }}
+            >
               {interestingFacts[item.name]}
             </p>
           </Card>

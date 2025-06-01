@@ -397,7 +397,11 @@ const ChatWithAi = () => {
 
   const analysisItems: MenuProps['items'] = [
     {
-      label: <Text className={`chat-with-ai-label ${isDarkMode ? 'dark' : ''}`}>Blood Tests</Text>,
+      label: (
+        <Text className={`chat-with-ai-label ${isDarkMode ? 'dark' : ''}`}>
+          Blood Tests
+        </Text>
+      ),
       key: 'blood-test',
       onClick: () => {
         if (tests.blood) {
@@ -410,7 +414,11 @@ const ChatWithAi = () => {
       },
     },
     {
-      label: <Text className={`chat-with-ai-label ${isDarkMode ? 'dark' : ''}`}>Urine Tests</Text>,
+      label: (
+        <Text className={`chat-with-ai-label ${isDarkMode ? 'dark' : ''}`}>
+          Urine Tests
+        </Text>
+      ),
       key: 'urine-test',
       onClick: () => {
         if (tests.urine) {
@@ -423,7 +431,11 @@ const ChatWithAi = () => {
       },
     },
     {
-      label: <Text className={`chat-with-ai-label ${isDarkMode ? 'dark' : ''}`}>Vitamin Tests</Text>,
+      label: (
+        <Text className={`chat-with-ai-label ${isDarkMode ? 'dark' : ''}`}>
+          Vitamin Tests
+        </Text>
+      ),
       key: 'vitamin-test',
       onClick: () => {
         if (tests.vitamin) {
@@ -436,7 +448,11 @@ const ChatWithAi = () => {
       },
     },
     {
-      label: <Text className={`chat-with-ai-label ${isDarkMode ? 'dark' : ''}`}>Genetic Tests</Text>,
+      label: (
+        <Text className={`chat-with-ai-label ${isDarkMode ? 'dark' : ''}`}>
+          Genetic Tests
+        </Text>
+      ),
       key: 'genetic-test',
       onClick: () => {
         if (tests.genetic) {
@@ -452,10 +468,20 @@ const ChatWithAi = () => {
   const featureItems: MenuProps['items'] = [
     {
       label: (
-        <Dropdown trigger={['hover']} menu={{ items: analysisItems, style: { background: isDarkMode ? 'rgb(57, 92, 195)' : '#fff' } }}>
+        <Dropdown
+          trigger={['hover']}
+          menu={{
+            items: analysisItems,
+            style: { background: isDarkMode ? 'rgb(57, 92, 195)' : '#fff' },
+          }}
+        >
           <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-            <DiffOutlined style={{ color: isDarkMode ? '#ffffff' : '#000000' }} />
-            <Text className={`chat-with-ai-label ${isDarkMode ? 'dark' : ''}`}>{t('chat.scanAnalysis')}</Text>
+            <DiffOutlined
+              style={{ color: isDarkMode ? '#ffffff' : '#000000' }}
+            />
+            <Text className={`chat-with-ai-label ${isDarkMode ? 'dark' : ''}`}>
+              {t('chat.scanAnalysis')}
+            </Text>
           </div>
         </Dropdown>
       ),
@@ -498,8 +524,12 @@ const ChatWithAi = () => {
           }}
         >
           <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-            <UploadOutlined style={{ color: isDarkMode ? '#ffffff' : '#000000' }} />
-            <Text className={`chat-with-ai-label ${isDarkMode ? 'dark' : ''}`}>{t('chat.pdfUpload')}</Text>
+            <UploadOutlined
+              style={{ color: isDarkMode ? '#ffffff' : '#000000' }}
+            />
+            <Text className={`chat-with-ai-label ${isDarkMode ? 'dark' : ''}`}>
+              {t('chat.pdfUpload')}
+            </Text>
             {loading && <Spin size="small" style={{ marginLeft: 8 }} />}
           </div>
         </Upload>
@@ -509,7 +539,10 @@ const ChatWithAi = () => {
   ];
 
   return (
-    <Layout className={`chat-with-ai ${isDarkMode ? 'dark' : ''}`} style={{ height: '94vh', borderBottom: '1px solid #ddd' }}>
+    <Layout
+      className={`chat-with-ai ${isDarkMode ? 'dark' : ''}`}
+      style={{ height: '94vh', borderBottom: '1px solid #ddd' }}
+    >
       <Sider
         width={240}
         style={{
@@ -529,7 +562,11 @@ const ChatWithAi = () => {
         </div>
         {Object.entries(grouped).map(([label, chats]) => (
           <div key={label} style={{ marginBottom: 12 }}>
-            <Text className={`chat-with-ai-label ${isDarkMode ? 'dark' : ''}`} type="secondary" style={{ marginLeft: 8 }}>
+            <Text
+              className={`chat-with-ai-label ${isDarkMode ? 'dark' : ''}`}
+              type="secondary"
+              style={{ marginLeft: 8 }}
+            >
               {label}
             </Text>
             <List
@@ -543,8 +580,12 @@ const ChatWithAi = () => {
                     cursor: 'pointer',
                     background:
                       chat.id !== selectedChatId
-                        ? isDarkMode ? 'rgb(99, 121, 185)' : 'rgb(255, 255, 255)'
-                        : isDarkMode ? 'rgb(38, 63, 137)' : '#fff',
+                        ? isDarkMode
+                          ? 'rgb(99, 121, 185)'
+                          : 'rgb(255, 255, 255)'
+                        : isDarkMode
+                          ? 'rgb(38, 63, 137)'
+                          : '#fff',
                     borderRadius: 10,
                     marginBottom: 8,
                     padding: 8,
@@ -584,7 +625,11 @@ const ChatWithAi = () => {
                           gap: 8,
                         }}
                       >
-                        <Text className={`chat-item-title ${isDarkMode ? 'dark' : ''}`} strong style={{ flex: 1 }}>
+                        <Text
+                          className={`chat-item-title ${isDarkMode ? 'dark' : ''}`}
+                          strong
+                          style={{ flex: 1 }}
+                        >
                           {chat.title}
                         </Text>
                         <Dropdown
@@ -601,14 +646,27 @@ const ChatWithAi = () => {
                                 }
                               }}
                               style={{
-                                background: isDarkMode ? 'rgb(38, 63, 137)' : '#fff',
+                                background: isDarkMode
+                                  ? 'rgb(38, 63, 137)'
+                                  : '#fff',
                                 border: 'none',
                               }}
                             >
-                              <Menu.Item style={{ color: isDarkMode ? '#ffffff' : '#000000' }} key="rename">
+                              <Menu.Item
+                                style={{
+                                  color: isDarkMode ? '#ffffff' : '#000000',
+                                }}
+                                key="rename"
+                              >
                                 {t('chat.rename')}
                               </Menu.Item>
-                              <Menu.Item style={{ color: isDarkMode ? '#ffffff' : '#000000' }} key="delete" danger>
+                              <Menu.Item
+                                style={{
+                                  color: isDarkMode ? '#ffffff' : '#000000',
+                                }}
+                                key="delete"
+                                danger
+                              >
                                 {t('chat.delete')}
                               </Menu.Item>
                             </Menu>
@@ -616,7 +674,10 @@ const ChatWithAi = () => {
                         >
                           <MoreOutlined
                             onClick={(e) => e.stopPropagation()}
-                            style={{ cursor: 'pointer', color: isDarkMode ? '#ffffff' : '#000000' }}
+                            style={{
+                              cursor: 'pointer',
+                              color: isDarkMode ? '#ffffff' : '#000000',
+                            }}
                           />
                         </Dropdown>
                       </div>
@@ -654,17 +715,21 @@ const ChatWithAi = () => {
               <div
                 className="message-container"
                 style={{
-                  background: msg.role === 'user'
-                    ? isDarkMode
-                      ? 'linear-gradient(135deg, rgba(56, 128, 255, 0.9) 0%, rgba(0, 80, 200, 0.9) 100%)'
-                      : 'linear-gradient(135deg, rgba(100, 149, 237, 0.15) 0%, rgba(66, 135, 245, 0.15) 100%)'
-                    : isDarkMode
-                      ? 'linear-gradient(135deg, rgba(28, 52, 125, 0.7) 0%, rgba(14, 36, 90, 0.7) 100%)'
-                      : 'linear-gradient(135deg, rgba(240, 248, 255, 0.95) 0%, rgba(225, 239, 255, 0.95) 100%)',
+                  background:
+                    msg.role === 'user'
+                      ? isDarkMode
+                        ? 'linear-gradient(135deg, rgba(56, 128, 255, 0.9) 0%, rgba(0, 80, 200, 0.9) 100%)'
+                        : 'linear-gradient(135deg, rgba(100, 149, 237, 0.15) 0%, rgba(66, 135, 245, 0.15) 100%)'
+                      : isDarkMode
+                        ? 'linear-gradient(135deg, rgba(28, 52, 125, 0.7) 0%, rgba(14, 36, 90, 0.7) 100%)'
+                        : 'linear-gradient(135deg, rgba(240, 248, 255, 0.95) 0%, rgba(225, 239, 255, 0.95) 100%)',
                   padding: '12px 16px',
-                  border: msg.role === 'user'
-                    ? isDarkMode ? '1px solid rgba(100, 149, 237, 0.5)' : '1px solid rgba(56, 128, 255, 0.2)'
-                    : 'none',
+                  border:
+                    msg.role === 'user'
+                      ? isDarkMode
+                        ? '1px solid rgba(100, 149, 237, 0.5)'
+                        : '1px solid rgba(56, 128, 255, 0.2)'
+                      : 'none',
                   borderRadius: '15px',
                   width: '100%',
                   maxWidth: 720,
@@ -695,12 +760,27 @@ const ChatWithAi = () => {
                   />
                 </div>
                 <>
-                  {msg.role === 'user' ? <UserOutlined style={{ color: isDarkMode ? '#ffffff' : 'black' }} /> : <img src={MediScanAILogo} alt="MediScan AI" style={{ width: '30px', height: '30px' }} />}
+                  {msg.role === 'user' ? (
+                    <UserOutlined
+                      style={{ color: isDarkMode ? '#ffffff' : 'black' }}
+                    />
+                  ) : (
+                    <img
+                      src={MediScanAILogo}
+                      alt="MediScan AI"
+                      style={{ width: '30px', height: '30px' }}
+                    />
+                  )}
                 </>
                 <Text
                   style={{
                     width: '100%',
-                    color: msg.role === 'user' && isDarkMode ? '#ffffff' : isDarkMode ? '#ffffff' : 'black',
+                    color:
+                      msg.role === 'user' && isDarkMode
+                        ? '#ffffff'
+                        : isDarkMode
+                          ? '#ffffff'
+                          : 'black',
                     paddingRight: '24px',
                   }}
                 >

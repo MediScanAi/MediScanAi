@@ -304,7 +304,10 @@ function GeneticAnalysis() {
       <div>
         {geneticTestData?.brca1 ? (
           <div>
-            <Card className={`card2-design ${isDarkMode ? 'dark' : ''}`} style={{ border: 'none' }}>
+            <Card
+              className={`card2-design ${isDarkMode ? 'dark' : ''}`}
+              style={{ border: 'none' }}
+            >
               <Col className="card2-col-design">
                 <div
                   style={{
@@ -332,14 +335,30 @@ function GeneticAnalysis() {
                       border: 'none',
                     }}
                   >
-                    <div className={`card2-design-text ${isDarkMode ? 'dark' : ''}`} style={{ marginTop: 10 }}>{item.value}</div>
+                    <div
+                      className={`card2-design-text ${isDarkMode ? 'dark' : ''}`}
+                      style={{ marginTop: 10 }}
+                    >
+                      {item.value}
+                    </div>
                     <Progress
                       type="circle"
                       percent={Math.min(item.percent, 100)}
-                      format={() => <span className={`card2-design-text ${isDarkMode ? 'dark' : ''}`}>{item.value || 'N/A'}</span>}
+                      format={() => (
+                        <span
+                          className={`card2-design-text ${isDarkMode ? 'dark' : ''}`}
+                        >
+                          {item.value || 'N/A'}
+                        </span>
+                      )}
                       strokeWidth={7}
                     />
-                    <div className={`card2-design-text ${isDarkMode ? 'dark' : ''}`} style={{ marginTop: 30 }}>{item.label}</div>
+                    <div
+                      className={`card2-design-text ${isDarkMode ? 'dark' : ''}`}
+                      style={{ marginTop: 30 }}
+                    >
+                      {item.label}
+                    </div>
                   </Card>
                 ))}
               </Col>
@@ -373,7 +392,11 @@ function GeneticAnalysis() {
                   .length > 0 ? (
                   getGeneticRisks(geneticTestData as GeneticTestFormValues).map(
                     (risk, index) => (
-                      <li className={`warning-section-text ${isDarkMode ? 'dark' : ''}`} key={index} style={{ fontSize: 16, marginBottom: 8 }}>
+                      <li
+                        className={`warning-section-text ${isDarkMode ? 'dark' : ''}`}
+                        key={index}
+                        style={{ fontSize: 16, marginBottom: 8 }}
+                      >
                         {risk}
                         {geneticExplanations[risk] && (
                           <div>
@@ -404,7 +427,10 @@ function GeneticAnalysis() {
                     )
                   )
                 ) : (
-                  <p className={`warning-section-text ${isDarkMode ? 'dark' : ''}`} style={{ fontSize: 16 }}>
+                  <p
+                    className={`warning-section-text ${isDarkMode ? 'dark' : ''}`}
+                    style={{ fontSize: 16 }}
+                  >
                     ✅ All your values are within normal range. Great job!
                   </p>
                 )}
@@ -421,12 +447,14 @@ function GeneticAnalysis() {
               height: '100%',
             }}
           >
-            <Title className={`platform-title ${isDarkMode ? 'dark' : ''}`} style={{ textAlign: 'center' }} level={2}>
+            <Title
+              className={`platform-title ${isDarkMode ? 'dark' : ''}`}
+              style={{ textAlign: 'center' }}
+              level={2}
+            >
               Please fill a genetic test results to get your analytic results
             </Title>
-            <PrimaryButton
-              onClick={() => navigate('/tests-form/genetic-test')}
-            >
+            <PrimaryButton onClick={() => navigate('/tests-form/genetic-test')}>
               Fill Genetic Test Results
             </PrimaryButton>
           </div>
@@ -466,7 +494,10 @@ function GeneticAnalysis() {
                 src={item.image}
               />
             </Row>
-            <p className={`interesting-card-text ${isDarkMode ? 'dark' : ''}`} style={{ margin: 0, fontSize: 16 }}>
+            <p
+              className={`interesting-card-text ${isDarkMode ? 'dark' : ''}`}
+              style={{ margin: 0, fontSize: 16 }}
+            >
               {interestingFacts[item.name]}
             </p>
           </Card>

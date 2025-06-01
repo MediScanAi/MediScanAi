@@ -11,7 +11,12 @@
 }
 
 .about-us.dark {
-  background: radial-gradient(circle at 10% 30%, rgba(28, 52, 125, 0.9), #121e63, rgba(28, 52, 125, 1));
+  background: radial-gradient(
+    circle at 10% 30%,
+    rgba(28, 52, 125, 0.9),
+    #121e63,
+    rgba(28, 52, 125, 1)
+  );
   color: white;
 }
 
@@ -102,11 +107,11 @@
   padding: 20px;
   display: flex;
   box-shadow: 0 12px 32px rgba(34, 56, 122, 0.25);
-  background-color:  #e6ecfa;
+  background-color: #e6ecfa;
 }
 
 .about-us-card.dark {
-  background-color:  rgba(28, 52, 125, 1);
+  background-color: rgba(28, 52, 125, 1);
   border: none;
 }
 
@@ -171,12 +176,12 @@
   margin: 10px;
   height: 380px;
   width: 99%;
-  background-color:  #e6ecfa;
+  background-color: #e6ecfa;
   box-shadow: 0 0 7px rgba(34, 56, 122, 0.25);
 }
 
 .opinion-card.dark {
-  background-color:  rgba(28, 52, 125, 1);
+  background-color: rgba(28, 52, 125, 1);
   border: none;
 }
 
@@ -271,7 +276,6 @@
 .location-phone.dark {
   color: #ffffff;
 }
-
 
 .location-text {
   display: flex;

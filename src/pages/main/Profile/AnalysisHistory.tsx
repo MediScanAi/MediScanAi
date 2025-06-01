@@ -270,7 +270,7 @@ const AnalysisHistory: React.FC<AnalysisHistoryProps> = ({ theme, width }) => {
                         {test.name}
                       </Text>
                     </div>
-  
+
                     <div className="view-mode-container">
                       <div className="info-value">
                         <Text className="info-value-text">
@@ -281,7 +281,7 @@ const AnalysisHistory: React.FC<AnalysisHistoryProps> = ({ theme, width }) => {
                         </Text>
                       </div>
                     </div>
-  
+
                     {test.normalRange && (
                       <div className="info-value">
                         <Text className="info-value-text" type="secondary">

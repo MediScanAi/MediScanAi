@@ -6,7 +6,12 @@
 }
 
 .root-form-container.dark {
-  background: radial-gradient(circle at 10% 30%, rgba(28, 52, 125, 0.9), #121e63, rgba(28, 52, 125, 1));
+  background: radial-gradient(
+    circle at 10% 30%,
+    rgba(28, 52, 125, 0.9),
+    #121e63,
+    rgba(28, 52, 125, 1)
+  );
 }
 
 .form-welcome-section {
@@ -172,7 +177,6 @@
   margin-bottom: 2rem;
 }
 
-
 .back-button:hover {
   background: #2563eb;
   transform: translateY(-2px);
@@ -215,7 +219,12 @@
 }
 
 .medical-form-card.dark {
-  background: radial-gradient(circle at 10% 30%, rgba(28, 52, 125, 0.9), #121e63, rgba(28, 52, 125, 1));
+  background: radial-gradient(
+    circle at 10% 30%,
+    rgba(28, 52, 125, 0.9),
+    #121e63,
+    rgba(28, 52, 125, 1)
+  );
 }
 
 .medical-image-container {

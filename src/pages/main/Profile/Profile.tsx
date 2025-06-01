@@ -59,7 +59,7 @@ const Profile: React.FC = () => {
       key: 'tests',
       label: (
         <span
-          style={{ fontSize: width < 1200 ? '16px' : '20px'}}
+          style={{ fontSize: width < 1200 ? '16px' : '20px' }}
           className={isDarkMode ? ' dark-mode-text' : ''}
         >
           <MedicineBoxOutlined /> Tests

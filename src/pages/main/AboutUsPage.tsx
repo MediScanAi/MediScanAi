@@ -90,8 +90,12 @@ function AboutUsPage() {
     <Row className={`about-us ${isDarkMode ? 'dark' : ''}`}>
       <Row className="welcome-section-about-us">
         <Col xs={22} md={16}>
-          <Text className={`welcome-section-title ${isDarkMode ? 'dark' : ''}`}>{t('aboutUs.title')}</Text>
-          <Paragraph className={`welcome-section-description ${isDarkMode ? 'dark' : ''}`}>
+          <Text className={`welcome-section-title ${isDarkMode ? 'dark' : ''}`}>
+            {t('aboutUs.title')}
+          </Text>
+          <Paragraph
+            className={`welcome-section-description ${isDarkMode ? 'dark' : ''}`}
+          >
             {t('aboutUs.description')}
           </Paragraph>
           <PrimaryButton
@@ -104,7 +108,10 @@ function AboutUsPage() {
       </Row>
       <Row className="about-us-cards" justify="center">
         <Col span={24}>
-          <Title level={1} className={`about-us-cards-title ${isDarkMode ? 'dark' : ''}`}>
+          <Title
+            level={1}
+            className={`about-us-cards-title ${isDarkMode ? 'dark' : ''}`}
+          >
             {t('aboutUs.coreValues')}
           </Title>
         </Col>
@@ -121,10 +128,17 @@ function AboutUsPage() {
                   src={item.img}
                   alt={item.alt}
                 />
-                <Title level={2} className={`about-us-card-title ${isDarkMode ? 'dark' : ''}`}>
+                <Title
+                  level={2}
+                  className={`about-us-card-title ${isDarkMode ? 'dark' : ''}`}
+                >
                   {item.title}
                 </Title>
-                <Text className={`about-us-card-text ${isDarkMode ? 'dark' : ''}`}>{item.text}</Text>
+                <Text
+                  className={`about-us-card-text ${isDarkMode ? 'dark' : ''}`}
+                >
+                  {item.text}
+                </Text>
               </div>
             </Card>
           </Col>
@@ -133,7 +147,10 @@ function AboutUsPage() {
 
       <Row className="opinions-section">
         <Col span={24}>
-          <Title level={1} className={`opinions-title ${isDarkMode ? 'dark' : ''}`}>
+          <Title
+            level={1}
+            className={`opinions-title ${isDarkMode ? 'dark' : ''}`}
+          >
             {t('aboutUs.clientOpinions')}
           </Title>
           <Carousel
@@ -165,10 +182,15 @@ function AboutUsPage() {
                       alt="opinion"
                       className="opinion-image"
                     />
-                    <Text className={`opinion-description ${isDarkMode ? 'dark' : ''}`}>
+                    <Text
+                      className={`opinion-description ${isDarkMode ? 'dark' : ''}`}
+                    >
                       {opinion.description}
                     </Text>
-                    <Title level={4} className={`opinion-name ${isDarkMode ? 'dark' : ''}`}>
+                    <Title
+                      level={4}
+                      className={`opinion-name ${isDarkMode ? 'dark' : ''}`}
+                    >
                       {opinion.name}
                     </Title>
                   </div>
@@ -180,13 +202,18 @@ function AboutUsPage() {
       </Row>
       <Row justify="center" gutter={[32, 32]} className="location-section">
         <Col xs={24} md={10} className="location-text">
-          <Title level={1} className={`location-title ${isDarkMode ? 'dark' : ''}`}>
+          <Title
+            level={1}
+            className={`location-title ${isDarkMode ? 'dark' : ''}`}
+          >
             {t('aboutUs.location.title')}
           </Title>
           <Text className={`location-description ${isDarkMode ? 'dark' : ''}`}>
             {t('aboutUs.location.description')}
           </Text>
-          <Text className={`location-phone ${isDarkMode ? 'dark' : ''}`}>{t('aboutUs.location.phone')}</Text>
+          <Text className={`location-phone ${isDarkMode ? 'dark' : ''}`}>
+            {t('aboutUs.location.phone')}
+          </Text>
         </Col>
         <Col xs={24} md={14} className="location-map-wrapper">
           <iframe

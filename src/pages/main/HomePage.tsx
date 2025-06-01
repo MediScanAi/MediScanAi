@@ -1,4 +1,13 @@
-import { Typography, Row, Col, Card, Carousel, List, Button, Collapse } from 'antd';
+import {
+  Typography,
+  Row,
+  Col,
+  Card,
+  Carousel,
+  List,
+  Button,
+  Collapse,
+} from 'antd';
 import 'antd/dist/reset.css';
 import { DownOutlined } from '@ant-design/icons';
 import partner1 from '../../assets/photos/partner1.webp';
@@ -187,44 +196,50 @@ function HomePage() {
       <Col style={{ width: '100%' }}>
         <Row className="welcome-section">
           <Col lg={12} sm={24} className="welcome-section-column">
-            <Text className={`welcome-text ${isDarkMode ? 'dark' : ''}`}>{t('homepage.welcome')}</Text>
+            <Text className={`welcome-text ${isDarkMode ? 'dark' : ''}`}>
+              {t('homepage.welcome')}
+            </Text>
             <Title className={`platform-title ${isDarkMode ? 'dark' : ''}`}>
               {t('homepage.platformTitle')}
             </Title>
             <p className={`platform-description ${isDarkMode ? 'dark' : ''}`}>
               {t('homepage.platformDescription')}
             </p>
-            <PrimaryButton
-            >
-              {t('homepage.consultButton')}
-            </PrimaryButton>
+            <PrimaryButton>{t('homepage.consultButton')}</PrimaryButton>
           </Col>
           <Col>
             <img src={group99} alt="platform" className="platform-image" />
           </Col>
         </Row>
         <Col className="activity-section-column">
-          <Title level={1} className={`activity-section-column-title ${isDarkMode ? 'dark' : ''}`}>
+          <Title
+            level={1}
+            className={`activity-section-column-title ${isDarkMode ? 'dark' : ''}`}
+          >
             {t('activity.title')}
           </Title>
-          <Text className={`activity-section-column-text ${isDarkMode ? 'dark' : ''}`}>
+          <Text
+            className={`activity-section-column-text ${isDarkMode ? 'dark' : ''}`}
+          >
             {t('activity.description')}
           </Text>
           <Row gutter={[24, 24]} style={{ marginTop: '40px' }}>
             {activities.map(({ title, text, icon }, index) => (
               <Col key={index} xs={24} sm={24} md={12} lg={6}>
-                <Card
-                  className={
-                    'activity-card' +
-                    (isDarkMode ? ' dark' : '')
-                  }
-                >
+                <Card className={'activity-card' + (isDarkMode ? ' dark' : '')}>
                   <div className="activity-card-content">
                     <div className="activity-icon">{icon}</div>
-                    <Title level={4} className={`activity-card-title ${isDarkMode ? 'dark' : ''}`}>
+                    <Title
+                      level={4}
+                      className={`activity-card-title ${isDarkMode ? 'dark' : ''}`}
+                    >
                       {title}
                     </Title>
-                    <Text className={`activity-card-text ${isDarkMode ? 'dark' : ''}`}>{text}</Text>
+                    <Text
+                      className={`activity-card-text ${isDarkMode ? 'dark' : ''}`}
+                    >
+                      {text}
+                    </Text>
                   </div>
                 </Card>
               </Col>
@@ -240,16 +255,16 @@ function HomePage() {
               {t('myHealth.title')}
             </Title>
           </Col>
-          <p className={`my-health-description ${isDarkMode ? 'dark' : ''}`}>{t('myHealth.description')}</p>
+          <p className={`my-health-description ${isDarkMode ? 'dark' : ''}`}>
+            {t('myHealth.description')}
+          </p>
           <div className="my-health-step-images">
             <img src={myHealth} alt="Step 1" className="my-health-image" />
             <div className={`arrow ${isDarkMode ? 'dark' : ''}`}>→</div>
             <img src={myHealth2} alt="Step 2" className="my-health-image" />
           </div>
           <div className="my-health-text-content">
-            <PrimaryButton
-              onClick={() => navigate('/profile/info')}
-            >
+            <PrimaryButton onClick={() => navigate('/profile/info')}>
               {t('myHealth.button')}
             </PrimaryButton>
           </div>
@@ -257,15 +272,23 @@ function HomePage() {
 
         <Row className="leading-medicine-section">
           <Col lg={12} sm={24} className="leading-medicine-content">
-            <Title className={`leading-medicine-title ${isDarkMode ? 'dark' : ''}`}>
+            <Title
+              className={`leading-medicine-title ${isDarkMode ? 'dark' : ''}`}
+            >
               {t('leadingMedicine.title')}
             </Title>
-            <Text className={`leading-medicine-description ${isDarkMode ? 'dark' : ''}`}>
+            <Text
+              className={`leading-medicine-description ${isDarkMode ? 'dark' : ''}`}
+            >
               {t('leadingMedicine.description')}
             </Text>
           </Col>
           <Col>
-            <img src={isDarkMode ? group101Dark : group101} alt="platform" className="platform-image" />
+            <img
+              src={isDarkMode ? group101Dark : group101}
+              alt="platform"
+              className="platform-image"
+            />
           </Col>
         </Row>
         <Row className="faq-section">
@@ -280,14 +303,19 @@ function HomePage() {
               accordion
               bordered={false}
               activeKey={openIndex !== null ? [openIndex.toString()] : []}
-              onChange={(key) => toggleOpen(key.length > 0 ? parseInt(key[0]) : null)}
+              onChange={(key) =>
+                toggleOpen(key.length > 0 ? parseInt(key[0]) : null)
+              }
               className={`faq-collapse ${isDarkMode ? 'dark' : ''}`}
             >
               {questions.map(({ title, text }, index) => (
                 <Panel
                   key={index.toString()}
                   header={
-                    <Title level={3} className={`faq-question ${isDarkMode ? 'dark' : ''}`}>
+                    <Title
+                      level={3}
+                      className={`faq-question ${isDarkMode ? 'dark' : ''}`}
+                    >
                       {title}
                     </Title>
                   }
@@ -296,7 +324,10 @@ function HomePage() {
                     <DownOutlined
                       style={{
                         transition: 'transform 0.3s',
-                        transform: openIndex === index ? 'rotate(180deg)' : 'rotate(0deg)',
+                        transform:
+                          openIndex === index
+                            ? 'rotate(180deg)'
+                            : 'rotate(0deg)',
                         fontSize: 20,
                         color: isDarkMode ? 'white' : 'black',
                       }}
@@ -304,7 +335,9 @@ function HomePage() {
                   }
                   className={`faq-panel ${isDarkMode ? 'dark' : ''}`}
                 >
-                  <Text className={`faq-answer ${isDarkMode ? 'dark' : ''}`}>{text}</Text>
+                  <Text className={`faq-answer ${isDarkMode ? 'dark' : ''}`}>
+                    {text}
+                  </Text>
                 </Panel>
               ))}
             </Collapse>
@@ -312,7 +345,10 @@ function HomePage() {
         </Row>
         <div className="partners-section">
           <Col span={24} className="partners-column">
-            <Title level={1} className={`partners-title ${isDarkMode ? 'dark' : ''}`}>
+            <Title
+              level={1}
+              className={`partners-title ${isDarkMode ? 'dark' : ''}`}
+            >
               {t('homepage.partnerTitle')}
             </Title>
             <div className="carousel-wrapper">
@@ -343,10 +379,15 @@ function HomePage() {
                           alt={partner.name}
                           className="partner-image"
                         />
-                        <Title level={4} className={`partner-name ${isDarkMode ? 'dark' : ''}`}>
+                        <Title
+                          level={4}
+                          className={`partner-name ${isDarkMode ? 'dark' : ''}`}
+                        >
                           {t(`partners.${index}.name`)}
                         </Title>
-                        <Text className={`partner-description ${isDarkMode ? 'dark' : ''}`}>
+                        <Text
+                          className={`partner-description ${isDarkMode ? 'dark' : ''}`}
+                        >
                           {t(`partners.${index}.description`)}
                         </Text>
                       </div>

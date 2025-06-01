@@ -19,7 +19,12 @@ footer {
   margin-right: 10px;
 }
 .dark-footer {
-  background: radial-gradient(circle at 10% 30%,  rgb(31, 55, 128), #1d2970, rgba(28, 52, 125, 0.9));
+  background: radial-gradient(
+    circle at 10% 30%,
+    rgb(31, 55, 128),
+    #1d2970,
+    rgba(28, 52, 125, 0.9)
+  );
   .info-icons {
     color: white;
   }

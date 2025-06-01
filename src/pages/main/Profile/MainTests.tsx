@@ -44,12 +44,17 @@ const MainTests: React.FC<MainTestsProps> = ({ theme, width }) => {
 
   return (
     <div className={`modern-user-profile ${theme ? 'dark' : ''}`}>
-      <div style={{
-        maxWidth: 1200,
-        margin: '0 auto',
-        padding: '24px',
-      }}>
-        <Card className="profile-container" style={{ border: 'none', backgroundColor: 'transparent' }}>
+      <div
+        style={{
+          maxWidth: 1200,
+          margin: '0 auto',
+          padding: '24px',
+        }}
+      >
+        <Card
+          className="profile-container"
+          style={{ border: 'none', backgroundColor: 'transparent' }}
+        >
           <Title
             level={2}
             className="profile-name"
@@ -63,14 +68,7 @@ const MainTests: React.FC<MainTestsProps> = ({ theme, width }) => {
 
           <Row gutter={[24, 24]} className="info-grid">
             {testCards.map((card, index) => (
-              <Col
-                key={index}
-                xs={24}
-                sm={12}
-                md={12}
-                lg={12}
-                xl={6}
-              >
+              <Col key={index} xs={24} sm={12} md={12} lg={12} xl={6}>
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -85,13 +83,20 @@ const MainTests: React.FC<MainTestsProps> = ({ theme, width }) => {
                     style={{ cursor: 'pointer', height: '180px' }}
                   >
                     <div className="info-label" style={{ marginBottom: 16 }}>
-                      <Text className="info-label-text" strong style={{ fontSize: 18 }}>
+                      <Text
+                        className="info-label-text"
+                        strong
+                        style={{ fontSize: 18 }}
+                      >
                         {card.title}
                       </Text>
                     </div>
 
                     <div className="info-value">
-                      <Text className="info-value-text" style={{ marginBottom: 16 }}>
+                      <Text
+                        className="info-value-text"
+                        style={{ marginBottom: 16 }}
+                      >
                         {card.subtitle}
                       </Text>
                     </div>
@@ -122,10 +127,7 @@ const MainTests: React.FC<MainTestsProps> = ({ theme, width }) => {
               textAlign: 'center',
             }}
           >
-            <motion.div
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
+            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
               <PrimaryButton
                 onClick={() => navigate('/tests-form/blood-test')}
                 style={{

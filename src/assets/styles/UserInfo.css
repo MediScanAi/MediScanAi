@@ -83,7 +83,7 @@
 }
 
 .dark .info-card-motion {
-  background-color:  rgba(28, 52, 125, 1) !important;
+  background-color: rgba(28, 52, 125, 1) !important;
   border: none;
 }
 
@@ -248,7 +248,7 @@
 }
 
 .info-card.dark {
-  background-color:  rgba(28, 52, 125, 1) !important;
+  background-color: rgba(28, 52, 125, 1) !important;
 }
 
 .info-card.editing {
@@ -256,7 +256,7 @@
 }
 
 .info-card.editing.dark {
-  background:rgb(37, 69, 163) !important;
+  background: rgb(37, 69, 163) !important;
 }
 
 .info-label {

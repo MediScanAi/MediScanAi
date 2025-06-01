@@ -62,7 +62,9 @@ const UserInfo: React.FC<UserInfoProps> = ({ width, theme }) => {
     waistSize: null,
     neckSize: null,
   });
-  const [tempValues, setTempValues] = useState<Record<string, number | null>>({});
+  const [tempValues, setTempValues] = useState<Record<string, number | null>>(
+    {}
+  );
 
   useEffect(() => {
     if (user?.uid) {
@@ -160,7 +162,10 @@ const UserInfo: React.FC<UserInfoProps> = ({ width, theme }) => {
 
   const startEditing = (key: string) => {
     setEditingField(key);
-    setTempValues({ ...tempValues, [key]: formState[key as keyof UserData] as number | null });
+    setTempValues({
+      ...tempValues,
+      [key]: formState[key as keyof UserData] as number | null,
+    });
   };
 
   const cancelEditing = (key: string) => {
@@ -212,7 +217,11 @@ const UserInfo: React.FC<UserInfoProps> = ({ width, theme }) => {
         >
           <div className="profile-header-container">
             <div className="profile-avatar-container">
-              <Avatar className="profile-avatar" size={80} style={{ fontSize: 50 }}>
+              <Avatar
+                className="profile-avatar"
+                size={80}
+                style={{ fontSize: 50 }}
+              >
                 {user?.firstName ? user?.firstName[0].toUpperCase() : 'Profile'}
               </Avatar>
             </div>
@@ -277,10 +286,16 @@ const UserInfo: React.FC<UserInfoProps> = ({ width, theme }) => {
                               )}
                               suffixIcon={null}
                             >
-                              <Option className={theme ? 'dark' : ''} value="Male">
+                              <Option
+                                className={theme ? 'dark' : ''}
+                                value="Male"
+                              >
                                 {t('userInfo.genders.male')}
                               </Option>
-                              <Option className={theme ? 'dark' : ''} value="Female">
+                              <Option
+                                className={theme ? 'dark' : ''}
+                                value="Female"
+                              >
                                 {t('userInfo.genders.female')}
                               </Option>
                             </Select>
@@ -354,7 +369,7 @@ const UserInfo: React.FC<UserInfoProps> = ({ width, theme }) => {
                             {renderValue(
                               field.key,
                               formState[field.key as keyof UserData] ??
-                              field.value
+                                field.value
                             )}
                             {field.unit && (
                               <span className="unit">{field.unit}</span>

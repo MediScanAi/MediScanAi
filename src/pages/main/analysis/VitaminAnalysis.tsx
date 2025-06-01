@@ -361,7 +361,10 @@ function VitaminAnalysis() {
       <div>
         {vitaminTestData?.vitaminA ? (
           <>
-            <Card className={`card2-design ${isDarkMode ? 'dark' : ''}`} style={{ border: 'none' }}>
+            <Card
+              className={`card2-design ${isDarkMode ? 'dark' : ''}`}
+              style={{ border: 'none' }}
+            >
               <Col className="card2-col-design">
                 <div
                   style={{ display: 'flex', justifyContent: 'center' }}
@@ -409,7 +412,11 @@ function VitaminAnalysis() {
                     getVitaminRisks(
                       vitaminTestData as VitaminTestFormValues
                     ).map((risk, index) => (
-                      <li className={`warning-section-text ${isDarkMode ? 'dark' : ''}`} key={index} style={{ fontSize: 16, marginBottom: 8 }}>
+                      <li
+                        className={`warning-section-text ${isDarkMode ? 'dark' : ''}`}
+                        key={index}
+                        style={{ fontSize: 16, marginBottom: 8 }}
+                      >
                         {risk}
                         {vitaminExplanations[risk] && (
                           <div>
@@ -439,7 +446,10 @@ function VitaminAnalysis() {
                       </li>
                     ))
                   ) : (
-                    <p className={`warning-section-text ${isDarkMode ? 'dark' : ''}`} style={{ fontSize: 16 }}>
+                    <p
+                      className={`warning-section-text ${isDarkMode ? 'dark' : ''}`}
+                      style={{ fontSize: 16 }}
+                    >
                       ✅ All your vitamin levels are within normal range. Great
                       job!
                     </p>
@@ -458,12 +468,14 @@ function VitaminAnalysis() {
               height: '100%',
             }}
           >
-            <Title className={`platform-title ${isDarkMode ? 'dark' : ''}`} style={{ textAlign: 'center' }} level={width > 768 ? 2 : 4}>
+            <Title
+              className={`platform-title ${isDarkMode ? 'dark' : ''}`}
+              style={{ textAlign: 'center' }}
+              level={width > 768 ? 2 : 4}
+            >
               Please fill a vitamin test results to get your analytic results
             </Title>
-            <PrimaryButton
-              onClick={() => navigate('/tests-form/vitamin-test')}
-            >
+            <PrimaryButton onClick={() => navigate('/tests-form/vitamin-test')}>
               Fill Vitamin Test Results
             </PrimaryButton>
           </div>
@@ -503,7 +515,10 @@ function VitaminAnalysis() {
                 src={item.image}
               />
             </Row>
-            <p className={`interesting-card-text ${isDarkMode ? 'dark' : ''}`} style={{ margin: 0, fontSize: 16 }}>
+            <p
+              className={`interesting-card-text ${isDarkMode ? 'dark' : ''}`}
+              style={{ margin: 0, fontSize: 16 }}
+            >
               {interestingFacts[item.name]}
             </p>
           </Card>

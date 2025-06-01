@@ -365,7 +365,10 @@ function BloodAnalysis() {
       <div>
         {bloodTestData?.cholesterol ? (
           <div>
-            <Card className={`card2-design ${isDarkMode ? 'dark' : ''}`} style={{ border: 'none' }}>
+            <Card
+              className={`card2-design ${isDarkMode ? 'dark' : ''}`}
+              style={{ border: 'none' }}
+            >
               <Col className="card2-col-design">
                 <div
                   style={{
@@ -388,9 +391,7 @@ function BloodAnalysis() {
               </Col>
             </Card>
 
-            <Card
-              className={`warning-section ${isDarkMode ? 'dark' : ''}`}
-            >
+            <Card className={`warning-section ${isDarkMode ? 'dark' : ''}`}>
               <Title
                 level={3}
                 style={{ color: 'rgb(255, 0, 0)', fontFamily: 'Poppins' }}
@@ -416,7 +417,11 @@ function BloodAnalysis() {
               <ul style={{ paddingLeft: 20 }}>
                 {getDiseaseRisks(bloodTestData).length > 0 ? (
                   getDiseaseRisks(bloodTestData).map((risk, index) => (
-                    <li className={`warning-section-text ${isDarkMode ? 'dark' : ''}`} key={index} style={{ fontSize: 16, marginBottom: 8 }}>
+                    <li
+                      className={`warning-section-text ${isDarkMode ? 'dark' : ''}`}
+                      key={index}
+                      style={{ fontSize: 16, marginBottom: 8 }}
+                    >
                       {risk}
                       {diseaseExplanations[risk] && (
                         <div>
@@ -456,12 +461,14 @@ function BloodAnalysis() {
               height: '100%',
             }}
           >
-            <Title className={`platform-title ${isDarkMode ? 'dark' : ''}`} style={{ textAlign: 'center' }} level={2}>
+            <Title
+              className={`platform-title ${isDarkMode ? 'dark' : ''}`}
+              style={{ textAlign: 'center' }}
+              level={2}
+            >
               Please fill a blood test results to get your analytic results
             </Title>
-            <PrimaryButton
-              onClick={() => navigate('/tests-form/blood-test')}
-            >
+            <PrimaryButton onClick={() => navigate('/tests-form/blood-test')}>
               Fill Blood Test Results
             </PrimaryButton>
           </div>
@@ -469,7 +476,6 @@ function BloodAnalysis() {
       </div>
 
       <div
-
         style={{
           width: '90%',
           margin: '20px auto 40px auto',
@@ -502,7 +508,10 @@ function BloodAnalysis() {
                 src={item.image}
               />
             </Row>
-            <p className={`interesting-card-text ${isDarkMode ? 'dark' : ''}`} style={{ margin: 0, fontSize: 16 }}>
+            <p
+              className={`interesting-card-text ${isDarkMode ? 'dark' : ''}`}
+              style={{ margin: 0, fontSize: 16 }}
+            >
               {interestingFacts[item.name]}
             </p>
           </Card>
