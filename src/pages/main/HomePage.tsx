@@ -1,4 +1,13 @@
-import { Typography, Row, Col, Card, Carousel, List, Button } from 'antd';
+import {
+  Typography,
+  Row,
+  Col,
+  Card,
+  Carousel,
+  List,
+  Button,
+  Collapse,
+} from 'antd';
 import 'antd/dist/reset.css';
 import { DownOutlined } from '@ant-design/icons';
 import partner1 from '../../assets/photos/partner1.webp';
@@ -13,6 +22,7 @@ import myHealth from '../../assets/photos/my-health.webp';
 import myHealth2 from '../../assets/photos/my-health-second.webp';
 import group99 from '../../assets/photos/Group 99.svg';
 import group101 from '../../assets/photos/Group 101.svg';
+import group101Dark from '../../assets/photos/Group 101Dark.svg';
 import fileUpload from '../../assets/photos/Folder.webp';
 import aiAnalysis from '../../assets/photos/Productivity 4.webp';
 import insightsReport from '../../assets/photos/Finance 5.webp';
@@ -21,14 +31,19 @@ import '../../assets/styles/homepage.css';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import type { RootState } from '../../app/store';
+import { useSelector } from 'react-redux';
+import PrimaryButton from '../../components/common/PrimaryButton';
+import SecondaryButton from '../../components/common/SecondaryButton';
 
+const { Panel } = Collapse;
 const { Title, Text } = Typography;
 
 function HomePage() {
   const { t } = useTranslation('global');
   const [width, setWidth] = useState(window.innerWidth);
   const [openIndex, setOpenIndex] = useState<number | null>(null);
-  const [theme, setTheme] = useState(false);
+  const isDarkMode = useSelector((state: RootState) => state.theme.isDarkMode);
   const navigate = useNavigate();
 
   const activities = [
@@ -177,213 +192,221 @@ function HomePage() {
   };
 
   return (
-    <Row className={`homepage ${theme ? 'dark-theme' : ''}`}>
+    <Row className={`homepage ${isDarkMode ? 'dark' : ''}`}>
       <Col style={{ width: '100%' }}>
         <Row className="welcome-section">
           <Col lg={12} sm={24} className="welcome-section-column">
-            <Text className="welcome-text">{t('homepage.welcome')}</Text>
-            <Title className="platform-title">
+            <Text className={`welcome-text ${isDarkMode ? 'dark' : ''}`}>
+              {t('homepage.welcome')}
+            </Text>
+            <Title className={`platform-title ${isDarkMode ? 'dark' : ''}`}>
               {t('homepage.platformTitle')}
             </Title>
-            <p className="platform-description">
+            <p className={`platform-description ${isDarkMode ? 'dark' : ''}`}>
               {t('homepage.platformDescription')}
             </p>
-            <Button
-              className="consult-button"
-              type="primary"
-              size="large"
-              onClick={() => navigate('/tests-form/blood-test')}
-            >
-              {t('homepage.consultButton')}
-            </Button>
+            <PrimaryButton>{t('homepage.consultButton')}</PrimaryButton>
           </Col>
           <Col>
             <img src={group99} alt="platform" className="platform-image" />
           </Col>
         </Row>
-        <Row className="activity-section">
-          <Col className="activity-section-column">
-            <Title level={1} className="activity-section-column-title">
-              {t('activity.title')}
-            </Title>
-            <Text className="activity-section-column-text">
-              {t('activity.description')}
-            </Text>
-            <Row gutter={[24, 24]} style={{ marginTop: '40px' }}>
-              {activities.map(({ title, text, icon }, index) => (
-                <Col key={index} xs={24} sm={24} md={12} lg={6}>
-                  <Card
-                    className={
-                      'activity-card' +
-                      (theme ? ' dark-mode-text dark-theme' : '')
-                    }
-                    bodyStyle={{ padding: 0 }}
-                  >
-                    <div className="activity-card-content">
-                      <div className="activity-icon">{icon}</div>
-                      <Title level={4} className="activity-card-title">
-                        {title}
-                      </Title>
-                      <Text className="activity-card-text">{text}</Text>
-                    </div>
-                  </Card>
-                </Col>
-              ))}
-            </Row>
-          </Col>
-        </Row>
+        <Col className="activity-section-column">
+          <Title
+            level={1}
+            className={`activity-section-column-title ${isDarkMode ? 'dark' : ''}`}
+          >
+            {t('activity.title')}
+          </Title>
+          <Text
+            className={`activity-section-column-text ${isDarkMode ? 'dark' : ''}`}
+          >
+            {t('activity.description')}
+          </Text>
+          <Row gutter={[24, 24]} style={{ marginTop: '40px' }}>
+            {activities.map(({ title, text, icon }, index) => (
+              <Col key={index} xs={24} sm={24} md={12} lg={6}>
+                <Card className={'activity-card' + (isDarkMode ? ' dark' : '')}>
+                  <div className="activity-card-content">
+                    <div className="activity-icon">{icon}</div>
+                    <Title
+                      level={4}
+                      className={`activity-card-title ${isDarkMode ? 'dark' : ''}`}
+                    >
+                      {title}
+                    </Title>
+                    <Text
+                      className={`activity-card-text ${isDarkMode ? 'dark' : ''}`}
+                    >
+                      {text}
+                    </Text>
+                  </div>
+                </Card>
+              </Col>
+            ))}
+          </Row>
+        </Col>
         <Row className="my-health-section">
           <Col span={24} className="my-health-title-container">
             <Title
               level={1}
-              className={'my-health-title' + (theme ? ' dark-theme' : '')}
+              className={`my-health-title ${isDarkMode ? 'dark' : ''}`}
             >
               {t('myHealth.title')}
             </Title>
           </Col>
-          <p className="my-health-description">{t('myHealth.description')}</p>
+          <p className={`my-health-description ${isDarkMode ? 'dark' : ''}`}>
+            {t('myHealth.description')}
+          </p>
           <div className="my-health-step-images">
             <img src={myHealth} alt="Step 1" className="my-health-image" />
-            <div className="arrow">→</div>
+            <div className={`arrow ${isDarkMode ? 'dark' : ''}`}>→</div>
             <img src={myHealth2} alt="Step 2" className="my-health-image" />
           </div>
           <div className="my-health-text-content">
-            <Button
-              className="my-health-button"
-              type="primary"
-              size="large"
-              onClick={() => navigate('/profile/info')}
-            >
+            <PrimaryButton onClick={() => navigate('/profile/info')}>
               {t('myHealth.button')}
-            </Button>
+            </PrimaryButton>
           </div>
         </Row>
 
         <Row className="leading-medicine-section">
           <Col lg={12} sm={24} className="leading-medicine-content">
-            <Title className="leading-medicine-title">
+            <Title
+              className={`leading-medicine-title ${isDarkMode ? 'dark' : ''}`}
+            >
               {t('leadingMedicine.title')}
             </Title>
-            <Text className="leading-medicine-description">
+            <Text
+              className={`leading-medicine-description ${isDarkMode ? 'dark' : ''}`}
+            >
               {t('leadingMedicine.description')}
             </Text>
           </Col>
           <Col>
-            <img src={group101} alt="platform" className="platform-image" />
+            <img
+              src={isDarkMode ? group101Dark : group101}
+              alt="platform"
+              className="platform-image"
+            />
           </Col>
         </Row>
         <Row className="faq-section">
           <Col style={{ marginTop: 50, padding: '24px' }} span={24}>
             <Title
               level={1}
-              className={'faq-title' + (theme ? ' dark-theme' : '')}
+              className={`faq-title ${isDarkMode ? 'dark' : ''}`}
             >
               {t('homepage.faqTitle')}
             </Title>
-            <List
-              itemLayout="horizontal"
-              dataSource={questions}
-              split={false}
-              style={{ width: '100%', margin: '0 auto' }}
-              renderItem={({ title, text }, index) => (
-                <List.Item
-                  className={`faq-item ${theme ? 'faq-item-dark' : 'faq-item-light'}`}
-                  onClick={() => toggleOpen(index)}
+            <Collapse
+              accordion
+              bordered={false}
+              activeKey={openIndex !== null ? [openIndex.toString()] : []}
+              onChange={(key) =>
+                toggleOpen(key.length > 0 ? parseInt(key[0]) : null)
+              }
+              className={`faq-collapse ${isDarkMode ? 'dark' : ''}`}
+            >
+              {questions.map(({ title, text }, index) => (
+                <Panel
+                  key={index.toString()}
+                  header={
+                    <Title
+                      level={3}
+                      className={`faq-question ${isDarkMode ? 'dark' : ''}`}
+                    >
+                      {title}
+                    </Title>
+                  }
+                  showArrow={false}
+                  extra={
+                    <DownOutlined
+                      style={{
+                        transition: 'transform 0.3s',
+                        transform:
+                          openIndex === index
+                            ? 'rotate(180deg)'
+                            : 'rotate(0deg)',
+                        fontSize: 20,
+                        color: isDarkMode ? 'white' : 'black',
+                      }}
+                    />
+                  }
+                  className={`faq-panel ${isDarkMode ? 'dark' : ''}`}
                 >
-                  <Row gutter={[16, 16]} style={{ width: '100%' }}>
-                    <Col xs={24}>
-                      <Row justify="space-between" style={{ width: '100%' }}>
-                        <Col span={22}>
-                          <Title level={3} className="faq-question">
-                            {title}
-                          </Title>
-                        </Col>
-                        <Col span={2} style={{ textAlign: 'right' }}>
-                          <DownOutlined
-                            style={{
-                              transition: 'transform 0.3s',
-                              transform:
-                                openIndex === index
-                                  ? 'rotate(180deg)'
-                                  : 'rotate(0deg)',
-                              fontSize: 20,
-                              color: theme ? 'white' : 'black',
-                            }}
-                          />
-                        </Col>
-                      </Row>
-                      {openIndex === index && (
-                        <Text className="faq-answer">{text}</Text>
-                      )}
-                    </Col>
-                  </Row>
-                </List.Item>
-              )}
-            />
+                  <Text className={`faq-answer ${isDarkMode ? 'dark' : ''}`}>
+                    {text}
+                  </Text>
+                </Panel>
+              ))}
+            </Collapse>
           </Col>
         </Row>
-        <Row gutter={[24, 24]} className="partners-section">
-          <Col span={24}>
-            <Title level={1} className="partners-title">
+        <div className="partners-section">
+          <Col span={24} className="partners-column">
+            <Title
+              level={1}
+              className={`partners-title ${isDarkMode ? 'dark' : ''}`}
+            >
               {t('homepage.partnerTitle')}
             </Title>
-            <Carousel
-              autoplay
-              autoplaySpeed={2000}
-              dots={false}
-              infinite
-              slidesToShow={
-                width > 1200 ? 4 : width > 900 ? 3 : width > 600 ? 2 : 1
-              }
-              slidesToScroll={1}
-              className="carousel-container"
-            >
-              {partners.map((partner, index) => (
-                <div key={index} className="partner-card-wrapper">
-                  <Card
-                    style={{ border: 'none' }}
-                    hoverable
-                    className={`partner-card ${theme ? 'partner-card-dark' : 'partner-card-light'}`}
-                    bodyStyle={{
-                      padding: 20,
-                      display: 'flex',
-                      flexDirection: 'column',
-                      justifyContent: 'space-between',
-                      height: '100%',
-                    }}
-                  >
-                    <div className="partner-image-container">
-                      <img
-                        src={partner.image}
-                        alt={partner.name}
-                        className="partner-image"
-                      />
-                      <Title level={4} className="partner-name">
-                        {t(`partners.${index}.name`)}
-                      </Title>
-                      <Text className="partner-description">
-                        {t(`partners.${index}.description`)}
-                      </Text>
-                    </div>
-                    <Button
-                      className="partner-button"
-                      type="primary"
-                      size="large"
+            <div className="carousel-wrapper">
+              <Carousel
+                autoplay
+                autoplaySpeed={2000}
+                dots={false}
+                infinite
+                slidesToShow={
+                  width > 1500 ? 4 : width > 1200 ? 3 : width > 820 ? 2 : 1
+                }
+                slidesToScroll={1}
+                className="carousel-container"
+              >
+                {partners.map((partner, index) => (
+                  <div key={index} className="partner-card-wrapper">
+                    <Card
+                      style={{ border: 'none' }}
+                      hoverable
+                      className={`partner-card ${isDarkMode ? 'dark' : ''}`}
+                      bodyStyle={{
+                        padding: 20,
+                      }}
                     >
-                      <a
-                        href={t(`partners.${index}.link`)}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        {t('homepage.readMore')}
-                      </a>
-                    </Button>
-                  </Card>
-                </div>
-              ))}
-            </Carousel>
+                      <div className="partner-image-container">
+                        <img
+                          src={partner.image}
+                          alt={partner.name}
+                          className="partner-image"
+                        />
+                        <Title
+                          level={4}
+                          className={`partner-name ${isDarkMode ? 'dark' : ''}`}
+                        >
+                          {t(`partners.${index}.name`)}
+                        </Title>
+                        <Text
+                          className={`partner-description ${isDarkMode ? 'dark' : ''}`}
+                        >
+                          {t(`partners.${index}.description`)}
+                        </Text>
+                      </div>
+                      <SecondaryButton className="partner-button">
+                        <a
+                          href={t(`partners.${index}.link`)}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          {t('homepage.readMore')}
+                        </a>
+                      </SecondaryButton>
+                    </Card>
+                  </div>
+                ))}
+              </Carousel>
+            </div>
           </Col>
-        </Row>
+        </div>
       </Col>
     </Row>
   );

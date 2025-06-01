@@ -18,6 +18,7 @@ import {
   PlusCircleOutlined,
   UploadOutlined,
   SoundOutlined,
+  UserOutlined,
 } from '@ant-design/icons';
 import { v4 as uuidv4 } from 'uuid';
 import axios from 'axios';
@@ -39,6 +40,10 @@ import { Spin } from 'antd';
 import { CopyOutlined } from '@ant-design/icons';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import type { RootState } from '../../app/store';
+import { useSelector } from 'react-redux';
+import PrimaryButton from '../../components/common/PrimaryButton';
+import MediScanAILogo from '../../assets/photos/Logo.png';
 
 const { Sider, Content } = Layout;
 const { Text } = Typography;
@@ -81,6 +86,8 @@ const ChatWithAi = () => {
     urineTests,
     urineWarnings,
   } = location.state || {};
+  const isDarkMode = useSelector((state: RootState) => state.theme.isDarkMode);
+  const synth = window.speechSynthesis;
 
   const navigate = useNavigate();
 
@@ -167,17 +174,20 @@ const ChatWithAi = () => {
     }
   };
 
+  useEffect(() => {
+    return () => {
+      synth.cancel();
+    };
+  }, []);
+
   const speakMessage = (e: React.MouseEvent, msg: Message) => {
     e.stopPropagation();
-    const synth = window.speechSynthesis;
-
     if (currentUtterance && synth.speaking) {
       synth.cancel();
       setCurrentUtterance(null);
       return;
     }
 
-    synth.cancel();
     const utterance = new SpeechSynthesisUtterance(msg.content);
 
     const voice = getVoice();
@@ -186,8 +196,8 @@ const ChatWithAi = () => {
       utterance.lang = voice.lang;
     }
 
-    utterance.rate = 0.9;
-    utterance.pitch = 1;
+    utterance.rate = 0.8;
+    utterance.pitch = 1.2;
 
     setCurrentUtterance(utterance);
     synth.speak(utterance);
@@ -387,7 +397,11 @@ const ChatWithAi = () => {
 
   const analysisItems: MenuProps['items'] = [
     {
-      label: <Text>Blood Tests</Text>,
+      label: (
+        <Text className={`chat-with-ai-label ${isDarkMode ? 'dark' : ''}`}>
+          Blood Tests
+        </Text>
+      ),
       key: 'blood-test',
       onClick: () => {
         if (tests.blood) {
@@ -400,7 +414,11 @@ const ChatWithAi = () => {
       },
     },
     {
-      label: <Text>Urine Tests</Text>,
+      label: (
+        <Text className={`chat-with-ai-label ${isDarkMode ? 'dark' : ''}`}>
+          Urine Tests
+        </Text>
+      ),
       key: 'urine-test',
       onClick: () => {
         if (tests.urine) {
@@ -413,7 +431,11 @@ const ChatWithAi = () => {
       },
     },
     {
-      label: <Text>Vitamin Tests</Text>,
+      label: (
+        <Text className={`chat-with-ai-label ${isDarkMode ? 'dark' : ''}`}>
+          Vitamin Tests
+        </Text>
+      ),
       key: 'vitamin-test',
       onClick: () => {
         if (tests.vitamin) {
@@ -426,7 +448,11 @@ const ChatWithAi = () => {
       },
     },
     {
-      label: <Text>Genetic Tests</Text>,
+      label: (
+        <Text className={`chat-with-ai-label ${isDarkMode ? 'dark' : ''}`}>
+          Genetic Tests
+        </Text>
+      ),
       key: 'genetic-test',
       onClick: () => {
         if (tests.genetic) {
@@ -442,10 +468,20 @@ const ChatWithAi = () => {
   const featureItems: MenuProps['items'] = [
     {
       label: (
-        <Dropdown trigger={['hover']} menu={{ items: analysisItems }}>
+        <Dropdown
+          trigger={['hover']}
+          menu={{
+            items: analysisItems,
+            style: { background: isDarkMode ? 'rgb(57, 92, 195)' : '#fff' },
+          }}
+        >
           <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-            <DiffOutlined />
-            <Text>{t('chat.scanAnalysis')}</Text>
+            <DiffOutlined
+              style={{ color: isDarkMode ? '#ffffff' : 'black' }}
+            />
+            <Text className={`chat-with-ai-label ${isDarkMode ? 'dark' : ''}`}>
+              {t('chat.scanAnalysis')}
+            </Text>
           </div>
         </Dropdown>
       ),
@@ -488,8 +524,12 @@ const ChatWithAi = () => {
           }}
         >
           <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-            <UploadOutlined />
-            <Text>{t('chat.pdfUpload')}</Text>
+            <UploadOutlined
+              style={{ color: isDarkMode ? '#ffffff' : '#000000' }}
+            />
+            <Text className={`chat-with-ai-label ${isDarkMode ? 'dark' : ''}`}>
+              {t('chat.pdfUpload')}
+            </Text>
             {loading && <Spin size="small" style={{ marginLeft: 8 }} />}
           </div>
         </Upload>
@@ -499,31 +539,34 @@ const ChatWithAi = () => {
   ];
 
   return (
-    <Layout style={{ height: '94vh', borderBottom: '1px solid #ddd' }}>
+    <Layout
+      className={`chat-with-ai ${isDarkMode ? 'dark' : ''}`}
+      style={{ height: '94vh' }}
+    >
       <Sider
         width={240}
         style={{
-          background: '#fff',
+          background: isDarkMode ? 'rgb(38, 63, 137)' : '#fff',
           padding: 16,
-          borderRight: '1px solid #ddd',
+          borderRight: '1px solid rgb(49, 82, 181)',
         }}
       >
-        <Button
-          type="primary"
-          icon={<PlusOutlined />}
-          block
-          style={{
-            marginBottom: '15px',
-            borderRadius: '10px',
-            backgroundColor: '#1890ff',
-          }}
-          onClick={createNewChat}
-        >
-          {t('chat.newChat')}
-        </Button>
+        <div style={{ display: 'flex', justifyContent: 'center' }}>
+          <PrimaryButton
+            icon={<PlusOutlined />}
+            style={{ width: '200px' }}
+            onClick={createNewChat}
+          >
+            {t('chat.newChat')}
+          </PrimaryButton>
+        </div>
         {Object.entries(grouped).map(([label, chats]) => (
           <div key={label} style={{ marginBottom: 12 }}>
-            <Text type="secondary" style={{ marginLeft: 8 }}>
+            <Text
+              className={`chat-with-ai-label ${isDarkMode ? 'dark' : ''}`}
+              type="secondary"
+              style={{ marginLeft: 8 }}
+            >
               {label}
             </Text>
             <List
@@ -532,17 +575,17 @@ const ChatWithAi = () => {
               renderItem={(chat) => (
                 <List.Item
                   onClick={() => setSelectedChatId(chat.id)}
-                  className={
-                    chat.id !== selectedChatId
-                      ? 'chat-item-hover'
-                      : 'selected-chat'
-                  }
+                  className={`chat-item-hover ${isDarkMode ? 'dark' : ''}`}
                   style={{
                     cursor: 'pointer',
                     background:
-                      chat.id === selectedChatId
-                        ? 'rgb(255, 255, 255)'
-                        : '#fff',
+                      chat.id !== selectedChatId
+                        ? isDarkMode
+                          ? 'rgb(99, 121, 185)'
+                          : 'rgb(255, 255, 255)'
+                        : isDarkMode
+                          ? 'rgb(38, 63, 137)'
+                          : '#fff',
                     borderRadius: 10,
                     marginBottom: 8,
                     padding: 8,
@@ -578,14 +621,20 @@ const ChatWithAi = () => {
                         style={{
                           display: 'flex',
                           alignItems: 'center',
-                          flex: 1,
+                          // flex: 1,
                           gap: 8,
+                          borderTop: 'none',
                         }}
                       >
-                        <Text strong style={{ flex: 1 }}>
+                        <Text
+                          className={`chat-item-title ${isDarkMode ? 'dark' : ''}`}
+                          strong
+                          style={{ flex: 1 }}
+                        >
                           {chat.title}
                         </Text>
                         <Dropdown
+                          className={`chat-with-ai-dropdown ${isDarkMode ? 'dark' : ''}`}
                           trigger={['click']}
                           overlay={
                             <Menu
@@ -597,11 +646,28 @@ const ChatWithAi = () => {
                                   deleteChat(chat.id);
                                 }
                               }}
+                              style={{
+                                background: isDarkMode
+                                  ? 'rgb(38, 63, 137)'
+                                  : '#fff',
+                                border: 'none',
+                              }}
                             >
-                              <Menu.Item key="rename">
+                              <Menu.Item
+                                style={{
+                                  color: isDarkMode ? '#ffffff' : '#000000',
+                                }}
+                                key="rename"
+                              >
                                 {t('chat.rename')}
                               </Menu.Item>
-                              <Menu.Item key="delete" danger>
+                              <Menu.Item
+                                style={{
+                                  color: isDarkMode ? '#ffffff' : '#000000',
+                                }}
+                                key="delete"
+                                danger
+                              >
                                 {t('chat.delete')}
                               </Menu.Item>
                             </Menu>
@@ -609,7 +675,10 @@ const ChatWithAi = () => {
                         >
                           <MoreOutlined
                             onClick={(e) => e.stopPropagation()}
-                            style={{ cursor: 'pointer' }}
+                            style={{
+                              cursor: 'pointer',
+                              color: isDarkMode ? '#ffffff' : '#000000',
+                            }}
                           />
                         </Dropdown>
                       </div>
@@ -625,7 +694,6 @@ const ChatWithAi = () => {
       <Content style={{ display: 'flex', flexDirection: 'column' }}>
         <div
           style={{
-            borderTop: '1px solid #ddd',
             flex: 1,
             overflowY: 'auto',
             padding: '16px 0',
@@ -647,14 +715,27 @@ const ChatWithAi = () => {
               <div
                 className="message-container"
                 style={{
-                  backgroundColor:
-                    msg.role === 'user' ? 'rgb(255, 255, 255)' : '#f7f9ff',
-                  color: '#000',
+                  background:
+                    msg.role === 'user'
+                      ? isDarkMode
+                        ? 'linear-gradient(135deg, rgba(56, 128, 255, 0.9) 0%, rgba(0, 80, 200, 0.9) 100%)'
+                        : 'linear-gradient(135deg, rgba(100, 149, 237, 0.15) 0%, rgba(66, 135, 245, 0.15) 100%)'
+                      : isDarkMode
+                        ? 'linear-gradient(135deg, rgba(28, 52, 125, 0.7) 0%, rgba(14, 36, 90, 0.7) 100%)'
+                        : 'linear-gradient(135deg, rgba(240, 248, 255, 0.95) 0%, rgba(225, 239, 255, 0.95) 100%)',
                   padding: '12px 16px',
+                  border:
+                    msg.role === 'user'
+                      ? isDarkMode
+                        ? '1px solid rgba(100, 149, 237, 0.5)'
+                        : '1px solid rgba(56, 128, 255, 0.2)'
+                      : 'none',
                   borderRadius: '15px',
                   width: '100%',
                   maxWidth: 720,
-                  boxShadow: '0 1px 2px rgba(0, 0, 0, 0.5)',
+                  boxShadow: isDarkMode
+                    ? '0 2px 8px rgba(0, 0, 0, 0.3)'
+                    : '0 2px 12px rgba(56, 128, 255, 0.15)',
                   whiteSpace: 'pre-wrap',
                   marginBottom: '36px',
                   position: 'relative',
@@ -662,6 +743,7 @@ const ChatWithAi = () => {
               >
                 <div className="message-buttons">
                   <Button
+                    style={{ color: isDarkMode ? '#ffffff' : 'black' }}
                     type="text"
                     icon={<CopyOutlined />}
                     onClick={(e) => {
@@ -671,15 +753,34 @@ const ChatWithAi = () => {
                     }}
                   />
                   <Button
+                    style={{ color: isDarkMode ? '#ffffff' : 'black' }}
                     type="text"
                     icon={<SoundOutlined />}
                     onClick={(e) => speakMessage(e, msg)}
                   />
                 </div>
+                <>
+                  {msg.role === 'user' ? (
+                    <UserOutlined
+                      style={{ color: isDarkMode ? '#ffffff' : 'black' }}
+                    />
+                  ) : (
+                    <img
+                      src={MediScanAILogo}
+                      alt="MediScan AI"
+                      style={{ width: '30px', height: '30px' }}
+                    />
+                  )}
+                </>
                 <Text
                   style={{
                     width: '100%',
-                    color: msg.role === 'user' ? '#000' : '#000',
+                    color:
+                      msg.role === 'user' && isDarkMode
+                        ? '#ffffff'
+                        : isDarkMode
+                          ? '#ffffff'
+                          : 'black',
                     paddingRight: '24px',
                   }}
                 >
@@ -715,7 +816,16 @@ const ChatWithAi = () => {
           }}
         >
           <div style={{ display: 'flex', alignItems: 'center' }}>
-            <Dropdown trigger={['click']} menu={{ items: featureItems }}>
+            <Dropdown
+              trigger={['click']}
+              menu={{
+                items: featureItems,
+                style: {
+                  background: isDarkMode ? 'rgb(57, 92, 195)' : '#fff',
+                  padding: 0,
+                },
+              }}
+            >
               <PlusCircleOutlined
                 style={{
                   fontSize: 20,

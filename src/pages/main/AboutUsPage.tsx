@@ -10,6 +10,9 @@ import { useEffect } from 'react';
 import { useState } from 'react';
 import { LineOutlined } from '@ant-design/icons';
 import { useTranslation } from 'react-i18next';
+import { useSelector } from 'react-redux';
+import type { RootState } from '../../app/store';
+import PrimaryButton from '../../components/common/PrimaryButton.tsx';
 const { Title, Paragraph, Text } = Typography;
 
 function AboutUsPage() {
@@ -17,6 +20,7 @@ function AboutUsPage() {
   const navigate = useNavigate();
   const [width, setWidth] = useState(window.innerWidth);
   const { t } = useTranslation('global');
+  const isDarkMode = useSelector((state: RootState) => state.theme.isDarkMode);
 
   useEffect(() => {
     const handleResize = () => {
@@ -83,26 +87,31 @@ function AboutUsPage() {
   ];
 
   return (
-    <Row className={`about-us ${theme ? 'dark-theme' : ''}`}>
+    <Row className={`about-us ${isDarkMode ? 'dark' : ''}`}>
       <Row className="welcome-section-about-us">
         <Col xs={22} md={16}>
-          <Text className="welcome-section-title">{t('aboutUs.title')}</Text>
-          <Paragraph className="welcome-section-description">
+          <Text className={`welcome-section-title ${isDarkMode ? 'dark' : ''}`}>
+            {t('aboutUs.title')}
+          </Text>
+          <Paragraph
+            className={`welcome-section-description ${isDarkMode ? 'dark' : ''}`}
+          >
             {t('aboutUs.description')}
           </Paragraph>
-          <Button
-            className="contact-us-button"
-            type="primary"
-            size="large"
+          <PrimaryButton
+            style={{ width: '130px' }}
             onClick={() => navigate('/profile/contact-us')}
           >
             {t('aboutUs.contactButton')}
-          </Button>
+          </PrimaryButton>
         </Col>
       </Row>
       <Row className="about-us-cards" justify="center">
         <Col span={24}>
-          <Title level={1} className="about-us-cards-title">
+          <Title
+            level={1}
+            className={`about-us-cards-title ${isDarkMode ? 'dark' : ''}`}
+          >
             {t('aboutUs.coreValues')}
           </Title>
         </Col>
@@ -110,7 +119,7 @@ function AboutUsPage() {
         {cardItems.map((item, index) => (
           <Col xs={24} sm={24} md={12} lg={8} key={index}>
             <Card
-              className={`about-us-card${theme ? ' dark-mode-text dark-theme' : ''}`}
+              className={`about-us-card ${isDarkMode ? 'dark' : ''}`}
               bodyStyle={{ padding: 0 }}
             >
               <div className="about-us-card-content">
@@ -119,10 +128,17 @@ function AboutUsPage() {
                   src={item.img}
                   alt={item.alt}
                 />
-                <Title level={2} className="about-us-card-title">
+                <Title
+                  level={2}
+                  className={`about-us-card-title ${isDarkMode ? 'dark' : ''}`}
+                >
                   {item.title}
                 </Title>
-                <Text className="about-us-card-text">{item.text}</Text>
+                <Text
+                  className={`about-us-card-text ${isDarkMode ? 'dark' : ''}`}
+                >
+                  {item.text}
+                </Text>
               </div>
             </Card>
           </Col>
@@ -131,7 +147,10 @@ function AboutUsPage() {
 
       <Row className="opinions-section">
         <Col span={24}>
-          <Title level={1} className="opinions-title">
+          <Title
+            level={1}
+            className={`opinions-title ${isDarkMode ? 'dark' : ''}`}
+          >
             {t('aboutUs.clientOpinions')}
           </Title>
           <Carousel
@@ -148,7 +167,7 @@ function AboutUsPage() {
             {opinions.map((opinion, index) => (
               <div key={index} className="opinion-card-wrapper">
                 <Card
-                  className={`opinion-card ${theme ? 'opinion-card-dark' : 'opinion-card-light'}`}
+                  className={`opinion-card ${isDarkMode ? 'dark' : ''}`}
                   bodyStyle={{
                     padding: 20,
                     display: 'flex',
@@ -163,11 +182,15 @@ function AboutUsPage() {
                       alt="opinion"
                       className="opinion-image"
                     />
-                    <Text className="opinion-description">
+                    <Text
+                      className={`opinion-description ${isDarkMode ? 'dark' : ''}`}
+                    >
                       {opinion.description}
                     </Text>
-                    <LineOutlined className="opinion-divider" />
-                    <Title level={4} className="opinion-name">
+                    <Title
+                      level={4}
+                      className={`opinion-name ${isDarkMode ? 'dark' : ''}`}
+                    >
                       {opinion.name}
                     </Title>
                   </div>
@@ -179,13 +202,18 @@ function AboutUsPage() {
       </Row>
       <Row justify="center" gutter={[32, 32]} className="location-section">
         <Col xs={24} md={10} className="location-text">
-          <Title level={1} className="location-title">
+          <Title
+            level={1}
+            className={`location-title ${isDarkMode ? 'dark' : ''}`}
+          >
             {t('aboutUs.location.title')}
           </Title>
-          <Text className="location-description">
+          <Text className={`location-description ${isDarkMode ? 'dark' : ''}`}>
             {t('aboutUs.location.description')}
           </Text>
-          <Text className="location-phone">{t('aboutUs.location.phone')}</Text>
+          <Text className={`location-phone ${isDarkMode ? 'dark' : ''}`}>
+            {t('aboutUs.location.phone')}
+          </Text>
         </Col>
         <Col xs={24} md={14} className="location-map-wrapper">
           <iframe

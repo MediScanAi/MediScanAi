@@ -1,4 +1,4 @@
-import { Tabs, Typography, Card, Button, Row, Col } from 'antd';
+import { Tabs, Typography, Card, Row, Col } from 'antd';
 import type { TabsProps } from 'antd';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useAppSelector } from '../../../app/hooks.ts';
@@ -9,7 +9,6 @@ import {
   HeatMapOutlined,
   MonitorOutlined,
 } from '@ant-design/icons';
-import formImage from '../../../assets/photos/Productivity 10.png';
 import laboratoryImage from '../../../assets/photos/Education8.png';
 import '../../../assets/styles/rootForm.css';
 import VitaminTestForm from './VitaminTestForm';
@@ -17,6 +16,7 @@ import UrineTestForm from './UrineTestForm';
 import BloodTestsForm from './BloodTestForm';
 import GeneticTestForm from './GeneticTestForm';
 import { useTranslation } from 'react-i18next';
+import PrimaryButton from '../../../components/common/PrimaryButton.tsx';
 
 const { Title, Text } = Typography;
 
@@ -25,7 +25,7 @@ function RootForm(): ReactNode | null {
   const { testType } = useParams();
   const { t } = useTranslation();
 
-  const theme = useAppSelector((state) => state.theme.isDarkMode);
+  const isDarkMode = useAppSelector((state) => state.theme.isDarkMode);
   const items: TabsProps['items'] = [
     {
       label: (
@@ -77,43 +77,21 @@ function RootForm(): ReactNode | null {
     items.find((item) => item.key === testType)?.key || 'blood-test';
 
   return (
-    <div className={theme ? ' dark-theme' : ''}>
-      <Row className="form-welcome-section">
-        <div className="welcome-top-row">
-          <Button
-            className="back-button"
-            onClick={() => navigate('/profile/info')}
-            type="primary"
-          >
-            {t('rootform.backButton')}
-          </Button>
-        </div>
+    <div className={`root-form-container ${isDarkMode ? ' dark' : ''}`}>
+      <PrimaryButton
+        style={{ left: '50px', marginTop: '10px' }}
+        onClick={() => navigate('/profile/info')}
+      >
+        {t('rootform.backButton')}
+      </PrimaryButton>
 
-        <Row className="welcome-content-container">
-          <Col className="image-column">
-            <img
-              src={formImage}
-              alt={t('platform')}
-              className="form-platform-image"
-            />
-          </Col>
-          <Col className="text-column">
-            <Title className="form-welcome-title">
-              {t('rootform.welcomeTitle')}
-            </Title>
-            <Text className="form-welcome-message">
-              {t('rootform.welcomeMessage')}
-            </Text>
-          </Col>
-        </Row>
-      </Row>
       <Row className="form-main-container">
         <Col xs={24} md={10} className="form-left-content">
           <div className="form-header">
-            <Title level={2} className="medical-title">
+            <Title level={2} className={`medical-title ${isDarkMode ? 'dark' : ''}`}>
               {t('rootform.medicalLaboratoryTestForm')}
             </Title>
-            <Text className="medical-subtitle">
+            <Text className={`medical-subtitle ${isDarkMode ? 'dark' : ''}`}>
               {t('rootform.selectTestType')}
             </Text>
           </div>
@@ -122,19 +100,20 @@ function RootForm(): ReactNode | null {
             <img
               src={laboratoryImage}
               alt={t('rootform.medicalIllustration')}
+              style={{ width: '90%' }}
             />
           </div>
         </Col>
 
-        <Col xs={24} md={14} className="form-right-content">
-          <Card className="medical-form-card">
+        <Col xs={24} md={14}>
+          <Card className={`medical-form-card ${isDarkMode ? 'dark' : ''}`}>
             <Tabs
               type="card"
               size="large"
               activeKey={activeKey}
               onChange={handleTabChange}
               items={items}
-              className="medical-tabs"
+              className={`medical-tabs ${isDarkMode ? 'dark' : ''}`}
             />
           </Card>
         </Col>

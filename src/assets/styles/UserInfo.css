@@ -1,17 +1,12 @@
 .modern-user-profile {
-  width: 100%;
-  max-width: 1200px;
+  width: 70vw;
   margin: 0 auto;
 }
 
 .profile-container {
   border-radius: 16px;
   overflow: hidden;
-}
-
-.profile-container.dark {
-  background: #3f3f3f;
-  border: 1px solid #303030;
+  background-color: transparent;
 }
 
 .profile-header-container {
@@ -70,7 +65,7 @@
 }
 
 .info-card {
-  background: #fff;
+  background: #e6ecfa !important;
   border-radius: 12px;
   padding: 16px;
   height: 100%;
@@ -78,9 +73,23 @@
   transition: all 0.3s;
 }
 
-.dark .info-card {
-  background: #404040 !important;
-  border-color: #6d6d6d;
+.info-card-motion {
+  background: #e6ecfa !important;
+  border-radius: 12px;
+  padding: 16px;
+  height: 100%;
+  border: 1px solid #f0f0f0;
+  transition: all 0.3s;
+}
+
+.dark .info-card-motion {
+  background-color: rgba(28, 52, 125, 1) !important;
+  border: none;
+}
+
+.info-card-motion:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 12px rgba(24, 93, 255, 0.2);
 }
 
 .info-card.editable {
@@ -136,6 +145,12 @@
 
 .info-input {
   width: 75%;
+  background-color: #fff;
+  border-radius: 6px;
+}
+
+.dark .info-input {
+  background-color: #ffffff !important;
 }
 
 .metric-card {
@@ -223,21 +238,25 @@
 }
 
 .info-card {
+  background: #fff;
   position: relative;
   padding: 16px;
   border-radius: 8px;
-  background: #fff;
+  border: none;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
   transition: all 0.3s;
+}
+
+.info-card.dark {
+  background-color: rgba(28, 52, 125, 1) !important;
 }
 
 .info-card.editing {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 }
 
-.dark .info-card.editing {
-  background: #7a7a7a !important;
-  border-color: #7a7a7a !important;
+.info-card.editing.dark {
+  background: rgb(37, 69, 163) !important;
 }
 
 .info-label {

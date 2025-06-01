@@ -8,7 +8,7 @@ import {
   Row,
   Col,
 } from 'antd';
-import { useAppDispatch } from '../../../app/hooks';
+import { useAppDispatch, useAppSelector } from '../../../app/hooks';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { saveTestData, setTestData } from '../../../app/slices/testSlice';
 import { auth } from '../../../api/authApi';
@@ -24,23 +24,24 @@ function GeneticTestForm() {
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
   const updatedData = useLocation()?.state?.geneticTestData || undefined;
+  const isDarkMode = useAppSelector((state) => state.theme.isDarkMode);
   const geneticFields = [
     {
       type: 'select',
       name: 'brca1',
-      label: t('geneticTest.brca1'),
+      label: <span className={`input-item ${isDarkMode ? 'dark' : ''}`}>{t('geneticTest.brca1')}</span>,
       options: [t('geneticTest.negative'), t('geneticTest.positive')],
     },
     {
       type: 'select',
       name: 'brca2',
-      label: t('geneticTest.brca2'),
+      label: <span className={`input-item ${isDarkMode ? 'dark' : ''}`}>{t('geneticTest.brca2')}</span>,
       options: [t('geneticTest.negative'), t('geneticTest.positive')],
     },
     {
       type: 'select',
       name: 'apoe',
-      label: t('geneticTest.apoe'),
+      label: <span className={`input-item ${isDarkMode ? 'dark' : ''}`}>{t('geneticTest.apoe')}</span>,
       options: [
         t('geneticTest.ε2/ε2'),
         t('geneticTest.ε3/ε3'),
@@ -51,7 +52,7 @@ function GeneticTestForm() {
     {
       type: 'select',
       name: 'mthfr',
-      label: t('geneticTest.mthfr'),
+      label: <span className={`input-item ${isDarkMode ? 'dark' : ''}`}>{t('geneticTest.mthfr')}</span>,
       options: [
         t('geneticTest.homozygous'),
         t('geneticTest.heterozygous'),
@@ -61,13 +62,13 @@ function GeneticTestForm() {
     {
       type: 'select',
       name: 'factor_v_leiden',
-      label: t('geneticTest.factor_v_leiden'),
+      label: <span className={`input-item ${isDarkMode ? 'dark' : ''}`}>{t('geneticTest.factor_v_leiden')}</span>,
       options: [t('geneticTest.negative'), t('geneticTest.positive')],
     },
     {
       type: 'select',
       name: 'cyp2c19',
-      label: t('geneticTest.cyp2c19'),
+      label: <span className={`input-item ${isDarkMode ? 'dark' : ''}`}>{t('geneticTest.cyp2c19')}</span>,
       options: [
         t('geneticTest.categoryI'),
         t('geneticTest.categoryII'),
@@ -103,7 +104,7 @@ function GeneticTestForm() {
   return (
     <Card
       style={{ border: 'none' }}
-      title={<Title level={3}>{t('geneticTest.title')}</Title>}
+      title={<Title level={3} className={`input-item ${isDarkMode ? 'dark' : ''}`}>{t('geneticTest.title')}</Title>}
     >
       <Form
         form={form}

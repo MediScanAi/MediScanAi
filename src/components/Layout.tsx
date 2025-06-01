@@ -1,6 +1,7 @@
 import AppHeader from './Header.tsx';
 import { Footer } from './Footer.tsx';
 import { useLocation } from 'react-router-dom';
+import '../assets/styles/layout.css';
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
   const location = useLocation();
@@ -11,7 +12,9 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
   return (
     <>
       <AppHeader />
-      {children}
+      <div className="main-content">
+        {children}
+      </div>
       {!hideFooter && <Footer />}
     </>
   );
