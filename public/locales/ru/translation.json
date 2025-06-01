@@ -586,7 +586,11 @@
     },
     "visualization": {
       "alt": "Визуализация здоровья"
-    }
+    },
+    "getDataExportInstructions": "Подключить данные о здоровье",
+    "dailyMetrics": "Ежедневные показатели",
+    "selectDate": "Выберите дату",
+    "noData": "Нет данных за выбранную дату"
   },
   "healthGuide": {
     "guide": {
