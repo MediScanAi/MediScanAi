@@ -42,7 +42,10 @@ const MainTests: React.FC<MainTestsProps> = ({ theme, width }) => {
   ];
 
   return (
-    <div style={{ width: '70vw' }} className={`modern-user-profile ${theme ? 'dark' : ''}`}>
+    <div
+      style={{ width: '70vw' }}
+      className={`modern-user-profile ${theme ? 'dark' : ''}`}
+    >
       <div
         style={{
           margin: '0 auto',

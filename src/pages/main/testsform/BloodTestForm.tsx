@@ -29,7 +29,11 @@ function BloodTestsForm() {
   const bloodTestFields = [
     {
       name: 'hemoglobin',
-      label: <span className={`input-item ${isDarkMode ? 'dark' : ''}`}>{t('bloodTest.hemoglobin')}</span>,
+      label: (
+        <span className={`input-item ${isDarkMode ? 'dark' : ''}`}>
+          {t('bloodTest.hemoglobin')}
+        </span>
+      ),
       min: 0,
       max: 25,
       step: 0.1,
@@ -37,7 +41,11 @@ function BloodTestsForm() {
     },
     {
       name: 'wbc',
-      label: <span className={`input-item ${isDarkMode ? 'dark' : ''}`}>{t('bloodTest.wbc')}</span>,
+      label: (
+        <span className={`input-item ${isDarkMode ? 'dark' : ''}`}>
+          {t('bloodTest.wbc')}
+        </span>
+      ),
       min: 0,
       max: 20,
       step: 0.1,
@@ -45,7 +53,11 @@ function BloodTestsForm() {
     },
     {
       name: 'rbc',
-      label: <span className={`input-item ${isDarkMode ? 'dark' : ''}`}>{t('bloodTest.rbc')}</span>,
+      label: (
+        <span className={`input-item ${isDarkMode ? 'dark' : ''}`}>
+          {t('bloodTest.rbc')}
+        </span>
+      ),
       min: 0,
       max: 10,
       step: 0.1,
@@ -53,7 +65,11 @@ function BloodTestsForm() {
     },
     {
       name: 'platelets',
-      label: <span className={`input-item ${isDarkMode ? 'dark' : ''}`}>{t('bloodTest.platelets')}</span>,
+      label: (
+        <span className={`input-item ${isDarkMode ? 'dark' : ''}`}>
+          {t('bloodTest.platelets')}
+        </span>
+      ),
       min: 0,
       max: 1000,
       step: 1,
@@ -61,7 +77,11 @@ function BloodTestsForm() {
     },
     {
       name: 'glucose',
-      label: <span className={`input-item ${isDarkMode ? 'dark' : ''}`}>{t('bloodTest.glucose')}</span>,
+      label: (
+        <span className={`input-item ${isDarkMode ? 'dark' : ''}`}>
+          {t('bloodTest.glucose')}
+        </span>
+      ),
       min: 50,
       max: 500,
       step: 1,
@@ -69,7 +89,11 @@ function BloodTestsForm() {
     },
     {
       name: 'cholesterol',
-      label: <span className={`input-item ${isDarkMode ? 'dark' : ''}`}>{t('bloodTest.cholesterol')}</span>,
+      label: (
+        <span className={`input-item ${isDarkMode ? 'dark' : ''}`}>
+          {t('bloodTest.cholesterol')}
+        </span>
+      ),
       min: 50,
       max: 400,
       step: 1,
@@ -102,7 +126,11 @@ function BloodTestsForm() {
   return (
     <Card
       style={{ border: 'none' }}
-      title={<Title level={3} className={`input-item ${isDarkMode ? 'dark' : ''}`}>{t('rootform.blood')}</Title>}
+      title={
+        <Title level={3} className={`input-item ${isDarkMode ? 'dark' : ''}`}>
+          {t('rootform.blood')}
+        </Title>
+      }
     >
       <Form
         form={form}

@@ -108,7 +108,11 @@ const VitaminTestForm = () => {
   return (
     <Card
       style={{ border: 'none' }}
-      title={<Title level={3} className={`input-item ${isDarkMode ? 'dark' : ''}`}>{t('vitaminTest.title')}</Title>}
+      title={
+        <Title level={3} className={`input-item ${isDarkMode ? 'dark' : ''}`}>
+          {t('vitaminTest.title')}
+        </Title>
+      }
     >
       <Form
         form={form}
@@ -121,7 +125,11 @@ const VitaminTestForm = () => {
           {vitaminTestFields.map((field) => (
             <Col span={12} key={field.name}>
               <Form.Item
-                label={<span className={`input-item ${isDarkMode ? 'dark' : ''}`}>{`${field.label} (${field.unit})`}</span>}
+                label={
+                  <span
+                    className={`input-item ${isDarkMode ? 'dark' : ''}`}
+                  >{`${field.label} (${field.unit})`}</span>
+                }
                 name={field.name}
                 rules={[{ required: true }]}
               >

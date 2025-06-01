@@ -15,7 +15,7 @@
   align-items: center;
   padding: 0 24px;
   height: 64px;
-  background:  #e6ecfa;
+  background: #e6ecfa;
   backdrop-filter: blur(8px);
   transition: background 0.3s;
   position: sticky;
@@ -102,7 +102,8 @@
   color: #fff;
 }
 
-.lang-dropdown-dark .ant-select-item-option-selected:not(.ant-select-item-option-disabled) {
+.lang-dropdown-dark
+  .ant-select-item-option-selected:not(.ant-select-item-option-disabled) {
   background: #2e4a6b;
   color: #fff;
 }
@@ -212,13 +213,15 @@
   color: #161c3d;
 }
 
-.nav-menu.ant-menu-horizontal>.ant-menu-item-selected,
-.nav-menu.ant-menu-horizontal>.ant-menu-submenu-selected {
+.nav-menu.ant-menu-horizontal > .ant-menu-item-selected,
+.nav-menu.ant-menu-horizontal > .ant-menu-submenu-selected {
   background: transparent;
 }
 
-.app-header.dark .nav-menu.ant-menu-horizontal>.ant-menu-item-selected::after,
-.app-header.dark .nav-menu.ant-menu-horizontal>.ant-menu-submenu-selected::after {
+.app-header.dark .nav-menu.ant-menu-horizontal > .ant-menu-item-selected::after,
+.app-header.dark
+  .nav-menu.ant-menu-horizontal
+  > .ant-menu-submenu-selected::after {
   border-bottom: 2px solid #1890ff;
 }
 
