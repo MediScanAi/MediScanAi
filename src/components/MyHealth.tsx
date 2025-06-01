@@ -100,7 +100,7 @@ const HealthPage: React.FC = () => {
     navigator.clipboard.writeText(currentUser || 'No UID found');
     setUidCopied(true);
     message.success('UID copied to clipboard!');
-    setTimeout(() => setUidCopied(false), 2000);
+    setTimeout(() => setUidCopied(false), 500);
   };
 
   useEffect(() => {
@@ -209,7 +209,7 @@ const HealthPage: React.FC = () => {
         }
       }
       setLoading(false);
-    }, 1000);
+    }, 500);
 
     return () => clearTimeout(timer);
   }, [userData]);

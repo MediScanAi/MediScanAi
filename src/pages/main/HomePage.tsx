@@ -5,6 +5,7 @@ import {
   Card,
   Carousel,
   Collapse,
+  Spin,
 } from 'antd';
 import 'antd/dist/reset.css';
 import { DownOutlined } from '@ant-design/icons';
@@ -42,6 +43,7 @@ function HomePage() {
   const [width, setWidth] = useState(window.innerWidth);
   const [openIndex, setOpenIndex] = useState<number | null>(null);
   const isDarkMode = useSelector((state: RootState) => state.theme.isDarkMode);
+  const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
   const activities = [
@@ -188,6 +190,26 @@ function HomePage() {
   const toggleOpen = (index: number | null) => {
     setOpenIndex(openIndex === index ? null : index);
   };
+
+  useEffect(() => {
+    const delay = setTimeout(() => {
+      setLoading(false);
+    }, 100);
+
+    return () => clearTimeout(delay);
+  }, []);
+
+  if (loading) {
+    return (
+      <div className={`loading-state ${isDarkMode ? 'dark' : ''}`}>
+        <Spin className="loading-spinner" />
+        <Title level={3} className="loading-title">
+          Loading...
+        </Title>
+        <Text className="loading-subtitle">Please wait while we load the page...</Text>
+      </div>
+    );
+  }
 
   return (
     <Row className={`homepage ${isDarkMode ? 'dark' : ''}`}>
