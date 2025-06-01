@@ -51,6 +51,14 @@
   padding: 24px;
 }
 
+.select-item {
+  width: 75%;
+}
+
+.select-item.dark {
+  color: #141414 !important;
+}
+
 .section-title {
   margin-bottom: 16px !important;
 }
