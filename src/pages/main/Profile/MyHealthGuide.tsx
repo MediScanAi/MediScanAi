@@ -18,12 +18,14 @@ import { User, Scale, Activity, Target, TrendingUp, Zap } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import MyHealth from '../../../assets/photos/MyHealth.svg';
+import MyHealthDark from '../../../assets/photos/MyHealthDark.svg';
 import '../../../assets/styles/healthPage.css';
 import { auth } from '../../../api/authApi';
 import type { RootState } from '../../../app/store';
 import { useSelector } from 'react-redux';
 import PrimaryButton from '../../../components/common/PrimaryButton';
 
+import SecondaryButton from '../../../components/common/SecondaryButton';
 const { Title, Text } = Typography;
 
 const MyHealthGuide: React.FC = () => {
@@ -80,11 +82,16 @@ const MyHealthGuide: React.FC = () => {
 
   return (
     <div className={`guide-page ${isDarkMode ? 'dark' : ''}`}>
+      <div className="back-button-container">
+        <SecondaryButton className="back-button" onClick={() => navigate('/my-health')}>
+          My Health
+        </SecondaryButton>
+      </div>
       <div className="header-container">
         <p className={`header-title ${isDarkMode ? 'dark' : ''}`}>
           {t('healthGuide.guide.title')}
         </p>
-        <img src={MyHealth} alt="" className="header-image" />
+        <img src={isDarkMode ? MyHealthDark : MyHealth} alt="" className="header-image" />
       </div>
 
       <div className="guides-container">
@@ -204,20 +211,12 @@ const MyHealthGuide: React.FC = () => {
             </Steps>
           </div>
 
-          <div className="button-container">
-            <PrimaryButton
-              icon={<AppleOutlined />}
-              onClick={showModal}
-              style={{
-                width: '100%',
-                marginTop: 'auto',
-                display: 'flex',
-                justifyContent: 'center',
-              }}
-            >
-              {t('healthGuide.guide.connectButton')}
-            </PrimaryButton>
-          </div>
+          <PrimaryButton
+            icon={<AppleOutlined />}
+            onClick={showModal}
+          >
+            {t('healthGuide.guide.connectButton')}
+          </PrimaryButton>
 
           <Modal
             title={t('healthGuide.guide.connectModal.title')}
@@ -229,23 +228,25 @@ const MyHealthGuide: React.FC = () => {
               </Button>,
             ]}
             width={600}
+            className={`modal-container ${isDarkMode ? 'dark' : ''}`}
           >
-            <div className="modal-content">
-              <p className="modal-step-description">
+            <div className={`modal-content ${isDarkMode ? 'dark' : ''}`}>
+              <p className={`modal-step-description ${isDarkMode ? 'dark' : ''}`}>
                 {t('healthGuide.guide.connectModal.description')}
               </p>
 
-              <div className="modal-steps-container">
+              <div className={`modal-steps-container ${isDarkMode ? 'dark' : ''}`}>
                 <Steps
                   direction="vertical"
                   current={-1}
                   size="small"
-                  className="modal-steps"
+                  className={`modal-steps ${isDarkMode ? 'dark' : ''}`}
                 >
                   <Steps.Step
                     title={t(
                       'healthGuide.guide.connectModal.steps.download.title'
                     )}
+                    className={`modal-step ${isDarkMode ? 'dark' : ''}`}
                     description={
                       <div className="download-link-container">
                         <a
@@ -266,6 +267,7 @@ const MyHealthGuide: React.FC = () => {
                     title={t(
                       'healthGuide.guide.connectModal.steps.copyUid.title'
                     )}
+                    className={`modal-step ${isDarkMode ? 'dark' : ''}`}
                     description={
                       <div className="uid-container">
                         <Text className="uid-text">{currentUser}</Text>
@@ -278,11 +280,11 @@ const MyHealthGuide: React.FC = () => {
                         >
                           {uidCopied
                             ? t(
-                                'healthGuide.guide.connectModal.steps.copyUid.button.copied'
-                              )
+                              'healthGuide.guide.connectModal.steps.copyUid.button.copied'
+                            )
                             : t(
-                                'healthGuide.guide.connectModal.steps.copyUid.button.copy'
-                              )}
+                              'healthGuide.guide.connectModal.steps.copyUid.button.copy'
+                            )}
                         </Button>
                       </div>
                     }
