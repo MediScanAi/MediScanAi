@@ -8,7 +8,6 @@ import {
   message,
   Grid,
   Spin,
-  Switch,
 } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
 import { loginUser } from '../../app/slices/authSlice';
@@ -20,9 +19,10 @@ import ForgotPasswordForm from '../../components/ForgotPasswordForm';
 import LoginWithGoogleButton from '../../components/LoginWithGoogleButton';
 import MedicalInstruments3D from '../../assets/photos/medical_instruments.png';
 import '../../assets/styles/LoginPage.css';
-import { toggleTheme } from '../../app/slices/theme';
 import PrimaryButton from '../../components/common/PrimaryButton';
-import { MoonOutlined, SunOutlined } from '@ant-design/icons';
+import PreferencesDropdown from '../../components/preferences/PreferencesDropdown';
+import SecondaryButton from '../../components/common/SecondaryButton';
+import { X } from 'lucide-react';
 
 const { Title, Text } = Typography;
 const { useBreakpoint } = Grid;
@@ -52,29 +52,29 @@ const LoginPage: React.FC = () => {
   };
 
   const toggleForgotPassword = () => setIsForgotPassword((prev) => !prev);
-
   const toggleGoogleLoading = async (isLoading: boolean) => {
     setGoogleLoading(isLoading);
   };
 
-  const handleThemeChange = () => dispatch(toggleTheme());
-
   return (
     <div className={`login-page-container ${isDarkMode ? 'dark' : 'light'}`}>
-      <Switch
-        className="theme-toggle"
-        checked={isDarkMode}
-        checkedChildren={<MoonOutlined />}
-        unCheckedChildren={<SunOutlined />}
-        onChange={handleThemeChange}
-      />
+      <div className="login-preferences-dropdown">
+        <PreferencesDropdown />
+      </div>
+      <div className="login-back-link-container">
+        <SecondaryButton size="large">
+          <Link to="/" className="login-back-link">
+            <X />
+          </Link>
+        </SecondaryButton>
+      </div>
       {screens.md && (
         <div className="welcome-section-login">
           <motion.div
-            initial={{ opacity: 0, y: 45 }}
-            animate={{ opacity: 1, y: 30 }}
-            transition={{ duration: 0.5 }}
-            className="welcome-login-text-container fade-in"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, ease: 'easeInOut' }}
+            className="welcome-text-container"
           >
             <Title level={2} className="welcome-login-title">
               Welcome back to MediScan AI
@@ -89,7 +89,7 @@ const LoginPage: React.FC = () => {
             alt="Medical Instruments"
             className="welcome-login-medical"
             initial={{ opacity: 0, x: -45, y: 45 }}
-            animate={{ opacity: 1, x: 0, y: 0 }}
+            animate={{ opacity: 1, x: 0, y: -20 }}
             transition={{ duration: 0.9, ease: 'easeInOut' }}
           />
         </div>
@@ -180,13 +180,18 @@ const LoginPage: React.FC = () => {
                       />
                     </div>
                   </Form.Item>
-
-                  <Text className="register-text">
-                    Don't have an account?{' '}
-                    <Link to="/auth/register" className="register-link">
-                      Register
-                    </Link>
-                  </Text>
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.3, ease: 'easeInOut' }}
+                  >
+                    <Text className="register-text">
+                      Don't have an account?{' '}
+                      <Link to="/auth/register" className="register-link">
+                        Register
+                      </Link>
+                    </Text>
+                  </motion.div>
                 </Form>
               </Card>
             </Spin>

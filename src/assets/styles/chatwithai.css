@@ -1,6 +1,49 @@
+.chat-with-ai {
+  background: radial-gradient(circle at 10% 30%, #b3d1ff, #e6ecfa, #ffffff);
+  border-top: none;
+  height: calc(100vh - 64px);
+}
+
+.chat-with-ai.dark {
+  background: radial-gradient(
+    circle at 10% 30%,
+    rgba(28, 52, 125, 0.9),
+    #121e63,
+    rgba(28, 52, 125, 1)
+  );
+}
+
+.new-chat-button {
+  width: 100px;
+}
+
+.chat-with-ai-dropdown {
+  color: #ffffff;
+}
+
+.chat-with-ai-dropdown.dark {
+  color: #000000;
+}
+
+.chat-with-ai-label {
+  color: #000000;
+}
+
+.chat-with-ai-label.dark {
+  color: #ffffff;
+}
+
 .chat-item-hover:hover {
-  background-color: #cac9c9 !important;
+  background-color: #aeaeba !important;
   transition: background-color 0.2s ease;
+}
+
+.chat-item-title {
+  color: #000000;
+}
+
+.chat-item-title.dark {
+  color: #ffffff;
 }
 
 .message-buttons {

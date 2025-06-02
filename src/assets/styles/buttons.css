@@ -2,18 +2,13 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-width: fit-content;
-  max-width: max-content;
   padding: 0 12px;
   border-radius: 12px;
-  font-size: 16px;
   font-weight: 600;
-  height: 44px;
   gap: 12px;
 }
 
 .primary-btn {
-  flex: 1;
   background: linear-gradient(90deg, #5e8fff 0%, #4368e2 100%);
   border: none;
   color: #fff;
@@ -42,9 +37,7 @@
   color: #5e8fff;
   border: 2px solid #5e8fff;
   font-weight: 600;
-  font-size: 16px;
   border-radius: 12px;
-  height: 44px;
   transition:
     background 0.2s,
     color 0.2s,
@@ -56,7 +49,6 @@
 
 .secondary-btn:hover,
 .secondary-btn:focus {
-  background: #e6ecfa !important;
   color: #4368e2 !important;
   border-color: #4368e2 !important;
   opacity: 1;
@@ -65,6 +57,7 @@
     0 2px 8px 0 rgba(70, 102, 229, 0.14) !important;
   transform: translateY(-2px) scale(1.015) !important;
 }
+
 .custom-btn .anticon,
 .custom-btn .custom-btn-icon {
   font-size: 18px;

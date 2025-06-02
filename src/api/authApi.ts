@@ -36,6 +36,7 @@ export interface AuthUser {
   lastName: string;
   uid: string;
   email: string | null;
+  photoURL: string | null;
 }
 
 export const mapFirebaseUser = (u: FirebaseUser | null): AuthUser | null => {
@@ -52,6 +53,7 @@ export const mapFirebaseUser = (u: FirebaseUser | null): AuthUser | null => {
     lastName,
     uid: u.uid,
     email: u.email,
+    photoURL: u.photoURL ?? null,
   };
 };
 

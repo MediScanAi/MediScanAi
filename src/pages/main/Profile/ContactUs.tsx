@@ -15,17 +15,17 @@ export interface ContactUsProps {
   width: number;
 }
 
-const ContactUs: React.FC<ContactUsProps> = ({ theme, width }) => {
+const ContactUs: React.FC<ContactUsProps> = ({ theme }) => {
   const { t } = useTranslation();
   return (
-    <div style={{ minHeight: '50vh' }}>
+    <div style={{ height: '60vh', width: '70vw' }}>
       <Card
         title={
           <Title
             className={theme ? 'dark-mode-text' : ''}
             level={2}
             style={{
-              marginBottom: 0,
+              marginBottom: 10,
               color: '#3498db',
               fontWeight: 600,
               fontFamily: 'Poppins',
@@ -34,30 +34,29 @@ const ContactUs: React.FC<ContactUsProps> = ({ theme, width }) => {
             {t('contactUs.title')}
           </Title>
         }
-        variant={'borderless'}
-        style={{ borderRadius: '12px', backgroundColor: 'transparent' }}
+        style={{ backgroundColor: 'transparent', border: 'none' }}
       >
-        <Row gutter={[0, 16]}>
-          <Col span={24}>
+        <Row style={{ marginTop: '20px' }} gutter={[0, 16]}>
+          <Col style={{ marginTop: '10px' }} span={24}>
             <Text
               className={theme ? 'dark-mode-text' : ''}
-              style={{ fontSize: 16 }}
+              style={{ fontSize: 16, marginTop: '20px' }}
             >
               <PhoneOutlined style={{ marginRight: 8 }} />
               {t('contactUs.phone')}
             </Text>
           </Col>
-          <Col span={24}>
+          <Col style={{ marginTop: '10px' }} span={24}>
             <Text
               className={theme ? 'dark-mode-text' : ''}
               style={{ fontSize: 16 }}
             >
               <MailOutlined style={{ marginRight: 8 }} />
               {t('contactUs.email')}
-              <a href="mailto:mediscan@center.com">mediscan@center.com</a>
+              <a href="mailto:mediscan@center.com"> mediscan@center.com</a>
             </Text>
           </Col>
-          <Col span={24}>
+          <Col style={{ marginTop: '10px' }} span={24}>
             <Text
               className={theme ? 'dark-mode-text' : ''}
               style={{ fontSize: 16 }}
@@ -66,7 +65,7 @@ const ContactUs: React.FC<ContactUsProps> = ({ theme, width }) => {
               {t('contactUs.address')}
             </Text>
           </Col>
-          <Col span={24}>
+          <Col style={{ marginTop: '10px' }} span={24}>
             <Text
               className={theme ? 'dark-mode-text' : ''}
               style={{ fontSize: 16 }}
@@ -75,7 +74,7 @@ const ContactUs: React.FC<ContactUsProps> = ({ theme, width }) => {
               {t('contactUs.hours')}
             </Text>
           </Col>
-          <Col span={24}>
+          <Col style={{ marginTop: '10px' }} span={24}>
             <Text
               className={theme ? 'dark-mode-text' : ''}
               style={{ fontSize: 16 }}

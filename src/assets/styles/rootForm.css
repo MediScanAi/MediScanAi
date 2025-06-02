@@ -1,3 +1,19 @@
+.root-form-container {
+  background: radial-gradient(circle at 10% 30%, #b3d1ff, #e6ecfa, #ffffff);
+  height: 100%;
+  position: relative;
+  overflow-x: hidden;
+}
+
+.root-form-container.dark {
+  background: radial-gradient(
+    circle at 10% 30%,
+    rgba(28, 52, 125, 0.9),
+    #121e63,
+    rgba(28, 52, 125, 1)
+  );
+}
+
 .form-welcome-section {
   width: 100%;
   padding: 30px 40px;
@@ -142,7 +158,10 @@
 .form-main-container {
   width: 100%;
   display: flex;
-  padding: 0 2rem 2rem;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  margin: 0 auto;
 }
 
 .form-left-content {
@@ -156,26 +175,6 @@
 .form-header {
   max-width: 600px;
   margin-bottom: 2rem;
-}
-
-.back-button {
-  background: #3b82f6;
-  border: none;
-  padding: 0.5rem 1.5rem;
-  border-radius: 22px;
-  font-weight: 500;
-  display: flex;
-  align-items: center;
-  transition: all 0.2s ease;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  font-size: 16px;
-  margin-top: 10px;
-  width: 200px;
-  height: 45px;
-  position: absolute;
-  left: 0;
-  top: 0;
-  margin-top: 10px;
 }
 
 .back-button:hover {
@@ -196,6 +195,10 @@
   font-size: 2.25rem;
 }
 
+.medical-title.dark {
+  color: #b3d1ff;
+}
+
 .medical-subtitle {
   font-size: 1.3rem;
   color: #4b5563;
@@ -204,6 +207,10 @@
   max-width: 600px;
   margin-left: auto;
   margin-right: auto;
+}
+
+.medical-subtitle.dark {
+  color: #ffffff;
 }
 
 .medical-form-card {
@@ -215,6 +222,17 @@
   border: none;
   background: white;
   overflow: hidden;
+  margin-right: 40px;
+  background: white;
+}
+
+.medical-form-card.dark {
+  background: radial-gradient(
+    circle at 10% 30%,
+    rgba(28, 52, 125, 0.9),
+    #121e63,
+    rgba(28, 52, 125, 1)
+  );
 }
 
 .medical-image-container {
@@ -231,7 +249,7 @@
 
 .medical-tabs .ant-tabs-nav {
   margin-bottom: 0;
-  background: #f8fafc;
+  background: transparent;
   padding: 0 1rem;
 }
 
@@ -239,11 +257,15 @@
   padding: 1rem 1.75rem;
   font-size: 1rem;
   font-weight: 500;
-  color: #64748b;
+  color: #000000;
   transition: all 0.2s ease;
   border: none !important;
   margin: 0 0.25rem !important;
   border-radius: 8px 8px 0 0 !important;
+}
+
+.medical-tabs.dark .ant-tabs-tab {
+  color: #ffffff;
 }
 
 .medical-tabs .ant-tabs-tab:hover {
@@ -263,6 +285,28 @@
   background: #3b82f6;
 }
 
+.medical-tabs.dark .ant-tabs-tab-active {
+  background: transparent !important;
+  color: #ffffff !important;
+}
+
+.medical-tabs.dark .ant-card-body {
+  background: transparent !important;
+  color: #ffffff !important;
+}
+
 .medical-tabs .ant-tabs-content {
   padding: 2rem;
+}
+
+.ant-typography.dark {
+  color: #ffffff !important;
+}
+
+.input-item.dark {
+  color: #ffffff !important;
+}
+
+.select-item.dark {
+  color: #ffffff !important;
 }

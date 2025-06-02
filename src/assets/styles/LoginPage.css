@@ -1,5 +1,5 @@
 .login-page-container {
-  min-height: 100vh;
+  height: 100vh;
   width: 100vw;
   display: flex;
   align-items: center;
@@ -54,20 +54,26 @@
   background: radial-gradient(circle at 10% 30%, #b3d1ff, #e6ecfa, #ffffff);
   color: #161c3d;
 }
-
 .welcome-section-login {
   flex: 1;
-  display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-evenly;
+  min-height: 0;
+  text-align: center;
+  display: flex;
   flex-direction: column;
-  padding: 0 20px;
+  margin: 90px 0 40px 0;
 }
 
+@media (max-width: 900px) {
+  .welcome-section-login {
+    height: auto;
+    min-height: 300px;
+  }
+}
 .welcome-text-container {
   max-width: 500px;
   width: 100%;
-  text-align: center;
   margin-bottom: 20px;
 }
 
@@ -96,7 +102,7 @@
 
 .welcome-login-medical {
   width: 100%;
-  max-width: 600px;
+  max-width: 384px;
   object-fit: contain;
   user-select: none;
 }
@@ -106,14 +112,13 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0 7vw;
 }
 
 .login-spin-container {
   width: 100%;
   max-width: 400px;
   position: relative;
-  border-radius: 12px;
+  border-radius: 20px;
   overflow: hidden;
 }
 
@@ -143,21 +148,19 @@
 
 .login-card {
   min-width: fit-content;
-  border-radius: 12px;
-  box-shadow: 0 8px 32px rgba(34, 56, 122, 0.25);
-  padding: 48px;
-  border: 1.5px solid rgba(255, 255, 255, 0.18);
-  backdrop-filter: blur(14px);
-  transition:
-    box-shadow 0.2s,
-    border 0.2s;
+  padding: 44px 44px 30px 44px;
+  border-radius: 20px;
+  box-shadow: 0 8px 32px rgba(34, 56, 122, 0.23); /* same as register */
+  background: rgba(255, 255, 255, 0.94); /* same as register */
+  border: 1.5px solid #c2daff50; /* same as register */
+  position: relative;
+  overflow: visible;
 }
-
 .login-card.dark {
   background: rgba(28, 52, 125, 0.8);
-  border: rgba(28, 52, 125, 0.8);
+  color: #fff;
+  border: 1.5px solid rgba(255, 255, 255, 0.18);
 }
-
 .login-title {
   font-weight: bold;
   margin-bottom: 10px;
@@ -204,10 +207,21 @@
   color: #92c4ff;
   font-weight: 500;
 }
-
-.theme-toggle {
+.login-preferences-dropdown {
   position: absolute;
-  top: 20px;
-  right: 20px;
+  top: 16px;
+  right: 16px;
+  z-index: 999;
+}
+
+.login-back-link {
+  display: flex;
+  align-items: center;
+}
+
+.login-back-link-container {
+  position: absolute;
+  top: 16px;
+  left: 16px;
   z-index: 999;
 }

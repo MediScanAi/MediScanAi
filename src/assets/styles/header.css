@@ -1,100 +1,201 @@
-.custom-tabs .ant-tabs-tab:hover {
-  color: #075f9b;
+@keyframes spin180 {
+  to {
+    transform: rotate(180deg);
+  }
 }
-header {
+
+@keyframes spin180reverse {
+  to {
+    transform: rotate(-180deg);
+  }
+}
+
+.app-header {
+  display: flex;
+  align-items: center;
+  padding: 0 24px;
+  height: 64px;
+  background: #e6ecfa;
+  backdrop-filter: blur(8px);
+  transition: background 0.3s;
   position: sticky;
   top: 0;
   z-index: 1000;
-  background-color: rgba(255, 255, 255, 0.85);
-  backdrop-filter: blur(10px);
 }
 
-.dark-Header {
-  background-color: rgba(16, 39, 57, 0.71);
-  span {
-    color: white;
+.app-header.dark {
+  background: #121e63;
+}
+
+.app-header-container {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.header-left {
+  display: flex;
+  align-items:center;
+  gap: 8px;
+}
+
+.hamburger-btn {
+  display: flex;
+  align-items: center;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.logo {
+  margin-top: 8px;
+  transition: all 0.3s ease;
+}
+.logo:hover {
+  transform: scale(1.05);
+  cursor: pointer;
+}
+
+@media (max-width: 630px) {
+  .logo {
+    height: 40px;
   }
 }
-.css-dev-only-do-not-override-1m2bkf9.ant-menu-horizontal {
-  border: none;
+.user-profile {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
 }
 
-.language-options {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 55px;
-}
-.Header {
-  width: 100%;
-  height: 6vh;
-}
-.Right-buttons {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  width: 250px;
-}
-.user-button {
-  background-color: transparent;
-  color: black;
-  border: none;
-  font-size: 15px;
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-  width: 70px;
-  height: 35px;
-}
-.ant-tabs .ant-tabs-tab {
-  font-size: 15px;
+.user-profile.dark .anticon {
+  color: #fff;
 }
 
-.ant-tabs .ant-tabs-tab .ant-dropdown-trigger {
-  height: 46px;
+.logout-link {
+  color: red;
 }
-#analysis-tab {
-  padding: 0;
+
+.logout-link .ant-icon {
+  color: red;
 }
-.dark-user-button:hover {
-  border: 1px solid white;
-  border-radius: 5px;
+
+.username {
+  font-size: 14px;
+  color: inherit;
 }
+
+.username.dark {
+  color: #fff;
+}
+
+@media (max-width: 1200px) {
+  .username {
+    display: none;
+  }
+}
+
 .arrow-icon {
+  display: flex;
   transition: transform 0.3s ease;
+  font-size: 14px;
 }
 
 .arrow-icon.rotated {
   transform: rotate(180deg);
 }
 
-.ant-select-outlined:not(.ant-select-customize-input) .ant-select-selector {
-  background-color: transparent;
-  border: none;
-  color: black;
-  font-size: 15px;
-}
-.ant-select-outlined:not(.ant-select-customize-input)
-  .ant-select-selector:after {
-  background-color: transparent;
+.nav-menu {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  background: transparent;
   border: none;
 }
-.dark-select-selector {
-  color: white;
+
+.nav-menu .ant-menu-item,
+.nav-menu .ant-menu-item a,
+.nav-menu .ant-menu-submenu-title {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
-/* Можно удалить неиспользуемые стили для табов */
-.custom-tabs .ant-tabs-tab:hover {
-  color: #075f9b;
+.app-header.dark .nav-menu {
+  background: transparent;
 }
 
-.ant-tabs .ant-tabs-tab {
-  font-size: 15px;
+.app-header.dark .nav-menu .ant-menu-item,
+.app-header.dark .nav-menu .ant-menu-submenu-title,
+.app-header.dark .nav-menu .ant-menu-item a {
+  color: #fff;
+  background: transparent;
 }
 
-.ant-menu-light {
-  background-color: transparent;
+.app-header.light .nav-menu .ant-menu-item,
+.app-header.light .nav-menu .ant-menu-submenu-title,
+.app-header.light .nav-menu .ant-menu-item a {
+  color: #161c3d;
 }
-.custom-menu {
-  width: 500px;
+
+.nav-menu.ant-menu-horizontal > .ant-menu-item-selected,
+.nav-menu.ant-menu-horizontal > .ant-menu-submenu-selected {
+  background: transparent;
+}
+
+.app-header.dark .nav-menu.ant-menu-horizontal > .ant-menu-item-selected::after,
+.app-header.dark
+  .nav-menu.ant-menu-horizontal
+  > .ant-menu-submenu-selected::after {
+  border-bottom: 2px solid #1890ff;
+}
+
+.dark-drawer .ant-drawer-body {
+  padding: 0;
+  background: #1d2b40;
+}
+
+.dark-drawer .ant-drawer-title,
+.dark-drawer .ant-drawer-close {
+  color: #fff;
+}
+
+.dark-drawer .ant-menu,
+.dark-drawer .ant-menu-item,
+.dark-drawer .ant-menu-submenu-title {
+  background: #1d2b40;
+  color: #fff;
+}
+
+.dropdown-dark,
+.dropdown-dark .ant-dropdown-menu {
+  background: #1d2b40;
+  color: #fff;
+  border-radius: 6px;
+}
+
+.dropdown-dark .ant-dropdown-menu-item,
+.dropdown-dark .ant-dropdown-menu-submenu-title {
+  color: #fff !important;
+}
+
+.dropdown-dark .ant-dropdown-menu-item:hover,
+.dropdown-dark .ant-dropdown-menu-item-active {
+  background: #243a55;
+}
+.dark-drawer .ant-drawer-header {
+  background: #1d2b40;
+  border-bottom: 1px solid #2e4a6b;
+}
+
+.dark-drawer .ant-drawer-header-title,
+.dark-drawer .ant-drawer-title,
+.dark-drawer .ant-drawer-close,
+.dark-drawer .ant-drawer-close .anticon {
+  color: #fff;
 }
