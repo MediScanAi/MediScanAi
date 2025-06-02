@@ -61,53 +61,6 @@
     height: 28px;
   }
 }
-
-.lang-select {
-  width: fit-content;
-  background: transparent;
-}
-
-.lang-select.dark .ant-select-selector {
-  background: #1d2b40;
-  border-color: #2e4a6b;
-  color: #fff;
-}
-
-.lang-select.dark .ant-select-arrow,
-.lang-select.dark .ant-select-arrow * {
-  color: #fff;
-  fill: #fff;
-}
-
-.lang-select.dark .ant-select-selection-item {
-  color: #fff;
-}
-
-.lang-select.dark.ant-select-open .ant-select-selection-item {
-  color: #fff;
-}
-
-.lang-dropdown-dark {
-  background: #1d2b40;
-  color: #fff;
-  border-radius: 6px;
-}
-
-.lang-dropdown-dark .ant-select-item-option {
-  color: #fff;
-}
-
-.lang-dropdown-dark .ant-select-item-option-active {
-  background: #243a55;
-  color: #fff;
-}
-
-.lang-dropdown-dark
-  .ant-select-item-option-selected:not(.ant-select-item-option-disabled) {
-  background: #2e4a6b;
-  color: #fff;
-}
-
 .user-profile {
   display: flex;
   align-items: center;
@@ -150,33 +103,6 @@
 
 .arrow-icon.rotated {
   transform: rotate(180deg);
-}
-
-.settings-btn {
-  display: flex;
-  align-items: center;
-  cursor: pointer;
-}
-
-.settings-btn.dark .anticon {
-  color: #fff;
-}
-
-.settings-icon {
-  font-size: 17px;
-  transition: color 0.3s ease;
-}
-
-.settings-icon.spinning {
-  animation: spin180 0.4s ease-in-out;
-}
-
-.settings-icon.re-spinning {
-  animation: spin180reverse 0.4s ease-in-out;
-}
-
-.settings-btn.dark .settings-icon {
-  color: #fff;
 }
 
 .nav-menu {
@@ -225,40 +151,6 @@
   border-bottom: 2px solid #1890ff;
 }
 
-.preferences-dropdown {
-  padding: 12px;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  min-width: 200px;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  background: #fff;
-}
-
-.preference-item {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 8px;
-}
-
-.app-header.dark .preferences-dropdown {
-  background: transparent;
-  border-color: #2e4a6b;
-  color: #fff;
-}
-
-.app-header.dark .preferences-dropdown .ant-select-selector {
-  background: #1d2b40;
-  border-color: #2e4a6b;
-  color: #fff;
-}
-
-.app-header.dark .preferences-dropdown .ant-select-arrow {
-  color: #fff;
-}
-
 .dark-drawer .ant-drawer-body {
   padding: 0;
   background: #1d2b40;
@@ -292,12 +184,6 @@
 .dropdown-dark .ant-dropdown-menu-item-active {
   background: #243a55;
 }
-
-.dropdown-dark .preferences-dropdown {
-  background: transparent;
-  border: none;
-}
-
 .dark-drawer .ant-drawer-header {
   background: #1d2b40;
   border-bottom: 1px solid #2e4a6b;

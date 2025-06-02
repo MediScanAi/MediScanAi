@@ -15,6 +15,11 @@
     "selectLanguage": "Select Language",
     "selectTheme": "Select Theme"
   },
+  "themePicker": {
+    "light": "Light",
+    "dark": "Dark",
+    "system": "System"
+  },
   "homepage": {
     "welcome": "Welcome",
     "platformTitle": "MediScanAi Platform",

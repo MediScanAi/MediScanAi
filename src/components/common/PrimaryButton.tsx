@@ -21,7 +21,7 @@ const PrimaryButton: React.FC<PrimaryButtonProps> = ({
     <Button
       className={`custom-btn primary-btn ${theme} ${className}`}
       icon={icon}
-      size="large"
+      size={props.size ?? 'large'}
       {...props}
     >
       {children}

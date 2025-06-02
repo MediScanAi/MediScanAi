@@ -4,8 +4,6 @@ import {
   Menu,
   Dropdown,
   Avatar,
-  Switch,
-  Select,
   Button,
   Space,
   Drawer,
@@ -13,10 +11,7 @@ import {
   Grid,
 } from 'antd';
 import {
-  SunOutlined,
-  MoonOutlined,
   LogoutOutlined,
-  SettingOutlined,
   UserOutlined,
   MenuOutlined,
   DownOutlined,
@@ -29,48 +24,15 @@ import {
 } from '@ant-design/icons';
 import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../app/hooks';
-import { toggleTheme } from '../app/slices/theme';
 import { logoutUser } from '../app/slices/authSlice';
 import { useTranslation } from 'react-i18next';
 import Logo from '../assets/photos/Logo.svg';
-import engFlag from '../assets/photos/united-kingdom.png';
-import rusFlag from '../assets/photos/russia.png';
-import armFlag from '../assets/photos/armenia.png';
 import '../assets/styles/Header.css';
+import PreferencesDropdown from './preferences/PreferencesDropdown';
 import PrimaryButton from './common/PrimaryButton.tsx';
 
 const { Header } = Layout;
 const { Text } = Typography;
-
-const languageOptions = [
-  {
-    label: (
-      <div className="language-option">
-        <img src={engFlag} alt="EN" style={{ height: 16 }} />
-        <span style={{ marginLeft: 8 }}>ENG</span>
-      </div>
-    ),
-    value: 'en',
-  },
-  {
-    label: (
-      <div className="language-option">
-        <img src={rusFlag} alt="RU" style={{ height: 16 }} />
-        <span style={{ marginLeft: 8 }}>РУС</span>
-      </div>
-    ),
-    value: 'ru',
-  },
-  {
-    label: (
-      <div className="language-option">
-        <img src={armFlag} alt="HY" style={{ height: 16 }} />
-        <span style={{ marginLeft: 8 }}>ՀԱՅ</span>
-      </div>
-    ),
-    value: 'hy',
-  },
-];
 
 const mainMenuItems = [
   { label: <NavLink to="/">Home</NavLink>, key: '/', icon: <HomeOutlined /> },
@@ -115,7 +77,7 @@ const mainMenuItems = [
 ];
 
 export default function AppHeader() {
-  const { t, i18n } = useTranslation('global');
+  const { t } = useTranslation('global');
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const { pathname } = useLocation();
@@ -126,39 +88,6 @@ export default function AppHeader() {
 
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [usrMenuOpen, setUsrMenuOpen] = useState(false);
-  const [prefMenuOpen, setPrefMenuOpen] = useState(false);
-
-  const prefsContent = (
-    <div className="preferences-dropdown">
-      <div className="preference-item">
-        <span>{t('menu.selectLanguage')}</span>
-        <Select
-          value={i18n.language}
-          options={languageOptions}
-          onChange={(lng) => {
-            i18n.changeLanguage(lng);
-            localStorage.setItem('language', lng);
-          }}
-          className={`lang-select ${isDarkMode ? 'dark' : ''}`}
-          popupMatchSelectWidth={false}
-          classNames={{
-            popup: {
-              root: isDarkMode ? 'lang-dropdown-dark' : undefined,
-            },
-          }}
-        />
-      </div>
-      <div className="preference-item">
-        <span>{t('menu.selectTheme')}</span>
-        <Switch
-          checked={isDarkMode}
-          onChange={() => dispatch(toggleTheme())}
-          checkedChildren={<MoonOutlined />}
-          unCheckedChildren={<SunOutlined />}
-        />
-      </div>
-    </div>
-  );
 
   return (
     <Header className={`app-header ${isDarkMode ? 'dark' : 'light'}`}>
@@ -189,30 +118,7 @@ export default function AppHeader() {
 
         <div className="header-right">
           <Space size="middle">
-            <Dropdown
-              menu={{ items: [] }}
-              open={prefMenuOpen}
-              popupRender={() => prefsContent}
-              onOpenChange={setPrefMenuOpen}
-              placement="bottomRight"
-              overlayClassName={isDarkMode ? 'dropdown-dark' : 'dropdown-light'}
-            >
-              <div className={`settings-btn ${isDarkMode ? 'dark' : ''}`}>
-                <Button
-                  type="text"
-                  size="large"
-                  icon={
-                    <SettingOutlined
-                      className={`settings-icon ${prefMenuOpen ? 'spinning' : 're-spinning'}`}
-                    />
-                  }
-                ></Button>
-                <span className={`arrow-icon ${prefMenuOpen ? 'rotated' : ''}`}>
-                  <DownOutlined />
-                </span>
-              </div>
-            </Dropdown>
-
+            <PreferencesDropdown />
             {user ? (
               <Dropdown
                 menu={{

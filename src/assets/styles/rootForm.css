@@ -295,11 +295,6 @@
   color: #ffffff !important;
 }
 
-.ant-card-bordered {
-  background-color: transparent !important;
-  border: none !important;
-}
-
 .medical-tabs .ant-tabs-content {
   padding: 2rem;
 }

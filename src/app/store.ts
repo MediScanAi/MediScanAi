@@ -1,6 +1,6 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import authReducer from './slices/authSlice';
-import themeReducer from './slices/theme';
+import themeReducer from './slices/themeModeSlice';
 import testReducer from './slices/testSlice';
 import userDataReducer from './slices/userDataSlice';
 import healthReducer from './slices/healthSlice';
