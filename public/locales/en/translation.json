@@ -45,6 +45,7 @@
       "obese": "It's important to take action now. Please consult with a healthcare provider."
     },
     "dailyCalories": "Daily Calories",
+    "getDataExportInstructions": "Get Data Export Instructions",
     "exerciseGoal": "Exercise Goal",
     "threeMonthGoal": "3-month Goal",
     "maintain": "Maintain",
@@ -95,7 +96,14 @@
     },
     "visualization": {
       "alt": "Health visualization"
-    }
+    },
+    "dailyMetrics": "Daily Metrics",
+    "setGoal": "Set Goal",
+    "save": "Save",
+    "cancel": "Cancel",
+    "enterGoalValue": "Enter goal value",
+    "selectDate": "Select Date",
+    "goal": "Goal"
   },
   "analysisHistory": {
     "title": "Analysis History",
