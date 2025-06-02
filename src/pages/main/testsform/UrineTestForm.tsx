@@ -9,7 +9,7 @@ import {
   Col,
   Row,
 } from 'antd';
-import { useAppDispatch } from '../../../app/hooks';
+import { useAppDispatch, useAppSelector } from '../../../app/hooks';
 import type { UrineTestFormValues } from '../../../app/slices/testSlice';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { saveTestData, setTestData } from '../../../app/slices/testSlice';
@@ -25,11 +25,15 @@ const UrineTestForm = () => {
   const dispatch = useAppDispatch();
   const updatedData = useLocation()?.state?.urineTestData || undefined;
   const { t } = useTranslation();
-
+  const isDarkMode = useAppSelector((state) => state.theme.isDarkMode);
   const urineTestFields = [
     {
       type: 'input',
-      label: t('urineTest.ph'),
+      label: (
+        <span className={`input-item ${isDarkMode ? 'dark' : ''}`}>
+          {t('urineTest.ph')}
+        </span>
+      ),
       name: 'ph',
       min: 4.5,
       max: 8.0,
@@ -38,7 +42,11 @@ const UrineTestForm = () => {
     },
     {
       type: 'input',
-      label: t('urineTest.gravity'),
+      label: (
+        <span className={`input-item ${isDarkMode ? 'dark' : ''}`}>
+          {t('urineTest.gravity')}
+        </span>
+      ),
       name: 'specificGravity',
       min: 1.0,
       max: 1.03,
@@ -48,7 +56,11 @@ const UrineTestForm = () => {
     },
     {
       type: 'input',
-      label: t('urineTest.protein'),
+      label: (
+        <span className={`input-item ${isDarkMode ? 'dark' : ''}`}>
+          {t('urineTest.protein')}
+        </span>
+      ),
       name: 'protein',
       min: 0,
       max: 300,
@@ -58,7 +70,11 @@ const UrineTestForm = () => {
     },
     {
       type: 'input',
-      label: t('urineTest.glucose'),
+      label: (
+        <span className={`input-item ${isDarkMode ? 'dark' : ''}`}>
+          {t('urineTest.glucose')}
+        </span>
+      ),
       name: 'glucose',
       min: 0,
       max: 1000,
@@ -68,7 +84,11 @@ const UrineTestForm = () => {
     },
     {
       type: 'input',
-      label: t('urineTest.ketones'),
+      label: (
+        <span className={`input-item ${isDarkMode ? 'dark' : ''}`}>
+          {t('urineTest.ketones')}
+        </span>
+      ),
       name: 'ketones',
       min: 0,
       max: 160,
@@ -78,7 +98,11 @@ const UrineTestForm = () => {
     },
     {
       type: 'select',
-      label: t('urineTest.bilirubin'),
+      label: (
+        <span className={`input-item ${isDarkMode ? 'dark' : ''}`}>
+          {t('urineTest.bilirubin')}
+        </span>
+      ),
       name: 'bilirubin',
       options: [
         t('urineTest.negative'),
@@ -90,7 +114,11 @@ const UrineTestForm = () => {
     },
     {
       type: 'input',
-      label: t('urineTest.urobilinogen'),
+      label: (
+        <span className={`input-item ${isDarkMode ? 'dark' : ''}`}>
+          {t('urineTest.urobilinogen')}
+        </span>
+      ),
       name: 'urobilinogen',
       min: 0.1,
       max: 8.0,
@@ -100,7 +128,11 @@ const UrineTestForm = () => {
     },
     {
       type: 'select',
-      label: t('urineTest.nitrites'),
+      label: (
+        <span className={`input-item ${isDarkMode ? 'dark' : ''}`}>
+          {t('urineTest.nitrites')}
+        </span>
+      ),
       name: 'nitrites',
       options: [t('urineTest.negative'), t('urineTest.positive')],
       placeholder: t('urineTest.urineTestnitritesPlaceholder'),
@@ -108,7 +140,11 @@ const UrineTestForm = () => {
     },
     {
       type: 'select',
-      label: t('urineTest.leukocyteEsterase'),
+      label: (
+        <span className={`input-item ${isDarkMode ? 'dark' : ''}`}>
+          {t('urineTest.leukocyteEsterase')}
+        </span>
+      ),
       name: 'leukocyteEsterase',
       options: [
         t('urineTest.negative'),
@@ -120,7 +156,11 @@ const UrineTestForm = () => {
     },
     {
       type: 'select',
-      label: t('urineTest.blood'),
+      label: (
+        <span className={`input-item ${isDarkMode ? 'dark' : ''}`}>
+          {t('urineTest.blood')}
+        </span>
+      ),
       name: 'blood',
       options: [
         t('urineTest.negative'),
@@ -160,7 +200,11 @@ const UrineTestForm = () => {
     <Card
       style={{ border: 'none' }}
       className="urine-form-card"
-      title={<Title level={3}>{t('urineTest.title')}</Title>}
+      title={
+        <Title level={3} className={`input-item ${isDarkMode ? 'dark' : ''}`}>
+          {t('urineTest.title')}
+        </Title>
+      }
     >
       <Form
         form={form}
@@ -187,7 +231,10 @@ const UrineTestForm = () => {
                     placeholder={field.placeholder}
                   />
                 ) : (
-                  <Select placeholder={t('urineTest.placeholder')}>
+                  <Select
+                    className={`select-item ${isDarkMode ? 'dark' : ''}`}
+                    placeholder={t('urineTest.placeholder')}
+                  >
                     {field.options?.map((opt) => (
                       <Option key={opt} value={opt}>
                         {opt.charAt(0).toUpperCase() + opt.slice(1)}

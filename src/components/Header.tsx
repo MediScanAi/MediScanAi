@@ -29,6 +29,7 @@ import { useTranslation } from 'react-i18next';
 import Logo from '../assets/photos/Logo.svg';
 import '../assets/styles/Header.css';
 import PreferencesDropdown from './preferences/PreferencesDropdown';
+import PrimaryButton from './common/PrimaryButton.tsx';
 
 const { Header } = Layout;
 const { Text } = Typography;
@@ -170,13 +171,13 @@ export default function AppHeader() {
                 </div>
               </Dropdown>
             ) : (
-              <Button
-                type="primary"
-                className={`username ${isDarkMode ? 'dark' : ''}`}
+              <PrimaryButton
+                style={{ height: '35px' }}
+                size="small"
                 onClick={() => navigate('/auth/login')}
               >
                 {t('menu.login', 'Log In')}
-              </Button>
+              </PrimaryButton>
             )}
           </Space>
         </div>

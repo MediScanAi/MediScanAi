@@ -12,6 +12,9 @@ import { useState } from 'react';
 import Gen from '../../../assets/photos/Gen.webp';
 import type { GeneticTestFormValues } from '../../../app/slices/testSlice';
 import { useAppSelector } from '../../../app/hooks';
+import { useSelector } from 'react-redux';
+import type { RootState } from '../../../app/store';
+import PrimaryButton from '../../../components/common/PrimaryButton';
 
 interface ChartData {
   name: string;
@@ -30,6 +33,7 @@ const { Title } = Typography;
 
 function GeneticAnalysis() {
   const geneticTestData = useAppSelector((state) => state.tests.genetic);
+  const isDarkMode = useSelector((state: RootState) => state.theme.isDarkMode);
 
   const [width, setWidth] = useState(window.innerWidth);
 
@@ -255,7 +259,7 @@ function GeneticAnalysis() {
   }, []);
 
   return (
-    <div>
+    <div className={`analysis-page ${isDarkMode ? 'dark' : ''}`}>
       <Row
         className="welcome-section"
         style={{
@@ -266,7 +270,7 @@ function GeneticAnalysis() {
       >
         <Col className="welcome-section-column">
           <Typography
-            className="welcome-text"
+            className={`welcome-text ${isDarkMode ? 'dark' : ''}`}
             style={{
               fontSize: width > 768 ? '30px' : '20px',
               marginTop: 50,
@@ -276,7 +280,7 @@ function GeneticAnalysis() {
             Genetic Test Results
           </Typography>
           <Typography
-            className="platform-title"
+            className={`platform-title ${isDarkMode ? 'dark' : ''}`}
             style={{ fontSize: width > 768 ? '50px' : '30px' }}
           >
             Analysis with AI
@@ -300,7 +304,10 @@ function GeneticAnalysis() {
       <div>
         {geneticTestData?.brca1 ? (
           <div>
-            <Card className="card2-design" style={{ border: 'none' }}>
+            <Card
+              className={`card2-design ${isDarkMode ? 'dark' : ''}`}
+              style={{ border: 'none' }}
+            >
               <Col className="card2-col-design">
                 <div
                   style={{
@@ -321,43 +328,49 @@ function GeneticAnalysis() {
                 {scorecards.map((item: Scorecard, idx) => (
                   <Card
                     key={idx}
+                    className={`card2-design ${isDarkMode ? 'dark' : ''}`}
                     style={{
                       textAlign: 'center',
                       borderRadius: '15px',
                       border: 'none',
                     }}
                   >
-                    <div style={{ marginTop: 10 }}>{item.value}</div>
+                    <div
+                      className={`card2-design-text ${isDarkMode ? 'dark' : ''}`}
+                      style={{ marginTop: 10 }}
+                    >
+                      {item.value}
+                    </div>
                     <Progress
                       type="circle"
                       percent={Math.min(item.percent, 100)}
+                      format={() => (
+                        <span
+                          className={`card2-design-text ${isDarkMode ? 'dark' : ''}`}
+                        >
+                          {item.value || 'N/A'}
+                        </span>
+                      )}
                       strokeWidth={7}
                     />
-                    <div style={{ marginTop: 30 }}>{item.label}</div>
+                    <div
+                      className={`card2-design-text ${isDarkMode ? 'dark' : ''}`}
+                      style={{ marginTop: 30 }}
+                    >
+                      {item.label}
+                    </div>
                   </Card>
                 ))}
               </Col>
             </Card>
 
-            <Card
-              style={{
-                margin: '20px auto',
-                width: '90%',
-                backgroundColor: '#fffbe6',
-                border: '1px solid #faad14',
-                borderRadius: 10,
-                padding: 16,
-              }}
-            >
+            <Card className={`warning-section ${isDarkMode ? 'dark' : ''}`}>
               <Title
                 level={3}
                 style={{ color: 'rgb(255, 0, 0)', fontFamily: 'Poppins' }}
               >
                 🚨 Health Risk Warnings
-                <Button
-                  className="consult-button"
-                  type="primary"
-                  size="large"
+                <PrimaryButton
                   style={{ marginLeft: 20 }}
                   onClick={() => {
                     const warnings = getGeneticRisks(
@@ -372,20 +385,24 @@ function GeneticAnalysis() {
                   }}
                 >
                   Analyze with AI
-                </Button>
+                </PrimaryButton>
               </Title>
               <ul style={{ listStyleType: 'none', padding: 0 }}>
                 {getGeneticRisks(geneticTestData as GeneticTestFormValues)
                   .length > 0 ? (
                   getGeneticRisks(geneticTestData as GeneticTestFormValues).map(
                     (risk, index) => (
-                      <li key={index} style={{ fontSize: 16, marginBottom: 8 }}>
+                      <li
+                        className={`warning-section-text ${isDarkMode ? 'dark' : ''}`}
+                        key={index}
+                        style={{ fontSize: 16, marginBottom: 8 }}
+                      >
                         {risk}
                         {geneticExplanations[risk] && (
                           <div>
                             <Button
                               type="link"
-                              style={{ padding: 0 }}
+                              style={{ padding: 0, color: '#3498db' }}
                               onClick={() => toggleWarning(risk)}
                             >
                               {expandedWarnings[risk]
@@ -394,6 +411,7 @@ function GeneticAnalysis() {
                             </Button>
                             {expandedWarnings[risk] && (
                               <p
+                                className={`warning-section-text ${isDarkMode ? 'dark' : ''}`}
                                 style={{
                                   marginTop: 5,
                                   fontSize: 14,
@@ -409,7 +427,10 @@ function GeneticAnalysis() {
                     )
                   )
                 ) : (
-                  <p style={{ fontSize: 16 }}>
+                  <p
+                    className={`warning-section-text ${isDarkMode ? 'dark' : ''}`}
+                    style={{ fontSize: 16 }}
+                  >
                     ✅ All your values are within normal range. Great job!
                   </p>
                 )}
@@ -426,17 +447,16 @@ function GeneticAnalysis() {
               height: '100%',
             }}
           >
-            <Title style={{ textAlign: 'center' }} level={2}>
+            <Title
+              className={`platform-title ${isDarkMode ? 'dark' : ''}`}
+              style={{ textAlign: 'center' }}
+              level={2}
+            >
               Please fill a genetic test results to get your analytic results
             </Title>
-            <Button
-              className="consult-button"
-              type="primary"
-              size="large"
-              onClick={() => navigate('/tests-form/genetic-test')}
-            >
+            <PrimaryButton onClick={() => navigate('/tests-form/genetic-test')}>
               Fill Genetic Test Results
-            </Button>
+            </PrimaryButton>
           </div>
         )}
       </div>
@@ -454,23 +474,15 @@ function GeneticAnalysis() {
         {PieData.map((item) => (
           <Card
             key={item.name}
+            className={`interesting-card ${isDarkMode ? 'dark' : ''}`}
             style={{
               flex: width > 900 ? '0 1 calc(50% - 10px)' : '1 1 100%',
-              backgroundColor: 'white',
-              padding: 20,
-              borderRadius: 10,
-              boxShadow: '0 4px 15px rgba(0, 0, 0, 0.2)',
             }}
           >
             <Row style={{ alignItems: 'center', justifyContent: 'center' }}>
               <Title
                 level={2}
-                style={{
-                  color: '#3498db',
-                  fontFamily: 'Poppins',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                }}
+                className={`interesting-card-title ${isDarkMode ? 'dark' : ''}`}
               >
                 {item.name}
               </Title>
@@ -482,7 +494,10 @@ function GeneticAnalysis() {
                 src={item.image}
               />
             </Row>
-            <p style={{ margin: 0, fontSize: 16 }}>
+            <p
+              className={`interesting-card-text ${isDarkMode ? 'dark' : ''}`}
+              style={{ margin: 0, fontSize: 16 }}
+            >
               {interestingFacts[item.name]}
             </p>
           </Card>

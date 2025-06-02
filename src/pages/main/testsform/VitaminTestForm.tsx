@@ -8,7 +8,7 @@ import {
   Row,
   Col,
 } from 'antd';
-import { useAppDispatch } from '../../../app/hooks';
+import { useAppDispatch, useAppSelector } from '../../../app/hooks';
 import { saveTestData, setTestData } from '../../../app/slices/testSlice';
 import type { VitaminTestFormValues } from '../../../app/slices/testSlice';
 import { useLocation, useNavigate } from 'react-router-dom';
@@ -23,7 +23,7 @@ const VitaminTestForm = () => {
   const dispatch = useAppDispatch();
   const updatedData = useLocation()?.state?.vitaminTestData || undefined;
   const { t } = useTranslation();
-
+  const isDarkMode = useAppSelector((state) => state.theme.isDarkMode);
   const vitaminTestFields = [
     {
       label: t('vitaminTest.vitaminA'),
@@ -108,7 +108,11 @@ const VitaminTestForm = () => {
   return (
     <Card
       style={{ border: 'none' }}
-      title={<Title level={3}>{t('vitaminTest.title')}</Title>}
+      title={
+        <Title level={3} className={`input-item ${isDarkMode ? 'dark' : ''}`}>
+          {t('vitaminTest.title')}
+        </Title>
+      }
     >
       <Form
         form={form}
@@ -121,7 +125,11 @@ const VitaminTestForm = () => {
           {vitaminTestFields.map((field) => (
             <Col span={12} key={field.name}>
               <Form.Item
-                label={`${field.label} (${field.unit})`}
+                label={
+                  <span
+                    className={`input-item ${isDarkMode ? 'dark' : ''}`}
+                  >{`${field.label} (${field.unit})`}</span>
+                }
                 name={field.name}
                 rules={[{ required: true }]}
               >

@@ -52,7 +52,6 @@ const LoginPage: React.FC = () => {
   };
 
   const toggleForgotPassword = () => setIsForgotPassword((prev) => !prev);
-
   const toggleGoogleLoading = async (isLoading: boolean) => {
     setGoogleLoading(isLoading);
   };
