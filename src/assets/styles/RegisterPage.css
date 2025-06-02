@@ -340,7 +340,7 @@
 
 .register-back-link {
   display: flex;
-  align-items:center;
+  align-items: center;
 }
 
 .register-back-link-container {
@@ -348,4 +348,13 @@
   top: 16px;
   left: 16px;
   z-index: 999;
+}
+
+.register-button-container {
+  display: flex;
+  flex-direction: row;
+  padding-inline: 20%;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
 }

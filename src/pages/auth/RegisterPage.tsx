@@ -21,7 +21,7 @@ import { mapFirebaseUser } from '../../api/authApi';
 import LoginWithGoogleButton from '../../components/LoginWithGoogleButton';
 import PrimaryButton from '../../components/common/PrimaryButton';
 import '../../assets/styles/RegisterPage.css';
-import Notebook3D from '../../assets/photos/notebook.png';
+import Notebook3D from '../../assets/photos/Notebook.webp';
 import '../../assets/styles/LoginPage.css';
 import PreferencesDropdown from '../../components/preferences/PreferencesDropdown';
 import SecondaryButton from '../../components/common/SecondaryButton';
@@ -263,14 +263,7 @@ const RegisterPage: React.FC = () => {
                     </Col>
                   </Row>
                   <Form.Item>
-                    <div
-                      style={{
-                        display: 'flex',
-                        gap: 10,
-                        marginBottom: 8,
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                      }}
+                    <div className='register-button-container'
                     >
                       <PrimaryButton htmlType="submit" loading={loading}>
                         Register

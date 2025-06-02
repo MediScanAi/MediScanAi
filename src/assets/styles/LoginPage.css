@@ -103,7 +103,6 @@
 .welcome-login-medical {
   width: 100%;
   max-width: 384px;
-  /* max-height: 20%; */
   object-fit: contain;
   user-select: none;
 }
@@ -119,7 +118,7 @@
   width: 100%;
   max-width: 400px;
   position: relative;
-  border-radius: 12px;
+  border-radius: 20px;
   overflow: hidden;
 }
 
@@ -149,21 +148,19 @@
 
 .login-card {
   min-width: fit-content;
-  border-radius: 12px;
-  box-shadow: 0 8px 32px rgba(34, 56, 122, 0.25);
-  padding: 48px;
-  border: 1.5px solid rgba(255, 255, 255, 0.18);
-  backdrop-filter: blur(14px);
-  transition:
-    box-shadow 0.2s,
-    border 0.2s;
+  padding: 44px 44px 30px 44px;
+  border-radius: 20px;
+  box-shadow: 0 8px 32px rgba(34, 56, 122, 0.23); /* same as register */
+  background: rgba(255, 255, 255, 0.94); /* same as register */
+  border: 1.5px solid #c2daff50; /* same as register */
+  position: relative;
+  overflow: visible;
 }
-
 .login-card.dark {
   background: rgba(28, 52, 125, 0.8);
-  border: rgba(28, 52, 125, 0.8);
+  color: #fff;
+  border: 1.5px solid rgba(255, 255, 255, 0.18);
 }
-
 .login-title {
   font-weight: bold;
   margin-bottom: 10px;
