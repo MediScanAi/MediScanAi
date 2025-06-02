@@ -539,7 +539,6 @@ const ChatWithAi = () => {
   return (
     <Layout
       className={`chat-with-ai ${isDarkMode ? 'dark' : ''}`}
-      style={{ height: '94vh' }}
     >
       <Sider
         width={240}

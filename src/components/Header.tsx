@@ -26,7 +26,8 @@ import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../app/hooks';
 import { logoutUser } from '../app/slices/authSlice';
 import { useTranslation } from 'react-i18next';
-import Logo from '../assets/photos/Logo.svg';
+import logoLight from '../assets/photos/logo-light.svg';
+import logoDark from '../assets/photos/logo-dark.svg';
 import '../assets/styles/Header.css';
 import PreferencesDropdown from './preferences/PreferencesDropdown';
 import PrimaryButton from './common/PrimaryButton.tsx';
@@ -89,11 +90,20 @@ export default function AppHeader() {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [usrMenuOpen, setUsrMenuOpen] = useState(false);
 
+  const navigateHome = () => {
+    navigate('/');
+  }
   return (
     <Header className={`app-header ${isDarkMode ? 'dark' : 'light'}`}>
       <div className="app-header-container">
         <div className="header-left">
-          <img src={Logo} alt="logo" className="logo" />
+          <img
+            src={isDarkMode ? logoDark : logoLight}
+            draggable={false}
+            onClick={navigateHome}
+            alt="logo"
+            className="logo"
+          />
           {showDrawer && (
             <Button
               type="text"
