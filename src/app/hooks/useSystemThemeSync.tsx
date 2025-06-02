@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import type { RootState } from '../store';
-import { setIsDarkMode } from '../slices/themeSlice';
+import { setIsDarkMode } from '../slices/themeModeSlice';
 
 export function useSystemThemeSync() {
   const dispatch = useDispatch();
