@@ -28,7 +28,7 @@ import { logoutUser } from '../app/slices/authSlice';
 import { useTranslation } from 'react-i18next';
 import Logo from '../assets/photos/Logo.svg';
 import '../assets/styles/Header.css';
-import PreferencesDropdown from './common/PreferencesDropdown';
+import PreferencesDropdown from './preferences/PreferencesDropdown';
 
 const { Header } = Layout;
 const { Text } = Typography;

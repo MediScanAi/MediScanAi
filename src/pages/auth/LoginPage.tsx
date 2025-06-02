@@ -20,7 +20,7 @@ import LoginWithGoogleButton from '../../components/LoginWithGoogleButton';
 import MedicalInstruments3D from '../../assets/photos/medical_instruments.png';
 import '../../assets/styles/LoginPage.css';
 import PrimaryButton from '../../components/common/PrimaryButton';
-import PreferencesDropdown from '../../components/common/PreferencesDropdown';
+import PreferencesDropdown from '../../components/preferences/PreferencesDropdown';
 import SecondaryButton from '../../components/common/SecondaryButton';
 import { X } from 'lucide-react';
 

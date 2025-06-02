@@ -23,7 +23,7 @@ import PrimaryButton from '../../components/common/PrimaryButton';
 import '../../assets/styles/RegisterPage.css';
 import Notebook3D from '../../assets/photos/notebook.png';
 import '../../assets/styles/LoginPage.css';
-import PreferencesDropdown from '../../components/common/PreferencesDropdown';
+import PreferencesDropdown from '../../components/preferences/PreferencesDropdown';
 import SecondaryButton from '../../components/common/SecondaryButton';
 import {
   X,
