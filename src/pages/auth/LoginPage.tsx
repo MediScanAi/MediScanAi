@@ -73,7 +73,7 @@ const LoginPage: React.FC = () => {
         <div className="welcome-section-login">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, ease: 'easeInOut' }}
             className="welcome-text-container"
           >
