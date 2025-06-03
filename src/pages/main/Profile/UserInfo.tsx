@@ -219,7 +219,11 @@ const UserInfo: React.FC<UserInfoProps> = ({ theme }) => {
         >
           <div className="profile-header-container">
             <div className="profile-avatar-container">
-              <UserAvatar className="profile-avatar" size={80} user={user!}/>
+              <UserAvatar
+                className="profile-avatar"
+                size={80}
+                user={user!}
+              />
             </div>
 
             <div className="profile-info">
@@ -334,12 +338,17 @@ const UserInfo: React.FC<UserInfoProps> = ({ theme }) => {
                               className="info-input"
                               min={0}
                               max={
-                                field.key === 'age' ? 150 :
-                                  field.key === 'weight' ? 300 :
-                                    field.key === 'height' ? 300 :
-                                      field.key === 'waistSize' ? 200 :
-                                        field.key === 'neckSize' ? 100 :
-                                          undefined
+                                field.key === 'age'
+                                  ? 150
+                                  : field.key === 'weight'
+                                    ? 300
+                                    : field.key === 'height'
+                                      ? 300
+                                      : field.key === 'waistSize'
+                                        ? 200
+                                        : field.key === 'neckSize'
+                                          ? 100
+                                          : undefined
                               }
                               placeholder={getPlaceholder(
                                 field.key as keyof UserData
@@ -373,7 +382,7 @@ const UserInfo: React.FC<UserInfoProps> = ({ theme }) => {
                             {renderValue(
                               field.key,
                               formState[field.key as keyof UserData] ??
-                              field.value
+                                field.value
                             )}
                             {field.unit && (
                               <span className="unit">{field.unit}</span>
