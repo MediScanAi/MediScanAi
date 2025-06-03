@@ -1,5 +1,5 @@
 import AppHeader from './Header.tsx';
-import { Footer } from './Footer.tsx';
+import Footer from './Footer.tsx';
 import { useLocation } from 'react-router-dom';
 import '../assets/styles/layout.css';
 import { useEffect } from 'react';
