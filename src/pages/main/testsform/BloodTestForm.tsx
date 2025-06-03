@@ -1,5 +1,4 @@
 import {
-  Button,
   Form,
   InputNumber,
   message,
@@ -15,6 +14,8 @@ import { useLocation } from 'react-router';
 import { useNavigate } from 'react-router-dom';
 import { auth } from '../../../api/authApi';
 import { useTranslation } from 'react-i18next';
+import '../../../assets/styles/rootForm.css';
+import PrimaryButton from '../../../components/common/PrimaryButton';
 
 const { Title } = Typography;
 
@@ -125,7 +126,7 @@ function BloodTestsForm() {
 
   return (
     <Card
-      style={{ border: 'none' }}
+      className="test-card"
       title={
         <Title level={3} className={`input-item ${isDarkMode ? 'dark' : ''}`}>
           {t('rootform.blood')}
@@ -138,6 +139,7 @@ function BloodTestsForm() {
         initialValues={updatedData}
         layout="vertical"
         size="large"
+        
       >
         <Row gutter={[24, 16]}>
           {bloodTestFields.map((field) => (
@@ -161,9 +163,9 @@ function BloodTestsForm() {
         </Row>
 
         <Form.Item style={{ textAlign: 'center', marginTop: 32 }}>
-          <Button type="primary" htmlType="submit">
+          <PrimaryButton type="primary" htmlType="submit">
             {updatedData ? t('bloodTest.update') : t('bloodTest.submit')}
-          </Button>
+          </PrimaryButton>
         </Form.Item>
       </Form>
     </Card>
