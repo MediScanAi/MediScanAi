@@ -1,5 +1,4 @@
 import {
-  Button,
   message,
   Form,
   Card,
@@ -14,6 +13,7 @@ import { saveTestData, setTestData } from '../../../app/slices/testSlice';
 import { auth } from '../../../api/authApi';
 import type { GeneticTestFormValues } from '../../../app/slices/testSlice';
 import { useTranslation } from 'react-i18next';
+import PrimaryButton from '../../../components/common/PrimaryButton';
 
 const { Title } = Typography;
 const { Option } = Select;
@@ -127,7 +127,7 @@ function GeneticTestForm() {
 
   return (
     <Card
-      style={{ border: 'none' }}
+      className="test-card"
       title={
         <Title level={3} className={`input-item ${isDarkMode ? 'dark' : ''}`}>
           {t('geneticTest.title')}
@@ -162,9 +162,9 @@ function GeneticTestForm() {
         </Row>
 
         <Form.Item style={{ textAlign: 'center', marginTop: 32 }}>
-          <Button type="primary" htmlType="submit" size="large">
+          <PrimaryButton type="primary" htmlType="submit" size="large">
             {updatedData ? t('geneticTest.update') : t('geneticTest.submit')}
-          </Button>
+          </PrimaryButton>
         </Form.Item>
       </Form>
     </Card>

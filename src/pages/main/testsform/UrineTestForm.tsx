@@ -1,5 +1,4 @@
 import {
-  Button,
   Form,
   InputNumber,
   message,
@@ -15,6 +14,8 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { saveTestData, setTestData } from '../../../app/slices/testSlice';
 import { auth } from '../../../api/authApi';
 import { useTranslation } from 'react-i18next';
+import PrimaryButton from '../../../components/common/PrimaryButton';
+import '../../../assets/styles/rootForm.css';
 
 const { Option } = Select;
 const { Title } = Typography;
@@ -198,8 +199,7 @@ const UrineTestForm = () => {
 
   return (
     <Card
-      style={{ border: 'none' }}
-      className="urine-form-card"
+      className="test-card"
       title={
         <Title level={3} className={`input-item ${isDarkMode ? 'dark' : ''}`}>
           {t('urineTest.title')}
@@ -254,9 +254,9 @@ const UrineTestForm = () => {
         </Row>
 
         <Form.Item style={{ textAlign: 'center', marginTop: 32 }}>
-          <Button type="primary" htmlType="submit" className="submit-btn">
+          <PrimaryButton type="primary" htmlType="submit" className="submit-btn">
             {updatedData ? t('urineTest.update') : t('urineTest.submit')}
-          </Button>
+          </PrimaryButton>
         </Form.Item>
       </Form>
     </Card>
