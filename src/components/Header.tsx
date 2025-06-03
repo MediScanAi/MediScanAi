@@ -3,7 +3,6 @@ import {
   Layout,
   Menu,
   Dropdown,
-  Avatar,
   Button,
   Space,
   Drawer,
@@ -31,6 +30,7 @@ import logoDark from '../assets/photos/logo-dark.svg';
 import '../assets/styles/Header.css';
 import PreferencesDropdown from './preferences/PreferencesDropdown';
 import PrimaryButton from './common/PrimaryButton.tsx';
+import UserAvatar from './common/UserAvatar.tsx';
 
 const { Header } = Layout;
 const { Text } = Typography;
@@ -167,9 +167,7 @@ export default function AppHeader() {
                 }
               >
                 <div className={`user-profile ${isDarkMode ? 'dark' : ''}`}>
-                  <Avatar size="small" src={user?.photoURL}>
-                    {!user.photoURL && (user.firstName ?? ' ')[0]}
-                  </Avatar>
+                  <UserAvatar user={user} size="small"/>
                   <Text className={`username ${isDarkMode ? 'dark' : ''}`}>
                     {user.firstName} {user.lastName}
                   </Text>

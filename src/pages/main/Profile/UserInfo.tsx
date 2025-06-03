@@ -10,7 +10,6 @@ import {
   Tooltip,
   Spin,
   Card,
-  Avatar,
   Form,
 } from 'antd';
 import {
@@ -37,6 +36,7 @@ import type { RootState } from '../../../app/store';
 import { useTranslation } from 'react-i18next';
 import '../../../assets/styles/UserInfo.css';
 import { motion } from 'framer-motion';
+import UserAvatar from '../../../components/common/UserAvatar';
 
 const { Text, Title } = Typography;
 const { Option } = Select;
@@ -219,9 +219,7 @@ const UserInfo: React.FC<UserInfoProps> = ({ theme }) => {
         >
           <div className="profile-header-container">
             <div className="profile-avatar-container">
-              <Avatar className="profile-avatar" size={80} src={user?.photoURL}>
-                {!user?.photoURL && (user?.firstName ?? ' ')[0]}
-              </Avatar>
+              <UserAvatar className="profile-avatar" size={80} user={user!}/>
             </div>
 
             <div className="profile-info">
