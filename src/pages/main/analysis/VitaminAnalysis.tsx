@@ -310,6 +310,7 @@ function VitaminAnalysis() {
         </Col>
         <Col>
           <img
+            draggable={false}
             src={Drugs}
             alt="platform"
             style={{
@@ -472,6 +473,7 @@ function VitaminAnalysis() {
                 {item.name}
               </Title>
               <img
+                draggable={false}
                 style={{
                   width: '16%',
                   height: '16%',

@@ -9,7 +9,7 @@ const languageOptions = [
   {
     label: (
       <div className="language-option">
-        <img src={engFlag} alt="EN" style={{ height: 16 }} />
+        <img draggable={false} src={engFlag} alt="EN" style={{ height: 16 }} />
         <span style={{ marginLeft: 8 }}>ENG</span>
       </div>
     ),
@@ -18,7 +18,7 @@ const languageOptions = [
   {
     label: (
       <div className="language-option">
-        <img src={rusFlag} alt="RU" style={{ height: 16 }} />
+        <img draggable={false} src={rusFlag} alt="RU" style={{ height: 16 }} />
         <span style={{ marginLeft: 8 }}>РУС</span>
       </div>
     ),
@@ -27,7 +27,7 @@ const languageOptions = [
   {
     label: (
       <div className="language-option">
-        <img src={armFlag} alt="HY" style={{ height: 16 }} />
+        <img draggable={false} src={armFlag} alt="HY" style={{ height: 16 }} />
         <span style={{ marginLeft: 8 }}>ՀԱՅ</span>
       </div>
     ),

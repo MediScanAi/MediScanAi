@@ -401,6 +401,7 @@ function UrineAnalysis() {
         </Col>
         <Col>
           <img
+            draggable={false}
             src={Urine}
             alt="platform"
             style={{
@@ -599,6 +600,7 @@ function UrineAnalysis() {
                 {item.name}
               </Title>
               <img
+                draggable={false}
                 style={{
                   width: '16%',
                   height: '16%',
