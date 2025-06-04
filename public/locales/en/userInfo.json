@@ -1,79 +1,79 @@
 {
-    "userInfo": {
-        "loading": "Loading...",
-        "notSet": "Not set",
-        "actions": {
-            "save": "Save",
-            "cancel": "Cancel"
-        },
-        "messages": {
-            "saveSuccess": "Data saved successfully",
-            "saveFail": "Failed to save data",
-            "comingSoon": "Coming soon...",
-            "updateSuccess": "Field updated successfully!",
-            "updateError": "Failed to update field."
-        },
-        "fields": {
-            "name": "Name",
-            "surname": "Surname",
-            "email": "Email",
-            "age": "Age",
-            "gender": "Gender",
-            "weight": "Weight",
-            "height": "Height",
-            "waistSize": "Waist Size",
-            "neckSize": "Neck Size"
-        },
-        "genders": {
-            "male": "Male",
-            "female": "Female"
-        },
-        "placeholders": {
-            "age": "Enter age",
-            "gender": "Select gender",
-            "weight": "Enter weight",
-            "height": "Enter height",
-            "waistSize": "Enter waist size",
-            "neckSize": "Enter neck size"
-        },
-        "units": {
-            "years": "yrs",
-            "kg": "kg",
-            "cm": "cm"
-        },
-        "tooltips": {
-            "waistSize": "Measure around the narrowest point",
-            "neckSize": "Measure around the base of the neck"
-        },
-        "tabs": {
-            "profile": "Profile",
-            "health": "Health",
-            "settings": "Settings"
-        },
-        "sections": {
-            "personalInfo": "Personal Information",
-            "healthMetrics": "Health Metrics",
-            "accountSettings": "Account Settings"
-        },
-        "timePeriods": {
-            "week": "Week",
-            "month": "Month",
-            "year": "Year"
-        },
-        "metrics": {
-            "bmi": {
-                "label": "BMI",
-                "healthyRange": "Healthy range: {{min}} - {{max}}"
-            },
-            "bodyFat": {
-                "label": "Body Fat",
-                "healthyRange": "Healthy range: {{min}}% - {{max}}%"
-            },
-            "metabolicAge": {
-                "label": "Metabolic Age"
-            },
-            "average": "average",
-            "comparison": "{{difference}} vs {{comparison}}"
-        }
+  "userInfo": {
+    "loading": "Loading...",
+    "notSet": "Not set",
+    "actions": {
+      "save": "Save",
+      "cancel": "Cancel"
+    },
+    "messages": {
+      "saveSuccess": "Data saved successfully",
+      "saveFail": "Failed to save data",
+      "comingSoon": "Coming soon...",
+      "updateSuccess": "Field updated successfully!",
+      "updateError": "Failed to update field."
+    },
+    "fields": {
+      "name": "Name",
+      "surname": "Surname",
+      "email": "Email",
+      "age": "Age",
+      "gender": "Gender",
+      "weight": "Weight",
+      "height": "Height",
+      "waistSize": "Waist Size",
+      "neckSize": "Neck Size"
+    },
+    "genders": {
+      "male": "Male",
+      "female": "Female"
+    },
+    "placeholders": {
+      "age": "Enter age",
+      "gender": "Select gender",
+      "weight": "Enter weight",
+      "height": "Enter height",
+      "waistSize": "Enter waist size",
+      "neckSize": "Enter neck size"
+    },
+    "units": {
+      "years": "yrs",
+      "kg": "kg",
+      "cm": "cm"
+    },
+    "tooltips": {
+      "waistSize": "Measure around the narrowest point",
+      "neckSize": "Measure around the base of the neck"
+    },
+    "tabs": {
+      "profile": "Profile",
+      "health": "Health",
+      "settings": "Settings"
+    },
+    "sections": {
+      "personalInfo": "Personal Information",
+      "healthMetrics": "Health Metrics",
+      "accountSettings": "Account Settings"
+    },
+    "timePeriods": {
+      "week": "Week",
+      "month": "Month",
+      "year": "Year"
+    },
+    "metrics": {
+      "bmi": {
+        "label": "BMI",
+        "healthyRange": "Healthy range: {{min}} - {{max}}"
+      },
+      "bodyFat": {
+        "label": "Body Fat",
+        "healthyRange": "Healthy range: {{min}}% - {{max}}%"
+      },
+      "metabolicAge": {
+        "label": "Metabolic Age"
+      },
+      "average": "average",
+      "comparison": "{{difference}} vs {{comparison}}"
     }
+  }
 }

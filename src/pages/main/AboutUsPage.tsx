@@ -95,9 +95,7 @@ function AboutUsPage() {
           >
             {t('aboutUs.description')}
           </Paragraph>
-          <PrimaryButton
-            onClick={() => navigate('/profile/contact-us')}
-          >
+          <PrimaryButton onClick={() => navigate('/profile/contact-us')}>
             {t('aboutUs.contactButton')}
           </PrimaryButton>
         </Col>
@@ -171,7 +169,7 @@ function AboutUsPage() {
                       flexDirection: 'column',
                       justifyContent: 'space-between',
                       height: '100%',
-                    }
+                    },
                   }}
                 >
                   <div className="opinion-item-container">

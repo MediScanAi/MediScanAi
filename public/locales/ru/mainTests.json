@@ -1,15 +1,15 @@
 {
-    "mainTests": {
-        "bloodTest": "Анализ крови",
-        "urineTest": "Анализ мочи",
-        "vitaminTest": "Витаминный анализ",
-        "geneticTest": "Генетический анализ",
-        "bloodTestSubtitle": "Полный анализ крови и биохимия",
-        "urineTestSubtitle": "Анализ мочи и микроальбумин тест",
-        "vitaminTestSubtitle": "Витамин D, B12 и минералы",
-        "geneticTestSubtitle": "ДНК анализ и риски здоровья",
-        "fillForm": "Заполните форму, чтобы получить результаты анализа",
-        "viewMore": "Подробнее",
-        "getStarted": "Начать"
-    }
+  "mainTests": {
+    "bloodTest": "Анализ крови",
+    "urineTest": "Анализ мочи",
+    "vitaminTest": "Витаминный анализ",
+    "geneticTest": "Генетический анализ",
+    "bloodTestSubtitle": "Полный анализ крови и биохимия",
+    "urineTestSubtitle": "Анализ мочи и микроальбумин тест",
+    "vitaminTestSubtitle": "Витамин D, B12 и минералы",
+    "geneticTestSubtitle": "ДНК анализ и риски здоровья",
+    "fillForm": "Заполните форму, чтобы получить результаты анализа",
+    "viewMore": "Подробнее",
+    "getStarted": "Начать"
+  }
 }

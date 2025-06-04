@@ -1,12 +1,4 @@
-import {
-  Typography,
-  Row,
-  Col,
-  Card,
-  Carousel,
-  Collapse,
-  Spin,
-} from 'antd';
+import { Typography, Row, Col, Card, Carousel, Collapse, Spin } from 'antd';
 import 'antd/dist/reset.css';
 import { DownOutlined } from '@ant-design/icons';
 import partner1 from '../../assets/photos/partner1.webp';
@@ -205,7 +197,9 @@ function HomePage() {
         <Title level={3} className="loading-title">
           Loading...
         </Title>
-        <Text className="loading-subtitle">Please wait while we load the page...</Text>
+        <Text className="loading-subtitle">
+          Please wait while we load the page...
+        </Text>
       </div>
     );
   }
@@ -224,7 +218,9 @@ function HomePage() {
             <p className={`platform-description ${isDarkMode ? 'dark' : ''}`}>
               {t('homepage.platformDescription')}
             </p>
-            <PrimaryButton onClick={() => navigate('/ai-doctor')}>{t('homepage.consultButton')}</PrimaryButton>
+            <PrimaryButton onClick={() => navigate('/ai-doctor')}>
+              {t('homepage.consultButton')}
+            </PrimaryButton>
           </Col>
           <Col>
             <img src={group99} alt="platform" className="platform-image" />
@@ -347,9 +343,7 @@ function HomePage() {
                     style={{
                       transition: 'transform 0.3s',
                       transform:
-                        openIndex === index
-                          ? 'rotate(180deg)'
-                          : 'rotate(0deg)',
+                        openIndex === index ? 'rotate(180deg)' : 'rotate(0deg)',
                       fontSize: 20,
                       color: isDarkMode ? 'white' : 'black',
                     }}

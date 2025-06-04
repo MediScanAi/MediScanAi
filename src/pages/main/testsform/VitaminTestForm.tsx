@@ -1,12 +1,4 @@
-import {
-  Form,
-  InputNumber,
-  message,
-  Typography,
-  Card,
-  Row,
-  Col,
-} from 'antd';
+import { Form, InputNumber, message, Typography, Card, Row, Col } from 'antd';
 import { useAppDispatch, useAppSelector } from '../../../app/hooks';
 import { saveTestData, setTestData } from '../../../app/slices/testSlice';
 import type { VitaminTestFormValues } from '../../../app/slices/testSlice';

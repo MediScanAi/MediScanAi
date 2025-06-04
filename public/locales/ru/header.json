@@ -1,5 +1,5 @@
 {
-    "menu": {
+  "menu": {
     "home": "Главная",
     "analysis": "Анализ",
     "aiDoctor": "Ваш ИИ Доктор",
@@ -15,9 +15,9 @@
     "selectLanguage": "Выбрать Язык",
     "selectTheme": "Выбрать Тему"
   },
-    "themePicker": {
-        "light": "Светлая",
-        "dark": "Тёмная",
-        "system": "Системная"
-    }
+  "themePicker": {
+    "light": "Светлая",
+    "dark": "Тёмная",
+    "system": "Системная"
+  }
 }

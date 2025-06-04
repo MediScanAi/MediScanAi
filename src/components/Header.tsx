@@ -46,7 +46,11 @@ export default function AppHeader() {
   const showDrawer = screens.xs;
 
   const mainMenuItems = [
-    { label: <NavLink to="/">{t('menu.home')}</NavLink>, key: '/', icon: <HomeOutlined /> },
+    {
+      label: <NavLink to="/">{t('menu.home')}</NavLink>,
+      key: '/',
+      icon: <HomeOutlined />,
+    },
     {
       label: <NavLink to="/my-health">{t('menu.myHealth')}</NavLink>,
       key: '/my-health',
@@ -58,19 +62,31 @@ export default function AppHeader() {
       icon: <ExperimentOutlined />,
       children: [
         {
-          label: <NavLink to="/analysis/blood-test">{t('menu.bloodTest')}</NavLink>,
+          label: (
+            <NavLink to="/analysis/blood-test">{t('menu.bloodTest')}</NavLink>
+          ),
           key: '/analysis/blood-test',
         },
         {
-          label: <NavLink to="/analysis/vitamin-test">{t('menu.vitaminTest')}</NavLink>,
+          label: (
+            <NavLink to="/analysis/vitamin-test">
+              {t('menu.vitaminTest')}
+            </NavLink>
+          ),
           key: '/analysis/vitamin-test',
         },
         {
-          label: <NavLink to="/analysis/urine-test">{t('menu.urineTest')}</NavLink>,
+          label: (
+            <NavLink to="/analysis/urine-test">{t('menu.urineTest')}</NavLink>
+          ),
           key: '/analysis/urine-test',
         },
         {
-          label: <NavLink to="/analysis/genetic-test">{t('menu.geneticTest')}</NavLink>,
+          label: (
+            <NavLink to="/analysis/genetic-test">
+              {t('menu.geneticTest')}
+            </NavLink>
+          ),
           key: '/analysis/genetic-test',
         },
       ],
@@ -92,7 +108,7 @@ export default function AppHeader() {
 
   const navigateHome = () => {
     navigate('/');
-  }
+  };
   return (
     <Header className={`app-header ${isDarkMode ? 'dark' : 'light'}`}>
       <div className="app-header-container">
@@ -167,7 +183,7 @@ export default function AppHeader() {
                 }
               >
                 <div className={`user-profile ${isDarkMode ? 'dark' : ''}`}>
-                  <UserAvatar user={user} size="small"/>
+                  <UserAvatar user={user} size="small" />
                   <Text className={`username ${isDarkMode ? 'dark' : ''}`}>
                     {user.firstName} {user.lastName}
                   </Text>

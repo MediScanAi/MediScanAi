@@ -171,17 +171,39 @@ function BloodAnalysis() {
   };
 
   const diseaseExplanations: { [key: string]: string } = {
-    [t('bloodAnalysis.warnings.conditions.lowHemoglobin')]: t('bloodAnalysis.warnings.explanations.lowHemoglobin'),
-    [t('bloodAnalysis.warnings.conditions.highHemoglobin')]: t('bloodAnalysis.warnings.explanations.highHemoglobin'),
-    [t('bloodAnalysis.warnings.conditions.lowWbc')]: t('bloodAnalysis.warnings.explanations.lowWbc'),
-    [t('bloodAnalysis.warnings.conditions.highWbc')]: t('bloodAnalysis.warnings.explanations.highWbc'),
-    [t('bloodAnalysis.warnings.conditions.lowRbc')]: t('bloodAnalysis.warnings.explanations.lowRbc'),
-    [t('bloodAnalysis.warnings.conditions.highRbc')]: t('bloodAnalysis.warnings.explanations.highRbc'),
-    [t('bloodAnalysis.warnings.conditions.lowPlatelets')]: t('bloodAnalysis.warnings.explanations.lowPlatelets'),
-    [t('bloodAnalysis.warnings.conditions.highPlatelets')]: t('bloodAnalysis.warnings.explanations.highPlatelets'),
-    [t('bloodAnalysis.warnings.conditions.lowGlucose')]: t('bloodAnalysis.warnings.explanations.lowGlucose'),
-    [t('bloodAnalysis.warnings.conditions.highGlucose')]: t('bloodAnalysis.warnings.explanations.highGlucose'),
-    [t('bloodAnalysis.warnings.conditions.highCholesterol')]: t('bloodAnalysis.warnings.explanations.highCholesterol'),
+    [t('bloodAnalysis.warnings.conditions.lowHemoglobin')]: t(
+      'bloodAnalysis.warnings.explanations.lowHemoglobin'
+    ),
+    [t('bloodAnalysis.warnings.conditions.highHemoglobin')]: t(
+      'bloodAnalysis.warnings.explanations.highHemoglobin'
+    ),
+    [t('bloodAnalysis.warnings.conditions.lowWbc')]: t(
+      'bloodAnalysis.warnings.explanations.lowWbc'
+    ),
+    [t('bloodAnalysis.warnings.conditions.highWbc')]: t(
+      'bloodAnalysis.warnings.explanations.highWbc'
+    ),
+    [t('bloodAnalysis.warnings.conditions.lowRbc')]: t(
+      'bloodAnalysis.warnings.explanations.lowRbc'
+    ),
+    [t('bloodAnalysis.warnings.conditions.highRbc')]: t(
+      'bloodAnalysis.warnings.explanations.highRbc'
+    ),
+    [t('bloodAnalysis.warnings.conditions.lowPlatelets')]: t(
+      'bloodAnalysis.warnings.explanations.lowPlatelets'
+    ),
+    [t('bloodAnalysis.warnings.conditions.highPlatelets')]: t(
+      'bloodAnalysis.warnings.explanations.highPlatelets'
+    ),
+    [t('bloodAnalysis.warnings.conditions.lowGlucose')]: t(
+      'bloodAnalysis.warnings.explanations.lowGlucose'
+    ),
+    [t('bloodAnalysis.warnings.conditions.highGlucose')]: t(
+      'bloodAnalysis.warnings.explanations.highGlucose'
+    ),
+    [t('bloodAnalysis.warnings.conditions.highCholesterol')]: t(
+      'bloodAnalysis.warnings.explanations.highCholesterol'
+    ),
   };
 
   useEffect(() => {
@@ -202,42 +224,42 @@ function BloodAnalysis() {
       value: bloodTestData?.cholesterol || 0,
       color: '#f39c12',
       image: Cholesterol,
-      key: 'Cholesterol'
+      key: 'Cholesterol',
     },
     {
       name: t('bloodAnalysis.Glucose'),
       value: bloodTestData?.glucose || 0,
       color: '#16a085',
       image: Chocolate,
-      key: 'Glucose'
+      key: 'Glucose',
     },
     {
       name: t('bloodAnalysis.Hemoglobin'),
       value: bloodTestData?.hemoglobin || 0,
       color: '#e74c3c',
       image: Syringe,
-      key: 'Hemoglobin'
+      key: 'Hemoglobin',
     },
     {
       name: t('bloodAnalysis.Platelets'),
       value: bloodTestData?.platelets || 0,
       color: '#8e44ad',
       image: ChartGoingDown,
-      key: 'Platelets'
+      key: 'Platelets',
     },
     {
       name: t('bloodAnalysis.RBC'),
       value: bloodTestData?.rbc || 0,
       color: '#2980b9',
       image: MedKit,
-      key: 'RBC'
+      key: 'RBC',
     },
     {
       name: t('bloodAnalysis.WBC'),
       value: bloodTestData?.wbc || 0,
       color: '#27ae60',
       image: Done,
-      key: 'WBC'
+      key: 'WBC',
     },
   ];
 
@@ -407,7 +429,9 @@ function BloodAnalysis() {
                             style={{ padding: 0, color: '#3498db' }}
                             onClick={() => toggleWarning(risk)}
                           >
-                            {expandedWarnings[risk] ? t('bloodAnalysis.warnings.showLess') : t('bloodAnalysis.warnings.showMore')}
+                            {expandedWarnings[risk]
+                              ? t('bloodAnalysis.warnings.showLess')
+                              : t('bloodAnalysis.warnings.showMore')}
                           </Button>
                           {expandedWarnings[risk] && (
                             <p

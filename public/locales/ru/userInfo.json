@@ -1,82 +1,82 @@
 {
-    "userInfo": {
-        "loading": "Загрузка...",
-        "notSet": "Не установлено",
-        "badges": {
-            "premiumMember": "Премиум участник"
-        },
-        "actions": {
-            "save": "Сохранить",
-            "cancel": "Отмена"
-        },
-        "messages": {
-            "saveSuccess": "Данные успешно сохранены",
-            "saveFail": "Не удалось сохранить данные",
-            "comingSoon": "Скоро...",
-            "updateSuccess": "Поле успешно обновлено!",
-            "updateError": "Не удалось обновить поле."
-        },
-        "fields": {
-            "name": "Имя",
-            "surname": "Фамилия",
-            "email": "Эл. почта",
-            "age": "Возраст",
-            "gender": "Пол",
-            "weight": "Вес",
-            "height": "Рост",
-            "waistSize": "Обхват талии",
-            "neckSize": "Обхват шеи"
-        },
-        "genders": {
-            "male": "Мужской",
-            "female": "Женский"
-        },
-        "placeholders": {
-            "age": "Введите возраст",
-            "gender": "Выберите пол",
-            "weight": "Введите вес",
-            "height": "Введите рост",
-            "waistSize": "Введите обхват талии",
-            "neckSize": "Введите обхват шеи"
-        },
-        "units": {
-            "years": "лет",
-            "kg": "кг",
-            "cm": "см"
-        },
-        "tooltips": {
-            "waistSize": "Измерьте в самом узком месте",
-            "neckSize": "Измерьте вокруг основания шеи"
-        },
-        "tabs": {
-            "profile": "Профиль",
-            "health": "Здоровье",
-            "settings": "Настройки"
-        },
-        "sections": {
-            "personalInfo": "Личная информация",
-            "healthMetrics": "Показатели здоровья",
-            "accountSettings": "Настройки аккаунта"
-        },
-        "timePeriods": {
-            "week": "Неделя",
-            "month": "Месяц",
-            "year": "Год"
-        },
-        "metrics": {
-            "bmi": {
-                "label": "ИМТ",
-                "healthyRange": "Здоровый диапазон: {{min}} - {{max}}"
-            },
-            "bodyFat": {
-                "label": "Жировая масса",
-                "healthyRange": "Здоровый диапазон: {{min}}% - {{max}}%"
-            },
-            "metabolicAge": {
-                "label": "Метаболический возраст"
-            },
-            "average": "средний",
-            "comparison": "{{difference}} против {{comparison}}"
-        }
+  "userInfo": {
+    "loading": "Загрузка...",
+    "notSet": "Не установлено",
+    "badges": {
+      "premiumMember": "Премиум участник"
+    },
+    "actions": {
+      "save": "Сохранить",
+      "cancel": "Отмена"
+    },
+    "messages": {
+      "saveSuccess": "Данные успешно сохранены",
+      "saveFail": "Не удалось сохранить данные",
+      "comingSoon": "Скоро...",
+      "updateSuccess": "Поле успешно обновлено!",
+      "updateError": "Не удалось обновить поле."
+    },
+    "fields": {
+      "name": "Имя",
+      "surname": "Фамилия",
+      "email": "Эл. почта",
+      "age": "Возраст",
+      "gender": "Пол",
+      "weight": "Вес",
+      "height": "Рост",
+      "waistSize": "Обхват талии",
+      "neckSize": "Обхват шеи"
+    },
+    "genders": {
+      "male": "Мужской",
+      "female": "Женский"
+    },
+    "placeholders": {
+      "age": "Введите возраст",
+      "gender": "Выберите пол",
+      "weight": "Введите вес",
+      "height": "Введите рост",
+      "waistSize": "Введите обхват талии",
+      "neckSize": "Введите обхват шеи"
+    },
+    "units": {
+      "years": "лет",
+      "kg": "кг",
+      "cm": "см"
+    },
+    "tooltips": {
+      "waistSize": "Измерьте в самом узком месте",
+      "neckSize": "Измерьте вокруг основания шеи"
+    },
+    "tabs": {
+      "profile": "Профиль",
+      "health": "Здоровье",
+      "settings": "Настройки"
+    },
+    "sections": {
+      "personalInfo": "Личная информация",
+      "healthMetrics": "Показатели здоровья",
+      "accountSettings": "Настройки аккаунта"
+    },
+    "timePeriods": {
+      "week": "Неделя",
+      "month": "Месяц",
+      "year": "Год"
+    },
+    "metrics": {
+      "bmi": {
+        "label": "ИМТ",
+        "healthyRange": "Здоровый диапазон: {{min}} - {{max}}"
+      },
+      "bodyFat": {
+        "label": "Жировая масса",
+        "healthyRange": "Здоровый диапазон: {{min}}% - {{max}}%"
+      },
+      "metabolicAge": {
+        "label": "Метаболический возраст"
+      },
+      "average": "средний",
+      "comparison": "{{difference}} против {{comparison}}"
     }
+  }
 }

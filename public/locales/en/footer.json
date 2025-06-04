@@ -1,18 +1,18 @@
 {
-    "footer": {
-        "advancedAI": "Advanced AI-powered medical diagnostics platform revolutionizing healthcare accessibility.",
-        "company": "Company",
-        "contactUs": "Contact Us",
-        "aboutUs": "About Us",
-        "myHealth": "My Health",
-        "aiDoctor": "AI Doctor",
-        "profile": "Profile",
-        "tests": "Tests",
-        "privacyPolicy": "Privacy Policy",
-        "termsOfService": "Terms of Service",
-        "allRightsReserved": "All rights reserved",
-        "location": "Yerevan, Armenia",
-        "phone": "+374 99 198 028 (Support)",
-        "workingHours": "Mon-Fri: 9:00 - 18:00"
-    }
+  "footer": {
+    "advancedAI": "Advanced AI-powered medical diagnostics platform revolutionizing healthcare accessibility.",
+    "company": "Company",
+    "contactUs": "Contact Us",
+    "aboutUs": "About Us",
+    "myHealth": "My Health",
+    "aiDoctor": "AI Doctor",
+    "profile": "Profile",
+    "tests": "Tests",
+    "privacyPolicy": "Privacy Policy",
+    "termsOfService": "Terms of Service",
+    "allRightsReserved": "All rights reserved",
+    "location": "Yerevan, Armenia",
+    "phone": "+374 99 198 028 (Support)",
+    "workingHours": "Mon-Fri: 9:00 - 18:00"
+  }
 }

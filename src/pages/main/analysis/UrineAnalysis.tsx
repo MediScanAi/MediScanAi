@@ -197,7 +197,9 @@ function UrineAnalysis() {
   const scorecards = [
     {
       label: t('urineAnalysis.bilirubin'),
-      value: t(`urineAnalysis.result.${urineTestData?.bilirubin || 'negative'}`),
+      value: t(
+        `urineAnalysis.result.${urineTestData?.bilirubin || 'negative'}`
+      ),
       percent:
         urineTestData?.bilirubin === 'positive'
           ? 100
@@ -227,7 +229,9 @@ function UrineAnalysis() {
     },
     {
       label: t('urineAnalysis.leukocyteEsterase'),
-      value: t(`urineAnalysis.result.${urineTestData?.leukocyteEsterase || 'negative'}`),
+      value: t(
+        `urineAnalysis.result.${urineTestData?.leukocyteEsterase || 'negative'}`
+      ),
       percent:
         urineTestData?.leukocyteEsterase === 'positive'
           ? 100
@@ -251,7 +255,10 @@ function UrineAnalysis() {
     if (data.nitrites !== undefined && Number(data.nitrites) > 0) {
       risks.push(t('urineAnalysis.warnings.conditions.nitrites'));
     }
-    if (data.leukocyteEsterase !== undefined && Number(data.leukocyteEsterase) > 0) {
+    if (
+      data.leukocyteEsterase !== undefined &&
+      Number(data.leukocyteEsterase) > 0
+    ) {
       risks.push(t('urineAnalysis.warnings.conditions.leukocyteEsterase'));
     }
     if (data.glucose !== undefined && Number(data.glucose) > 0) {
@@ -260,13 +267,20 @@ function UrineAnalysis() {
     if (data.ketones !== undefined && Number(data.ketones) > 0) {
       risks.push(t('urineAnalysis.warnings.conditions.ketones'));
     }
-    if (data.ph !== undefined && (Number(data.ph) < 4.5 || Number(data.ph) > 8)) {
+    if (
+      data.ph !== undefined &&
+      (Number(data.ph) < 4.5 || Number(data.ph) > 8)
+    ) {
       risks.push(t('urineAnalysis.warnings.conditions.ph'));
     }
     if (data.protein !== undefined && Number(data.protein) > 0) {
       risks.push(t('urineAnalysis.warnings.conditions.protein'));
     }
-    if (data.specificGravity !== undefined && (Number(data.specificGravity) < 1.005 || Number(data.specificGravity) > 1.03)) {
+    if (
+      data.specificGravity !== undefined &&
+      (Number(data.specificGravity) < 1.005 ||
+        Number(data.specificGravity) > 1.03)
+    ) {
       risks.push(t('urineAnalysis.warnings.conditions.specificGravity'));
     }
     if (data.urobilinogen !== undefined && Number(data.urobilinogen) > 1.0) {
@@ -277,29 +291,74 @@ function UrineAnalysis() {
   };
 
   const diseaseExplanations: { [key: string]: string } = {
-    [t('urineAnalysis.warnings.conditions.bilirubin')]: t('urineAnalysis.warnings.explanations.bilirubin'),
-    [t('urineAnalysis.warnings.conditions.blood')]: t('urineAnalysis.warnings.explanations.blood'),
-    [t('urineAnalysis.warnings.conditions.nitrites')]: t('urineAnalysis.warnings.explanations.nitrites'),
-    [t('urineAnalysis.warnings.conditions.leukocyteEsterase')]: t('urineAnalysis.warnings.explanations.leukocyteEsterase'),
-    [t('urineAnalysis.warnings.conditions.glucose')]: t('urineAnalysis.warnings.explanations.glucose'),
-    [t('urineAnalysis.warnings.conditions.ketones')]: t('urineAnalysis.warnings.explanations.ketones'),
-    [t('urineAnalysis.warnings.conditions.ph')]: t('urineAnalysis.warnings.explanations.ph'),
-    [t('urineAnalysis.warnings.conditions.protein')]: t('urineAnalysis.warnings.explanations.protein'),
-    [t('urineAnalysis.warnings.conditions.specificGravity')]: t('urineAnalysis.warnings.explanations.specificGravity'),
-    [t('urineAnalysis.warnings.conditions.urobilinogen')]: t('urineAnalysis.warnings.explanations.urobilinogen'),
+    [t('urineAnalysis.warnings.conditions.bilirubin')]: t(
+      'urineAnalysis.warnings.explanations.bilirubin'
+    ),
+    [t('urineAnalysis.warnings.conditions.blood')]: t(
+      'urineAnalysis.warnings.explanations.blood'
+    ),
+    [t('urineAnalysis.warnings.conditions.nitrites')]: t(
+      'urineAnalysis.warnings.explanations.nitrites'
+    ),
+    [t('urineAnalysis.warnings.conditions.leukocyteEsterase')]: t(
+      'urineAnalysis.warnings.explanations.leukocyteEsterase'
+    ),
+    [t('urineAnalysis.warnings.conditions.glucose')]: t(
+      'urineAnalysis.warnings.explanations.glucose'
+    ),
+    [t('urineAnalysis.warnings.conditions.ketones')]: t(
+      'urineAnalysis.warnings.explanations.ketones'
+    ),
+    [t('urineAnalysis.warnings.conditions.ph')]: t(
+      'urineAnalysis.warnings.explanations.ph'
+    ),
+    [t('urineAnalysis.warnings.conditions.protein')]: t(
+      'urineAnalysis.warnings.explanations.protein'
+    ),
+    [t('urineAnalysis.warnings.conditions.specificGravity')]: t(
+      'urineAnalysis.warnings.explanations.specificGravity'
+    ),
+    [t('urineAnalysis.warnings.conditions.urobilinogen')]: t(
+      'urineAnalysis.warnings.explanations.urobilinogen'
+    ),
   };
 
   const interestingFacts: { [key: string]: string[] } = {
-    [t('urineAnalysis.bilirubin')]: t('urineAnalysis.interestingFacts.bilirubin', { returnObjects: true }) as string[],
-    [t('urineAnalysis.blood')]: t('urineAnalysis.interestingFacts.blood', { returnObjects: true }) as string[],
-    [t('urineAnalysis.nitrites')]: t('urineAnalysis.interestingFacts.nitrites', { returnObjects: true }) as string[],
-    [t('urineAnalysis.leukocyteEsterase')]: t('urineAnalysis.interestingFacts.leukocyteEsterase', { returnObjects: true }) as string[],
-    [t('urineAnalysis.glucose')]: t('urineAnalysis.interestingFacts.glucose', { returnObjects: true }) as string[],
-    [t('urineAnalysis.ketones')]: t('urineAnalysis.interestingFacts.ketones', { returnObjects: true }) as string[],
-    [t('urineAnalysis.ph')]: t('urineAnalysis.interestingFacts.ph', { returnObjects: true }) as string[],
-    [t('urineAnalysis.protein')]: t('urineAnalysis.interestingFacts.protein', { returnObjects: true }) as string[],
-    [t('urineAnalysis.specificGravity')]: t('urineAnalysis.interestingFacts.specificGravity', { returnObjects: true }) as string[],
-    [t('urineAnalysis.urobilinogen')]: t('urineAnalysis.interestingFacts.urobilinogen', { returnObjects: true }) as string[],
+    [t('urineAnalysis.bilirubin')]: t(
+      'urineAnalysis.interestingFacts.bilirubin',
+      { returnObjects: true }
+    ) as string[],
+    [t('urineAnalysis.blood')]: t('urineAnalysis.interestingFacts.blood', {
+      returnObjects: true,
+    }) as string[],
+    [t('urineAnalysis.nitrites')]: t(
+      'urineAnalysis.interestingFacts.nitrites',
+      { returnObjects: true }
+    ) as string[],
+    [t('urineAnalysis.leukocyteEsterase')]: t(
+      'urineAnalysis.interestingFacts.leukocyteEsterase',
+      { returnObjects: true }
+    ) as string[],
+    [t('urineAnalysis.glucose')]: t('urineAnalysis.interestingFacts.glucose', {
+      returnObjects: true,
+    }) as string[],
+    [t('urineAnalysis.ketones')]: t('urineAnalysis.interestingFacts.ketones', {
+      returnObjects: true,
+    }) as string[],
+    [t('urineAnalysis.ph')]: t('urineAnalysis.interestingFacts.ph', {
+      returnObjects: true,
+    }) as string[],
+    [t('urineAnalysis.protein')]: t('urineAnalysis.interestingFacts.protein', {
+      returnObjects: true,
+    }) as string[],
+    [t('urineAnalysis.specificGravity')]: t(
+      'urineAnalysis.interestingFacts.specificGravity',
+      { returnObjects: true }
+    ) as string[],
+    [t('urineAnalysis.urobilinogen')]: t(
+      'urineAnalysis.interestingFacts.urobilinogen',
+      { returnObjects: true }
+    ) as string[],
   };
 
   const navigate = useNavigate();
@@ -462,7 +521,9 @@ function UrineAnalysis() {
                             style={{ padding: 0 }}
                             onClick={() => toggleWarning(risk)}
                           >
-                            {expandedWarnings[risk] ? t('urineAnalysis.warnings.showLess') : t('urineAnalysis.warnings.showMore')}
+                            {expandedWarnings[risk]
+                              ? t('urineAnalysis.warnings.showLess')
+                              : t('urineAnalysis.warnings.showMore')}
                           </Button>
                           {expandedWarnings[risk] && (
                             <p

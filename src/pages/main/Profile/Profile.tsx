@@ -90,19 +90,22 @@ const Profile: React.FC = () => {
   };
 
   return (
-    <Row className={'profile' + (isDarkMode ? ' dark' : '')}>
-      <Col className={'Column'}>
+    <div className={'profile' + (isDarkMode ? ' dark' : '')}>
+      <div className="profile-container">
         <Tabs
           className={`tabs ${isDarkMode ? 'dark' : ''}`}
           tabPosition={width < 820 ? 'top' : 'left'}
           defaultActiveKey="1"
-          style={{ color: 'white', minHeight: '70vh' }}
+          style={{ 
+            color: 'white', 
+            minHeight: '70vh'
+          }}
           items={items}
           activeKey={activeKey}
           onChange={handleTabChange}
         />
-      </Col>
-    </Row>
+      </div>
+    </div>
   );
 };
 

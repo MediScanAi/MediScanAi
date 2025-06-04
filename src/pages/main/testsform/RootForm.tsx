@@ -16,7 +16,7 @@ import UrineTestForm from './UrineTestForm';
 import BloodTestsForm from './BloodTestForm';
 import GeneticTestForm from './GeneticTestForm';
 import { useTranslation } from 'react-i18next';
-import PrimaryButton from '../../../components/common/PrimaryButton.tsx';
+import SecondaryButton from '../../../components/common/SecondaryButton.tsx';
 
 const { Title, Text } = Typography;
 
@@ -78,12 +78,12 @@ function RootForm(): ReactNode | null {
 
   return (
     <div className={`root-form-container ${isDarkMode ? ' dark' : ''}`}>
-      <PrimaryButton
-        style={{ left: '50px', marginTop: '10px' }}
+      <SecondaryButton
+        style={{ left: '50px', marginTop: '20px' }}
         onClick={() => navigate('/profile/info')}
       >
         {t('rootForm.backButton')}
-      </PrimaryButton>
+      </SecondaryButton>
 
       <Row className="form-main-container">
         <Col xs={24} md={10} className="form-left-content">

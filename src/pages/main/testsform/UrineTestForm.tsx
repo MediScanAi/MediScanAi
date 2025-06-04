@@ -180,7 +180,7 @@ const UrineTestForm = () => {
   const valueMapping: ValueMapping = {
     [t('urineTest.negative')]: 'negative',
     [t('urineTest.positive')]: 'positive',
-    [t('urineTest.trace')]: 'trace'
+    [t('urineTest.trace')]: 'trace',
   };
 
   const onFinish = async (values: UrineTestFormValues) => {
@@ -195,12 +195,16 @@ const UrineTestForm = () => {
       ...values,
       bilirubin: valueMapping[values.bilirubin as string] || values.bilirubin,
       nitrites: valueMapping[values.nitrites as string] || values.nitrites,
-      leukocyteEsterase: valueMapping[values.leukocyteEsterase as string] || values.leukocyteEsterase,
+      leukocyteEsterase:
+        valueMapping[values.leukocyteEsterase as string] ||
+        values.leukocyteEsterase,
       blood: valueMapping[values.blood as string] || values.blood,
-      date: new Date().toISOString()
+      date: new Date().toISOString(),
     };
 
-    await dispatch(saveTestData({ uid, testType: 'urine', data: processedValues }));
+    await dispatch(
+      saveTestData({ uid, testType: 'urine', data: processedValues })
+    );
     dispatch(setTestData({ testType: 'urine', data: processedValues }));
 
     if (updatedData) {
@@ -234,13 +238,19 @@ const UrineTestForm = () => {
         onFinish={onFinish}
         layout="vertical"
         size="large"
-        initialValues={updatedData ? {
-          ...updatedData,
-          bilirubin: getDisplayValue(updatedData.bilirubin),
-          nitrites: getDisplayValue(updatedData.nitrites),
-          leukocyteEsterase: getDisplayValue(updatedData.leukocyteEsterase),
-          blood: getDisplayValue(updatedData.blood)
-        } : undefined}
+        initialValues={
+          updatedData
+            ? {
+                ...updatedData,
+                bilirubin: getDisplayValue(updatedData.bilirubin),
+                nitrites: getDisplayValue(updatedData.nitrites),
+                leukocyteEsterase: getDisplayValue(
+                  updatedData.leukocyteEsterase
+                ),
+                blood: getDisplayValue(updatedData.blood),
+              }
+            : undefined
+        }
       >
         <Row gutter={[24, 16]}>
           {urineTestFields.map((field) => {
@@ -283,7 +293,11 @@ const UrineTestForm = () => {
         </Row>
 
         <Form.Item style={{ textAlign: 'center', marginTop: 32 }}>
-          <PrimaryButton type="primary" htmlType="submit" className="submit-btn">
+          <PrimaryButton
+            type="primary"
+            htmlType="submit"
+            className="submit-btn"
+          >
             {updatedData ? t('urineTest.update') : t('urineTest.submit')}
           </PrimaryButton>
         </Form.Item>

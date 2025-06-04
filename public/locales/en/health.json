@@ -1,146 +1,146 @@
 {
-    "health": {
-        "bmi": "BMI",
-        "bmr": "BMR",
-        "bodyFat": "Body Fat",
-        "idealWeight": "Ideal Weight",
-        "status": {
-            "underweight": "Underweight",
-            "healthy": "Healthy",
-            "overweight": "Overweight",
-            "obese": "Obese"
-        },
-        "suggestions": {
-            "underweight": "Your BMI is below normal. Focus on nutrient-dense foods like avocados, nuts, lean proteins, and whole grains.",
-            "healthy": "Great job! Maintain your current habits of balanced eating and regular exercise.",
-            "overweight": "Try incorporating more physical activity and reducing high-calorie processed foods.",
-            "obese": "It's important to take action now. Please consult with a healthcare provider."
-        },
-        "dailyCalories": "Daily Calories",
-        "getDataExportInstructions": "Get Data Export Instructions",
-        "exerciseGoal": "Exercise Goal",
-        "threeMonthGoal": "3-month Goal",
-        "maintain": "Maintain",
-        "gainWeight": "+{{kg}}kg",
-        "loseWeight": "-{{kg}}kg",
-        "minutes": "{{minutes}} min",
-        "alerts": {
-            "lowWeight": {
-                "title": "Low Weight Advisory",
-                "description": "Your weight is significantly below average. Consider increasing intake of healthy high-calorie foods like nuts, avocados, and lean proteins."
-            },
-            "highWeight": {
-                "title": "Weight Management Recommended",
-                "description": "Your weight is above healthy ranges. Focus on whole foods, portion control, and regular physical activity. Consult a healthcare provider for personalized advice."
-            },
-            "healthyWeight": {
-                "title": "Healthy Weight Range",
-                "description": "Your weight is within acceptable parameters. Maintain balanced nutrition and regular physical activity for optimal health."
-            }
-        },
-        "loading": {
-            "title": "Analyzing Your Health Profile",
-            "subtitle": "We're crunching the numbers to provide personalized insights"
-        },
-        "emptyState": {
-            "title": "Welcome to Your Health Dashboard",
-            "message": "Complete your health profile to unlock personalized insights and recommendations.",
-            "button": "Complete Your Profile"
-        },
-        "dashboard": {
-            "title": "Your Health Dashboard",
-            "subtitle": "Personalized insights based on your health metrics"
-        },
-        "profile": {
-            "title": "Personal Profile",
-            "age": "Age",
-            "weight": "Weight",
-            "height": "Height",
-            "waistSize": "Waist Size",
-            "neckSize": "Neck Size"
-        },
-        "years": "{{years}} years",
-        "kg": "{{kg}} kg",
-        "cm": "{{cm}} cm",
-        "notSet": "Not set",
-        "metrics": {
-            "title": "Health Metrics"
-        },
-        "visualization": {
-            "alt": "Health visualization"
-        },
-        "dailyMetrics": "Daily Metrics",
-        "setGoal": "Set Goal",
-        "save": "Save",
-        "cancel": "Cancel",
-        "enterGoalValue": "Enter goal value",
-        "selectDate": "Select Date",
-        "goal": "Goal",
-        "steps": "Steps",
-        "activeCalories": "Active Calories",
-        "restingCalories": "Resting Calories"
+  "health": {
+    "bmi": "BMI",
+    "bmr": "BMR",
+    "bodyFat": "Body Fat",
+    "idealWeight": "Ideal Weight",
+    "status": {
+      "underweight": "Underweight",
+      "healthy": "Healthy",
+      "overweight": "Overweight",
+      "obese": "Obese"
     },
-    "healthGuide": {
-        "guide": {
-            "backButton": "My Health",
-            "title": "Let's Get Your Health Profile Set Up",
-            "subtitle": "Complete these simple steps to unlock personalized health insights and tracking.",
-            "profileTitle": "Personal Profile",
-            "profileDescription": "Tell us about yourself to help us personalize your experience. ",
-            "ageGender": "Age & Gender",
-            "heightWeight": "Height & Weight",
-            "activityLevel": "Activity Level",
-            "waistSize": "Waist Circumference",
-            "neckSize": "Neck Circumference",
-            "hipSize": "Hip Circumference",
-            "bodyFat": "Body Fat %",
-            "idealWeight": "Ideal Weight",
-            "dailyCalories": "Daily Calories",
-            "exerciseGoal": "Exercise Goal",
-            "completeProfile": "Complete Profile",
-            "dataPrivacyTitle": "Health Data Analysis",
-            "dataPrivacyText": "Your health data is encrypted end-to-end. We never sell your data or share it without your consent.",
-            "privacyPolicy": "Read our privacy policy",
-            "connectHealthTitle": "Sync Health Data",
-            "connectHealthDescription": "Securely sync your health data in just a few steps.",
-            "step1Title": "Authorize Data Sharing",
-            "step1Description": "In Apple Health, select which data types to share (activity, vitals, nutrition, etc.)",
-            "step2Title": "Set Sync Frequency",
-            "step2Description": "Choose automatic daily syncs or manual updates as needed",
-            "step3Title": "Secure Data Storage",
-            "step3Description": "Your health data will be securely saved in our encrypted database",
-            "step4Title": "Data Processing",
-            "step4Description": "MediScanAI will analyze your data (takes 2-5 minutes for initial sync)",
-            "step5Title": "View Insights",
-            "step5Description": "Access personalized health reports and AI recommendations",
-            "connectButton": "Connect Apple Health",
-            "learnMore": "Learn More",
-            "connectModal": {
-                "title": "Connect Your Health Data",
-                "description": "Follow these steps to connect your health data with MediScanAI",
-                "steps": {
-                    "download": {
-                        "title": "Download the Shortcut",
-                        "linkText": "Download Shortcut"
-                    },
-                    "copyUid": {
-                        "title": "Copy Your Unique ID",
-                        "button": {
-                            "copy": "Copy"
-                        }
-                    },
-                    "runShortcut": {
-                        "title": "Run the Shortcut",
-                        "description": "Open the Shortcuts app and run the downloaded shortcut"
-                    },
-                    "enjoy": {
-                        "title": "Enjoy Your Health Insights",
-                        "description": "Your health data will be automatically synced with MediScanAI"
-                    }
-                },
-                "privacyNote": "Your data is encrypted and secure. We never share your personal health information with third parties.",
-                "closeButton": "Close"
+    "suggestions": {
+      "underweight": "Your BMI is below normal. Focus on nutrient-dense foods like avocados, nuts, lean proteins, and whole grains.",
+      "healthy": "Great job! Maintain your current habits of balanced eating and regular exercise.",
+      "overweight": "Try incorporating more physical activity and reducing high-calorie processed foods.",
+      "obese": "It's important to take action now. Please consult with a healthcare provider."
+    },
+    "dailyCalories": "Daily Calories",
+    "getDataExportInstructions": "Get Data Export Instructions",
+    "exerciseGoal": "Exercise Goal",
+    "threeMonthGoal": "3-month Goal",
+    "maintain": "Maintain",
+    "gainWeight": "+{{kg}}kg",
+    "loseWeight": "-{{kg}}kg",
+    "minutes": "{{minutes}} min",
+    "alerts": {
+      "lowWeight": {
+        "title": "Low Weight Advisory",
+        "description": "Your weight is significantly below average. Consider increasing intake of healthy high-calorie foods like nuts, avocados, and lean proteins."
+      },
+      "highWeight": {
+        "title": "Weight Management Recommended",
+        "description": "Your weight is above healthy ranges. Focus on whole foods, portion control, and regular physical activity. Consult a healthcare provider for personalized advice."
+      },
+      "healthyWeight": {
+        "title": "Healthy Weight Range",
+        "description": "Your weight is within acceptable parameters. Maintain balanced nutrition and regular physical activity for optimal health."
+      }
+    },
+    "loading": {
+      "title": "Analyzing Your Health Profile",
+      "subtitle": "We're crunching the numbers to provide personalized insights"
+    },
+    "emptyState": {
+      "title": "Welcome to Your Health Dashboard",
+      "message": "Complete your health profile to unlock personalized insights and recommendations.",
+      "button": "Complete Your Profile"
+    },
+    "dashboard": {
+      "title": "Your Health Dashboard",
+      "subtitle": "Personalized insights based on your health metrics"
+    },
+    "profile": {
+      "title": "Personal Profile",
+      "age": "Age",
+      "weight": "Weight",
+      "height": "Height",
+      "waistSize": "Waist Size",
+      "neckSize": "Neck Size"
+    },
+    "years": "{{years}} years",
+    "kg": "{{kg}} kg",
+    "cm": "{{cm}} cm",
+    "notSet": "Not set",
+    "metrics": {
+      "title": "Health Metrics"
+    },
+    "visualization": {
+      "alt": "Health visualization"
+    },
+    "dailyMetrics": "Daily Metrics",
+    "setGoal": "Set Goal",
+    "save": "Save",
+    "cancel": "Cancel",
+    "enterGoalValue": "Enter goal value",
+    "selectDate": "Select Date",
+    "goal": "Goal",
+    "steps": "Steps",
+    "activeCalories": "Active Calories",
+    "restingCalories": "Resting Calories"
+  },
+  "healthGuide": {
+    "guide": {
+      "backButton": "My Health",
+      "title": "Let's Get Your Health Profile Set Up",
+      "subtitle": "Complete these simple steps to unlock personalized health insights and tracking.",
+      "profileTitle": "Personal Profile",
+      "profileDescription": "Tell us about yourself to help us personalize your experience. ",
+      "ageGender": "Age & Gender",
+      "heightWeight": "Height & Weight",
+      "activityLevel": "Activity Level",
+      "waistSize": "Waist Circumference",
+      "neckSize": "Neck Circumference",
+      "hipSize": "Hip Circumference",
+      "bodyFat": "Body Fat %",
+      "idealWeight": "Ideal Weight",
+      "dailyCalories": "Daily Calories",
+      "exerciseGoal": "Exercise Goal",
+      "completeProfile": "Complete Profile",
+      "dataPrivacyTitle": "Health Data Analysis",
+      "dataPrivacyText": "Your health data is encrypted end-to-end. We never sell your data or share it without your consent.",
+      "privacyPolicy": "Read our privacy policy",
+      "connectHealthTitle": "Sync Health Data",
+      "connectHealthDescription": "Securely sync your health data in just a few steps.",
+      "step1Title": "Authorize Data Sharing",
+      "step1Description": "In Apple Health, select which data types to share (activity, vitals, nutrition, etc.)",
+      "step2Title": "Set Sync Frequency",
+      "step2Description": "Choose automatic daily syncs or manual updates as needed",
+      "step3Title": "Secure Data Storage",
+      "step3Description": "Your health data will be securely saved in our encrypted database",
+      "step4Title": "Data Processing",
+      "step4Description": "MediScanAI will analyze your data (takes 2-5 minutes for initial sync)",
+      "step5Title": "View Insights",
+      "step5Description": "Access personalized health reports and AI recommendations",
+      "connectButton": "Connect Apple Health",
+      "learnMore": "Learn More",
+      "connectModal": {
+        "title": "Connect Your Health Data",
+        "description": "Follow these steps to connect your health data with MediScanAI",
+        "steps": {
+          "download": {
+            "title": "Download the Shortcut",
+            "linkText": "Download Shortcut"
+          },
+          "copyUid": {
+            "title": "Copy Your Unique ID",
+            "button": {
+              "copy": "Copy"
             }
-        }
+          },
+          "runShortcut": {
+            "title": "Run the Shortcut",
+            "description": "Open the Shortcuts app and run the downloaded shortcut"
+          },
+          "enjoy": {
+            "title": "Enjoy Your Health Insights",
+            "description": "Your health data will be automatically synced with MediScanAI"
+          }
+        },
+        "privacyNote": "Your data is encrypted and secure. We never share your personal health information with third parties.",
+        "closeButton": "Close"
+      }
     }
+  }
 }

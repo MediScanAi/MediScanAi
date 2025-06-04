@@ -1,60 +1,60 @@
 {
-    "aboutUs": {
-        "title": "About Us",
-        "description": "We are a pioneering healthcare technology company leveraging artificial intelligence to revolutionize medical diagnostics and patient care.",
-        "contactButton": "Contact Us",
-        "coreValues": "Our Core Values",
-        "clientOpinions": "What Our Clients Say",
-        "mission": {
-            "title": "Our Mission",
-            "text": "To empower healthcare professionals with AI-driven tools that enhance diagnostic accuracy and improve patient outcomes through data-driven insights."
-        },
-        "vision": {
-            "title": "Our Vision",
-            "text": "To be the global leader in AI-powered medical diagnostics, making advanced healthcare analytics accessible and actionable for medical professionals worldwide."
-        },
-        "values": {
-            "title": "Our Values",
-            "text": "Innovation, accuracy, and trust are at our core. We are committed to developing cutting-edge solutions while maintaining the highest standards of data security and clinical precision."
-        },
-        "opinions": {
-            "0": {
-                "name": "Dr. Sarah Chen",
-                "description": "MediScanAI has transformed how we analyze medical data. The AI insights have proven invaluable for making informed clinical decisions."
-            },
-            "1": {
-                "name": "Dr. Michael Roberts",
-                "description": "The platform's accuracy and speed in processing complex medical data have significantly improved our diagnostic capabilities."
-            },
-            "2": {
-                "name": "Dr. Anna Petrosyan",
-                "description": "An excellent tool that has streamlined our workflow and enhanced our ability to provide precise patient care."
-            },
-            "3": {
-                "name": "Dr. James Wilson",
-                "description": "The integration of AI in medical diagnostics through MediScanAI has revolutionized our approach to patient care."
-            },
-            "4": {
-                "name": "Dr. Maria Garcia",
-                "description": "Impressive accuracy in analysis and an intuitive interface make this platform essential for modern healthcare."
-            },
-            "5": {
-                "name": "Dr. David Kim",
-                "description": "The platform's comprehensive reports have greatly improved our diagnostic efficiency and patient communication."
-            },
-            "6": {
-                "name": "Dr. Lisa Thompson",
-                "description": "MediScanAI provides reliable, fast results that have become integral to our clinical decision-making process."
-            },
-            "7": {
-                "name": "Dr. Robert Brown",
-                "description": "An innovative solution that has significantly enhanced our diagnostic capabilities and patient care quality."
-            }
-        },
-        "location": {
-            "title": "Our Location",
-            "description": "Visit our MediScanAI headquarters to discover how we're transforming healthcare through AI innovation",
-            "phone": "Tel: +374 91 234 567"
-        }
+  "aboutUs": {
+    "title": "About Us",
+    "description": "We are a pioneering healthcare technology company leveraging artificial intelligence to revolutionize medical diagnostics and patient care.",
+    "contactButton": "Contact Us",
+    "coreValues": "Our Core Values",
+    "clientOpinions": "What Our Clients Say",
+    "mission": {
+      "title": "Our Mission",
+      "text": "To empower healthcare professionals with AI-driven tools that enhance diagnostic accuracy and improve patient outcomes through data-driven insights."
+    },
+    "vision": {
+      "title": "Our Vision",
+      "text": "To be the global leader in AI-powered medical diagnostics, making advanced healthcare analytics accessible and actionable for medical professionals worldwide."
+    },
+    "values": {
+      "title": "Our Values",
+      "text": "Innovation, accuracy, and trust are at our core. We are committed to developing cutting-edge solutions while maintaining the highest standards of data security and clinical precision."
+    },
+    "opinions": {
+      "0": {
+        "name": "Dr. Sarah Chen",
+        "description": "MediScanAI has transformed how we analyze medical data. The AI insights have proven invaluable for making informed clinical decisions."
+      },
+      "1": {
+        "name": "Dr. Michael Roberts",
+        "description": "The platform's accuracy and speed in processing complex medical data have significantly improved our diagnostic capabilities."
+      },
+      "2": {
+        "name": "Dr. Anna Petrosyan",
+        "description": "An excellent tool that has streamlined our workflow and enhanced our ability to provide precise patient care."
+      },
+      "3": {
+        "name": "Dr. James Wilson",
+        "description": "The integration of AI in medical diagnostics through MediScanAI has revolutionized our approach to patient care."
+      },
+      "4": {
+        "name": "Dr. Maria Garcia",
+        "description": "Impressive accuracy in analysis and an intuitive interface make this platform essential for modern healthcare."
+      },
+      "5": {
+        "name": "Dr. David Kim",
+        "description": "The platform's comprehensive reports have greatly improved our diagnostic efficiency and patient communication."
+      },
+      "6": {
+        "name": "Dr. Lisa Thompson",
+        "description": "MediScanAI provides reliable, fast results that have become integral to our clinical decision-making process."
+      },
+      "7": {
+        "name": "Dr. Robert Brown",
+        "description": "An innovative solution that has significantly enhanced our diagnostic capabilities and patient care quality."
+      }
+    },
+    "location": {
+      "title": "Our Location",
+      "description": "Visit our MediScanAI headquarters to discover how we're transforming healthcare through AI innovation",
+      "phone": "Tel: +374 91 234 567"
     }
+  }
 }

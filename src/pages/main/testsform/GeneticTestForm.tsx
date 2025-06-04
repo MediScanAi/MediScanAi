@@ -1,12 +1,4 @@
-import {
-  message,
-  Form,
-  Card,
-  Typography,
-  Select,
-  Row,
-  Col,
-} from 'antd';
+import { message, Form, Card, Typography, Select, Row, Col } from 'antd';
 import { useAppDispatch, useAppSelector } from '../../../app/hooks';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { saveTestData, setTestData } from '../../../app/slices/testSlice';
@@ -36,7 +28,7 @@ function GeneticTestForm() {
       ),
       options: [
         { value: 'negative', label: t('geneticTest.negative') },
-        { value: 'positive', label: t('geneticTest.positive') }
+        { value: 'positive', label: t('geneticTest.positive') },
       ],
     },
     {
@@ -49,7 +41,7 @@ function GeneticTestForm() {
       ),
       options: [
         { value: 'negative', label: t('geneticTest.negative') },
-        { value: 'positive', label: t('geneticTest.positive') }
+        { value: 'positive', label: t('geneticTest.positive') },
       ],
     },
     {
@@ -64,7 +56,7 @@ function GeneticTestForm() {
         { value: 'ε2/ε2', label: t('geneticTest.ε2/ε2') },
         { value: 'ε3/ε3', label: t('geneticTest.ε3/ε3') },
         { value: 'ε3/ε4', label: t('geneticTest.ε3/ε4') },
-        { value: 'ε4/ε4', label: t('geneticTest.ε4/ε4') }
+        { value: 'ε4/ε4', label: t('geneticTest.ε4/ε4') },
       ],
     },
     {
@@ -78,7 +70,7 @@ function GeneticTestForm() {
       options: [
         { value: 'homozygous', label: t('geneticTest.homozygous') },
         { value: 'heterozygous', label: t('geneticTest.heterozygous') },
-        { value: 'normal', label: t('geneticTest.normal') }
+        { value: 'normal', label: t('geneticTest.normal') },
       ],
     },
     {
@@ -91,7 +83,7 @@ function GeneticTestForm() {
       ),
       options: [
         { value: 'negative', label: t('geneticTest.negative') },
-        { value: 'positive', label: t('geneticTest.positive') }
+        { value: 'positive', label: t('geneticTest.positive') },
       ],
     },
     {
@@ -105,7 +97,7 @@ function GeneticTestForm() {
       options: [
         { value: 'categoryI', label: t('geneticTest.categoryI') },
         { value: 'categoryII', label: t('geneticTest.categoryII') },
-        { value: 'categoryIII', label: t('geneticTest.categoryIII') }
+        { value: 'categoryIII', label: t('geneticTest.categoryIII') },
       ],
     },
   ];

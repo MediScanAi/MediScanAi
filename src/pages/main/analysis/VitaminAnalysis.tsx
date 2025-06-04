@@ -168,18 +168,42 @@ function VitaminAnalysis() {
   };
 
   const vitaminExplanations: { [key: string]: string } = {
-    [t('vitaminAnalysis.warnings.conditions.vitaminA.low')]: t('vitaminAnalysis.warnings.explanations.vitaminA.low'),
-    [t('vitaminAnalysis.warnings.conditions.vitaminA.high')]: t('vitaminAnalysis.warnings.explanations.vitaminA.high'),
-    [t('vitaminAnalysis.warnings.conditions.vitaminB12.low')]: t('vitaminAnalysis.warnings.explanations.vitaminB12.low'),
-    [t('vitaminAnalysis.warnings.conditions.vitaminB12.high')]: t('vitaminAnalysis.warnings.explanations.vitaminB12.high'),
-    [t('vitaminAnalysis.warnings.conditions.vitaminC.low')]: t('vitaminAnalysis.warnings.explanations.vitaminC.low'),
-    [t('vitaminAnalysis.warnings.conditions.vitaminC.high')]: t('vitaminAnalysis.warnings.explanations.vitaminC.high'),
-    [t('vitaminAnalysis.warnings.conditions.vitaminD.low')]: t('vitaminAnalysis.warnings.explanations.vitaminD.low'),
-    [t('vitaminAnalysis.warnings.conditions.vitaminD.high')]: t('vitaminAnalysis.warnings.explanations.vitaminD.high'),
-    [t('vitaminAnalysis.warnings.conditions.vitaminE.low')]: t('vitaminAnalysis.warnings.explanations.vitaminE.low'),
-    [t('vitaminAnalysis.warnings.conditions.vitaminE.high')]: t('vitaminAnalysis.warnings.explanations.vitaminE.high'),
-    [t('vitaminAnalysis.warnings.conditions.vitaminK.low')]: t('vitaminAnalysis.warnings.explanations.vitaminK.low'),
-    [t('vitaminAnalysis.warnings.conditions.vitaminK.high')]: t('vitaminAnalysis.warnings.explanations.vitaminK.high'),
+    [t('vitaminAnalysis.warnings.conditions.vitaminA.low')]: t(
+      'vitaminAnalysis.warnings.explanations.vitaminA.low'
+    ),
+    [t('vitaminAnalysis.warnings.conditions.vitaminA.high')]: t(
+      'vitaminAnalysis.warnings.explanations.vitaminA.high'
+    ),
+    [t('vitaminAnalysis.warnings.conditions.vitaminB12.low')]: t(
+      'vitaminAnalysis.warnings.explanations.vitaminB12.low'
+    ),
+    [t('vitaminAnalysis.warnings.conditions.vitaminB12.high')]: t(
+      'vitaminAnalysis.warnings.explanations.vitaminB12.high'
+    ),
+    [t('vitaminAnalysis.warnings.conditions.vitaminC.low')]: t(
+      'vitaminAnalysis.warnings.explanations.vitaminC.low'
+    ),
+    [t('vitaminAnalysis.warnings.conditions.vitaminC.high')]: t(
+      'vitaminAnalysis.warnings.explanations.vitaminC.high'
+    ),
+    [t('vitaminAnalysis.warnings.conditions.vitaminD.low')]: t(
+      'vitaminAnalysis.warnings.explanations.vitaminD.low'
+    ),
+    [t('vitaminAnalysis.warnings.conditions.vitaminD.high')]: t(
+      'vitaminAnalysis.warnings.explanations.vitaminD.high'
+    ),
+    [t('vitaminAnalysis.warnings.conditions.vitaminE.low')]: t(
+      'vitaminAnalysis.warnings.explanations.vitaminE.low'
+    ),
+    [t('vitaminAnalysis.warnings.conditions.vitaminE.high')]: t(
+      'vitaminAnalysis.warnings.explanations.vitaminE.high'
+    ),
+    [t('vitaminAnalysis.warnings.conditions.vitaminK.low')]: t(
+      'vitaminAnalysis.warnings.explanations.vitaminK.low'
+    ),
+    [t('vitaminAnalysis.warnings.conditions.vitaminK.high')]: t(
+      'vitaminAnalysis.warnings.explanations.vitaminK.high'
+    ),
   };
 
   const PieData: ChartData[] = [
@@ -224,12 +248,30 @@ function VitaminAnalysis() {
   const BarData: ChartData[] = [...PieData];
 
   const interestingFacts: { [key: string]: string[] } = {
-    [t('vitaminAnalysis.parameters.vitaminA')]: t('vitaminAnalysis.interestingFacts.vitaminA', { returnObjects: true }) as string[],
-    [t('vitaminAnalysis.parameters.vitaminB12')]: t('vitaminAnalysis.interestingFacts.vitaminB12', { returnObjects: true }) as string[],
-    [t('vitaminAnalysis.parameters.vitaminC')]: t('vitaminAnalysis.interestingFacts.vitaminC', { returnObjects: true }) as string[],
-    [t('vitaminAnalysis.parameters.vitaminD')]: t('vitaminAnalysis.interestingFacts.vitaminD', { returnObjects: true }) as string[],
-    [t('vitaminAnalysis.parameters.vitaminE')]: t('vitaminAnalysis.interestingFacts.vitaminE', { returnObjects: true }) as string[],
-    [t('vitaminAnalysis.parameters.vitaminK')]: t('vitaminAnalysis.interestingFacts.vitaminK', { returnObjects: true }) as string[],
+    [t('vitaminAnalysis.parameters.vitaminA')]: t(
+      'vitaminAnalysis.interestingFacts.vitaminA',
+      { returnObjects: true }
+    ) as string[],
+    [t('vitaminAnalysis.parameters.vitaminB12')]: t(
+      'vitaminAnalysis.interestingFacts.vitaminB12',
+      { returnObjects: true }
+    ) as string[],
+    [t('vitaminAnalysis.parameters.vitaminC')]: t(
+      'vitaminAnalysis.interestingFacts.vitaminC',
+      { returnObjects: true }
+    ) as string[],
+    [t('vitaminAnalysis.parameters.vitaminD')]: t(
+      'vitaminAnalysis.interestingFacts.vitaminD',
+      { returnObjects: true }
+    ) as string[],
+    [t('vitaminAnalysis.parameters.vitaminE')]: t(
+      'vitaminAnalysis.interestingFacts.vitaminE',
+      { returnObjects: true }
+    ) as string[],
+    [t('vitaminAnalysis.parameters.vitaminK')]: t(
+      'vitaminAnalysis.interestingFacts.vitaminK',
+      { returnObjects: true }
+    ) as string[],
   };
 
   const navigate = useNavigate();

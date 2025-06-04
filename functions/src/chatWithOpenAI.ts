@@ -47,4 +47,3 @@ app.post('/', async (req: Request, res: Response) => {
   }
 });
 export const chatWithOpenAI = onRequest(app);
-

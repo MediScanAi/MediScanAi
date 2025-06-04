@@ -194,9 +194,9 @@ const HealthPage: React.FC = () => {
           const logBase10 = (val: number) => Math.log(val) / Math.LN10;
           const fatPercent =
             495 /
-            (1.0324 -
-              0.19077 * logBase10(waist - neck) +
-              0.15456 * logBase10(height)) -
+              (1.0324 -
+                0.19077 * logBase10(waist - neck) +
+                0.15456 * logBase10(height)) -
             450;
           setBodyFat(Number(fatPercent.toFixed(1)));
         }
@@ -496,7 +496,9 @@ const HealthPage: React.FC = () => {
             {suggestion.title}
           </Tag>
         </div>
-        <Paragraph className={`suggestion-text ${isDarkMode ? 'dark' : ''}`}>{suggestion.text}</Paragraph>
+        <Paragraph className={`suggestion-text ${isDarkMode ? 'dark' : ''}`}>
+          {suggestion.text}
+        </Paragraph>
         <div className={`suggestion-stats ${isDarkMode ? 'dark' : ''}`}>
           <Space size="large">
             <Statistic
@@ -571,15 +573,26 @@ const HealthPage: React.FC = () => {
     return (
       <div className={`loading-state ${isDarkMode ? 'dark' : ''}`}>
         <Spin className="loading-spinner" />
-        <Title level={3} className={`loading-title ${isDarkMode ? 'dark' : ''}`}>
+        <Title
+          level={3}
+          className={`loading-title ${isDarkMode ? 'dark' : ''}`}
+        >
           {t('health.loading.title')}
         </Title>
-        <Text className={`loading-subtitle ${isDarkMode ? 'dark' : ''}`}>{t('health.loading.subtitle')}</Text>
+        <Text className={`loading-subtitle ${isDarkMode ? 'dark' : ''}`}>
+          {t('health.loading.subtitle')}
+        </Text>
       </div>
     );
   }
 
-  if (!userData?.age || !userData?.weight || !userData?.height || !userData?.waistSize || !userData?.neckSize) {
+  if (
+    !userData?.age ||
+    !userData?.weight ||
+    !userData?.height ||
+    !userData?.waistSize ||
+    !userData?.neckSize
+  ) {
     return <MyHealthGuide />;
   }
 
@@ -613,7 +626,10 @@ const HealthPage: React.FC = () => {
             };
 
             return (
-              <Card key={index} className={`health-metric-card ${isDarkMode ? 'dark' : ''}`}>
+              <Card
+                key={index}
+                className={`health-metric-card ${isDarkMode ? 'dark' : ''}`}
+              >
                 {showConfetti[index] && <div className="confetti-container" />}
 
                 <Progress
@@ -622,28 +638,36 @@ const HealthPage: React.FC = () => {
                     isGoalMetric
                       ? Number(goalInputs[index] || 0) > 0
                         ? Math.min(
-                          (Number(metric.value || 0) /
-                            Number(goalInputs[index] || 0)) *
-                          100,
-                          100
-                        )
+                            (Number(metric.value || 0) /
+                              Number(goalInputs[index] || 0)) *
+                              100,
+                            100
+                          )
                         : 0
                       : 100
                   }
                   strokeColor={getProgressColor()}
                   strokeWidth={8}
                   format={() => (
-                    <div className={`progress-content ${isDarkMode ? 'dark' : ''}`}>
-                      <div className={`progress-value ${isDarkMode ? 'dark' : ''}`}>
+                    <div
+                      className={`progress-content ${isDarkMode ? 'dark' : ''}`}
+                    >
+                      <div
+                        className={`progress-value ${isDarkMode ? 'dark' : ''}`}
+                      >
                         {Math.round(Number(metric.value || 0))}
                       </div>
-                      <div className={`progress-unit ${isDarkMode ? 'dark' : ''}`}>
+                      <div
+                        className={`progress-unit ${isDarkMode ? 'dark' : ''}`}
+                      >
                         {String(metric.unit || '')}
                       </div>
                     </div>
                   )}
                 />
-                <div className={`metric-type ${isDarkMode ? 'dark' : ''}`}>{String(metric.type || '')}</div>
+                <div className={`metric-type ${isDarkMode ? 'dark' : ''}`}>
+                  {String(metric.type || '')}
+                </div>
                 {isGoalMetric && (
                   <div className={`metric-goal ${isDarkMode ? 'dark' : ''}`}>
                     {isGoalMetric && (
@@ -667,7 +691,11 @@ const HealthPage: React.FC = () => {
           })}
         </div>
         <Modal
-          title={<span className={`goal-modal-title ${isDarkMode ? 'dark' : ''}`}>{t('health.setGoal')}</span>}
+          title={
+            <span className={`goal-modal-title ${isDarkMode ? 'dark' : ''}`}>
+              {t('health.setGoal')}
+            </span>
+          }
           open={isModalOpen}
           onOk={handleOk}
           onCancel={handleCancel}
@@ -698,7 +726,10 @@ const HealthPage: React.FC = () => {
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.5 }}
         >
-          <Title level={2} className={`dashboard-title ${isDarkMode ? 'dark' : ''}`}>
+          <Title
+            level={2}
+            className={`dashboard-title ${isDarkMode ? 'dark' : ''}`}
+          >
             {t('health.dashboard.title')}
           </Title>
           <Text className={`dashboard-subtitle ${isDarkMode ? 'dark' : ''}`}>
@@ -718,8 +749,17 @@ const HealthPage: React.FC = () => {
       </div>
 
       <div className="health-content">
-        <Row gutter={[24, 24]} style={{ display: 'flex', alignItems: 'stretch' }} className="health-main-row">
-          <Col xs={24} lg={8} style={{ display: 'flex' }} className="profile-column">
+        <Row
+          gutter={[24, 24]}
+          style={{ display: 'flex', alignItems: 'stretch' }}
+          className="health-main-row"
+        >
+          <Col
+            xs={24}
+            lg={8}
+            style={{ display: 'flex' }}
+            className="profile-column"
+          >
             <motion.div
               initial={{ x: -30, opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
@@ -728,8 +768,13 @@ const HealthPage: React.FC = () => {
             >
               <Card className={`profile-card ${isDarkMode ? 'dark' : ''}`}>
                 <div className="profile-header">
-                  <Title level={4} className={`profile-title ${isDarkMode ? 'dark' : ''}`}>
-                    <UserOutlined className={`profile-icon ${isDarkMode ? 'dark' : ''}`} />{' '}
+                  <Title
+                    level={4}
+                    className={`profile-title ${isDarkMode ? 'dark' : ''}`}
+                  >
+                    <UserOutlined
+                      className={`profile-icon ${isDarkMode ? 'dark' : ''}`}
+                    />{' '}
                     {t('health.profile.title')}
                     <Button
                       type="text"
@@ -746,36 +791,61 @@ const HealthPage: React.FC = () => {
                   className={`profile-descriptions ${isDarkMode ? 'dark' : ''}`}
                   size="small"
                 >
-                  <Descriptions.Item className={`profile-descriptions-item ${isDarkMode ? 'dark' : ''}`} label={t('health.profile.age')}>
-                    <Text className={`profile-text ${isDarkMode ? 'dark' : ''}`}>
+                  <Descriptions.Item
+                    className={`profile-descriptions-item ${isDarkMode ? 'dark' : ''}`}
+                    label={t('health.profile.age')}
+                  >
+                    <Text
+                      className={`profile-text ${isDarkMode ? 'dark' : ''}`}
+                    >
                       {userData?.age
                         ? t('health.years', { years: userData.age })
                         : t('health.notSet')}
                     </Text>
                   </Descriptions.Item>
-                  <Descriptions.Item className={`profile-descriptions-item ${isDarkMode ? 'dark' : ''}`} label={t('health.profile.weight')}>
-                    <Text className={`profile-text ${isDarkMode ? 'dark' : ''}`}>
+                  <Descriptions.Item
+                    className={`profile-descriptions-item ${isDarkMode ? 'dark' : ''}`}
+                    label={t('health.profile.weight')}
+                  >
+                    <Text
+                      className={`profile-text ${isDarkMode ? 'dark' : ''}`}
+                    >
                       {userData?.weight
                         ? t('health.kg', { kg: userData.weight })
                         : t('health.notSet')}
                     </Text>
                   </Descriptions.Item>
-                  <Descriptions.Item className={`profile-descriptions-item ${isDarkMode ? 'dark' : ''}`} label={t('health.profile.height')}>
-                    <Text className={`profile-text ${isDarkMode ? 'dark' : ''}`}>
+                  <Descriptions.Item
+                    className={`profile-descriptions-item ${isDarkMode ? 'dark' : ''}`}
+                    label={t('health.profile.height')}
+                  >
+                    <Text
+                      className={`profile-text ${isDarkMode ? 'dark' : ''}`}
+                    >
                       {userData?.height
                         ? t('health.cm', { cm: userData.height })
                         : t('health.notSet')}
                     </Text>
                   </Descriptions.Item>
-                  <Descriptions.Item className={`profile-descriptions-item ${isDarkMode ? 'dark' : ''}`} label={t('health.profile.waistSize')}>
-                    <Text className={`profile-text ${isDarkMode ? 'dark' : ''}`}>
+                  <Descriptions.Item
+                    className={`profile-descriptions-item ${isDarkMode ? 'dark' : ''}`}
+                    label={t('health.profile.waistSize')}
+                  >
+                    <Text
+                      className={`profile-text ${isDarkMode ? 'dark' : ''}`}
+                    >
                       {userData?.waistSize
                         ? t('health.cm', { cm: userData.waistSize })
                         : t('health.notSet')}
                     </Text>
                   </Descriptions.Item>
-                  <Descriptions.Item className={`profile-descriptions-item ${isDarkMode ? 'dark' : ''}`} label={t('health.profile.neckSize')}>
-                    <Text className={`profile-text ${isDarkMode ? 'dark' : ''}`}>
+                  <Descriptions.Item
+                    className={`profile-descriptions-item ${isDarkMode ? 'dark' : ''}`}
+                    label={t('health.profile.neckSize')}
+                  >
+                    <Text
+                      className={`profile-text ${isDarkMode ? 'dark' : ''}`}
+                    >
                       {userData?.neckSize
                         ? t('health.cm', { cm: userData.neckSize })
                         : t('health.notSet')}
@@ -788,7 +858,12 @@ const HealthPage: React.FC = () => {
             </motion.div>
           </Col>
 
-          <Col xs={24} lg={8} style={{ display: 'flex' }} className="metrics-column">
+          <Col
+            xs={24}
+            lg={8}
+            style={{ display: 'flex' }}
+            className="metrics-column"
+          >
             <motion.div
               initial={{ y: 30, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
@@ -796,7 +871,10 @@ const HealthPage: React.FC = () => {
               style={{ flex: 1 }}
             >
               <Card className={`metrics-card ${isDarkMode ? 'dark' : ''}`}>
-                <Title level={4} className={`metrics-title ${isDarkMode ? 'dark' : ''}`}>
+                <Title
+                  level={4}
+                  className={`metrics-title ${isDarkMode ? 'dark' : ''}`}
+                >
                   <DashboardOutlined className="metrics-icon" />{' '}
                   {t('health.metrics.title')}
                 </Title>
@@ -823,8 +901,13 @@ const HealthPage: React.FC = () => {
             >
               <Card className={`metrics-card ${isDarkMode ? 'dark' : ''}`}>
                 <div className="metrics-header">
-                  <Title level={4} className={`daily-metrics-title ${isDarkMode ? 'dark' : ''}`}>
-                    <LineChartOutlined className={`daily-metrics-icon ${isDarkMode ? 'dark' : ''}`} />{' '}
+                  <Title
+                    level={4}
+                    className={`daily-metrics-title ${isDarkMode ? 'dark' : ''}`}
+                  >
+                    <LineChartOutlined
+                      className={`daily-metrics-icon ${isDarkMode ? 'dark' : ''}`}
+                    />{' '}
                     {t('health.dailyMetrics')}
                   </Title>
                   <DatePicker
@@ -832,26 +915,44 @@ const HealthPage: React.FC = () => {
                       setSelectedDate(date?.toDate() || null);
                     }}
                     style={{ width: '290px' }}
-                    disabledDate={(current) => current && current > dayjs().endOf('day')}
+                    disabledDate={(current) =>
+                      current && current > dayjs().endOf('day')
+                    }
                     placeholder={t('health.selectDate')}
-                    suffixIcon={<CalendarOutlined className={`date-picker-icon ${isDarkMode ? 'dark' : ''}`} />}
+                    suffixIcon={
+                      <CalendarOutlined
+                        className={`date-picker-icon ${isDarkMode ? 'dark' : ''}`}
+                      />
+                    }
                     className={`date-picker ${isDarkMode ? 'dark' : ''}`}
                     classNames={{
-                      root: isDarkMode ? 'dark-date-picker-dropdown' : ''
+                      root: isDarkMode ? 'dark-date-picker-dropdown' : '',
                     }}
                   />
                 </div>
 
-                <Divider className={`metrics-divider ${isDarkMode ? 'dark' : ''}`} />
+                <Divider
+                  className={`metrics-divider ${isDarkMode ? 'dark' : ''}`}
+                />
 
                 <div className="metrics-content">
                   {!selectedDate || fetchedHealthData.length === 0 ? (
-                    <div className={`no-data-container ${isDarkMode ? 'dark' : ''}`}>
-                      <InboxOutlined className={`no-data-icon ${isDarkMode ? 'dark' : ''}`} />
-                      <Text className={`no-data-text ${isDarkMode ? 'dark' : ''}`}>{t('health.noData')}</Text>
+                    <div
+                      className={`no-data-container ${isDarkMode ? 'dark' : ''}`}
+                    >
+                      <InboxOutlined
+                        className={`no-data-icon ${isDarkMode ? 'dark' : ''}`}
+                      />
+                      <Text
+                        className={`no-data-text ${isDarkMode ? 'dark' : ''}`}
+                      >
+                        {t('health.noData')}
+                      </Text>
                     </div>
                   ) : (
-                    <div className={`health-circles-container ${isDarkMode ? 'dark' : ''}`}>
+                    <div
+                      className={`health-circles-container ${isDarkMode ? 'dark' : ''}`}
+                    >
                       {healthCircles()}
                     </div>
                   )}
@@ -863,7 +964,11 @@ const HealthPage: React.FC = () => {
       </div>
 
       <Modal
-        title={<span className={`connect-modal-title ${isDarkMode ? 'dark' : ''}`}>{t('healthGuide.guide.connectModal.title')}</span>}
+        title={
+          <span className={`connect-modal-title ${isDarkMode ? 'dark' : ''}`}>
+            {t('healthGuide.guide.connectModal.title')}
+          </span>
+        }
         open={isModalVisible}
         onCancel={handleCancelModal}
         footer={[
@@ -893,7 +998,9 @@ const HealthPage: React.FC = () => {
             >
               <Steps.Step
                 title={
-                  <div className={`connect-modal-title ${isDarkMode ? 'dark' : ''}`}>
+                  <div
+                    className={`connect-modal-title ${isDarkMode ? 'dark' : ''}`}
+                  >
                     {t('healthGuide.guide.connectModal.steps.download.title')}
                   </div>
                 }
@@ -926,11 +1033,11 @@ const HealthPage: React.FC = () => {
                     >
                       {uidCopied
                         ? t(
-                          'healthGuide.guide.connectModal.steps.copyUid.button.copied'
-                        )
+                            'healthGuide.guide.connectModal.steps.copyUid.button.copied'
+                          )
                         : t(
-                          'healthGuide.guide.connectModal.steps.copyUid.button.copy'
-                        )}
+                            'healthGuide.guide.connectModal.steps.copyUid.button.copy'
+                          )}
                     </Button>
                   </div>
                 }

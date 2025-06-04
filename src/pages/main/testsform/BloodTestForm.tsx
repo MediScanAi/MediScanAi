@@ -1,12 +1,4 @@
-import {
-  Form,
-  InputNumber,
-  message,
-  Card,
-  Typography,
-  Row,
-  Col,
-} from 'antd';
+import { Form, InputNumber, message, Card, Typography, Row, Col } from 'antd';
 import { useAppDispatch, useAppSelector } from '../../../app/hooks';
 import { saveTestData, setTestData } from '../../../app/slices/testSlice';
 import type { BloodTestFormValues } from '../../../app/slices/testSlice';
@@ -139,7 +131,6 @@ function BloodTestsForm() {
         initialValues={updatedData}
         layout="vertical"
         size="large"
-        
       >
         <Row gutter={[24, 16]}>
           {bloodTestFields.map((field) => (

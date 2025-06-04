@@ -536,9 +536,7 @@ const ChatWithAi = () => {
   ];
 
   return (
-    <Layout
-      className={`chat-with-ai ${isDarkMode ? 'dark' : ''}`}
-    >
+    <Layout className={`chat-with-ai ${isDarkMode ? 'dark' : ''}`}>
       <Sider
         width={240}
         style={{
@@ -659,7 +657,9 @@ const ChatWithAi = () => {
                               }
                             },
                             style: {
-                              background: isDarkMode ? 'rgb(38, 63, 137)' : '#fff',
+                              background: isDarkMode
+                                ? 'rgb(38, 63, 137)'
+                                : '#fff',
                               border: 'none',
                             },
                           }}

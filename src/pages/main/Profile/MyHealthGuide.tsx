@@ -83,7 +83,10 @@ const MyHealthGuide: React.FC = () => {
   return (
     <div className={`guide-page ${isDarkMode ? 'dark' : ''}`}>
       <div className="back-button-container">
-        <SecondaryButton className="back-button" onClick={() => navigate('/my-health')}>
+        <SecondaryButton
+          className="back-button"
+          onClick={() => navigate('/my-health')}
+        >
           {t('healthGuide.guide.backButton')}
         </SecondaryButton>
       </div>
@@ -91,7 +94,11 @@ const MyHealthGuide: React.FC = () => {
         <p className={`header-title ${isDarkMode ? 'dark' : ''}`}>
           {t('healthGuide.guide.title')}
         </p>
-        <img src={isDarkMode ? MyHealthDark : MyHealth} alt="" className="header-image" />
+        <img
+          src={isDarkMode ? MyHealthDark : MyHealth}
+          alt=""
+          className="header-image"
+        />
       </div>
 
       <div className="guides-container">
@@ -211,10 +218,7 @@ const MyHealthGuide: React.FC = () => {
             </Steps>
           </div>
 
-          <PrimaryButton
-            icon={<AppleOutlined />}
-            onClick={showModal}
-          >
+          <PrimaryButton icon={<AppleOutlined />} onClick={showModal}>
             {t('healthGuide.guide.connectButton')}
           </PrimaryButton>
 
@@ -231,11 +235,15 @@ const MyHealthGuide: React.FC = () => {
             className={`modal-container ${isDarkMode ? 'dark' : ''}`}
           >
             <div className={`modal-content ${isDarkMode ? 'dark' : ''}`}>
-              <p className={`modal-step-description ${isDarkMode ? 'dark' : ''}`}>
+              <p
+                className={`modal-step-description ${isDarkMode ? 'dark' : ''}`}
+              >
                 {t('healthGuide.guide.connectModal.description')}
               </p>
 
-              <div className={`modal-steps-container ${isDarkMode ? 'dark' : ''}`}>
+              <div
+                className={`modal-steps-container ${isDarkMode ? 'dark' : ''}`}
+              >
                 <Steps
                   direction="vertical"
                   current={-1}
@@ -280,11 +288,11 @@ const MyHealthGuide: React.FC = () => {
                         >
                           {uidCopied
                             ? t(
-                              'healthGuide.guide.connectModal.steps.copyUid.button.copied'
-                            )
+                                'healthGuide.guide.connectModal.steps.copyUid.button.copied'
+                              )
                             : t(
-                              'healthGuide.guide.connectModal.steps.copyUid.button.copy'
-                            )}
+                                'healthGuide.guide.connectModal.steps.copyUid.button.copy'
+                              )}
                         </Button>
                       </div>
                     }

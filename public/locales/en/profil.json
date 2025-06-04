@@ -1,8 +1,8 @@
 {
-    "profil": {
-        "info": "Info",
-        "analysisHistory": "Analysis History",
-        "tests": "Tests",
-        "contactUs": "Contact Us"
-    }
+  "profil": {
+    "info": "Info",
+    "analysisHistory": "Analysis History",
+    "tests": "Tests",
+    "contactUs": "Contact Us"
+  }
 }

@@ -62,52 +62,61 @@ function GeneticAnalysis() {
   const PieData: ChartData[] = [
     {
       name: t('geneticAnalysis.BRCA1'),
-      value: geneticTestData?.brca1 === 'positive' ? t('geneticTest.positive') : t('geneticTest.negative'),
+      value:
+        geneticTestData?.brca1 === 'positive'
+          ? t('geneticTest.positive')
+          : t('geneticTest.negative'),
       color: '#f39c12',
       image: BRCA1,
-      key: 'BRCA1'
+      key: 'BRCA1',
     },
     {
       name: t('geneticAnalysis.BRCA2'),
-      value: geneticTestData?.brca2 === 'positive' ? t('geneticTest.positive') : t('geneticTest.negative'),
+      value:
+        geneticTestData?.brca2 === 'positive'
+          ? t('geneticTest.positive')
+          : t('geneticTest.negative'),
       color: '#16a085',
       image: Gen,
-      key: 'BRCA2'
+      key: 'BRCA2',
     },
     {
       name: t('geneticAnalysis.FactorVLeiden'),
-      value: geneticTestData?.factor_v_leiden === 'positive' ? t('geneticTest.positive') : t('geneticTest.negative'),
+      value:
+        geneticTestData?.factor_v_leiden === 'positive'
+          ? t('geneticTest.positive')
+          : t('geneticTest.negative'),
       color: '#e74c3c',
       image: Syringe,
-      key: 'Factor V Leiden'
+      key: 'Factor V Leiden',
     },
     {
       name: t('geneticAnalysis.APOE'),
       value: geneticTestData?.apoe || '',
       color: '#8e44ad',
       image: APOE,
-      key: 'APOE'
+      key: 'APOE',
     },
     {
       name: t('geneticAnalysis.MTHFR'),
       value: geneticTestData?.mthfr || '',
       color: '#2980b9',
       image: ChartGoingDown,
-      key: 'MTHFR'
+      key: 'MTHFR',
     },
     {
       name: t('geneticAnalysis.CYP2C19'),
       value: geneticTestData?.cyp2c19 || '',
       color: '#27ae60',
       image: Bilirubin,
-      key: 'CYP2C19'
+      key: 'CYP2C19',
     },
   ];
 
   const navigate = useNavigate();
 
   const interestingFacts: { [key: string]: string[] } = {
-    'BRCA1': [
+    BRCA1: [
       t('geneticAnalysis.facts.BRCA1.0'),
       t('geneticAnalysis.facts.BRCA1.1'),
       t('geneticAnalysis.facts.BRCA1.2'),
@@ -115,7 +124,7 @@ function GeneticAnalysis() {
       t('geneticAnalysis.facts.BRCA1.4'),
       t('geneticAnalysis.facts.BRCA1.5'),
     ],
-    'BRCA2': [
+    BRCA2: [
       t('geneticAnalysis.facts.BRCA2.0'),
       t('geneticAnalysis.facts.BRCA2.1'),
       t('geneticAnalysis.facts.BRCA2.2'),
@@ -131,7 +140,7 @@ function GeneticAnalysis() {
       t('geneticAnalysis.facts.FactorVLeiden.4'),
       t('geneticAnalysis.facts.FactorVLeiden.5'),
     ],
-    'APOE': [
+    APOE: [
       t('geneticAnalysis.facts.APOE.0'),
       t('geneticAnalysis.facts.APOE.1'),
       t('geneticAnalysis.facts.APOE.2'),
@@ -139,7 +148,7 @@ function GeneticAnalysis() {
       t('geneticAnalysis.facts.APOE.4'),
       t('geneticAnalysis.facts.APOE.5'),
     ],
-    'MTHFR': [
+    MTHFR: [
       t('geneticAnalysis.facts.MTHFR.0'),
       t('geneticAnalysis.facts.MTHFR.1'),
       t('geneticAnalysis.facts.MTHFR.2'),
@@ -147,7 +156,7 @@ function GeneticAnalysis() {
       t('geneticAnalysis.facts.MTHFR.4'),
       t('geneticAnalysis.facts.MTHFR.5'),
     ],
-    'CYP2C19': [
+    CYP2C19: [
       t('geneticAnalysis.facts.CYP2C19.0'),
       t('geneticAnalysis.facts.CYP2C19.1'),
       t('geneticAnalysis.facts.CYP2C19.2'),
@@ -158,12 +167,24 @@ function GeneticAnalysis() {
   };
 
   const geneticExplanations: { [key: string]: string } = {
-    [t('geneticAnalysis.warnings.conditions.brca1Positive')]: t('geneticAnalysis.warnings.explanations.brca1Positive'),
-    [t('geneticAnalysis.warnings.conditions.brca2Positive')]: t('geneticAnalysis.warnings.explanations.brca2Positive'),
-    [t('geneticAnalysis.warnings.conditions.factorVLeidenPositive')]: t('geneticAnalysis.warnings.explanations.factorVLeidenPositive'),
-    [t('geneticAnalysis.warnings.conditions.apoeE4E4')]: t('geneticAnalysis.warnings.explanations.apoeE4E4'),
-    [t('geneticAnalysis.warnings.conditions.mthfrHomozygous')]: t('geneticAnalysis.warnings.explanations.mthfrHomozygous'),
-    [t('geneticAnalysis.warnings.conditions.cyp2c19PoorMetabolizer')]: t('geneticAnalysis.warnings.explanations.cyp2c19PoorMetabolizer'),
+    [t('geneticAnalysis.warnings.conditions.brca1Positive')]: t(
+      'geneticAnalysis.warnings.explanations.brca1Positive'
+    ),
+    [t('geneticAnalysis.warnings.conditions.brca2Positive')]: t(
+      'geneticAnalysis.warnings.explanations.brca2Positive'
+    ),
+    [t('geneticAnalysis.warnings.conditions.factorVLeidenPositive')]: t(
+      'geneticAnalysis.warnings.explanations.factorVLeidenPositive'
+    ),
+    [t('geneticAnalysis.warnings.conditions.apoeE4E4')]: t(
+      'geneticAnalysis.warnings.explanations.apoeE4E4'
+    ),
+    [t('geneticAnalysis.warnings.conditions.mthfrHomozygous')]: t(
+      'geneticAnalysis.warnings.explanations.mthfrHomozygous'
+    ),
+    [t('geneticAnalysis.warnings.conditions.cyp2c19PoorMetabolizer')]: t(
+      'geneticAnalysis.warnings.explanations.cyp2c19PoorMetabolizer'
+    ),
   };
 
   const getGeneticRisks = (data: GeneticTestFormValues) => {
@@ -178,7 +199,9 @@ function GeneticAnalysis() {
     }
 
     if (data.factor_v_leiden === 'positive') {
-      risks.push(t('geneticAnalysis.warnings.conditions.factorVLeidenPositive'));
+      risks.push(
+        t('geneticAnalysis.warnings.conditions.factorVLeidenPositive')
+      );
     }
 
     if (data.apoe === 'ε4/ε4') {
@@ -190,7 +213,9 @@ function GeneticAnalysis() {
     }
 
     if (data.cyp2c19 === 'categoryIII') {
-      risks.push(t('geneticAnalysis.warnings.conditions.cyp2c19PoorMetabolizer'));
+      risks.push(
+        t('geneticAnalysis.warnings.conditions.cyp2c19PoorMetabolizer')
+      );
     }
 
     return risks;
@@ -199,12 +224,18 @@ function GeneticAnalysis() {
   const scorecards = [
     {
       label: 'BRCA1',
-      value: geneticTestData?.brca1 === 'positive' ? t('geneticAnalysis.geneticTest.positive') : t('geneticAnalysis.geneticTest.negative'),
+      value:
+        geneticTestData?.brca1 === 'positive'
+          ? t('geneticAnalysis.geneticTest.positive')
+          : t('geneticAnalysis.geneticTest.negative'),
       percent: geneticTestData?.brca1 === 'positive' ? 100 : 0,
     },
     {
       label: 'BRCA2',
-      value: geneticTestData?.brca2 === 'positive' ? t('geneticAnalysis.geneticTest.positive') : t('geneticAnalysis.geneticTest.negative'),
+      value:
+        geneticTestData?.brca2 === 'positive'
+          ? t('geneticAnalysis.geneticTest.positive')
+          : t('geneticAnalysis.geneticTest.negative'),
       percent: geneticTestData?.brca2 === 'positive' ? 100 : 0,
     },
     {
@@ -235,7 +266,10 @@ function GeneticAnalysis() {
     },
     {
       label: 'Factor V Leiden',
-      value: geneticTestData?.factor_v_leiden === 'positive' ? t('geneticAnalysis.geneticTest.positive') : t('geneticAnalysis.geneticTest.negative'),
+      value:
+        geneticTestData?.factor_v_leiden === 'positive'
+          ? t('geneticAnalysis.geneticTest.positive')
+          : t('geneticAnalysis.geneticTest.negative'),
       percent: geneticTestData?.factor_v_leiden === 'positive' ? 100 : 0,
     },
     {

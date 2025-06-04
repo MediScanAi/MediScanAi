@@ -25,9 +25,7 @@ import Notebook3D from '../../assets/photos/Notebook.webp';
 import '../../assets/styles/LoginPage.css';
 import PreferencesDropdown from '../../components/preferences/PreferencesDropdown';
 import SecondaryButton from '../../components/common/SecondaryButton';
-import {
-  X,
-} from 'lucide-react';
+import { X } from 'lucide-react';
 
 const { Title, Text } = Typography;
 const { Option } = Select;
@@ -103,7 +101,7 @@ const RegisterPage: React.FC = () => {
       <div className="register-preferences-dropdown">
         <PreferencesDropdown />
       </div>
-      <div className='register-back-link-container'>
+      <div className="register-back-link-container">
         <SecondaryButton size="large">
           <Link to="/" className="register-back-link">
             <X />
@@ -263,8 +261,7 @@ const RegisterPage: React.FC = () => {
                     </Col>
                   </Row>
                   <Form.Item>
-                    <div className='register-button-container'
-                    >
+                    <div className="register-button-container">
                       <PrimaryButton htmlType="submit" loading={loading}>
                         Register
                       </PrimaryButton>

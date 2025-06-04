@@ -209,20 +209,28 @@ const UserInfo: React.FC<UserInfoProps> = ({ theme }) => {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
+        style={{
+          width: '100%',
+          minHeight: '100%',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center'
+        }}
         className={`modern-user-profile ${theme ? 'dark' : ''}`}
       >
-        <Form form={form}>
+        <Form form={form} style={{ width: '100%' }}>
           <Card
             className={`profile-container ${theme ? 'dark' : ''}`}
-            style={{ border: 'none' }}
+            style={{ 
+              border: 'none',
+              width: '100%',
+              maxWidth: '1200px',
+              margin: '0 auto'
+            }}
           >
             <div className="profile-header-container">
               <div className="profile-avatar-container">
-                <UserAvatar
-                  className="profile-avatar"
-                  size={80}
-                  user={user!}
-                />
+                <UserAvatar className="profile-avatar" size={80} user={user!} />
               </div>
 
               <div className="profile-info">

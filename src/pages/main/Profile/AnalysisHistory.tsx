@@ -21,6 +21,7 @@ import { type TestType } from '../../../app/slices/testSlice';
 import { useTranslation } from 'react-i18next';
 import { auth } from '../../../api/authApi';
 import SecondaryButton from '../../../components/common/SecondaryButton';
+import PrimaryButton from '../../../components/common/PrimaryButton';
 
 const { Title, Text } = Typography;
 
@@ -283,7 +284,7 @@ const AnalysisHistory: React.FC<AnalysisHistoryProps> = ({ theme, width }) => {
     }[]
   ) => {
     return (
-      <div className="profile-section">
+      <div style={{ padding: '16px' }}>
         <Row gutter={[24, 16]} className="info-grid">
           {testArray.map(
             (test, index) =>
@@ -332,7 +333,9 @@ const AnalysisHistory: React.FC<AnalysisHistoryProps> = ({ theme, width }) => {
   return (
     <div
       style={{
-        width: '70vw',
+        display: 'flex',
+        flexDirection: 'column',
+        width: '80vw',
         margin: '0 auto',
         padding: '16px',
         backgroundColor: 'transparent',
@@ -370,7 +373,7 @@ const AnalysisHistory: React.FC<AnalysisHistoryProps> = ({ theme, width }) => {
 
           <Row gutter={[24, 32]}>
             {bloodTestData && (
-              <Col span={24}>
+              <Col span={20}>
                 <div
                   style={{ marginBottom: 8, backgroundColor: 'transparent' }}
                 >
@@ -391,29 +394,29 @@ const AnalysisHistory: React.FC<AnalysisHistoryProps> = ({ theme, width }) => {
                     {bloodTestData.date ||
                       t('analysisHistory.dateNotSpecified')}
                   </Text>
+                  <PrimaryButton
+                    onClick={sendBloodTestData}
+                    style={{
+                      marginLeft: 12,
+                      backgroundColor: 'transparent',
+                      fontSize: width < 800 ? '10px' : '16px',
+                      padding: '10px',
+                      minWidth: 40,
+                    }}
+                  >
+                    {t('analysisHistory.edit')}
+                  </PrimaryButton>
                   <SecondaryButton
                     onClick={() => handleDeleteTest('blood')}
                     style={{
                       marginLeft: 12,
                       backgroundColor: 'transparent',
                       fontSize: width < 800 ? '10px' : '16px',
-                      padding: '0 5px',
+                      padding: '10px',
                       minWidth: 40,
                     }}
                   >
                     {t('analysisHistory.delete')}
-                  </SecondaryButton>
-                  <SecondaryButton
-                    onClick={sendBloodTestData}
-                    style={{
-                      marginLeft: 12,
-                      backgroundColor: 'transparent',
-                      fontSize: width < 800 ? '10px' : '16px',
-                      padding: '0 5px',
-                      minWidth: 40,
-                    }}
-                  >
-                    {t('analysisHistory.edit')}
                   </SecondaryButton>
                 </div>
                 <Divider style={{ margin: '12px 0' }} />
@@ -427,7 +430,7 @@ const AnalysisHistory: React.FC<AnalysisHistoryProps> = ({ theme, width }) => {
             )}
 
             {urineTestData && (
-              <Col span={24}>
+              <Col span={20}>
                 <div style={{ marginBottom: 8 }}>
                   <Text
                     strong
@@ -446,29 +449,29 @@ const AnalysisHistory: React.FC<AnalysisHistoryProps> = ({ theme, width }) => {
                     {urineTestData.date ||
                       t('analysisHistory.dateNotSpecified')}
                   </Text>
+                  <PrimaryButton
+                    onClick={sendUrineTestData}
+                    style={{
+                      marginLeft: 12,
+                      backgroundColor: 'transparent',
+                      fontSize: width < 800 ? '10px' : '16px',
+                      padding: '10px',
+                      minWidth: 40,
+                    }}
+                  >
+                    {t('analysisHistory.edit')}
+                  </PrimaryButton>
                   <SecondaryButton
                     onClick={() => handleDeleteTest('urine')}
                     style={{
                       marginLeft: 12,
                       backgroundColor: 'transparent',
                       fontSize: width < 800 ? '10px' : '16px',
-                      padding: '0 5px',
+                      padding: '10px',
                       minWidth: 40,
                     }}
                   >
                     {t('analysisHistory.delete')}
-                  </SecondaryButton>
-                  <SecondaryButton
-                    onClick={sendUrineTestData}
-                    style={{
-                      marginLeft: 12,
-                      backgroundColor: 'transparent',
-                      fontSize: width < 800 ? '10px' : '16px',
-                      padding: '0 5px',
-                      minWidth: 40,
-                    }}
-                  >
-                    {t('analysisHistory.edit')}
                   </SecondaryButton>
                 </div>
                 <Divider style={{ margin: '12px 0' }} />
@@ -482,7 +485,7 @@ const AnalysisHistory: React.FC<AnalysisHistoryProps> = ({ theme, width }) => {
             )}
 
             {vitaminTestData && (
-              <Col span={24}>
+              <Col span={20}>
                 <div style={{ marginBottom: 8 }}>
                   <Text
                     strong
@@ -501,29 +504,29 @@ const AnalysisHistory: React.FC<AnalysisHistoryProps> = ({ theme, width }) => {
                     {vitaminTestData.date ||
                       t('analysisHistory.dateNotSpecified')}
                   </Text>
+                  <PrimaryButton
+                    onClick={sendVitaminTestData}
+                    style={{
+                      marginLeft: 12,
+                      backgroundColor: 'transparent',
+                      fontSize: width < 800 ? '10px' : '16px',
+                      padding: '10px',
+                      minWidth: 40,
+                    }}
+                  >
+                    {t('analysisHistory.edit')}
+                  </PrimaryButton>
                   <SecondaryButton
                     onClick={() => handleDeleteTest('vitamin')}
                     style={{
                       marginLeft: 12,
                       backgroundColor: 'transparent',
                       fontSize: width < 800 ? '10px' : '16px',
-                      padding: '0 5px',
+                      padding: '10px',
                       minWidth: 40,
                     }}
                   >
                     {t('analysisHistory.delete')}
-                  </SecondaryButton>
-                  <SecondaryButton
-                    onClick={sendVitaminTestData}
-                    style={{
-                      marginLeft: 12,
-                      backgroundColor: 'transparent',
-                      fontSize: width < 800 ? '10px' : '16px',
-                      padding: '0 5px',
-                      minWidth: 40,
-                    }}
-                  >
-                    {t('analysisHistory.edit')}
                   </SecondaryButton>
                 </div>
                 <Divider style={{ margin: '12px 0' }} />
@@ -537,7 +540,7 @@ const AnalysisHistory: React.FC<AnalysisHistoryProps> = ({ theme, width }) => {
             )}
 
             {geneticTestData && (
-              <Col span={24}>
+              <Col span={20}>
                 <div style={{ marginBottom: 8 }}>
                   <Text
                     strong
@@ -556,29 +559,29 @@ const AnalysisHistory: React.FC<AnalysisHistoryProps> = ({ theme, width }) => {
                     {geneticTestData.date ||
                       t('analysisHistory.dateNotSpecified')}
                   </Text>
+                  <PrimaryButton
+                    onClick={sendGeneticTestData}
+                    style={{
+                      marginLeft: 12,
+                      backgroundColor: 'transparent',
+                      fontSize: width < 800 ? '10px' : '16px',
+                      padding: '10px',
+                      minWidth: 40,
+                    }}
+                  >
+                    {t('analysisHistory.edit')}
+                  </PrimaryButton>
                   <SecondaryButton
                     onClick={() => handleDeleteTest('genetic')}
                     style={{
                       marginLeft: 12,
                       backgroundColor: 'transparent',
                       fontSize: width < 800 ? '10px' : '16px',
-                      padding: '0 5px',
+                      padding: '10px',
                       minWidth: 40,
                     }}
                   >
                     {t('analysisHistory.delete')}
-                  </SecondaryButton>
-                  <SecondaryButton
-                    onClick={sendGeneticTestData}
-                    style={{
-                      marginLeft: 12,
-                      backgroundColor: 'transparent',
-                      fontSize: width < 800 ? '10px' : '16px',
-                      padding: '0 5px',
-                      minWidth: 40,
-                    }}
-                  >
-                    {t('analysisHistory.edit')}
                   </SecondaryButton>
                 </div>
                 <Divider style={{ margin: '12px 0' }} />

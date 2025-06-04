@@ -1,15 +1,15 @@
 {
-    "mainTests": {
-        "bloodTest": "Արյան անալիզ",
-        "urineTest": "Մեզի անալիզ",
-        "vitaminTest": "Վիտամին անալիզ",
-        "geneticTest": "Գենետիկ անալիզ",
-        "bloodTestSubtitle": "Հանձնիր արյան անալիզը այստեղ",
-        "urineTestSubtitle": "Հանձնիր մեզի անալիզը այստեղ",
-        "vitaminTestSubtitle": "Հանձնիր Վիտամին անալիզը այստեղ",
-        "geneticTestSubtitle": "Հանձնիր Գենետիկ անալիզը այստեղ",
-        "fillForm": "Մուտքագրեք ձեր տվյալները այստեղ",
-        "viewMore": "Դիտեք ավելին",
-        "getStarted": "Սկսեք"
-    }
+  "mainTests": {
+    "bloodTest": "Արյան անալիզ",
+    "urineTest": "Մեզի անալիզ",
+    "vitaminTest": "Վիտամին անալիզ",
+    "geneticTest": "Գենետիկ անալիզ",
+    "bloodTestSubtitle": "Հանձնիր արյան անալիզը այստեղ",
+    "urineTestSubtitle": "Հանձնիր մեզի անալիզը այստեղ",
+    "vitaminTestSubtitle": "Հանձնիր Վիտամին անալիզը այստեղ",
+    "geneticTestSubtitle": "Հանձնիր Գենետիկ անալիզը այստեղ",
+    "fillForm": "Մուտքագրեք ձեր տվյալները այստեղ",
+    "viewMore": "Դիտեք ավելին",
+    "getStarted": "Սկսեք"
+  }
 }

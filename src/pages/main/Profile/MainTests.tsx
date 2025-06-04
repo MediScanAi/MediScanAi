@@ -43,105 +43,109 @@ const MainTests: React.FC<MainTestsProps> = ({ theme, width }) => {
 
   return (
     <div
-      style={{ width: '70vw' }}
+      style={{
+        width: '100%',
+        minHeight: '100%',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center'
+      }}
       className={`modern-user-profile ${theme ? 'dark' : ''}`}
     >
-      <div
-        style={{
-          margin: '0 auto',
-          padding: '24px',
-          width: '70vw',
+      <Card
+        className="profile-container"
+        style={{ 
+          border: 'none', 
+          backgroundColor: 'transparent',
+          width: '100%',
+          maxWidth: '1200px',
+          margin: '0 auto'
         }}
       >
-        <Card
-          className="profile-container"
-          style={{ border: 'none', backgroundColor: 'transparent' }}
+        <Title
+          level={2}
+          className="profile-name"
+          style={{
+            marginBottom: '40px',
+            fontSize: width < 1200 ? '22px' : '36px',
+          }}
         >
-          <Title
-            level={2}
-            className="profile-name"
-            style={{
-              marginBottom: '40px',
-              fontSize: width < 1200 ? '22px' : '36px',
-            }}
-          >
-            {t('mainTests.fillForm')}
-          </Title>
+          {t('mainTests.fillForm')}
+        </Title>
 
-          <Row gutter={[24, 24]} className="info-grid">
-            {testCards.map((card, index) => (
-              <Col key={index} xs={24} sm={12} md={12} lg={12} xl={6}>
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  style={{
-                    marginTop: '50px',
-                  }}
-                >
-                  <div
-                    className={`info-card-motion ${theme ? 'dark' : ''}`}
-                    onClick={card.onClick}
-                    style={{ cursor: 'pointer', height: '180px' }}
-                  >
-                    <div className="info-label" style={{ marginBottom: 16 }}>
-                      <Text
-                        className="info-label-text"
-                        strong
-                        style={{ fontSize: 18 }}
-                      >
-                        {card.title}
-                      </Text>
-                    </div>
-
-                    <div className="info-value">
-                      <Text
-                        className="info-value-text"
-                        style={{ marginBottom: 16 }}
-                      >
-                        {card.subtitle}
-                      </Text>
-                    </div>
-                    <span
-                      className={isDarkMode ? 'dark-mode-text' : ''}
-                      style={{
-                        bottom: '20px',
-                        position: 'absolute',
-                        left: '50%',
-                        transform: 'translateX(-50%)',
-                        fontSize: '14px',
-                      }}
-                    >
-                      {t('mainTests.viewMore')}
-                    </span>
-                  </div>
-                </motion.div>
-              </Col>
-            ))}
-          </Row>
-
-          <Space
-            direction="vertical"
-            style={{
-              width: '100%',
-              marginTop: '60px',
-              alignItems: 'center',
-              textAlign: 'center',
-            }}
-          >
-            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-              <PrimaryButton
-                onClick={() => navigate('/tests-form/blood-test')}
+        <Row gutter={[24, 24]} className="info-grid">
+          {testCards.map((card, index) => (
+            <Col key={index} xs={24} sm={12} md={12} lg={12} xl={6}>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
                 style={{
-                  marginBottom: '20px',
+                  marginTop: '50px',
                 }}
               >
-                {t('mainTests.getStarted')}
-              </PrimaryButton>
-            </motion.div>
-          </Space>
-        </Card>
-      </div>
+                <div
+                  className={`info-card-motion ${theme ? 'dark' : ''}`}
+                  onClick={card.onClick}
+                  style={{ cursor: 'pointer', height: '180px' }}
+                >
+                  <div className="info-label" style={{ marginBottom: 16 }}>
+                    <Text
+                      className="info-label-text"
+                      strong
+                      style={{ fontSize: 18 }}
+                    >
+                      {card.title}
+                    </Text>
+                  </div>
+
+                  <div className="info-value">
+                    <Text
+                      className="info-value-text"
+                      style={{ marginBottom: 16 }}
+                    >
+                      {card.subtitle}
+                    </Text>
+                  </div>
+                  <span
+                    className={isDarkMode ? 'dark-mode-text' : ''}
+                    style={{
+                      bottom: '20px',
+                      position: 'absolute',
+                      left: '50%',
+                      transform: 'translateX(-50%)',
+                      fontSize: '14px',
+                    }}
+                  >
+                    {t('mainTests.viewMore')}
+                  </span>
+                </div>
+              </motion.div>
+            </Col>
+          ))}
+        </Row>
+
+        <Space
+          direction="vertical"
+          style={{
+            width: '100%',
+            marginTop: '60px',
+            alignItems: 'center',
+            textAlign: 'center',
+          }}
+        >
+          <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+            <PrimaryButton
+              onClick={() => navigate('/tests-form/blood-test')}
+              style={{
+                marginBottom: '20px',
+              }}
+            >
+              {t('mainTests.getStarted')}
+            </PrimaryButton>
+          </motion.div>
+        </Space>
+      </Card>
     </div>
   );
 };

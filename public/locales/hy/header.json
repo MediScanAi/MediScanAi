@@ -1,5 +1,5 @@
 {
-    "menu": {
+  "menu": {
     "home": "Գլխավոր",
     "analysis": "Վերլուծություն",
     "aiDoctor": "Ձեր AI Բժիշկը",
@@ -15,9 +15,9 @@
     "selectLanguage": "Ընտրել Լեզու",
     "selectTheme": "Ընտրել Թեմա"
   },
-    "themePicker": {
-        "light": "Ցերեկ",
-        "dark": "Գիշեր",
-        "system": "Սիստեմա"
-    }
+  "themePicker": {
+    "light": "Ցերեկ",
+    "dark": "Գիշեր",
+    "system": "Սիստեմա"
+  }
 }

@@ -1,22 +1,22 @@
 {
-    "vitaminTest": {
-        "title": "Vitamin Test",
-        "submit": "Submit Vitamin Test",
-        "update": "Update Vitamin Test",
-        "success": "Vitamin test submitted successfully",
-        "updateSuccess": "Vitamin test updated successfully",
-        "notAuthenticated": "User is not authenticated",
-        "vitaminA": "Vitamin A",
-        "vitaminB12": "Vitamin B12",
-        "vitaminC": "Vitamin C",
-        "vitaminD": "Vitamin D",
-        "vitaminE": "Vitamin E",
-        "vitaminK": "Vitamin K",
-        "vitaminAPlaceholder": "Enter vitamin A level",
-        "vitaminB12Placeholder": "Enter vitamin B12 level",
-        "vitaminCPlaceholder": "Enter vitamin C level",
-        "vitaminDPlaceholder": "Enter vitamin D level",
-        "vitaminEPlaceholder": "Enter vitamin E level",
-        "vitaminKPlaceholder": "Enter vitamin K level"
-    }
+  "vitaminTest": {
+    "title": "Vitamin Test",
+    "submit": "Submit Vitamin Test",
+    "update": "Update Vitamin Test",
+    "success": "Vitamin test submitted successfully",
+    "updateSuccess": "Vitamin test updated successfully",
+    "notAuthenticated": "User is not authenticated",
+    "vitaminA": "Vitamin A",
+    "vitaminB12": "Vitamin B12",
+    "vitaminC": "Vitamin C",
+    "vitaminD": "Vitamin D",
+    "vitaminE": "Vitamin E",
+    "vitaminK": "Vitamin K",
+    "vitaminAPlaceholder": "Enter vitamin A level",
+    "vitaminB12Placeholder": "Enter vitamin B12 level",
+    "vitaminCPlaceholder": "Enter vitamin C level",
+    "vitaminDPlaceholder": "Enter vitamin D level",
+    "vitaminEPlaceholder": "Enter vitamin E level",
+    "vitaminKPlaceholder": "Enter vitamin K level"
+  }
 }

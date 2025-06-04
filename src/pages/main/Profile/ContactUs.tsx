@@ -18,7 +18,15 @@ export interface ContactUsProps {
 const ContactUs: React.FC<ContactUsProps> = ({ theme }) => {
   const { t } = useTranslation('contactUs');
   return (
-    <div style={{ height: '60vh', width: '70vw' }}>
+    <div
+      style={{
+        width: '100%',
+        minHeight: '100%',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center'
+      }}
+    >
       <Card
         title={
           <Title
@@ -34,7 +42,13 @@ const ContactUs: React.FC<ContactUsProps> = ({ theme }) => {
             {t('contactUs.title')}
           </Title>
         }
-        style={{ backgroundColor: 'transparent', border: 'none' }}
+        style={{ 
+          backgroundColor: 'transparent', 
+          border: 'none',
+          width: '100%',
+          maxWidth: '1200px',
+          margin: '0 auto'
+        }}
       >
         <Row style={{ marginTop: '20px' }} gutter={[0, 16]}>
           <Col style={{ marginTop: '10px' }} span={24}>
