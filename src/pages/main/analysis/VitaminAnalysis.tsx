@@ -44,22 +44,7 @@ interface LegendPayload {
   value: string;
 }
 
-const CustomTooltip = ({ active, payload }: CustomTooltipProps) => {
-  if (active && payload && payload.length) {
-    const item = payload[0];
-    return (
-      <div
-        style={{ background: '#fff', padding: 10, border: '1px solid #ccc' }}
-      >
-        <p style={{ margin: 0, color: item.color }}>{item.name}</p>
-        <p style={{ margin: 0 }}>
-          <b>Value:</b> {item.value}
-        </p>
-      </div>
-    );
-  }
-  return null;
-};
+
 
 const CustomLegend = ({ payload }: { payload: LegendPayload[] }) => (
   <ul style={{ display: 'flex', gap: 20, listStyle: 'none', paddingLeft: 0 }}>
@@ -69,28 +54,6 @@ const CustomLegend = ({ payload }: { payload: LegendPayload[] }) => (
       </li>
     ))}
   </ul>
-);
-
-const CustomBarChart = ({ data }: { data: ChartData[] }) => (
-  <ResponsiveContainer width="90%" height={300}>
-    <BarChart data={data} margin={{ top: 20, right: 30, left: 0, bottom: 5 }}>
-      <defs>
-        <linearGradient id="barGradient" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="5%" stopColor="#00c6ff" stopOpacity={0.8} />
-          <stop offset="95%" stopColor="#0072ff" stopOpacity={0.8} />
-        </linearGradient>
-      </defs>
-      <XAxis dataKey="name" />
-      <YAxis />
-      <Tooltip content={<CustomTooltip active={false} payload={[]} />} />
-      <Legend content={<CustomLegend payload={[]} />} />
-      <Bar dataKey="value" radius={[10, 10, 0, 0]} fill="url(#barGradient)">
-        {data.map((entry, index) => (
-          <Cell key={index} fill={entry.color || 'url(#barGradient)'} />
-        ))}
-      </Bar>
-    </BarChart>
-  </ResponsiveContainer>
 );
 
 const { Title } = Typography;
@@ -103,6 +66,45 @@ function VitaminAnalysis() {
   const [expandedWarnings, setExpandedWarnings] = useState<{
     [key: string]: boolean;
   }>({});
+
+  const CustomTooltip = ({ active, payload }: CustomTooltipProps) => {
+    if (active && payload && payload.length) {
+      const item = payload[0];
+      return (
+        <div
+          className={`custom-tooltip ${isDarkMode ? 'dark' : ''}`}
+        >
+          <p style={{ color: item.color }} className="custom-tooltip-text">{item.name}</p>
+          <p className="custom-tooltip-text">
+            <b>Value:</b> {item.value}
+          </p>
+        </div>
+      );
+    }
+    return null;
+  };
+
+  const CustomBarChart = ({ data }: { data: ChartData[] }) => (
+    <ResponsiveContainer width="90%" height={300}>
+      <BarChart data={data} margin={{ top: 20, right: 30, left: 0, bottom: 5 }}>
+        <defs>
+          <linearGradient id="barGradient" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="5%" stopColor="#00c6ff" stopOpacity={0.8} />
+            <stop offset="95%" stopColor="#0072ff" stopOpacity={0.8} />
+          </linearGradient>
+        </defs>
+        <XAxis dataKey="name" />
+        <YAxis />
+        <Tooltip content={<CustomTooltip active={false} payload={[]} />} />
+        <Legend content={<CustomLegend payload={[]} />} />
+        <Bar dataKey="value" radius={[10, 10, 0, 0]} fill="url(#barGradient)">
+          {data.map((entry, index) => (
+            <Cell key={index} fill={entry.color || 'url(#barGradient)'} />
+          ))}
+        </Bar>
+      </BarChart>
+    </ResponsiveContainer>
+  );
 
   useEffect(() => {
     const handleResize = () => {
@@ -284,11 +286,6 @@ function VitaminAnalysis() {
     <div className={`analysis-page ${isDarkMode ? 'dark' : ''}`}>
       <Row
         className="welcome-section"
-        style={{
-          alignItems: 'center',
-          justifyContent: 'center',
-          marginTop: -45,
-        }}
       >
         <Col className="welcome-section-column">
           <Typography
@@ -314,12 +311,10 @@ function VitaminAnalysis() {
             src={Drugs}
             alt="platform"
             style={{
-              marginBottom: -50,
               width: width > 768 ? '230px' : '80px',
-              height: '100%',
-              objectFit: 'cover',
-              borderRadius: 15,
+              height: width > 768 ? '230px' : '80px',
             }}
+            className="welcome-image"
           />
         </Col>
       </Row>
@@ -331,11 +326,6 @@ function VitaminAnalysis() {
               className={`card2-design ${isDarkMode ? 'dark' : ''}`}
               style={{ border: 'none' }}
             >
-              <Col className="card2-col-design">
-                <div
-                  style={{ display: 'flex', justifyContent: 'center' }}
-                ></div>
-              </Col>
               <Col
                 style={{
                   display: 'flex',

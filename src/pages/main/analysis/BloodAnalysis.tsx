@@ -322,11 +322,6 @@ function BloodAnalysis() {
     <div className={`analysis-page ${isDarkMode ? 'dark' : ''}`}>
       <Row
         className="welcome-section"
-        style={{
-          flexDirection: 'row',
-          justifyContent: 'center',
-          marginTop: -45,
-        }}
       >
         <Col className="welcome-section-column">
           <Typography
@@ -352,12 +347,10 @@ function BloodAnalysis() {
             src={BloodMultic}
             alt="platform"
             style={{
-              marginBottom: -50,
               width: width > 768 ? '300px' : '80px',
               height: width > 768 ? '300px' : '80px',
-              objectFit: 'cover',
-              borderRadius: 15,
             }}
+            className="welcome-image"
           />
         </Col>
       </Row>
@@ -369,16 +362,6 @@ function BloodAnalysis() {
               className={`card2-design ${isDarkMode ? 'dark' : ''}`}
               style={{ border: 'none' }}
             >
-              <Col className="card2-col-design">
-                <div
-                  style={{
-                    display: 'flex',
-                    justifyContent: 'center',
-                    width: '100%',
-                    marginBottom: '20px',
-                  }}
-                ></div>
-              </Col>
               <Col
                 style={{
                   display: 'flex',
