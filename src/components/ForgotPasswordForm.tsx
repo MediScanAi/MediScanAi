@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import PrimaryButton from './common/PrimaryButton';
 import SecondaryButton from './common/SecondaryButton';
-import TextInput from './common/TextInput';
+import TextInput from './common/inputs/TextInput';
 
 const { Title, Text } = Typography;
 

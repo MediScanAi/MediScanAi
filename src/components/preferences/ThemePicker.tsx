@@ -3,7 +3,7 @@ import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { setThemeMode } from '../../app/slices/themeModeSlice';
 import { MoonOutlined, SunOutlined, LaptopOutlined } from '@ant-design/icons';
 import { useTranslation } from 'react-i18next';
-import '../../assets/styles/ThemePicker.css';
+import '../../assets/styles/components/preferences/themePicker.css';
 
 const ThemePicker = () => {
     const dispatch = useAppDispatch();

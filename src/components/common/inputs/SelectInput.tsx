@@ -1,7 +1,7 @@
 import React from 'react';
 import { Select } from 'antd';
 import type { SelectProps } from 'antd';
-import '../../assets/styles/SelectInput.css';
+import '../../../assets/styles/components/inputs/selectInput.css';
 
 interface CustomSelectInputProps extends SelectProps {
   className?: string;

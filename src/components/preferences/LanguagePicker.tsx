@@ -4,7 +4,7 @@ import engFlag from '../../assets/photos/united-kingdom.png';
 import rusFlag from '../../assets/photos/russia.png';
 import armFlag from '../../assets/photos/armenia.png';
 import { useAppSelector } from '../../app/hooks';
-import '../../assets/styles/LanguagePicker.css';
+import '../../assets/styles/components/preferences/languagePicker.css';
 const languageOptions = [
   {
     label: (

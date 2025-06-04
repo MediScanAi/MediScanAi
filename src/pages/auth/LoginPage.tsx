@@ -22,8 +22,8 @@ import PrimaryButton from '../../components/common/PrimaryButton';
 import PreferencesDropdown from '../../components/preferences/PreferencesDropdown';
 import SecondaryButton from '../../components/common/SecondaryButton';
 import { X } from 'lucide-react';
-import TextInput from '../../components/common/TextInput';
-import PasswordInput from '../../components/common/PasswordInput';
+import TextInput from '../../components/common/inputs/TextInput';
+import PasswordInput from '../../components/common/inputs/PasswordInput';
 
 const { Title, Text } = Typography;
 const { useBreakpoint } = Grid;
