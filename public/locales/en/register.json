@@ -1,0 +1,26 @@
+{
+  "register": {
+    "registerTitle": "Create an account",
+    "verificationDescription": "Please verify your e-mail address through the link we sent to your inbox. Once verified, click the button below.",
+    "verifiedButton": "I've verified",
+    "male": "Male",
+    "female": "Female",
+    "passwordRules": "Min 8 chars with uppercase, digit and special character",
+    "registerButton": "Register",
+    "alreadyHaveAccount": "Already have an account?",
+    "login": "Login",
+    "checkEmail": "Check your e-mail",
+    "welcomeTitle": "Welcome to MediScan AI",
+    "welcomeDescription": "Join us to unlock personalized healthcare insights powered by advanced AI analytics.",
+    "forms": {
+      "name": "Name",
+      "surname": "Surname",
+      "email": "E-mail",
+      "password": "Password",
+      "confirmPassword": "Confirm Password",
+      "gender": "Gender",
+      "age": "Age",
+      "invalidEmail": "Invalid email"
+    }
+  }
+}

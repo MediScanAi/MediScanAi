@@ -1,4 +1,4 @@
-import { Col, Row, Tabs, type TabsProps } from 'antd';
+import { Tabs, type TabsProps } from 'antd';
 import {
   ExperimentOutlined,
   MedicineBoxOutlined,

@@ -1,0 +1,16 @@
+{
+  "login": {
+    "welcomeTitle": "Welcome to MediScan AI",
+    "welcomeDescription": "Log in to continue your journey with us. Your health insights all in one place!",
+    "loginTitle": "Log in",
+    "forgotPassword": "Forgot your password?",
+    "loginButton": "Login",
+    "noAccount": "Don't have an account?",
+    "register": "Register",
+    "forms": {
+      "email": "E-mail",
+      "password": "Password",
+      "invalidEmail": "Invalid email"
+    }
+  }
+}

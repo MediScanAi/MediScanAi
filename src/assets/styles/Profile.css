@@ -234,7 +234,7 @@
   color: white;
 }
 
-.dark .info-value-text[type="secondary"] {
+.dark .info-value-text[type='secondary'] {
   color: rgba(255, 255, 255, 0.65);
 }
 
