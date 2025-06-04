@@ -1,0 +1,18 @@
+{
+  "rootForm": {
+    "blood": "Анализ крови",
+    "urine": "Анализ мочи",
+    "vitamin": "Анализ витаминов",
+    "genetic": "Анализ генетики",
+    "submit": "Отправить анализ",
+    "welcomeTitle": "Добро пожаловать в MediScanAI анализы",
+    "welcomeMessage": "Пожалуйста, выберите тип анализа для начала",
+    "backButton": "Вернуться в профиль",
+    "updateTest": "Обновить анализ",
+    "selectTestType": "Выберите тип анализа",
+    "medicalIllustration": "Медицинская иллюстрация",
+    "medicalLaboratoryTestForm": "Медицинская лабораторная форма",
+    "comprehensiveMedicalTestAnalysis": "Комплексный медицинский анализ, поддерживаемый ИИ: получите точные результаты и персонализированные выводы в течение 24 часов.",
+    "mediScanAIDiagnosticPortal": "Портал диагностики MediScanAI"
+  }
+}

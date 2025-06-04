@@ -1,12 +1,4 @@
-import {
-  Form,
-  InputNumber,
-  message,
-  Typography,
-  Card,
-  Row,
-  Col,
-} from 'antd';
+import { Form, InputNumber, message, Typography, Card, Row, Col } from 'antd';
 import { useAppDispatch, useAppSelector } from '../../../app/hooks';
 import { saveTestData, setTestData } from '../../../app/slices/testSlice';
 import type { VitaminTestFormValues } from '../../../app/slices/testSlice';
@@ -23,7 +15,7 @@ const VitaminTestForm = () => {
   const [form] = Form.useForm();
   const dispatch = useAppDispatch();
   const updatedData = useLocation()?.state?.vitaminTestData || undefined;
-  const { t } = useTranslation();
+  const { t } = useTranslation('vitaminTest');
   const isDarkMode = useAppSelector((state) => state.theme.isDarkMode);
   const vitaminTestFields = [
     {

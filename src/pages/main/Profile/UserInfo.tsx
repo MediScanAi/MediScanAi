@@ -47,7 +47,7 @@ export type UserInfoProps = {
 };
 
 const UserInfo: React.FC<UserInfoProps> = ({ theme }) => {
-  const { t } = useTranslation();
+  const { t } = useTranslation('userInfo');
   const dispatch = useAppDispatch();
   const user = useAppSelector(selectCurrentUser);
   const userData = useAppSelector((s) => s.userData.data);
@@ -191,8 +191,6 @@ const UserInfo: React.FC<UserInfoProps> = ({ theme }) => {
     }
   };
 
-  console.log(user);
-
   const renderValue = (key: string, value: unknown): string | number => {
     if (value === null || value === '' || value === undefined)
       return t('userInfo.notSet');
@@ -211,200 +209,210 @@ const UserInfo: React.FC<UserInfoProps> = ({ theme }) => {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
+        style={{
+          width: '100%',
+          minHeight: '100%',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+        }}
         className={`modern-user-profile ${theme ? 'dark' : ''}`}
       >
-        <Card
-          className={`profile-container ${theme ? 'dark' : ''}`}
-          style={{ border: 'none' }}
-        >
-          <div className="profile-header-container">
-            <div className="profile-avatar-container">
-              <UserAvatar
-                className="profile-avatar"
-                size={80}
-                user={user!}
-              />
+        <Form form={form} style={{ width: '100%' }}>
+          <Card
+            className={`profile-container ${theme ? 'dark' : ''}`}
+            style={{
+              border: 'none',
+              width: '100%',
+              maxWidth: '1200px',
+              margin: '0 auto',
+            }}
+          >
+            <div className="profile-header-container">
+              <div className="profile-avatar-container">
+                <UserAvatar className="profile-avatar" size={80} user={user!} />
+              </div>
+
+              <div className="profile-info">
+                <Title level={3} className="profile-name">
+                  {user?.firstName} {user?.lastName}
+                </Title>
+                <Text type="secondary" className="profile-email">
+                  {user?.email}
+                </Text>
+              </div>
             </div>
 
-            <div className="profile-info">
-              <Title level={3} className="profile-name">
-                {user?.firstName} {user?.lastName}
+            <div className="profile-section">
+              <Title level={4} className="section-title">
+                {t('userInfo.sections.personalInfo')}
               </Title>
-              <Text type="secondary" className="profile-email">
-                {user?.email}
-              </Text>
-            </div>
-          </div>
+              <Row gutter={[24, 16]} className="info-grid">
+                {fields.map((field) => (
+                  <Col xs={24} sm={12} md={8} key={field.key}>
+                    <div
+                      className={`info-card ${editingField === field.key ? 'editing' : ''} ${theme ? 'dark' : ''}`}
+                    >
+                      <div className="info-label">
+                        {field.icon}
+                        <Text className={'info-label-text'} strong>
+                          {field.label}
+                        </Text>
+                        {field.tooltip && (
+                          <Tooltip title={field.tooltip}>
+                            <QuestionCircleOutlined />
+                          </Tooltip>
+                        )}
+                      </div>
 
-          <div className="profile-section">
-            <Title level={4} className="section-title">
-              {t('userInfo.sections.personalInfo')}
-            </Title>
-            <Row gutter={[24, 16]} className="info-grid">
-              {fields.map((field) => (
-                <Col xs={24} sm={12} md={8} key={field.key}>
-                  <div
-                    className={`info-card ${editingField === field.key ? 'editing' : ''} ${theme ? 'dark' : ''}`}
-                  >
-                    <div className="info-label">
-                      {field.icon}
-                      <Text className={'info-label-text'} strong>
-                        {field.label}
-                      </Text>
-                      {field.tooltip && (
-                        <Tooltip title={field.tooltip}>
-                          <QuestionCircleOutlined />
-                        </Tooltip>
+                      {editingField === field.key ? (
+                        <div className="edit-mode-container">
+                          {field.key === 'gender' ? (
+                            <div
+                              style={{
+                                display: 'flex',
+                                flexDirection: 'row',
+                                alignItems: 'center',
+                                justifyContent: 'space-between',
+                              }}
+                            >
+                              <Select
+                                value={
+                                  tempValues[field.key] ||
+                                  formState[field.key as keyof UserData]
+                                }
+                                onChange={(v) =>
+                                  handleInputChange(
+                                    field.key as keyof UserData,
+                                    v as number | null
+                                  )
+                                }
+                                className={`select-item ${theme ? 'dark' : ''}`}
+                                placeholder={getPlaceholder(
+                                  field.key as keyof UserData
+                                )}
+                              >
+                                <Option
+                                  className={`select-item ${theme ? 'dark' : ''}`}
+                                  value="Male"
+                                >
+                                  {t('userInfo.genders.male')}
+                                </Option>
+                                <Option
+                                  className={`select-item ${theme ? 'dark' : ''}`}
+                                  value="Female"
+                                >
+                                  {t('userInfo.genders.female')}
+                                </Option>
+                              </Select>
+                              <div className="edit-actions">
+                                <Button
+                                  type="text"
+                                  icon={<CheckOutlined />}
+                                  onClick={() =>
+                                    saveField(field.key as keyof UserData)
+                                  }
+                                  className="save-btn"
+                                />
+                                <Button
+                                  type="text"
+                                  icon={<CloseOutlined />}
+                                  onClick={() => cancelEditing(field.key)}
+                                  className="cancel-btn"
+                                />
+                              </div>
+                            </div>
+                          ) : (
+                            <div
+                              style={{
+                                display: 'flex',
+                                flexDirection: 'row',
+                                alignItems: 'center',
+                                justifyContent: 'space-between',
+                              }}
+                            >
+                              <InputNumber
+                                value={
+                                  tempValues[field.key] ||
+                                  formState[field.key as keyof UserData]
+                                }
+                                onChange={(v) =>
+                                  handleInputChange(
+                                    field.key as keyof UserData,
+                                    v as number | null
+                                  )
+                                }
+                                className="info-input"
+                                min={0}
+                                max={
+                                  field.key === 'age'
+                                    ? 150
+                                    : field.key === 'weight'
+                                      ? 300
+                                      : field.key === 'height'
+                                        ? 300
+                                        : field.key === 'waistSize'
+                                          ? 200
+                                          : field.key === 'neckSize'
+                                            ? 100
+                                            : undefined
+                                }
+                                placeholder={getPlaceholder(
+                                  field.key as keyof UserData
+                                )}
+                                addonAfter={field.unit}
+                              />
+
+                              <div className="edit-actions">
+                                <Button
+                                  type="text"
+                                  icon={<CheckOutlined />}
+                                  onClick={() =>
+                                    saveField(field.key as keyof UserData)
+                                  }
+                                  className="save-btn"
+                                />
+                                <Button
+                                  type="text"
+                                  icon={<CloseOutlined />}
+                                  onClick={() => cancelEditing(field.key)}
+                                  className="cancel-btn"
+                                />
+                              </div>
+                            </div>
+                          )}
+                        </div>
+                      ) : (
+                        <div className="view-mode-container">
+                          <div className="info-value">
+                            <Text className={'info-value-text'}>
+                              {renderValue(
+                                field.key,
+                                formState[field.key as keyof UserData] ??
+                                  field.value
+                              )}
+                              {field.unit && (
+                                <span className="unit">{field.unit}</span>
+                              )}
+                            </Text>
+                          </div>
+                          {field.editable && (
+                            <Button
+                              type="text"
+                              icon={<EditOutlined />}
+                              onClick={() => startEditing(field.key)}
+                              className="edit-btn"
+                            />
+                          )}
+                        </div>
                       )}
                     </div>
-
-                    {editingField === field.key ? (
-                      <div className="edit-mode-container">
-                        {field.key === 'gender' ? (
-                          <div
-                            style={{
-                              display: 'flex',
-                              flexDirection: 'row',
-                              alignItems: 'center',
-                              justifyContent: 'space-between',
-                            }}
-                          >
-                            <Select
-                              value={
-                                tempValues[field.key] ||
-                                formState[field.key as keyof UserData]
-                              }
-                              onChange={(v) =>
-                                handleInputChange(
-                                  field.key as keyof UserData,
-                                  v as number | null
-                                )
-                              }
-                              className={`select-item ${theme ? 'dark' : ''}`}
-                              placeholder={getPlaceholder(
-                                field.key as keyof UserData
-                              )}
-                            >
-                              <Option
-                                className={`select-item ${theme ? 'dark' : ''}`}
-                                value="Male"
-                              >
-                                {t('userInfo.genders.male')}
-                              </Option>
-                              <Option
-                                className={`select-item ${theme ? 'dark' : ''}`}
-                                value="Female"
-                              >
-                                {t('userInfo.genders.female')}
-                              </Option>
-                            </Select>
-                            <div className="edit-actions">
-                              <Button
-                                type="text"
-                                icon={<CheckOutlined />}
-                                onClick={() =>
-                                  saveField(field.key as keyof UserData)
-                                }
-                                className="save-btn"
-                              />
-                              <Button
-                                type="text"
-                                icon={<CloseOutlined />}
-                                onClick={() => cancelEditing(field.key)}
-                                className="cancel-btn"
-                              />
-                            </div>
-                          </div>
-                        ) : (
-                          <div
-                            style={{
-                              display: 'flex',
-                              flexDirection: 'row',
-                              alignItems: 'center',
-                              justifyContent: 'space-between',
-                            }}
-                          >
-                            <InputNumber
-                              value={
-                                tempValues[field.key] ||
-                                formState[field.key as keyof UserData]
-                              }
-                              onChange={(v) =>
-                                handleInputChange(
-                                  field.key as keyof UserData,
-                                  v as number | null
-                                )
-                              }
-                              className="info-input"
-                              min={0}
-                              max={
-                                field.key === 'age'
-                                  ? 150
-                                  : field.key === 'weight'
-                                    ? 300
-                                    : field.key === 'height'
-                                      ? 300
-                                      : field.key === 'waistSize'
-                                        ? 200
-                                        : field.key === 'neckSize'
-                                          ? 100
-                                          : undefined
-                              }
-                              placeholder={getPlaceholder(
-                                field.key as keyof UserData
-                              )}
-                              addonAfter={field.unit}
-                            />
-
-                            <div className="edit-actions">
-                              <Button
-                                type="text"
-                                icon={<CheckOutlined />}
-                                onClick={() =>
-                                  saveField(field.key as keyof UserData)
-                                }
-                                className="save-btn"
-                              />
-                              <Button
-                                type="text"
-                                icon={<CloseOutlined />}
-                                onClick={() => cancelEditing(field.key)}
-                                className="cancel-btn"
-                              />
-                            </div>
-                          </div>
-                        )}
-                      </div>
-                    ) : (
-                      <div className="view-mode-container">
-                        <div className="info-value">
-                          <Text className={'info-value-text'}>
-                            {renderValue(
-                              field.key,
-                              formState[field.key as keyof UserData] ??
-                                field.value
-                            )}
-                            {field.unit && (
-                              <span className="unit">{field.unit}</span>
-                            )}
-                          </Text>
-                        </div>
-                        {field.editable && (
-                          <Button
-                            type="text"
-                            icon={<EditOutlined />}
-                            onClick={() => startEditing(field.key)}
-                            className="edit-btn"
-                          />
-                        )}
-                      </div>
-                    )}
-                  </div>
-                </Col>
-              ))}
-            </Row>
-          </div>
-        </Card>
+                  </Col>
+                ))}
+              </Row>
+            </div>
+          </Card>
+        </Form>
       </motion.div>
     </Spin>
   );

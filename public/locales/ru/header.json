@@ -1,0 +1,23 @@
+{
+  "menu": {
+    "home": "Главная",
+    "analysis": "Анализ",
+    "aiDoctor": "Ваш ИИ Доктор",
+    "aboutUs": "О Нас",
+    "myHealth": "Моё Здоровье",
+    "logout": "Выйти",
+    "profile": "Профиль",
+    "login": "Войти",
+    "bloodTest": "Анализ Крови",
+    "urineTest": "Анализ Мочи",
+    "vitaminTest": "Анализ Витаминов",
+    "geneticTest": "Генетический Тест",
+    "selectLanguage": "Выбрать Язык",
+    "selectTheme": "Выбрать Тему"
+  },
+  "themePicker": {
+    "light": "Светлая",
+    "dark": "Тёмная",
+    "system": "Системная"
+  }
+}

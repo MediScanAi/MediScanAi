@@ -10,9 +10,8 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
   }, [location.pathname]);
-  
-  const hideFooter =
-    location.pathname.startsWith('/ai-doctor');
+
+  const hideFooter = location.pathname.startsWith('/ai-doctor');
 
   return (
     <>

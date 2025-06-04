@@ -21,7 +21,6 @@ const UserAvatar: React.FC<UserAvatarProps> = ({ user, ...props }) => {
       {...props}
       onError={() => {
         setImgError(true);
-        console.log('error loading user avatar image');
         return false;
       }}
       style={{

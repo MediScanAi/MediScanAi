@@ -1,0 +1,33 @@
+{
+  "urineTest": {
+    "title": "Urine Test",
+    "submit": "Submit Urine Test",
+    "update": "Update Urine Test",
+    "success": "Urine test submitted successfully",
+    "updateSuccess": "Urine test updated successfully",
+    "ph": "pH",
+    "gravity": "Specific Gravity",
+    "protein": "Protein",
+    "glucose": "Glucose",
+    "ketones": "Ketones",
+    "bilirubin": "Bilirubin",
+    "urobilinogen": "Urobilinogen",
+    "nitrites": "Nitrites",
+    "leukocyteEsterase": "Leukocyte Esterase",
+    "blood": "Blood",
+    "negative": "Negative",
+    "positive": "Positive",
+    "trace": "Trace",
+    "placeholder": "Select an option",
+    "urineTestphPlaceholder": "Enter pH value (4.5-8.0)",
+    "urineTestgravityPlaceholder": "Enter specific gravity (1.0-1.03 g/dL)",
+    "urineTestproteinPlaceholder": "Enter protein level (0-300 mg/dL)",
+    "urineTestglucosePlaceholder": "Enter glucose level (0-1000 mg/dL)",
+    "urineTestketonesPlaceholder": "Enter ketones level (0-160 mg/dL)",
+    "urineTestbilirubinPlaceholder": "Select bilirubin result",
+    "urineTesturobilinogenPlaceholder": "Enter urobilinogen level (0.1-8.0 EU/dL)",
+    "urineTestnitritesPlaceholder": "Select nitrites result",
+    "urineTestleukocyteEsterasePlaceholder": "Select leukocyte esterase result",
+    "urineTestbloodPlaceholder": "Select blood result"
+  }
+}

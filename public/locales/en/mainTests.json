@@ -1,0 +1,15 @@
+{
+  "mainTests": {
+    "bloodTest": "Blood Test",
+    "urineTest": "Urine Test",
+    "vitaminTest": "Vitamin Test",
+    "geneticTest": "Genetic Test",
+    "bloodTestSubtitle": "Complete blood count & biochemistry",
+    "urineTestSubtitle": "Urinalysis & microalbumin test",
+    "vitaminTestSubtitle": "Vitamin D, B12 & minerals",
+    "geneticTestSubtitle": "DNA analysis & health risks",
+    "fillForm": "Fill the form to get your test results",
+    "viewMore": "View More",
+    "getStarted": "Get Started"
+  }
+}

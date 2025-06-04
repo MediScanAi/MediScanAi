@@ -8,12 +8,37 @@ i18n
   .use(LanguageDetector)
   .use(initReactI18next)
   .init({
-    debug: true,
-    saveMissing: true,
-    missingKeyHandler: (lng, key) => {
-      console.error(`[i18n] Missing ${lng} translation for: ${key}`);
+    debug: false,
+    saveMissing: false,
+    missingKeyHandler: async (lng, key) => {
+      await console.error(`[i18n] Missing ${lng} translation for: ${key}`);
       return key;
     },
+    ns: [
+      'aboutUs',
+      'analysisHistory',
+      'bloodAnalysis',
+      'bloodTest',
+      'chatWithAI',
+      'contactUs',
+      'footer',
+      'geneticAnalysis',
+      'geneticTest',
+      'header',
+      'health',
+      'homePage',
+      'mainTest',
+      'profil',
+      'rootForm',
+      'urineAnalysis',
+      'urineTest',
+      'userInfo',
+      'vitaminAnalysis',
+      'vitaminTest',
+      'login',
+      'register',
+      'forgotPassword',
+    ],
     supportedLngs: ['en', 'ru', 'hy'],
     fallbackLng: 'en',
     detection: {
@@ -21,7 +46,7 @@ i18n
       caches: ['localStorage'],
     },
     backend: {
-      loadPath: '/locales/{{lng}}/translation.json',
+      loadPath: '/locales/{{lng}}/{{ns}}.json',
     },
     react: {
       useSuspense: false,

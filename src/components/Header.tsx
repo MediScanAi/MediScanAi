@@ -18,7 +18,6 @@ import {
   HomeOutlined,
   MedicineBoxOutlined,
   ExperimentOutlined,
-  RobotOutlined,
   TeamOutlined,
 } from '@ant-design/icons';
 import { NavLink, useLocation, useNavigate } from 'react-router-dom';
@@ -31,54 +30,13 @@ import '../assets/styles/Header.css';
 import PreferencesDropdown from './preferences/PreferencesDropdown';
 import PrimaryButton from './common/PrimaryButton.tsx';
 import UserAvatar from './common/UserAvatar.tsx';
+import LogoWeb from '../assets/photos/Logo Web.png';
 
 const { Header } = Layout;
 const { Text } = Typography;
 
-const mainMenuItems = [
-  { label: <NavLink to="/">Home</NavLink>, key: '/', icon: <HomeOutlined /> },
-  {
-    label: <NavLink to="/my-health">My Health</NavLink>,
-    key: '/my-health',
-    icon: <MedicineBoxOutlined />,
-  },
-  {
-    label: 'Analysis',
-    key: 'analysis',
-    icon: <ExperimentOutlined />,
-    children: [
-      {
-        label: <NavLink to="/analysis/blood-test">Blood Test</NavLink>,
-        key: '/analysis/blood-test',
-      },
-      {
-        label: <NavLink to="/analysis/vitamin-test">Vitamin Test</NavLink>,
-        key: '/analysis/vitamin-test',
-      },
-      {
-        label: <NavLink to="/analysis/urine-test">Urine Test</NavLink>,
-        key: '/analysis/urine-test',
-      },
-      {
-        label: <NavLink to="/analysis/genetic-test">Genetic Test</NavLink>,
-        key: '/analysis/genetic-test',
-      },
-    ],
-  },
-  {
-    label: <NavLink to="/ai-doctor">AI Doctor</NavLink>,
-    key: '/ai-doctor',
-    icon: <RobotOutlined />,
-  },
-  {
-    label: <NavLink to="/about-us">About Us</NavLink>,
-    key: '/about-us',
-    icon: <TeamOutlined />,
-  },
-];
-
 export default function AppHeader() {
-  const { t } = useTranslation('global');
+  const { t } = useTranslation('header');
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const { pathname } = useLocation();
@@ -87,12 +45,70 @@ export default function AppHeader() {
   const screens = Grid.useBreakpoint();
   const showDrawer = screens.xs;
 
+  const mainMenuItems = [
+    {
+      label: <NavLink to="/">{t('menu.home')}</NavLink>,
+      key: '/',
+      icon: <HomeOutlined />,
+    },
+    {
+      label: <NavLink to="/my-health">{t('menu.myHealth')}</NavLink>,
+      key: '/my-health',
+      icon: <MedicineBoxOutlined />,
+    },
+    {
+      label: t('menu.analysis'),
+      key: 'analysis',
+      icon: <ExperimentOutlined />,
+      children: [
+        {
+          label: (
+            <NavLink to="/analysis/blood-test">{t('menu.bloodTest')}</NavLink>
+          ),
+          key: '/analysis/blood-test',
+        },
+        {
+          label: (
+            <NavLink to="/analysis/vitamin-test">
+              {t('menu.vitaminTest')}
+            </NavLink>
+          ),
+          key: '/analysis/vitamin-test',
+        },
+        {
+          label: (
+            <NavLink to="/analysis/urine-test">{t('menu.urineTest')}</NavLink>
+          ),
+          key: '/analysis/urine-test',
+        },
+        {
+          label: (
+            <NavLink to="/analysis/genetic-test">
+              {t('menu.geneticTest')}
+            </NavLink>
+          ),
+          key: '/analysis/genetic-test',
+        },
+      ],
+    },
+    {
+      label: <NavLink to="/ai-doctor">{t('menu.aiDoctor')}</NavLink>,
+      key: '/ai-doctor',
+      icon: <img style={{ width: '18px' }} src={LogoWeb} alt="logo" />,
+    },
+    {
+      label: <NavLink to="/about-us">{t('menu.aboutUs')}</NavLink>,
+      key: '/about-us',
+      icon: <TeamOutlined />,
+    },
+  ];
+
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [usrMenuOpen, setUsrMenuOpen] = useState(false);
 
   const navigateHome = () => {
     navigate('/');
-  }
+  };
   return (
     <Header className={`app-header ${isDarkMode ? 'dark' : 'light'}`}>
       <div className="app-header-container">
@@ -167,7 +183,7 @@ export default function AppHeader() {
                 }
               >
                 <div className={`user-profile ${isDarkMode ? 'dark' : ''}`}>
-                  <UserAvatar user={user} size="small"/>
+                  <UserAvatar user={user} size="small" />
                   <Text className={`username ${isDarkMode ? 'dark' : ''}`}>
                     {user.firstName} {user.lastName}
                   </Text>

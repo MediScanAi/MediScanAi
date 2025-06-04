@@ -1,0 +1,13 @@
+{
+  "chat": {
+    "bloodTests": "Tесты крови",
+    "urineTests": "Tесты мочи",
+    "vitaminTests": "Tесты витаминов",
+    "geneticTests": "Tесты генетики",
+    "newChat": "Новый чат",
+    "rename": "Переименовать",
+    "delete": "Удалить",
+    "scanAnalysis": "Анализ сканирования",
+    "pdfUpload": "Загрузка PDF"
+  }
+}

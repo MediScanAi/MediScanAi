@@ -1,0 +1,16 @@
+{
+  "login": {
+    "welcomeTitle": "Բարի գալուստ MediScan AI",
+    "welcomeDescription": "Մուտք գործեք մեր հետ շարունակելու ճանապարհին: Ձեր առողջության անհատական տվյալները բոլորովին մեկ տեղում",
+    "loginTitle": "Մուտք",
+    "forgotPassword": "Մոռացե՞լ եք ձեր գաղտնաբառը",
+    "loginButton": "Մուտք",
+    "noAccount": "Ոչ մի հաշիվ չունեք",
+    "register": "Գրանցվել",
+    "forms": {
+      "email": "Էլ. փոստ",
+      "password": "Գաղտնաբառ",
+      "invalidEmail": "Անվավեր էլ. փոստ"
+    }
+  }
+}

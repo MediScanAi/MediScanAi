@@ -1,0 +1,33 @@
+{
+  "urineTest": {
+    "title": "Анализ мочи",
+    "submit": "Отправить анализ мочи",
+    "update": "Обновить анализ мочи",
+    "success": "Анализ мочи успешно отправлен",
+    "updateSuccess": "Анализ мочи успешно обновлен",
+    "ph": "pH",
+    "gravity": "Удельный вес",
+    "protein": "Химические вещества",
+    "glucose": "Глюкоза",
+    "ketones": "Кетоны",
+    "bilirubin": "Билирубин",
+    "urobilinogen": "Мезитобилин",
+    "nitrites": "Нитриты",
+    "leukocyteEsterase": "Лейкоцитарный эстеразный тест",
+    "blood": "Кровь",
+    "negative": "Отрицательный",
+    "positive": "Положительный",
+    "trace": "Траце",
+    "placeholder": "Выберите результат",
+    "urineTestphPlaceholder": "Введите pH значение (4.5-8.0)",
+    "urineTestgravityPlaceholder": "Введите удельный вес (1.0-1.03 g/dL)",
+    "urineTestproteinPlaceholder": "Введите уровень протеина (0-300 mg/dL)",
+    "urineTestglucosePlaceholder": "Введите уровень глюкозы (0-1000 mg/dL)",
+    "urineTestketonesPlaceholder": "Введите уровень кетонов (0-160 mg/dL)",
+    "urineTestbilirubinPlaceholder": "Выберите уровень билирубина",
+    "urineTesturobilinogenPlaceholder": "Введите уровень мезитобилина (0.1-8.0 EU/dL)",
+    "urineTestnitritesPlaceholder": "Выберите уровень нитритов",
+    "urineTestleukocyteEsterasePlaceholder": "Выберите уровень лейкоцитарного эстеразного теста",
+    "urineTestbloodPlaceholder": "Выберите уровень крови"
+  }
+}
