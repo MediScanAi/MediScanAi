@@ -331,28 +331,13 @@ const AnalysisHistory: React.FC<AnalysisHistoryProps> = ({ theme, width }) => {
     bloodTestData || urineTestData || vitaminTestData || geneticTestData;
 
   return (
-    <div
-      style={{
-        display: 'flex',
-        flexDirection: 'column',
-        width: '80vw',
-        margin: '0 auto',
-        padding: '16px',
-        backgroundColor: 'transparent',
-      }}
-    >
+    <div className="analysis-history-container">
       <Col>
-        <Card
-          className={theme ? 'dark-mode-text' : ''}
-          style={{ border: 'none', backgroundColor: 'transparent' }}
-        >
+        <Card className={`analysis-card ${theme ? 'dark-mode-text' : ''}`}>
           <Title
             level={2}
-            style={{
-              marginBottom: 24,
-              color: '#3498db',
-              fontSize: width < 800 ? '18px' : '32px',
-            }}
+            className="analysis-title"
+            style={{ fontSize: width < 800 ? '18px' : '32px' }}
           >
             {t('analysisHistory.title')}
           </Title>
@@ -360,12 +345,8 @@ const AnalysisHistory: React.FC<AnalysisHistoryProps> = ({ theme, width }) => {
           {!hasAnyTestData && (
             <Text
               type="secondary"
-              style={{
-                display: 'block',
-                marginBottom: 24,
-                fontSize: width < 800 ? '10px' : '20px',
-                width: '70vw',
-              }}
+              className="no-test-results"
+              style={{ fontSize: width < 800 ? '10px' : '20px' }}
             >
               {t('analysisHistory.noTestResults')}
             </Text>
@@ -374,9 +355,7 @@ const AnalysisHistory: React.FC<AnalysisHistoryProps> = ({ theme, width }) => {
           <Row gutter={[24, 32]}>
             {bloodTestData && (
               <Col span={20}>
-                <div
-                  style={{ marginBottom: 8, backgroundColor: 'transparent' }}
-                >
+                <div className="test-header">
                   <Text
                     strong
                     style={{ fontSize: width < 800 ? '10px' : '16px' }}
@@ -385,10 +364,8 @@ const AnalysisHistory: React.FC<AnalysisHistoryProps> = ({ theme, width }) => {
                   </Text>
                   <Text
                     type="secondary"
-                    style={{
-                      marginLeft: 12,
-                      fontSize: width < 800 ? '10px' : '16px',
-                    }}
+                    className="last-updated"
+                    style={{ fontSize: width < 800 ? '10px' : '16px' }}
                   >
                     {t('analysisHistory.lastUpdated')}
                     {bloodTestData.date ||
@@ -396,30 +373,20 @@ const AnalysisHistory: React.FC<AnalysisHistoryProps> = ({ theme, width }) => {
                   </Text>
                   <PrimaryButton
                     onClick={sendBloodTestData}
-                    style={{
-                      marginLeft: 12,
-                      backgroundColor: 'transparent',
-                      fontSize: width < 800 ? '10px' : '16px',
-                      padding: '10px',
-                      minWidth: 40,
-                    }}
+                    className="edit-button"
+                    style={{ fontSize: width < 800 ? '10px' : '16px' }}
                   >
                     {t('analysisHistory.edit')}
                   </PrimaryButton>
                   <SecondaryButton
                     onClick={() => handleDeleteTest('blood')}
-                    style={{
-                      marginLeft: 12,
-                      backgroundColor: 'transparent',
-                      fontSize: width < 800 ? '10px' : '16px',
-                      padding: '10px',
-                      minWidth: 40,
-                    }}
+                    className="delete-button"
+                    style={{ fontSize: width < 800 ? '10px' : '16px' }}
                   >
                     {t('analysisHistory.delete')}
                   </SecondaryButton>
                 </div>
-                <Divider style={{ margin: '12px 0' }} />
+                <Divider className="test-divider" />
                 {renderTestCards(
                   testBloodResults.map((result) => ({
                     ...result,
@@ -431,7 +398,7 @@ const AnalysisHistory: React.FC<AnalysisHistoryProps> = ({ theme, width }) => {
 
             {urineTestData && (
               <Col span={20}>
-                <div style={{ marginBottom: 8 }}>
+                <div className="test-header">
                   <Text
                     strong
                     style={{ fontSize: width < 800 ? '10px' : '16px' }}
@@ -440,10 +407,8 @@ const AnalysisHistory: React.FC<AnalysisHistoryProps> = ({ theme, width }) => {
                   </Text>
                   <Text
                     type="secondary"
-                    style={{
-                      marginLeft: 12,
-                      fontSize: width < 800 ? '10px' : '16px',
-                    }}
+                    className="last-updated"
+                    style={{ fontSize: width < 800 ? '10px' : '16px' }}
                   >
                     {t('analysisHistory.lastUpdated')}
                     {urineTestData.date ||
@@ -451,30 +416,20 @@ const AnalysisHistory: React.FC<AnalysisHistoryProps> = ({ theme, width }) => {
                   </Text>
                   <PrimaryButton
                     onClick={sendUrineTestData}
-                    style={{
-                      marginLeft: 12,
-                      backgroundColor: 'transparent',
-                      fontSize: width < 800 ? '10px' : '16px',
-                      padding: '10px',
-                      minWidth: 40,
-                    }}
+                    className="edit-button"
+                    style={{ fontSize: width < 800 ? '10px' : '16px' }}
                   >
                     {t('analysisHistory.edit')}
                   </PrimaryButton>
                   <SecondaryButton
                     onClick={() => handleDeleteTest('urine')}
-                    style={{
-                      marginLeft: 12,
-                      backgroundColor: 'transparent',
-                      fontSize: width < 800 ? '10px' : '16px',
-                      padding: '10px',
-                      minWidth: 40,
-                    }}
+                    className="delete-button"
+                    style={{ fontSize: width < 800 ? '10px' : '16px' }}
                   >
                     {t('analysisHistory.delete')}
                   </SecondaryButton>
                 </div>
-                <Divider style={{ margin: '12px 0' }} />
+                <Divider className="test-divider" />
                 {renderTestCards(
                   testUrineResults.map((result) => ({
                     ...result,
@@ -486,7 +441,7 @@ const AnalysisHistory: React.FC<AnalysisHistoryProps> = ({ theme, width }) => {
 
             {vitaminTestData && (
               <Col span={20}>
-                <div style={{ marginBottom: 8 }}>
+                <div className="test-header">
                   <Text
                     strong
                     style={{ fontSize: width < 800 ? '10px' : '16px' }}
@@ -495,10 +450,8 @@ const AnalysisHistory: React.FC<AnalysisHistoryProps> = ({ theme, width }) => {
                   </Text>
                   <Text
                     type="secondary"
-                    style={{
-                      marginLeft: 12,
-                      fontSize: width < 800 ? '10px' : '16px',
-                    }}
+                    className="last-updated"
+                    style={{ fontSize: width < 800 ? '10px' : '16px' }}
                   >
                     {t('analysisHistory.lastUpdated')}
                     {vitaminTestData.date ||
@@ -506,30 +459,20 @@ const AnalysisHistory: React.FC<AnalysisHistoryProps> = ({ theme, width }) => {
                   </Text>
                   <PrimaryButton
                     onClick={sendVitaminTestData}
-                    style={{
-                      marginLeft: 12,
-                      backgroundColor: 'transparent',
-                      fontSize: width < 800 ? '10px' : '16px',
-                      padding: '10px',
-                      minWidth: 40,
-                    }}
+                    className="edit-button"
+                    style={{ fontSize: width < 800 ? '10px' : '16px' }}
                   >
                     {t('analysisHistory.edit')}
                   </PrimaryButton>
                   <SecondaryButton
                     onClick={() => handleDeleteTest('vitamin')}
-                    style={{
-                      marginLeft: 12,
-                      backgroundColor: 'transparent',
-                      fontSize: width < 800 ? '10px' : '16px',
-                      padding: '10px',
-                      minWidth: 40,
-                    }}
+                    className="delete-button"
+                    style={{ fontSize: width < 800 ? '10px' : '16px' }}
                   >
                     {t('analysisHistory.delete')}
                   </SecondaryButton>
                 </div>
-                <Divider style={{ margin: '12px 0' }} />
+                <Divider className="test-divider" />
                 {renderTestCards(
                   testVitaminResults.map((result) => ({
                     ...result,
@@ -541,7 +484,7 @@ const AnalysisHistory: React.FC<AnalysisHistoryProps> = ({ theme, width }) => {
 
             {geneticTestData && (
               <Col span={20}>
-                <div style={{ marginBottom: 8 }}>
+                <div className="test-header">
                   <Text
                     strong
                     style={{ fontSize: width < 800 ? '10px' : '16px' }}
@@ -550,10 +493,8 @@ const AnalysisHistory: React.FC<AnalysisHistoryProps> = ({ theme, width }) => {
                   </Text>
                   <Text
                     type="secondary"
-                    style={{
-                      marginLeft: 12,
-                      fontSize: width < 800 ? '10px' : '16px',
-                    }}
+                    className="last-updated"
+                    style={{ fontSize: width < 800 ? '10px' : '16px' }}
                   >
                     {t('analysisHistory.lastUpdated')}
                     {geneticTestData.date ||
@@ -561,30 +502,20 @@ const AnalysisHistory: React.FC<AnalysisHistoryProps> = ({ theme, width }) => {
                   </Text>
                   <PrimaryButton
                     onClick={sendGeneticTestData}
-                    style={{
-                      marginLeft: 12,
-                      backgroundColor: 'transparent',
-                      fontSize: width < 800 ? '10px' : '16px',
-                      padding: '10px',
-                      minWidth: 40,
-                    }}
+                    className="edit-button"
+                    style={{ fontSize: width < 800 ? '10px' : '16px' }}
                   >
                     {t('analysisHistory.edit')}
                   </PrimaryButton>
                   <SecondaryButton
                     onClick={() => handleDeleteTest('genetic')}
-                    style={{
-                      marginLeft: 12,
-                      backgroundColor: 'transparent',
-                      fontSize: width < 800 ? '10px' : '16px',
-                      padding: '10px',
-                      minWidth: 40,
-                    }}
+                    className="delete-button"
+                    style={{ fontSize: width < 800 ? '10px' : '16px' }}
                   >
                     {t('analysisHistory.delete')}
                   </SecondaryButton>
                 </div>
-                <Divider style={{ margin: '12px 0' }} />
+                <Divider className="test-divider" />
                 {renderTestCards(
                   testGeneticResults.map((result) => ({
                     ...result,

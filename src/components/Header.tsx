@@ -18,7 +18,6 @@ import {
   HomeOutlined,
   MedicineBoxOutlined,
   ExperimentOutlined,
-  RobotOutlined,
   TeamOutlined,
 } from '@ant-design/icons';
 import { NavLink, useLocation, useNavigate } from 'react-router-dom';
@@ -31,6 +30,7 @@ import '../assets/styles/Header.css';
 import PreferencesDropdown from './preferences/PreferencesDropdown';
 import PrimaryButton from './common/PrimaryButton.tsx';
 import UserAvatar from './common/UserAvatar.tsx';
+import LogoWeb from '../assets/photos/Logo Web.png';
 
 const { Header } = Layout;
 const { Text } = Typography;
@@ -94,7 +94,7 @@ export default function AppHeader() {
     {
       label: <NavLink to="/ai-doctor">{t('menu.aiDoctor')}</NavLink>,
       key: '/ai-doctor',
-      icon: <RobotOutlined />,
+      icon: <img style={{ width: '18px' }} src={LogoWeb} alt="logo" />,
     },
     {
       label: <NavLink to="/about-us">{t('menu.aboutUs')}</NavLink>,

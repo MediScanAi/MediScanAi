@@ -37,7 +37,7 @@ const Profile: React.FC = () => {
       label: (
         <span
           style={{ fontSize: width < 1200 ? '16px' : '20px' }}
-          className={isDarkMode ? ' dark-mode-text' : ''}
+          className={`tab-label ${isDarkMode ? 'dark-mode-text' : ''}`}
         >
           <UserOutlined /> {t('profil.info')}
         </span>
@@ -49,7 +49,7 @@ const Profile: React.FC = () => {
       label: (
         <span
           style={{ fontSize: width < 1200 ? '16px' : '20px' }}
-          className={isDarkMode ? ' dark-mode-text' : ''}
+          className={`tab-label ${isDarkMode ? 'dark-mode-text' : ''}`}
         >
           <ExperimentOutlined /> {t('profil.analysisHistory')}
         </span>
@@ -62,7 +62,7 @@ const Profile: React.FC = () => {
       label: (
         <span
           style={{ fontSize: width < 1200 ? '16px' : '20px' }}
-          className={isDarkMode ? ' dark-mode-text' : ''}
+          className={`tab-label ${isDarkMode ? 'dark-mode-text' : ''}`}
         >
           <MedicineBoxOutlined /> {t('profil.tests')}
         </span>
@@ -74,7 +74,7 @@ const Profile: React.FC = () => {
       label: (
         <span
           style={{ fontSize: width < 1200 ? '16px' : '20px' }}
-          className={isDarkMode ? ' dark-mode-text' : ''}
+          className={`tab-label ${isDarkMode ? 'dark-mode-text' : ''}`}
         >
           <PhoneOutlined /> {t('profil.contactUs')}
         </span>
@@ -96,10 +96,7 @@ const Profile: React.FC = () => {
           className={`tabs ${isDarkMode ? 'dark' : ''}`}
           tabPosition={width < 820 ? 'top' : 'left'}
           defaultActiveKey="1"
-          style={{
-            color: 'white',
-            minHeight: '70vh',
-          }}
+          style={{ minHeight: '70vh' }}
           items={items}
           activeKey={activeKey}
           onChange={handleTabChange}
