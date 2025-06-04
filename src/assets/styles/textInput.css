@@ -1,0 +1,52 @@
+.custom-text-input {
+  background: #e6ecfa !important;
+  color: #1a237e !important;
+  border-radius: 12px !important;
+  border: 1px solid #5271c3 !important;
+  font-size: 16px;
+  font-weight: 400 !important;
+  transition:
+    background 0.25s,
+    color 0.25s;
+  box-shadow: none !important;
+}
+
+.custom-text-input:focus,
+.custom-text-input:active {
+  border-color: #92c4ff !important;
+  background: #e6ecfa !important;
+  box-shadow: none !important;
+}
+
+.custom-text-input:hover {
+  background: #fff !important;
+}
+
+.custom-text-input::placeholder {
+  color: #7f97c9 !important;
+  font-weight: 400 !important;
+  opacity: 1 !important;
+}
+
+.dark .custom-text-input {
+  background: #283868 !important;
+  color: #fff !important;
+  border-radius: 12px !important;
+}
+
+.dark .custom-text-input:focus,
+.dark .custom-text-input:active {
+  border-color: #92c4ff !important;
+  background: #324b7b !important;
+  box-shadow: none !important;
+}
+
+.dark .custom-text-input:hover {
+  background: #324b7b !important;
+}
+
+.dark .custom-text-input::placeholder {
+  color: #ffffff !important;
+  font-weight: 400 !important;
+  opacity: 1 !important;
+}

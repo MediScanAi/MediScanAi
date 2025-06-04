@@ -1,7 +1,4 @@
-import {
-  DownOutlined,
-  SettingOutlined,
-} from '@ant-design/icons';
+import { DownOutlined, SettingOutlined } from '@ant-design/icons';
 import { Button, Dropdown } from 'antd';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -10,11 +7,13 @@ import { useAppSelector } from '../../app/hooks';
 import '../../assets/styles/preferencesDropdown.css';
 import ThemePicker from './ThemePicker';
 
-
 const PreferencesDropdown = () => {
   const { t } = useTranslation('global');
   const isDarkMode = useAppSelector((state) => state.theme.isDarkMode);
   const [prefMenuOpen, setPrefMenuOpen] = useState(false);
+
+  document.body.classList.toggle('dark', isDarkMode); // apply dark mode to <body>
+
   const prefsContent = (
     <div className="preferences-dropdown">
       <div className="preference-item">
@@ -23,7 +22,7 @@ const PreferencesDropdown = () => {
       </div>
       <div className="preference-item">
         <span>{t('menu.selectTheme')}</span>
-        <ThemePicker/>
+        <ThemePicker />
       </div>
     </div>
   );
@@ -54,6 +53,5 @@ const PreferencesDropdown = () => {
     </Dropdown>
   );
 };
-
 
 export default PreferencesDropdown;
