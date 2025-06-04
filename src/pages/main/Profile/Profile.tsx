@@ -96,9 +96,9 @@ const Profile: React.FC = () => {
           className={`tabs ${isDarkMode ? 'dark' : ''}`}
           tabPosition={width < 820 ? 'top' : 'left'}
           defaultActiveKey="1"
-          style={{ 
-            color: 'white', 
-            minHeight: '70vh'
+          style={{
+            color: 'white',
+            minHeight: '70vh',
           }}
           items={items}
           activeKey={activeKey}

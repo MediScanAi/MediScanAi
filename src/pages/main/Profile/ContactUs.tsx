@@ -24,7 +24,7 @@ const ContactUs: React.FC<ContactUsProps> = ({ theme }) => {
         minHeight: '100%',
         display: 'flex',
         flexDirection: 'column',
-        alignItems: 'center'
+        alignItems: 'center',
       }}
     >
       <Card
@@ -42,12 +42,12 @@ const ContactUs: React.FC<ContactUsProps> = ({ theme }) => {
             {t('contactUs.title')}
           </Title>
         }
-        style={{ 
-          backgroundColor: 'transparent', 
+        style={{
+          backgroundColor: 'transparent',
           border: 'none',
           width: '100%',
           maxWidth: '1200px',
-          margin: '0 auto'
+          margin: '0 auto',
         }}
       >
         <Row style={{ marginTop: '20px' }} gutter={[0, 16]}>

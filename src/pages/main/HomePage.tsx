@@ -362,7 +362,7 @@ function HomePage() {
             >
               {t('homepage.partnerTitle')}
             </Title>
-            <div>
+            <div style={{ maxWidth: '99vw' }}>
               <Carousel
                 autoplay
                 autoplaySpeed={2000}

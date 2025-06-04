@@ -48,18 +48,18 @@ const MainTests: React.FC<MainTestsProps> = ({ theme, width }) => {
         minHeight: '100%',
         display: 'flex',
         flexDirection: 'column',
-        alignItems: 'center'
+        alignItems: 'center',
       }}
       className={`modern-user-profile ${theme ? 'dark' : ''}`}
     >
       <Card
         className="profile-container"
-        style={{ 
-          border: 'none', 
+        style={{
+          border: 'none',
           backgroundColor: 'transparent',
           width: '100%',
           maxWidth: '1200px',
-          margin: '0 auto'
+          margin: '0 auto',
         }}
       >
         <Title
