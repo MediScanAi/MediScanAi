@@ -12,15 +12,12 @@
     color 0.25s;
   box-shadow: none !important;
   width: 100%;
-  /* padding-right: 36px !important; */
 }
 
 .custom-number-input .ant-input-number-input {
-  /* padding: 0 12px; */
   background: transparent !important;
   border: none !important;
   color: inherit !important;
-  height: 48px;
 }
 
 .custom-number-input .ant-input-number-handler-wrap {
