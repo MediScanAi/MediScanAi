@@ -9,7 +9,9 @@
     "activityDescription": "Our activity is to provide a platform for healthcare professionals to use AI-powered diagnostics and medical analysis.",
     "faqTitle": "Frequently Asked Questions",
     "partnerTitle": "Partner With Us",
-    "readMore": "Read More"
+    "readMore": "Read More",
+    "loading": "Loading...",
+    "loadingDescription": "Please wait while we load the page..."
   },
   "activity": {
     "title": "Our Activity",

@@ -375,19 +375,12 @@ function UrineAnalysis() {
     <div className={`analysis-page ${isDarkMode ? 'dark' : ''}`}>
       <Row
         className="welcome-section"
-        style={{
-          alignItems: 'center',
-          justifyContent: 'center',
-          marginTop: -45,
-        }}
       >
         <Col className="welcome-section-column">
           <Typography
             className={`welcome-text ${isDarkMode ? 'dark' : ''}`}
             style={{
               fontSize: width > 768 ? '30px' : '20px',
-              marginTop: 50,
-              marginLeft: 5,
             }}
           >
             {t('urineAnalysis.title')}
@@ -405,12 +398,10 @@ function UrineAnalysis() {
             src={Urine}
             alt="platform"
             style={{
-              marginBottom: -50,
               width: width > 768 ? '300px' : '80px',
               height: width > 768 ? '300px' : '80px',
-              objectFit: 'cover',
-              borderRadius: 15,
             }}
+            className="welcome-image"
           />
         </Col>
       </Row>
@@ -422,16 +413,6 @@ function UrineAnalysis() {
               className={`card2-design ${isDarkMode ? 'dark' : ''}`}
               style={{ border: 'none' }}
             >
-              <Col className="card2-col-design">
-                <div
-                  style={{
-                    display: 'flex',
-                    justifyContent: 'center',
-                    width: '100%',
-                    marginBottom: '20px',
-                  }}
-                ></div>
-              </Col>
               <Col
                 style={{
                   display: 'flex',

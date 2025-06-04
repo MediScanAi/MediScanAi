@@ -199,10 +199,10 @@ function HomePage() {
       <div className={`loading-state ${isDarkMode ? 'dark' : ''}`}>
         <Spin className="loading-spinner" />
         <Title level={3} className="loading-title">
-          Loading...
+          {t('homepage.loading')}
         </Title>
         <Text className="loading-subtitle">
-          Please wait while we load the page...
+          {t('homepage.loadingDescription')}
         </Text>
       </div>
     );
