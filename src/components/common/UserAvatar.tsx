@@ -18,10 +18,10 @@ const UserAvatar: React.FC<UserAvatarProps> = ({ user, ...props }) => {
       src={hasPhoto ? user.photoURL : undefined}
       size={props.size ?? 'small'}
       draggable={false}
+      crossOrigin="anonymous"
       {...props}
       onError={() => {
         setImgError(true);
-        console.log('error loading user avatar image');
         return false;
       }}
       style={{

@@ -1,4 +1,4 @@
-import { Form, Typography, Input, Card, message } from 'antd';
+import { Form, Typography, Card, message } from 'antd';
 import { motion } from 'framer-motion';
 import type React from 'react';
 import { sendResetPasswordEmail } from '../api/authApi';
@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import PrimaryButton from './common/PrimaryButton';
 import SecondaryButton from './common/SecondaryButton';
+import TextInput from './common/TextInput';
 
 const { Title, Text } = Typography;
 
@@ -57,9 +58,10 @@ const ForgotPasswordForm: React.FC<ForgotPasswordFormProps> = ({
               { type: 'email', message: 'Please enter a valid email' },
             ]}
           >
-            <Input
+            <TextInput
               placeholder="Enter your email"
-              className="login-input"
+              name="resetEmail"
+              autoComplete="email"
               size="large"
             />
           </Form.Item>

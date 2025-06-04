@@ -1,7 +1,6 @@
 import React from 'react';
 import {
   Form,
-  Input,
   Button,
   Card,
   Typography,
@@ -23,6 +22,8 @@ import PrimaryButton from '../../components/common/PrimaryButton';
 import PreferencesDropdown from '../../components/preferences/PreferencesDropdown';
 import SecondaryButton from '../../components/common/SecondaryButton';
 import { X } from 'lucide-react';
+import TextInput from '../../components/common/TextInput';
+import PasswordInput from '../../components/common/PasswordInput';
 
 const { Title, Text } = Typography;
 const { useBreakpoint } = Grid;
@@ -129,11 +130,7 @@ const LoginPage: React.FC = () => {
                       },
                     ]}
                   >
-                    <Input
-                      size="large"
-                      placeholder="Email"
-                      className="login-input"
-                    />
+                    <TextInput size="large" placeholder="Email" />
                   </Form.Item>
 
                   <Form.Item
@@ -141,11 +138,7 @@ const LoginPage: React.FC = () => {
                     name="password"
                     rules={[{ required: true, message: 'Enter your password' }]}
                   >
-                    <Input.Password
-                      size="large"
-                      placeholder="Password"
-                      className="login-input"
-                    />
+                    <PasswordInput size="large" placeholder="Password" />
                   </Form.Item>
 
                   <Form.Item style={{ textAlign: 'right', marginBottom: 10 }}>

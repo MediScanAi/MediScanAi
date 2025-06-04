@@ -191,8 +191,6 @@ const UserInfo: React.FC<UserInfoProps> = ({ theme }) => {
     }
   };
 
-  console.log(user);
-
   const renderValue = (key: string, value: unknown): string | number => {
     if (value === null || value === '' || value === undefined)
       return t('userInfo.notSet');

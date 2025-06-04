@@ -1,3 +1,23 @@
+/* browser autofill suggestion override*/
+input:-webkit-autofill,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:active {
+  background: #e6ecfa !important;
+  color: #1a237e !important;
+  -webkit-text-fill-color: #1a237e !important;
+  transition: background-color 5000s ease-in-out 0s !important;
+  box-shadow: 0 0 0 1000px #e6ecfa inset !important;
+}
+.dark input:-webkit-autofill,
+.dark input:-webkit-autofill:focus,
+.dark input:-webkit-autofill:hover,
+.dark input:-webkit-autofill:active {
+  background: #283868 !important;
+  color: #fff !important;
+  -webkit-text-fill-color: #fff !important;
+  box-shadow: 0 0 0 1000px #283868 inset !important;
+}
 .custom-text-input {
   background: #e6ecfa !important;
   color: #1a237e !important;
@@ -10,7 +30,6 @@
     color 0.25s;
   box-shadow: none !important;
 }
-
 .custom-text-input:focus,
 .custom-text-input:active {
   border-color: #92c4ff !important;

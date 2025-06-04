@@ -8,37 +8,8 @@
 }
 
 .login-page-container.dark .ant-form-item-label > label,
-.login-page-container.dark .ant-input,
-.login-page-container.dark .ant-input-password input,
-.login-page-container.dark .ant-input::placeholder,
-.login-page-container.dark .ant-input-password input::placeholder,
 .login-page-container.dark .ant-typography {
   color: #fff !important;
-}
-
-.login-page-container.dark .ant-input-password input {
-  background: #283868 !important;
-  color: #fff !important;
-  border: none !important;
-}
-
-.login-page-container.dark .ant-input-password {
-  background: #283868 !important;
-  border-radius: 12px !important;
-  border: 1px solid #5271c3 !important;
-}
-
-.login-page-container.dark .ant-input-password-icon {
-  color: #fff !important;
-}
-
-.login-page-container.dark input {
-  background: #283868 !important;
-}
-
-.login-page-container.dark .ant-input:focus,
-.login-page-container.dark .ant-input-password input:focus {
-  border-color: #92c4ff !important;
 }
 
 .login-page-container.dark .ant-form-item-label > label {
@@ -166,13 +137,6 @@
   margin-bottom: 10px;
   text-align: center;
   color: inherit;
-}
-
-.login-input {
-  border-radius: 12px;
-  border-color: #5271c3;
-  background: #e6ecfa;
-  font-size: 16px;
 }
 
 .forgot-password-link {
