@@ -1,0 +1,23 @@
+{
+  "menu": {
+    "home": "Home",
+    "analysis": "Analysis",
+    "aiDoctor": "Your AI Doctor",
+    "myHealth": "My Health",
+    "aboutUs": "About Us",
+    "logout": "Logout",
+    "profile": "Profile",
+    "login": "Login",
+    "bloodTest": "Blood Test",
+    "urineTest": "Urine Test",
+    "vitaminTest": "Vitamin Test",
+    "geneticTest": "Genetic Test",
+    "selectLanguage": "Select Language",
+    "selectTheme": "Select Theme"
+  },
+  "themePicker": {
+    "light": "Light",
+    "dark": "Dark",
+    "system": "System"
+  }
+}

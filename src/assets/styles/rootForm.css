@@ -224,6 +224,7 @@
   overflow: hidden;
   margin-right: 40px;
   background: white;
+  margin-bottom: 100px;
 }
 
 .medical-form-card.dark {
@@ -309,4 +310,9 @@
 
 .select-item.dark {
   color: #ffffff !important;
+}
+
+.test-card {
+  background-color: transparent !important;
+  border: none !important;
 }

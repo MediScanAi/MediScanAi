@@ -1,0 +1,18 @@
+{
+  "rootForm": {
+    "blood": "Blood Test",
+    "urine": "Urine Test",
+    "vitamin": "Vitamin Test",
+    "genetic": "Genetic Test",
+    "submit": "Submit Test",
+    "welcomeTitle": "Welcome to MediScanAI Test Forms",
+    "welcomeMessage": "Please select a test type to begin your analysis",
+    "backButton": "Back to Profile",
+    "updateTest": "Update Test",
+    "selectTestType": "Select a test type and provide the required specimen information",
+    "medicalIllustration": "Medical illustration",
+    "medicalLaboratoryTestForm": "Medical Laboratory Test Form",
+    "comprehensiveMedicalTestAnalysis": "Comprehensive medical test analysis powered by AI Receive accurate results and personalized insights within 24 hours.",
+    "mediScanAIDiagnosticPortal": "MediScanAI Diagnostic Portal"
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "bloodTest": {
+    "bloodTest": "Анализ крови",
+    "hemoglobin": "Гемоглобин",
+    "submit": "Отправить анализ крови",
+    "update": "Обновить анализ крови",
+    "success": "Анализ крови успешно отправлен",
+    "updateSuccess": "Анализ крови успешно обновлен",
+    "notAuthenticated": "Аутентификация не пройдена",
+    "wbc": "Лейкоциты (WBC)",
+    "rbc": "Эритроциты (RBC)",
+    "platelets": "Тромбоциты",
+    "glucose": "Глюкоза",
+    "cholesterol": "Общий холестерин",
+    "bloodTesthemoglobinPlaceholder": "Пожалуйста, введите уровень гемоглобина",
+    "bloodTestwbcPlaceholder": "Пожалуйста, введите количество лейкоцитов",
+    "bloodTestrbcPlaceholder": "Пожалуйста, введите количество эритроцитов",
+    "bloodTestplateletsPlaceholder": "Пожалуйста, введите количество тромбоцитов",
+    "bloodTestglucosePlaceholder": "Пожалуйста, введите уровень глюкозы",
+    "bloodTestcholesterolPlaceholder": "Пожалуйста, введите уровень холестерина",
+    "bloodTestsubmit": "Отправить анализ крови",
+    "bloodTestupdate": "Обновленный анализ крови"
+  }
+}

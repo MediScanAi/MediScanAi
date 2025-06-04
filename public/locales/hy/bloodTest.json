@@ -1,0 +1,24 @@
+{
+  "bloodTest": {
+    "bloodTest": "Արյան անալիզ",
+    "hemoglobin": "Հեմոգլոբին",
+    "submit": "Ուղարկել Արյան անալիզը",
+    "update": "Թարմացնել Արյան անալիզը",
+    "success": "Արյան անալիզը հաջողությամբ ուղարկվեցին",
+    "updateSuccess": "Արյան անալիզը հաջողությամբ թարմացվեցին",
+    "notAuthenticated": "Անձնական տվյալները չեն համապատասխանում",
+    "wbc": "Սպիտակ արյան բջիջներ (WBC)",
+    "rbc": "Կարմիր արյան բջիջներ (RBC)",
+    "platelets": "Արյան թիթեղիկներ",
+    "glucose": "Գլյուկոզա",
+    "cholesterol": "Ընդհանուր խոլեստերին",
+    "bloodTesthemoglobinPlaceholder": "Խնդրում ենք մուտքագրել հեմոգլոբինի արժեքը",
+    "bloodTestwbcPlaceholder": "Խնդրում ենք մուտքագրել սպիտակ արյան բջիջների քանակը",
+    "bloodTestrbcPlaceholder": "Խնդրում ենք մուտքագրել կարմիր արյան բջիջների քանակը",
+    "bloodTestplateletsPlaceholder": "Խնդրում ենք մուտքագրել արյան թիթեղիկների քանակը",
+    "bloodTestglucosePlaceholder": "Խնդրում ենք մուտքագրել գլյուկոզայի մակարդակը",
+    "bloodTestcholesterolPlaceholder": "Խնդրում ենք մուտքագրել խոլեստերինի մակարդակը",
+    "bloodTestsubmit": "Ուղարկել անալիզը",
+    "bloodTestupdate": "Թարմացված Արյան անալիզ"
+  }
+}

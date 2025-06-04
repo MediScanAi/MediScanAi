@@ -1,0 +1,24 @@
+{
+  "bloodTest": {
+    "bloodTest": "Blood Test",
+    "hemoglobin": "Hemoglobin",
+    "wbc": "White Blood Cells (WBC)",
+    "rbc": "Red Blood Cells (RBC)",
+    "platelets": "Platelets",
+    "glucose": "Glucose",
+    "cholesterol": "Total Cholesterol",
+    "submit": "Submit Blood Test",
+    "update": "Update Blood Test",
+    "success": "Blood Test submitted successfully",
+    "updateSuccess": "Blood Test updated successfully",
+    "notAuthenticated": "Not authenticated",
+    "bloodTesthemoglobinPlaceholder": "Please enter the hemoglobin value",
+    "bloodTestwbcPlaceholder": "Please enter the white blood cell count",
+    "bloodTestrbcPlaceholder": "Please enter the red blood cell count",
+    "bloodTestplateletsPlaceholder": "Please enter the platelet count",
+    "bloodTestglucosePlaceholder": "Please enter the glucose level",
+    "bloodTestcholesterolPlaceholder": "Please enter the cholesterol level",
+    "bloodTestsubmit": "Submit Blood Test",
+    "bloodTestupdate": "Updated Blood Test"
+  }
+}

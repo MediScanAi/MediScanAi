@@ -1,19 +1,11 @@
-import {
-  Button,
-  message,
-  Form,
-  Card,
-  Typography,
-  Select,
-  Row,
-  Col,
-} from 'antd';
+import { message, Form, Card, Typography, Select, Row, Col } from 'antd';
 import { useAppDispatch, useAppSelector } from '../../../app/hooks';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { saveTestData, setTestData } from '../../../app/slices/testSlice';
 import { auth } from '../../../api/authApi';
 import type { GeneticTestFormValues } from '../../../app/slices/testSlice';
 import { useTranslation } from 'react-i18next';
+import PrimaryButton from '../../../components/common/PrimaryButton';
 
 const { Title } = Typography;
 const { Option } = Select;
@@ -21,7 +13,7 @@ const { Option } = Select;
 function GeneticTestForm() {
   const navigate = useNavigate();
   const [form] = Form.useForm();
-  const { t } = useTranslation();
+  const { t } = useTranslation('geneticTest');
   const dispatch = useAppDispatch();
   const updatedData = useLocation()?.state?.geneticTestData || undefined;
   const isDarkMode = useAppSelector((state) => state.theme.isDarkMode);
@@ -34,7 +26,10 @@ function GeneticTestForm() {
           {t('geneticTest.brca1')}
         </span>
       ),
-      options: [t('geneticTest.negative'), t('geneticTest.positive')],
+      options: [
+        { value: 'negative', label: t('geneticTest.negative') },
+        { value: 'positive', label: t('geneticTest.positive') },
+      ],
     },
     {
       type: 'select',
@@ -44,7 +39,10 @@ function GeneticTestForm() {
           {t('geneticTest.brca2')}
         </span>
       ),
-      options: [t('geneticTest.negative'), t('geneticTest.positive')],
+      options: [
+        { value: 'negative', label: t('geneticTest.negative') },
+        { value: 'positive', label: t('geneticTest.positive') },
+      ],
     },
     {
       type: 'select',
@@ -55,10 +53,10 @@ function GeneticTestForm() {
         </span>
       ),
       options: [
-        t('geneticTest.ε2/ε2'),
-        t('geneticTest.ε3/ε3'),
-        t('geneticTest.ε3/ε4'),
-        t('geneticTest.ε4/ε4'),
+        { value: 'ε2/ε2', label: t('geneticTest.ε2/ε2') },
+        { value: 'ε3/ε3', label: t('geneticTest.ε3/ε3') },
+        { value: 'ε3/ε4', label: t('geneticTest.ε3/ε4') },
+        { value: 'ε4/ε4', label: t('geneticTest.ε4/ε4') },
       ],
     },
     {
@@ -70,9 +68,9 @@ function GeneticTestForm() {
         </span>
       ),
       options: [
-        t('geneticTest.homozygous'),
-        t('geneticTest.heterozygous'),
-        t('geneticTest.normal'),
+        { value: 'homozygous', label: t('geneticTest.homozygous') },
+        { value: 'heterozygous', label: t('geneticTest.heterozygous') },
+        { value: 'normal', label: t('geneticTest.normal') },
       ],
     },
     {
@@ -83,7 +81,10 @@ function GeneticTestForm() {
           {t('geneticTest.factor_v_leiden')}
         </span>
       ),
-      options: [t('geneticTest.negative'), t('geneticTest.positive')],
+      options: [
+        { value: 'negative', label: t('geneticTest.negative') },
+        { value: 'positive', label: t('geneticTest.positive') },
+      ],
     },
     {
       type: 'select',
@@ -94,9 +95,9 @@ function GeneticTestForm() {
         </span>
       ),
       options: [
-        t('geneticTest.categoryI'),
-        t('geneticTest.categoryII'),
-        t('geneticTest.categoryIII'),
+        { value: 'categoryI', label: t('geneticTest.categoryI') },
+        { value: 'categoryII', label: t('geneticTest.categoryII') },
+        { value: 'categoryIII', label: t('geneticTest.categoryIII') },
       ],
     },
   ];
@@ -127,7 +128,7 @@ function GeneticTestForm() {
 
   return (
     <Card
-      style={{ border: 'none' }}
+      className="test-card"
       title={
         <Title level={3} className={`input-item ${isDarkMode ? 'dark' : ''}`}>
           {t('geneticTest.title')}
@@ -151,8 +152,8 @@ function GeneticTestForm() {
               >
                 <Select placeholder={t('geneticTest.placeholder')}>
                   {field.options?.map((opt) => (
-                    <Option key={opt} value={opt}>
-                      {opt.charAt(0).toUpperCase() + opt.slice(1)}
+                    <Option key={opt.value} value={opt.value}>
+                      {opt.label}
                     </Option>
                   ))}
                 </Select>
@@ -162,9 +163,9 @@ function GeneticTestForm() {
         </Row>
 
         <Form.Item style={{ textAlign: 'center', marginTop: 32 }}>
-          <Button type="primary" htmlType="submit" size="large">
+          <PrimaryButton type="primary" htmlType="submit" size="large">
             {updatedData ? t('geneticTest.update') : t('geneticTest.submit')}
-          </Button>
+          </PrimaryButton>
         </Form.Item>
       </Form>
     </Card>

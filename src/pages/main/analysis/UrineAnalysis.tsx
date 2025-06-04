@@ -30,6 +30,7 @@ import { useAppSelector } from '../../../app/hooks';
 import { useSelector } from 'react-redux';
 import type { RootState } from '../../../app/store';
 import PrimaryButton from '../../../components/common/PrimaryButton';
+import { useTranslation } from 'react-i18next';
 
 interface ChartData {
   name: string;
@@ -106,6 +107,7 @@ const CustomBarChart = ({ data }: { data: ChartData[] }) => (
 const { Title } = Typography;
 
 function UrineAnalysis() {
+  const { t } = useTranslation('urineAnalysis');
   const urineTestData = useAppSelector((state) => state.tests.urine);
   const isDarkMode = useSelector((state: RootState) => state.theme.isDarkMode);
   const [width, setWidth] = useState(window.innerWidth);
@@ -131,61 +133,61 @@ function UrineAnalysis() {
 
   const BarData: ChartData[] = [
     {
-      name: 'Bilirubin',
+      name: t('urineAnalysis.bilirubin'),
       value: urineTestData?.bilirubin || 0,
       color: '#f39c12',
       image: Bilirubin,
     },
     {
-      name: 'Blood',
+      name: t('urineAnalysis.blood'),
       value: urineTestData?.blood || 0,
       color: '#16a085',
       image: BloodMultic,
     },
     {
-      name: 'Nitrites',
+      name: t('urineAnalysis.nitrites'),
       value: urineTestData?.nitrites || 0,
       color: '#e74c3c',
       image: Nitrites,
     },
     {
-      name: 'LeukocyteEsterase',
+      name: t('urineAnalysis.leukocyteEsterase'),
       value: urineTestData?.leukocyteEsterase || 0,
       color: '#8e44ad',
       image: LeukocyteEsterase,
     },
     {
-      name: 'Glucose',
+      name: t('urineAnalysis.glucose'),
       value: urineTestData?.glucose || 0,
       color: '#2980b9',
       image: Chocolate,
     },
     {
-      name: 'Ketones',
+      name: t('urineAnalysis.ketones'),
       value: urineTestData?.ketones || 0,
       color: '#27ae60',
       image: Ketones,
     },
     {
-      name: 'ph',
+      name: t('urineAnalysis.ph'),
       value: urineTestData?.ph || 0,
       color: '#27ae60',
       image: PH,
     },
     {
-      name: 'Protein',
+      name: t('urineAnalysis.protein'),
       value: urineTestData?.protein || 0,
       color: '#27ae60',
       image: Protein,
     },
     {
-      name: 'Specific Gravity',
+      name: t('urineAnalysis.specificGravity'),
       value: urineTestData?.specificGravity || 0,
       color: '#27ae60',
       image: Done,
     },
     {
-      name: 'Urobilinogen',
+      name: t('urineAnalysis.urobilinogen'),
       value: urineTestData?.urobilinogen || 0,
       color: '#27ae60',
       image: Urobilinogen,
@@ -194,8 +196,10 @@ function UrineAnalysis() {
 
   const scorecards = [
     {
-      label: 'Bilirubin',
-      value: urineTestData?.bilirubin,
+      label: t('urineAnalysis.bilirubin'),
+      value: t(
+        `urineAnalysis.result.${urineTestData?.bilirubin || 'negative'}`
+      ),
       percent:
         urineTestData?.bilirubin === 'positive'
           ? 100
@@ -204,8 +208,8 @@ function UrineAnalysis() {
             : 52,
     },
     {
-      label: 'Blood',
-      value: urineTestData?.blood,
+      label: t('urineAnalysis.blood'),
+      value: t(`urineAnalysis.result.${urineTestData?.blood || 'negative'}`),
       percent:
         urineTestData?.blood === 'positive'
           ? 100
@@ -214,8 +218,8 @@ function UrineAnalysis() {
             : 52,
     },
     {
-      label: 'Nitrites',
-      value: urineTestData?.nitrites,
+      label: t('urineAnalysis.nitrites'),
+      value: t(`urineAnalysis.result.${urineTestData?.nitrites || 'negative'}`),
       percent:
         urineTestData?.nitrites === 'positive'
           ? 100
@@ -224,8 +228,10 @@ function UrineAnalysis() {
             : 52,
     },
     {
-      label: 'LeukocyteEsterase',
-      value: urineTestData?.leukocyteEsterase,
+      label: t('urineAnalysis.leukocyteEsterase'),
+      value: t(
+        `urineAnalysis.result.${urineTestData?.leukocyteEsterase || 'negative'}`
+      ),
       percent:
         urineTestData?.leukocyteEsterase === 'positive'
           ? 100
@@ -241,161 +247,118 @@ function UrineAnalysis() {
     const risks: string[] = [];
 
     if (data.bilirubin !== undefined && Number(data.bilirubin) > 0) {
-      risks.push(
-        '⚠️ Bilirubin detected — Possible Liver Disease or Biliary Obstruction'
-      );
+      risks.push(t('urineAnalysis.warnings.conditions.bilirubin'));
     }
     if (data.blood !== undefined && Number(data.blood) > 0) {
-      risks.push(
-        '⚠️ Blood detected — Possible Infection, Kidney Stones, or Trauma'
-      );
+      risks.push(t('urineAnalysis.warnings.conditions.blood'));
     }
     if (data.nitrites !== undefined && Number(data.nitrites) > 0) {
-      risks.push(
-        '⚠️ Nitrites detected — Suggestive of Urinary Tract Infection (UTI)'
-      );
+      risks.push(t('urineAnalysis.warnings.conditions.nitrites'));
     }
     if (
       data.leukocyteEsterase !== undefined &&
       Number(data.leukocyteEsterase) > 0
     ) {
-      risks.push(
-        '⚠️ Leukocyte Esterase detected — Indicative of Infection or Inflammation'
-      );
+      risks.push(t('urineAnalysis.warnings.conditions.leukocyteEsterase'));
     }
     if (data.glucose !== undefined && Number(data.glucose) > 0) {
-      risks.push('⚠️ Glucose detected — Possible Diabetes or Renal Glucosuria');
+      risks.push(t('urineAnalysis.warnings.conditions.glucose'));
     }
     if (data.ketones !== undefined && Number(data.ketones) > 0) {
-      risks.push(
-        '⚠️ Ketones detected — Possible Diabetes, Starvation, or Ketoacidosis'
-      );
+      risks.push(t('urineAnalysis.warnings.conditions.ketones'));
     }
     if (
       data.ph !== undefined &&
       (Number(data.ph) < 4.5 || Number(data.ph) > 8)
     ) {
-      risks.push(
-        '⚠️ Abnormal pH — Possible Infection, Kidney Stones, or Diet-related Issues'
-      );
+      risks.push(t('urineAnalysis.warnings.conditions.ph'));
     }
     if (data.protein !== undefined && Number(data.protein) > 0) {
-      risks.push(
-        '⚠️ Protein detected — Possible Kidney Disease or Hypertension'
-      );
+      risks.push(t('urineAnalysis.warnings.conditions.protein'));
     }
     if (
       data.specificGravity !== undefined &&
       (Number(data.specificGravity) < 1.005 ||
         Number(data.specificGravity) > 1.03)
     ) {
-      risks.push(
-        '⚠️ Abnormal Specific Gravity — May Indicate Hydration Issues or Kidney Dysfunction'
-      );
+      risks.push(t('urineAnalysis.warnings.conditions.specificGravity'));
     }
     if (data.urobilinogen !== undefined && Number(data.urobilinogen) > 1.0) {
-      risks.push(
-        '⚠️ High Urobilinogen — Possible Liver Disease or Hemolytic Disorder'
-      );
+      risks.push(t('urineAnalysis.warnings.conditions.urobilinogen'));
     }
 
     return risks;
   };
 
   const diseaseExplanations: { [key: string]: string } = {
-    '⚠️ Bilirubin detected — Possible Liver Disease or Biliary Obstruction':
-      'Bilirubin in urine can signal liver dysfunction, such as hepatitis or bile duct blockage.',
-    '⚠️ Blood detected — Possible Infection, Kidney Stones, or Trauma':
-      'Blood in urine may be caused by infection, stones, or injury to the urinary tract.',
-    '⚠️ Nitrites detected — Suggestive of Urinary Tract Infection (UTI)':
-      'Nitrites in urine usually indicate bacteria that convert nitrates, common in UTIs.',
-    '⚠️ Leukocyte Esterase detected — Indicative of Infection or Inflammation':
-      'This enzyme signals white blood cells in urine, suggesting inflammation or infection.',
-    '⚠️ Glucose detected — Possible Diabetes or Renal Glucosuria':
-      'Sugar in urine can result from high blood sugar levels, commonly associated with diabetes.',
-    '⚠️ Ketones detected — Possible Diabetes, Starvation, or Ketoacidosis':
-      'Ketones appear when the body uses fat instead of sugar for energy, often in diabetes or fasting.',
-    '⚠️ Abnormal pH — Possible Infection, Kidney Stones, or Diet-related Issues':
-      'Urine pH outside normal range may result from diet, infections, or kidney problems.',
-    '⚠️ Protein detected — Possible Kidney Disease or Hypertension':
-      'Proteinuria is often linked to kidney issues or chronic conditions like high blood pressure.',
-    '⚠️ Abnormal Specific Gravity — May Indicate Hydration Issues or Kidney Dysfunction':
-      'Too dilute or too concentrated urine may suggest dehydration or impaired kidney function.',
-    '⚠️ High Urobilinogen — Possible Liver Disease or Hemolytic Disorder':
-      'Elevated urobilinogen might indicate liver damage or excess breakdown of red blood cells.',
+    [t('urineAnalysis.warnings.conditions.bilirubin')]: t(
+      'urineAnalysis.warnings.explanations.bilirubin'
+    ),
+    [t('urineAnalysis.warnings.conditions.blood')]: t(
+      'urineAnalysis.warnings.explanations.blood'
+    ),
+    [t('urineAnalysis.warnings.conditions.nitrites')]: t(
+      'urineAnalysis.warnings.explanations.nitrites'
+    ),
+    [t('urineAnalysis.warnings.conditions.leukocyteEsterase')]: t(
+      'urineAnalysis.warnings.explanations.leukocyteEsterase'
+    ),
+    [t('urineAnalysis.warnings.conditions.glucose')]: t(
+      'urineAnalysis.warnings.explanations.glucose'
+    ),
+    [t('urineAnalysis.warnings.conditions.ketones')]: t(
+      'urineAnalysis.warnings.explanations.ketones'
+    ),
+    [t('urineAnalysis.warnings.conditions.ph')]: t(
+      'urineAnalysis.warnings.explanations.ph'
+    ),
+    [t('urineAnalysis.warnings.conditions.protein')]: t(
+      'urineAnalysis.warnings.explanations.protein'
+    ),
+    [t('urineAnalysis.warnings.conditions.specificGravity')]: t(
+      'urineAnalysis.warnings.explanations.specificGravity'
+    ),
+    [t('urineAnalysis.warnings.conditions.urobilinogen')]: t(
+      'urineAnalysis.warnings.explanations.urobilinogen'
+    ),
   };
 
   const interestingFacts: { [key: string]: string[] } = {
-    Bilirubin: [
-      'Bilirubin is a yellow compound that results from the breakdown of red blood cells.',
-      'Presence of bilirubin in urine can indicate liver disease or bile duct obstruction.',
-      'Normally, urine should not contain bilirubin—its presence may suggest hepatitis or cirrhosis.',
-      'High bilirubin levels can cause jaundice, giving skin and eyes a yellowish tint.',
-      'Urine test strips can detect even trace amounts of bilirubin, making them valuable for early diagnosis.',
-    ],
-    Blood: [
-      'Blood in the urine (hematuria) can result from infections, kidney stones, or trauma.',
-      'Even microscopic amounts of blood in urine are detectable with urinalysis.',
-      'Strenuous exercise or menstruation can sometimes cause temporary blood presence in urine.',
-      'Visible blood in urine may indicate a more serious issue, such as bladder cancer or glomerulonephritis.',
-      'Early detection of hematuria is crucial for diagnosing kidney or urinary tract problems.',
-    ],
-    Nitrites: [
-      'Nitrites in urine often indicate a bacterial infection, as some bacteria convert nitrates to nitrites.',
-      'Urinary tract infections (UTIs) are the most common cause of nitrites in urine.',
-      'A positive nitrite test combined with leukocyte esterase strongly suggests a UTI.',
-      "Not all bacteria produce nitrites, so a negative result doesn't always rule out infection.",
-      'Regular urinalysis can help catch asymptomatic UTIs, especially in pregnancy.',
-    ],
-    LeukocyteEsterase: [
-      'Leukocyte esterase is an enzyme released by white blood cells in response to infection.',
-      'Its presence in urine typically signals inflammation or a urinary tract infection.',
-      'False positives can occur due to contamination or improper sample handling.',
-      'A positive leukocyte esterase test without nitrites may suggest a non-bacterial infection.',
-      'Combining leukocyte esterase and nitrite tests improves the accuracy of UTI diagnosis.',
-    ],
-    Glucose: [
-      'Glucose in urine (glycosuria) often indicates high blood sugar levels, such as in diabetes.',
-      "Normally, kidneys reabsorb all glucose, so it shouldn't appear in urine unless blood glucose is high.",
-      'Glycosuria can also result from kidney conditions affecting reabsorption.',
-      'During pregnancy, glucose may appear in urine even without gestational diabetes.',
-      'Regular glucose checks in urine are helpful in monitoring diabetic patients.',
-    ],
-    Ketones: [
-      'Ketones in urine form when the body breaks down fat for energy due to lack of glucose.',
-      'They commonly appear in uncontrolled diabetes, fasting, or ketogenic diets.',
-      'High levels of ketones can lead to ketoacidosis, a potentially life-threatening condition.',
-      'Ketone testing is especially important for people with type 1 diabetes.',
-      'Strenuous exercise or prolonged vomiting can also cause temporary ketone spikes.',
-    ],
-    ph: [
-      'Urine pH reflects how acidic or alkaline your urine is, influenced by diet and health.',
-      'A very acidic pH may indicate dehydration, high protein diet, or diabetes.',
-      'Alkaline urine may be linked to UTIs or a vegetarian diet.',
-      'Kidney stones can be associated with consistently abnormal urine pH.',
-      'Urine pH helps guide treatment decisions for infections and metabolic disorders.',
-    ],
-    Protein: [
-      'Protein in urine (proteinuria) can be a sign of kidney damage or disease.',
-      'Small, temporary amounts of protein can appear after exercise or stress.',
-      'Persistent proteinuria requires further testing to assess kidney function.',
-      'Diabetes and hypertension are major causes of chronic proteinuria.',
-      'Early detection helps prevent further kidney damage and preserve function.',
-    ],
-    'Specific Gravity': [
-      'Urine specific gravity measures how concentrated your urine is.',
-      'It reflects hydration status and kidney ability to concentrate or dilute urine.',
-      'High specific gravity may suggest dehydration, heart failure, or glucose in urine.',
-      'Low values could point to overhydration or impaired kidney function.',
-      'This test helps assess how well kidneys are maintaining fluid and electrolyte balance.',
-    ],
-    Urobilinogen: [
-      'Urobilinogen is formed from the breakdown of bilirubin in the intestines.',
-      'Small amounts are normal in urine, but too much can suggest liver or hemolytic disease.',
-      'Absence of urobilinogen may indicate bile duct obstruction.',
-      'Elevated urobilinogen can be an early sign of liver dysfunction, even before jaundice appears.',
-      'This marker helps distinguish between different types of liver and blood disorders.',
-    ],
+    [t('urineAnalysis.bilirubin')]: t(
+      'urineAnalysis.interestingFacts.bilirubin',
+      { returnObjects: true }
+    ) as string[],
+    [t('urineAnalysis.blood')]: t('urineAnalysis.interestingFacts.blood', {
+      returnObjects: true,
+    }) as string[],
+    [t('urineAnalysis.nitrites')]: t(
+      'urineAnalysis.interestingFacts.nitrites',
+      { returnObjects: true }
+    ) as string[],
+    [t('urineAnalysis.leukocyteEsterase')]: t(
+      'urineAnalysis.interestingFacts.leukocyteEsterase',
+      { returnObjects: true }
+    ) as string[],
+    [t('urineAnalysis.glucose')]: t('urineAnalysis.interestingFacts.glucose', {
+      returnObjects: true,
+    }) as string[],
+    [t('urineAnalysis.ketones')]: t('urineAnalysis.interestingFacts.ketones', {
+      returnObjects: true,
+    }) as string[],
+    [t('urineAnalysis.ph')]: t('urineAnalysis.interestingFacts.ph', {
+      returnObjects: true,
+    }) as string[],
+    [t('urineAnalysis.protein')]: t('urineAnalysis.interestingFacts.protein', {
+      returnObjects: true,
+    }) as string[],
+    [t('urineAnalysis.specificGravity')]: t(
+      'urineAnalysis.interestingFacts.specificGravity',
+      { returnObjects: true }
+    ) as string[],
+    [t('urineAnalysis.urobilinogen')]: t(
+      'urineAnalysis.interestingFacts.urobilinogen',
+      { returnObjects: true }
+    ) as string[],
   };
 
   const navigate = useNavigate();
@@ -412,41 +375,33 @@ function UrineAnalysis() {
     <div className={`analysis-page ${isDarkMode ? 'dark' : ''}`}>
       <Row
         className="welcome-section"
-        style={{
-          alignItems: 'center',
-          justifyContent: 'center',
-          marginTop: -45,
-        }}
       >
         <Col className="welcome-section-column">
           <Typography
             className={`welcome-text ${isDarkMode ? 'dark' : ''}`}
             style={{
               fontSize: width > 768 ? '30px' : '20px',
-              marginTop: 50,
-              marginLeft: 5,
             }}
           >
-            Urine Test Results
+            {t('urineAnalysis.title')}
           </Typography>
           <Typography
             className={`platform-title ${isDarkMode ? 'dark' : ''}`}
             style={{ fontSize: width > 768 ? '50px' : '30px' }}
           >
-            Analysis with AI
+            {t('urineAnalysis.subtitle')}
           </Typography>
         </Col>
         <Col>
           <img
+            draggable={false}
             src={Urine}
             alt="platform"
             style={{
-              marginBottom: -50,
               width: width > 768 ? '300px' : '80px',
               height: width > 768 ? '300px' : '80px',
-              objectFit: 'cover',
-              borderRadius: 15,
             }}
+            className="welcome-image"
           />
         </Col>
       </Row>
@@ -458,16 +413,6 @@ function UrineAnalysis() {
               className={`card2-design ${isDarkMode ? 'dark' : ''}`}
               style={{ border: 'none' }}
             >
-              <Col className="card2-col-design">
-                <div
-                  style={{
-                    display: 'flex',
-                    justifyContent: 'center',
-                    width: '100%',
-                    marginBottom: '20px',
-                  }}
-                ></div>
-              </Col>
               <Col
                 style={{
                   display: 'flex',
@@ -502,6 +447,7 @@ function UrineAnalysis() {
                       format={() => (
                         <span
                           className={`card2-design-text ${isDarkMode ? 'dark' : ''}`}
+                          style={{ fontSize: 15 }}
                         >
                           {item.value || 'N/A'}
                         </span>
@@ -523,7 +469,7 @@ function UrineAnalysis() {
                 level={3}
                 style={{ color: 'rgb(255, 0, 0)', fontFamily: 'Poppins' }}
               >
-                🚨 Health Risk Warnings
+                {t('urineAnalysis.warnings.title')}
                 <PrimaryButton
                   style={{ marginLeft: 20 }}
                   onClick={() => {
@@ -538,7 +484,7 @@ function UrineAnalysis() {
                     });
                   }}
                 >
-                  Analyze with AI
+                  {t('urineAnalysis.warnings.analyzeButton')}
                 </PrimaryButton>
               </Title>
               <ul style={{ paddingLeft: 20 }}>
@@ -557,7 +503,9 @@ function UrineAnalysis() {
                             style={{ padding: 0 }}
                             onClick={() => toggleWarning(risk)}
                           >
-                            {expandedWarnings[risk] ? 'Show less' : 'Show more'}
+                            {expandedWarnings[risk]
+                              ? t('urineAnalysis.warnings.showLess')
+                              : t('urineAnalysis.warnings.showMore')}
                           </Button>
                           {expandedWarnings[risk] && (
                             <p
@@ -577,7 +525,7 @@ function UrineAnalysis() {
                   ))
                 ) : (
                   <p style={{ fontSize: 16 }}>
-                    ✅ All your values are within normal range. Great job!
+                    {t('urineAnalysis.warnings.allGood')}
                   </p>
                 )}
               </ul>
@@ -598,16 +546,11 @@ function UrineAnalysis() {
               style={{ textAlign: 'center' }}
               level={2}
             >
-              Please fill a Urine test results to get your analytic results
+              {t('urineAnalysis.noData.title')}
             </Title>
-            <Button
-              className="consult-button"
-              type="primary"
-              size="large"
-              onClick={() => navigate('/tests-form/urine-test')} // Fixed navigation path
-            >
-              Fill Urine Test Results
-            </Button>
+            <PrimaryButton onClick={() => navigate('/tests-form/urine-test')}>
+              {t('urineAnalysis.noData.button')}
+            </PrimaryButton>
           </div>
         )}
       </div>
@@ -638,6 +581,7 @@ function UrineAnalysis() {
                 {item.name}
               </Title>
               <img
+                draggable={false}
                 style={{
                   width: '16%',
                   height: '16%',

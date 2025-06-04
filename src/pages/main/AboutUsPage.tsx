@@ -16,7 +16,7 @@ const { Title, Paragraph, Text } = Typography;
 function AboutUsPage() {
   const navigate = useNavigate();
   const [width, setWidth] = useState(window.innerWidth);
-  const { t } = useTranslation('global');
+  const { t } = useTranslation('aboutUs');
   const isDarkMode = useSelector((state: RootState) => state.theme.isDarkMode);
 
   useEffect(() => {
@@ -95,10 +95,7 @@ function AboutUsPage() {
           >
             {t('aboutUs.description')}
           </Paragraph>
-          <PrimaryButton
-            style={{ width: '130px' }}
-            onClick={() => navigate('/profile/contact-us')}
-          >
+          <PrimaryButton onClick={() => navigate('/profile/contact-us')}>
             {t('aboutUs.contactButton')}
           </PrimaryButton>
         </Col>
@@ -117,10 +114,11 @@ function AboutUsPage() {
           <Col xs={24} sm={24} md={12} lg={8} key={index}>
             <Card
               className={`about-us-card ${isDarkMode ? 'dark' : ''}`}
-              bodyStyle={{ padding: 0 }}
+              styles={{ body: { padding: 0 } }}
             >
               <div className="about-us-card-content">
                 <img
+                  draggable={false}
                   className="about-us-card-icon"
                   src={item.img}
                   alt={item.alt}
@@ -165,16 +163,19 @@ function AboutUsPage() {
               <div key={index} className="opinion-card-wrapper">
                 <Card
                   className={`opinion-card ${isDarkMode ? 'dark' : ''}`}
-                  bodyStyle={{
-                    padding: 20,
-                    display: 'flex',
-                    flexDirection: 'column',
-                    justifyContent: 'space-between',
-                    height: '100%',
+                  styles={{
+                    body: {
+                      padding: 20,
+                      display: 'flex',
+                      flexDirection: 'column',
+                      justifyContent: 'space-between',
+                      height: '100%',
+                    },
                   }}
                 >
                   <div className="opinion-item-container">
                     <img
+                      draggable={false}
                       src={opinionImage}
                       alt="opinion"
                       className="opinion-image"

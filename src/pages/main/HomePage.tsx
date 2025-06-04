@@ -1,12 +1,4 @@
-import {
-  Typography,
-  Row,
-  Col,
-  Card,
-  Carousel,
-  Collapse,
-  Spin,
-} from 'antd';
+import { Typography, Row, Col, Card, Carousel, Collapse, Spin } from 'antd';
 import 'antd/dist/reset.css';
 import { DownOutlined } from '@ant-design/icons';
 import partner1 from '../../assets/photos/partner1.webp';
@@ -35,11 +27,10 @@ import { useSelector } from 'react-redux';
 import PrimaryButton from '../../components/common/PrimaryButton';
 import SecondaryButton from '../../components/common/SecondaryButton';
 
-const { Panel } = Collapse;
 const { Title, Text } = Typography;
 
 function HomePage() {
-  const { t } = useTranslation('global');
+  const { t } = useTranslation('homePage');
   const [width, setWidth] = useState(window.innerWidth);
   const [openIndex, setOpenIndex] = useState<number | null>(null);
   const isDarkMode = useSelector((state: RootState) => state.theme.isDarkMode);
@@ -52,6 +43,7 @@ function HomePage() {
       text: t('activity.dataUpload.text'),
       icon: (
         <img
+          draggable={false}
           src={fileUpload}
           alt="frame"
           style={{ width: '110px', height: '100%' }}
@@ -64,6 +56,7 @@ function HomePage() {
       text: t('activity.aiAnalysis.text'),
       icon: (
         <img
+          draggable={false}
           src={aiAnalysis}
           alt="frame1"
           style={{ width: '110px', height: '100%' }}
@@ -76,6 +69,7 @@ function HomePage() {
       text: t('activity.insightsReport.text'),
       icon: (
         <img
+          draggable={false}
           src={insightsReport}
           alt="frame2"
           style={{ width: '110px', height: '100%' }}
@@ -88,6 +82,7 @@ function HomePage() {
       text: t('activity.clinicalDecision.text'),
       icon: (
         <img
+          draggable={false}
           src={clinicalDecision}
           alt="frame3"
           style={{ width: '125px', height: '110px' }}
@@ -204,9 +199,11 @@ function HomePage() {
       <div className={`loading-state ${isDarkMode ? 'dark' : ''}`}>
         <Spin className="loading-spinner" />
         <Title level={3} className="loading-title">
-          Loading...
+          {t('homepage.loading')}
         </Title>
-        <Text className="loading-subtitle">Please wait while we load the page...</Text>
+        <Text className="loading-subtitle">
+          {t('homepage.loadingDescription')}
+        </Text>
       </div>
     );
   }
@@ -225,10 +222,12 @@ function HomePage() {
             <p className={`platform-description ${isDarkMode ? 'dark' : ''}`}>
               {t('homepage.platformDescription')}
             </p>
-            <PrimaryButton>{t('homepage.consultButton')}</PrimaryButton>
+            <PrimaryButton onClick={() => navigate('/ai-doctor')}>
+              {t('homepage.consultButton')}
+            </PrimaryButton>
           </Col>
           <Col>
-            <img src={group99} alt="platform" className="platform-image" />
+            <img draggable={false} src={group99} alt="platform" className="platform-image" />
           </Col>
         </Row>
         <Col className="activity-section-column">
@@ -279,9 +278,9 @@ function HomePage() {
             {t('myHealth.description')}
           </p>
           <div className="my-health-step-images">
-            <img src={myHealth} alt="Step 1" className="my-health-image" />
+            <img draggable={false} src={myHealth} alt="Step 1" className="my-health-image" />
             <div className={`arrow ${isDarkMode ? 'dark' : ''}`}>→</div>
-            <img src={myHealth2} alt="Step 2" className="my-health-image" />
+            <img draggable={false} src={myHealth2} alt="Step 2" className="my-health-image" />
           </div>
           <div className="my-health-text-content">
             <PrimaryButton onClick={() => navigate('/profile/info')}>
@@ -305,6 +304,7 @@ function HomePage() {
           </Col>
           <Col>
             <img
+              draggable={false}
               src={isDarkMode ? group101Dark : group101}
               alt="platform"
               className="platform-image"
@@ -327,40 +327,36 @@ function HomePage() {
                 toggleOpen(key.length > 0 ? parseInt(key[0]) : null)
               }
               className={`faq-collapse ${isDarkMode ? 'dark' : ''}`}
-            >
-              {questions.map(({ title, text }, index) => (
-                <Panel
-                  key={index.toString()}
-                  header={
-                    <Title
-                      level={3}
-                      className={`faq-question ${isDarkMode ? 'dark' : ''}`}
-                    >
-                      {title}
-                    </Title>
-                  }
-                  showArrow={false}
-                  extra={
-                    <DownOutlined
-                      style={{
-                        transition: 'transform 0.3s',
-                        transform:
-                          openIndex === index
-                            ? 'rotate(180deg)'
-                            : 'rotate(0deg)',
-                        fontSize: 20,
-                        color: isDarkMode ? 'white' : 'black',
-                      }}
-                    />
-                  }
-                  className={`faq-panel ${isDarkMode ? 'dark' : ''}`}
-                >
+              items={questions.map(({ title, text }, index) => ({
+                key: index.toString(),
+                label: (
+                  <Title
+                    level={3}
+                    className={`faq-question ${isDarkMode ? 'dark' : ''}`}
+                  >
+                    {title}
+                  </Title>
+                ),
+                children: (
                   <Text className={`faq-answer ${isDarkMode ? 'dark' : ''}`}>
                     {text}
                   </Text>
-                </Panel>
-              ))}
-            </Collapse>
+                ),
+                showArrow: false,
+                extra: (
+                  <DownOutlined
+                    style={{
+                      transition: 'transform 0.3s',
+                      transform:
+                        openIndex === index ? 'rotate(180deg)' : 'rotate(0deg)',
+                      fontSize: 20,
+                      color: isDarkMode ? 'white' : 'black',
+                    }}
+                  />
+                ),
+                className: `faq-panel ${isDarkMode ? 'dark' : ''}`,
+              }))}
+            />
           </Col>
         </Row>
         <div className="partners-section">
@@ -371,11 +367,10 @@ function HomePage() {
             >
               {t('homepage.partnerTitle')}
             </Title>
-            <div className="carousel-wrapper">
+            <div style={{ maxWidth: '99vw' }}>
               <Carousel
                 autoplay
                 autoplaySpeed={2000}
-                dots={false}
                 infinite
                 slidesToShow={
                   width > 1500 ? 4 : width > 1200 ? 3 : width > 820 ? 2 : 1
@@ -389,12 +384,10 @@ function HomePage() {
                       style={{ border: 'none' }}
                       hoverable
                       className={`partner-card ${isDarkMode ? 'dark' : ''}`}
-                      bodyStyle={{
-                        padding: 20,
-                      }}
                     >
                       <div className="partner-image-container">
                         <img
+                          draggable={false}
                           src={partner.image}
                           alt={partner.name}
                           className="partner-image"

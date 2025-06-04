@@ -1,0 +1,23 @@
+{
+  "menu": {
+    "home": "Գլխավոր",
+    "analysis": "Վերլուծություն",
+    "aiDoctor": "Ձեր AI Բժիշկը",
+    "myHealth": "Իմ Առողջությունը",
+    "aboutUs": "Մեր Մասին",
+    "logout": "Դուրս Գալ",
+    "profile": "Պրոֆիլ",
+    "login": "Մուտք",
+    "bloodTest": "Արյան Փորձաքննություն",
+    "urineTest": "Մեզի Փորձաքննություն",
+    "vitaminTest": "Վիտամինների Փորձաքննություն",
+    "geneticTest": "Գենետիկ Փորձաքննություն",
+    "selectLanguage": "Ընտրել Լեզու",
+    "selectTheme": "Ընտրել Թեմա"
+  },
+  "themePicker": {
+    "light": "Ցերեկ",
+    "dark": "Գիշեր",
+    "system": "Սիստեմա"
+  }
+}

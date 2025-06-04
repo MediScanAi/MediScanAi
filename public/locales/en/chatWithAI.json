@@ -1,0 +1,13 @@
+{
+  "chat": {
+    "bloodTests": "Blood Tests",
+    "urineTests": "Urine Tests",
+    "vitaminTests": "Vitamin Tests",
+    "geneticTests": "Genetic Tests",
+    "newChat": "New Chat",
+    "rename": "Rename",
+    "delete": "Delete",
+    "scanAnalysis": "Scan Analysis",
+    "pdfUpload": "PDF Upload"
+  }
+}

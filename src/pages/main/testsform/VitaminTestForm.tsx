@@ -1,19 +1,12 @@
-import {
-  Button,
-  Form,
-  InputNumber,
-  message,
-  Typography,
-  Card,
-  Row,
-  Col,
-} from 'antd';
+import { Form, InputNumber, message, Typography, Card, Row, Col } from 'antd';
 import { useAppDispatch, useAppSelector } from '../../../app/hooks';
 import { saveTestData, setTestData } from '../../../app/slices/testSlice';
 import type { VitaminTestFormValues } from '../../../app/slices/testSlice';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { auth } from '../../../api/authApi';
 import { useTranslation } from 'react-i18next';
+import PrimaryButton from '../../../components/common/PrimaryButton';
+import '../../../assets/styles/rootForm.css';
 
 const { Title } = Typography;
 
@@ -22,7 +15,7 @@ const VitaminTestForm = () => {
   const [form] = Form.useForm();
   const dispatch = useAppDispatch();
   const updatedData = useLocation()?.state?.vitaminTestData || undefined;
-  const { t } = useTranslation();
+  const { t } = useTranslation('vitaminTest');
   const isDarkMode = useAppSelector((state) => state.theme.isDarkMode);
   const vitaminTestFields = [
     {
@@ -107,7 +100,7 @@ const VitaminTestForm = () => {
 
   return (
     <Card
-      style={{ border: 'none' }}
+      className="test-card"
       title={
         <Title level={3} className={`input-item ${isDarkMode ? 'dark' : ''}`}>
           {t('vitaminTest.title')}
@@ -146,9 +139,9 @@ const VitaminTestForm = () => {
         </Row>
 
         <Form.Item style={{ textAlign: 'center', marginTop: 32 }}>
-          <Button type="primary" htmlType="submit">
+          <PrimaryButton type="primary" htmlType="submit">
             {updatedData ? t('vitaminTest.update') : t('vitaminTest.submit')}
-          </Button>
+          </PrimaryButton>
         </Form.Item>
       </Form>
     </Card>
