@@ -24,7 +24,7 @@ function BloodTestsForm() {
   const [form] = Form.useForm();
   const dispatch = useAppDispatch();
   const updatedData = useLocation()?.state?.bloodTestData || undefined;
-  const { t } = useTranslation();
+  const { t } = useTranslation('bloodTest');
   const isDarkMode = useAppSelector((state) => state.theme.isDarkMode);
 
   const bloodTestFields = [
@@ -114,9 +114,9 @@ function BloodTestsForm() {
     dispatch(setTestData({ testType: 'blood', data: testData }));
 
     if (updatedData) {
-      message.success(t('messages.bloodTestUpdated'));
+      message.success(t('bloodTest.bloodTestupdate'));
     } else {
-      message.success(t('messages.bloodTestSubmitted'));
+      message.success(t('bloodTest.bloodTestsubmit'));
     }
 
     setTimeout(() => {
@@ -129,7 +129,7 @@ function BloodTestsForm() {
       className="test-card"
       title={
         <Title level={3} className={`input-item ${isDarkMode ? 'dark' : ''}`}>
-          {t('rootform.blood')}
+          {t('bloodTest.bloodTest')}
         </Title>
       }
     >
@@ -147,7 +147,7 @@ function BloodTestsForm() {
               <Form.Item
                 label={field.label}
                 name={field.name}
-                rules={[{ required: true, message: t('forms.required') }]}
+                rules={[{ required: true }]}
                 className={`input-item  ${isDarkMode ? 'dark' : ''}`}
               >
                 <InputNumber

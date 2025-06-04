@@ -1,0 +1,33 @@
+{
+    "urineTest": {
+        "title": "Մեզի անալիզ",
+        "submit": "Ուղարկել Մեզի անալիզը",
+        "update": "Թարմացնել Մեզի անալիզը",
+        "success": "Մեզի անալիզը հաջողությամբ ուղարկվեցին",
+        "updateSuccess": "Մեզի անալիզը հաջողությամբ թարմացվեցին",
+        "ph": "pH",
+        "gravity": "Հատուկ խտություն",
+        "protein": "Քիմիական նյութեր",
+        "glucose": "Գլյուկոզա",
+        "ketones": "Կետոներ",
+        "bilirubin": "Բիլիռուբին",
+        "urobilinogen": "Մեզի անալիզը հաջողությամբ թարմացվեցին",
+        "nitrites": "Նիտրիտերես",
+        "leukocyteEsterase": "Լեյկոցիտեղես",
+        "blood": "Արյան",
+        "negative": "Բացասական",
+        "positive": "Դրական",
+        "trace": "Տրամաբանություն",
+        "placeholder": "Ընտրեք արդյունքը",
+        "urineTestphPlaceholder": "Մուտքագրեք pH արժեքը (4.5-8.0)",
+        "urineTestgravityPlaceholder": "Մուտքագրեք հատուկ խտությունը (1.0-1.03 g/dL)",
+        "urineTestproteinPlaceholder": "Մուտքագրեք պրոտեինի մակարդակը (0-300 mg/dL)",
+        "urineTestglucosePlaceholder": "Մուտքագրեք գլյուկոզայի մակարդակը (0-1000 mg/dL)",
+        "urineTestketonesPlaceholder": "Մուտքագրեք կետոների մակարդակը (0-160 mg/dL)",
+        "urineTestbilirubinPlaceholder": "Ընտրեք բիլիռուբինի արդյունքը",
+        "urineTesturobilinogenPlaceholder": "Մուտքագրեք մեզի անալիզի մակարդակը (0.1-8.0 EU/dL)",
+        "urineTestnitritesPlaceholder": "Ընտրեք նիտրիտերեսի արդյունքը",
+        "urineTestleukocyteEsterasePlaceholder": "Ընտրեք Լեյկոցիտեղեսի արդյունքը",
+        "urineTestbloodPlaceholder": "Ընտրեք Արյանի արդյունքը"
+    }
+}

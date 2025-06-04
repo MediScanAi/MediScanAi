@@ -18,7 +18,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { getAuth, reload } from 'firebase/auth';
 import { mapFirebaseUser } from '../../api/authApi';
-import LoginWithGoogleButton from '../../components/LoginWithGoogleButton';
+import LoginWithGoogleButton from '../../components/common/LoginWithGoogleButton';
 import PrimaryButton from '../../components/common/PrimaryButton';
 import '../../assets/styles/RegisterPage.css';
 import Notebook3D from '../../assets/photos/Notebook.webp';

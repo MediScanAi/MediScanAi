@@ -20,12 +20,16 @@ import '../../../assets/styles/rootForm.css';
 const { Option } = Select;
 const { Title } = Typography;
 
+type ValueMapping = {
+  [key: string]: 'negative' | 'positive' | 'trace';
+};
+
 const UrineTestForm = () => {
   const navigate = useNavigate();
   const [form] = Form.useForm();
   const dispatch = useAppDispatch();
   const updatedData = useLocation()?.state?.urineTestData || undefined;
-  const { t } = useTranslation();
+  const { t } = useTranslation('urineTest');
   const isDarkMode = useAppSelector((state) => state.theme.isDarkMode);
   const urineTestFields = [
     {
@@ -173,6 +177,12 @@ const UrineTestForm = () => {
     },
   ];
 
+  const valueMapping: ValueMapping = {
+    [t('urineTest.negative')]: 'negative',
+    [t('urineTest.positive')]: 'positive',
+    [t('urineTest.trace')]: 'trace'
+  };
+
   const onFinish = async (values: UrineTestFormValues) => {
     const uid = auth.currentUser?.uid;
 
@@ -181,10 +191,17 @@ const UrineTestForm = () => {
       return;
     }
 
-    const testData = { ...values, date: new Date().toISOString() };
-    await dispatch(saveTestData({ uid, testType: 'urine', data: testData }));
+    const processedValues = {
+      ...values,
+      bilirubin: valueMapping[values.bilirubin as string] || values.bilirubin,
+      nitrites: valueMapping[values.nitrites as string] || values.nitrites,
+      leukocyteEsterase: valueMapping[values.leukocyteEsterase as string] || values.leukocyteEsterase,
+      blood: valueMapping[values.blood as string] || values.blood,
+      date: new Date().toISOString()
+    };
 
-    dispatch(setTestData({ testType: 'urine', data: testData }));
+    await dispatch(saveTestData({ uid, testType: 'urine', data: processedValues }));
+    dispatch(setTestData({ testType: 'urine', data: processedValues }));
 
     if (updatedData) {
       message.success(t('urineTest.updateSuccess'));
@@ -195,6 +212,12 @@ const UrineTestForm = () => {
     setTimeout(() => {
       navigate('/profile/analysis-history');
     }, 1000);
+  };
+
+  const getDisplayValue = (value: string | null) => {
+    if (!value) return null;
+    const englishValue = valueMapping[value];
+    return englishValue ? t(`urineTest.${englishValue}`) : value;
   };
 
   return (
@@ -211,7 +234,13 @@ const UrineTestForm = () => {
         onFinish={onFinish}
         layout="vertical"
         size="large"
-        initialValues={updatedData}
+        initialValues={updatedData ? {
+          ...updatedData,
+          bilirubin: getDisplayValue(updatedData.bilirubin),
+          nitrites: getDisplayValue(updatedData.nitrites),
+          leukocyteEsterase: getDisplayValue(updatedData.leukocyteEsterase),
+          blood: getDisplayValue(updatedData.blood)
+        } : undefined}
       >
         <Row gutter={[24, 16]}>
           {urineTestFields.map((field) => {

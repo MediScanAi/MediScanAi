@@ -84,7 +84,7 @@ const MyHealthGuide: React.FC = () => {
     <div className={`guide-page ${isDarkMode ? 'dark' : ''}`}>
       <div className="back-button-container">
         <SecondaryButton className="back-button" onClick={() => navigate('/my-health')}>
-          My Health
+          {t('healthGuide.guide.backButton')}
         </SecondaryButton>
       </div>
       <div className="header-container">

@@ -70,6 +70,10 @@ footer {
   align-items: flex-start;
 }
 
+.footer-description.dark {
+  color: #ffffff;
+}
+
 .footer-contact svg {
   margin-right: 10px;
   color: #1e40af;
@@ -113,7 +117,7 @@ footer {
 }
 
 .dark-footer {
-  background-color: #111827;
+  background-color: #121e63;
   border-top: 1px solid rgba(255, 255, 255, 0.05);
 }
 

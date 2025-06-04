@@ -307,8 +307,8 @@
 }
 
 .metric-badge {
-  width: 110px;
-  height: 110px;
+  width: 150px;
+  height: 150px;
   border-radius: 50%;
   display: flex;
   flex-direction: column;
@@ -355,6 +355,7 @@
   margin-top: 4px;
   font-weight: 600;
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  text-align: center;
 }
 
 .recommendations-section {
@@ -1460,4 +1461,16 @@
 
 .health-circles-container.dark {
   background-color: rgba(255, 255, 255, 0.02);
+}
+
+.loading-state.dark {
+  background-color: rgba(255, 255, 255, 0.02);
+}
+
+.loading-title.dark {
+  color: #ffffff;
+}
+
+.loading-subtitle.dark {
+  color: #ffffff;
 }

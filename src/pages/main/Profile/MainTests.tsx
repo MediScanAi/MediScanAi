@@ -16,7 +16,7 @@ export interface MainTestsProps {
 const MainTests: React.FC<MainTestsProps> = ({ theme, width }) => {
   const isDarkMode = useAppSelector((state) => state.theme.isDarkMode);
   const navigate = useNavigate();
-  const { t } = useTranslation();
+  const { t } = useTranslation('mainTests');
 
   const testCards = [
     {

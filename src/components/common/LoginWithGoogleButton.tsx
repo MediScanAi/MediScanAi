@@ -1,10 +1,10 @@
 import { message } from 'antd';
 import { GoogleOutlined } from '@ant-design/icons';
-import { loginWithGoogle } from '../api/authApi';
-import { setUser } from '../app/slices/authSlice';
+import { loginWithGoogle } from '../../api/authApi';
+import { setUser } from '../../app/slices/authSlice';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router';
-import SecondaryButton from './common/SecondaryButton';
+import SecondaryButton from './SecondaryButton';
 
 interface PropsTypes {
   toggleLoading: (isLoading: boolean) => void;

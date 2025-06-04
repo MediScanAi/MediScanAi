@@ -65,7 +65,7 @@ const HealthPage: React.FC = () => {
   const [bodyFat, setBodyFat] = useState<number | null>(null);
   const [idealWeight, setIdealWeight] = useState<number | null>(null);
   const [loading, setLoading] = useState(true);
-  const { t } = useTranslation();
+  const { t } = useTranslation('health');
   const navigate = useNavigate();
   const userData = useAppSelector((state) => state.userData.data);
   const healthData = useAppSelector((state) => state.healthData);
@@ -569,12 +569,12 @@ const HealthPage: React.FC = () => {
 
   if (loading) {
     return (
-      <div className="loading-state">
+      <div className={`loading-state ${isDarkMode ? 'dark' : ''}`}>
         <Spin className="loading-spinner" />
-        <Title level={3} className="loading-title">
+        <Title level={3} className={`loading-title ${isDarkMode ? 'dark' : ''}`}>
           {t('health.loading.title')}
         </Title>
-        <Text className="loading-subtitle">{t('health.loading.subtitle')}</Text>
+        <Text className={`loading-subtitle ${isDarkMode ? 'dark' : ''}`}>{t('health.loading.subtitle')}</Text>
       </div>
     );
   }
@@ -836,7 +836,9 @@ const HealthPage: React.FC = () => {
                     placeholder={t('health.selectDate')}
                     suffixIcon={<CalendarOutlined className={`date-picker-icon ${isDarkMode ? 'dark' : ''}`} />}
                     className={`date-picker ${isDarkMode ? 'dark' : ''}`}
-                    popupClassName={isDarkMode ? 'dark-date-picker-dropdown' : ''}
+                    classNames={{
+                      root: isDarkMode ? 'dark-date-picker-dropdown' : ''
+                    }}
                   />
                 </div>
 
@@ -862,7 +864,7 @@ const HealthPage: React.FC = () => {
 
       <Modal
         title={<span className={`connect-modal-title ${isDarkMode ? 'dark' : ''}`}>{t('healthGuide.guide.connectModal.title')}</span>}
-        visible={isModalVisible}
+        open={isModalVisible}
         onCancel={handleCancelModal}
         footer={[
           <Button

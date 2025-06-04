@@ -1,0 +1,22 @@
+{
+    "vitaminTest": {
+        "title": "Վիտամին անալիզ",
+        "submit": "Ուղարկել Վիտամին անալիզը",
+        "update": "Թարմացնել Վիտամին անալիզը",
+        "success": "Վիտամին անալիզը հաջողությամբ ուղարկվեցին",
+        "updateSuccess": "Վիտամին անալիզը հաջողությամբ թարմացվեցին",
+        "notAuthenticated": "Անձնական տվյալները չեն համապատասխանում",
+        "vitaminA": "Վիտամին A",
+        "vitaminB12": "Վիտամին B12",
+        "vitaminC": "Վիտամին C",
+        "vitaminD": "Վիտամին D",
+        "vitaminE": "Վիտամին E",
+        "vitaminK": "Վիտամին K",
+        "vitaminAPlaceholder": "Մուտքագրեք Վիտամին A մակարդակը",
+        "vitaminB12Placeholder": "Մուտքագրեք Վիտամին B12 մակարդակը",
+        "vitaminCPlaceholder": "Մուտքագրեք Վիտամին C մակարդակը",
+        "vitaminDPlaceholder": "Մուտքագրեք Վիտամին D մակարդակը",
+        "vitaminEPlaceholder": "Մուտքագրեք Վիտամին E մակարդակը",
+        "vitaminKPlaceholder": "Մուտքագրեք Վիտամին K մակարդակը"
+    }
+}

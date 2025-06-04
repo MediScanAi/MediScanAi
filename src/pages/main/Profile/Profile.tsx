@@ -15,12 +15,14 @@ import MainTests from './MainTests';
 import ContactUs from './ContactUs';
 import React, { useEffect, useState } from 'react';
 import { useAppSelector } from '../../../app/hooks';
+import { useTranslation } from 'react-i18next';
 
 const Profile: React.FC = () => {
   const isDarkMode = useAppSelector((state) => state.theme.isDarkMode);
   const { type } = useParams();
   const navigate = useNavigate();
   const [width, setWidth] = useState(window.innerWidth);
+  const { t } = useTranslation('profil');
 
   useEffect(() => {
     const handleResize = () => {
@@ -37,7 +39,7 @@ const Profile: React.FC = () => {
           style={{ fontSize: width < 1200 ? '16px' : '20px' }}
           className={isDarkMode ? ' dark-mode-text' : ''}
         >
-          <UserOutlined /> Info
+          <UserOutlined /> {t('profil.info')}
         </span>
       ),
       key: 'info',
@@ -49,7 +51,7 @@ const Profile: React.FC = () => {
           style={{ fontSize: width < 1200 ? '16px' : '20px' }}
           className={isDarkMode ? ' dark-mode-text' : ''}
         >
-          <ExperimentOutlined /> Analysis History
+          <ExperimentOutlined /> {t('profil.analysisHistory')}
         </span>
       ),
       key: 'analysis-history',
@@ -62,7 +64,7 @@ const Profile: React.FC = () => {
           style={{ fontSize: width < 1200 ? '16px' : '20px' }}
           className={isDarkMode ? ' dark-mode-text' : ''}
         >
-          <MedicineBoxOutlined /> Tests
+          <MedicineBoxOutlined /> {t('profil.tests')}
         </span>
       ),
       children: <MainTests width={width} theme={isDarkMode} />,
@@ -74,7 +76,7 @@ const Profile: React.FC = () => {
           style={{ fontSize: width < 1200 ? '16px' : '20px' }}
           className={isDarkMode ? ' dark-mode-text' : ''}
         >
-          <PhoneOutlined /> Contact Us
+          <PhoneOutlined /> {t('profil.contactUs')}
         </span>
       ),
       children: <ContactUs width={width} theme={isDarkMode} />,

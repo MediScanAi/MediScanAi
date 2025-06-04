@@ -1,0 +1,99 @@
+{
+    "bloodAnalysis": {
+        "Cholesterol": "Cholesterol",
+        "Glucose": "Glucose",
+        "Hemoglobin": "Hemoglobin",
+        "Platelets": "Platelets",
+        "RBC": "RBC",
+        "WBC": "WBC",
+        "title": "Blood Test Results",
+        "subtitle": "Analysis with AI",
+        "noData": {
+            "title": "Please fill a blood test results to get your analytic results",
+            "button": "Fill Blood Test Results"
+        },
+        "warnings": {
+            "title": "🚨 Health Risk Warnings",
+            "analyzeButton": "Analyze with AI",
+            "allGood": "✅ All your values are within normal range. Great job!",
+            "showMore": "Show more",
+            "showLess": "Show less",
+            "conditions": {
+                "lowHemoglobin": "⚠️ Low Hemoglobin — Possible Anemia or Nutritional Deficiency",
+                "highHemoglobin": "⚠️ High Hemoglobin — Possible Polycythemia or Chronic Hypoxia",
+                "lowWbc": "⚠️ Low WBC — Possible Bone Marrow Suppression or Viral Infection",
+                "highWbc": "⚠️ High WBC — Possible Infection, Inflammation, or Leukemia",
+                "lowRbc": "⚠️ Low RBC — Possible Anemia or Blood Loss",
+                "highRbc": "⚠️ High RBC — Possible Polycythemia or Heart Disease",
+                "lowPlatelets": "⚠️ Low Platelets — Possible ITP or Liver Disease",
+                "highPlatelets": "⚠️ High Platelets — Possible Chronic Inflammation or Thrombocythemia",
+                "lowGlucose": "⚠️ Low Glucose — Possible Hypoglycemia",
+                "highGlucose": "⚠️ High Glucose — Possible Diabetes",
+                "highCholesterol": "⚠️ High Cholesterol — Increased Risk of Heart Disease or Stroke"
+            },
+            "explanations": {
+                "lowHemoglobin": "Anemia is a condition where the blood lacks enough healthy red blood cells or hemoglobin. It leads to symptoms like fatigue, shortness of breath, dizziness, and pale skin. The most common causes include iron deficiency (due to poor diet or chronic bleeding), vitamin B12 or folate deficiency, and chronic diseases like kidney problems. In women, heavy menstruation is a frequent cause. In some cases, anemia may stem from bone marrow disorders or autoimmune conditions.",
+                "highHemoglobin": "High hemoglobin can result from living at high altitudes, smoking, or conditions like polycythemia vera. Polycythemia refers to an elevated concentration of red blood cells, often leading to thickened blood and increased risk of clots. This can occur in response to low oxygen (from smoking or living at high altitudes), heart or lung diseases, or a rare condition called polycythemia vera, where the bone marrow produces too many blood cells. Symptoms may include headaches, dizziness, blurred vision, or a ruddy complexion.",
+                "lowWbc": "Low white blood cell count can be caused by viral infections or bone marrow issues. A low white blood cell (WBC) count weakens the body's immune defense. It can be caused by viral infections, autoimmune diseases (like lupus), chemotherapy, certain medications, or bone marrow disorders. Patients with leukopenia are more susceptible to infections and may require close monitoring.",
+                "highWbc": "A high white blood cell count often signals infection or inflammation. An elevated WBC count often signals an active infection or inflammation. It may also be linked to stress, trauma, or more serious conditions like leukemia. Temporary spikes in WBCs can occur during acute illness, but persistently high values warrant further investigation.",
+                "lowRbc": "Red blood cells carry oxygen. Low RBCs can be caused by anemia, blood loss, or nutritional deficiencies. Anemia is a condition where the blood lacks enough healthy red blood cells or hemoglobin. It leads to symptoms like fatigue, shortness of breath, dizziness, and pale skin. The most common causes include iron deficiency (due to poor diet or chronic bleeding), vitamin B12 or folate deficiency, and chronic diseases like kidney problems. In women, heavy menstruation is a frequent cause. In some cases, anemia may stem from bone marrow disorders or autoimmune conditions.",
+                "highRbc": "High RBC count might suggest dehydration, lung or heart disease, or polycythemia vera. It can increase blood viscosity and risk of clotting. Polycythemia refers to an elevated concentration of red blood cells, often leading to thickened blood and increased risk of clots. This can occur in response to low oxygen (from smoking or living at high altitudes), heart or lung diseases, or a rare condition called polycythemia vera, where the bone marrow produces too many blood cells. Symptoms may include headaches, dizziness, blurred vision, or a ruddy complexion.",
+                "lowPlatelets": "Low platelet levels (thrombocytopenia) may occur from immune disorders, liver issues, or medications. Platelets help with blood clotting. A low count can cause easy bruising, prolonged bleeding, or petechiae (tiny red spots on the skin). Common causes include liver disease, autoimmune disorders like ITP (immune thrombocytopenic purpura), viral infections, or medication side effects.",
+                "highPlatelets": "High platelet count might indicate inflammation, iron deficiency, or a bone marrow disorder. High platelet levels may be reactive (due to inflammation, infection, or surgery) or a sign of bone marrow disorders like essential thrombocythemia. Elevated platelets can increase the risk of blood clots or, paradoxically, bleeding complications.",
+                "lowGlucose": "Low blood sugar can result in shakiness, confusion, or fainting. It's important to maintain a stable glucose level through diet and monitoring. It can be caused by diabetes, certain medications, or a lack of food intake. Symptoms may include sweating, rapid heartbeat, and confusion.",
+                "highGlucose": "High glucose levels may signal diabetes or prediabetes. It's crucial to manage with lifestyle, diet, and possibly medication to avoid complications. Persistent high glucose levels suggest prediabetes or diabetes, especially if accompanied by symptoms like frequent urination, thirst, or unexplained weight loss. Long-term hyperglycemia can damage nerves, kidneys, and blood vessels.",
+                "highCholesterol": "Excess cholesterol can build up in arteries, leading to heart attacks or strokes. Diet, exercise, and medication (like statins) can help control it. It can be caused by diabetes, certain medications, or a lack of food intake. Symptoms may include sweating, rapid heartbeat, and confusion."
+            }
+        },
+        "facts": {
+            "Cholesterol": [
+                "Cholesterol is essential for producing sex hormones like estrogen and testosterone.",
+                "Your brain is made up of nearly 60% fat, and cholesterol plays a key role in its structure.",
+                "Excess cholesterol doesn't just affect the heart—it may also impair cognitive functions over time.",
+                "Statins are commonly prescribed medications that help reduce high cholesterol levels.",
+                "Genetics can influence how your body produces and processes cholesterol, regardless of diet.",
+                "Trans fats, often found in processed foods, can significantly raise LDL (\"bad\") cholesterol levels."
+            ],
+            "Glucose": [
+                "The pancreas releases insulin to help cells absorb glucose from the bloodstream.",
+                "Hypoglycemia (low blood sugar) can cause dizziness, confusion, and even unconsciousness.",
+                "Glucose tolerance tests are used to diagnose diabetes and prediabetes.",
+                "Glycated hemoglobin (HbA1c) levels reflect average blood sugar over the past 2–3 months.",
+                "Even stress and illness can raise glucose levels temporarily through hormonal changes.",
+                "Complex carbs like whole grains provide slower, more stable glucose release than refined sugars."
+            ],
+            "Hemoglobin": [
+                "Athletes often monitor hemoglobin levels to ensure efficient oxygen delivery during performance.",
+                "Folic acid and vitamin B12 are important nutrients in red blood cell and hemoglobin production.",
+                "Hemoglobin variants like HbS (sickle cell) can affect oxygen transport and cause genetic disorders.",
+                "Low hemoglobin (anemia) may present as pale skin, cold hands/feet, and rapid heartbeat.",
+                "High hemoglobin levels can occur in chronic smokers or people living at high altitudes.",
+                "Hemoglobin also plays a role in buffering blood pH and maintaining acid-base balance."
+            ],
+            "Platelets": [
+                "Platelets change shape and become \"sticky\" when they detect a blood vessel injury.",
+                "Thrombocytopenia is a condition where you have abnormally low platelet counts.",
+                "Some autoimmune disorders cause the body to mistakenly destroy its own platelets.",
+                "Platelets can be donated and are vital in cancer treatment and major surgeries.",
+                "Aspirin can reduce platelet function and is often used as a blood thinner.",
+                "Vitamin K is essential for proper blood clotting and platelet performance."
+            ],
+            "RBC": [
+                "RBCs are produced in the bone marrow in a process called erythropoiesis.",
+                "Erythropoietin (EPO), a hormone from the kidneys, stimulates RBC production.",
+                "Low RBC count (anemia) can be caused by blood loss, nutritional deficiencies, or chronic disease.",
+                "Sickle cell anemia is a genetic condition affecting RBC shape and lifespan.",
+                "RBCs do not have a nucleus—this maximizes space for hemoglobin.",
+                "Iron-rich foods like red meat, spinach, and lentils help maintain healthy RBC levels."
+            ],
+            "WBC": [
+                "WBCs include several subtypes, such as neutrophils, eosinophils, and basophils—each with specific roles.",
+                "Lymphocytes are the WBCs responsible for antibody production and immune memory.",
+                "Chronic low WBC counts can make you more susceptible to infections.",
+                "High WBC counts (leukocytosis) can result from infection, inflammation, or even stress.",
+                "WBCs move between the bloodstream and tissues, patrolling for pathogens.",
+                "Some WBCs can \"remember\" invaders, allowing for faster immune responses in the future."
+            ]
+        }
+    }
+}

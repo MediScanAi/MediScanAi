@@ -1,0 +1,110 @@
+{
+    "homepage": {
+        "welcome": "Welcome",
+        "platformTitle": "MediScanAi Platform",
+        "platformDescription": "Advanced AI-powered diagnostics and medical analysis for healthcare professionals.",
+        "consultButton": "Consult Today",
+        "myHealth": "My Health",
+        "ourActivity": "Our Activity",
+        "activityDescription": "Our activity is to provide a platform for healthcare professionals to use AI-powered diagnostics and medical analysis.",
+        "faqTitle": "Frequently Asked Questions",
+        "partnerTitle": "Partner With Us",
+        "readMore": "Read More"
+    },
+    "activity": {
+        "title": "Our Activity",
+        "description": "Our activity is to provide a platform for healthcare professionals to use AI-powered diagnostics and medical analysis.",
+        "dataUpload": {
+            "title": "Data Upload",
+            "text": "Securely upload your genomic data via encrypted portal"
+        },
+        "aiAnalysis": {
+            "title": "AI Analysis",
+            "text": "AI analyzes genomic data using multi-omic integration techniques"
+        },
+        "insightsReport": {
+            "title": "Insights Report",
+            "text": "Receive biomarkers and recommendations in a detailed report"
+        },
+        "clinicalDecision": {
+            "title": "Clinical Decision",
+            "text": "Physicians apply findings for personalized treatment decision"
+        }
+    },
+    "myHealth": {
+        "title": "My Health",
+        "description": "Fill in the form and get your health report by a few seconds",
+        "button": "Fill and get report"
+    },
+    "leadingMedicine": {
+        "title": "Leading Medicine",
+        "description": "Advanced AI-powered diagnostics and medical analysis for healthcare professionals."
+    },
+    "faqs": {
+        "title": "Frequently Asked Questions",
+        "items": [
+            {
+                "question": "What is Mediscan AI?",
+                "answer": "Mediscan AI is an advanced web-based health integration platform that uses artificial intelligence to analyze medical and genomic data. It supports clinicians with fast, accurate, and personalized insights for better patient care."
+            },
+            {
+                "question": "How does Mediscan AI ensure data security?",
+                "answer": "We prioritize data privacy and security. Mediscan AI is built with enterprise-level encryption and complies with HIPAA, GDPR, and other global standards, ensuring all health data is fully protected."
+            },
+            {
+                "question": "Who can use Mediscan AI?",
+                "answer": "Mediscan AI is designed for healthcare professionals, researchers, and institutions. Its user-friendly interface allows clinicians of all levels to easily access, interpret, and apply AI-driven insights in their workflow."
+            },
+            {
+                "question": "How accurate are the AI diagnostics?",
+                "answer": "Our AI models are trained on vast, high-quality datasets and continuously updated to ensure clinical accuracy. Mediscan AI provides detailed, clinician-ready reports backed by real-world medical intelligence."
+            },
+            {
+                "question": "What makes Mediscan AI different?",
+                "answer": "Mediscan AI stands out with its seamless integration, fast turnaround times, intuitive design, and trusted clinical accuracy. We bring advanced diagnostics within reach — no specialized training required."
+            }
+        ]
+    },
+    "partners": {
+        "0": {
+            "link": "https://www.mcastghik.com/ ",
+            "name": "Astghik Medical Center",
+            "description": "Astghik Medical Center is a modern, multidisciplinary hospital offering advanced medical services with international standards and cutting-edge technologies."
+        },
+        "1": {
+            "link": "https://i-mc.am/",
+            "name": "Izmirlyan Medical Center",
+            "description": "Izmirlyan Medical Center is a multifunctional hospital known for specialties like urology, cardiology, and surgery, affiliated with the Mother See of Holy Etchmiadzin."
+        },
+        "2": {
+            "name": "Erebuni Medical Center",
+            "link": "https://www.erebunimed.com/",
+            "description": "Erebuni Medical Center is Armenia's largest hospital, providing full-spectrum care including emergency services, diagnostics, and surgery since 1991."
+        },
+        "3": {
+            "name": "Davidyants Laboratory",
+            "link": "https://davlab.am/hy",
+            "description": "Davidyants Laboratory specializes in clinical diagnostics, offering services like histology, immunohistochemistry, and infectious disease testing."
+        },
+        "4": {
+            "link": "https://slavmed.am/en/",
+            "name": "Slawmed Medical Center",
+            "description": "Slawmed is a multidisciplinary medical center offering treatments in gynecology, urology, ENT, ophthalmology, and other fields with modern equipment."
+        },
+        "5": {
+            "link": "https://wigmore.am/en/",
+            "name": "Wigmore Medical Center",
+            "description": "Wigmore Medical Center provides top-quality care in orthopedics, spine surgery, vascular surgery, cardiology, and more, with a patient-focused approach."
+        },
+        "6": {
+            "name": "Nairi Medical Center",
+            "link": "https://nairimed.com/hy",
+            "description": "Nairi Medical Center is a leading Armenian hospital offering high-standard medical care across multiple specialties and promoting medical research and education."
+        },
+        "7": {
+            "link": "https://blood.am/arm",
+            "name": "Hematological Center",
+            "description": "The Armenian Hematological Center specializes in diagnosing and treating blood disorders, providing advanced care for both children and adults."
+        }
+    }
+}

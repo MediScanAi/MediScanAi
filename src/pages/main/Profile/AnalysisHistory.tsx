@@ -32,7 +32,7 @@ type AnalysisHistoryProps = {
 const AnalysisHistory: React.FC<AnalysisHistoryProps> = ({ theme, width }) => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const { t } = useTranslation();
+  const { t } = useTranslation('analysisHistory');
   const bloodTestData = useAppSelector((state) => state.tests.blood);
   const urineTestData = useAppSelector((state) => state.tests.urine);
   const vitaminTestData = useAppSelector((state) => state.tests.vitamin);
@@ -164,6 +164,34 @@ const AnalysisHistory: React.FC<AnalysisHistoryProps> = ({ theme, width }) => {
       unit: t('analysisHistory.bilirubinUnit'),
       normalRange: '0.3-1.0',
       icon: <MedicineBoxOutlined />,
+    },
+    {
+      name: t('analysisHistory.urobilinogen'),
+      value: urineTestData?.urobilinogen,
+      unit: t('analysisHistory.urobilinogenUnit'),
+      normalRange: '0-10',
+      icon: <DashboardOutlined />,
+    },
+    {
+      name: t('analysisHistory.nitrite'),
+      value: urineTestData?.nitrites,
+      unit: t('analysisHistory.nitriteUnit'),
+      normalRange: '0-10',
+      icon: <MedicineBoxOutlined />,
+    },
+    {
+      name: t('analysisHistory.leukocyteEsterase'),
+      value: urineTestData?.leukocyteEsterase,
+      unit: t('analysisHistory.leukocyteEsteraseUnit'),
+      normalRange: '0-10',
+      icon: <ExperimentOutlined />,
+    },
+    {
+      name: t('analysisHistory.blood'),
+      value: urineTestData?.blood,
+      unit: t('analysisHistory.bloodUnit'),
+      normalRange: '0-10',
+      icon: <HeartOutlined />,
     },
   ];
 

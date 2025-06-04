@@ -25,12 +25,14 @@ import { useAppSelector } from '../../../app/hooks';
 import { useSelector } from 'react-redux';
 import type { RootState } from '../../../app/store';
 import PrimaryButton from '../../../components/common/PrimaryButton';
+import { useTranslation } from 'react-i18next';
 
 interface ChartData {
   name: string;
   value: number;
   color: string;
   image: string;
+  key: string;
 }
 
 interface CustomTooltipProps {
@@ -104,6 +106,7 @@ const CustomBarChart = ({ data }: { data: ChartData[] }) => (
 const { Title } = Typography;
 
 function BloodAnalysis() {
+  const { t } = useTranslation('bloodAnalysis');
   const bloodTestData = useAppSelector(
     (state) => state.tests.blood
   ) as unknown as BloodTestFormValues;
@@ -126,91 +129,59 @@ function BloodAnalysis() {
 
     if (data.hemoglobin !== undefined && data.hemoglobin !== null) {
       if (data.hemoglobin < 12)
-        risks.push(
-          '⚠️ Low Hemoglobin — Possible Anemia or Nutritional Deficiency'
-        );
+        risks.push(t('bloodAnalysis.warnings.conditions.lowHemoglobin'));
       if (data.hemoglobin > 17.5)
-        risks.push(
-          '⚠️ High Hemoglobin — Possible Polycythemia or Chronic Hypoxia'
-        );
+        risks.push(t('bloodAnalysis.warnings.conditions.highHemoglobin'));
     }
 
     if (data.wbc !== undefined && data.wbc !== null) {
       if (data.wbc < 4)
-        risks.push(
-          '⚠️ Low WBC — Possible Bone Marrow Suppression or Viral Infection'
-        );
+        risks.push(t('bloodAnalysis.warnings.conditions.lowWbc'));
       if (data.wbc > 11)
-        risks.push(
-          '⚠️ High WBC — Possible Infection, Inflammation, or Leukemia'
-        );
+        risks.push(t('bloodAnalysis.warnings.conditions.highWbc'));
     }
 
     if (data.rbc !== undefined && data.rbc !== null) {
       if (data.rbc < 4)
-        risks.push('⚠️ Low RBC — Possible Anemia or Blood Loss');
+        risks.push(t('bloodAnalysis.warnings.conditions.lowRbc'));
       if (data.rbc > 6.2)
-        risks.push('⚠️ High RBC — Possible Polycythemia or Heart Disease');
+        risks.push(t('bloodAnalysis.warnings.conditions.highRbc'));
     }
 
     if (data.platelets !== undefined && data.platelets !== null) {
       if (data.platelets < 150)
-        risks.push('⚠️ Low Platelets — Possible ITP or Liver Disease');
+        risks.push(t('bloodAnalysis.warnings.conditions.lowPlatelets'));
       if (data.platelets > 450)
-        risks.push(
-          '⚠️ High Platelets — Possible Chronic Inflammation or Thrombocythemia'
-        );
+        risks.push(t('bloodAnalysis.warnings.conditions.highPlatelets'));
     }
 
     if (data.glucose !== undefined && data.glucose !== null) {
       if (data.glucose < 70)
-        risks.push('⚠️ Low Glucose — Possible Hypoglycemia');
-      if (data.glucose > 126) risks.push('⚠️ High Glucose — Possible Diabetes');
+        risks.push(t('bloodAnalysis.warnings.conditions.lowGlucose'));
+      if (data.glucose > 126)
+        risks.push(t('bloodAnalysis.warnings.conditions.highGlucose'));
     }
 
     if (data.cholesterol !== undefined && data.cholesterol !== null) {
       if (data.cholesterol > 240)
-        risks.push(
-          '⚠️ High Cholesterol — Increased Risk of Heart Disease or Stroke'
-        );
+        risks.push(t('bloodAnalysis.warnings.conditions.highCholesterol'));
     }
 
     return risks;
   };
 
   const diseaseExplanations: { [key: string]: string } = {
-    '⚠️ Low Hemoglobin — Possible Anemia or Nutritional Deficiency':
-      'Anemia is a condition where the blood lacks enough healthy red blood cells or hemoglobin. It leads to symptoms like fatigue, shortness of breath, dizziness, and pale skin. The most common causes include iron deficiency (due to poor diet or chronic bleeding), vitamin B12 or folate deficiency, and chronic diseases like kidney problems. In women, heavy menstruation is a frequent cause. In some cases, anemia may stem from bone marrow disorders or autoimmune conditions.',
-
-    '⚠️ High Hemoglobin — Possible Polycythemia or Chronic Hypoxia':
-      'High hemoglobin can result from living at high altitudes, smoking, or conditions like polycythemia vera. Polycythemia refers to an elevated concentration of red blood cells, often leading to thickened blood and increased risk of clots. This can occur in response to low oxygen (from smoking or living at high altitudes), heart or lung diseases, or a rare condition called polycythemia vera, where the bone marrow produces too many blood cells. Symptoms may include headaches, dizziness, blurred vision, or a ruddy complexion.',
-
-    '⚠️ Low WBC — Possible Bone Marrow Suppression or Viral Infection':
-      "Low white blood cell count can be caused by viral infections or bone marrow issues. A low white blood cell (WBC) count weakens the body's immune defense. It can be caused by viral infections, autoimmune diseases (like lupus), chemotherapy, certain medications, or bone marrow disorders. Patients with leukopenia are more susceptible to infections and may require close monitoring.",
-
-    '⚠️ High WBC — Possible Infection, Inflammation, or Leukemia':
-      'A high white blood cell count often signals infection or inflammation. An elevated WBC count often signals an active infection or inflammation. It may also be linked to stress, trauma, or more serious conditions like leukemia. Temporary spikes in WBCs can occur during acute illness, but persistently high values warrant further investigation.',
-
-    '⚠️ Low RBC — Possible Anemia or Blood Loss':
-      'Red blood cells carry oxygen. Low RBCs can be caused by anemia, blood loss, or nutritional deficiencies, leading to fatigue and poor oxygen circulation.',
-
-    '⚠️ High RBC — Possible Polycythemia or Heart Disease':
-      'High RBC count might suggest dehydration, lung or heart disease, or polycythemia vera. It can increase blood viscosity and risk of clotting. Polycythemia refers to an elevated concentration of red blood cells, often leading to thickened blood and increased risk of clots. This can occur in response to low oxygen (from smoking or living at high altitudes), heart or lung diseases, or a rare condition called polycythemia vera, where the bone marrow produces too many blood cells. Symptoms may include headaches, dizziness, blurred vision, or a ruddy complexion.',
-
-    '⚠️ Low Platelets — Possible ITP or Liver Disease':
-      'Low platelet levels (thrombocytopenia) may occur from immune disorders, liver issues, or medications. Platelets help with blood clotting. A low count can cause easy bruising, prolonged bleeding, or petechiae (tiny red spots on the skin). Common causes include liver disease, autoimmune disorders like ITP (immune thrombocytopenic purpura), viral infections, or medication side effects.',
-
-    '⚠️ High Platelets — Possible Chronic Inflammation or Thrombocythemia':
-      'High platelet count might indicate inflammation, iron deficiency, or a bone marrow disorder. High platelet levels may be reactive (due to inflammation, infection, or surgery) or a sign of bone marrow disorders like essential thrombocythemia. Elevated platelets can increase the risk of blood clots or, paradoxically, bleeding complications.',
-
-    '⚠️ Low Glucose — Possible Hypoglycemia':
-      "Low blood sugar can result in shakiness, confusion, or fainting. It's important to maintain a stable glucose level through diet and monitoring.",
-
-    '⚠️ High Glucose — Possible Diabetes':
-      "High glucose levels may signal diabetes or prediabetes. It's crucial to manage with lifestyle, diet, and possibly medication to avoid complications. Persistent high glucose levels suggest prediabetes or diabetes, especially if accompanied by symptoms like frequent urination, thirst, or unexplained weight loss. Long-term hyperglycemia can damage nerves, kidneys, and blood vessels.",
-
-    '⚠️ High Cholesterol — Increased Risk of Heart Disease or Stroke':
-      'Excess cholesterol can build up in arteries, leading to heart attacks or strokes. Diet, exercise, and medication (like statins) can help control it.',
+    [t('bloodAnalysis.warnings.conditions.lowHemoglobin')]: t('bloodAnalysis.warnings.explanations.lowHemoglobin'),
+    [t('bloodAnalysis.warnings.conditions.highHemoglobin')]: t('bloodAnalysis.warnings.explanations.highHemoglobin'),
+    [t('bloodAnalysis.warnings.conditions.lowWbc')]: t('bloodAnalysis.warnings.explanations.lowWbc'),
+    [t('bloodAnalysis.warnings.conditions.highWbc')]: t('bloodAnalysis.warnings.explanations.highWbc'),
+    [t('bloodAnalysis.warnings.conditions.lowRbc')]: t('bloodAnalysis.warnings.explanations.lowRbc'),
+    [t('bloodAnalysis.warnings.conditions.highRbc')]: t('bloodAnalysis.warnings.explanations.highRbc'),
+    [t('bloodAnalysis.warnings.conditions.lowPlatelets')]: t('bloodAnalysis.warnings.explanations.lowPlatelets'),
+    [t('bloodAnalysis.warnings.conditions.highPlatelets')]: t('bloodAnalysis.warnings.explanations.highPlatelets'),
+    [t('bloodAnalysis.warnings.conditions.lowGlucose')]: t('bloodAnalysis.warnings.explanations.lowGlucose'),
+    [t('bloodAnalysis.warnings.conditions.highGlucose')]: t('bloodAnalysis.warnings.explanations.highGlucose'),
+    [t('bloodAnalysis.warnings.conditions.highCholesterol')]: t('bloodAnalysis.warnings.explanations.highCholesterol'),
   };
 
   useEffect(() => {
@@ -227,40 +198,46 @@ function BloodAnalysis() {
 
   const PieData: ChartData[] = [
     {
-      name: 'Cholesterol',
+      name: t('bloodAnalysis.Cholesterol'),
       value: bloodTestData?.cholesterol || 0,
       color: '#f39c12',
       image: Cholesterol,
+      key: 'Cholesterol'
     },
     {
-      name: 'Glucose',
+      name: t('bloodAnalysis.Glucose'),
       value: bloodTestData?.glucose || 0,
       color: '#16a085',
       image: Chocolate,
+      key: 'Glucose'
     },
     {
-      name: 'Hemoglobin',
+      name: t('bloodAnalysis.Hemoglobin'),
       value: bloodTestData?.hemoglobin || 0,
       color: '#e74c3c',
       image: Syringe,
+      key: 'Hemoglobin'
     },
     {
-      name: 'Platelets',
+      name: t('bloodAnalysis.Platelets'),
       value: bloodTestData?.platelets || 0,
       color: '#8e44ad',
       image: ChartGoingDown,
+      key: 'Platelets'
     },
     {
-      name: 'RBC',
+      name: t('bloodAnalysis.RBC'),
       value: bloodTestData?.rbc || 0,
       color: '#2980b9',
       image: MedKit,
+      key: 'RBC'
     },
     {
-      name: 'WBC',
+      name: t('bloodAnalysis.WBC'),
       value: bloodTestData?.wbc || 0,
       color: '#27ae60',
       image: Done,
+      key: 'WBC'
     },
   ];
 
@@ -268,52 +245,52 @@ function BloodAnalysis() {
 
   const interestingFacts: { [key: string]: string[] } = {
     Cholesterol: [
-      'Cholesterol is essential for producing sex hormones like estrogen and testosterone.',
-      'Your brain is made up of nearly 60% fat, and cholesterol plays a key role in its structure.',
-      "Excess cholesterol doesn't just affect the heart—it may also impair cognitive functions over time.",
-      'Statins are commonly prescribed medications that help reduce high cholesterol levels.',
-      'Genetics can influence how your body produces and processes cholesterol, regardless of diet.',
-      'Trans fats, often found in processed foods, can significantly raise LDL ("bad") cholesterol levels.',
+      t('bloodAnalysis.facts.Cholesterol.0'),
+      t('bloodAnalysis.facts.Cholesterol.1'),
+      t('bloodAnalysis.facts.Cholesterol.2'),
+      t('bloodAnalysis.facts.Cholesterol.3'),
+      t('bloodAnalysis.facts.Cholesterol.4'),
+      t('bloodAnalysis.facts.Cholesterol.5'),
     ],
     Glucose: [
-      'The pancreas releases insulin to help cells absorb glucose from the bloodstream.',
-      'Hypoglycemia (low blood sugar) can cause dizziness, confusion, and even unconsciousness.',
-      'Glucose tolerance tests are used to diagnose diabetes and prediabetes.',
-      'Glycated hemoglobin (HbA1c) levels reflect average blood sugar over the past 2–3 months.',
-      'Even stress and illness can raise glucose levels temporarily through hormonal changes.',
-      'Complex carbs like whole grains provide slower, more stable glucose release than refined sugars.',
+      t('bloodAnalysis.facts.Glucose.0'),
+      t('bloodAnalysis.facts.Glucose.1'),
+      t('bloodAnalysis.facts.Glucose.2'),
+      t('bloodAnalysis.facts.Glucose.3'),
+      t('bloodAnalysis.facts.Glucose.4'),
+      t('bloodAnalysis.facts.Glucose.5'),
     ],
     Hemoglobin: [
-      'Athletes often monitor hemoglobin levels to ensure efficient oxygen delivery during performance.',
-      'Folic acid and vitamin B12 are important nutrients in red blood cell and hemoglobin production.',
-      'Hemoglobin variants like HbS (sickle cell) can affect oxygen transport and cause genetic disorders.',
-      'Low hemoglobin (anemia) may present as pale skin, cold hands/feet, and rapid heartbeat.',
-      'High hemoglobin levels can occur in chronic smokers or people living at high altitudes.',
-      'Hemoglobin also plays a role in buffering blood pH and maintaining acid-base balance.',
+      t('bloodAnalysis.facts.Hemoglobin.0'),
+      t('bloodAnalysis.facts.Hemoglobin.1'),
+      t('bloodAnalysis.facts.Hemoglobin.2'),
+      t('bloodAnalysis.facts.Hemoglobin.3'),
+      t('bloodAnalysis.facts.Hemoglobin.4'),
+      t('bloodAnalysis.facts.Hemoglobin.5'),
     ],
     Platelets: [
-      'Platelets change shape and become "sticky" when they detect a blood vessel injury.',
-      'Thrombocytopenia is a condition where you have abnormally low platelet counts.',
-      'Some autoimmune disorders cause the body to mistakenly destroy its own platelets.',
-      'Platelets can be donated and are vital in cancer treatment and major surgeries.',
-      'Aspirin can reduce platelet function and is often used as a blood thinner.',
-      'Vitamin K is essential for proper blood clotting and platelet performance.',
+      t('bloodAnalysis.facts.Platelets.0'),
+      t('bloodAnalysis.facts.Platelets.1'),
+      t('bloodAnalysis.facts.Platelets.2'),
+      t('bloodAnalysis.facts.Platelets.3'),
+      t('bloodAnalysis.facts.Platelets.4'),
+      t('bloodAnalysis.facts.Platelets.5'),
     ],
     RBC: [
-      'RBCs are produced in the bone marrow in a process called erythropoiesis.',
-      'Erythropoietin (EPO), a hormone from the kidneys, stimulates RBC production.',
-      'Low RBC count (anemia) can be caused by blood loss, nutritional deficiencies, or chronic disease.',
-      'Sickle cell anemia is a genetic condition affecting RBC shape and lifespan.',
-      'RBCs do not have a nucleus—this maximizes space for hemoglobin.',
-      'Iron-rich foods like red meat, spinach, and lentils help maintain healthy RBC levels.',
+      t('bloodAnalysis.facts.RBC.0'),
+      t('bloodAnalysis.facts.RBC.1'),
+      t('bloodAnalysis.facts.RBC.2'),
+      t('bloodAnalysis.facts.RBC.3'),
+      t('bloodAnalysis.facts.RBC.4'),
+      t('bloodAnalysis.facts.RBC.5'),
     ],
     WBC: [
-      'WBCs include several subtypes, such as neutrophils, eosinophils, and basophils—each with specific roles.',
-      'Lymphocytes are the WBCs responsible for antibody production and immune memory.',
-      'Chronic low WBC counts can make you more susceptible to infections.',
-      'High WBC counts (leukocytosis) can result from infection, inflammation, or even stress.',
-      'WBCs move between the bloodstream and tissues, patrolling for pathogens.',
-      'Some WBCs can "remember" invaders, allowing for faster immune responses in the future.',
+      t('bloodAnalysis.facts.WBC.0'),
+      t('bloodAnalysis.facts.WBC.1'),
+      t('bloodAnalysis.facts.WBC.2'),
+      t('bloodAnalysis.facts.WBC.3'),
+      t('bloodAnalysis.facts.WBC.4'),
+      t('bloodAnalysis.facts.WBC.5'),
     ],
   };
 
@@ -338,13 +315,13 @@ function BloodAnalysis() {
               marginLeft: 5,
             }}
           >
-            Blood Test Results
+            {t('bloodAnalysis.title')}
           </Typography>
           <Typography
             className={`platform-title ${isDarkMode ? 'dark' : ''}`}
             style={{ fontSize: width > 768 ? '50px' : '30px' }}
           >
-            Analysis with AI
+            {t('bloodAnalysis.subtitle')}
           </Typography>
         </Col>
         <Col>
@@ -396,7 +373,7 @@ function BloodAnalysis() {
                 level={3}
                 style={{ color: 'rgb(255, 0, 0)', fontFamily: 'Poppins' }}
               >
-                🚨 Health Risk Warnings
+                {t('bloodAnalysis.warnings.title')}
                 <PrimaryButton
                   style={{ marginLeft: 20 }}
                   onClick={() => {
@@ -411,7 +388,7 @@ function BloodAnalysis() {
                     });
                   }}
                 >
-                  Analyze with AI
+                  {t('bloodAnalysis.warnings.analyzeButton')}
                 </PrimaryButton>
               </Title>
               <ul style={{ paddingLeft: 20 }}>
@@ -430,7 +407,7 @@ function BloodAnalysis() {
                             style={{ padding: 0, color: '#3498db' }}
                             onClick={() => toggleWarning(risk)}
                           >
-                            {expandedWarnings[risk] ? 'Show less' : 'Show more'}
+                            {expandedWarnings[risk] ? t('bloodAnalysis.warnings.showLess') : t('bloodAnalysis.warnings.showMore')}
                           </Button>
                           {expandedWarnings[risk] && (
                             <p
@@ -445,7 +422,7 @@ function BloodAnalysis() {
                   ))
                 ) : (
                   <p style={{ fontSize: 16 }}>
-                    ✅ All your values are within normal range. Great job!
+                    {t('bloodAnalysis.warnings.allGood')}
                   </p>
                 )}
               </ul>
@@ -466,10 +443,10 @@ function BloodAnalysis() {
               style={{ textAlign: 'center' }}
               level={2}
             >
-              Please fill a blood test results to get your analytic results
+              {t('bloodAnalysis.noData.title')}
             </Title>
             <PrimaryButton onClick={() => navigate('/tests-form/blood-test')}>
-              Fill Blood Test Results
+              {t('bloodAnalysis.noData.button')}
             </PrimaryButton>
           </div>
         )}
@@ -487,7 +464,7 @@ function BloodAnalysis() {
       >
         {PieData.map((item) => (
           <Card
-            key={item.name}
+            key={item.key}
             className={`interesting-card ${isDarkMode ? 'dark' : ''}`}
             style={{
               flex: width > 900 ? '0 1 calc(50% - 10px)' : '1 1 100%',
@@ -512,7 +489,7 @@ function BloodAnalysis() {
               className={`interesting-card-text ${isDarkMode ? 'dark' : ''}`}
               style={{ margin: 0, fontSize: 16 }}
             >
-              {interestingFacts[item.name]}
+              {interestingFacts[item.key]}
             </p>
           </Card>
         ))}

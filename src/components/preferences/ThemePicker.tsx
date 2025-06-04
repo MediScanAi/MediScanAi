@@ -7,7 +7,7 @@ import '../../assets/styles/ThemePicker.css';
 
 const ThemePicker = () => {
     const dispatch = useAppDispatch();
-    const { t } = useTranslation('global');
+    const { t } = useTranslation('header');
     const themeMode = useAppSelector((state) => state.theme.themeMode);
     const isDarkMode = useAppSelector((state) => state.theme.isDarkMode);
     

@@ -1,0 +1,29 @@
+{
+    "geneticTest": {
+        "title": "Genetic Test",
+        "brca1": "BRCA1 Gene Mutation",
+        "brca2": "BRCA2 Gene Mutation",
+        "apoe": "APOE Genotype Risk Score",
+        "mthfr": "MTHFR Mutation Level",
+        "factor_v_leiden": "Factor V Leiden Mutation",
+        "cyp2c19": "CYP2C19 Enzyme Activity",
+        "placeholder": "Select result",
+        "submit": "Submit Genetic Test",
+        "update": "Update Genetic Test",
+        "success": "Genetic test submitted successfully",
+        "updateSuccess": "Genetic test updated successfully",
+        "notAuthenticated": "User is not authenticated",
+        "negative": "negative",
+        "positive": "positive",
+        "ε2/ε2": "ε2/ε2",
+        "ε3/ε3": "ε3/ε3",
+        "ε3/ε4": "ε3/ε4",
+        "ε4/ε4": "ε4/ε4",
+        "homozygous": "Homozygous",
+        "heterozygous": "Heterozygous",
+        "normal": "Normal",
+        "categoryI": "Category I",
+        "categoryII": "Category II",
+        "categoryIII": "Category III"
+    }
+}

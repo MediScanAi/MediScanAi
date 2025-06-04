@@ -7,7 +7,6 @@ import {
   Input,
   message as antdMsg,
   Dropdown,
-  Menu,
   type MenuProps,
   message,
 } from 'antd';
@@ -69,7 +68,7 @@ const ChatWithAi = () => {
   const [loading, setLoading] = useState(false);
   const [editingChatId, setEditingChatId] = useState<string | null>(null);
   const [editingTitle, setEditingTitle] = useState('');
-  const { t } = useTranslation();
+  const { t } = useTranslation('chatWithAI');
   const messagesEndRef = useRef<HTMLDivElement | null>(null);
   const tests = useAppSelector((state) => state.tests);
   const [currentUtterance, setCurrentUtterance] =
@@ -399,7 +398,7 @@ const ChatWithAi = () => {
     {
       label: (
         <Text className={`chat-with-ai-label ${isDarkMode ? 'dark' : ''}`}>
-          Blood Tests
+          {t('chat.bloodTests')}
         </Text>
       ),
       key: 'blood-test',
@@ -416,7 +415,7 @@ const ChatWithAi = () => {
     {
       label: (
         <Text className={`chat-with-ai-label ${isDarkMode ? 'dark' : ''}`}>
-          Urine Tests
+          {t('chat.urineTests')}
         </Text>
       ),
       key: 'urine-test',
@@ -433,7 +432,7 @@ const ChatWithAi = () => {
     {
       label: (
         <Text className={`chat-with-ai-label ${isDarkMode ? 'dark' : ''}`}>
-          Vitamin Tests
+          {t('chat.vitaminTests')}
         </Text>
       ),
       key: 'vitamin-test',
@@ -450,7 +449,7 @@ const ChatWithAi = () => {
     {
       label: (
         <Text className={`chat-with-ai-label ${isDarkMode ? 'dark' : ''}`}>
-          Genetic Tests
+          {t('chat.geneticTests')}
         </Text>
       ),
       key: 'genetic-test',
@@ -633,42 +632,37 @@ const ChatWithAi = () => {
                         <Dropdown
                           className={`chat-with-ai-dropdown ${isDarkMode ? 'dark' : ''}`}
                           trigger={['click']}
-                          overlay={
-                            <Menu
-                              onClick={({ key }) => {
-                                if (key === 'rename') {
-                                  setEditingChatId(chat.id);
-                                  setEditingTitle(chat.title);
-                                } else if (key === 'delete') {
-                                  deleteChat(chat.id);
-                                }
-                              }}
-                              style={{
-                                background: isDarkMode
-                                  ? 'rgb(38, 63, 137)'
-                                  : '#fff',
-                                border: 'none',
-                              }}
-                            >
-                              <Menu.Item
-                                style={{
+                          menu={{
+                            items: [
+                              {
+                                key: 'rename',
+                                label: t('chat.rename'),
+                                style: {
                                   color: isDarkMode ? '#ffffff' : '#000000',
-                                }}
-                                key="rename"
-                              >
-                                {t('chat.rename')}
-                              </Menu.Item>
-                              <Menu.Item
-                                style={{
+                                },
+                              },
+                              {
+                                key: 'delete',
+                                label: t('chat.delete'),
+                                danger: true,
+                                style: {
                                   color: isDarkMode ? '#ffffff' : '#000000',
-                                }}
-                                key="delete"
-                                danger
-                              >
-                                {t('chat.delete')}
-                              </Menu.Item>
-                            </Menu>
-                          }
+                                },
+                              },
+                            ],
+                            onClick: ({ key }) => {
+                              if (key === 'rename') {
+                                setEditingChatId(chat.id);
+                                setEditingTitle(chat.title);
+                              } else if (key === 'delete') {
+                                deleteChat(chat.id);
+                              }
+                            },
+                            style: {
+                              background: isDarkMode ? 'rgb(38, 63, 137)' : '#fff',
+                              border: 'none',
+                            },
+                          }}
                         >
                           <MoreOutlined
                             onClick={(e) => e.stopPropagation()}

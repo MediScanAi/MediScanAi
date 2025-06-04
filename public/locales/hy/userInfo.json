@@ -1,0 +1,79 @@
+{
+    "userInfo": {
+        "loading": "Բեռնվում է...",
+        "notSet": "Սահմանված չէ",
+        "actions": {
+            "save": "Պահպանել",
+            "cancel": "Չեղարկել"
+        },
+        "messages": {
+            "saveSuccess": "Տվյալները հաջողությամբ պահպանված են",
+            "saveFail": "Տվյալները պահպանել չհաջողվեց",
+            "comingSoon": "Շուտով...",
+            "updateSuccess": "Դաշտը հաջողությամբ թարմացվեց:",
+            "updateError": "Դաշտը թարմացնել չհաջողվեց:"
+        },
+        "fields": {
+            "name": "Անուն",
+            "surname": "Ազգանուն",
+            "email": "Էլ․ փոստ",
+            "age": "Տարիք",
+            "gender": "Սեռ",
+            "weight": "Քաշ",
+            "height": "Հասակ",
+            "waistSize": "Գոտկատեղի չափս",
+            "neckSize": "Վզի չափս"
+        },
+        "genders": {
+            "male": "Արական",
+            "female": "Իգական"
+        },
+        "placeholders": {
+            "age": "Մուտքագրեք տարիքը",
+            "gender": "Ընտրեք սեռը",
+            "weight": "Մուտքագրեք քաշը",
+            "height": "Մուտքագրեք հասակը",
+            "waistSize": "Մուտքագրեք գոտկատեղի չափսը",
+            "neckSize": "Մուտքագրեք վզի չափսը"
+        },
+        "units": {
+            "years": "տարի",
+            "kg": "կգ",
+            "cm": "սմ"
+        },
+        "tooltips": {
+            "waistSize": "Չափեք ամենանեղ կետում",
+            "neckSize": "Չափեք վզի հիմքի շուրջ"
+        },
+        "tabs": {
+            "profile": "Անձնական էջ",
+            "health": "Առողջություն",
+            "settings": "Կարգավորումներ"
+        },
+        "sections": {
+            "personalInfo": "Անձնական տվյալներ",
+            "healthMetrics": "Առողջության ցուցանիշներ",
+            "accountSettings": "Հաշվի կարգավորումներ"
+        },
+        "timePeriods": {
+            "week": "Շաբաթ",
+            "month": "Ամիս",
+            "year": "Տարի"
+        },
+        "metrics": {
+            "bmi": {
+                "label": "BMI",
+                "healthyRange": "Առողջ միջակայք՝ {{min}} - {{max}}"
+            },
+            "bodyFat": {
+                "label": "Մարմնի ճարպ",
+                "healthyRange": "Առողջ միջակայք՝ {{min}}% - {{max}}%"
+            },
+            "metabolicAge": {
+                "label": "Մետաբոլիկ տարիք"
+            },
+            "average": "միջին",
+            "comparison": "{{difference}} համեմատ {{comparison}}-ի հետ"
+        }
+    }
+}

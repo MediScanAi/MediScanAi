@@ -16,7 +16,7 @@ export interface ContactUsProps {
 }
 
 const ContactUs: React.FC<ContactUsProps> = ({ theme }) => {
-  const { t } = useTranslation();
+  const { t } = useTranslation('contactUs');
   return (
     <div style={{ height: '60vh', width: '70vw' }}>
       <Card

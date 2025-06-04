@@ -1,0 +1,22 @@
+{
+    "vitaminTest": {
+        "title": "Витаминный анализ",
+        "submit": "Отправить витаминный анализ",
+        "update": "Обновить витаминный анализ",
+        "success": "Витаминный анализ успешно отправлен",
+        "updateSuccess": "Витаминный анализ успешно обновлен",
+        "notAuthenticated": "Пользователь не авторизован",
+        "vitaminA": "Витамин A",
+        "vitaminB12": "Витамин B12",
+        "vitaminC": "Витамин C",
+        "vitaminD": "Витамин D",
+        "vitaminE": "Витамин E",
+        "vitaminK": "Витамин K",
+        "vitaminAPlaceholder": "Введите уровень витамина A",
+        "vitaminB12Placeholder": "Введите уровень витамина B12",
+        "vitaminCPlaceholder": "Введите уровень витамина C",
+        "vitaminDPlaceholder": "Введите уровень витамина D",
+        "vitaminEPlaceholder": "Введите уровень витамина E",
+        "vitaminKPlaceholder": "Введите уровень витамина K"
+    }
+}

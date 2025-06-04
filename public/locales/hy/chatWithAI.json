@@ -1,0 +1,13 @@
+{
+    "chat": {
+        "bloodTests": "Արյան թեստեր",
+        "urineTests": "Մեզի թեստեր",
+        "vitaminTests": "Վիտամինների թեստեր",
+        "geneticTests": "Գենետիկ թեստեր",
+        "newChat": "Նոր Չատ",
+        "rename": "Փոփոխել",
+        "delete": "Ջնջել",
+        "scanAnalysis": "Սկան Անալիզ",
+        "pdfUpload": "PDF Սկանավորում"
+    }
+}

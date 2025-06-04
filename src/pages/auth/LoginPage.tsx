@@ -16,7 +16,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { useState } from 'react';
 import ForgotPasswordForm from '../../components/ForgotPasswordForm';
-import LoginWithGoogleButton from '../../components/LoginWithGoogleButton';
+import LoginWithGoogleButton from '../../components/common/LoginWithGoogleButton';
 import MedicalInstruments3D from '../../assets/photos/medical_instruments.png';
 import '../../assets/styles/LoginPage.css';
 import PrimaryButton from '../../components/common/PrimaryButton';

@@ -1,0 +1,96 @@
+{
+    "geneticAnalysis": {
+        "BRCA1": "BRCA1",
+        "BRCA2": "BRCA2",
+        "FactorVLeiden": "Factor V Leiden",
+        "APOE": "APOE",
+        "MTHFR": "MTHFR",
+        "CYP2C19": "CYP2C19",
+        "title": "Genetic Test Results",
+        "subtitle": "Analysis with AI",
+        "warnings": {
+            "title": "🚨 Health Risk Warnings",
+            "analyzeButton": "Analyze with AI",
+            "showMore": "Show more",
+            "showLess": "Show less",
+            "allGood": "✅ All your values are within normal range. Great job!",
+            "conditions": {
+                "brca1Positive": "⚠️ BRCA1 Positive — Increased Cancer Risk",
+                "brca2Positive": "⚠️ BRCA2 Positive — Increased Cancer Risk",
+                "factorVLeidenPositive": "⚠️ Factor V Leiden Positive — Clotting Risk",
+                "apoeE4E4": "⚠️ APOE ε4/ε4 — High Alzheimer's Risk",
+                "mthfrHomozygous": "⚠️ MTHFR Homozygous — Folate Metabolism Impact",
+                "cyp2c19PoorMetabolizer": "⚠️ CYP2C19 Poor Metabolizer — Drug Response Altered"
+            },
+            "explanations": {
+                "brca1Positive": "A positive BRCA1 result indicates a mutation in this tumor suppressor gene, significantly increasing lifetime risk of breast (up to 72%), ovarian (up to 44%), and other cancers. BRCA1 helps repair DNA damage; mutations impair this function. Management includes enhanced screening (MRI/mammograms), risk-reducing medications, or preventive surgeries. Not all carriers develop cancer, but vigilance is crucial. Genetic counseling helps interpret results and guide family testing.",
+                "brca2Positive": "BRCA2 mutations elevate risks for breast (up to 69%), ovarian (up to 17%), pancreatic, and other cancers. Like BRCA1, it's involved in DNA repair. Male carriers have increased breast and prostate cancer risks. Management parallels BRCA1, with consideration of pancreatic cancer screening for high-risk families. PARP inhibitors are particularly effective treatments for BRCA-related cancers.",
+                "factorVLeidenPositive": "Factor V Leiden makes blood resistant to protein C, increasing clotting risk 5-10x (heterozygous) or 50-100x (homozygous). Most carriers never clot, but risks rise with surgery, pregnancy, or hormones. Symptoms include DVT or PE. Management focuses on clot prevention during high-risk situations. Lifelong anticoagulation isn't usually needed without clotting history.",
+                "apoeE4E4": "Two ε4 alleles confer the highest Alzheimer's risk (up to 15x increased). The ε4 protein clears amyloid plaques less effectively. However, not all carriers develop dementia. Prevention focuses on heart-healthy lifestyle (exercise, Mediterranean diet, cognitive engagement). Testing is generally not recommended predictively due to limited clinical utility.",
+                "mthfrHomozygous": "Homozygous C677T mutations reduce enzyme activity by ~70%, potentially elevating homocysteine. The clinical significance is debated, but may modestly increase cardiovascular and pregnancy risks. Management may include methylfolate (not folic acid) supplementation if homocysteine is elevated, though routine treatment isn't universally recommended.",
+                "cyp2c19PoorMetabolizer": "Poor metabolizers process certain drugs very slowly, increasing side effects or requiring dose reductions. Affected medications include clopidogrel (reduced effectiveness), many antidepressants, and proton pump inhibitors. Pharmacogenetic testing can guide alternative drug selection (e.g., prasugrel instead of clopidogrel) or dosing adjustments."
+            }
+        },
+        "geneticTest": {
+            "positive": "Positive",
+            "negative": "Negative",
+            "homozygous": "Homozygous",
+            "heterozygous": "Heterozygous",
+            "normal": "Normal"
+        },
+        "facts": {
+            "BRCA1": [
+                "BRCA1 mutations increase breast cancer risk by up to 72% and ovarian cancer risk by up to 44%.",
+                "The BRCA1 gene helps repair damaged DNA and maintain genomic stability.",
+                "Men with BRCA1 mutations have increased risk of breast and prostate cancer.",
+                "BRCA1 mutations are more common in certain ethnic groups like Ashkenazi Jews.",
+                "Not all BRCA1 mutation carriers will develop cancer—other factors play a role.",
+                "BRCA1 was the first breast cancer gene identified, discovered in 1994."
+            ],
+            "BRCA2": [
+                "BRCA2 mutations increase breast cancer risk by up to 69% and ovarian cancer risk by up to 17%.",
+                "BRCA2 plays a crucial role in DNA repair through homologous recombination.",
+                "BRCA2 mutations significantly increase pancreatic cancer risk in both genders.",
+                "BRCA2 carriers may respond better to certain chemotherapy drugs like platinum agents.",
+                "BRCA2 mutations can cause Fanconi anemia when inherited from both parents.",
+                "Male BRCA2 carriers have a 7% lifetime risk of breast cancer (vs 0.1% general population)."
+            ],
+            "FactorVLeiden": [
+                "Factor V Leiden is the most common inherited blood clotting disorder.",
+                "About 5% of Caucasians carry at least one copy of the mutation.",
+                "Heterozygous carriers have 5-10x higher risk of blood clots; homozygous have 50-100x risk.",
+                "The mutation originated in a single ancestor about 30,000 years ago.",
+                "Hormonal contraception significantly increases clot risk in carriers.",
+                "Factor V Leiden may have provided survival advantage against sepsis in the past."
+            ],
+            "APOE": [
+                "APOE ε4 is the strongest genetic risk factor for late-onset Alzheimer's disease.",
+                "APOE helps transport cholesterol and fats in the bloodstream.",
+                "About 25% of people carry one ε4 allele; 2-3% carry two copies.",
+                "APOE ε2 may be protective against Alzheimer's but increases cardiovascular risk.",
+                "APOE genotype affects response to dietary fats and statin medications.",
+                "The ε4 allele is more common in populations with historically high-fat diets."
+            ],
+            "MTHFR": [
+                "MTHFR mutations affect folate metabolism and homocysteine levels.",
+                "C677T is the most common variant, present in 30-40% of some populations.",
+                "Homozygous C677T may increase risk of heart disease, stroke, and birth defects.",
+                "MTHFR status affects requirements for folic acid and other B vitamins.",
+                "The mutation may influence depression risk through neurotransmitter synthesis.",
+                "MTHFR testing is controversial—many experts don't recommend routine screening."
+            ],
+            "CYP2C19": [
+                "CYP2C19 metabolizes many drugs including antidepressants, clopidogrel, and proton pump inhibitors.",
+                "Poor metabolizers may need alternative medications or dose adjustments.",
+                "About 2-15% of people are poor metabolizers, varying by ethnicity.",
+                "Ultrarapid metabolizers may process drugs too quickly, reducing effectiveness.",
+                "Testing is particularly important for clopidogrel (Plavix) effectiveness.",
+                "CYP2C19 status can affect antidepressant response and side effects."
+            ]
+        },
+        "noData": {
+            "title": "Please fill out genetic test results to get your analytic results",
+            "button": "Fill Genetic Test Results"
+        }
+    }
+}

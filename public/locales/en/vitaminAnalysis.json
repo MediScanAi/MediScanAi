@@ -1,0 +1,142 @@
+{
+    "vitaminAnalysis": {
+        "title": "Vitamin Test Results",
+        "subtitle": "Analysis with AI",
+        "parameters": {
+            "vitaminA": "Vitamin A",
+            "vitaminB12": "Vitamin B12",
+            "vitaminC": "Vitamin C",
+            "vitaminD": "Vitamin D",
+            "vitaminE": "Vitamin E",
+            "vitaminK": "Vitamin K"
+        },
+        "warnings": {
+            "title": "🚨 Health Risk Warnings",
+            "analyzeButton": "Analyze with AI",
+            "showMore": "Show more",
+            "showLess": "Show less",
+            "allGood": "✅ All your vitamin levels are within normal range. Great job!",
+            "conditions": {
+                "vitaminA": {
+                    "low": "⚠️ Low Vitamin A — Possible Night Blindness or Immune Deficiency",
+                    "high": "⚠️ High Vitamin A — Possible Liver Damage or Toxicity"
+                },
+                "vitaminB12": {
+                    "low": "⚠️ Low Vitamin B12 — Possible Anemia or Neurological Issues",
+                    "high": "⚠️ High Vitamin B12 — Possible Kidney or Liver Problems"
+                },
+                "vitaminC": {
+                    "low": "⚠️ Low Vitamin C — Possible Scurvy or Poor Wound Healing",
+                    "high": "⚠️ High Vitamin C — Possible Kidney Stones or Digestive Issues"
+                },
+                "vitaminD": {
+                    "low": "⚠️ Low Vitamin D — Possible Bone Weakness or Immune Dysfunction",
+                    "high": "⚠️ High Vitamin D — Possible Calcium Buildup or Kidney Damage"
+                },
+                "vitaminE": {
+                    "low": "⚠️ Low Vitamin E — Possible Nerve Damage or Muscle Weakness",
+                    "high": "⚠️ High Vitamin E — Possible Bleeding Risk or Hemorrhage"
+                },
+                "vitaminK": {
+                    "low": "⚠️ Low Vitamin K — Possible Bleeding Disorders or Poor Clotting",
+                    "high": "⚠️ High Vitamin K — Possible Blood Clotting Issues"
+                }
+            },
+            "explanations": {
+                "vitaminA": {
+                    "low": "Vitamin A deficiency can lead to night blindness, dry eyes, and increased susceptibility to infections. It may also cause skin issues and impaired immune function. Common in malnourished individuals or those with fat malabsorption disorders.",
+                    "high": "Excessive vitamin A can cause liver damage, bone pain, vision changes, and even hair loss. Chronic overconsumption may lead to increased intracranial pressure. Pregnant women should be especially careful as it can cause birth defects."
+                },
+                "vitaminB12": {
+                    "low": "B12 deficiency can cause megaloblastic anemia, fatigue, nerve damage, and cognitive issues. Common in vegans, elderly, and those with pernicious anemia or gut absorption problems. Long-term deficiency can lead to irreversible neurological damage.",
+                    "high": "While rare, extremely high B12 levels may indicate liver disease, certain cancers, or kidney issues. It can sometimes occur with excessive supplementation. High levels don't necessarily mean toxicity but warrant investigation."
+                },
+                "vitaminC": {
+                    "low": "Vitamin C deficiency leads to scurvy, causing bleeding gums, bruising, poor wound healing, and joint pain. Smokers, alcoholics, and those with poor diets are at higher risk. Essential for collagen production and immune function.",
+                    "high": "Excess vitamin C may cause diarrhea, nausea, and abdominal cramps. In predisposed individuals, it can increase oxalate production leading to kidney stones. Generally excreted in urine but megadoses should be avoided."
+                },
+                "vitaminD": {
+                    "low": "Vitamin D deficiency causes bone softening (osteomalacia), muscle weakness, and increased infection risk. Common in northern climates, darker-skinned individuals, and those with limited sun exposure. Linked to depression and autoimmune diseases.",
+                    "high": "Vitamin D toxicity leads to hypercalcemia causing nausea, weakness, kidney stones, and even kidney failure. Usually from excessive supplementation rather than diet or sun exposure. Can cause calcium deposits in soft tissues."
+                },
+                "vitaminE": {
+                    "low": "Vitamin E deficiency may cause nerve damage (ataxia), muscle weakness, and vision problems. Rare but seen in fat malabsorption disorders like cystic fibrosis or Crohn's disease. Important antioxidant for cell protection.",
+                    "high": "Excess vitamin E can interfere with blood clotting, increasing bleeding risk especially in those on blood thinners. May also cause nausea, diarrhea, and fatigue. Supplementation beyond recommended doses is generally unnecessary."
+                },
+                "vitaminK": {
+                    "low": "Vitamin K deficiency impairs blood clotting, leading to easy bruising and bleeding. Newborns are at risk (given prophylactic vitamin K). Seen in liver disease, malabsorption, or long-term antibiotic use.",
+                    "high": "While rare, excessive vitamin K (mainly from supplements) may interfere with blood thinners like warfarin. Natural food sources are generally safe. Important for maintaining proper coagulation balance."
+                }
+            }
+        },
+        "interestingFacts": {
+            "vitaminA": [
+                "Vitamin A is essential for good vision, especially night vision.",
+                "It supports immune function and helps maintain healthy skin and mucous membranes.",
+                "Preformed vitamin A is found in animal products, while provitamin A (beta-carotene) comes from plants.",
+                "Carrots are rich in beta-carotene, which the body converts to vitamin A.",
+                "Excessive vitamin A intake can be toxic and lead to liver damage.",
+                "It plays a role in cell growth and development, particularly in embryonic stages."
+            ],
+            "vitaminB12": [
+                "Vitamin B12 is crucial for red blood cell formation and neurological function.",
+                "It's naturally found only in animal products like meat, dairy, and eggs.",
+                "A deficiency in B12 can cause fatigue, memory problems, and nerve damage.",
+                "Vegans often require B12 supplementation or fortified foods.",
+                "Vitamin B12 helps convert food into energy and supports DNA synthesis.",
+                "The stomach's intrinsic factor is necessary for vitamin B12 absorption in the small intestine."
+            ],
+            "vitaminC": [
+                "Vitamin C supports the immune system and helps reduce the duration of colds.",
+                "It's essential for collagen production, aiding in skin, cartilage, and bone repair.",
+                "Citrus fruits, strawberries, and bell peppers are rich sources of vitamin C.",
+                "Vitamin C improves iron absorption from plant-based foods.",
+                "Scurvy, once common among sailors, is caused by a severe vitamin C deficiency.",
+                "As an antioxidant, vitamin C helps protect cells from environmental damage."
+            ],
+            "vitaminD": [
+                "Vitamin D is known as the 'sunshine vitamin' because our skin produces it from sunlight.",
+                "It is essential for calcium absorption and bone health.",
+                "Low levels of vitamin D are linked to depression, fatigue, and weakened immunity.",
+                "Vitamin D comes in two forms: D2 (plant-based) and D3 (animal-based or sun-derived).",
+                "It may reduce the risk of chronic diseases like osteoporosis and certain cancers.",
+                "People with darker skin may need more sun exposure to produce adequate vitamin D."
+            ],
+            "vitaminE": [
+                "Vitamin E is a powerful antioxidant that helps protect cells from oxidative damage.",
+                "It's often used in skincare products for its ability to improve skin health and reduce scars.",
+                "Vitamin E is fat-soluble and stored in the body's fatty tissues and liver.",
+                "Nuts, seeds, and vegetable oils are among the richest dietary sources of vitamin E.",
+                "A deficiency in vitamin E can lead to nerve and muscle damage over time.",
+                "It helps boost the immune system and may support eye health in aging individuals."
+            ],
+            "vitaminK": [
+                "Vitamin K is essential for blood clotting and helps wounds heal properly.",
+                "There are two main types: K1 (from leafy greens) and K2 (from fermented foods).",
+                "A deficiency in vitamin K can lead to excessive bleeding or easy bruising.",
+                "Vitamin K plays a role in maintaining bone health by supporting calcium regulation.",
+                "Babies are often given a vitamin K shot at birth to prevent bleeding disorders.",
+                "Antibiotics can interfere with vitamin K absorption by disrupting gut bacteria."
+            ]
+        },
+        "noData": {
+            "title": "Please provide vitamin test results to get your analysis",
+            "button": "Fill Vitamin Test Results"
+        },
+        "recommendations": {
+            "title": "Dietary Recommendations",
+            "improve": "To improve your {{vitamin}} levels:",
+            "foodSources": "Best food sources:",
+            "supplements": "Supplement advice:",
+            "lifestyle": "Lifestyle tips:"
+        },
+        "units": {
+            "vitaminA": "μg RAE",
+            "vitaminB12": "pg/mL",
+            "vitaminC": "mg/dL",
+            "vitaminD": "ng/mL",
+            "vitaminE": "mg/dL",
+            "vitaminK": "ng/mL"
+        }
+    }
+}
