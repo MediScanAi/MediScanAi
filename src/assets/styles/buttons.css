@@ -13,12 +13,28 @@
   border: none;
   color: #fff;
   opacity: 0;
-  animation: fadeInUp 0.8s ease-out 0.4s forwards;
+  animation: fadeInUp 1.5s ease-out 0.6s forwards;
   transition:
-    background 0.3s,
-    box-shadow 0.3s,
-    color 0.2s;
+    background 0.5s ease,
+    box-shadow 0.5s ease,
+    color 0.3s ease,
+    transform 1s cubic-bezier(0.25, 1, 0.5, 1);
   box-shadow: 0 2px 12px rgba(70, 102, 229, 0.06);
+}
+
+.secondary-btn {
+  background: transparent;
+  color: #5e8fff;
+  border: 2px solid #5e8fff;
+  font-weight: 600;
+  border-radius: 12px;
+  opacity: 0;
+  animation: fadeInUp 1.7s ease-out 0.8s forwards;
+  transition:
+    background 0.5s ease,
+    box-shadow 0.5s ease,
+    color 0.3s ease,
+    transform 1s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
 .primary-btn:hover,
@@ -29,22 +45,7 @@
   box-shadow:
     0 6px 28px 0 rgba(70, 102, 229, 0.18),
     0 2px 8px 0 rgba(70, 102, 229, 0.14) !important;
-  transform: translateY(-2px) scale(1.015) !important;
-}
-
-.secondary-btn {
-  background: transparent;
-  color: #5e8fff;
-  border: 2px solid #5e8fff;
-  font-weight: 600;
-  border-radius: 12px;
-  transition:
-    background 0.2s,
-    color 0.2s,
-    border-color 0.2s,
-    box-shadow 0.2s;
-  animation: fadeInUp 0.9s ease-out 0.5s forwards;
-  opacity: 0;
+  transform: translateY(-0.5px) scale(1.0008) !important;
 }
 
 .secondary-btn:hover,
@@ -55,7 +56,7 @@
   box-shadow:
     0 6px 28px 0 rgba(70, 102, 229, 0.18),
     0 2px 8px 0 rgba(70, 102, 229, 0.14) !important;
-  transform: translateY(-2px) scale(1.015) !important;
+  transform: translateY(-0.5px) scale(1.0008) !important;
 }
 
 .custom-btn .anticon,
@@ -63,16 +64,18 @@
   font-size: 18px;
   vertical-align: middle;
 }
+
 .custom-btn .anticon:only-child {
   margin-right: 0;
 }
 
 @keyframes fadeInUp {
-  from {
+  0% {
     opacity: 0;
-    transform: translateY(10px);
+    transform: translateY(20px);
   }
-  to {
+
+  100% {
     opacity: 1;
     transform: translateY(0);
   }
@@ -82,6 +85,7 @@
   background: linear-gradient(90deg, #3d5dd3 0%, #1a43c7 100%);
   color: #fff;
 }
+
 .primary-btn.dark:hover,
 .primary-btn.dark:focus {
   background: linear-gradient(90deg, #4666e5 0%, #2b398b 100%);
@@ -94,6 +98,7 @@
   color: #f4f7fc;
   border: 2px solid #f4f7fc;
 }
+
 .secondary-btn.dark:hover,
 .secondary-btn.dark:focus {
   background: #222f53;
