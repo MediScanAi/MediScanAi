@@ -349,6 +349,7 @@ function BloodAnalysis() {
         </Col>
         <Col>
           <img
+            draggable={false}
             src={BloodMultic}
             alt="platform"
             style={{
@@ -501,6 +502,7 @@ function BloodAnalysis() {
                 {item.name}
               </Title>
               <img
+                draggable={false}
                 style={{
                   width: '16%',
                   height: '16%',

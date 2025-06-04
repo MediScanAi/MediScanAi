@@ -52,6 +52,7 @@ function HomePage() {
       text: t('activity.dataUpload.text'),
       icon: (
         <img
+          draggable={false}
           src={fileUpload}
           alt="frame"
           style={{ width: '110px', height: '100%' }}
@@ -64,6 +65,7 @@ function HomePage() {
       text: t('activity.aiAnalysis.text'),
       icon: (
         <img
+          draggable={false}
           src={aiAnalysis}
           alt="frame1"
           style={{ width: '110px', height: '100%' }}
@@ -76,6 +78,7 @@ function HomePage() {
       text: t('activity.insightsReport.text'),
       icon: (
         <img
+          draggable={false}
           src={insightsReport}
           alt="frame2"
           style={{ width: '110px', height: '100%' }}
@@ -88,6 +91,7 @@ function HomePage() {
       text: t('activity.clinicalDecision.text'),
       icon: (
         <img
+          draggable={false}
           src={clinicalDecision}
           alt="frame3"
           style={{ width: '125px', height: '110px' }}
@@ -228,7 +232,7 @@ function HomePage() {
             <PrimaryButton>{t('homepage.consultButton')}</PrimaryButton>
           </Col>
           <Col>
-            <img src={group99} alt="platform" className="platform-image" />
+            <img draggable={false} src={group99} alt="platform" className="platform-image" />
           </Col>
         </Row>
         <Col className="activity-section-column">
@@ -279,9 +283,9 @@ function HomePage() {
             {t('myHealth.description')}
           </p>
           <div className="my-health-step-images">
-            <img src={myHealth} alt="Step 1" className="my-health-image" />
+            <img draggable={false} src={myHealth} alt="Step 1" className="my-health-image" />
             <div className={`arrow ${isDarkMode ? 'dark' : ''}`}>→</div>
-            <img src={myHealth2} alt="Step 2" className="my-health-image" />
+            <img draggable={false} src={myHealth2} alt="Step 2" className="my-health-image" />
           </div>
           <div className="my-health-text-content">
             <PrimaryButton onClick={() => navigate('/profile/info')}>
@@ -305,6 +309,7 @@ function HomePage() {
           </Col>
           <Col>
             <img
+              draggable={false}
               src={isDarkMode ? group101Dark : group101}
               alt="platform"
               className="platform-image"
@@ -395,6 +400,7 @@ function HomePage() {
                     >
                       <div className="partner-image-container">
                         <img
+                          draggable={false}
                           src={partner.image}
                           alt={partner.name}
                           className="partner-image"

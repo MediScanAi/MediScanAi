@@ -277,6 +277,7 @@ const RegisterPage: React.FC = () => {
             </Text>
           </motion.div>
           <motion.img
+            draggable={false}
             src={Notebook3D}
             alt="Welcome"
             className="welcome-register-image"

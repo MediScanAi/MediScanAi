@@ -764,6 +764,7 @@ const ChatWithAi = () => {
                     />
                   ) : (
                     <img
+                      draggable={false}
                       src={MediScanAILogo}
                       alt="MediScan AI"
                       style={{ width: '30px', height: '30px' }}
