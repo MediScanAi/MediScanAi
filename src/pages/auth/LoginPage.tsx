@@ -85,6 +85,7 @@ const LoginPage: React.FC = () => {
             </Text>
           </motion.div>
           <motion.img
+            draggable={false}
             src={MedicalInstruments3D}
             alt="Medical Instruments"
             className="welcome-login-medical"
