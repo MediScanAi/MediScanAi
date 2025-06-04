@@ -26,8 +26,8 @@ const Footer = () => {
       <div className="footer-container">
         <Row gutter={[32, 32]} style={{ width: '100%' }}>
           <Col xs={24} md={12} lg={8}>
-            <img src={theme ? logoDark : logoLight} alt="MediScan AI Logo" className="footer-logo" />
-            <Text className='footer-description'> 
+            <img draggable={false} src={theme ? logoDark : logoLight} alt="MediScan AI Logo" className="footer-logo" />
+            <Text className='footer-description'>
               Advanced AI-powered medical diagnostics platform revolutionizing healthcare accessibility.
             </Text>
             <div className="footer-socials">

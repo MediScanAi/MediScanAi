@@ -288,6 +288,7 @@ function GeneticAnalysis() {
         </Col>
         <Col>
           <img
+            draggable={false}
             src={Gen}
             alt="platform"
             style={{
@@ -487,6 +488,7 @@ function GeneticAnalysis() {
                 {item.name}
               </Title>
               <img
+                draggable={false}
                 style={{
                   width: '16%',
                   height: '16%',

@@ -121,6 +121,7 @@ function AboutUsPage() {
             >
               <div className="about-us-card-content">
                 <img
+                  draggable={false}
                   className="about-us-card-icon"
                   src={item.img}
                   alt={item.alt}
@@ -175,6 +176,7 @@ function AboutUsPage() {
                 >
                   <div className="opinion-item-container">
                     <img
+                      draggable={false}
                       src={opinionImage}
                       alt="opinion"
                       className="opinion-image"

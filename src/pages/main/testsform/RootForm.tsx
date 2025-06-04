@@ -101,6 +101,7 @@ function RootForm(): ReactNode | null {
 
           <div className="medical-image-container">
             <img
+              draggable={false}
               src={laboratoryImage}
               alt={t('rootform.medicalIllustration')}
               style={{ width: '90%' }}
