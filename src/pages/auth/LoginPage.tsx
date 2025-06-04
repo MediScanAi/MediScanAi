@@ -117,6 +117,7 @@ const LoginPage: React.FC = () => {
                 <Form
                   layout="vertical"
                   onFinish={onFinish}
+                  disabled={googleLoading}
                   requiredMark={false}
                 >
                   <Form.Item

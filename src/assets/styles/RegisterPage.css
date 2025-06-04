@@ -51,6 +51,37 @@
   scrollbar-width: none;
   -ms-overflow-style: none;
 }
+.register-spin-container {
+  width: 100%;
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.register-spin-container .ant-spin-nested-loading-children {
+  filter: blur(16px);
+  border-radius: inherit;
+}
+
+.register-spin-container .ant-spin-dot {
+  font-size: 24px;
+}
+
+.register-spin-container .ant-spin-text {
+  margin-top: 8px;
+  font-size: 15px;
+  font-weight: 500;
+  text-shadow: none;
+}
+
+.register-spin-container.dark .ant-spin-dot-item {
+  background-color: #ffffff;
+}
+
+.register-spin-container.dark .ant-spin-text {
+  color: rgba(255, 255, 255, 0.85);
+}
+
 .register-card.wide.dark {
   background: rgba(28, 52, 125, 0.8);
   color: #fff;

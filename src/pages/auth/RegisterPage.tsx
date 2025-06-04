@@ -1,13 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import {
-  Form,
-  Card,
-  Typography,
-  Spin,
-  message,
-  Row,
-  Col,
-} from 'antd';
+import { Form, Card, Typography, Spin, message, Row, Col } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
 import { registerUser, setUser } from '../../app/slices/authSlice';
 import type { AppDispatch, RootState } from '../../app/store';
@@ -146,6 +138,7 @@ const RegisterPage: React.FC = () => {
                 )}
                 <Form
                   layout="vertical"
+                  disabled={waitingVerification || googleLoading}
                   onFinish={onFinish}
                   requiredMark={false}
                   className={waitingVerification ? 'blurred' : ''}
