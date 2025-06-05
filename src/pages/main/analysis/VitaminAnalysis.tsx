@@ -47,8 +47,7 @@ interface LegendPayload {
 const CustomLegend = ({ payload }: { payload: LegendPayload[] }) => (
   <ul style={{ display: 'flex', gap: 20, listStyle: 'none', paddingLeft: 0 }}>
     {payload.map((entry, index: number) => (
-      <li key={`item-${index}`} style={{ color: entry.color }}>
-      </li>
+      <li key={`item-${index}`} style={{ color: entry.color }}></li>
     ))}
   </ul>
 );
@@ -315,9 +314,7 @@ function VitaminAnalysis() {
       <div>
         {vitaminTestData?.vitaminA ? (
           <>
-            <Card
-              className={`card2-design ${isDarkMode ? 'dark' : ''}`}
-            >
+            <Card className={`card2-design ${isDarkMode ? 'dark' : ''}`}>
               <Col
                 className="card2-col"
                 style={{
@@ -330,10 +327,7 @@ function VitaminAnalysis() {
 
             {vitaminTestData.vitaminA && (
               <Card className={`warning-section ${isDarkMode ? 'dark' : ''}`}>
-                <Title
-                  level={3}
-                  className="warning-title"
-                >
+                <Title level={3} className="warning-title">
                   {t('vitaminAnalysis.warnings.title')}
                   <PrimaryButton
                     className="warning-button"
@@ -400,9 +394,7 @@ function VitaminAnalysis() {
             )}
           </>
         ) : (
-          <div
-            className="fill-section-div"
-          >
+          <div className="fill-section-div">
             <Title
               className={`platform-title ${isDarkMode ? 'dark' : ''}`}
               level={width > 768 ? 2 : 4}
@@ -416,9 +408,7 @@ function VitaminAnalysis() {
         )}
       </div>
 
-      <div
-        className="pie-container"
-      >
+      <div className="pie-container">
         {PieData.map((item) => (
           <Card
             key={item.name}
@@ -440,9 +430,7 @@ function VitaminAnalysis() {
                 src={item.image}
               />
             </Row>
-            <p
-              className={`interesting-card-text ${isDarkMode ? 'dark' : ''}`}
-            >
+            <p className={`interesting-card-text ${isDarkMode ? 'dark' : ''}`}>
               {interestingFacts[item.name]}
             </p>
           </Card>

@@ -152,7 +152,7 @@ const LoginPage: React.FC = () => {
                     />
                   </Form.Item>
 
-                  <Form.Item style={{ textAlign: 'right', marginBottom: 10 }}>
+                  <Form.Item className="forgot-form">
                     <Button
                       type="link"
                       className="forgot-password-link"
@@ -165,12 +165,7 @@ const LoginPage: React.FC = () => {
 
                   <Form.Item>
                     <div
-                      style={{
-                        display: 'flex',
-                        gap: 10,
-                        marginTop: 5,
-                        marginBottom: 8,
-                      }}
+                      className="login-form"
                     >
                       <PrimaryButton
                         htmlType="submit"

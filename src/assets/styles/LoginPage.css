@@ -168,11 +168,23 @@
   color: inherit;
 }
 
+.login-form {
+  display: flex;
+  gap: 10px;
+  margin-top: 5px;
+  margin-bottom: 8px;
+}
+
 .login-input {
   border-radius: 12px;
   border-color: #5271c3;
   background: #e6ecfa;
   font-size: 16px;
+}
+
+.forgot-form {
+  text-align: right;
+  margin-bottom: 10px;
 }
 
 .forgot-password-link {

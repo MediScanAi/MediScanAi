@@ -326,9 +326,7 @@ function GeneticAnalysis() {
       <div>
         {geneticTestData?.brca1 ? (
           <div>
-            <Card
-              className={`card2-design ${isDarkMode ? 'dark' : ''}`}
-            >
+            <Card className={`card2-design ${isDarkMode ? 'dark' : ''}`}>
               <Col
                 className="card2-col"
                 style={{
@@ -376,10 +374,7 @@ function GeneticAnalysis() {
             </Card>
 
             <Card className={`warning-section ${isDarkMode ? 'dark' : ''}`}>
-              <Title
-                level={3}
-                className="warning-title"
-              >
+              <Title level={3} className="warning-title">
                 {t('geneticAnalysis.warnings.title')}
                 <PrimaryButton
                   className="warning-button"
@@ -445,9 +440,7 @@ function GeneticAnalysis() {
             </Card>
           </div>
         ) : (
-          <div
-            className="fill-section-div"
-          >
+          <div className="fill-section-div">
             <Title
               className={`platform-title ${isDarkMode ? 'dark' : ''}`}
               level={2}
@@ -461,9 +454,7 @@ function GeneticAnalysis() {
         )}
       </div>
 
-      <div
-        className="pie-container"
-      >
+      <div className="pie-container">
         {PieData.map((item) => (
           <Card
             key={item.name}
@@ -485,9 +476,7 @@ function GeneticAnalysis() {
                 src={item.image}
               />
             </Row>
-            <p
-              className={`interesting-card-text ${isDarkMode ? 'dark' : ''}`}
-            >
+            <p className={`interesting-card-text ${isDarkMode ? 'dark' : ''}`}>
               {interestingFacts[item.key]}
             </p>
           </Card>
