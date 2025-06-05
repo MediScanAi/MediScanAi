@@ -38,6 +38,7 @@
     "failedToSendMessage": "Չհաջողվեց ուղարկել նամակ",
     "copiedToClipboard": "Պատճենվել է պանակում!",
     "thinking": "MediScan AI-ն մտածում է...",
-    "typeYourMessage": "Ներմուծեք ձեր նամակը..."
+    "typeYourMessage": "Ներմուծեք ձեր նամակը...",
+    "failedToParsePDF": "Չհաջողվեց սկանավորել PDF"
   }
 }

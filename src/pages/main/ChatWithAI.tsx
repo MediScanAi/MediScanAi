@@ -112,7 +112,9 @@ const ChatWithAi = () => {
       testDescription += t('chat.geneticTestResults', { geneticTestsString });
 
       if (geneticWarnings?.length > 0) {
-        warningsDescription += t('chat.geneticTestWarnings', { geneticWarnings });
+        warningsDescription += t('chat.geneticTestWarnings', {
+          geneticWarnings,
+        });
       }
     }
 
@@ -123,7 +125,9 @@ const ChatWithAi = () => {
       testDescription += t('chat.vitaminTestResults', { vitaminTestsString });
 
       if (vitaminWarnings?.length > 0) {
-        warningsDescription += t('chat.vitaminTestWarnings', { vitaminWarnings });
+        warningsDescription += t('chat.vitaminTestWarnings', {
+          vitaminWarnings,
+        });
       }
     }
 
@@ -405,7 +409,15 @@ const ChatWithAi = () => {
       onClick: () => {
         if (tests.blood) {
           const bloodTests = Object.entries(tests?.blood || '');
-          setInput(t('chat.bloodTestResults', { bloodTestsString: bloodTests.map(([key, value]) => `${key}: ${value}`).join(', ') }) + t('chat.describeResults') + t('chat.recommendPlan'));
+          setInput(
+            t('chat.bloodTestResults', {
+              bloodTestsString: bloodTests
+                .map(([key, value]) => `${key}: ${value}`)
+                .join(', '),
+            }) +
+              t('chat.describeResults') +
+              t('chat.recommendPlan')
+          );
         } else {
           message.error(t('chat.noBloodTests'));
         }
@@ -421,7 +433,15 @@ const ChatWithAi = () => {
       onClick: () => {
         if (tests.urine) {
           const urineTests = Object.entries(tests?.urine || '');
-          setInput(t('chat.urineTestResults', { urineTestsString: urineTests.map(([key, value]) => `${key}: ${value}`).join(', ') }) + t('chat.describeResults') + t('chat.recommendPlan'));
+          setInput(
+            t('chat.urineTestResults', {
+              urineTestsString: urineTests
+                .map(([key, value]) => `${key}: ${value}`)
+                .join(', '),
+            }) +
+              t('chat.describeResults') +
+              t('chat.recommendPlan')
+          );
         } else {
           message.error(t('chat.noUrineTests'));
         }
@@ -437,7 +457,15 @@ const ChatWithAi = () => {
       onClick: () => {
         if (tests.vitamin) {
           const vitaminsTests = Object.entries(tests?.vitamin || '');
-          setInput(t('chat.vitaminTestResults', { vitaminTestsString: vitaminsTests.map(([key, value]) => `${key}: ${value}`).join(', ') }) + t('chat.describeResults') + t('chat.recommendPlan'));
+          setInput(
+            t('chat.vitaminTestResults', {
+              vitaminTestsString: vitaminsTests
+                .map(([key, value]) => `${key}: ${value}`)
+                .join(', '),
+            }) +
+              t('chat.describeResults') +
+              t('chat.recommendPlan')
+          );
         } else {
           message.error(t('chat.noVitaminTests'));
         }
@@ -453,7 +481,15 @@ const ChatWithAi = () => {
       onClick: () => {
         if (tests.genetic) {
           const geneticTests = Object.entries(tests?.genetic || '');
-          setInput(t('chat.geneticTestResults', { geneticTestsString: geneticTests.map(([key, value]) => `${key}: ${value}`).join(', ') }) + t('chat.describeResults') + t('chat.recommendPlan'));
+          setInput(
+            t('chat.geneticTestResults', {
+              geneticTestsString: geneticTests
+                .map(([key, value]) => `${key}: ${value}`)
+                .join(', '),
+            }) +
+              t('chat.describeResults') +
+              t('chat.recommendPlan')
+          );
         } else {
           message.error(t('chat.noGeneticTests'));
         }
@@ -500,7 +536,7 @@ const ChatWithAi = () => {
                 message.success(t('chat.pdfParsedSuccessfully'));
                 onSuccess?.({}, new XMLHttpRequest());
               } catch {
-                message.error('Failed to parse PDF');
+                message.error(t('chat.failedToParsePDF'));
               } finally {
                 hide();
                 setLoading(false);

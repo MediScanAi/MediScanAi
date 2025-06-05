@@ -58,10 +58,12 @@
 }
 
 .analysis-page.dark {
-  background: radial-gradient(circle at 10% 30%,
-      rgba(28, 52, 125, 0.9),
-      #121e63,
-      rgba(28, 52, 125, 1));
+  background: radial-gradient(
+    circle at 10% 30%,
+    rgba(28, 52, 125, 0.9),
+    #121e63,
+    rgba(28, 52, 125, 1)
+  );
 }
 
 .welcome-text.dark {
@@ -157,10 +159,12 @@
 }
 
 .chat-with-ai.dark {
-  background: radial-gradient(circle at 10% 30%,
-      rgba(28, 52, 125, 0.9),
-      #121e63,
-      rgba(28, 52, 125, 1));
+  background: radial-gradient(
+    circle at 10% 30%,
+    rgba(28, 52, 125, 0.9),
+    #121e63,
+    rgba(28, 52, 125, 1)
+  );
 }
 
 .new-chat-button {
@@ -234,21 +238,37 @@
 }
 
 .message-container.user-message {
-  background: linear-gradient(135deg, rgba(100, 149, 237, 0.15) 0%, rgba(66, 135, 245, 0.15) 100%);
+  background: linear-gradient(
+    135deg,
+    rgba(100, 149, 237, 0.15) 0%,
+    rgba(66, 135, 245, 0.15) 100%
+  );
   border: 1px solid rgba(56, 128, 255, 0.2);
 }
 
 .message-container.user-message.dark {
-  background: linear-gradient(135deg, rgba(56, 128, 255, 0.9) 0%, rgba(0, 80, 200, 0.9) 100%);
+  background: linear-gradient(
+    135deg,
+    rgba(56, 128, 255, 0.9) 0%,
+    rgba(0, 80, 200, 0.9) 100%
+  );
   border: 1px solid rgba(100, 149, 237, 0.5);
 }
 
 .message-container.ai-message {
-  background: linear-gradient(135deg, rgba(240, 248, 255, 0.95) 0%, rgba(225, 239, 255, 0.95) 100%);
+  background: linear-gradient(
+    135deg,
+    rgba(240, 248, 255, 0.95) 0%,
+    rgba(225, 239, 255, 0.95) 100%
+  );
 }
 
 .message-container.ai-message.dark {
-  background: linear-gradient(135deg, rgba(28, 52, 125, 0.7) 0%, rgba(14, 36, 90, 0.7) 100%);
+  background: linear-gradient(
+    135deg,
+    rgba(28, 52, 125, 0.7) 0%,
+    rgba(14, 36, 90, 0.7) 100%
+  );
 }
 
 .message-container:hover .message-buttons {

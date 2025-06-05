@@ -38,6 +38,7 @@
     "failedToSendMessage": "Failed to send message",
     "copiedToClipboard": "Copied to clipboard!",
     "thinking": "MediScan AI is thinking...",
-    "typeYourMessage": "Type your message..."
+    "typeYourMessage": "Type your message...",
+    "failedToParsePDF": "Failed to parse PDF"
   }
 }
