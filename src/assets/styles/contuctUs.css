@@ -1,0 +1,54 @@
+.contact-us-container {
+  width: 100%;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: transparent;
+}
+
+.contact-us-card {
+  background-color: transparent !important;
+  border: none !important;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.contact-us-card-title {
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+.contact-us-card-title.dark {
+  color: #ffffff !important;
+}
+
+.contact-row {
+  margin-top: 20px;
+}
+
+.contact-col {
+  margin-top: 10px;
+}
+
+.contact-text {
+  font-size: 16px;
+}
+
+.contact-text.dark-mode-text {
+  color: #ffffff;
+}
+
+.contact-icon {
+  margin-right: 8px;
+}
+
+.contact-link {
+  color: #1890ff;
+  text-decoration: none;
+}
+
+.contact-link:hover {
+  text-decoration: underline;
+}

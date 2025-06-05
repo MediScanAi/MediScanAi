@@ -43,12 +43,8 @@ const MainTests: React.FC<MainTestsProps> = ({ theme, width }) => {
   ];
 
   return (
-    <div
-      className={`modern-user-profile ${theme ? 'dark' : ''}`}
-    >
-      <Card
-        className="profile-container"
-      >
+    <div className={`modern-user-profile ${theme ? 'dark' : ''}`}>
+      <Card className="profile-container">
         <Title
           level={2}
           className="profile-name"
@@ -89,7 +85,9 @@ const MainTests: React.FC<MainTestsProps> = ({ theme, width }) => {
                       {card.subtitle}
                     </Text>
                   </div>
-                  <span className={`span-container ${isDarkMode ? 'dark' : ''}`}>
+                  <span
+                    className={`span-container ${isDarkMode ? 'dark' : ''}`}
+                  >
                     {t('mainTests.viewMore')}
                   </span>
                 </div>
@@ -98,10 +96,7 @@ const MainTests: React.FC<MainTestsProps> = ({ theme, width }) => {
           ))}
         </Row>
 
-        <Space
-          direction="vertical"
-          className="space-container"
-        >
+        <Space direction="vertical" className="space-container">
           <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
             <PrimaryButton
               onClick={() => navigate('/tests-form/blood-test')}

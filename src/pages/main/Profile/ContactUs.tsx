@@ -8,6 +8,7 @@ import {
   LinkedinOutlined,
 } from '@ant-design/icons';
 import { useTranslation } from 'react-i18next';
+import '../../../assets/styles/contuctUs.css';
 const { Title, Text } = Typography;
 
 export interface ContactUsProps {
@@ -18,87 +19,53 @@ export interface ContactUsProps {
 const ContactUs: React.FC<ContactUsProps> = ({ theme }) => {
   const { t } = useTranslation('contactUs');
   return (
-    <div
-      style={{
-        width: '100%',
-        minHeight: '100%',
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-      }}
-    >
+    <div className="contact-us-container">
       <Card
         title={
           <Title
-            className={theme ? 'dark-mode-text' : ''}
+            className={`contact-us-card-title ${theme ? 'dark' : ''}`}
             level={2}
-            style={{
-              marginBottom: 10,
-              color: '#3498db',
-              fontWeight: 600,
-              fontFamily: 'Poppins',
-            }}
           >
             {t('contactUs.title')}
           </Title>
         }
-        style={{
-          backgroundColor: 'transparent',
-          border: 'none',
-          width: '100%',
-          maxWidth: '1200px',
-          margin: '0 auto',
-        }}
+        className="contact-us-card"
       >
-        <Row style={{ marginTop: '20px' }} gutter={[0, 16]}>
-          <Col style={{ marginTop: '10px' }} span={24}>
-            <Text
-              className={theme ? 'dark-mode-text' : ''}
-              style={{ fontSize: 16, marginTop: '20px' }}
-            >
-              <PhoneOutlined style={{ marginRight: 8 }} />
+        <Row className="contact-row" gutter={[0, 16]}>
+          <Col className="contact-col" span={24}>
+            <Text className={`contact-text ${theme ? 'dark-mode-text' : ''}`}>
+              <PhoneOutlined className="contact-icon" />
               {t('contactUs.phone')}
             </Text>
           </Col>
-          <Col style={{ marginTop: '10px' }} span={24}>
-            <Text
-              className={theme ? 'dark-mode-text' : ''}
-              style={{ fontSize: 16 }}
-            >
-              <MailOutlined style={{ marginRight: 8 }} />
+          <Col className="contact-col" span={24}>
+            <Text className={`contact-text ${theme ? 'dark-mode-text' : ''}`}>
+              <MailOutlined className="contact-icon" />
               {t('contactUs.email')}
-              <a href="mailto:mediscan@center.com"> mediscan@center.com</a>
+              <a href="mailto:mediscan@center.com" className="contact-link"> mediscan@center.com</a>
             </Text>
           </Col>
-          <Col style={{ marginTop: '10px' }} span={24}>
-            <Text
-              className={theme ? 'dark-mode-text' : ''}
-              style={{ fontSize: 16 }}
-            >
-              <EnvironmentOutlined style={{ marginRight: 8 }} />
+          <Col className="contact-col" span={24}>
+            <Text className={`contact-text ${theme ? 'dark-mode-text' : ''}`}>
+              <EnvironmentOutlined className="contact-icon" />
               {t('contactUs.address')}
             </Text>
           </Col>
-          <Col style={{ marginTop: '10px' }} span={24}>
-            <Text
-              className={theme ? 'dark-mode-text' : ''}
-              style={{ fontSize: 16 }}
-            >
-              <ClockCircleOutlined style={{ marginRight: 8 }} />
+          <Col className="contact-col" span={24}>
+            <Text className={`contact-text ${theme ? 'dark-mode-text' : ''}`}>
+              <ClockCircleOutlined className="contact-icon" />
               {t('contactUs.hours')}
             </Text>
           </Col>
-          <Col style={{ marginTop: '10px' }} span={24}>
-            <Text
-              className={theme ? 'dark-mode-text' : ''}
-              style={{ fontSize: 16 }}
-            >
-              <LinkedinOutlined style={{ marginRight: 8 }} />
+          <Col className="contact-col" span={24}>
+            <Text className={`contact-text ${theme ? 'dark-mode-text' : ''}`}>
+              <LinkedinOutlined className="contact-icon" />
               {t('contactUs.linkedin')}
               <a
                 href="https://www.linkedin.com/company/mediscan-center"
                 target="_blank"
                 rel="noopener noreferrer"
+                className="contact-link"
               >
                 Mediscan Center
               </a>
