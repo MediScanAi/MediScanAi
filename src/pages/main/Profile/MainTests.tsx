@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { useAppSelector } from '../../../app/hooks';
 import { motion } from 'framer-motion';
 import PrimaryButton from '../../../components/common/PrimaryButton';
+import '../../../assets/styles/mainTests.css';
 
 const { Title, Text } = Typography;
 
@@ -43,30 +44,15 @@ const MainTests: React.FC<MainTestsProps> = ({ theme, width }) => {
 
   return (
     <div
-      style={{
-        width: '100%',
-        minHeight: '100%',
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-      }}
       className={`modern-user-profile ${theme ? 'dark' : ''}`}
     >
       <Card
         className="profile-container"
-        style={{
-          border: 'none',
-          backgroundColor: 'transparent',
-          width: '100%',
-          maxWidth: '1200px',
-          margin: '0 auto',
-        }}
       >
         <Title
           level={2}
           className="profile-name"
           style={{
-            marginBottom: '40px',
             fontSize: width < 1200 ? '22px' : '36px',
           }}
         >
@@ -80,16 +66,13 @@ const MainTests: React.FC<MainTestsProps> = ({ theme, width }) => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                style={{
-                  marginTop: '50px',
-                }}
+                className="col-motion-div"
               >
                 <div
-                  className={`info-card-motion ${theme ? 'dark' : ''}`}
+                  className={`test-info-card ${theme ? 'dark' : ''}`}
                   onClick={card.onClick}
-                  style={{ cursor: 'pointer', height: '180px' }}
                 >
-                  <div className="info-label" style={{ marginBottom: 16 }}>
+                  <div className="test-info-label">
                     <Text
                       className="info-label-text"
                       strong
@@ -99,24 +82,14 @@ const MainTests: React.FC<MainTestsProps> = ({ theme, width }) => {
                     </Text>
                   </div>
 
-                  <div className="info-value">
+                  <div className="test-info-value">
                     <Text
-                      className="info-value-text"
-                      style={{ marginBottom: 16 }}
+                      className={`${isDarkMode ? 'dark' : ''} test-info-value-text`}
                     >
                       {card.subtitle}
                     </Text>
                   </div>
-                  <span
-                    className={isDarkMode ? 'dark-mode-text' : ''}
-                    style={{
-                      bottom: '20px',
-                      position: 'absolute',
-                      left: '50%',
-                      transform: 'translateX(-50%)',
-                      fontSize: '14px',
-                    }}
-                  >
+                  <span className={`span-container ${isDarkMode ? 'dark' : ''}`}>
                     {t('mainTests.viewMore')}
                   </span>
                 </div>
@@ -127,19 +100,12 @@ const MainTests: React.FC<MainTestsProps> = ({ theme, width }) => {
 
         <Space
           direction="vertical"
-          style={{
-            width: '100%',
-            marginTop: '60px',
-            alignItems: 'center',
-            textAlign: 'center',
-          }}
+          className="space-container"
         >
           <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
             <PrimaryButton
               onClick={() => navigate('/tests-form/blood-test')}
-              style={{
-                marginBottom: '20px',
-              }}
+              className="get-started-button"
             >
               {t('mainTests.getStarted')}
             </PrimaryButton>

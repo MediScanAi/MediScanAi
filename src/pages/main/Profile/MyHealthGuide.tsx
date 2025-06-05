@@ -315,9 +315,7 @@ const MyHealthGuide: React.FC = () => {
               </div>
 
               <div className="modal-footer-note">
-                <InfoCircleOutlined
-                  className="info-circle"
-                />
+                <InfoCircleOutlined className="info-circle" />
                 <Text type="secondary">
                   {t('healthGuide.guide.connectModal.privacyNote')}
                 </Text>
@@ -340,10 +338,7 @@ const MyHealthGuide: React.FC = () => {
               className={`info-text ${isDarkMode ? 'dark' : ''}`}
             >
               {t('healthGuide.guide.dataPrivacyText')}
-              <a
-                onClick={() => navigate('/about-us')}
-                className="text-a"
-              >
+              <a onClick={() => navigate('/about-us')} className="text-a">
                 {t('healthGuide.guide.privacyPolicy')}
               </a>
             </Text>
