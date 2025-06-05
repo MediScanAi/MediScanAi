@@ -22,6 +22,7 @@ import { useTranslation } from 'react-i18next';
 import { auth } from '../../../api/authApi';
 import SecondaryButton from '../../../components/common/SecondaryButton';
 import PrimaryButton from '../../../components/common/PrimaryButton';
+import '../../../assets/styles/analysis.css';
 
 const { Title, Text } = Typography;
 
@@ -284,7 +285,7 @@ const AnalysisHistory: React.FC<AnalysisHistoryProps> = ({ theme, width }) => {
     }[]
   ) => {
     return (
-      <div style={{ padding: '16px' }}>
+      <div className="task-card">
         <Row gutter={[24, 16]} className="info-grid">
           {testArray.map(
             (test, index) =>
@@ -331,7 +332,7 @@ const AnalysisHistory: React.FC<AnalysisHistoryProps> = ({ theme, width }) => {
     bloodTestData || urineTestData || vitaminTestData || geneticTestData;
 
   return (
-    <div style={{ width: '70vw' }}>
+    <div className="history-container">
       <Col>
         <Card className={`analysis-card ${theme ? 'dark-mode-text' : ''}`}>
           <Title

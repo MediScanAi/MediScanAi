@@ -353,3 +353,11 @@
 .new-button {
   width: 100%;
 }
+
+.task-card {
+  padding: 16px;
+}
+
+.history-container {
+  width: 70vw;
+}

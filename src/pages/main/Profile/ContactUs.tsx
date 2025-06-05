@@ -42,7 +42,10 @@ const ContactUs: React.FC<ContactUsProps> = ({ theme }) => {
             <Text className={`contact-text ${theme ? 'dark-mode-text' : ''}`}>
               <MailOutlined className="contact-icon" />
               {t('contactUs.email')}
-              <a href="mailto:mediscan@center.com" className="contact-link"> mediscan@center.com</a>
+              <a href="mailto:mediscan@center.com" className="contact-link">
+                {' '}
+                mediscan@center.com
+              </a>
             </Text>
           </Col>
           <Col className="contact-col" span={24}>
