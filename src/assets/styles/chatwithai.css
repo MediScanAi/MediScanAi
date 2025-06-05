@@ -1,7 +1,6 @@
 .chat-with-ai {
   background: radial-gradient(circle at 10% 30%, #b3d1ff, #e6ecfa, #ffffff);
   border-top: none;
-  height: calc(100vh - 64px);
 }
 
 .chat-with-ai.dark {
@@ -27,15 +26,26 @@
 
 .chat-with-ai-label {
   color: #000000;
+  margin-left: 27px;
 }
 
 .chat-with-ai-label.dark {
   color: #ffffff;
 }
 
+.chat-item-hover {
+  border-radius: 13px;
+  margin-bottom: 8px;
+  border-bottom: none !important;
+}
+
 .chat-item-hover:hover {
-  background-color: #aeaeba !important;
   transition: background-color 0.2s ease;
+  background-color: #d0d0d3 !important;
+}
+
+.chat-item-hover.dark:hover {
+  background-color: #525252 !important;
 }
 
 .chat-item-title {
@@ -82,4 +92,53 @@
 
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
   background-color: #a8a8a8;
+}
+
+.chats-list-container {
+  padding: 16px;
+  margin-top: -5px;
+}
+
+.list-item-div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  gap: 8px;
+}
+
+.more-icon {
+  cursor: pointer;
+  color: #000000;
+  flex-shrink: 0;
+}
+
+.more-icon.dark {
+  color: #ffffff;
+}
+
+.role-image {
+  width: 30px;
+  height: 30px;
+}
+
+.role-text {
+  width: 100%;
+  padding-right: 24px;
+}
+
+.plus-icon {
+  font-size: 25px;
+  cursor: pointer;
+  margin-right: 10px;
+}
+.plus-icon.dark {
+  color: #ffffff !important;
+}
+
+.sider-div {
+  display: flex;
+  justify-content: center;
+  padding: 16px;
+  margin-top: 10px;
 }

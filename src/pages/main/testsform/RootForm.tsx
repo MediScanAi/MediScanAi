@@ -79,7 +79,7 @@ function RootForm(): ReactNode | null {
   return (
     <div className={`root-form-container ${isDarkMode ? ' dark' : ''}`}>
       <SecondaryButton
-        style={{ left: '50px', marginTop: '20px' }}
+        className="back-button"
         onClick={() => navigate('/profile/info')}
       >
         {t('rootForm.backButton')}

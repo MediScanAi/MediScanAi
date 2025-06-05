@@ -126,7 +126,8 @@
           "copyUid": {
             "title": "Copy Your Unique ID",
             "button": {
-              "copy": "Copy"
+              "copy": "Copy",
+              "copied": "Copied"
             }
           },
           "runShortcut": {

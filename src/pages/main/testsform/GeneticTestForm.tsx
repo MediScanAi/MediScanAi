@@ -162,7 +162,7 @@ function GeneticTestForm() {
           ))}
         </Row>
 
-        <Form.Item style={{ textAlign: 'center', marginTop: 32 }}>
+        <Form.Item className="genetic-form-item">
           <PrimaryButton type="primary" htmlType="submit" size="large">
             {updatedData ? t('geneticTest.update') : t('geneticTest.submit')}
           </PrimaryButton>

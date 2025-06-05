@@ -75,9 +75,7 @@ const CustomTooltip = ({ active, payload }: CustomTooltipProps) => {
 const CustomLegend = ({ payload }: { payload: LegendPayload[] }) => (
   <ul style={{ display: 'flex', gap: 20, listStyle: 'none', paddingLeft: 0 }}>
     {payload.map((entry, index: number) => (
-      <li key={`item-${index}`} style={{ color: entry.color }}>
-        ● {entry.value}
-      </li>
+      <li key={`item-${index}`} style={{ color: entry.color }}></li>
     ))}
   </ul>
 );
@@ -407,16 +405,11 @@ function UrineAnalysis() {
       <div>
         {urineTestData ? (
           <div>
-            <Card
-              className={`card2-design ${isDarkMode ? 'dark' : ''}`}
-              style={{ border: 'none' }}
-            >
+            <Card className={`card2-design ${isDarkMode ? 'dark' : ''}`}>
               <Col
+                className="card2-col"
                 style={{
-                  display: 'flex',
-                  flexDirection: 'row',
-                  alignItems: 'center',
-                  justifyContent: 'center',
+                  flexDirection: width > 768 ? 'row' : 'column',
                 }}
               >
                 <CustomBarChart data={BarData.slice(4)} />
@@ -463,13 +456,10 @@ function UrineAnalysis() {
               </Col>
             </Card>
             <Card className={`warning-section ${isDarkMode ? 'dark' : ''}`}>
-              <Title
-                level={3}
-                style={{ color: 'rgb(255, 0, 0)', fontFamily: 'Poppins' }}
-              >
+              <Title level={3} className="warning-title">
                 {t('urineAnalysis.warnings.title')}
                 <PrimaryButton
-                  style={{ marginLeft: 20 }}
+                  className="warning-button"
                   onClick={() => {
                     const warnings = getUrineDiseaseRisks(
                       urineTestData as UrineTestFormValues
@@ -485,20 +475,18 @@ function UrineAnalysis() {
                   {t('urineAnalysis.warnings.analyzeButton')}
                 </PrimaryButton>
               </Title>
-              <ul style={{ paddingLeft: 20 }}>
+              <ul className="waning-ul">
                 {urineWarnings.length > 0 ? (
                   urineWarnings.map((risk, index) => (
                     <li
                       className={`warning-section-text ${isDarkMode ? 'dark' : ''}`}
                       key={index}
-                      style={{ fontSize: 16, marginBottom: 8 }}
                     >
                       {risk}
                       {diseaseExplanations[risk] && (
                         <div>
                           <Button
                             type="link"
-                            style={{ padding: 0 }}
                             onClick={() => toggleWarning(risk)}
                           >
                             {expandedWarnings[risk]
@@ -511,7 +499,6 @@ function UrineAnalysis() {
                               style={{
                                 marginTop: 5,
                                 fontSize: 14,
-                                color: '#555',
                               }}
                             >
                               {diseaseExplanations[risk]}
@@ -522,7 +509,7 @@ function UrineAnalysis() {
                     </li>
                   ))
                 ) : (
-                  <p style={{ fontSize: 16 }}>
+                  <p className="warning-section-text">
                     {t('urineAnalysis.warnings.allGood')}
                   </p>
                 )}
@@ -530,18 +517,9 @@ function UrineAnalysis() {
             </Card>
           </div>
         ) : (
-          <div
-            style={{
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-              justifyContent: 'center',
-              height: '100%',
-            }}
-          >
+          <div className="fill-section-div">
             <Title
               className={`platform-title ${isDarkMode ? 'dark' : ''}`}
-              style={{ textAlign: 'center' }}
               level={2}
             >
               {t('urineAnalysis.noData.title')}
@@ -553,16 +531,7 @@ function UrineAnalysis() {
         )}
       </div>
 
-      <div
-        style={{
-          width: '90%',
-          margin: '20px auto 40px auto',
-          display: 'flex',
-          flexWrap: 'wrap',
-          justifyContent: 'space-between',
-          gap: '20px',
-        }}
-      >
+      <div className="pie-container">
         {BarData.map((item) => (
           <Card
             key={item.name}
@@ -580,17 +549,11 @@ function UrineAnalysis() {
               </Title>
               <img
                 draggable={false}
-                style={{
-                  width: '16%',
-                  height: '16%',
-                }}
+                className="pie-data-image"
                 src={item.image}
               />
             </Row>
-            <p
-              className={`interesting-card-text ${isDarkMode ? 'dark' : ''}`}
-              style={{ margin: 0, fontSize: 16 }}
-            >
+            <p className={`interesting-card-text ${isDarkMode ? 'dark' : ''}`}>
               {interestingFacts[item.name]}
             </p>
           </Card>

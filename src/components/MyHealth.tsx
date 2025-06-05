@@ -749,22 +749,17 @@ const HealthPage: React.FC = () => {
       </div>
 
       <div className="health-content">
-        <Row
-          gutter={[24, 24]}
-          style={{ display: 'flex', alignItems: 'stretch' }}
-          className="health-main-row"
-        >
+        <Row gutter={[24, 24]} className="health-main-row">
           <Col
             xs={24}
             lg={8}
-            style={{ display: 'flex' }}
             className="profile-column"
           >
             <motion.div
               initial={{ x: -30, opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
               transition={{ duration: 0.5, delay: 0.2 }}
-              style={{ flex: 1 }}
+              className="profile-motion-div"
             >
               <Card className={`profile-card ${isDarkMode ? 'dark' : ''}`}>
                 <div className="profile-header">

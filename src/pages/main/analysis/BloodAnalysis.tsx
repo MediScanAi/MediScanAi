@@ -74,9 +74,7 @@ const CustomTooltip = ({ active, payload }: CustomTooltipProps) => {
 const CustomLegend = ({ payload }: { payload: LegendPayload[] }) => (
   <ul style={{ display: 'flex', gap: 20, listStyle: 'none', paddingLeft: 0 }}>
     {payload.map((entry, index: number) => (
-      <li key={`item-${index}`} style={{ color: entry.color }}>
-        ● {entry.value}
-      </li>
+      <li key={`item-${index}`} style={{ color: entry.color }}></li>
     ))}
   </ul>
 );
@@ -326,8 +324,6 @@ function BloodAnalysis() {
             className={`welcome-text ${isDarkMode ? 'dark' : ''}`}
             style={{
               fontSize: width > 768 ? '30px' : '20px',
-              marginTop: 50,
-              marginLeft: 5,
             }}
           >
             {t('bloodAnalysis.title')}
@@ -356,30 +352,21 @@ function BloodAnalysis() {
       <div>
         {bloodTestData?.cholesterol ? (
           <div>
-            <Card
-              className={`card2-design ${isDarkMode ? 'dark' : ''}`}
-              style={{ border: 'none' }}
-            >
+            <Card className={`card2-design ${isDarkMode ? 'dark' : ''}`}>
               <Col
+                className="card2-col"
                 style={{
-                  display: 'flex',
-                  flexDirection: 'row',
-                  alignItems: 'center',
-                  justifyContent: 'center',
+                  flexDirection: width > 768 ? 'row' : 'column',
                 }}
               >
                 <CustomBarChart data={BarData} />
               </Col>
             </Card>
-
             <Card className={`warning-section ${isDarkMode ? 'dark' : ''}`}>
-              <Title
-                level={3}
-                style={{ color: 'rgb(255, 0, 0)', fontFamily: 'Poppins' }}
-              >
+              <Title level={3} className="warning-title">
                 {t('bloodAnalysis.warnings.title')}
                 <PrimaryButton
-                  style={{ marginLeft: 20 }}
+                  className="warning-button"
                   onClick={() => {
                     const warnings = getDiseaseRisks(
                       bloodTestData as BloodTestFormValues
@@ -395,20 +382,18 @@ function BloodAnalysis() {
                   {t('bloodAnalysis.warnings.analyzeButton')}
                 </PrimaryButton>
               </Title>
-              <ul style={{ paddingLeft: 20 }}>
+              <ul className="waning-ul">
                 {getDiseaseRisks(bloodTestData).length > 0 ? (
                   getDiseaseRisks(bloodTestData).map((risk, index) => (
                     <li
                       className={`warning-section-text ${isDarkMode ? 'dark' : ''}`}
                       key={index}
-                      style={{ fontSize: 16, marginBottom: 8 }}
                     >
                       {risk}
                       {diseaseExplanations[risk] && (
                         <div>
                           <Button
                             type="link"
-                            style={{ padding: 0, color: '#3498db' }}
                             onClick={() => toggleWarning(risk)}
                           >
                             {expandedWarnings[risk]
@@ -427,7 +412,7 @@ function BloodAnalysis() {
                     </li>
                   ))
                 ) : (
-                  <p style={{ fontSize: 16 }}>
+                  <p className="warning-section-text">
                     {t('bloodAnalysis.warnings.allGood')}
                   </p>
                 )}
@@ -435,18 +420,9 @@ function BloodAnalysis() {
             </Card>
           </div>
         ) : (
-          <div
-            style={{
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-              justifyContent: 'center',
-              height: '100%',
-            }}
-          >
+          <div className="fill-section-div">
             <Title
               className={`platform-title ${isDarkMode ? 'dark' : ''}`}
-              style={{ textAlign: 'center' }}
               level={2}
             >
               {t('bloodAnalysis.noData.title')}
@@ -458,16 +434,7 @@ function BloodAnalysis() {
         )}
       </div>
 
-      <div
-        style={{
-          width: '90%',
-          margin: '20px auto 40px auto',
-          display: 'flex',
-          flexWrap: 'wrap',
-          justifyContent: 'space-between',
-          gap: '20px',
-        }}
-      >
+      <div className="pie-container">
         {PieData.map((item) => (
           <Card
             key={item.key}
@@ -485,17 +452,11 @@ function BloodAnalysis() {
               </Title>
               <img
                 draggable={false}
-                style={{
-                  width: '16%',
-                  height: '16%',
-                }}
+                className="pie-data-image"
                 src={item.image}
               />
             </Row>
-            <p
-              className={`interesting-card-text ${isDarkMode ? 'dark' : ''}`}
-              style={{ margin: 0, fontSize: 16 }}
-            >
+            <p className={`interesting-card-text ${isDarkMode ? 'dark' : ''}`}>
               {interestingFacts[item.key]}
             </p>
           </Card>
