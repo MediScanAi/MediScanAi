@@ -54,8 +54,14 @@ const ForgotPasswordForm: React.FC<ForgotPasswordFormProps> = ({
             label={t('forgotPassword.email')}
             name="resetEmail"
             rules={[
-              { required: true, message: t('forgotPassword.pleaseEnterYourEmail') },
-              { type: 'email', message: t('forgotPassword.pleaseEnterAValidEmail') },
+              {
+                required: true,
+                message: t('forgotPassword.pleaseEnterYourEmail'),
+              },
+              {
+                type: 'email',
+                message: t('forgotPassword.pleaseEnterAValidEmail'),
+              },
             ]}
           >
             <Input
@@ -67,18 +73,13 @@ const ForgotPasswordForm: React.FC<ForgotPasswordFormProps> = ({
           <Text
             className="login-description"
             type="secondary"
-            style={{ marginBottom: 20, display: 'block' }}
           >
-            {t('forgotPassword.youWillReceiveAnEmailWithALinkToResetYourPassword')}
+            {t(
+              'forgotPassword.youWillReceiveAnEmailWithALinkToResetYourPassword'
+            )}
           </Text>
           <Form.Item
-            style={{
-              display: 'flex',
-              gap: 10,
-              marginTop: 5,
-              marginBottom: 8,
-              justifyContent: 'center',
-            }}
+            className="forgot-button-section"
           >
             <PrimaryButton htmlType="submit" loading={loading}>
               {t('forgotPassword.resetPassword')}
@@ -86,9 +87,7 @@ const ForgotPasswordForm: React.FC<ForgotPasswordFormProps> = ({
             <SecondaryButton
               htmlType="button"
               onClick={onCancel}
-              style={{
-                marginLeft: 10,
-              }}
+              className="forgot-button"
             >
               {t('forgotPassword.cancel')}
             </SecondaryButton>
