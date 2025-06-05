@@ -321,3 +321,8 @@
   background-color: transparent !important;
   border: none !important;
 }
+
+.genetic-form-item {
+  text-align: center;
+  margin-top: 32px;
+}
