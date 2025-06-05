@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import PrimaryButton from './common/PrimaryButton';
 import SecondaryButton from './common/SecondaryButton';
+import { useTranslation } from 'react-i18next';
 
 const { Title, Text } = Typography;
 
@@ -19,14 +20,14 @@ const ForgotPasswordForm: React.FC<ForgotPasswordFormProps> = ({
   isDarkMode,
 }) => {
   const [loading, setLoading] = useState(false);
-
+  const { t } = useTranslation('forgotPassword');
   const handleForgotPassword = async (email: string) => {
     setLoading(true);
     try {
       await sendResetPasswordEmail(email);
-      message.success('Password reset email sent!');
+      message.success(t('forgotPassword.passwordResetEmailSent'));
     } catch (_) {
-      message.error('Failed to send reset email.');
+      message.error(t('forgotPassword.failedToSendResetEmail'));
     } finally {
       setLoading(false);
     }
@@ -46,19 +47,19 @@ const ForgotPasswordForm: React.FC<ForgotPasswordFormProps> = ({
     >
       <Card className={`login-card${isDarkMode ? ' dark' : ''}`}>
         <Title level={3} className="login-title">
-          Reset your password
+          {t('forgotPassword.resetPassword')}
         </Title>
         <Form layout="vertical" onFinish={onFinish} requiredMark={false}>
           <Form.Item
-            label="Email"
+            label={t('forgotPassword.email')}
             name="resetEmail"
             rules={[
-              { required: true, message: 'Please enter your email' },
-              { type: 'email', message: 'Please enter a valid email' },
+              { required: true, message: t('forgotPassword.pleaseEnterYourEmail') },
+              { type: 'email', message: t('forgotPassword.pleaseEnterAValidEmail') },
             ]}
           >
             <Input
-              placeholder="Enter your email"
+              placeholder={t('forgotPassword.enterYourEmail')}
               className="login-input"
               size="large"
             />
@@ -68,7 +69,7 @@ const ForgotPasswordForm: React.FC<ForgotPasswordFormProps> = ({
             type="secondary"
             style={{ marginBottom: 20, display: 'block' }}
           >
-            You will receive an email with a link to reset your password.
+            {t('forgotPassword.youWillReceiveAnEmailWithALinkToResetYourPassword')}
           </Text>
           <Form.Item
             style={{
@@ -80,7 +81,7 @@ const ForgotPasswordForm: React.FC<ForgotPasswordFormProps> = ({
             }}
           >
             <PrimaryButton htmlType="submit" loading={loading}>
-              Reset Password
+              {t('forgotPassword.resetPassword')}
             </PrimaryButton>
             <SecondaryButton
               htmlType="button"
@@ -89,13 +90,13 @@ const ForgotPasswordForm: React.FC<ForgotPasswordFormProps> = ({
                 marginLeft: 10,
               }}
             >
-              Cancel
+              {t('forgotPassword.cancel')}
             </SecondaryButton>
           </Form.Item>
           <Text className="register-text">
-            Don't have an account?{' '}
+            {t('forgotPassword.dontHaveAnAccount')}
             <Link to="/auth/register" className="register-link">
-              Register
+              {t('forgotPassword.register')}
             </Link>
           </Text>
         </Form>

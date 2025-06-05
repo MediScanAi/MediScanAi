@@ -150,9 +150,9 @@
   min-width: fit-content;
   padding: 44px 44px 30px 44px;
   border-radius: 20px;
-  box-shadow: 0 8px 32px rgba(34, 56, 122, 0.23); /* same as register */
-  background: rgba(255, 255, 255, 0.94); /* same as register */
-  border: 1.5px solid #c2daff50; /* same as register */
+  box-shadow: 0 8px 32px rgba(34, 56, 122, 0.23); 
+  background: rgba(255, 255, 255, 0.94); 
+  border: 1.5px solid #c2daff50; 
   position: relative;
   overflow: visible;
 }
