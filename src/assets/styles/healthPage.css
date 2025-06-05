@@ -1483,3 +1483,19 @@
 .loading-subtitle.dark {
   color: #ffffff;
 }
+
+.guide-button {
+  width: 100%;
+  margin-top: auto;
+  display: flex;
+  justify-content: center;
+}
+
+.info-circle {
+  margin-right: 8px;
+  color: #1890ff;
+}
+
+.text-a {
+  margin-left: 4px;
+}

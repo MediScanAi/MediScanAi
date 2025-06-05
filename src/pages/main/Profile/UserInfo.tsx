@@ -212,9 +212,7 @@ const UserInfo: React.FC<UserInfoProps> = ({ theme }) => {
         className={`modern-user-profile ${theme ? 'dark' : ''}`}
       >
         <Form form={form} style={{ width: '100%' }}>
-          <Card
-            className={`profile-container ${theme ? 'dark' : ''}`}
-          >
+          <Card className={`profile-container ${theme ? 'dark' : ''}`}>
             <div className="profile-header-container">
               <div className="profile-avatar-container">
                 <UserAvatar className="profile-avatar" size={80} user={user!} />
