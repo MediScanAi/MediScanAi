@@ -793,6 +793,20 @@
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 }
 
+.health-main-row {
+  display: flex;
+  align-items: stretch;
+}
+
+.profile-column {
+  display: flex;
+  flex: 1;
+}
+
+.profile-motion-div {
+  
+}
+
 @keyframes fadeInUp {
   from {
     opacity: 0;

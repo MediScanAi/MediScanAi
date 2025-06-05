@@ -70,17 +70,12 @@ const ForgotPasswordForm: React.FC<ForgotPasswordFormProps> = ({
               size="large"
             />
           </Form.Item>
-          <Text
-            className="login-description"
-            type="secondary"
-          >
+          <Text className="login-description" type="secondary">
             {t(
               'forgotPassword.youWillReceiveAnEmailWithALinkToResetYourPassword'
             )}
           </Text>
-          <Form.Item
-            className="forgot-button-section"
-          >
+          <Form.Item className="forgot-button-section">
             <PrimaryButton htmlType="submit" loading={loading}>
               {t('forgotPassword.resetPassword')}
             </PrimaryButton>
