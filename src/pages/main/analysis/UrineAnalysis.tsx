@@ -76,7 +76,6 @@ const CustomLegend = ({ payload }: { payload: LegendPayload[] }) => (
   <ul style={{ display: 'flex', gap: 20, listStyle: 'none', paddingLeft: 0 }}>
     {payload.map((entry, index: number) => (
       <li key={`item-${index}`} style={{ color: entry.color }}>
-        ● {entry.value}
       </li>
     ))}
   </ul>
@@ -409,15 +408,11 @@ function UrineAnalysis() {
           <div>
             <Card
               className={`card2-design ${isDarkMode ? 'dark' : ''}`}
-              style={{ border: 'none' }}
             >
               <Col
+                className="card2-col"
                 style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
                   flexDirection: width > 768 ? 'row' : 'column',
-
                 }}
               >
                 <CustomBarChart data={BarData.slice(4)} />
@@ -466,11 +461,11 @@ function UrineAnalysis() {
             <Card className={`warning-section ${isDarkMode ? 'dark' : ''}`}>
               <Title
                 level={3}
-                style={{ color: 'rgb(255, 0, 0)', fontFamily: 'Poppins' }}
+                className="warning-title"
               >
                 {t('urineAnalysis.warnings.title')}
                 <PrimaryButton
-                  style={{ marginLeft: 20 }}
+                  className="warning-button"
                   onClick={() => {
                     const warnings = getUrineDiseaseRisks(
                       urineTestData as UrineTestFormValues
@@ -486,20 +481,18 @@ function UrineAnalysis() {
                   {t('urineAnalysis.warnings.analyzeButton')}
                 </PrimaryButton>
               </Title>
-              <ul style={{ paddingLeft: 20 }}>
+              <ul className="waning-ul">
                 {urineWarnings.length > 0 ? (
                   urineWarnings.map((risk, index) => (
                     <li
                       className={`warning-section-text ${isDarkMode ? 'dark' : ''}`}
                       key={index}
-                      style={{ fontSize: 16, marginBottom: 8 }}
                     >
                       {risk}
                       {diseaseExplanations[risk] && (
                         <div>
                           <Button
                             type="link"
-                            style={{ padding: 0 }}
                             onClick={() => toggleWarning(risk)}
                           >
                             {expandedWarnings[risk]
@@ -522,7 +515,7 @@ function UrineAnalysis() {
                     </li>
                   ))
                 ) : (
-                  <p style={{ fontSize: 16 }}>
+                  <p className="warning-section-text">
                     {t('urineAnalysis.warnings.allGood')}
                   </p>
                 )}
@@ -531,17 +524,10 @@ function UrineAnalysis() {
           </div>
         ) : (
           <div
-            style={{
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-              justifyContent: 'center',
-              height: '100%',
-            }}
+            className="fill-section-div"
           >
             <Title
               className={`platform-title ${isDarkMode ? 'dark' : ''}`}
-              style={{ textAlign: 'center' }}
               level={2}
             >
               {t('urineAnalysis.noData.title')}
@@ -554,14 +540,7 @@ function UrineAnalysis() {
       </div>
 
       <div
-        style={{
-          width: '90%',
-          margin: '20px auto 40px auto',
-          display: 'flex',
-          flexWrap: 'wrap',
-          justifyContent: 'space-between',
-          gap: '20px',
-        }}
+        className="pie-container"
       >
         {BarData.map((item) => (
           <Card
@@ -580,16 +559,12 @@ function UrineAnalysis() {
               </Title>
               <img
                 draggable={false}
-                style={{
-                  width: '16%',
-                  height: '16%',
-                }}
+                className="pie-data-image"
                 src={item.image}
               />
             </Row>
             <p
               className={`interesting-card-text ${isDarkMode ? 'dark' : ''}`}
-              style={{ margin: 0, fontSize: 16 }}
             >
               {interestingFacts[item.name]}
             </p>

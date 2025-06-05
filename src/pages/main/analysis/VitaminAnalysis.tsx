@@ -48,7 +48,6 @@ const CustomLegend = ({ payload }: { payload: LegendPayload[] }) => (
   <ul style={{ display: 'flex', gap: 20, listStyle: 'none', paddingLeft: 0 }}>
     {payload.map((entry, index: number) => (
       <li key={`item-${index}`} style={{ color: entry.color }}>
-        ● {entry.value}
       </li>
     ))}
   </ul>
@@ -318,13 +317,10 @@ function VitaminAnalysis() {
           <>
             <Card
               className={`card2-design ${isDarkMode ? 'dark' : ''}`}
-              style={{ border: 'none' }}
             >
               <Col
+                className="card2-col"
                 style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
                   flexDirection: width > 768 ? 'row' : 'column',
                 }}
               >
@@ -336,11 +332,11 @@ function VitaminAnalysis() {
               <Card className={`warning-section ${isDarkMode ? 'dark' : ''}`}>
                 <Title
                   level={3}
-                  style={{ color: 'rgb(255, 0, 0)', fontFamily: 'Poppins' }}
+                  className="warning-title"
                 >
                   {t('vitaminAnalysis.warnings.title')}
                   <PrimaryButton
-                    style={{ marginLeft: 20 }}
+                    className="warning-button"
                     onClick={() => {
                       const warnings = getVitaminRisks(
                         vitaminTestData as VitaminTestFormValues
@@ -356,7 +352,7 @@ function VitaminAnalysis() {
                     {t('vitaminAnalysis.warnings.analyzeButton')}
                   </PrimaryButton>
                 </Title>
-                <ul style={{ paddingLeft: 20 }}>
+                <ul className="waning-ul">
                   {getVitaminRisks(vitaminTestData as VitaminTestFormValues)
                     .length > 0 ? (
                     getVitaminRisks(
@@ -365,14 +361,12 @@ function VitaminAnalysis() {
                       <li
                         className={`warning-section-text ${isDarkMode ? 'dark' : ''}`}
                         key={index}
-                        style={{ fontSize: 16, marginBottom: 8 }}
                       >
                         {risk}
                         {vitaminExplanations[risk] && (
                           <div>
                             <Button
                               type="link"
-                              style={{ padding: 0, color: '#3498db' }}
                               onClick={() => toggleWarning(risk)}
                             >
                               {expandedWarnings[risk]
@@ -397,7 +391,6 @@ function VitaminAnalysis() {
                   ) : (
                     <p
                       className={`warning-section-text ${isDarkMode ? 'dark' : ''}`}
-                      style={{ fontSize: 16 }}
                     >
                       {t('vitaminAnalysis.warnings.allGood')}
                     </p>
@@ -408,17 +401,10 @@ function VitaminAnalysis() {
           </>
         ) : (
           <div
-            style={{
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-              justifyContent: 'center',
-              height: '100%',
-            }}
+            className="fill-section-div"
           >
             <Title
               className={`platform-title ${isDarkMode ? 'dark' : ''}`}
-              style={{ textAlign: 'center' }}
               level={width > 768 ? 2 : 4}
             >
               {t('vitaminAnalysis.noData.title')}
@@ -431,14 +417,7 @@ function VitaminAnalysis() {
       </div>
 
       <div
-        style={{
-          width: '90%',
-          margin: '20px auto 40px auto',
-          display: 'flex',
-          flexWrap: 'wrap',
-          justifyContent: 'space-between',
-          gap: '20px',
-        }}
+        className="pie-container"
       >
         {PieData.map((item) => (
           <Card
@@ -457,16 +436,12 @@ function VitaminAnalysis() {
               </Title>
               <img
                 draggable={false}
-                style={{
-                  width: '16%',
-                  height: '16%',
-                }}
+                className="pie-data-image"
                 src={item.image}
               />
             </Row>
             <p
               className={`interesting-card-text ${isDarkMode ? 'dark' : ''}`}
-              style={{ margin: 0, fontSize: 16 }}
             >
               {interestingFacts[item.name]}
             </p>
