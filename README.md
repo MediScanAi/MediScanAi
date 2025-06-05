@@ -6,17 +6,17 @@
 
 ## 📚 Table of Contents
 
-* [✨ Features](#-features)
-* [📸 Screenshots](#-screenshots)
-* [🛠️ Tech Stack](#️-tech-stack)
-* [🏗️ Project Structure](#-project-structure)
-* [🚀 Getting Started](#-getting-started)
-* [🔐 Environment Variables](#-environment-variables)
-* [🌍 Internationalization (i18n)](#-internationalization-i18n)
-* [🎨 Styling](#-styling)
-* [🤝 Contributing](#-contributing)
-* [📄 License](#-license)
-* [📬 Contact](#-contact)
+- [✨ Features](#-features)
+- [📸 Screenshots](#-screenshots)
+- [🛠️ Tech Stack](#️-tech-stack)
+- [🏗️ Project Structure](#-project-structure)
+- [🚀 Getting Started](#-getting-started)
+- [🔐 Environment Variables](#-environment-variables)
+- [🌍 Internationalization (i18n)](#-internationalization-i18n)
+- [🎨 Styling](#-styling)
+- [🤝 Contributing](#-contributing)
+- [📄 License](#-license)
+- [📬 Contact](#-contact)
 
 ---
 
@@ -46,8 +46,8 @@
 
 ## 🛠️ Tech Stack
 
-| Layer              | Technology                                                  |
-| ------------------ | ----------------------------------------------------------- |
+| Layer        | Technology                                                  |
+| ------------ | ----------------------------------------------------------- |
 | **Frontend** | React, TypeScript, Vite, Redux Toolkit, Ant Design          |
 | **Backend**  | Firebase (Auth, Firestore), Cloud Functions with express.js |
 | **AI**       | OpenAI API (chat & insights)                                |
