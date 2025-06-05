@@ -331,13 +331,13 @@ const AnalysisHistory: React.FC<AnalysisHistoryProps> = ({ theme, width }) => {
     bloodTestData || urineTestData || vitaminTestData || geneticTestData;
 
   return (
-    <div className="analysis-history-container">
+    <div style={{ width: '70vw' }}>
       <Col>
         <Card className={`analysis-card ${theme ? 'dark-mode-text' : ''}`}>
           <Title
             level={2}
             className="analysis-title"
-            style={{ fontSize: width < 800 ? '18px' : '32px' }}
+            style={{ fontSize: width < 800 ? '10px' : '32px' }}
           >
             {t('analysisHistory.title')}
           </Title>

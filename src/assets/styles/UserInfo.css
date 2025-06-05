@@ -1,12 +1,20 @@
 .modern-user-profile {
   width: 70vw;
   margin: 0 auto;
+  width: 100%;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .profile-container {
   border-radius: 16px;
   overflow: hidden;
   background-color: transparent;
+  border: none;
+  width: 100%;
+  margin: 0 auto;
 }
 
 .profile-header-container {
@@ -341,4 +349,11 @@
 
 .profile-container.dark .info-value {
   color: rgba(255, 255, 255, 0.85);
+}
+
+.input-div {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
 }
