@@ -40,14 +40,32 @@
 
 ## 📸 Screenshots
 
-> _(Add your screenshots here: dashboard, AI chat, test history, mobile view, etc.)_
+### 🧬 Homepage View
+
+![Home](./public/screenshots/homepage.png)
+
+### 📱 My Health View
+
+![My Health](./public/screenshots/myhealth.png)
+
+### 🩸 Analysis View
+
+![Analysis](./public/screenshots/analysis.png)
+
+### 🤖 Ai Doctor View
+
+![Ai Doctor](./public/screenshots/aidoctor.png)
+
+### Profile View
+
+![Profile](./public/screenshots/profile.png)
 
 ---
 
 ## 🛠️ Tech Stack
 
-| Layer        | Technology                                                  |
-| ------------ | ----------------------------------------------------------- |
+| Layer              | Technology                                                  |
+| ------------------ | ----------------------------------------------------------- |
 | **Frontend** | React, TypeScript, Vite, Redux Toolkit, Ant Design          |
 | **Backend**  | Firebase (Auth, Firestore), Cloud Functions with express.js |
 | **AI**       | OpenAI API (chat & insights)                                |
