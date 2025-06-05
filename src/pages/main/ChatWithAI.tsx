@@ -571,13 +571,11 @@ const ChatWithAi = () => {
     <Layout className={`chat-with-ai ${isDarkMode ? 'dark' : ''}`}>
       <Sider
         width={240}
-        className={`chat-list-container ${isDarkMode ? 'dark' : ''}`}
         style={{
-          background: isDarkMode ? 'rgb(38, 63, 137)' : '#fff',
-          padding: 16,
+          background: isDarkMode ? 'rgb(38, 63, 137)' : '#fff'
         }}
       >
-        <div style={{ display: 'flex', justifyContent: 'center' }}>
+        <div className="sider-div">
           <PrimaryButton
             icon={<PlusOutlined />}
             className="new-button"
@@ -587,7 +585,7 @@ const ChatWithAi = () => {
           </PrimaryButton>
         </div>
         {Object.entries(grouped).map(([label, chats]) => (
-          <div key={label} className="chat-list-container">
+          <div key={label} className="chats-list-container">
             <Text
               className={`chat-with-ai-label chat-list-label ${isDarkMode ? 'dark' : ''}`}
               type="secondary"
@@ -597,6 +595,7 @@ const ChatWithAi = () => {
             <List
               size="small"
               dataSource={chats}
+              className="chats-list-container"
               renderItem={(chat) => (
                 <List.Item
                   onClick={() => setSelectedChatId(chat.id)}
@@ -605,29 +604,18 @@ const ChatWithAi = () => {
                     background:
                       chat.id !== selectedChatId
                         ? isDarkMode
-                          ? 'rgb(99, 121, 185)'
+                          ? 'transparent'
                           : 'rgb(255, 255, 255)'
                         : isDarkMode
                           ? 'rgb(38, 63, 137)'
                           : '#fff',
-                    borderRadius: 10,
-                    marginBottom: 8,
-                    padding: '8px 12px',
                     boxShadow:
                       chat.id === selectedChatId
                         ? '0 2px 6px rgba(0, 0, 0, 0.5)'
                         : 'none',
                   }}
                 >
-                  <div
-                    style={{
-                      display: 'flex',
-                      justifyContent: 'space-between',
-                      alignItems: 'center',
-                      width: '100%',
-                      gap: 8,
-                    }}
-                  >
+                  <div className="list-item-div">
                     {editingChatId === chat.id ? (
                       <Input
                         value={editingTitle}
@@ -639,7 +627,6 @@ const ChatWithAi = () => {
                         onBlur={() => setEditingChatId(null)}
                         autoFocus
                         size="small"
-                        style={{ flex: 1 }}
                       />
                     ) : (
                       <>
@@ -682,17 +669,12 @@ const ChatWithAi = () => {
                               background: isDarkMode
                                 ? 'rgb(38, 63, 137)'
                                 : '#fff',
-                              border: 'none',
                             },
                           }}
                         >
                           <MoreOutlined
                             onClick={(e) => e.stopPropagation()}
-                            style={{
-                              cursor: 'pointer',
-                              color: isDarkMode ? '#ffffff' : '#000000',
-                              flexShrink: 0,
-                            }}
+                            className={`more-icon ${isDarkMode ? 'dark' : ''}`}
                           />
                         </Dropdown>
                       </>
@@ -742,20 +724,18 @@ const ChatWithAi = () => {
                       draggable={false}
                       src={MediScanAILogo}
                       alt="MediScan AI"
-                      style={{ width: '30px', height: '30px' }}
+                      className="role-image"
                     />
                   )}
                 </>
                 <Text
                   style={{
-                    width: '100%',
                     color:
-                      msg.role === 'user' && isDarkMode
-                        ? '#ffffff'
-                        : isDarkMode
-                          ? '#ffffff'
-                          : 'black',
-                    paddingRight: '24px',
+                    msg.role === 'user' && isDarkMode
+                    ? '#ffffff'
+                    : isDarkMode
+                    ? '#ffffff'
+                    : 'black'
                   }}
                 >
                   <strong>
@@ -788,11 +768,9 @@ const ChatWithAi = () => {
             >
               <PlusCircleOutlined
                 style={{
-                  fontSize: 20,
                   color: loading ? '#ccc' : '#1890ff',
-                  cursor: 'pointer',
-                  marginRight: 10,
                 }}
+                className={`plus-icon ${isDarkMode ? 'dark' : ''}`}
               />
             </Dropdown>
 
