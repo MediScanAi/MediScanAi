@@ -414,9 +414,10 @@ function UrineAnalysis() {
               <Col
                 style={{
                   display: 'flex',
-                  flexDirection: 'row',
                   alignItems: 'center',
                   justifyContent: 'center',
+                  flexDirection: width > 768 ? 'row' : 'column',
+
                 }}
               >
                 <CustomBarChart data={BarData.slice(4)} />
@@ -511,7 +512,6 @@ function UrineAnalysis() {
                               style={{
                                 marginTop: 5,
                                 fontSize: 14,
-                                color: '#555',
                               }}
                             >
                               {diseaseExplanations[risk]}

@@ -333,9 +333,9 @@ function GeneticAnalysis() {
               <Col
                 style={{
                   display: 'flex',
-                  flexDirection: width > 768 ? 'row' : 'column',
                   alignItems: 'center',
                   justifyContent: 'center',
+                  flexDirection: width > 768 ? 'row' : 'column'
                 }}
               >
                 {scorecards.map((item: Scorecard, idx) => (
@@ -429,7 +429,6 @@ function GeneticAnalysis() {
                                 style={{
                                   marginTop: 5,
                                   fontSize: 14,
-                                  color: '#555',
                                 }}
                               >
                                 {geneticExplanations[risk]}

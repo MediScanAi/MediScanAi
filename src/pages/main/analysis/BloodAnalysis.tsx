@@ -326,8 +326,6 @@ function BloodAnalysis() {
             className={`welcome-text ${isDarkMode ? 'dark' : ''}`}
             style={{
               fontSize: width > 768 ? '30px' : '20px',
-              marginTop: 50,
-              marginLeft: 5,
             }}
           >
             {t('bloodAnalysis.title')}
@@ -363,9 +361,9 @@ function BloodAnalysis() {
               <Col
                 style={{
                   display: 'flex',
-                  flexDirection: 'row',
                   alignItems: 'center',
                   justifyContent: 'center',
+                  flexDirection: width > 768 ? 'row' : 'column',
                 }}
               >
                 <CustomBarChart data={BarData} />
@@ -375,7 +373,7 @@ function BloodAnalysis() {
             <Card className={`warning-section ${isDarkMode ? 'dark' : ''}`}>
               <Title
                 level={3}
-                style={{ color: 'rgb(255, 0, 0)', fontFamily: 'Poppins' }}
+                style={{ color: 'rgb(255, 0, 0)' }}
               >
                 {t('bloodAnalysis.warnings.title')}
                 <PrimaryButton

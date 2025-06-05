@@ -125,7 +125,7 @@ function VitaminAnalysis() {
     if (data.vitaminA !== undefined && data.vitaminA !== null) {
       if (data.vitaminA < 20)
         risks.push(t('vitaminAnalysis.warnings.conditions.vitaminA.low'));
-      if (data.vitaminA > 60)
+      if (data.vitaminA > 65)
         risks.push(t('vitaminAnalysis.warnings.conditions.vitaminA.high'));
     }
 
@@ -137,7 +137,7 @@ function VitaminAnalysis() {
     }
 
     if (data.vitaminC !== undefined && data.vitaminC !== null) {
-      if (data.vitaminC < 0.4)
+      if (data.vitaminC < 0.2)
         risks.push(t('vitaminAnalysis.warnings.conditions.vitaminC.low'));
       if (data.vitaminC > 2.0)
         risks.push(t('vitaminAnalysis.warnings.conditions.vitaminC.high'));
@@ -160,7 +160,7 @@ function VitaminAnalysis() {
     if (data.vitaminK !== undefined && data.vitaminK !== null) {
       if (data.vitaminK < 0.1)
         risks.push(t('vitaminAnalysis.warnings.conditions.vitaminK.low'));
-      if (data.vitaminK > 2.5)
+      if (data.vitaminK > 2.2)
         risks.push(t('vitaminAnalysis.warnings.conditions.vitaminK.high'));
     }
 
@@ -288,8 +288,6 @@ function VitaminAnalysis() {
             className={`welcome-text ${isDarkMode ? 'dark' : ''}`}
             style={{
               fontSize: width > 768 ? '30px' : '20px',
-              marginTop: 50,
-              marginLeft: 5,
             }}
           >
             {t('vitaminAnalysis.title')}
@@ -325,9 +323,9 @@ function VitaminAnalysis() {
               <Col
                 style={{
                   display: 'flex',
-                  flexDirection: 'row',
                   alignItems: 'center',
                   justifyContent: 'center',
+                  flexDirection: width > 768 ? 'row' : 'column',
                 }}
               >
                 <CustomBarChart data={BarData} />
@@ -387,7 +385,6 @@ function VitaminAnalysis() {
                                 style={{
                                   marginTop: 5,
                                   fontSize: 14,
-                                  color: '#555',
                                 }}
                               >
                                 {vitaminExplanations[risk]}

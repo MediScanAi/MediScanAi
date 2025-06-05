@@ -144,10 +144,6 @@
   border: 1px solid #ccc;
 }
 
-.custom-tooltip.dark {
-  background: #121e63;
-}
-
 .custom-tooltip-text {
   margin: 0;
 }
