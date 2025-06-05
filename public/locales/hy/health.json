@@ -127,7 +127,8 @@
           "copyUid": {
             "title": "Պատճենեք ձեր եզակի ID-ն",
             "button": {
-              "copy": "Պատճենել"
+              "copy": "Պատճենել",
+              "copied": "Պատճենված"
             }
           },
           "runShortcut": {

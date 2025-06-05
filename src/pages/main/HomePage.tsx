@@ -227,7 +227,12 @@ function HomePage() {
             </PrimaryButton>
           </Col>
           <Col>
-            <img draggable={false} src={group99} alt="platform" className="platform-image" />
+            <img
+              draggable={false}
+              src={group99}
+              alt="platform"
+              className="platform-image"
+            />
           </Col>
         </Row>
         <Col className="activity-section-column">
@@ -278,9 +283,19 @@ function HomePage() {
             {t('myHealth.description')}
           </p>
           <div className="my-health-step-images">
-            <img draggable={false} src={myHealth} alt="Step 1" className="my-health-image" />
+            <img
+              draggable={false}
+              src={myHealth}
+              alt="Step 1"
+              className="my-health-image"
+            />
             <div className={`arrow ${isDarkMode ? 'dark' : ''}`}>→</div>
-            <img draggable={false} src={myHealth2} alt="Step 2" className="my-health-image" />
+            <img
+              draggable={false}
+              src={myHealth2}
+              alt="Step 2"
+              className="my-health-image"
+            />
           </div>
           <div className="my-health-text-content">
             <PrimaryButton onClick={() => navigate('/profile/info')}>

@@ -177,6 +177,11 @@
   margin-bottom: 2rem;
 }
 
+.back-button {
+  left: 50px;
+  margin-top: 20px;
+}
+
 .back-button:hover {
   background: #2563eb;
   transform: translateY(-2px);
@@ -315,4 +320,9 @@
 .test-card {
   background-color: transparent !important;
   border: none !important;
+}
+
+.genetic-form-item {
+  text-align: center;
+  margin-top: 32px;
 }

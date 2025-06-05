@@ -94,7 +94,12 @@ const MyHealthGuide: React.FC = () => {
         <p className={`header-title ${isDarkMode ? 'dark' : ''}`}>
           {t('healthGuide.guide.title')}
         </p>
-        <img draggable={false} src={isDarkMode ? MyHealthDark : MyHealth} alt="" className="header-image" />
+        <img
+          draggable={false}
+          src={isDarkMode ? MyHealthDark : MyHealth}
+          alt=""
+          className="header-image"
+        />
       </div>
       <div className="guides-container">
         <motion.div
@@ -135,12 +140,7 @@ const MyHealthGuide: React.FC = () => {
 
           <div className="button-container">
             <PrimaryButton
-              style={{
-                width: '100%',
-                marginTop: 'auto',
-                display: 'flex',
-                justifyContent: 'center',
-              }}
+              className="guide-button"
               onClick={() => navigate('/profile/user-info')}
             >
               {t('healthGuide.guide.completeProfile')}
@@ -219,7 +219,7 @@ const MyHealthGuide: React.FC = () => {
 
           <Modal
             title={t('healthGuide.guide.connectModal.title')}
-            visible={isModalVisible}
+            open={isModalVisible}
             onCancel={handleCancel}
             footer={[
               <Button key="close" onClick={handleCancel}>
@@ -315,9 +315,7 @@ const MyHealthGuide: React.FC = () => {
               </div>
 
               <div className="modal-footer-note">
-                <InfoCircleOutlined
-                  style={{ marginRight: '8px', color: '#1890ff' }}
-                />
+                <InfoCircleOutlined className="info-circle" />
                 <Text type="secondary">
                   {t('healthGuide.guide.connectModal.privacyNote')}
                 </Text>
@@ -340,10 +338,7 @@ const MyHealthGuide: React.FC = () => {
               className={`info-text ${isDarkMode ? 'dark' : ''}`}
             >
               {t('healthGuide.guide.dataPrivacyText')}
-              <a
-                onClick={() => navigate('/about-us')}
-                style={{ marginLeft: '4px' }}
-              >
+              <a onClick={() => navigate('/about-us')} className="text-a">
                 {t('healthGuide.guide.privacyPolicy')}
               </a>
             </Text>
