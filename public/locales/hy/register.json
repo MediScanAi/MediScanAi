@@ -12,6 +12,8 @@
     "checkEmail": "Ստուգեք ձեր էլ. փոստը",
     "welcomeTitle": "Բարի գալուստ MediScan AI",
     "welcomeDescription": "Մուտք գործեք մեր հետ շարունակելու ճանապարհին: Ձեր առողջության անհատական տվյալները բոլորովին մեկ տեղում",
+    "welcomeMessage": "Բարի գալուստ MediScan AI",
+    "emailNotVerified": "Էլ. փոստը հաստատված չի",
     "forms": {
       "name": "Անուն",
       "surname": "Ազգանուն",

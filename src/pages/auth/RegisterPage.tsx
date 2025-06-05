@@ -90,10 +90,10 @@ const RegisterPage: React.FC = () => {
     if (auth.currentUser.emailVerified) {
       const mapped = mapFirebaseUser(auth.currentUser);
       dispatch(setUser(mapped));
-      message.success('Welcome to MediScan AI!');
+      message.success(t('register.welcomeMessage'));
       navigate('/');
     } else {
-      message.warning('E-mail not verified yet');
+      message.warning(t('register.emailNotVerified'));
     }
     setChecking(false);
   };

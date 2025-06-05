@@ -164,9 +164,7 @@ const LoginPage: React.FC = () => {
                   </Form.Item>
 
                   <Form.Item>
-                    <div
-                      className="login-form"
-                    >
+                    <div className="login-form">
                       <PrimaryButton
                         htmlType="submit"
                         loading={loading}

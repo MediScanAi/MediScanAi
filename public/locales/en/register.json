@@ -12,6 +12,8 @@
     "checkEmail": "Check your e-mail",
     "welcomeTitle": "Welcome to MediScan AI",
     "welcomeDescription": "Join us to unlock personalized healthcare insights powered by advanced AI analytics.",
+    "welcomeMessage": "Welcome to MediScan AI!",
+    "emailNotVerified": "E-mail not verified yet",
     "forms": {
       "name": "Name",
       "surname": "Surname",
