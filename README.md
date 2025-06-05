@@ -1,41 +1,46 @@
 # 🧠 MediScanAI
 
-**MediScanAI** is a modern, full-stack medical data platform built with  **React** ,  **TypeScript** ,  **Vite** ,  **Redux Toolkit** ,  **Ant Design** , and  **Firebase** . It empowers users to track, analyze, and interact with their personal health data — including  **blood** ,  **urine** ,  **genetic** , and **vitamin** test results — all within a responsive, multilingual, and AI-enhanced interface.
+**MediScanAI** is a modern, full-stack medical data platform built with **React** , **TypeScript** , **Vite** , **Redux Toolkit** , **Ant Design** , and **Firebase** . It empowers users to track, analyze, and interact with their personal health data — including **blood** , **urine** , **genetic** , and **vitamin** test results — all within a responsive, multilingual, and AI-enhanced interface.
 
 ---
 
 ## 📚 Table of Contents
 
 * [✨ Features](#-features)
+* [📸 Screenshots](#-screenshots)
 * [🛠️ Tech Stack](#️-tech-stack)
-* [📸 Screenshots](https://chatgpt.com/c/682d1efd-39e0-8004-8153-0191767d7538#-screenshots)
-* [🏗️ Project Structure](https://chatgpt.com/c/682d1efd-39e0-8004-8153-0191767d7538#-project-structure)
-* [🌍 Internationalization (i18n)](https://github.com/MediScanAi/MediScanAi/tree/main/public/locales)
-* [🎨 Styling](https://github.com/MediScanAi/MediScanAi/tree/main/src/assets/styles)
+* [🏗️ Project Structure](#-project-structure)
+* [🚀 Getting Started](#-getting-started)
+* [🔐 Environment Variables](#-environment-variables)
+* [🌍 Internationalization (i18n)](#-internationalization-i18n)
+* [🎨 Styling](#-styling)
+* [🤝 Contributing](#-contributing)
+* [📄 License](#-license)
+* [📬 Contact](#-contact)
 
 ---
 
 ## ✨ Features
 
-* 🔐 **User Authentication** – Secure login, signup, and password reset via Firebase Authentication.
-* 📊 **Health Dashboard** – Track metrics like weight, BMI, and blood pressure in a sleek dashboard.
-* 🧪 **Test Analysis** – Upload, view, and edit results for:
-  * Blood tests
-  * Urine tests
-  * Vitamin panels
-  * Genetic reports
-* 🤖 **AI Chatbot** – AI assistant (powered by OpenAI) to analyze test results, import pdf and explain findings.
-* 🌐 **Multilingual Support** – Seamless switching between English, Russian, and Armenian via `i18next`.
-* 📱 **Responsive UI** – Fully adaptive to mobile, tablet, and desktop devices.
-* 📤 **Data Import** – Easily import health data for analyzing or monitoring.
-* 🌙 **Dark Mode** – Switch between light and dark themes on the fly.
-* ♿ **Accessibility** – Keyboard navigation, screen-reader, voice syntesis and friendly UI.
+- 🔐 **User Authentication** – Secure login, signup, and password reset via Firebase Authentication.
+- 📊 **Health Dashboard** – Track metrics like weight, BMI, and blood pressure in a sleek dashboard.
+- 🧪 **Test Analysis** – Upload, view, and edit results for:
+  - Blood tests
+  - Urine tests
+  - Vitamin panels
+  - Genetic reports
+- 🤖 **AI Chatbot** – AI assistant (powered by OpenAI) to analyze test results, import pdf and explain findings.
+- 🌐 **Multilingual Support** – Seamless switching between English, Russian, and Armenian via `i18next`.
+- 📱 **Responsive UI** – Fully adaptive to mobile, tablet, and desktop devices.
+- 📤 **Data Import** – Easily import health data for analyzing or monitoring.
+- 🌙 **Dark Mode** – Switch between light and dark themes on the fly.
+- ♿ **Accessibility** – Keyboard navigation, screen-reader, voice syntesis and friendly UI.
 
 ---
 
 ## 📸 Screenshots
 
-> *(Add your screenshots here: dashboard, AI chat, test history, mobile view, etc.)*
+> _(Add your screenshots here: dashboard, AI chat, test history, mobile view, etc.)_
 
 ---
 
@@ -74,8 +79,8 @@ public
 
 ### ✅ Prerequisites
 
-* Node.js **v18+**
-* `yarn` or `npm`
+- Node.js **v18+**
+- `yarn` or `npm`
 
 ### 📥 Installation
 
@@ -117,23 +122,23 @@ Open [http://localhost:5173](http://localhost:5173/) in your browser.
 
 ## 🌍 Internationalization (i18n)
 
-* Located in: `public/locales/{en, ru, hy}/translation.json`
-* Add a language:
-  * Create a new folder under `/locales`
-  * Add `translation.json` with key-value pairs
-* Supported Languages:
-  * 🇺🇸 English (`en`)
-  * 🇷🇺 Russian (`ru`)
-  * 🇦🇲 Armenian (`hy`)
+- Located in: `public/locales/{en, ru, hy}/translation.json`
+- Add a language:
+  - Create a new folder under `/locales`
+  - Add `translation.json` with key-value pairs
+- Supported Languages:
+  - 🇺🇸 English (`en`)
+  - 🇷🇺 Russian (`ru`)
+  - 🇦🇲 Armenian (`hy`)
 
 ---
 
 ## 🎨 Styling
 
-* Primary UI: [Ant Design](https://ant.design/)
-* Theming: Custom styles + CSS Modules
-* Theme switching: Light / Dark mode supported via state toggle
-* Mobile-first: Responsive across all screen sizes
+- Primary UI: [Ant Design](https://ant.design/)
+- Theming: Custom styles + CSS Modules
+- Theme switching: Light / Dark mode supported via state toggle
+- Mobile-first: Responsive across all screen sizes
 
 ---
 
@@ -153,7 +158,7 @@ We welcome contributions!
 
 ## 📄 License
 
-This project is licensed under the [MIT License](https://chatgpt.com/c/LICENSE).
+This project is licensed under the Custom License.
 
 ---
 
@@ -163,12 +168,8 @@ Have questions or suggestions?
 
 📧 Contact: `your-email@example.com`
 
-📌 GitHub Issues: [Submit Here](https://github.com/yourusername/MediScanAI/issues)
+📌 GitHub Issues: [Submit Here](https://github.com/MediScanAi/MediScanAi/issues)
 
 ---
 
-> *MediScanAI – Empowering you to understand and manage your health, every day.*
-
----
-
-Would you like this in Markdown file format now (`README.md`)?
+> _MediScanAI – Empowering you to understand and manage your health, every day._
