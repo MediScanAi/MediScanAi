@@ -94,7 +94,12 @@ const MyHealthGuide: React.FC = () => {
         <p className={`header-title ${isDarkMode ? 'dark' : ''}`}>
           {t('healthGuide.guide.title')}
         </p>
-        <img draggable={false} src={isDarkMode ? MyHealthDark : MyHealth} alt="" className="header-image" />
+        <img
+          draggable={false}
+          src={isDarkMode ? MyHealthDark : MyHealth}
+          alt=""
+          className="header-image"
+        />
       </div>
       <div className="guides-container">
         <motion.div

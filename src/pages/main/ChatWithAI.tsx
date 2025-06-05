@@ -98,10 +98,10 @@ const ChatWithAi = () => {
       const bloodTestsString = Object.entries(bloodTests)
         .map(([key, value]) => `${key}: ${value}`)
         .join(', ');
-      testDescription += `Blood Test Results: ${bloodTestsString}. `;
+      testDescription += t('chat.bloodTestResults', { bloodTestsString });
 
       if (healthWarnings?.length > 0) {
-        warningsDescription += `Blood Test Warnings: ${healthWarnings.join('; ')}. `;
+        warningsDescription += t('chat.bloodTestWarnings', { healthWarnings });
       }
     }
 
@@ -109,10 +109,10 @@ const ChatWithAi = () => {
       const geneticTestsString = Object.entries(geneticTests)
         .map(([key, value]) => `${key}: ${value}`)
         .join(', ');
-      testDescription += `Genetic Test Results: ${geneticTestsString}. `;
+      testDescription += t('chat.geneticTestResults', { geneticTestsString });
 
       if (geneticWarnings?.length > 0) {
-        warningsDescription += `Genetic Test Warnings: ${geneticWarnings.join('; ')}. `;
+        warningsDescription += t('chat.geneticTestWarnings', { geneticWarnings });
       }
     }
 
@@ -120,10 +120,10 @@ const ChatWithAi = () => {
       const vitaminTestsString = Object.entries(vitaminTests)
         .map(([key, value]) => `${key}: ${value}`)
         .join(', ');
-      testDescription += `Vitamin Test Results: ${vitaminTestsString}. `;
+      testDescription += t('chat.vitaminTestResults', { vitaminTestsString });
 
       if (vitaminWarnings?.length > 0) {
-        warningsDescription += `Vitamin Test Warnings: ${vitaminWarnings.join('; ')}. `;
+        warningsDescription += t('chat.vitaminTestWarnings', { vitaminWarnings });
       }
     }
 
@@ -131,15 +131,15 @@ const ChatWithAi = () => {
       const urineTestsString = Object.entries(urineTests)
         .map(([key, value]) => `${key}: ${value}`)
         .join(', ');
-      testDescription += `Urine Test Results: ${urineTestsString}. `;
+      testDescription += t('chat.urineTestResults', { urineTestsString });
 
       if (urineWarnings?.length > 0) {
-        warningsDescription += `Urine Test Warnings: ${urineWarnings.join('; ')}. `;
+        warningsDescription += t('chat.urineTestWarnings', { urineWarnings });
       }
     }
 
     if (testDescription) {
-      const finalPrompt = `${testDescription}${warningsDescription || 'No significant health warnings.'} Describe these results in detail and recommend a comprehensive plan of action.`;
+      const finalPrompt = `${testDescription}${warningsDescription || t('chat.noSignificantHealthWarnings')} ${t('chat.describeResults')} ${t('chat.recommendPlan')}`;
       setInput(finalPrompt);
 
       navigate(location.pathname, { replace: true, state: {} });
@@ -244,8 +244,8 @@ const ChatWithAi = () => {
     chats.forEach((chat) => {
       const date = new Date(chat.lastUpdated || chat.createdAt);
       let label = format(date, 'MMM d, yyyy');
-      if (isToday(date)) label = 'Today';
-      else if (isYesterday(date)) label = 'Yesterday';
+      if (isToday(date)) label = t('chat.today');
+      else if (isYesterday(date)) label = t('chat.yesterday');
       else if (differenceInDays(new Date(), date) < 7)
         label = format(date, 'EEEE');
       if (!groups[label]) groups[label] = [];
@@ -257,7 +257,7 @@ const ChatWithAi = () => {
   const createNewChat = async () => {
     const user = auth.currentUser;
     if (!user) {
-      antdMsg.error('You must be logged in to create a chat.');
+      antdMsg.error(t('chat.youMustBeLoggedInToCreateChat'));
       return;
     }
     const now = new Date().toISOString();
@@ -275,14 +275,14 @@ const ChatWithAi = () => {
       setInput('');
     } catch (err) {
       console.error('Failed to create new chat:', err);
-      antdMsg.error('Could not create new chat');
+      antdMsg.error(t('chat.couldNotCreateNewChat'));
     }
   };
 
   const deleteChat = async (chatId: string) => {
     const user = auth.currentUser;
     if (!user) {
-      antdMsg.error('You must be logged in.');
+      antdMsg.error(t('chat.youMustBeLoggedInToDeleteChat'));
       return;
     }
     try {
@@ -292,10 +292,10 @@ const ChatWithAi = () => {
       if (selectedChatId === chatId) {
         setSelectedChatId(newChats.length ? newChats[0].id : null);
       }
-      antdMsg.success('Chat deleted');
+      antdMsg.success(t('chat.chatDeleted'));
     } catch (err) {
       console.error('Failed to delete chat:', err);
-      antdMsg.error('Could not delete chat');
+      antdMsg.error(t('chat.couldNotDeleteChat'));
     }
   };
 
@@ -317,7 +317,7 @@ const ChatWithAi = () => {
     if (!input.trim()) return;
     const user = auth.currentUser;
     if (!user) {
-      antdMsg.error('You must be logged in.');
+      antdMsg.error(t('chat.youMustBeLoggedInToSendMessage'));
       return;
     }
 
@@ -386,7 +386,7 @@ const ChatWithAi = () => {
       });
     } catch (err) {
       console.error(err);
-      antdMsg.error('Failed to send message');
+      antdMsg.error(t('chat.failedToSendMessage'));
     } finally {
       setLoading(false);
     }
@@ -405,10 +405,9 @@ const ChatWithAi = () => {
       onClick: () => {
         if (tests.blood) {
           const bloodTests = Object.entries(tests?.blood || '');
-          setInput(`Your blood test results: ${bloodTests.map(([key, value]) => `${key}: ${value}`).join(', ')} 
-          Describe my results in detail and recommend a plan of action about my health warnings.`);
+          setInput(t('chat.bloodTestResults', { bloodTestsString: bloodTests.map(([key, value]) => `${key}: ${value}`).join(', ') }) + t('chat.describeResults') + t('chat.recommendPlan'));
         } else {
-          message.error('You have no blood tests.');
+          message.error(t('chat.noBloodTests'));
         }
       },
     },
@@ -422,10 +421,9 @@ const ChatWithAi = () => {
       onClick: () => {
         if (tests.urine) {
           const urineTests = Object.entries(tests?.urine || '');
-          setInput(`Your urine test results: ${urineTests.map(([key, value]) => `${key}: ${value}`).join(', ')} 
-          Describe my results in detail and recommend a plan of action about my health warnings.`);
+          setInput(t('chat.urineTestResults', { urineTestsString: urineTests.map(([key, value]) => `${key}: ${value}`).join(', ') }) + t('chat.describeResults') + t('chat.recommendPlan'));
         } else {
-          message.error('You have no urine tests.');
+          message.error(t('chat.noUrineTests'));
         }
       },
     },
@@ -439,10 +437,9 @@ const ChatWithAi = () => {
       onClick: () => {
         if (tests.vitamin) {
           const vitaminsTests = Object.entries(tests?.vitamin || '');
-          setInput(`Your vitamin test results: ${vitaminsTests.map(([key, value]) => `${key}: ${value}`).join(', ')} 
-          Describe my results in detail and recommend a plan of action about my health warnings.`);
+          setInput(t('chat.vitaminTestResults', { vitaminTestsString: vitaminsTests.map(([key, value]) => `${key}: ${value}`).join(', ') }) + t('chat.describeResults') + t('chat.recommendPlan'));
         } else {
-          message.error('You have no vitamin tests.');
+          message.error(t('chat.noVitaminTests'));
         }
       },
     },
@@ -456,10 +453,9 @@ const ChatWithAi = () => {
       onClick: () => {
         if (tests.genetic) {
           const geneticTests = Object.entries(tests?.genetic || '');
-          setInput(`Your genetic test results: ${geneticTests.map(([key, value]) => `${key}: ${value}`).join(', ')} 
-          Describe my results in detail and recommend a plan of action about my health warnings.`);
+          setInput(t('chat.geneticTestResults', { geneticTestsString: geneticTests.map(([key, value]) => `${key}: ${value}`).join(', ') }) + t('chat.describeResults') + t('chat.recommendPlan'));
         } else {
-          message.error('You have no genetic tests.');
+          message.error(t('chat.noGeneticTests'));
         }
       },
     },
@@ -491,7 +487,7 @@ const ChatWithAi = () => {
           accept=".pdf,.word"
           customRequest={async ({ file, onSuccess }) => {
             setLoading(true);
-            const hide = message.loading('Parsing PDF...', 0);
+            const hide = message.loading(t('chat.parsingPDF'), 0);
             const reader = new FileReader();
 
             reader.onload = async () => {
@@ -501,7 +497,7 @@ const ChatWithAi = () => {
                   fileBase64: base64,
                 });
                 setInput(res.data.text.trim());
-                message.success('PDF parsed successfully');
+                message.success(t('chat.pdfParsedSuccessfully'));
                 onSuccess?.({}, new XMLHttpRequest());
               } catch {
                 message.error('Failed to parse PDF');
@@ -513,7 +509,7 @@ const ChatWithAi = () => {
 
             reader.onerror = () => {
               hide();
-              message.error('Failed to read PDF file');
+              message.error(t('chat.failedToReadPDF'));
               setLoading(false);
             };
 
@@ -539,27 +535,26 @@ const ChatWithAi = () => {
     <Layout className={`chat-with-ai ${isDarkMode ? 'dark' : ''}`}>
       <Sider
         width={240}
+        className={`chat-list-container ${isDarkMode ? 'dark' : ''}`}
         style={{
           background: isDarkMode ? 'rgb(38, 63, 137)' : '#fff',
           padding: 16,
-          borderRight: '1px solid rgb(49, 82, 181)',
         }}
       >
         <div style={{ display: 'flex', justifyContent: 'center' }}>
           <PrimaryButton
             icon={<PlusOutlined />}
-            style={{ width: '200px' }}
+            className="new-button"
             onClick={createNewChat}
           >
             {t('chat.newChat')}
           </PrimaryButton>
         </div>
         {Object.entries(grouped).map(([label, chats]) => (
-          <div key={label} style={{ marginBottom: 12 }}>
+          <div key={label} className="chat-list-container">
             <Text
-              className={`chat-with-ai-label ${isDarkMode ? 'dark' : ''}`}
+              className={`chat-with-ai-label chat-list-label ${isDarkMode ? 'dark' : ''}`}
               type="secondary"
-              style={{ marginLeft: 8 }}
             >
               {label}
             </Text>
@@ -571,7 +566,6 @@ const ChatWithAi = () => {
                   onClick={() => setSelectedChatId(chat.id)}
                   className={`chat-item-hover ${isDarkMode ? 'dark' : ''}`}
                   style={{
-                    cursor: 'pointer',
                     background:
                       chat.id !== selectedChatId
                         ? isDarkMode
@@ -583,12 +577,10 @@ const ChatWithAi = () => {
                     borderRadius: 10,
                     marginBottom: 8,
                     padding: '8px 12px',
-                    borderBottom: 'none',
                     boxShadow:
                       chat.id === selectedChatId
                         ? '0 2px 6px rgba(0, 0, 0, 0.5)'
                         : 'none',
-                    transition: 'all 0.2s ease-in-out',
                   }}
                 >
                   <div
@@ -618,12 +610,6 @@ const ChatWithAi = () => {
                         <Text
                           className={`chat-item-title ${isDarkMode ? 'dark' : ''}`}
                           strong
-                          style={{
-                            flex: 1,
-                            overflow: 'hidden',
-                            textOverflow: 'ellipsis',
-                            whiteSpace: 'nowrap',
-                          }}
                         >
                           {chat.title}
                         </Text>
@@ -684,54 +670,13 @@ const ChatWithAi = () => {
       </Sider>
 
       <Content style={{ display: 'flex', flexDirection: 'column' }}>
-        <div
-          style={{
-            flex: 1,
-            overflowY: 'auto',
-            padding: '16px 0',
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-          }}
-        >
+        <div className="chat-content-container custom-scrollbar">
           {selectedChat?.messages.map((msg, idx) => (
-            <div
-              key={idx}
-              style={{
-                width: '100%',
-                display: 'flex',
-                justifyContent: 'center',
-                padding: '4px 16px',
-              }}
-            >
+            <div className="message-row" key={idx}>
               <div
-                className="message-container"
-                style={{
-                  background:
-                    msg.role === 'user'
-                      ? isDarkMode
-                        ? 'linear-gradient(135deg, rgba(56, 128, 255, 0.9) 0%, rgba(0, 80, 200, 0.9) 100%)'
-                        : 'linear-gradient(135deg, rgba(100, 149, 237, 0.15) 0%, rgba(66, 135, 245, 0.15) 100%)'
-                      : isDarkMode
-                        ? 'linear-gradient(135deg, rgba(28, 52, 125, 0.7) 0%, rgba(14, 36, 90, 0.7) 100%)'
-                        : 'linear-gradient(135deg, rgba(240, 248, 255, 0.95) 0%, rgba(225, 239, 255, 0.95) 100%)',
-                  padding: '12px 16px',
-                  border:
-                    msg.role === 'user'
-                      ? isDarkMode
-                        ? '1px solid rgba(100, 149, 237, 0.5)'
-                        : '1px solid rgba(56, 128, 255, 0.2)'
-                      : 'none',
-                  borderRadius: '15px',
-                  width: '100%',
-                  maxWidth: 720,
-                  boxShadow: isDarkMode
-                    ? '0 2px 8px rgba(0, 0, 0, 0.3)'
-                    : '0 2px 12px rgba(56, 128, 255, 0.15)',
-                  whiteSpace: 'pre-wrap',
-                  marginBottom: '36px',
-                  position: 'relative',
-                }}
+                className={`message-container ${
+                  msg.role === 'user' ? 'user-message' : 'ai-message'
+                } ${isDarkMode ? 'dark' : ''}`}
               >
                 <div className="message-buttons">
                   <Button
@@ -741,7 +686,7 @@ const ChatWithAi = () => {
                     onClick={(e) => {
                       e.stopPropagation();
                       navigator.clipboard.writeText(msg.content);
-                      message.success('Copied to clipboard!');
+                      message.success(t('chat.copiedToClipboard'));
                     }}
                   />
                   <Button
@@ -786,28 +731,14 @@ const ChatWithAi = () => {
             </div>
           ))}
           {loading && (
-            <div
-              style={{
-                width: '100%',
-                display: 'flex',
-                justifyContent: 'center',
-                padding: '10px',
-              }}
-            >
-              <Spin tip="MediScan AI is thinking..." />
+            <div className="loading-indicator">
+              <Spin tip={t('chat.thinking')} />
             </div>
           )}
           <div ref={messagesEndRef} />
         </div>
 
-        <div
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'space-evenly',
-            background: 'none',
-          }}
-        >
+        <div className="chat-input-container">
           <div style={{ display: 'flex', alignItems: 'center' }}>
             <Dropdown
               trigger={['click']}
@@ -829,14 +760,9 @@ const ChatWithAi = () => {
               />
             </Dropdown>
 
-            <div
-              style={{
-                position: 'relative',
-                width: '100%',
-                minWidth: 600,
-              }}
-            >
+            <div className="chat-textarea-wrapper">
               <Input.TextArea
+                className="chat-textarea custom-scrollbar"
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 onPressEnter={(e) => {
@@ -845,15 +771,8 @@ const ChatWithAi = () => {
                     sendMessage();
                   }
                 }}
-                placeholder="Type your message..."
+                placeholder={t('chat.typeYourMessage')}
                 autoSize={{ minRows: 1, maxRows: 7 }}
-                style={{
-                  borderRadius: 24,
-                  padding: '10px 16px',
-                  margin: '16px auto',
-                  maxHeight: 10,
-                }}
-                className="custom-scrollbar"
                 disabled={loading}
               />
               {loading ? (

@@ -29,9 +29,7 @@ const PageNotFound: React.FC = () => {
         }
         extra={
           <Space>
-            <PrimaryButton
-              onClick={() => navigate('/')}
-            >
+            <PrimaryButton onClick={() => navigate('/')}>
               {t('pageNotFound.returnHome')}
             </PrimaryButton>
           </Space>

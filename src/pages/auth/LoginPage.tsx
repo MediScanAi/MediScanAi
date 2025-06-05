@@ -141,7 +141,9 @@ const LoginPage: React.FC = () => {
                   <Form.Item
                     label={t('login.forms.password')}
                     name="password"
-                    rules={[{ required: true, message: t('login.forms.password') }]}
+                    rules={[
+                      { required: true, message: t('login.forms.password') },
+                    ]}
                   >
                     <Input.Password
                       size="large"

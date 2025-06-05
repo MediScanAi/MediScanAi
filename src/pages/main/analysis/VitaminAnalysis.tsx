@@ -44,8 +44,6 @@ interface LegendPayload {
   value: string;
 }
 
-
-
 const CustomLegend = ({ payload }: { payload: LegendPayload[] }) => (
   <ul style={{ display: 'flex', gap: 20, listStyle: 'none', paddingLeft: 0 }}>
     {payload.map((entry, index: number) => (
@@ -71,10 +69,10 @@ function VitaminAnalysis() {
     if (active && payload && payload.length) {
       const item = payload[0];
       return (
-        <div
-          className={`custom-tooltip ${isDarkMode ? 'dark' : ''}`}
-        >
-          <p style={{ color: item.color }} className="custom-tooltip-text">{item.name}</p>
+        <div className={`custom-tooltip ${isDarkMode ? 'dark' : ''}`}>
+          <p style={{ color: item.color }} className="custom-tooltip-text">
+            {item.name}
+          </p>
           <p className="custom-tooltip-text">
             <b>Value:</b> {item.value}
           </p>
@@ -284,9 +282,7 @@ function VitaminAnalysis() {
 
   return (
     <div className={`analysis-page ${isDarkMode ? 'dark' : ''}`}>
-      <Row
-        className="welcome-section"
-      >
+      <Row className="welcome-section">
         <Col className="welcome-section-column">
           <Typography
             className={`welcome-text ${isDarkMode ? 'dark' : ''}`}
