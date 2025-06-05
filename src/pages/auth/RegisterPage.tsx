@@ -7,7 +7,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { getAuth, reload } from 'firebase/auth';
 import { mapFirebaseUser } from '../../api/authApi';
-import LoginWithGoogleButton from '../../components/LoginWithGoogleButton';
+import LoginWithGoogleButton from '../../components/common/LoginWithGoogleButton';
 import PrimaryButton from '../../components/common/PrimaryButton';
 import '../../assets/styles/RegisterPage.css';
 import Notebook3D from '../../assets/photos/Notebook.webp';
@@ -19,6 +19,7 @@ import TextInput from '../../components/common/inputs/TextInput';
 import NumberInput from '../../components/common/inputs/NumberInput';
 import SelectInput from '../../components/common/inputs/SelectInput';
 import PasswordInput from '../../components/common/inputs/PasswordInput';
+import { useTranslation } from 'react-i18next';
 
 const { Title, Text } = Typography;
 
@@ -36,6 +37,7 @@ const RegisterPage: React.FC = () => {
   const navigate = useNavigate();
   const { loading } = useSelector((s: RootState) => s.auth);
   const isDarkMode = useSelector((s: RootState) => s.theme.isDarkMode);
+  const { t } = useTranslation('register');
 
   const [waitingVerification, setWaitingVerification] = useState(false);
   const [checking, setChecking] = useState(false);
@@ -114,16 +116,14 @@ const RegisterPage: React.FC = () => {
                 className={`register-card wide ${isDarkMode ? 'dark' : ''}`}
               >
                 <Title level={2} className="register-title">
-                  Create an account
+                  {t('register.registerTitle')}
                 </Title>
                 {waitingVerification && (
                   <div className="verification-overlay">
                     <div>
-                      <Title level={4}>Check your e-mail</Title>
+                      <Title level={4}>{t('register.checkEmail')}</Title>
                       <Text>
-                        Please verify your e-mail address through the link we
-                        sent to your inbox. Once verified, click the button
-                        below.
+                        {t('register.verificationDescription')}
                       </Text>
                       <br />
                       <PrimaryButton
@@ -131,7 +131,7 @@ const RegisterPage: React.FC = () => {
                         onClick={handleCheckVerification}
                         loading={checking}
                       >
-                        I've verified
+                        {t('register.verifiedButton')}
                       </PrimaryButton>
                     </div>
                   </div>
@@ -146,31 +146,31 @@ const RegisterPage: React.FC = () => {
                   <Row gutter={20}>
                     <Col xs={24} sm={12}>
                       <Form.Item
-                        label="Name"
+                        label={t('register.forms.name')}
                         name="name"
-                        rules={[{ required: true, message: 'Enter your name' }]}
+                        rules={[{ required: true, message: t('register.forms.name') }]}
                       >
-                        <TextInput placeholder="Enter your name" size="large" />
+                        <TextInput placeholder={t('register.forms.name')} size="large" />
+                        
                       </Form.Item>
                     </Col>
                     <Col xs={24} sm={12}>
                       <Form.Item
-                        label="Surname"
+                        label={t('register.forms.surname')}
                         name="surname"
                         rules={[
-                          { required: true, message: 'Enter your surname' },
+                          { required: true, message: t('register.forms.surname') },
                         ]}
                       >
                         <TextInput
-                          placeholder="Enter your surname"
-                          size="large"
+                          placeholder={t('register.forms.surname')}  
                         />
                       </Form.Item>
                     </Col>
                     <Col xs={24} sm={12}>
-                      <Form.Item label="Gender" name="gender">
+                      <Form.Item label={t('register.forms.gender')} name="gender">
                         <SelectInput
-                          placeholder="Select gender"
+                          placeholder={t('register.forms.gender')}
                           size="large"
                           allowClear
                           options={[
@@ -182,31 +182,31 @@ const RegisterPage: React.FC = () => {
                     </Col>
                     <Col xs={24} sm={12}>
                       <Form.Item
-                        label="Age"
+                        label={t('register.forms.age')}
                         name="age"
                         rules={[
-                          { required: true, message: 'Enter a valid age' },
+                          { required: true, message: t('register.forms.age') },
                         ]}
                       >
                         <NumberInput
                           min={0}
                           max={120}
                           size="large"
-                          placeholder="Enter your age"
+                          placeholder={t('register.forms.age')}
                         />
                       </Form.Item>
                     </Col>
                     <Col xs={24} sm={12}>
                       <Form.Item
-                        label="Email"
+                        label={t('register.forms.email')}
                         name="email"
                         rules={[
-                          { required: true, message: 'Enter your email' },
+                          { required: true, message: t('register.forms.email') },
                           { type: 'email', message: 'Invalid email' },
                         ]}
                       >
                         <TextInput
-                          placeholder="Enter your email"
+                          placeholder={t('register.forms.email')}
                           type="email"
                           size="large"
                         />
@@ -214,20 +214,20 @@ const RegisterPage: React.FC = () => {
                     </Col>
                     <Col xs={24} sm={12}>
                       <Form.Item
-                        label="Password"
+                        label={t('register.forms.password')}
                         name="password"
                         rules={[
-                          { required: true, message: 'Enter your password' },
+                          { required: true, message: t('register.forms.password') },
                           {
                             pattern:
                               /^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*]).{8,}$/,
                             message:
-                              'Min 8 chars with uppercase, digit and special character',
+                              t('register.passwordRules'),
                           },
                         ]}
                       >
                         <PasswordInput
-                          placeholder="Create a password"
+                          placeholder={t('register.forms.password')}
                           size="large"
                         />
                       </Form.Item>
@@ -236,7 +236,7 @@ const RegisterPage: React.FC = () => {
                   <Form.Item>
                     <div className="register-button-container">
                       <PrimaryButton htmlType="submit" loading={loading}>
-                        Register
+                        {t('register.registerButton')}
                       </PrimaryButton>
                       <LoginWithGoogleButton
                         toggleLoading={toggleGoogleLoading}
@@ -251,9 +251,9 @@ const RegisterPage: React.FC = () => {
                     className="login-suggestion-container"
                   >
                     <Text className="login-suggestion-text">
-                      Already have an account?{' '}
+                      {t('register.alreadyHaveAccount')} &nbsp;
                       <Link to="/auth/login" className="login-link">
-                        Login
+                        {t('register.login')}
                       </Link>
                     </Text>
                   </motion.div>
@@ -269,11 +269,10 @@ const RegisterPage: React.FC = () => {
             transition={{ duration: 0.5, ease: 'easeInOut' }}
           >
             <Title level={2} className="welcome-register-title">
-              Welcome to MediScan AI
+              {t('register.welcomeTitle')}
             </Title>
             <Text className="welcome-register-description">
-              Join us to unlock personalized healthcare insights powered by
-              advanced AI analytics.
+              {t('register.welcomeDescription')}
             </Text>
           </motion.div>
           <motion.img

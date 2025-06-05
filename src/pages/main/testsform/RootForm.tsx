@@ -16,14 +16,14 @@ import UrineTestForm from './UrineTestForm';
 import BloodTestsForm from './BloodTestForm';
 import GeneticTestForm from './GeneticTestForm';
 import { useTranslation } from 'react-i18next';
-import PrimaryButton from '../../../components/common/PrimaryButton.tsx';
+import SecondaryButton from '../../../components/common/SecondaryButton.tsx';
 
 const { Title, Text } = Typography;
 
 function RootForm(): ReactNode | null {
   const navigate = useNavigate();
   const { testType } = useParams();
-  const { t } = useTranslation();
+  const { t } = useTranslation('rootForm');
 
   const isDarkMode = useAppSelector((state) => state.theme.isDarkMode);
   const items: TabsProps['items'] = [
@@ -31,7 +31,7 @@ function RootForm(): ReactNode | null {
       label: (
         <span>
           <HeartFilled style={{ marginRight: 8 }} />
-          {t('rootform.blood')}
+          {t('rootForm.blood')}
         </span>
       ),
       key: 'blood-test',
@@ -41,7 +41,7 @@ function RootForm(): ReactNode | null {
       label: (
         <span>
           <MonitorOutlined style={{ marginRight: 8 }} />
-          {t('rootform.urine')}
+          {t('rootForm.urine')}
         </span>
       ),
       key: 'urine-test',
@@ -51,7 +51,7 @@ function RootForm(): ReactNode | null {
       label: (
         <span>
           <SafetyOutlined style={{ marginRight: 8 }} />
-          {t('rootform.vitamin')}
+          {t('rootForm.vitamin')}
         </span>
       ),
       key: 'vitamin-test',
@@ -61,7 +61,7 @@ function RootForm(): ReactNode | null {
       label: (
         <span>
           <HeatMapOutlined style={{ marginRight: 8 }} />
-          {t('rootform.genetic')}
+          {t('rootForm.genetic')}
         </span>
       ),
       key: 'genetic-test',
@@ -78,12 +78,12 @@ function RootForm(): ReactNode | null {
 
   return (
     <div className={`root-form-container ${isDarkMode ? ' dark' : ''}`}>
-      <PrimaryButton
-        style={{ left: '50px', marginTop: '10px' }}
+      <SecondaryButton
+        style={{ left: '50px', marginTop: '20px' }}
         onClick={() => navigate('/profile/info')}
       >
-        {t('rootform.backButton')}
-      </PrimaryButton>
+        {t('rootForm.backButton')}
+      </SecondaryButton>
 
       <Row className="form-main-container">
         <Col xs={24} md={10} className="form-left-content">
@@ -92,10 +92,10 @@ function RootForm(): ReactNode | null {
               level={2}
               className={`medical-title ${isDarkMode ? 'dark' : ''}`}
             >
-              {t('rootform.medicalLaboratoryTestForm')}
+              {t('rootForm.medicalLaboratoryTestForm')}
             </Title>
             <Text className={`medical-subtitle ${isDarkMode ? 'dark' : ''}`}>
-              {t('rootform.selectTestType')}
+              {t('rootForm.selectTestType')}
             </Text>
           </div>
 
@@ -103,7 +103,7 @@ function RootForm(): ReactNode | null {
             <img
               draggable={false}
               src={laboratoryImage}
-              alt={t('rootform.medicalIllustration')}
+              alt={t('rootForm.medicalIllustration')}
               style={{ width: '90%' }}
             />
           </div>

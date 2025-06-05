@@ -18,6 +18,23 @@
   align-items: center;
 }
 
+.welcome-section {
+  align-items: center;
+  justify-content: center;
+  margin-top: -45px;
+}
+
+.welcome-text {
+  margin-top: 50;
+  margin-left: 5;
+}
+
+.welcome-image {
+  margin-bottom: -50;
+  object-fit: cover;
+  border-radius: 15;
+}
+
 .inside-dev {
   width: 100%;
   height: 100%;
@@ -119,4 +136,18 @@
 
 .card2-design-text.dark {
   color: #ffffff;
+}
+
+.custom-tooltip {
+  background: #fff;
+  padding: 10px;
+  border: 1px solid #ccc;
+}
+
+.custom-tooltip.dark {
+  background: #121e63;
+}
+
+.custom-tooltip-text {
+  margin: 0;
 }

@@ -406,10 +406,10 @@
 
 .partner-card {
   border-radius: 20px;
-  margin: 10px;
-  height: 600px;
-  width: 330px;
+  width: 350px;
   background-color: #e6ecfa;
+  height: auto;
+  padding: 15px;
 }
 
 .partner-card.dark {
@@ -432,7 +432,8 @@
 .partner-image-container {
   overflow: hidden;
   margin: 16px 0;
-  height: 95%;
+  height: 530px;
+  align-items: stretch;
 }
 
 .partner-image {
@@ -469,20 +470,35 @@
 }
 
 .partner-button {
-  margin-top: 20px;
-  border-radius: 30px;
   font-weight: 500;
   font-size: 16px;
   font-family: 'Poppins';
   width: 170px;
-  margin: 24px auto;
-  height: 62px;
+  height: 52px;
   border: none;
 }
 
 .carousel-container {
   padding: 0 20px;
   width: 100%;
+  display: flex;
+  align-items: stretch;
+}
+
+.partner-card-wrapper {
+  padding: 0 12px;
+  display: flex;
+  align-items: stretch;
+  height: 700px;
+}
+
+.dark-theme .platform-title,
+.dark-theme .platform-description,
+.dark-theme .activity-section-column-title,
+.dark-theme .activity-section-column-text,
+.dark-theme .leading-medicine-title,
+.dark-theme .leading-medicine-description {
+  color: white;
 }
 
 .partner-card-wrapper {

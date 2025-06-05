@@ -15,7 +15,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { useState } from 'react';
 import ForgotPasswordForm from '../../components/ForgotPasswordForm';
-import LoginWithGoogleButton from '../../components/LoginWithGoogleButton';
+import LoginWithGoogleButton from '../../components/common/LoginWithGoogleButton';
 import MedicalInstruments3D from '../../assets/photos/medical_instruments.png';
 import '../../assets/styles/LoginPage.css';
 import PrimaryButton from '../../components/common/PrimaryButton';
@@ -24,6 +24,7 @@ import SecondaryButton from '../../components/common/SecondaryButton';
 import { X } from 'lucide-react';
 import TextInput from '../../components/common/inputs/TextInput';
 import PasswordInput from '../../components/common/inputs/PasswordInput';
+import { useTranslation } from 'react-i18next';
 
 const { Title, Text } = Typography;
 const { useBreakpoint } = Grid;
@@ -41,6 +42,7 @@ const LoginPage: React.FC = () => {
   const screens = useBreakpoint();
   const [isForgotPassword, setIsForgotPassword] = useState(false);
   const [googleLoading, setGoogleLoading] = useState(false);
+  const { t } = useTranslation('login');
 
   const onFinish = async (values: LoginFormValues) => {
     try {
@@ -78,11 +80,10 @@ const LoginPage: React.FC = () => {
             className="welcome-text-container"
           >
             <Title level={2} className="welcome-login-title">
-              Welcome back to MediScan AI
+              {t('login.welcomeTitle')}
             </Title>
             <Text className="welcome-login-description">
-              Log in to continue your journey with us. Your health insights all
-              in one place!
+              {t('login.welcomeDescription')}
             </Text>
           </motion.div>
           <motion.img
@@ -113,7 +114,7 @@ const LoginPage: React.FC = () => {
             <Spin spinning={googleLoading} tip="Waiting for Google response...">
               <Card className={`login-card ${isDarkMode ? 'dark' : ''}`}>
                 <Title level={2} className="login-title">
-                  Log in
+                  {t('login.loginTitle')}
                 </Title>
                 <Form
                   layout="vertical"
@@ -122,25 +123,25 @@ const LoginPage: React.FC = () => {
                   requiredMark={false}
                 >
                   <Form.Item
-                    label="Email"
+                    label={t('login.forms.email')}
                     name="email"
                     rules={[
                       {
                         required: true,
                         type: 'email',
-                        message: 'Invalid email',
+                        message: t('login.forms.invalidEmail'),
                       },
                     ]}
                   >
-                    <TextInput size="large" placeholder="Email" />
+                    <TextInput size="large" placeholder={t('login.forms.email')} />
                   </Form.Item>
 
                   <Form.Item
-                    label="Password"
+                    label={t('login.forms.password')}
                     name="password"
-                    rules={[{ required: true, message: 'Enter your password' }]}
+                    rules={[{ required: true, message: t('login.forms.password') }]}
                   >
-                    <PasswordInput size="large" placeholder="Password" />
+                    <PasswordInput size="large" placeholder={t('login.forms.password')} />
                   </Form.Item>
 
                   <Form.Item style={{ textAlign: 'right', marginBottom: 10 }}>
@@ -150,7 +151,7 @@ const LoginPage: React.FC = () => {
                       onClick={toggleForgotPassword}
                       tabIndex={-1}
                     >
-                      Forgot your password?
+                      {t('login.forgotPassword')}
                     </Button>
                   </Form.Item>
 
@@ -168,7 +169,7 @@ const LoginPage: React.FC = () => {
                         loading={loading}
                         size="large"
                       >
-                        Login
+                        {t('login.loginButton')}
                       </PrimaryButton>
                       <LoginWithGoogleButton
                         toggleLoading={toggleGoogleLoading}
@@ -181,9 +182,9 @@ const LoginPage: React.FC = () => {
                     transition={{ duration: 0.3, ease: 'easeInOut' }}
                   >
                     <Text className="register-text">
-                      Don't have an account?{' '}
+                      {t('login.noAccount')} &nbsp;
                       <Link to="/auth/register" className="register-link">
-                        Register
+                        {t('login.register')}
                       </Link>
                     </Text>
                   </motion.div>

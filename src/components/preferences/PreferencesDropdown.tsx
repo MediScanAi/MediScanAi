@@ -8,7 +8,7 @@ import '../../assets/styles/components/preferences/preferencesDropdown.css';
 import ThemePicker from './ThemePicker';
 
 const PreferencesDropdown = () => {
-  const { t } = useTranslation('global');
+  const { t } = useTranslation('header');
   const isDarkMode = useAppSelector((state) => state.theme.isDarkMode);
   const [prefMenuOpen, setPrefMenuOpen] = useState(false);
 

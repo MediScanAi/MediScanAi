@@ -1,0 +1,140 @@
+{
+  "urineAnalysis": {
+    "bilirubin": "Bilirubin",
+    "blood": "Blood",
+    "nitrites": "Nitrites",
+    "leukocyteEsterase": "Leukocyte Esterase",
+    "glucose": "Glucose",
+    "ketones": "Ketones",
+    "ph": "pH",
+    "protein": "Protein",
+    "specificGravity": "Specific Gravity",
+    "urobilinogen": "Urobilinogen",
+    "title": "Urine Test Results",
+    "subtitle": "Analysis with AI",
+    "result": {
+      "positive": "Positive",
+      "negative": "Negative",
+      "trace": "Trace"
+    },
+    "parameters": {
+      "bilirubin": "Bilirubin",
+      "blood": "Blood",
+      "nitrites": "Nitrites",
+      "leukocyteEsterase": "Leukocyte Esterase",
+      "glucose": "Glucose",
+      "ketones": "Ketones",
+      "ph": "pH",
+      "protein": "Protein",
+      "specificGravity": "Specific Gravity",
+      "urobilinogen": "Urobilinogen"
+    },
+    "warnings": {
+      "title": "🚨 Health Risk Warnings",
+      "analyzeButton": "Analyze with AI",
+      "showMore": "Show more",
+      "showLess": "Show less",
+      "allGood": "✅ All your values are within normal range. Great job!",
+      "conditions": {
+        "bilirubin": "⚠️ Bilirubin — Possible Liver Disease or Biliary Obstruction",
+        "blood": "⚠️ Blood — Possible Infection, Kidney Stones, or Trauma",
+        "nitrites": "⚠️ Nitrites — Suggestive of Urinary Tract Infection (UTI)",
+        "leukocyteEsterase": "⚠️ Leukocyte Esterase — Indicative of Infection or Inflammation",
+        "glucose": "⚠️ Glucose — Possible Diabetes or Renal Glucosuria",
+        "ketones": "⚠️ Ketones — Possible Diabetes, Starvation, or Ketoacidosis",
+        "ph": "⚠️ Abnormal pH — Possible Infection, Kidney Stones, or Diet-related Issues",
+        "protein": "⚠️ Protein— Possible Kidney Disease or Hypertension",
+        "specificGravity": "⚠️ Abnormal Specific Gravity — May Indicate Hydration Issues or Kidney Dysfunction",
+        "urobilinogen": "⚠️ High Urobilinogen — Possible Liver Disease or Hemolytic Disorder"
+      },
+      "explanations": {
+        "bilirubin": "Bilirubin in urine can signal liver dysfunction, such as hepatitis or bile duct blockage.",
+        "blood": "Blood in urine may be caused by infection, stones, or injury to the urinary tract.",
+        "nitrites": "Nitrites in urine usually indicate bacteria that convert nitrates, common in UTIs.",
+        "leukocyteEsterase": "This enzyme signals white blood cells in urine, suggesting inflammation or infection.",
+        "glucose": "Sugar in urine can result from high blood sugar levels, commonly associated with diabetes.",
+        "ketones": "Ketones appear when the body uses fat instead of sugar for energy, often in diabetes or fasting.",
+        "ph": "Urine pH outside normal range may result from diet, infections, or kidney problems.",
+        "protein": "Proteinuria is often linked to kidney issues or chronic conditions like high blood pressure.",
+        "specificGravity": "Too dilute or too concentrated urine may suggest dehydration or impaired kidney function.",
+        "urobilinogen": "Elevated urobilinogen might indicate liver damage or excess breakdown of red blood cells."
+      }
+    },
+    "interestingFacts": {
+      "bilirubin": [
+        "Bilirubin is a yellow compound that results from the breakdown of red blood cells.",
+        "Presence of bilirubin in urine can indicate liver disease or bile duct obstruction.",
+        "Normally, urine should not contain bilirubin—its presence may suggest hepatitis or cirrhosis.",
+        "High bilirubin levels can cause jaundice, giving skin and eyes a yellowish tint.",
+        "Urine test strips can detect even trace amounts of bilirubin, making them valuable for early diagnosis."
+      ],
+      "blood": [
+        "Blood in the urine (hematuria) can result from infections, kidney stones, or trauma.",
+        "Even microscopic amounts of blood in urine are detectable with urinalysis.",
+        "Strenuous exercise or menstruation can sometimes cause temporary blood presence in urine.",
+        "Visible blood in urine may indicate a more serious issue, such as bladder cancer or glomerulonephritis.",
+        "Early detection of hematuria is crucial for diagnosing kidney or urinary tract problems."
+      ],
+      "nitrites": [
+        "Nitrites in urine often indicate a bacterial infection, as some bacteria convert nitrates to nitrites.",
+        "Urinary tract infections (UTIs) are the most common cause of nitrites in urine.",
+        "A positive nitrite test combined with leukocyte esterase strongly suggests a UTI.",
+        "Not all bacteria produce nitrites, so a negative result doesn't always rule out infection.",
+        "Regular urinalysis can help catch asymptomatic UTIs, especially in pregnancy."
+      ],
+      "leukocyteEsterase": [
+        "Leukocyte esterase is an enzyme released by white blood cells in response to infection.",
+        "Its presence in urine typically signals inflammation or a urinary tract infection.",
+        "False positives can occur due to contamination or improper sample handling.",
+        "A positive leukocyte esterase test without nitrites may suggest a non-bacterial infection.",
+        "Combining leukocyte esterase and nitrite tests improves the accuracy of UTI diagnosis."
+      ],
+      "glucose": [
+        "Glucose in urine (glycosuria) often indicates high blood sugar levels, such as in diabetes.",
+        "Normally, kidneys reabsorb all glucose, so it shouldn't appear in urine unless blood glucose is high.",
+        "Glycosuria can also result from kidney conditions affecting reabsorption.",
+        "During pregnancy, glucose may appear in urine even without gestational diabetes.",
+        "Regular glucose checks in urine are helpful in monitoring diabetic patients."
+      ],
+      "ketones": [
+        "Ketones in urine form when the body breaks down fat for energy due to lack of glucose.",
+        "They commonly appear in uncontrolled diabetes, fasting, or ketogenic diets.",
+        "High levels of ketones can lead to ketoacidosis, a potentially life-threatening condition.",
+        "Ketone testing is especially important for people with type 1 diabetes.",
+        "Strenuous exercise or prolonged vomiting can also cause temporary ketone spikes."
+      ],
+      "ph": [
+        "Urine pH reflects how acidic or alkaline your urine is, influenced by diet and health.",
+        "A very acidic pH may indicate dehydration, high protein diet, or diabetes.",
+        "Alkaline urine may be linked to UTIs or a vegetarian diet.",
+        "Kidney stones can be associated with consistently abnormal urine pH.",
+        "Urine pH helps guide treatment decisions for infections and metabolic disorders."
+      ],
+      "protein": [
+        "Protein in urine (proteinuria) can be a sign of kidney damage or disease.",
+        "Small, temporary amounts of protein can appear after exercise or stress.",
+        "Persistent proteinuria requires further testing to assess kidney function.",
+        "Diabetes and hypertension are major causes of chronic proteinuria.",
+        "Early detection helps prevent further kidney damage and preserve function."
+      ],
+      "specificGravity": [
+        "Urine specific gravity measures how concentrated your urine is.",
+        "It reflects hydration status and kidney ability to concentrate or dilute urine.",
+        "High specific gravity may suggest dehydration, heart failure, or glucose in urine.",
+        "Low values could point to overhydration or impaired kidney function.",
+        "This test helps assess how well kidneys are maintaining fluid and electrolyte balance."
+      ],
+      "urobilinogen": [
+        "Urobilinogen is formed from the breakdown of bilirubin in the intestines.",
+        "Small amounts are normal in urine, but too much can suggest liver or hemolytic disease.",
+        "Absence of urobilinogen may indicate bile duct obstruction.",
+        "Elevated urobilinogen can be an early sign of liver dysfunction, even before jaundice appears.",
+        "This marker helps distinguish between different types of liver and blood disorders."
+      ]
+    },
+    "noData": {
+      "title": "Please provide urine test results to get your analysis",
+      "button": "Fill Urine Test Results"
+    }
+  }
+}
