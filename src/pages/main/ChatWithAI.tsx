@@ -572,7 +572,7 @@ const ChatWithAi = () => {
       <Sider
         width={240}
         style={{
-          background: isDarkMode ? 'rgb(38, 63, 137)' : '#fff'
+          background: isDarkMode ? 'rgb(38, 63, 137)' : '#fff',
         }}
       >
         <div className="sider-div">
@@ -731,11 +731,11 @@ const ChatWithAi = () => {
                 <Text
                   style={{
                     color:
-                    msg.role === 'user' && isDarkMode
-                    ? '#ffffff'
-                    : isDarkMode
-                    ? '#ffffff'
-                    : 'black'
+                      msg.role === 'user' && isDarkMode
+                        ? '#ffffff'
+                        : isDarkMode
+                          ? '#ffffff'
+                          : 'black',
                   }}
                 >
                   <strong>

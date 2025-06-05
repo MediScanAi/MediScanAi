@@ -295,3 +295,8 @@
   height: 300px;
   border-radius: 12px;
 }
+
+.iframe {
+  border: 0;
+  border-radius: 13px;
+}
