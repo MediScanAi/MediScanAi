@@ -73,12 +73,10 @@ const RegisterPage: React.FC = () => {
       await dispatch(
         registerUser({ name, surname, email, password, gender, age })
       ).unwrap();
-      message.info(
-        "We've sent a verification e-mail. Please check your inbox."
-      );
+      message.info(t('register.verificationEmail'));
       setWaitingVerification(true);
     } catch {
-      message.error('Registration failed');
+      message.error(t('register.registrationFailed'));
     }
   };
 
