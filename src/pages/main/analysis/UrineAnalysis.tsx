@@ -373,9 +373,7 @@ function UrineAnalysis() {
 
   return (
     <div className={`analysis-page ${isDarkMode ? 'dark' : ''}`}>
-      <Row
-        className="welcome-section"
-      >
+      <Row className="welcome-section">
         <Col className="welcome-section-column">
           <Typography
             className={`welcome-text ${isDarkMode ? 'dark' : ''}`}

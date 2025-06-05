@@ -30,12 +30,12 @@
   font-size: 1.1rem;
   font-weight: 600;
   border-radius: 25px;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
   background: linear-gradient(45deg, #1890ff, #0052d9);
   border: none;
 }
 
 .return-home-button:hover {
   background: linear-gradient(45deg, #40a9ff, #096dd9);
-  box-shadow: 0 6px 20px rgba(0,0,0,0.15);
-} 
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}

@@ -130,9 +130,7 @@ const RegisterPage: React.FC = () => {
                   <div className="verification-overlay">
                     <div>
                       <Title level={4}>{t('register.checkEmail')}</Title>
-                      <Text>
-                        {t('register.verificationDescription')}
-                      </Text>
+                      <Text>{t('register.verificationDescription')}</Text>
                       <br />
                       <PrimaryButton
                         style={{ marginTop: 24 }}
@@ -155,7 +153,9 @@ const RegisterPage: React.FC = () => {
                       <Form.Item
                         label={t('register.forms.name')}
                         name="name"
-                        rules={[{ required: true, message: t('register.forms.name') }]}
+                        rules={[
+                          { required: true, message: t('register.forms.name') },
+                        ]}
                       >
                         <Input
                           placeholder={t('register.forms.name')}
@@ -169,7 +169,10 @@ const RegisterPage: React.FC = () => {
                         label={t('register.forms.surname')}
                         name="surname"
                         rules={[
-                          { required: true, message: t('register.forms.surname') },
+                          {
+                            required: true,
+                            message: t('register.forms.surname'),
+                          },
                         ]}
                       >
                         <Input
@@ -180,7 +183,10 @@ const RegisterPage: React.FC = () => {
                       </Form.Item>
                     </Col>
                     <Col xs={24} sm={12}>
-                      <Form.Item label={t('register.forms.gender')} name="gender">
+                      <Form.Item
+                        label={t('register.forms.gender')}
+                        name="gender"
+                      >
                         <Select
                           placeholder={t('register.forms.gender')}
                           size="large"
@@ -226,7 +232,10 @@ const RegisterPage: React.FC = () => {
                         label={t('register.forms.email')}
                         name="email"
                         rules={[
-                          { required: true, message: t('register.forms.email') },
+                          {
+                            required: true,
+                            message: t('register.forms.email'),
+                          },
                           { type: 'email', message: 'Invalid email' },
                         ]}
                       >
@@ -243,12 +252,14 @@ const RegisterPage: React.FC = () => {
                         label={t('register.forms.password')}
                         name="password"
                         rules={[
-                          { required: true, message: t('register.forms.password') },
+                          {
+                            required: true,
+                            message: t('register.forms.password'),
+                          },
                           {
                             pattern:
                               /^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*]).{8,}$/,
-                            message:
-                              t('register.passwordRules'),
+                            message: t('register.passwordRules'),
                           },
                         ]}
                       >
