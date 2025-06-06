@@ -1,0 +1,104 @@
+.info-card {
+  background: #e6ecfa !important;
+  border-radius: 12px;
+  padding: 16px;
+  height: 100%;
+  border: 1px solid #f0f0f0;
+  transition: all 0.3s;
+  position: relative;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.info-card.dark {
+  background-color: rgba(28, 52, 125, 1) !important;
+}
+
+.info-card.editing {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.info-card.editing.dark {
+  background: rgb(37, 69, 163) !important;
+}
+
+.info-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+  color: #363636;
+}
+
+.dark .info-label {
+  color: #ffffff !important;
+}
+.dark .info-label-text {
+  color: #ffffff !important;
+}
+
+.info-value {
+  font-size: 16px;
+}
+
+.dark .info-value {
+  color: #ffffff !important;
+}
+.dark .info-value-text {
+  color: #ffffff !important;
+}
+
+.unit {
+  margin-left: 4px;
+  opacity: 0.7;
+  font-size: 0.9em;
+}
+.dark .unit {
+  color: #ffffff !important;
+}
+
+.view-mode-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.edit-btn {
+  color: #1890ff;
+}
+
+.edit-mode-container {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+}
+
+.edit-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.save-btn {
+  color: #52c41a;
+}
+.cancel-btn {
+  color: #f5222d;
+}
+
+.info-input {
+  width: 75%;
+  background-color: #fff;
+}
+.dark .info-input {
+  background-color: #ffffff !important;
+}
+
+.info-input .ant-input-number-group-wrapper .ant-input-number-group-wrapper-outlined {
+  border-left: none !important;
+  border-radius: 0 12px 12px 0 !important;
+  align-items: center;
+}
+.info-input .ant-input-group > .ant-input:first-child,
+.info-input .ant-input-group-addon:first-child {
+  border-right: none !important;
+}

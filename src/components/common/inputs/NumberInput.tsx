@@ -7,19 +7,38 @@ type CustomNumberInputProps = InputNumberProps & {
   className?: string;
 };
 
+const allowedKeys = [
+  'Backspace',
+  'Delete',
+  'ArrowLeft',
+  'ArrowRight',
+  'ArrowUp',
+  'ArrowDown',
+  'Tab',
+  'Home',
+  'End',
+];
+
 const NumberInput: React.FC<CustomNumberInputProps> = ({
   className = '',
   ...inputProps
-}) => (
-  <InputNumber
-    className={`custom-number-input ${className}`}
-    onKeyDown={(e) => {
-      if (!/[0-9]/.test(e.key)) {
-        e.preventDefault();
-      }
-    }}
-    {...inputProps}
-  />
-);
+}) => {
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (allowedKeys.includes(e.key) || e.ctrlKey || e.metaKey) {
+      return;
+    }
+    if (!/^[0-9]$/.test(e.key)) {
+      e.preventDefault();
+    }
+  };
+
+  return (
+    <InputNumber
+      className={`custom-number-input ${className}`}
+      onKeyDown={handleKeyDown}
+      {...inputProps}
+    />
+  );
+};
 
 export default NumberInput;

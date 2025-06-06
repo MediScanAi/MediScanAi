@@ -141,7 +141,7 @@ const MyHealthGuide: React.FC = () => {
                 display: 'flex',
                 justifyContent: 'center',
               }}
-              onClick={() => navigate('/profile/user-info')}
+              onClick={() => navigate('/profile/info')}
             >
               {t('healthGuide.guide.completeProfile')}
             </PrimaryButton>

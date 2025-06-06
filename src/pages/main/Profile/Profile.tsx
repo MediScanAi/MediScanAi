@@ -16,6 +16,9 @@ import ContactUs from './ContactUs';
 import React, { useEffect, useState } from 'react';
 import { useAppSelector } from '../../../app/hooks';
 import { useTranslation } from 'react-i18next';
+import PageNotFound from '../PageNotFound';
+
+const validTabs = ['info', 'analysis-history', 'tests', 'contact-us'];
 
 const Profile: React.FC = () => {
   const isDarkMode = useAppSelector((state) => state.theme.isDarkMode);
@@ -24,6 +27,9 @@ const Profile: React.FC = () => {
   const [width, setWidth] = useState(window.innerWidth);
   const { t } = useTranslation('profil');
 
+  if (!type || !validTabs.includes(type)) {
+    return <PageNotFound />;
+  }
   useEffect(() => {
     const handleResize = () => {
       setWidth(window.innerWidth);
