@@ -1,13 +1,4 @@
-import {
-  Form,
-  InputNumber,
-  message,
-  Select,
-  Typography,
-  Card,
-  Col,
-  Row,
-} from 'antd';
+import { Form, message, Select, Typography, Card, Col, Row } from 'antd';
 import { useAppDispatch, useAppSelector } from '../../../app/hooks';
 import type { UrineTestFormValues } from '../../../app/slices/testSlice';
 import { useLocation, useNavigate } from 'react-router-dom';
@@ -16,6 +7,8 @@ import { auth } from '../../../api/authApi';
 import { useTranslation } from 'react-i18next';
 import PrimaryButton from '../../../components/common/PrimaryButton';
 import '../../../assets/styles/rootForm.css';
+import NumberInput from '../../../components/common/inputs/NumberInput';
+import SelectInput from '../../../components/common/inputs/SelectInput';
 
 const { Option } = Select;
 const { Title } = Typography;
@@ -262,7 +255,7 @@ const UrineTestForm = () => {
                 rules={[{ required: true }]}
               >
                 {field.type === 'input' ? (
-                  <InputNumber
+                  <NumberInput
                     min={field.min}
                     max={field.max}
                     step={field.step}
@@ -270,8 +263,8 @@ const UrineTestForm = () => {
                     placeholder={field.placeholder}
                   />
                 ) : (
-                  <Select
-                    className={`select-item ${isDarkMode ? 'dark' : ''}`}
+                  <SelectInput
+                    className={'select-item'}
                     placeholder={t('urineTest.placeholder')}
                   >
                     {field.options?.map((opt) => (
@@ -279,7 +272,7 @@ const UrineTestForm = () => {
                         {opt.charAt(0).toUpperCase() + opt.slice(1)}
                       </Option>
                     ))}
-                  </Select>
+                  </SelectInput>
                 )}
               </Form.Item>
             );

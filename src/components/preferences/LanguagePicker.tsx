@@ -1,10 +1,10 @@
-import { Select } from 'antd';
 import { useTranslation } from 'react-i18next';
 import engFlag from '../../assets/photos/united-kingdom.png';
 import rusFlag from '../../assets/photos/russia.png';
 import armFlag from '../../assets/photos/armenia.png';
 import { useAppSelector } from '../../app/hooks';
 import '../../assets/styles/components/preferences/languagePicker.css';
+import SelectInput from '../common/inputs/SelectInput';
 const languageOptions = [
   {
     label: (
@@ -39,14 +39,14 @@ const LanguagePicker = () => {
   const isDarkMode = useAppSelector((s) => s.theme.isDarkMode);
 
   return (
-    <Select
+    <SelectInput
       value={i18n.language}
       options={languageOptions}
       onChange={(lng) => {
         i18n.changeLanguage(lng);
         localStorage.setItem('language', lng);
       }}
-      className={`lang-select ${isDarkMode ? 'dark' : ''}`}
+      className={'lang-select'}
       popupMatchSelectWidth={false}
       classNames={{
         popup: {

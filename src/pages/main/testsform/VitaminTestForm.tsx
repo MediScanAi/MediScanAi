@@ -1,4 +1,4 @@
-import { Form, InputNumber, message, Typography, Card, Row, Col } from 'antd';
+import { Form, message, Typography, Card, Row, Col } from 'antd';
 import { useAppDispatch, useAppSelector } from '../../../app/hooks';
 import { saveTestData, setTestData } from '../../../app/slices/testSlice';
 import type { VitaminTestFormValues } from '../../../app/slices/testSlice';
@@ -7,6 +7,7 @@ import { auth } from '../../../api/authApi';
 import { useTranslation } from 'react-i18next';
 import PrimaryButton from '../../../components/common/PrimaryButton';
 import '../../../assets/styles/rootForm.css';
+import NumberInput from '../../../components/common/inputs/NumberInput';
 
 const { Title } = Typography;
 
@@ -126,7 +127,7 @@ const VitaminTestForm = () => {
                 name={field.name}
                 rules={[{ required: true }]}
               >
-                <InputNumber
+                <NumberInput
                   min={field.min}
                   max={field.max}
                   step={field.step}
