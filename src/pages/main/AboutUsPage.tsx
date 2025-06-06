@@ -114,7 +114,6 @@ function AboutUsPage() {
           <Col xs={24} sm={24} md={12} lg={8} key={index}>
             <Card
               className={`about-us-card ${isDarkMode ? 'dark' : ''}`}
-              styles={{ body: { padding: 0 } }}
             >
               <div className="about-us-card-content">
                 <img
