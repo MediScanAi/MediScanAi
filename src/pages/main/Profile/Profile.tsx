@@ -8,6 +8,7 @@ import {
 import '../../../assets/styles/Profile.css';
 import { useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
+
 import UserInfo from './UserInfo';
 import AnalysisHistory from './AnalysisHistory';
 import MainTests from './MainTests';
@@ -15,14 +16,12 @@ import ContactUs from './ContactUs';
 import React, { useEffect, useState } from 'react';
 import { useAppSelector } from '../../../app/hooks';
 import { useTranslation } from 'react-i18next';
-import { Navigate } from 'react-router-dom';
 
 const Profile: React.FC = () => {
   const isDarkMode = useAppSelector((state) => state.theme.isDarkMode);
   const { type } = useParams();
   const navigate = useNavigate();
   const [width, setWidth] = useState(window.innerWidth);
-
   const { t } = useTranslation('profil');
 
   useEffect(() => {
@@ -84,11 +83,7 @@ const Profile: React.FC = () => {
     },
   ];
 
-  const validKeys = items.map((item) => item.key);
-
-  if (!type || !validKeys.includes(type)) {
-    return <Navigate to="/*" replace />;
-  }
+  const activeKey = items.find((item) => item.key === type)?.key || 'info';
 
   const handleTabChange = (key: string) => {
     navigate(`/profile/${key}`);
@@ -103,7 +98,7 @@ const Profile: React.FC = () => {
           defaultActiveKey="1"
           style={{ minHeight: '70vh' }}
           items={items}
-          activeKey={type || 'info'}
+          activeKey={activeKey}
           onChange={handleTabChange}
         />
       </div>

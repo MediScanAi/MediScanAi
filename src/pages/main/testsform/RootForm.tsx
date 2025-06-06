@@ -16,7 +16,6 @@ import UrineTestForm from './UrineTestForm';
 import BloodTestsForm from './BloodTestForm';
 import GeneticTestForm from './GeneticTestForm';
 import { useTranslation } from 'react-i18next';
-import { Navigate } from 'react-router';
 import SecondaryButton from '../../../components/common/SecondaryButton.tsx';
 
 const { Title, Text } = Typography;
@@ -70,16 +69,12 @@ function RootForm(): ReactNode | null {
     },
   ];
 
-
-  const validKeys = items.map((item) => item.key);
-
-  if (!testType || !validKeys.includes(testType)) {
-    return <Navigate to="/*" replace />;
-  }
-
   const handleTabChange = (key: string) => {
     navigate(`/tests-form/${key}`);
   };
+
+  const activeKey =
+    items.find((item) => item.key === testType)?.key || 'blood-test';
 
   return (
     <div className={`root-form-container ${isDarkMode ? ' dark' : ''}`}>
@@ -119,7 +114,7 @@ function RootForm(): ReactNode | null {
             <Tabs
               type="card"
               size="large"
-              activeKey={testType || 'blood-test'}
+              activeKey={activeKey}
               onChange={handleTabChange}
               items={items}
               className={`medical-tabs ${isDarkMode ? 'dark' : ''}`}
