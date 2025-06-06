@@ -25,6 +25,7 @@
   background: radial-gradient(circle at 10% 30%, #b3d1ff, #e6ecfa, #ffffff);
   color: #161c3d;
 }
+
 .welcome-section-login {
   flex: 1;
   align-items: center;
@@ -127,11 +128,13 @@
   position: relative;
   overflow: visible;
 }
+
 .login-card.dark {
   background: rgba(28, 52, 125, 0.8);
   color: #fff;
   border: 1.5px solid rgba(255, 255, 255, 0.18);
 }
+
 .login-title {
   font-weight: bold;
   margin-bottom: 10px;
@@ -190,6 +193,7 @@
   color: #92c4ff;
   font-weight: 500;
 }
+
 .login-preferences-dropdown {
   position: absolute;
   top: 16px;
@@ -209,24 +213,7 @@
   z-index: 999;
 }
 
-.forgot-form-text {
-  margin-bottom: 20px;
-  display: block;
-}
-
 .login-description {
   margin-bottom: 20px;
   display: block;
-}
-
-.forgot-button-section {
-  display: flex;
-  gap: 10px;
-  margin-top: 5px;
-  margin-bottom: 8px;
-  justify-content: center;
-}
-
-.forgot-button {
-  margin-left: 30px;
 }

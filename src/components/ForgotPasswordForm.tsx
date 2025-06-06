@@ -8,7 +8,7 @@ import PrimaryButton from './common/PrimaryButton';
 import SecondaryButton from './common/SecondaryButton';
 import TextInput from './common/inputs/TextInput';
 import { useTranslation } from 'react-i18next';
-
+import '../assets/styles/components/forgotPasswordForm.css'
 const { Title, Text } = Typography;
 
 interface ForgotPasswordFormProps {
@@ -92,7 +92,7 @@ const ForgotPasswordForm: React.FC<ForgotPasswordFormProps> = ({
           <Text className="register-text">
             {t('forgotPassword.dontHaveAnAccount')}
             <Link to="/auth/register" className="register-link">
-              {t('forgotPassword.register')}
+              {' ' + t('forgotPassword.register')}
             </Link>
           </Text>
         </Form>
