@@ -6,7 +6,7 @@ import {
   UserOutlined,
 } from '@ant-design/icons';
 import '../../../assets/styles/Profile.css';
-import { useNavigate } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 
 import UserInfo from './UserInfo';
@@ -26,10 +26,6 @@ const Profile: React.FC = () => {
   const navigate = useNavigate();
   const [width, setWidth] = useState(window.innerWidth);
   const { t } = useTranslation('profil');
-
-  if (!type || !validTabs.includes(type)) {
-    return <PageNotFound />;
-  }
   useEffect(() => {
     const handleResize = () => {
       setWidth(window.innerWidth);
@@ -37,6 +33,10 @@ const Profile: React.FC = () => {
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
+
+  if (!type || !validTabs.includes(type)) {
+    return <Navigate to={'/*'} replace/>;
+  }
 
   const items: TabsProps['items'] = [
     {
