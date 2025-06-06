@@ -23,6 +23,7 @@
     "maintain": "Поддерживать",
     "gainWeight": "+{{kg}}кг",
     "loseWeight": "-{{kg}}кг",
+    "noData": "Нет данных",
     "minutes": "{{minutes}} мин",
     "alerts": {
       "lowWeight": {
