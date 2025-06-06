@@ -1,23 +1,6 @@
 .lang-select {
-  width: fit-content;
+  width: min-content !important ;
   background: transparent;
-}
-
-.lang-select.dark .ant-select-selector {
-  background: #1d2b40;
-  border-color: #2e4a6b;
-  color: #fff;
-}
-.lang-select.dark .ant-select-arrow,
-.lang-select.dark .ant-select-arrow * {
-  color: #fff;
-  fill: #fff;
-}
-.lang-select.dark .ant-select-selection-item {
-  color: #fff;
-}
-.lang-select.dark.ant-select-open .ant-select-selection-item {
-  color: #fff;
 }
 
 .lang-dropdown-dark {

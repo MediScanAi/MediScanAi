@@ -6,6 +6,7 @@ import { auth } from '../../../api/authApi';
 import type { GeneticTestFormValues } from '../../../app/slices/testSlice';
 import { useTranslation } from 'react-i18next';
 import PrimaryButton from '../../../components/common/PrimaryButton';
+import SelectInput from '../../../components/common/inputs/SelectInput';
 
 const { Title } = Typography;
 const { Option } = Select;
@@ -150,13 +151,13 @@ function GeneticTestForm() {
                 name={field.name}
                 rules={[{ required: true }]}
               >
-                <Select placeholder={t('geneticTest.placeholder')}>
+                <SelectInput placeholder={t('geneticTest.placeholder')}>
                   {field.options?.map((opt) => (
                     <Option key={opt.value} value={opt.value}>
                       {opt.label}
                     </Option>
                   ))}
-                </Select>
+                </SelectInput>
               </Form.Item>
             </Col>
           ))}

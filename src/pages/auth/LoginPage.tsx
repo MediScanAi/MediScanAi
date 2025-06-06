@@ -1,7 +1,6 @@
 import React from 'react';
 import {
   Form,
-  Input,
   Button,
   Card,
   Typography,
@@ -23,6 +22,8 @@ import PrimaryButton from '../../components/common/PrimaryButton';
 import PreferencesDropdown from '../../components/preferences/PreferencesDropdown';
 import SecondaryButton from '../../components/common/SecondaryButton';
 import { X } from 'lucide-react';
+import TextInput from '../../components/common/inputs/TextInput';
+import PasswordInput from '../../components/common/inputs/PasswordInput';
 import { useTranslation } from 'react-i18next';
 
 const { Title, Text } = Typography;
@@ -118,6 +119,7 @@ const LoginPage: React.FC = () => {
                 <Form
                   layout="vertical"
                   onFinish={onFinish}
+                  disabled={googleLoading}
                   requiredMark={false}
                 >
                   <Form.Item
@@ -131,11 +133,7 @@ const LoginPage: React.FC = () => {
                       },
                     ]}
                   >
-                    <Input
-                      size="large"
-                      placeholder={t('login.forms.email')}
-                      className="login-input"
-                    />
+                    <TextInput size="large" placeholder={t('login.forms.email')} />
                   </Form.Item>
 
                   <Form.Item
@@ -145,11 +143,7 @@ const LoginPage: React.FC = () => {
                       { required: true, message: t('login.forms.password') },
                     ]}
                   >
-                    <Input.Password
-                      size="large"
-                      placeholder={t('login.forms.password')}
-                      className="login-input"
-                    />
+                    <PasswordInput size="large" placeholder={t('login.forms.password')} />
                   </Form.Item>
 
                   <Form.Item className="forgot-form">

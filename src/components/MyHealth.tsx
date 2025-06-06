@@ -15,7 +15,6 @@ import {
   Spin,
   DatePicker,
   Progress,
-  Input,
   Modal,
   message,
   Steps,
@@ -55,6 +54,7 @@ import confetti from 'canvas-confetti';
 import MyHealthGuide from '../pages/main/profile/MyHealthGuide';
 import { auth } from '../api/authApi';
 import PrimaryButton from './common/PrimaryButton';
+import NumberInput from './common/inputs/NumberInput';
 
 const { Title, Text, Paragraph } = Typography;
 
@@ -144,8 +144,8 @@ const HealthPage: React.FC = () => {
     setTempGoalInput('');
   };
 
-  const handleGoalInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setTempGoalInput(e.target.value);
+  const handleGoalInputChange = (value: string | number | null) => {
+    setTempGoalInput(value !== null ? String(value) : '');
   };
 
   useEffect(() => {
@@ -704,8 +704,7 @@ const HealthPage: React.FC = () => {
           className="goal-modal"
         >
           {selectedMetricIndex !== null && (
-            <Input
-              type="number"
+            <NumberInput
               value={tempGoalInput}
               onChange={handleGoalInputChange}
               placeholder={t('health.enterGoalValue')}
@@ -774,7 +773,7 @@ const HealthPage: React.FC = () => {
                     <Button
                       type="text"
                       icon={<EditOutlined />}
-                      onClick={() => navigate('/profile/user-info')}
+                      onClick={() => navigate('/profile/info')}
                       className={`edit-profile-button ${isDarkMode ? 'dark' : ''}`}
                     />
                   </Title>

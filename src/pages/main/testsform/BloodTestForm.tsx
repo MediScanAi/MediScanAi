@@ -1,4 +1,4 @@
-import { Form, InputNumber, message, Card, Typography, Row, Col } from 'antd';
+import { Form, message, Card, Typography, Row, Col } from 'antd';
 import { useAppDispatch, useAppSelector } from '../../../app/hooks';
 import { saveTestData, setTestData } from '../../../app/slices/testSlice';
 import type { BloodTestFormValues } from '../../../app/slices/testSlice';
@@ -8,6 +8,7 @@ import { auth } from '../../../api/authApi';
 import { useTranslation } from 'react-i18next';
 import '../../../assets/styles/rootForm.css';
 import PrimaryButton from '../../../components/common/PrimaryButton';
+import NumberInput from '../../../components/common/inputs/NumberInput';
 
 const { Title } = Typography;
 
@@ -141,7 +142,7 @@ function BloodTestsForm() {
                 rules={[{ required: true }]}
                 className={`input-item  ${isDarkMode ? 'dark' : ''}`}
               >
-                <InputNumber
+                <NumberInput
                   min={field.min}
                   max={field.max}
                   step={field.step}
