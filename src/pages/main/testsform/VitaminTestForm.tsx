@@ -139,7 +139,7 @@ const VitaminTestForm = () => {
           ))}
         </Row>
 
-        <Form.Item style={{ textAlign: 'center', marginTop: 32 }}>
+        <Form.Item className="genetic-form-item">
           <PrimaryButton type="primary" htmlType="submit">
             {updatedData ? t('vitaminTest.update') : t('vitaminTest.submit')}
           </PrimaryButton>

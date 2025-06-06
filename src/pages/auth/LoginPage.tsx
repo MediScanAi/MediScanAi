@@ -139,12 +139,14 @@ const LoginPage: React.FC = () => {
                   <Form.Item
                     label={t('login.forms.password')}
                     name="password"
-                    rules={[{ required: true, message: t('login.forms.password') }]}
+                    rules={[
+                      { required: true, message: t('login.forms.password') },
+                    ]}
                   >
                     <PasswordInput size="large" placeholder={t('login.forms.password')} />
                   </Form.Item>
 
-                  <Form.Item style={{ textAlign: 'right', marginBottom: 10 }}>
+                  <Form.Item className="forgot-form">
                     <Button
                       type="link"
                       className="forgot-password-link"
@@ -156,14 +158,7 @@ const LoginPage: React.FC = () => {
                   </Form.Item>
 
                   <Form.Item>
-                    <div
-                      style={{
-                        display: 'flex',
-                        gap: 10,
-                        marginTop: 5,
-                        marginBottom: 8,
-                      }}
-                    >
+                    <div className="login-form">
                       <PrimaryButton
                         htmlType="submit"
                         loading={loading}

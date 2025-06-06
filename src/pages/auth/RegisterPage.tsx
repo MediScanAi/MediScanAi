@@ -65,12 +65,10 @@ const RegisterPage: React.FC = () => {
       await dispatch(
         registerUser({ name, surname, email, password, gender, age })
       ).unwrap();
-      message.info(
-        "We've sent a verification e-mail. Please check your inbox."
-      );
+      message.info(t('register.verificationEmail'));
       setWaitingVerification(true);
     } catch {
-      message.error('Registration failed');
+      message.error(t('register.registrationFailed'));
     }
   };
 
@@ -82,10 +80,10 @@ const RegisterPage: React.FC = () => {
     if (auth.currentUser.emailVerified) {
       const mapped = mapFirebaseUser(auth.currentUser);
       dispatch(setUser(mapped));
-      message.success('Welcome to MediScan AI!');
+      message.success(t('register.welcomeMessage'));
       navigate('/');
     } else {
-      message.warning('E-mail not verified yet');
+      message.warning(t('register.emailNotVerified'));
     }
     setChecking(false);
   };
@@ -122,9 +120,7 @@ const RegisterPage: React.FC = () => {
                   <div className="verification-overlay">
                     <div>
                       <Title level={4}>{t('register.checkEmail')}</Title>
-                      <Text>
-                        {t('register.verificationDescription')}
-                      </Text>
+                      <Text>{t('register.verificationDescription')}</Text>
                       <br />
                       <PrimaryButton
                         style={{ marginTop: 24 }}
@@ -148,7 +144,9 @@ const RegisterPage: React.FC = () => {
                       <Form.Item
                         label={t('register.forms.name')}
                         name="name"
-                        rules={[{ required: true, message: t('register.forms.name') }]}
+                        rules={[
+                          { required: true, message: t('register.forms.name') },
+                        ]}
                       >
                         <TextInput placeholder={t('register.forms.name')} size="large" />
                         
@@ -159,7 +157,10 @@ const RegisterPage: React.FC = () => {
                         label={t('register.forms.surname')}
                         name="surname"
                         rules={[
-                          { required: true, message: t('register.forms.surname') },
+                          {
+                            required: true,
+                            message: t('register.forms.surname'),
+                          },
                         ]}
                       >
                         <TextInput
@@ -201,7 +202,10 @@ const RegisterPage: React.FC = () => {
                         label={t('register.forms.email')}
                         name="email"
                         rules={[
-                          { required: true, message: t('register.forms.email') },
+                          {
+                            required: true,
+                            message: t('register.forms.email'),
+                          },
                           { type: 'email', message: 'Invalid email' },
                         ]}
                       >
@@ -217,12 +221,14 @@ const RegisterPage: React.FC = () => {
                         label={t('register.forms.password')}
                         name="password"
                         rules={[
-                          { required: true, message: t('register.forms.password') },
+                          {
+                            required: true,
+                            message: t('register.forms.password'),
+                          },
                           {
                             pattern:
                               /^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*]).{8,}$/,
-                            message:
-                              t('register.passwordRules'),
+                            message: t('register.passwordRules'),
                           },
                         ]}
                       >

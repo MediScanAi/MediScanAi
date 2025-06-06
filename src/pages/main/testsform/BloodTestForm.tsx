@@ -154,7 +154,7 @@ function BloodTestsForm() {
           ))}
         </Row>
 
-        <Form.Item style={{ textAlign: 'center', marginTop: 32 }}>
+        <Form.Item className="genetic-form-item">
           <PrimaryButton type="primary" htmlType="submit">
             {updatedData ? t('bloodTest.update') : t('bloodTest.submit')}
           </PrimaryButton>
