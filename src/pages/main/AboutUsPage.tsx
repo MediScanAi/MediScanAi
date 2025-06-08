@@ -4,6 +4,10 @@ import mission from '../../assets/photos/target.png';
 import vision from '../../assets/photos/opportunity.png';
 import values from '../../assets/photos/core-values.png';
 import opinionImage from '../../assets/photos/quotes.png';
+import teamMember1 from '../../assets/photos/TeamMemberVache.png';
+import teamMember2 from '../../assets/photos/TeammemberVahe.png';
+import teamMember3 from '../../assets/photos/TeamMemberArtur.png';
+import teamMember4 from '../../assets/photos/TeamMemberArayik.png';
 import { useNavigate } from 'react-router';
 import { useEffect } from 'react';
 import { useState } from 'react';
@@ -82,6 +86,40 @@ function AboutUsPage() {
       alt: 'values',
     },
   ];
+
+  const teamMembers = [
+    {
+      name: t('aboutUs.meetOurTeam.members.0.name'),
+      position: t('aboutUs.meetOurTeam.members.0.position'),
+      description: t('aboutUs.meetOurTeam.members.0.description'),
+      img: teamMember1,
+    },
+    {
+      name: t('aboutUs.meetOurTeam.members.1.name'),
+      position: t('aboutUs.meetOurTeam.members.1.position'),
+      description: t('aboutUs.meetOurTeam.members.1.description'),
+      img: teamMember2,
+    },
+    {
+      name: t('aboutUs.meetOurTeam.members.2.name'),
+      position: t('aboutUs.meetOurTeam.members.2.position'),
+      description: t('aboutUs.meetOurTeam.members.2.description'),
+      img: teamMember3,
+    },
+    {
+      name: t('aboutUs.meetOurTeam.members.3.name'),
+      position: t('aboutUs.meetOurTeam.members.3.position'),
+      description: t('aboutUs.meetOurTeam.members.3.description'),
+      img: teamMember4,
+    },
+    {
+      name: t('aboutUs.meetOurTeam.members.4.name'),
+      position: t('aboutUs.meetOurTeam.members.4.position'),
+      description: t('aboutUs.meetOurTeam.members.4.description'),
+      img: '/images/team5.jpg',
+    },
+  ];
+
 
   return (
     <Row className={`about-us ${isDarkMode ? 'dark' : ''}`}>
@@ -197,6 +235,35 @@ function AboutUsPage() {
           </Carousel>
         </Col>
       </Row>
+      <div className="team-container">
+        <h2 className="team-header">{t("aboutUs.meetOurTeam.title")}</h2>
+        <Paragraph
+          className={`welcome-section-description ${isDarkMode ? 'dark' : ''}`}
+        >
+          {t('aboutUs.meetOurTeam.description')}
+        </Paragraph>
+        <Row className="team-section custom-team-layout" gutter={[24, 24]} justify="center">
+          {teamMembers.map((member, index) => (
+            <Col key={index} xs={24} sm={12} md={12} lg={8} xl={8}>
+              <div className={`team-card ${isDarkMode ? 'dark' : ''}`}>
+                <img
+                  src={member.img}
+                  alt={member.name}
+                  className="team-img"
+                  draggable={false}
+                />
+                 <div className={`team-info ${isDarkMode ? 'dark' : ''}`}>
+                  <h3>{member.name}</h3>
+                  <p>{member.position}</p>
+                  <h5>{member.description}</h5>
+                </div>
+              </div>
+            </Col>
+          ))}
+        </Row>
+
+
+      </div>
       <Row justify="center" gutter={[32, 32]} className="location-section">
         <Col xs={24} md={10} className="location-text">
           <Title

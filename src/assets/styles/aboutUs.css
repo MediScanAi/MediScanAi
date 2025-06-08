@@ -11,12 +11,10 @@
 }
 
 .about-us.dark {
-  background: radial-gradient(
-    circle at 10% 30%,
-    rgba(28, 52, 125, 0.9),
-    #121e63,
-    rgba(28, 52, 125, 1)
-  );
+  background: radial-gradient(circle at 10% 30%,
+      rgba(28, 52, 125, 0.9),
+      #121e63,
+      rgba(28, 52, 125, 1));
   color: white;
 }
 
@@ -298,4 +296,77 @@
 .iframe {
   border: 0;
   border-radius: 13px;
+}
+
+.team-container {
+  padding: 60px 20px;
+  text-align: center;
+  width: 100%;
+}
+
+.team-header {
+  font-size: 2.5rem;
+  margin-bottom: 40px;
+  font-weight: bold;
+}
+
+.team-card {
+  border-radius: 12px;
+  overflow: hidden;
+  height: 550px;
+  padding: 20px;
+  box-shadow: 0 8px 32px rgba(34, 56, 122, 0.25);
+  background-color: #e6ecfa;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.team-card.dark {
+  background-color: rgba(28, 52, 125, 1);
+  color: white;
+}
+
+.team-img {
+  width: 190px;
+  height: 280px;
+  object-fit: cover;
+}
+
+.team-info {
+  margin-top: 15px;
+}
+
+.team-info h3 {
+  margin: 10px 0 5px;
+  font-size: 25px;
+  font-weight: bold;
+}
+
+.team-info p {
+  margin: 0 0 10px;
+  font-size: 20px;
+  color: #666;
+  position: relative;
+}
+
+.team-info p.dark {
+  color: #ffffff !important;
+}
+
+.team-info p::after {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 2px;
+  margin: 10px auto;
+  background-color: #ccc;
+}
+
+.team-info h5 {
+  margin: 0 0 10px;
+  text-align: center;
+  font-size: 17px;
+  position: relative;
 }

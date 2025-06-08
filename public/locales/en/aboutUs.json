@@ -17,6 +17,42 @@
       "title": "Our Values",
       "text": "Innovation, accuracy, and trust are at our core. We are committed to developing cutting-edge solutions while maintaining the highest standards of data security and clinical precision."
     },
+    "meetOurTeam":{
+      "title": "Meet Our Team",
+      "description": "Our team consists of leading experts in healthcare, artificial intelligence, and data science, dedicated to advancing medical diagnostics through innovative technology.",
+      "members": {
+        "0": {
+          "name": "Vache Aseyan",
+          "position": "Frontend Developer",
+         "description": "Vache brings expertise in frontend technologies, ensuring that our applications are both functional and visually appealing."
+        
+        },
+         "1": {
+          "name": "Vahe Nersesyan",
+          "position": "Frontend Developer",
+          "description": "Vahe specializes in frontend development, focusing on building responsive and accessible web applications that meet user needs."
+        
+        },
+         "2": {
+          "name": "Artur Baghramyan",
+          "position": "Frontend Developer",
+          "description": "Artur is skilled in creating intuitive user interfaces, enhancing user experience through innovative design and functionality."
+        
+        },
+         "3": {
+          "name": "Arayik Avagyan",
+          "position": "Frontend Developer",
+          "description": "Arayik focuses on frontend development, utilizing modern frameworks to build efficient and scalable web applications."
+        
+        },
+         "4": {
+          "name": "Davit Mutafyan",
+          "position": "Frontend Developer",
+          "description": "Davit is an expert in frontend technologies, dedicated to delivering high-quality user experiences through meticulous design and development."
+        
+        }
+      }
+    },
     "opinions": {
       "0": {
         "name": "Dr. Sarah Chen",
