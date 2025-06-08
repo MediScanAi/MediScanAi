@@ -11,10 +11,12 @@
 }
 
 .about-us.dark {
-  background: radial-gradient(circle at 10% 30%,
-      rgba(28, 52, 125, 0.9),
-      #121e63,
-      rgba(28, 52, 125, 1));
+  background: radial-gradient(
+    circle at 10% 30%,
+    rgba(28, 52, 125, 0.9),
+    #121e63,
+    rgba(28, 52, 125, 1)
+  );
   color: white;
 }
 
@@ -317,7 +319,7 @@
   background-color: #fff;
   text-align: center;
   display: flex;
-  height: 545px;
+  height: 560px;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -329,8 +331,8 @@
 }
 
 .team-img {
-  width: 245px;
-  height: 350px;
+  width: 265px;
+  height: 375px;
   object-fit: cover;
   margin-bottom: 20px;
 }
@@ -358,10 +360,6 @@
 
 .team-card.dark .name-underline {
   background-color: #fff;
-}
-
-.team-card.dark:hover .name-underline {
-  background-color: #69c0ff;
 }
 
 .member-socials {
