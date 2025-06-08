@@ -14,7 +14,7 @@ import ChatWithAI from './pages/main/ChatWithAI';
 import RootForm from './pages/main/testsform/RootForm';
 import Profile from './pages/main/profile/Profile';
 import PageNotFound from './pages/main/PageNotFound';
-import MyHealth from './components/MyHealth';
+import MyHealth from './pages/health/MyHealth';
 
 const router = createBrowserRouter([
   {

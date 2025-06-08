@@ -16,7 +16,6 @@ import ContactUs from './ContactUs';
 import React, { useEffect, useState } from 'react';
 import { useAppSelector } from '../../../app/hooks';
 import { useTranslation } from 'react-i18next';
-import PageNotFound from '../PageNotFound';
 
 const validTabs = ['info', 'analysis-history', 'tests', 'contact-us'];
 

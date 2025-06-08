@@ -34,7 +34,6 @@ import {
   DatabaseOutlined,
   SafetyOutlined,
   SyncOutlined,
-  InfoCircleOutlined,
   CheckOutlined,
   CopyOutlined,
   InboxOutlined,
@@ -42,19 +41,19 @@ import {
   TrophyOutlined,
 } from '@ant-design/icons';
 
-import '../assets/styles/healthPage.css';
+import '../../assets/styles/healthPage.css';
 import { motion } from 'framer-motion';
-import { useAppSelector, useAppDispatch } from '../app/hooks';
+import { useAppSelector, useAppDispatch } from '../../app/hooks';
 import { useTranslation } from 'react-i18next';
 import {
   fetchHealthData,
   type HealthDataEntry,
-} from '../app/slices/healthSlice';
+} from '../../app/slices/healthSlice';
 import confetti from 'canvas-confetti';
-import MyHealthGuide from '../pages/main/profile/MyHealthGuide';
-import { auth } from '../api/authApi';
-import PrimaryButton from './common/PrimaryButton';
-import NumberInput from './common/inputs/NumberInput';
+import MyHealthGuide from './MyHealthGuide';
+import { auth } from '../../api/authApi';
+import PrimaryButton from '../../components/common/PrimaryButton';
+import NumberInput from '../../components/common/inputs/NumberInput';
 
 const { Title, Text, Paragraph } = Typography;
 
@@ -701,7 +700,7 @@ const HealthPage: React.FC = () => {
           onCancel={handleCancel}
           okText={t('health.save')}
           cancelText={t('health.cancel')}
-          className="goal-modal"
+          className={`goal-modal ${isDarkMode ? 'dark' : ''}`}
         >
           {selectedMetricIndex !== null && (
             <NumberInput
@@ -958,112 +957,103 @@ const HealthPage: React.FC = () => {
       </div>
 
       <Modal
-        title={
-          <span className={`connect-modal-title ${isDarkMode ? 'dark' : ''}`}>
-            {t('healthGuide.guide.connectModal.title')}
-          </span>
-        }
-        open={isModalVisible}
-        onCancel={handleCancelModal}
-        footer={[
-          <Button
-            key="close"
-            onClick={handleCancelModal}
-            className="modal-close-button"
+            title={t('healthGuide.guide.connectModal.title')}
+            open={isModalVisible}
+            onCancel={handleCancelModal}
+            footer={[
+              <Button key="close" onClick={handleCancelModal}>
+                {t('healthGuide.guide.connectModal.closeButton')}
+              </Button>,
+            ]}
+            width={600}
+            className={`modal-container ${isDarkMode ? 'dark' : ''}`}
           >
-            {t('healthGuide.guide.connectModal.closeButton')}
-          </Button>,
-        ]}
-        width={700}
-        zIndex={1000}
-        className="connect-modal"
-      >
-        <div className="modal-content">
-          <p className={`modal-step-description ${isDarkMode ? 'dark' : ''}`}>
-            {t('healthGuide.guide.connectModal.description')}
-          </p>
+            <div className={`modal-content ${isDarkMode ? 'dark' : ''}`}>
+              <p
+                className={`modal-step-description ${isDarkMode ? 'dark' : ''}`}
+              >
+                {t('healthGuide.guide.connectModal.description')}
+              </p>
 
-          <div className="modal-steps-container">
-            <Steps
-              direction="vertical"
-              current={-1}
-              size="small"
-              className="modal-steps"
-            >
-              <Steps.Step
-                title={
-                  <div
-                    className={`connect-modal-title ${isDarkMode ? 'dark' : ''}`}
-                  >
-                    {t('healthGuide.guide.connectModal.steps.download.title')}
-                  </div>
-                }
-                description={
-                  <div className="download-link-container">
-                    <a
-                      href="https://www.icloud.com/shortcuts/e6269ab0fef447f498eeac823f764deb"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="download-link"
-                    >
-                      {t(
-                        'healthGuide.guide.connectModal.steps.download.linkText'
-                      )}
-                    </a>
-                  </div>
-                }
-                icon={<SafetyOutlined />}
-              />
-              <Steps.Step
-                title={t('healthGuide.guide.connectModal.steps.copyUid.title')}
-                description={
-                  <div className="uid-container">
-                    <Text className="uid-text">{currentUser}</Text>
-                    <Button
-                      icon={uidCopied ? <CheckOutlined /> : <CopyOutlined />}
-                      size="small"
-                      onClick={copyUid}
-                      className="copy-uid-button"
-                    >
-                      {uidCopied
-                        ? t(
-                            'healthGuide.guide.connectModal.steps.copyUid.button.copied'
-                          )
-                        : t(
-                            'healthGuide.guide.connectModal.steps.copyUid.button.copy'
+              <div
+                className={`modal-steps-container ${isDarkMode ? 'dark' : ''}`}
+              >
+                <Steps
+                  direction="vertical"
+                  current={-1}
+                  size="small"
+                  className={`modal-steps ${isDarkMode ? 'dark' : ''}`}
+                >
+                  <Steps.Step
+                    title={t(
+                      'healthGuide.guide.connectModal.steps.download.title'
+                    )}
+                    className={`modal-step ${isDarkMode ? 'dark' : ''}`}
+                    description={
+                      <div className="download-link-container">
+                        <a
+                          href="https://www.icloud.com/shortcuts/e6269ab0fef447f498eeac823f764deb"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="download-link"
+                        >
+                          {t(
+                            'healthGuide.guide.connectModal.steps.download.linkText'
                           )}
-                    </Button>
-                  </div>
-                }
-                icon={<SyncOutlined />}
-              />
-              <Steps.Step
-                title={t(
-                  'healthGuide.guide.connectModal.steps.runShortcut.title'
-                )}
-                description={t(
-                  'healthGuide.guide.connectModal.steps.runShortcut.description'
-                )}
-                icon={<DatabaseOutlined />}
-              />
-              <Steps.Step
-                title={t('healthGuide.guide.connectModal.steps.enjoy.title')}
-                description={t(
-                  'healthGuide.guide.connectModal.steps.enjoy.description'
-                )}
-                icon={<FundOutlined />}
-              />
-            </Steps>
-          </div>
-
-          <div className="modal-footer-note">
-            <InfoCircleOutlined className="footer-note-icon" />
-            <Text type="secondary">
-              {t('healthGuide.guide.connectModal.privacyNote')}
-            </Text>
-          </div>
-        </div>
-      </Modal>
+                        </a>
+                      </div>
+                    }
+                    icon={<SafetyOutlined className="text-white" />}
+                  />
+                  <Steps.Step
+                    title={t(
+                      'healthGuide.guide.connectModal.steps.copyUid.title'
+                    )}
+                    className={`modal-step ${isDarkMode ? 'dark' : ''}`}
+                    description={
+                      <div className="uid-container">
+                        <Text className="uid-text">{currentUser}</Text>
+                        <Button
+                          icon={
+                            uidCopied ? <CheckOutlined /> : <CopyOutlined />
+                          }
+                          size="small"
+                          onClick={copyUid}
+                        >
+                          {uidCopied
+                            ? t(
+                              'healthGuide.guide.connectModal.steps.copyUid.button.copied'
+                            )
+                            : t(
+                              'healthGuide.guide.connectModal.steps.copyUid.button.copy'
+                            )}
+                        </Button>
+                      </div>
+                    }
+                    icon={<SyncOutlined className="text-white" />}
+                  />
+                  <Steps.Step
+                    title={t(
+                      'healthGuide.guide.connectModal.steps.runShortcut.title'
+                    )}
+                    description={t(
+                      'healthGuide.guide.connectModal.steps.runShortcut.description'
+                    )}
+                    icon={<DatabaseOutlined className="text-white" />}
+                  />
+                  <Steps.Step
+                    title={t(
+                      'healthGuide.guide.connectModal.steps.enjoy.title'
+                    )}
+                    description={t(
+                      'healthGuide.guide.connectModal.steps.enjoy.description'
+                    )}
+                    icon={<FundOutlined className="text-white" />}
+                  />
+                </Steps>
+              </div>
+            </div>
+          </Modal>
     </div>
   );
 };
