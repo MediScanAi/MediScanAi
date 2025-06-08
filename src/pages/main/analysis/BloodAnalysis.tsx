@@ -374,7 +374,7 @@ function BloodAnalysis() {
                     navigate('/ai-doctor', {
                       state: {
                         bloodTests: bloodTestData,
-                        healthWarnings: warnings,
+                        bloodWarnings: warnings,
                       },
                     });
                   }}

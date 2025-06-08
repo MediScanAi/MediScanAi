@@ -905,7 +905,7 @@
 }
 
 .modal-container.dark .ant-btn {
- margin-top: 10px;
+  margin-top: 10px;
 }
 
 .modal-container.dark .ant-btn {
@@ -935,7 +935,9 @@
 .modal-container .ant-modal-content,
 .modal-container .ant-modal-header,
 .modal-container .ant-modal-footer {
-  transition: background-color 0.3s ease, color 0.3s ease;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
 }
 
 .modal-container .text-white {

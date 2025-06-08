@@ -112,9 +112,7 @@ function AboutUsPage() {
 
         {cardItems.map((item, index) => (
           <Col xs={24} sm={24} md={12} lg={8} key={index}>
-            <Card
-              className={`about-us-card ${isDarkMode ? 'dark' : ''}`}
-            >
+            <Card className={`about-us-card ${isDarkMode ? 'dark' : ''}`}>
               <div className="about-us-card-content">
                 <img
                   draggable={false}

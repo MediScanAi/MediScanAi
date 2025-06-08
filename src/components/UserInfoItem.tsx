@@ -75,7 +75,9 @@ const UserInfoItem: React.FC<UserInfoItemProps> = ({
               <QuestionCircleOutlined />
             </Tooltip>
           )}
-          {isEditing && field.unit && <Text type="secondary">{field.unit}</Text>}
+          {isEditing && field.unit && (
+            <Text type="secondary">{field.unit}</Text>
+          )}
         </div>
 
         {isEditing ? (

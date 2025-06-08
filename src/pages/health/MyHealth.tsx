@@ -748,11 +748,7 @@ const HealthPage: React.FC = () => {
 
       <div className="health-content">
         <Row gutter={[24, 24]} className="health-main-row">
-          <Col
-            xs={24}
-            lg={8}
-            className="profile-column"
-          >
+          <Col xs={24} lg={8} className="profile-column">
             <motion.div
               initial={{ x: -30, opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
@@ -957,103 +953,91 @@ const HealthPage: React.FC = () => {
       </div>
 
       <Modal
-            title={t('healthGuide.guide.connectModal.title')}
-            open={isModalVisible}
-            onCancel={handleCancelModal}
-            footer={[
-              <Button key="close" onClick={handleCancelModal}>
-                {t('healthGuide.guide.connectModal.closeButton')}
-              </Button>,
-            ]}
-            width={600}
-            className={`modal-container ${isDarkMode ? 'dark' : ''}`}
-          >
-            <div className={`modal-content ${isDarkMode ? 'dark' : ''}`}>
-              <p
-                className={`modal-step-description ${isDarkMode ? 'dark' : ''}`}
-              >
-                {t('healthGuide.guide.connectModal.description')}
-              </p>
+        title={t('healthGuide.guide.connectModal.title')}
+        open={isModalVisible}
+        onCancel={handleCancelModal}
+        footer={[
+          <Button key="close" onClick={handleCancelModal}>
+            {t('healthGuide.guide.connectModal.closeButton')}
+          </Button>,
+        ]}
+        width={600}
+        className={`modal-container ${isDarkMode ? 'dark' : ''}`}
+      >
+        <div className={`modal-content ${isDarkMode ? 'dark' : ''}`}>
+          <p className={`modal-step-description ${isDarkMode ? 'dark' : ''}`}>
+            {t('healthGuide.guide.connectModal.description')}
+          </p>
 
-              <div
-                className={`modal-steps-container ${isDarkMode ? 'dark' : ''}`}
-              >
-                <Steps
-                  direction="vertical"
-                  current={-1}
-                  size="small"
-                  className={`modal-steps ${isDarkMode ? 'dark' : ''}`}
-                >
-                  <Steps.Step
-                    title={t(
-                      'healthGuide.guide.connectModal.steps.download.title'
-                    )}
-                    className={`modal-step ${isDarkMode ? 'dark' : ''}`}
-                    description={
-                      <div className="download-link-container">
-                        <a
-                          href="https://www.icloud.com/shortcuts/e6269ab0fef447f498eeac823f764deb"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="download-link"
-                        >
-                          {t(
-                            'healthGuide.guide.connectModal.steps.download.linkText'
+          <div className={`modal-steps-container ${isDarkMode ? 'dark' : ''}`}>
+            <Steps
+              direction="vertical"
+              current={-1}
+              size="small"
+              className={`modal-steps ${isDarkMode ? 'dark' : ''}`}
+            >
+              <Steps.Step
+                title={t('healthGuide.guide.connectModal.steps.download.title')}
+                className={`modal-step ${isDarkMode ? 'dark' : ''}`}
+                description={
+                  <div className="download-link-container">
+                    <a
+                      href="https://www.icloud.com/shortcuts/e6269ab0fef447f498eeac823f764deb"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="download-link"
+                    >
+                      {t(
+                        'healthGuide.guide.connectModal.steps.download.linkText'
+                      )}
+                    </a>
+                  </div>
+                }
+                icon={<SafetyOutlined className="text-white" />}
+              />
+              <Steps.Step
+                title={t('healthGuide.guide.connectModal.steps.copyUid.title')}
+                className={`modal-step ${isDarkMode ? 'dark' : ''}`}
+                description={
+                  <div className="uid-container">
+                    <Text className="uid-text">{currentUser}</Text>
+                    <Button
+                      icon={uidCopied ? <CheckOutlined /> : <CopyOutlined />}
+                      size="small"
+                      onClick={copyUid}
+                    >
+                      {uidCopied
+                        ? t(
+                            'healthGuide.guide.connectModal.steps.copyUid.button.copied'
+                          )
+                        : t(
+                            'healthGuide.guide.connectModal.steps.copyUid.button.copy'
                           )}
-                        </a>
-                      </div>
-                    }
-                    icon={<SafetyOutlined className="text-white" />}
-                  />
-                  <Steps.Step
-                    title={t(
-                      'healthGuide.guide.connectModal.steps.copyUid.title'
-                    )}
-                    className={`modal-step ${isDarkMode ? 'dark' : ''}`}
-                    description={
-                      <div className="uid-container">
-                        <Text className="uid-text">{currentUser}</Text>
-                        <Button
-                          icon={
-                            uidCopied ? <CheckOutlined /> : <CopyOutlined />
-                          }
-                          size="small"
-                          onClick={copyUid}
-                        >
-                          {uidCopied
-                            ? t(
-                              'healthGuide.guide.connectModal.steps.copyUid.button.copied'
-                            )
-                            : t(
-                              'healthGuide.guide.connectModal.steps.copyUid.button.copy'
-                            )}
-                        </Button>
-                      </div>
-                    }
-                    icon={<SyncOutlined className="text-white" />}
-                  />
-                  <Steps.Step
-                    title={t(
-                      'healthGuide.guide.connectModal.steps.runShortcut.title'
-                    )}
-                    description={t(
-                      'healthGuide.guide.connectModal.steps.runShortcut.description'
-                    )}
-                    icon={<DatabaseOutlined className="text-white" />}
-                  />
-                  <Steps.Step
-                    title={t(
-                      'healthGuide.guide.connectModal.steps.enjoy.title'
-                    )}
-                    description={t(
-                      'healthGuide.guide.connectModal.steps.enjoy.description'
-                    )}
-                    icon={<FundOutlined className="text-white" />}
-                  />
-                </Steps>
-              </div>
-            </div>
-          </Modal>
+                    </Button>
+                  </div>
+                }
+                icon={<SyncOutlined className="text-white" />}
+              />
+              <Steps.Step
+                title={t(
+                  'healthGuide.guide.connectModal.steps.runShortcut.title'
+                )}
+                description={t(
+                  'healthGuide.guide.connectModal.steps.runShortcut.description'
+                )}
+                icon={<DatabaseOutlined className="text-white" />}
+              />
+              <Steps.Step
+                title={t('healthGuide.guide.connectModal.steps.enjoy.title')}
+                description={t(
+                  'healthGuide.guide.connectModal.steps.enjoy.description'
+                )}
+                icon={<FundOutlined className="text-white" />}
+              />
+            </Steps>
+          </div>
+        </div>
+      </Modal>
     </div>
   );
 };

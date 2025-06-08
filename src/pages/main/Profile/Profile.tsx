@@ -34,7 +34,7 @@ const Profile: React.FC = () => {
   }, []);
 
   if (!type || !validTabs.includes(type)) {
-    return <Navigate to={'/*'} replace/>;
+    return <Navigate to={'/*'} replace />;
   }
 
   const items: TabsProps['items'] = [

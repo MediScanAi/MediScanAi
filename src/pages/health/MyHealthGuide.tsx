@@ -274,11 +274,11 @@ const MyHealthGuide: React.FC = () => {
                         >
                           {uidCopied
                             ? t(
-                              'healthGuide.guide.connectModal.steps.copyUid.button.copied'
-                            )
+                                'healthGuide.guide.connectModal.steps.copyUid.button.copied'
+                              )
                             : t(
-                              'healthGuide.guide.connectModal.steps.copyUid.button.copy'
-                            )}
+                                'healthGuide.guide.connectModal.steps.copyUid.button.copy'
+                              )}
                         </Button>
                       </div>
                     }

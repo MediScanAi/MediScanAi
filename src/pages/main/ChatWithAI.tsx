@@ -77,7 +77,7 @@ const ChatWithAi = () => {
   const location = useLocation();
   const {
     bloodTests,
-    healthWarnings,
+    bloodWarnings,
     geneticTests,
     geneticWarnings,
     vitaminTests,
@@ -100,8 +100,8 @@ const ChatWithAi = () => {
         .join(', ');
       testDescription += t('chat.bloodTestResults', { bloodTestsString });
 
-      if (healthWarnings?.length > 0) {
-        warningsDescription += t('chat.bloodTestWarnings', { healthWarnings });
+      if (bloodWarnings?.length > 0) {
+        warningsDescription += t('chat.bloodTestWarnings', { bloodWarnings });
       }
     }
 
@@ -150,7 +150,7 @@ const ChatWithAi = () => {
     }
   }, [
     bloodTests,
-    healthWarnings,
+    bloodWarnings,
     geneticTests,
     geneticWarnings,
     vitaminTests,

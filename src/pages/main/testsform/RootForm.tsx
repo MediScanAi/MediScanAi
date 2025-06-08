@@ -70,7 +70,6 @@ function RootForm(): ReactNode | null {
     },
   ];
 
-
   const validKeys = items.map((item) => item.key);
 
   if (!testType || !validKeys.includes(testType)) {
