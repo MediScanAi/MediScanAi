@@ -8,7 +8,7 @@ import PrimaryButton from './common/PrimaryButton';
 import SecondaryButton from './common/SecondaryButton';
 import TextInput from './common/inputs/TextInput';
 import { useTranslation } from 'react-i18next';
-import '../assets/styles/components/forgotPasswordForm.css'
+import '../assets/styles/components/forgotPasswordForm.css';
 const { Title, Text } = Typography;
 
 interface ForgotPasswordFormProps {

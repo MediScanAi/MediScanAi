@@ -301,7 +301,6 @@
 .team-container {
   padding: 60px 20px;
   text-align: center;
-  width: 100%;
 }
 
 .team-header {
@@ -313,14 +312,15 @@
 .team-card {
   border-radius: 12px;
   overflow: hidden;
-  height: 550px;
   padding: 20px;
   box-shadow: 0 8px 32px rgba(34, 56, 122, 0.25);
-  background-color: #e6ecfa;
+  background-color: #fff;
   text-align: center;
   display: flex;
+  height: 545px;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
 }
 
 .team-card.dark {
@@ -329,44 +329,73 @@
 }
 
 .team-img {
-  width: 190px;
-  height: 280px;
+  width: 245px;
+  height: 350px;
   object-fit: cover;
+  margin-bottom: 20px;
 }
 
 .team-info {
-  margin-top: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
 }
 
 .team-info h3 {
-  margin: 10px 0 5px;
+  margin: 0 0 15px;
   font-size: 25px;
   font-weight: bold;
 }
 
-.team-info p {
-  margin: 0 0 10px;
+.name-underline {
+  width: 80px;
+  height: 3px;
+  background-color: #1890ff;
+  margin: 10px auto 15px;
+  transition: all 0.3s ease;
+}
+
+.team-card.dark .name-underline {
+  background-color: #fff;
+}
+
+.team-card.dark:hover .name-underline {
+  background-color: #69c0ff;
+}
+
+.member-socials {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.member-socials a {
+  color: #4b5563;
   font-size: 20px;
-  color: #666;
-  position: relative;
+  transition: all 0.3s ease;
+  background: #eef2ff;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.team-info p.dark {
-  color: #ffffff !important;
+.member-socials a:hover {
+  color: #fff;
+  background: #1e40af;
+  transform: translateY(-3px);
 }
 
-.team-info p::after {
-  content: "";
-  display: block;
-  width: 60px;
-  height: 2px;
-  margin: 10px auto;
-  background-color: #ccc;
+.member-socials.dark a {
+  background: #1f2937;
+  color: #d1d5db;
 }
 
-.team-info h5 {
-  margin: 0 0 10px;
-  text-align: center;
-  font-size: 17px;
-  position: relative;
+.member-socials.dark a:hover {
+  background: #3b82f6;
+  color: #fff;
 }

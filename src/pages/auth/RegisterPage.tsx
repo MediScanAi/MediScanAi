@@ -148,8 +148,10 @@ const RegisterPage: React.FC = () => {
                           { required: true, message: t('register.forms.name') },
                         ]}
                       >
-                        <TextInput placeholder={t('register.forms.name')} size="large" />
-                        
+                        <TextInput
+                          placeholder={t('register.forms.name')}
+                          size="large"
+                        />
                       </Form.Item>
                     </Col>
                     <Col xs={24} sm={12}>
@@ -163,13 +165,14 @@ const RegisterPage: React.FC = () => {
                           },
                         ]}
                       >
-                        <TextInput
-                          placeholder={t('register.forms.surname')}  
-                        />
+                        <TextInput placeholder={t('register.forms.surname')} />
                       </Form.Item>
                     </Col>
                     <Col xs={24} sm={12}>
-                      <Form.Item label={t('register.forms.gender')} name="gender">
+                      <Form.Item
+                        label={t('register.forms.gender')}
+                        name="gender"
+                      >
                         <SelectInput
                           placeholder={t('register.forms.gender')}
                           size="large"

@@ -15,6 +15,7 @@ import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import type { RootState } from '../../app/store';
 import PrimaryButton from '../../components/common/PrimaryButton.tsx';
+import { GithubOutlined, LineOutlined, LinkedinFilled, MailOutlined } from '@ant-design/icons';
 const { Title, Paragraph, Text } = Typography;
 
 function AboutUsPage() {
@@ -90,36 +91,50 @@ function AboutUsPage() {
   const teamMembers = [
     {
       name: t('aboutUs.meetOurTeam.members.0.name'),
-      position: t('aboutUs.meetOurTeam.members.0.position'),
-      description: t('aboutUs.meetOurTeam.members.0.description'),
       img: teamMember1,
+      links: {
+        linkedin: 'https://www.linkedin.com/in/vache-aseyan-120547314/',
+        github: 'https://github.com/VachAseyan',
+        email: 'vacheaseyan39@gmail.com'
+      }
     },
     {
       name: t('aboutUs.meetOurTeam.members.1.name'),
-      position: t('aboutUs.meetOurTeam.members.1.position'),
-      description: t('aboutUs.meetOurTeam.members.1.description'),
       img: teamMember2,
+      links: {
+        linkedin: 'https://www.linkedin.com/in/vahe-nersesyan-4a533a268',
+        github: 'https://github.com/VaheNerseesyan',
+        email: 'nersesyanvahe073@gmail.com'
+      }
     },
     {
       name: t('aboutUs.meetOurTeam.members.2.name'),
-      position: t('aboutUs.meetOurTeam.members.2.position'),
-      description: t('aboutUs.meetOurTeam.members.2.description'),
       img: teamMember3,
+      links: {
+        linkedin: 'https://www.linkedin.com/in/artur-bagramyan/',
+        github: 'https://github.com/arturbagramyan1',
+        email: 'arturbaghramian@gmail.com'
+      }
     },
     {
       name: t('aboutUs.meetOurTeam.members.3.name'),
-      position: t('aboutUs.meetOurTeam.members.3.position'),
-      description: t('aboutUs.meetOurTeam.members.3.description'),
       img: teamMember4,
+      links: {
+        linkedin: 'https://linkedin.com/in/member4',
+        github: 'https://github.com/member4',
+        email: 'mailto:member4@example.com'
+      }
     },
     {
       name: t('aboutUs.meetOurTeam.members.4.name'),
-      position: t('aboutUs.meetOurTeam.members.4.position'),
-      description: t('aboutUs.meetOurTeam.members.4.description'),
       img: '/images/team5.jpg',
+      links: {
+        linkedin: 'https://linkedin.com/in/member5',
+        github: 'https://github.com/member5',
+        email: 'mailto:member5@example.com'
+      }
     },
   ];
-
 
   return (
     <Row className={`about-us ${isDarkMode ? 'dark' : ''}`}>
@@ -150,9 +165,7 @@ function AboutUsPage() {
 
         {cardItems.map((item, index) => (
           <Col xs={24} sm={24} md={12} lg={8} key={index}>
-            <Card
-              className={`about-us-card ${isDarkMode ? 'dark' : ''}`}
-            >
+            <Card className={`about-us-card ${isDarkMode ? 'dark' : ''}`}>
               <div className="about-us-card-content">
                 <img
                   draggable={false}
@@ -236,10 +249,8 @@ function AboutUsPage() {
         </Col>
       </Row>
       <div className="team-container">
-        <h2 className="team-header">{t("aboutUs.meetOurTeam.title")}</h2>
-        <Paragraph
-          className={`welcome-section-description ${isDarkMode ? 'dark' : ''}`}
-        >
+        <h2 className="team-header">{t('aboutUs.meetOurTeam.title')}</h2>
+        <Paragraph className={`welcome-section-description ${isDarkMode ? 'dark' : ''}`}>
           {t('aboutUs.meetOurTeam.description')}
         </Paragraph>
         <Row className="team-section custom-team-layout" gutter={[24, 24]} justify="center">
@@ -252,17 +263,30 @@ function AboutUsPage() {
                   className="team-img"
                   draggable={false}
                 />
-                 <div className={`team-info ${isDarkMode ? 'dark' : ''}`}>
+                <div className={`team-info ${isDarkMode ? 'dark' : ''}`}>
                   <h3>{member.name}</h3>
-                  <p>{member.position}</p>
-                  <h5>{member.description}</h5>
+                  <div className="name-underline"></div>
+                  <div className={`member-socials ${isDarkMode ? 'dark' : ''}`}>
+                    <a href={member.links.linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                      <LinkedinFilled />
+                    </a>
+                    <a
+                      href={`https://mail.google.com/mail/?view=cm&fs=1&to=${member.links.email}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label="Email"
+                    >
+                      <MailOutlined />
+                    </a>
+                    <a href={member.links.github} target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+                      <GithubOutlined />
+                    </a>
+                  </div>
                 </div>
               </div>
             </Col>
           ))}
         </Row>
-
-
       </div>
       <Row justify="center" gutter={[32, 32]} className="location-section">
         <Col xs={24} md={10} className="location-text">

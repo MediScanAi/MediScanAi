@@ -749,11 +749,7 @@ const HealthPage: React.FC = () => {
 
       <div className="health-content">
         <Row gutter={[24, 24]} className="health-main-row">
-          <Col
-            xs={24}
-            lg={8}
-            className="profile-column"
-          >
+          <Col xs={24} lg={8} className="profile-column">
             <motion.div
               initial={{ x: -30, opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
