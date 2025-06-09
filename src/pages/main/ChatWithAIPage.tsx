@@ -530,7 +530,7 @@ const ChatWithAi = () => {
             reader.onload = async () => {
               try {
                 const base64 = (reader.result as string).split(',')[1];
-                const res = await axios.post(`${API_BASE}/parse-pdf`, {
+                const res = await axios.post(`${API_BASE}/parsePdf`, {
                   fileBase64: base64,
                 });
                 setInput(res.data.text.trim());
