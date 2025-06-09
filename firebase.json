@@ -12,7 +12,7 @@
   ],
   "hosting": {
     "public": "dist",
-    "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
+    "ignore": ["firebase.json", "**/.*", "**/node_modules/**", "functions/**"],
     "rewrites": [
       {
         "source": "/chatWithOpenAI",
