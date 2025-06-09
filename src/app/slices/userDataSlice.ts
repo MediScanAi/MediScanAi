@@ -14,6 +14,24 @@ export interface UserData {
   waistSize?: number | null;
   neckSize?: number | null;
 }
+export interface StaticField {
+  key: string;
+  label: string;
+  editable: false;
+  icon: React.ReactNode;
+  value: string | number | null;
+}
+
+export interface EditableField {
+  key: keyof UserData;
+  label: string;
+  editable: true;
+  icon: React.ReactNode;
+  unit?: string;
+  tooltip?: string;
+}
+
+export type UserInfoField = StaticField | EditableField;
 
 interface UserDataState {
   data: UserData | null;

@@ -1,0 +1,97 @@
+.custom-number-input,
+.custom-number-input .ant-input-number,
+.custom-number-input .ant-input-number-input {
+  background: #e6ecfa !important;
+  color: #1a237e !important;
+  border-radius: 12px !important;
+  font-size: 16px;
+  border: 1px solid #5271c3 !important;
+  font-weight: 400 !important;
+  transition:
+    background 0.25s,
+    color 0.25s;
+  box-shadow: none !important;
+  width: 100%;
+}
+
+.custom-number-input .ant-input-number-input {
+  background: transparent !important;
+  border: none !important;
+  color: inherit !important;
+}
+
+.custom-number-input .ant-input-number-handler-wrap {
+  right: 4px;
+  border-radius: 8px;
+  background: transparent !important;
+}
+
+.custom-number-input .ant-input-number-handler,
+.custom-number-input .ant-input-number-handler-up,
+.custom-number-input .ant-input-number-handler-down {
+  background: #e6ecfa !important;
+  border: none !important;
+}
+
+.custom-number-input .ant-input-number-handler-up-inner,
+.custom-number-input .ant-input-number-handler-down-inner {
+  color: #5271c3 !important;
+}
+
+.custom-number-input:focus-within,
+.custom-number-input .ant-input-number-focused,
+.custom-number-input .ant-input-number:focus-within {
+  border-color: #92c4ff !important;
+  background: #e6ecfa !important;
+  box-shadow: none !important;
+}
+
+.custom-number-input:hover,
+.custom-number-input .ant-input-number:hover,
+.custom-number-input .ant-input-number-input:hover {
+  background: #fff !important;
+}
+
+.custom-number-input .ant-input-number-input::placeholder {
+  color: #7f97c9 !important;
+  font-weight: 400 !important;
+  opacity: 1 !important;
+}
+
+.dark .custom-number-input,
+.dark .custom-number-input .ant-input-number,
+.dark .custom-number-input .ant-input-number-input {
+  background: #283868 !important;
+  color: #fff !important;
+  border-radius: 12px !important;
+}
+
+.dark .custom-number-input .ant-input-number-handler,
+.dark .custom-number-input .ant-input-number-handler-up,
+.dark .custom-number-input .ant-input-number-handler-down {
+  background: #243a55 !important;
+}
+
+.dark .custom-number-input .ant-input-number-handler-up-inner,
+.dark .custom-number-input .ant-input-number-handler-down-inner {
+  color: #fff !important;
+}
+
+.dark .custom-number-input:focus-within,
+.dark .custom-number-input .ant-input-number-focused,
+.dark .custom-number-input .ant-input-number:focus-within {
+  border-color: #92c4ff !important;
+  background: #324b7b !important;
+  box-shadow: none !important;
+}
+
+.dark .custom-number-input:hover,
+.dark .custom-number-input .ant-input-number-input:hover {
+  background: #324b7b !important;
+}
+
+.dark .custom-number-input .ant-input-number-input::placeholder {
+  color: #ffffff !important;
+  font-weight: 400 !important;
+  opacity: 1 !important;
+}

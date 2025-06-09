@@ -1,16 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import {
-  Form,
-  Input,
-  Card,
-  Typography,
-  Spin,
-  message,
-  Select,
-  Row,
-  Col,
-  InputNumber,
-} from 'antd';
+import { Form, Card, Typography, Spin, message, Row, Col } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
 import { registerUser, setUser } from '../../app/slices/authSlice';
 import type { AppDispatch, RootState } from '../../app/store';
@@ -18,18 +7,21 @@ import { useNavigate, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { getAuth, reload } from 'firebase/auth';
 import { mapFirebaseUser } from '../../api/authApi';
-import LoginWithGoogleButton from '../../components/common/LoginWithGoogleButton';
-import PrimaryButton from '../../components/common/PrimaryButton';
+import LoginWithGoogleButton from '../../components/common/buttons/LoginWithGoogleButton';
+import PrimaryButton from '../../components/common/buttons/PrimaryButton';
 import '../../assets/styles/RegisterPage.css';
 import Notebook3D from '../../assets/photos/Notebook.webp';
 import '../../assets/styles/LoginPage.css';
 import PreferencesDropdown from '../../components/preferences/PreferencesDropdown';
-import SecondaryButton from '../../components/common/SecondaryButton';
+import SecondaryButton from '../../components/common/buttons/SecondaryButton';
 import { X } from 'lucide-react';
+import TextInput from '../../components/common/inputs/TextInput';
+import NumberInput from '../../components/common/inputs/NumberInput';
+import SelectInput from '../../components/common/inputs/SelectInput';
+import PasswordInput from '../../components/common/inputs/PasswordInput';
 import { useTranslation } from 'react-i18next';
 
 const { Title, Text } = Typography;
-const { Option } = Select;
 
 interface RegisterFormValues {
   surname: string;
@@ -142,6 +134,7 @@ const RegisterPage: React.FC = () => {
                 )}
                 <Form
                   layout="vertical"
+                  disabled={waitingVerification || googleLoading}
                   onFinish={onFinish}
                   requiredMark={false}
                   className={waitingVerification ? 'blurred' : ''}
@@ -155,10 +148,9 @@ const RegisterPage: React.FC = () => {
                           { required: true, message: t('register.forms.name') },
                         ]}
                       >
-                        <Input
+                        <TextInput
                           placeholder={t('register.forms.name')}
                           size="large"
-                          className="register-input"
                         />
                       </Form.Item>
                     </Col>
@@ -173,11 +165,7 @@ const RegisterPage: React.FC = () => {
                           },
                         ]}
                       >
-                        <Input
-                          placeholder={t('register.forms.surname')}
-                          size="large"
-                          className="register-input"
-                        />
+                        <TextInput placeholder={t('register.forms.surname')} />
                       </Form.Item>
                     </Col>
                     <Col xs={24} sm={12}>
@@ -185,22 +173,15 @@ const RegisterPage: React.FC = () => {
                         label={t('register.forms.gender')}
                         name="gender"
                       >
-                        <Select
+                        <SelectInput
                           placeholder={t('register.forms.gender')}
                           size="large"
-                          className={`register-input register-select ${isDarkMode ? 'dark' : ''}`}
                           allowClear
-                          classNames={{
-                            popup: {
-                              root: isDarkMode
-                                ? 'register-select-dropdown-dark'
-                                : undefined,
-                            },
-                          }}
-                        >
-                          <Option value="male">{t('register.male')}</Option>
-                          <Option value="female">{t('register.female')}</Option>
-                        </Select>
+                          options={[
+                            { label: 'Male', value: 'male' },
+                            { label: 'Female', value: 'female' },
+                          ]}
+                        ></SelectInput>
                       </Form.Item>
                     </Col>
                     <Col xs={24} sm={12}>
@@ -211,17 +192,11 @@ const RegisterPage: React.FC = () => {
                           { required: true, message: t('register.forms.age') },
                         ]}
                       >
-                        <InputNumber
+                        <NumberInput
                           min={0}
                           max={120}
                           size="large"
                           placeholder={t('register.forms.age')}
-                          className={`register-input register-input-number ${isDarkMode ? 'dark' : ''}`}
-                          onKeyDown={(e) => {
-                            if (!/[0-9]/.test(e.key)) {
-                              e.preventDefault();
-                            }
-                          }}
                         />
                       </Form.Item>
                     </Col>
@@ -237,11 +212,10 @@ const RegisterPage: React.FC = () => {
                           { type: 'email', message: 'Invalid email' },
                         ]}
                       >
-                        <Input
+                        <TextInput
                           placeholder={t('register.forms.email')}
                           type="email"
                           size="large"
-                          className="register-input"
                         />
                       </Form.Item>
                     </Col>
@@ -261,10 +235,9 @@ const RegisterPage: React.FC = () => {
                           },
                         ]}
                       >
-                        <Input.Password
+                        <PasswordInput
                           placeholder={t('register.forms.password')}
                           size="large"
-                          className="login-input"
                         />
                       </Form.Item>
                     </Col>

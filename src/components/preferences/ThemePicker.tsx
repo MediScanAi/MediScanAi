@@ -1,9 +1,9 @@
-import { Select } from 'antd';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { setThemeMode } from '../../app/slices/themeModeSlice';
 import { MoonOutlined, SunOutlined, LaptopOutlined } from '@ant-design/icons';
 import { useTranslation } from 'react-i18next';
-import '../../assets/styles/ThemePicker.css';
+import '../../assets/styles/components/preferences/themePicker.css';
+import SelectInput from '../common/inputs/SelectInput';
 
 const ThemePicker = () => {
   const dispatch = useAppDispatch();
@@ -42,7 +42,7 @@ const ThemePicker = () => {
   ];
 
   return (
-    <Select
+    <SelectInput
       value={themeMode}
       options={themeOptions.map((option) => ({
         ...option,
@@ -53,7 +53,7 @@ const ThemePicker = () => {
         ),
       }))}
       onChange={(mode) => dispatch(setThemeMode(mode))}
-      className={`theme-select ${isDarkMode ? 'dark' : ''}`}
+      className={'theme-select'}
       popupMatchSelectWidth={false}
       classNames={{
         popup: {

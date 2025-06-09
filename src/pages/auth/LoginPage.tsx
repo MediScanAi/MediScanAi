@@ -1,14 +1,5 @@
 import React from 'react';
-import {
-  Form,
-  Input,
-  Button,
-  Card,
-  Typography,
-  message,
-  Grid,
-  Spin,
-} from 'antd';
+import { Form, Button, Card, Typography, message, Grid, Spin } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
 import { loginUser } from '../../app/slices/authSlice';
 import type { AppDispatch, RootState } from '../../app/store';
@@ -16,13 +7,15 @@ import { useNavigate, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { useState } from 'react';
 import ForgotPasswordForm from '../../components/ForgotPasswordForm';
-import LoginWithGoogleButton from '../../components/common/LoginWithGoogleButton';
+import LoginWithGoogleButton from '../../components/common/buttons/LoginWithGoogleButton';
 import MedicalInstruments3D from '../../assets/photos/medical_instruments.png';
 import '../../assets/styles/LoginPage.css';
-import PrimaryButton from '../../components/common/PrimaryButton';
+import PrimaryButton from '../../components/common/buttons/PrimaryButton';
 import PreferencesDropdown from '../../components/preferences/PreferencesDropdown';
-import SecondaryButton from '../../components/common/SecondaryButton';
+import SecondaryButton from '../../components/common/buttons/SecondaryButton';
 import { X } from 'lucide-react';
+import TextInput from '../../components/common/inputs/TextInput';
+import PasswordInput from '../../components/common/inputs/PasswordInput';
 import { useTranslation } from 'react-i18next';
 
 const { Title, Text } = Typography;
@@ -118,6 +111,7 @@ const LoginPage: React.FC = () => {
                 <Form
                   layout="vertical"
                   onFinish={onFinish}
+                  disabled={googleLoading}
                   requiredMark={false}
                 >
                   <Form.Item
@@ -131,10 +125,9 @@ const LoginPage: React.FC = () => {
                       },
                     ]}
                   >
-                    <Input
+                    <TextInput
                       size="large"
                       placeholder={t('login.forms.email')}
-                      className="login-input"
                     />
                   </Form.Item>
 
@@ -145,10 +138,9 @@ const LoginPage: React.FC = () => {
                       { required: true, message: t('login.forms.password') },
                     ]}
                   >
-                    <Input.Password
+                    <PasswordInput
                       size="large"
                       placeholder={t('login.forms.password')}
-                      className="login-input"
                     />
                   </Form.Item>
 

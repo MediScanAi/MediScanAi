@@ -1,0 +1,27 @@
+.lang-select {
+  width: min-content !important ;
+  background: transparent;
+}
+
+.lang-dropdown-dark {
+  background: #1d2b40 !important;
+  color: #fff !important;
+  border-radius: 6px;
+}
+.lang-dropdown-dark .ant-select-item-option {
+  color: #fff !important;
+}
+.lang-dropdown-dark .ant-select-item-option-active {
+  background: #243a55 !important;
+  color: #fff !important;
+}
+.lang-dropdown-dark
+  .ant-select-item-option-selected:not(.ant-select-item-option-disabled) {
+  background: #2e4a6b !important;
+  color: #fff !important;
+}
+
+.language-option {
+  display: flex;
+  align-items: center;
+}

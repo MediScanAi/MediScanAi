@@ -1,20 +1,20 @@
 import { createBrowserRouter, Navigate } from 'react-router-dom';
-import Layout from './components/Layout';
+import Layout from './components/layout/Layout';
 import PublicRoute from './components/PublicRoute';
 import ProtectedRoute from './components/ProtectedRoute';
 import HomePage from './pages/main/HomePage';
 import AboutUsPage from './pages/main/AboutUsPage';
 import RegisterPage from './pages/auth/RegisterPage';
 import LoginPage from './pages/auth/LoginPage';
-import BloodAnalysis from './pages/main/analysis/BloodAnalysis';
-import VitaminAnalysis from './pages/main/analysis/VitaminAnalysis';
-import UrineAnalysis from './pages/main/analysis/UrineAnalysis';
-import GeneticAnalysis from './pages/main/analysis/GeneticAnalysis';
-import ChatWithAI from './pages/main/ChatWithAI';
-import RootForm from './pages/main/testsform/RootForm';
-import Profile from './pages/main/profile/Profile';
+import BloodAnalysis from './pages/analysis/BloodAnalysisPage';
+import VitaminAnalysis from './pages/analysis/VitaminAnalysisPage';
+import UrineAnalysis from './pages/analysis/UrineAnalysisPage';
+import GeneticAnalysis from './pages/analysis/GeneticAnalysisPage';
+import ChatWithAI from './pages/main/ChatWithAIPage';
+import RootForm from './components/testsform/FormWrapper';
+import Profile from './pages/profile/ProfilePage';
 import PageNotFound from './pages/main/PageNotFound';
-import MyHealth from './components/MyHealth';
+import MyHealth from './pages/health/MyHealthPage';
 
 const router = createBrowserRouter([
   {
@@ -114,7 +114,7 @@ const router = createBrowserRouter([
     ],
   },
   {
-    path: '/*',
+    path: '*',
     element: (
       <Layout>
         <PageNotFound />

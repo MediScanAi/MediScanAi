@@ -44,6 +44,9 @@
   display: flex;
   align-items: center;
 }
+.dark .hamburger-btn .anticon {
+  color: #fff;
+}
 
 .header-right {
   display: flex;
@@ -52,7 +55,7 @@
 }
 
 .logo {
-  margin-top: 8px;
+  height: 25px;
   transition: all 0.3s ease;
 }
 .logo:hover {
@@ -62,7 +65,7 @@
 
 @media (max-width: 630px) {
   .logo {
-    height: 40px;
+    height: 20px;
   }
 }
 .user-profile {

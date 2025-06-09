@@ -24,8 +24,8 @@ import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import type { RootState } from '../../app/store';
 import { useSelector } from 'react-redux';
-import PrimaryButton from '../../components/common/PrimaryButton';
-import SecondaryButton from '../../components/common/SecondaryButton';
+import PrimaryButton from '../../components/common/buttons/PrimaryButton';
+import SecondaryButton from '../../components/common/buttons/SecondaryButton';
 
 const { Title, Text } = Typography;
 
@@ -396,7 +396,17 @@ function HomePage() {
                 {partners.map((partner, index) => (
                   <div key={index} className="partner-card-wrapper">
                     <Card
-                      style={{ border: 'none' }}
+                      style={{
+                        border: 'none',
+                        width:
+                          width > 1500
+                            ? '300px'
+                            : width > 1200
+                              ? '350px'
+                              : width > 820
+                                ? '340px'
+                                : '370px',
+                      }}
                       hoverable
                       className={`partner-card ${isDarkMode ? 'dark' : ''}`}
                     >

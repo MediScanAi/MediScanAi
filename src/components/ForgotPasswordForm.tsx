@@ -1,13 +1,14 @@
-import { Form, Typography, Input, Card, message } from 'antd';
+import { Form, Typography, Card, message } from 'antd';
 import { motion } from 'framer-motion';
 import type React from 'react';
 import { sendResetPasswordEmail } from '../api/authApi';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
-import PrimaryButton from './common/PrimaryButton';
-import SecondaryButton from './common/SecondaryButton';
+import PrimaryButton from './common/buttons/PrimaryButton';
+import SecondaryButton from './common/buttons/SecondaryButton';
+import TextInput from './common/inputs/TextInput';
 import { useTranslation } from 'react-i18next';
-
+import '../assets/styles/components/forgotPasswordForm.css';
 const { Title, Text } = Typography;
 
 interface ForgotPasswordFormProps {
@@ -26,7 +27,7 @@ const ForgotPasswordForm: React.FC<ForgotPasswordFormProps> = ({
     try {
       await sendResetPasswordEmail(email);
       message.success(t('forgotPassword.passwordResetEmailSent'));
-    } catch (_) {
+    } catch {
       message.error(t('forgotPassword.failedToSendResetEmail'));
     } finally {
       setLoading(false);
@@ -64,9 +65,10 @@ const ForgotPasswordForm: React.FC<ForgotPasswordFormProps> = ({
               },
             ]}
           >
-            <Input
-              placeholder={t('forgotPassword.enterYourEmail')}
-              className="login-input"
+            <TextInput
+              placeholder="Enter your email"
+              name="resetEmail"
+              autoComplete="email"
               size="large"
             />
           </Form.Item>
@@ -90,7 +92,7 @@ const ForgotPasswordForm: React.FC<ForgotPasswordFormProps> = ({
           <Text className="register-text">
             {t('forgotPassword.dontHaveAnAccount')}
             <Link to="/auth/register" className="register-link">
-              {t('forgotPassword.register')}
+              {' ' + t('forgotPassword.register')}
             </Link>
           </Text>
         </Form>
