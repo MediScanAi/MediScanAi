@@ -125,9 +125,9 @@ function AboutUsPage() {
       name: t('aboutUs.meetOurTeam.members.3.name'),
       img: teamMember4,
       links: {
-        linkedin: 'https://linkedin.com/in/member4',
+        linkedin: 'https://www.linkedin.com/in/arayik-avagyan-1300972b7',
         github: 'https://github.com/GolDrag3060',
-        email: 'mailto:member4@example.com',
+        email: 'araik.avagyan.y@gmail.com',
       },
     },
     {
