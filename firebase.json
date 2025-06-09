@@ -9,5 +9,27 @@
         "npm --prefix \"$RESOURCE_DIR\" run build"
       ]
     }
-  ]
+  ],
+  "hosting": {
+    "public": "dist",
+    "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
+    "rewrites": [
+      {
+        "source": "/chatWithOpenAI",
+        "function": "chatWithOpenAI"
+      },
+      {
+        "source": "/parsePdf",
+        "function": "parsePdf"
+      },
+      {
+        "source": "/receiveHealthData",
+        "function": "receiveHealthData"
+      },
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  }
 }
