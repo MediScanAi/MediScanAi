@@ -396,7 +396,16 @@ function HomePage() {
                 {partners.map((partner, index) => (
                   <div key={index} className="partner-card-wrapper">
                     <Card
-                      style={{ border: 'none' }}
+                      style={{
+                        border: 'none',
+                        width:
+                          width > 1500
+                            ? '300px'
+                            : width > 1200
+                              ? '350px'
+                              : width > 820
+                                ? '340px' : '370px'
+                      }}
                       hoverable
                       className={`partner-card ${isDarkMode ? 'dark' : ''}`}
                     >
