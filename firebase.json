@@ -4,18 +4,6 @@
     "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
     "rewrites": [
       {
-        "source": "/api/chat",
-        "function": "chatWithOpenAI"
-      },
-      {
-        "source": "/api/parse-pdf",
-        "function": "parsePdf"
-      },
-      {
-        "source": "/api/receive-data",
-        "function": "receiveHealthData"
-      },
-      {
         "source": "**",
         "destination": "/index.html"
       }
