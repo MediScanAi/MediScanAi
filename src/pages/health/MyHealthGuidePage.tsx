@@ -23,7 +23,7 @@ import '../../assets/styles/healthPage.css';
 import { auth } from '../../api/authApi';
 import type { RootState } from '../../app/store';
 import { useSelector } from 'react-redux';
-import PrimaryButton from '../../components/common/PrimaryButton';
+import PrimaryButton from '../../components/common/buttons/PrimaryButton';
 
 const { Title, Text } = Typography;
 

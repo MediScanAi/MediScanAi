@@ -50,9 +50,9 @@ import {
   type HealthDataEntry,
 } from '../../app/slices/healthSlice';
 import confetti from 'canvas-confetti';
-import MyHealthGuide from './MyHealthGuide';
+import MyHealthGuide from './MyHealthGuidePage';
 import { auth } from '../../api/authApi';
-import PrimaryButton from '../../components/common/PrimaryButton';
+import PrimaryButton from '../../components/common/buttons/PrimaryButton';
 import NumberInput from '../../components/common/inputs/NumberInput';
 
 const { Title, Text, Paragraph } = Typography;

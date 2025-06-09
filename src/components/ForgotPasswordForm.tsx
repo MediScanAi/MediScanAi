@@ -4,8 +4,8 @@ import type React from 'react';
 import { sendResetPasswordEmail } from '../api/authApi';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
-import PrimaryButton from './common/PrimaryButton';
-import SecondaryButton from './common/SecondaryButton';
+import PrimaryButton from './common/buttons/PrimaryButton';
+import SecondaryButton from './common/buttons/SecondaryButton';
 import TextInput from './common/inputs/TextInput';
 import { useTranslation } from 'react-i18next';
 import '../assets/styles/components/forgotPasswordForm.css';
@@ -27,7 +27,7 @@ const ForgotPasswordForm: React.FC<ForgotPasswordFormProps> = ({
     try {
       await sendResetPasswordEmail(email);
       message.success(t('forgotPassword.passwordResetEmailSent'));
-    } catch (_) {
+    } catch {
       message.error(t('forgotPassword.failedToSendResetEmail'));
     } finally {
       setLoading(false);

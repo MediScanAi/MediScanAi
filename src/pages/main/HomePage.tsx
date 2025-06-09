@@ -24,8 +24,8 @@ import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import type { RootState } from '../../app/store';
 import { useSelector } from 'react-redux';
-import PrimaryButton from '../../components/common/PrimaryButton';
-import SecondaryButton from '../../components/common/SecondaryButton';
+import PrimaryButton from '../../components/common/buttons/PrimaryButton';
+import SecondaryButton from '../../components/common/buttons/SecondaryButton';
 
 const { Title, Text } = Typography;
 

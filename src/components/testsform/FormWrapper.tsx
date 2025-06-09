@@ -17,7 +17,7 @@ import BloodTestsForm from './BloodTestForm';
 import GeneticTestForm from './GeneticTestForm';
 import { useTranslation } from 'react-i18next';
 import { Navigate } from 'react-router';
-import SecondaryButton from '../common/SecondaryButton';
+import SecondaryButton from '../common/buttons/SecondaryButton';
 
 const { Title, Text } = Typography;
 

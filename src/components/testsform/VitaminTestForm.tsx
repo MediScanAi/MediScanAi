@@ -5,7 +5,7 @@ import type { VitaminTestFormValues } from '../../app/slices/testSlice';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { auth } from '../../api/authApi';
 import { useTranslation } from 'react-i18next';
-import PrimaryButton from '../common/PrimaryButton';
+import PrimaryButton from '../common/buttons/PrimaryButton';
 import '../../assets/styles/rootForm.css';
 import NumberInput from '../common/inputs/NumberInput';
 

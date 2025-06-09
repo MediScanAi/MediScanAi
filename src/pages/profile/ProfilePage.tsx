@@ -9,10 +9,10 @@ import '../../assets/styles/Profile.css';
 import { Navigate, useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 
-import UserInfo from './UserInfo';
-import AnalysisHistory from './AnalysisHistory';
-import MainTests from './MainTests';
-import ContactUs from './ContactUs';
+import UserInfo from './UserInfoPage';
+import AnalysisHistory from './AnalysisHistoryPage';
+import MainTests from './MainTestsPage';
+import ContactUs from './ContactUsPage';
 import React, { useEffect, useState } from 'react';
 import { useAppSelector } from '../../app/hooks';
 import { useTranslation } from 'react-i18next';

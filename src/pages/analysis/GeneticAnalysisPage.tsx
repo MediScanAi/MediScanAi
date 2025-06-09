@@ -14,7 +14,7 @@ import type { GeneticTestFormValues } from '../../app/slices/testSlice';
 import { useAppSelector } from '../../app/hooks';
 import { useSelector } from 'react-redux';
 import type { RootState } from '../../app/store';
-import PrimaryButton from '../../components/common/PrimaryButton';
+import PrimaryButton from '../../components/common/buttons/PrimaryButton';
 import { useTranslation } from 'react-i18next';
 
 interface ChartData {

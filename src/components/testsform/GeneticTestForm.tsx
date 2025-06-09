@@ -5,7 +5,7 @@ import { saveTestData, setTestData } from '../../app/slices/testSlice';
 import { auth } from '../../api/authApi';
 import type { GeneticTestFormValues } from '../../app/slices/testSlice';
 import { useTranslation } from 'react-i18next';
-import PrimaryButton from '../common/PrimaryButton';
+import PrimaryButton from '../common/buttons/PrimaryButton';
 import SelectInput from '../common/inputs/SelectInput';
 
 const { Title } = Typography;
