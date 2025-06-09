@@ -369,7 +369,7 @@ const ChatWithAi = () => {
     setLoading(true);
 
     try {
-      const res = await axios.post(`${API_BASE}/chatWithOpenAi`, {
+      const res = await axios.post(`${API_BASE}/chatWithOpenAI`, {
         messages: updatedChat.messages,
       });
 
