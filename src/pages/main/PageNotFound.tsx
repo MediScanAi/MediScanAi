@@ -14,14 +14,10 @@ const PageNotFound: React.FC = () => {
   const { t } = useTranslation('pageNotFound');
 
   return (
-    <div className={`page-not-found ${theme ? 'dark-theme' : ''}`}>
+    <div className={`page-not-found ${theme ? 'dark' : ''}`}>
       <Result
         status="404"
-        title={
-          <Text className={`page-not-found-title ${theme ? 'dark' : 'light'}`}>
-            404
-          </Text>
-        }
+        title={<Text className="page-not-found-title">404</Text>}
         subTitle={
           <Text className="page-not-found-subtitle">
             {t('pageNotFound.subtitle')}
