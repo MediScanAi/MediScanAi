@@ -1,13 +1,5 @@
 import React from 'react';
-import {
-  Form,
-  Button,
-  Card,
-  Typography,
-  message,
-  Grid,
-  Spin,
-} from 'antd';
+import { Form, Button, Card, Typography, message, Grid, Spin } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
 import { loginUser } from '../../app/slices/authSlice';
 import type { AppDispatch, RootState } from '../../app/store';
@@ -133,7 +125,10 @@ const LoginPage: React.FC = () => {
                       },
                     ]}
                   >
-                    <TextInput size="large" placeholder={t('login.forms.email')} />
+                    <TextInput
+                      size="large"
+                      placeholder={t('login.forms.email')}
+                    />
                   </Form.Item>
 
                   <Form.Item
@@ -143,7 +138,10 @@ const LoginPage: React.FC = () => {
                       { required: true, message: t('login.forms.password') },
                     ]}
                   >
-                    <PasswordInput size="large" placeholder={t('login.forms.password')} />
+                    <PasswordInput
+                      size="large"
+                      placeholder={t('login.forms.password')}
+                    />
                   </Form.Item>
 
                   <Form.Item className="forgot-form">

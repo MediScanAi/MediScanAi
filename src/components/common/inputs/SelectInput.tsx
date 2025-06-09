@@ -6,7 +6,7 @@ import '../../../assets/styles/components/inputs/selectInput.css';
 interface CustomSelectInputProps extends SelectProps {
   className?: string;
   popupClassName?: string;
-};
+}
 
 const SelectInput: React.FC<CustomSelectInputProps> = ({
   className = '',

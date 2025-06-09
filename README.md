@@ -64,8 +64,8 @@
 
 ## 🛠️ Tech Stack
 
-| Layer              | Technology                                                  |
-| ------------------ | ----------------------------------------------------------- |
+| Layer        | Technology                                                  |
+| ------------ | ----------------------------------------------------------- |
 | **Frontend** | React, TypeScript, Vite, Redux Toolkit, Ant Design          |
 | **Backend**  | Firebase (Auth, Firestore), Cloud Functions with express.js |
 | **AI**       | OpenAI API (chat & insights)                                |

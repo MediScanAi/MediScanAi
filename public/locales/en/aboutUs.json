@@ -17,6 +17,27 @@
       "title": "Our Values",
       "text": "Innovation, accuracy, and trust are at our core. We are committed to developing cutting-edge solutions while maintaining the highest standards of data security and clinical precision."
     },
+    "meetOurTeam": {
+      "title": "Meet Our Team",
+      "description": "Our team consists of leading experts in healthcare, artificial intelligence, and data science, dedicated to advancing medical diagnostics through innovative technology.",
+      "members": {
+        "0": {
+          "name": "Vache Aseyan"
+        },
+        "1": {
+          "name": "Vahe Nersesyan"
+        },
+        "2": {
+          "name": "Artur Baghramyan"
+        },
+        "3": {
+          "name": "Arayik Avagyan"
+        },
+        "4": {
+          "name": "Davit Mutafyan"
+        }
+      }
+    },
     "opinions": {
       "0": {
         "name": "Dr. Sarah Chen",
