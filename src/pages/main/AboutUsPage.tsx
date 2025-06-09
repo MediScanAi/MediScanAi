@@ -4,6 +4,11 @@ import mission from '../../assets/photos/target.png';
 import vision from '../../assets/photos/opportunity.png';
 import values from '../../assets/photos/core-values.png';
 import opinionImage from '../../assets/photos/quotes.png';
+import teamMember1 from '../../assets/photos/TeamMemberVache.png';
+import teamMember2 from '../../assets/photos/TeammemberVahe.png';
+import teamMember3 from '../../assets/photos/TeamMemberArtur.png';
+import teamMember4 from '../../assets/photos/TeamMemberArayik.png';
+import teamMember5 from '../../assets/photos/TeamMemberDavit.png';
 import { useNavigate } from 'react-router';
 import { useEffect } from 'react';
 import { useState } from 'react';
@@ -11,6 +16,11 @@ import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import type { RootState } from '../../app/store';
 import PrimaryButton from '../../components/common/buttons/PrimaryButton';
+import {
+  GithubOutlined,
+  LinkedinFilled,
+  MailOutlined,
+} from '@ant-design/icons';
 const { Title, Paragraph, Text } = Typography;
 
 function AboutUsPage() {
@@ -80,6 +90,54 @@ function AboutUsPage() {
       text: t('aboutUs.values.text'),
       img: values,
       alt: 'values',
+    },
+  ];
+
+  const teamMembers = [
+    {
+      name: t('aboutUs.meetOurTeam.members.0.name'),
+      img: teamMember1,
+      links: {
+        linkedin: 'https://www.linkedin.com/in/vache-aseyan-120547314/',
+        github: 'https://github.com/VachAseyan',
+        email: 'vacheaseyan39@gmail.com',
+      },
+    },
+    {
+      name: t('aboutUs.meetOurTeam.members.1.name'),
+      img: teamMember2,
+      links: {
+        linkedin: 'https://www.linkedin.com/in/vahe-nersesyan-4a533a268',
+        github: 'https://github.com/VaheNerseesyan',
+        email: 'nersesyanvahe073@gmail.com',
+      },
+    },
+    {
+      name: t('aboutUs.meetOurTeam.members.2.name'),
+      img: teamMember3,
+      links: {
+        linkedin: 'https://www.linkedin.com/in/artur-bagramyan/',
+        github: 'https://github.com/arturbagramyan1',
+        email: 'arturbaghramian@gmail.com',
+      },
+    },
+    {
+      name: t('aboutUs.meetOurTeam.members.3.name'),
+      img: teamMember4,
+      links: {
+        linkedin: 'https://linkedin.com/in/member4',
+        github: 'https://github.com/GolDrag3060',
+        email: 'mailto:member4@example.com',
+      },
+    },
+    {
+      name: t('aboutUs.meetOurTeam.members.4.name'),
+      img: teamMember5,
+      links: {
+        linkedin: 'https://www.linkedin.com/in/mutafyan',
+        github: 'https://github.com/mutafyan',
+        email: 'davitmutafyan.work@gmail.com',
+      },
     },
   ];
 
@@ -195,6 +253,62 @@ function AboutUsPage() {
           </Carousel>
         </Col>
       </Row>
+      <div className="team-container">
+        <h2 className="team-header">{t('aboutUs.meetOurTeam.title')}</h2>
+        <Paragraph
+          className={`welcome-section-description ${isDarkMode ? 'dark' : ''}`}
+        >
+          {t('aboutUs.meetOurTeam.description')}
+        </Paragraph>
+        <Row
+          className="team-section custom-team-layout"
+          gutter={[24, 24]}
+          justify="center"
+        >
+          {teamMembers.map((member, index) => (
+            <Col key={index} xs={24} sm={20} md={12} lg={8} xl={8}>
+              <div className={`team-card ${isDarkMode ? 'dark' : ''}`}>
+                <img
+                  src={member.img}
+                  alt={member.name}
+                  className="team-img"
+                  draggable={false}
+                />
+                <div className={`team-info ${isDarkMode ? 'dark' : ''}`}>
+                  <h3>{member.name}</h3>
+                  <div className="name-underline"></div>
+                  <div className={`member-socials ${isDarkMode ? 'dark' : ''}`}>
+                    <a
+                      href={member.links.linkedin}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label="LinkedIn"
+                    >
+                      <LinkedinFilled />
+                    </a>
+                    <a
+                      href={`https://mail.google.com/mail/?view=cm&fs=1&to=${member.links.email}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label="Email"
+                    >
+                      <MailOutlined />
+                    </a>
+                    <a
+                      href={member.links.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label="GitHub"
+                    >
+                      <GithubOutlined />
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </Col>
+          ))}
+        </Row>
+      </div>
       <Row justify="center" gutter={[32, 32]} className="location-section">
         <Col xs={24} md={10} className="location-text">
           <Title
