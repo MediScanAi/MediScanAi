@@ -126,7 +126,7 @@ function AboutUsPage() {
       img: teamMember4,
       links: {
         linkedin: 'https://linkedin.com/in/member4',
-        github: 'https://github.com/member4',
+        github: 'https://github.com/GolDrag3060',
         email: 'mailto:member4@example.com',
       },
     },
@@ -134,9 +134,9 @@ function AboutUsPage() {
       name: t('aboutUs.meetOurTeam.members.4.name'),
       img: teamMember5,
       links: {
-        linkedin: 'https://linkedin.com/in/member5',
-        github: 'https://github.com/member5',
-        email: 'mailto:member5@example.com',
+        linkedin: 'https://www.linkedin.com/in/mutafyan',
+        github: 'https://github.com/mutafyan',
+        email: 'davitmutafyan.work@gmail.com',
       },
     },
   ];
