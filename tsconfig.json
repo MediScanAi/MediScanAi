@@ -1,15 +1,12 @@
 {
-  "compilerOptions": {
-    "typeRoots": [
-      "./node_modules/@types",
-      "./types"
-    ]
-  },
   "extends": "./tsconfig.base.json",
-  "files": [],
+  "compilerOptions": {
+    "composite": true,
+    "noEmit": true
+  },
   "references": [
     {
       "path": "./tsconfig.app.json"
-    },
+    }
   ]
 }

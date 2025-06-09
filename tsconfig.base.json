@@ -1,12 +1,16 @@
 {
   "compilerOptions": {
-    "strict": true,
-    "jsx": "react-jsx",
-    "target": "ES2020",
-    "moduleResolution": "node",
+    "target": "ES2022",
     "module": "ESNext",
+    "jsx": "react-jsx",
+    "moduleResolution": "node",
     "esModuleInterop": true,
+    "strict": true,
+    "skipLibCheck": false,
     "forceConsistentCasingInFileNames": true,
-    "skipLibCheck": true
+    "typeRoots": [
+      "./node_modules/@types",
+      "./types"
+    ]
   }
 }
