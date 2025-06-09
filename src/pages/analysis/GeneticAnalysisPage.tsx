@@ -1,20 +1,20 @@
 import { Card, Row, Col, Typography, Progress } from 'antd';
-import '../../../assets/styles/analysis.css';
+import '../../assets/styles/analysis.css';
 import { Button } from 'antd';
 import { useNavigate } from 'react-router-dom';
-import ChartGoingDown from '../../../assets/photos/ChartGoingDown.webp';
-import Syringe from '../../../assets/photos/Syringe.webp';
-import Bilirubin from '../../../assets/photos/Bilirubin.webp';
-import BRCA1 from '../../../assets/photos/BRCA1.webp';
-import APOE from '../../../assets/photos/APOE.webp';
+import ChartGoingDown from '../../assets/photos/ChartGoingDown.webp';
+import Syringe from '../../assets/photos/Syringe.webp';
+import Bilirubin from '../../assets/photos/Bilirubin.webp';
+import BRCA1 from '../../assets/photos/BRCA1.webp';
+import APOE from '../../assets/photos/APOE.webp';
 import { useEffect } from 'react';
 import { useState } from 'react';
-import Gen from '../../../assets/photos/Gen.webp';
-import type { GeneticTestFormValues } from '../../../app/slices/testSlice';
-import { useAppSelector } from '../../../app/hooks';
+import Gen from '../../assets/photos/Gen.webp';
+import type { GeneticTestFormValues } from '../../app/slices/testSlice';
+import { useAppSelector } from '../../app/hooks';
 import { useSelector } from 'react-redux';
-import type { RootState } from '../../../app/store';
-import PrimaryButton from '../../../components/common/PrimaryButton';
+import type { RootState } from '../../app/store';
+import PrimaryButton from '../../components/common/buttons/PrimaryButton';
 import { useTranslation } from 'react-i18next';
 
 interface ChartData {

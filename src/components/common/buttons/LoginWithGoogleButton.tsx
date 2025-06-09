@@ -1,7 +1,7 @@
 import { message } from 'antd';
 import { GoogleOutlined } from '@ant-design/icons';
-import { loginWithGoogle } from '../../api/authApi';
-import { setUser } from '../../app/slices/authSlice';
+import { loginWithGoogle } from '../../../api/authApi';
+import { setUser } from '../../../app/slices/authSlice';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router';
 import SecondaryButton from './SecondaryButton';
@@ -24,7 +24,7 @@ const LoginWithGoogleButton: React.FC<PropsTypes> = ({ toggleLoading }) => {
       } else {
         message.info('Google login cancelled');
       }
-    } catch (_) {
+    } catch {
       message.error('Google login failed');
     } finally {
       toggleLoading(false);

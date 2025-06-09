@@ -34,7 +34,6 @@ import {
   DatabaseOutlined,
   SafetyOutlined,
   SyncOutlined,
-  InfoCircleOutlined,
   CheckOutlined,
   CopyOutlined,
   InboxOutlined,
@@ -42,19 +41,19 @@ import {
   TrophyOutlined,
 } from '@ant-design/icons';
 
-import '../assets/styles/healthPage.css';
+import '../../assets/styles/healthPage.css';
 import { motion } from 'framer-motion';
-import { useAppSelector, useAppDispatch } from '../app/hooks';
+import { useAppSelector, useAppDispatch } from '../../app/hooks';
 import { useTranslation } from 'react-i18next';
 import {
   fetchHealthData,
   type HealthDataEntry,
-} from '../app/slices/healthSlice';
+} from '../../app/slices/healthSlice';
 import confetti from 'canvas-confetti';
-import MyHealthGuide from '../pages/main/profile/MyHealthGuide';
-import { auth } from '../api/authApi';
-import PrimaryButton from './common/PrimaryButton';
-import NumberInput from './common/inputs/NumberInput';
+import MyHealthGuide from './MyHealthGuidePage';
+import { auth } from '../../api/authApi';
+import PrimaryButton from '../../components/common/buttons/PrimaryButton';
+import NumberInput from '../../components/common/inputs/NumberInput';
 
 const { Title, Text, Paragraph } = Typography;
 
@@ -701,7 +700,7 @@ const HealthPage: React.FC = () => {
           onCancel={handleCancel}
           okText={t('health.save')}
           cancelText={t('health.cancel')}
-          className="goal-modal"
+          className={`goal-modal ${isDarkMode ? 'dark' : ''}`}
         >
           {selectedMetricIndex !== null && (
             <NumberInput
@@ -954,46 +953,32 @@ const HealthPage: React.FC = () => {
       </div>
 
       <Modal
-        title={
-          <span className={`connect-modal-title ${isDarkMode ? 'dark' : ''}`}>
-            {t('healthGuide.guide.connectModal.title')}
-          </span>
-        }
+        title={t('healthGuide.guide.connectModal.title')}
         open={isModalVisible}
         onCancel={handleCancelModal}
         footer={[
-          <Button
-            key="close"
-            onClick={handleCancelModal}
-            className="modal-close-button"
-          >
+          <Button key="close" onClick={handleCancelModal}>
             {t('healthGuide.guide.connectModal.closeButton')}
           </Button>,
         ]}
-        width={700}
-        zIndex={1000}
-        className="connect-modal"
+        width={600}
+        className={`modal-container ${isDarkMode ? 'dark' : ''}`}
       >
-        <div className="modal-content">
+        <div className={`modal-content ${isDarkMode ? 'dark' : ''}`}>
           <p className={`modal-step-description ${isDarkMode ? 'dark' : ''}`}>
             {t('healthGuide.guide.connectModal.description')}
           </p>
 
-          <div className="modal-steps-container">
+          <div className={`modal-steps-container ${isDarkMode ? 'dark' : ''}`}>
             <Steps
               direction="vertical"
               current={-1}
               size="small"
-              className="modal-steps"
+              className={`modal-steps ${isDarkMode ? 'dark' : ''}`}
             >
               <Steps.Step
-                title={
-                  <div
-                    className={`connect-modal-title ${isDarkMode ? 'dark' : ''}`}
-                  >
-                    {t('healthGuide.guide.connectModal.steps.download.title')}
-                  </div>
-                }
+                title={t('healthGuide.guide.connectModal.steps.download.title')}
+                className={`modal-step ${isDarkMode ? 'dark' : ''}`}
                 description={
                   <div className="download-link-container">
                     <a
@@ -1008,10 +993,11 @@ const HealthPage: React.FC = () => {
                     </a>
                   </div>
                 }
-                icon={<SafetyOutlined />}
+                icon={<SafetyOutlined className="text-white" />}
               />
               <Steps.Step
                 title={t('healthGuide.guide.connectModal.steps.copyUid.title')}
+                className={`modal-step ${isDarkMode ? 'dark' : ''}`}
                 description={
                   <div className="uid-container">
                     <Text className="uid-text">{currentUser}</Text>
@@ -1019,7 +1005,6 @@ const HealthPage: React.FC = () => {
                       icon={uidCopied ? <CheckOutlined /> : <CopyOutlined />}
                       size="small"
                       onClick={copyUid}
-                      className="copy-uid-button"
                     >
                       {uidCopied
                         ? t(
@@ -1031,7 +1016,7 @@ const HealthPage: React.FC = () => {
                     </Button>
                   </div>
                 }
-                icon={<SyncOutlined />}
+                icon={<SyncOutlined className="text-white" />}
               />
               <Steps.Step
                 title={t(
@@ -1040,23 +1025,16 @@ const HealthPage: React.FC = () => {
                 description={t(
                   'healthGuide.guide.connectModal.steps.runShortcut.description'
                 )}
-                icon={<DatabaseOutlined />}
+                icon={<DatabaseOutlined className="text-white" />}
               />
               <Steps.Step
                 title={t('healthGuide.guide.connectModal.steps.enjoy.title')}
                 description={t(
                   'healthGuide.guide.connectModal.steps.enjoy.description'
                 )}
-                icon={<FundOutlined />}
+                icon={<FundOutlined className="text-white" />}
               />
             </Steps>
-          </div>
-
-          <div className="modal-footer-note">
-            <InfoCircleOutlined className="footer-note-icon" />
-            <Text type="secondary">
-              {t('healthGuide.guide.connectModal.privacyNote')}
-            </Text>
           </div>
         </div>
       </Modal>

@@ -14,15 +14,15 @@ import {
   SolutionOutlined,
   SunOutlined,
 } from '@ant-design/icons';
-import { useAppDispatch, useAppSelector } from '../../../app/hooks';
-import { deleteTestData, clearTestData } from '../../../app/slices/testSlice';
+import { useAppDispatch, useAppSelector } from '../../app/hooks';
+import { deleteTestData, clearTestData } from '../../app/slices/testSlice';
 import { useNavigate } from 'react-router';
-import { type TestType } from '../../../app/slices/testSlice';
+import { type TestType } from '../../app/slices/testSlice';
 import { useTranslation } from 'react-i18next';
-import { auth } from '../../../api/authApi';
-import SecondaryButton from '../../../components/common/SecondaryButton';
-import PrimaryButton from '../../../components/common/PrimaryButton';
-import '../../../assets/styles/analysis.css';
+import { auth } from '../../api/authApi';
+import SecondaryButton from '../../components/common/buttons/SecondaryButton';
+import PrimaryButton from '../../components/common/buttons/PrimaryButton';
+import '../../assets/styles/analysis.css';
 
 const { Title, Text } = Typography;
 

@@ -1,7 +1,7 @@
 import { Tabs, Typography, Card, Row, Col } from 'antd';
 import type { TabsProps } from 'antd';
 import { useNavigate, useParams } from 'react-router-dom';
-import { useAppSelector } from '../../../app/hooks.ts';
+import { useAppSelector } from '../../app/hooks';
 import type { ReactNode } from 'react';
 import {
   HeartFilled,
@@ -9,15 +9,15 @@ import {
   HeatMapOutlined,
   MonitorOutlined,
 } from '@ant-design/icons';
-import laboratoryImage from '../../../assets/photos/Education8.webp';
-import '../../../assets/styles/rootForm.css';
+import laboratoryImage from '../../assets/photos/Education8.webp';
+import '../../assets/styles/rootForm.css';
 import VitaminTestForm from './VitaminTestForm';
 import UrineTestForm from './UrineTestForm';
 import BloodTestsForm from './BloodTestForm';
 import GeneticTestForm from './GeneticTestForm';
 import { useTranslation } from 'react-i18next';
 import { Navigate } from 'react-router';
-import SecondaryButton from '../../../components/common/SecondaryButton.tsx';
+import SecondaryButton from '../common/buttons/SecondaryButton';
 
 const { Title, Text } = Typography;
 

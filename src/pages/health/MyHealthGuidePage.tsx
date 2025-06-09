@@ -17,15 +17,14 @@ import {
 import { User, Scale, Activity, Target, TrendingUp, Zap } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
-import MyHealth from '../../../assets/photos/MyHealth.svg';
-import MyHealthDark from '../../../assets/photos/MyHealthDark.svg';
-import '../../../assets/styles/healthPage.css';
-import { auth } from '../../../api/authApi';
-import type { RootState } from '../../../app/store';
+import MyHealth from '../../assets/photos/MyHealth.svg';
+import MyHealthDark from '../../assets/photos/MyHealthDark.svg';
+import '../../assets/styles/healthPage.css';
+import { auth } from '../../api/authApi';
+import type { RootState } from '../../app/store';
 import { useSelector } from 'react-redux';
-import PrimaryButton from '../../../components/common/PrimaryButton';
+import PrimaryButton from '../../components/common/buttons/PrimaryButton';
 
-import SecondaryButton from '../../../components/common/SecondaryButton';
 const { Title, Text } = Typography;
 
 const MyHealthGuide: React.FC = () => {
@@ -82,14 +81,6 @@ const MyHealthGuide: React.FC = () => {
 
   return (
     <div className={`guide-page ${isDarkMode ? 'dark' : ''}`}>
-      <div className="back-button-container">
-        <SecondaryButton
-          className="back-button"
-          onClick={() => navigate('/my-health')}
-        >
-          {t('healthGuide.guide.backButton')}
-        </SecondaryButton>
-      </div>
       <div className="header-container">
         <p className={`header-title ${isDarkMode ? 'dark' : ''}`}>
           {t('healthGuide.guide.title')}
@@ -264,7 +255,7 @@ const MyHealthGuide: React.FC = () => {
                         </a>
                       </div>
                     }
-                    icon={<SafetyOutlined />}
+                    icon={<SafetyOutlined className="text-white" />}
                   />
                   <Steps.Step
                     title={t(
@@ -291,7 +282,7 @@ const MyHealthGuide: React.FC = () => {
                         </Button>
                       </div>
                     }
-                    icon={<SyncOutlined />}
+                    icon={<SyncOutlined className="text-white" />}
                   />
                   <Steps.Step
                     title={t(
@@ -300,7 +291,7 @@ const MyHealthGuide: React.FC = () => {
                     description={t(
                       'healthGuide.guide.connectModal.steps.runShortcut.description'
                     )}
-                    icon={<DatabaseOutlined />}
+                    icon={<DatabaseOutlined className="text-white" />}
                   />
                   <Steps.Step
                     title={t(
@@ -309,7 +300,7 @@ const MyHealthGuide: React.FC = () => {
                     description={t(
                       'healthGuide.guide.connectModal.steps.enjoy.description'
                     )}
-                    icon={<FundOutlined />}
+                    icon={<FundOutlined className="text-white" />}
                   />
                 </Steps>
               </div>

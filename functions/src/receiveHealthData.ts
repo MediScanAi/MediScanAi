@@ -31,7 +31,6 @@ export const receiveHealthData = onRequest(async (req, res) => {
     const userDocSnap = await docRef.get();
 
     if (!userDocSnap.exists) {
-      console.log(`User with uid ${cleanUid} not found in Firestore`);
       res.status(404).send(`User with uid ${cleanUid} not found`);
       return;
     }
@@ -57,10 +56,8 @@ export const receiveHealthData = onRequest(async (req, res) => {
     }
 
     await batch.commit();
-    console.log('Health data successfully saved');
     res.status(200).send('Health data saved');
-  } catch (err) {
-    console.error('Error saving health data:', err);
+  } catch {
     res.status(500).send('Error saving health data');
   }
 });

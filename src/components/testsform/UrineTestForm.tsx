@@ -1,14 +1,14 @@
 import { Form, message, Select, Typography, Card, Col, Row } from 'antd';
-import { useAppDispatch, useAppSelector } from '../../../app/hooks';
-import type { UrineTestFormValues } from '../../../app/slices/testSlice';
+import { useAppDispatch, useAppSelector } from '../../app/hooks';
+import type { UrineTestFormValues } from '../../app/slices/testSlice';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { saveTestData, setTestData } from '../../../app/slices/testSlice';
-import { auth } from '../../../api/authApi';
+import { saveTestData, setTestData } from '../../app/slices/testSlice';
+import { auth } from '../../api/authApi';
 import { useTranslation } from 'react-i18next';
-import PrimaryButton from '../../../components/common/PrimaryButton';
-import '../../../assets/styles/rootForm.css';
-import NumberInput from '../../../components/common/inputs/NumberInput';
-import SelectInput from '../../../components/common/inputs/SelectInput';
+import PrimaryButton from '../common/buttons/PrimaryButton';
+import '../../assets/styles/rootForm.css';
+import NumberInput from '../common/inputs/NumberInput';
+import SelectInput from '../common/inputs/SelectInput';
 
 const { Option } = Select;
 const { Title } = Typography;

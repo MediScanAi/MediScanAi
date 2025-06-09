@@ -9,21 +9,21 @@ import {
   ArrowUpOutlined,
   ArrowDownOutlined,
 } from '@ant-design/icons';
-import { useAppDispatch, useAppSelector } from '../../../app/hooks';
+import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import {
   saveUserData,
   fetchUserData,
   type UserData,
-} from '../../../app/slices/userDataSlice';
-import { selectCurrentUser } from '../../../app/slices/authSlice';
-import type { RootState } from '../../../app/store';
+} from '../../app/slices/userDataSlice';
+import { selectCurrentUser } from '../../app/slices/authSlice';
+import type { RootState } from '../../app/store';
 import { useTranslation } from 'react-i18next';
-import '../../../assets/styles/UserInfo.css';
+import '../../assets/styles/UserInfo.css';
 import { motion } from 'framer-motion';
-import UserAvatar from '../../../components/common/UserAvatar';
+import UserAvatar from '../../components/common/UserAvatar';
 import UserInfoItem, {
   type UserInfoField,
-} from '../../../components/UserInfoItem';
+} from '../../components/UserInfoItem';
 
 const { Text, Title } = Typography;
 

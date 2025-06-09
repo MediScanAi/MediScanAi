@@ -1,12 +1,12 @@
 import { message, Form, Card, Typography, Select, Row, Col } from 'antd';
-import { useAppDispatch, useAppSelector } from '../../../app/hooks';
+import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { saveTestData, setTestData } from '../../../app/slices/testSlice';
-import { auth } from '../../../api/authApi';
-import type { GeneticTestFormValues } from '../../../app/slices/testSlice';
+import { saveTestData, setTestData } from '../../app/slices/testSlice';
+import { auth } from '../../api/authApi';
+import type { GeneticTestFormValues } from '../../app/slices/testSlice';
 import { useTranslation } from 'react-i18next';
-import PrimaryButton from '../../../components/common/PrimaryButton';
-import SelectInput from '../../../components/common/inputs/SelectInput';
+import PrimaryButton from '../common/buttons/PrimaryButton';
+import SelectInput from '../common/inputs/SelectInput';
 
 const { Title } = Typography;
 const { Option } = Select;

@@ -9,22 +9,22 @@ import {
   YAxis,
   Bar,
 } from 'recharts';
-import '../../../assets/styles/analysis.css';
-import type { VitaminTestFormValues } from '../../../app/slices/testSlice';
-import Drugs from '../../../assets/photos/Drugs.webp';
-import VitaminK from '../../../assets/photos/VitaminK.webp';
+import '../../assets/styles/analysis.css';
+import type { VitaminTestFormValues } from '../../app/slices/testSlice';
+import Drugs from '../../assets/photos/Drugs.webp';
+import VitaminK from '../../assets/photos/VitaminK.webp';
 import { Button } from 'antd';
 import { useNavigate } from 'react-router-dom';
-import Apple from '../../../assets/photos/Apple.webp';
-import Cholesterol from '../../../assets/photos/Cholesterol.webp';
-import Cow from '../../../assets/photos/Cow.webp';
-import Protein from '../../../assets/photos/Protein.webp';
-import PopCorn from '../../../assets/photos/PopCorn.webp';
+import Apple from '../../assets/photos/Apple.webp';
+import Cholesterol from '../../assets/photos/Cholesterol.webp';
+import Cow from '../../assets/photos/Cow.webp';
+import Protein from '../../assets/photos/Protein.webp';
+import PopCorn from '../../assets/photos/PopCorn.webp';
 import { useEffect, useState } from 'react';
-import { useAppSelector } from '../../../app/hooks';
+import { useAppSelector } from '../../app/hooks';
 import { useSelector } from 'react-redux';
-import type { RootState } from '../../../app/store';
-import PrimaryButton from '../../../components/common/PrimaryButton';
+import type { RootState } from '../../app/store';
+import PrimaryButton from '../../components/common/buttons/PrimaryButton';
 import { useTranslation } from 'react-i18next';
 
 interface ChartData {

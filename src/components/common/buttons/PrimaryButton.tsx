@@ -1,15 +1,14 @@
 import React from 'react';
 import { Button, type ButtonProps } from 'antd';
-import '../../assets/styles/buttons.css';
 import { useSelector } from 'react-redux';
-import type { RootState } from '../../app/store';
+import type { RootState } from '../../../app/store';
 
-interface SecondaryButtonProps extends ButtonProps {
+interface PrimaryButtonProps extends ButtonProps {
   icon?: React.ReactNode;
   children: React.ReactNode;
 }
 
-const SecondaryButton: React.FC<SecondaryButtonProps> = ({
+const PrimaryButton: React.FC<PrimaryButtonProps> = ({
   icon,
   children,
   className = '',
@@ -20,7 +19,7 @@ const SecondaryButton: React.FC<SecondaryButtonProps> = ({
   );
   return (
     <Button
-      className={`custom-btn secondary-btn ${theme} ${className}`}
+      className={`custom-btn primary-btn ${theme} ${className}`}
       icon={icon}
       size={props.size ?? 'large'}
       {...props}
@@ -30,4 +29,4 @@ const SecondaryButton: React.FC<SecondaryButtonProps> = ({
   );
 };
 
-export default SecondaryButton;
+export default PrimaryButton;

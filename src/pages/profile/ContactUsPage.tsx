@@ -8,7 +8,7 @@ import {
   LinkedinOutlined,
 } from '@ant-design/icons';
 import { useTranslation } from 'react-i18next';
-import '../../../assets/styles/contuctUs.css';
+import '../../assets/styles/contuctUs.css';
 const { Title, Text } = Typography;
 
 export interface ContactUsProps {

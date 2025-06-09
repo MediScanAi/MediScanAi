@@ -21,16 +21,16 @@ import {
   TeamOutlined,
 } from '@ant-design/icons';
 import { NavLink, useLocation, useNavigate } from 'react-router-dom';
-import { useAppDispatch, useAppSelector } from '../app/hooks';
-import { logoutUser } from '../app/slices/authSlice';
+import { useAppDispatch, useAppSelector } from '../../app/hooks.ts';
+import { logoutUser } from '../../app/slices/authSlice.ts';
 import { useTranslation } from 'react-i18next';
-import logoLight from '../assets/photos/logo-light.svg';
-import logoDark from '../assets/photos/logo-dark.svg';
-import '../assets/styles/Header.css';
-import PreferencesDropdown from './preferences/PreferencesDropdown';
-import PrimaryButton from './common/PrimaryButton.tsx';
-import UserAvatar from './common/UserAvatar.tsx';
-import LogoWeb from '../assets/photos/Logo Web.png';
+import logoLight from '../../assets/photos/logo-light.svg';
+import logoDark from '../../assets/photos/logo-dark.svg';
+import '../../assets/styles/Header.css';
+import PreferencesDropdown from '../preferences/PreferencesDropdown.tsx';
+import PrimaryButton from '../common/buttons/PrimaryButton.tsx';
+import UserAvatar from '../common/UserAvatar.tsx';
+import LogoWeb from '../../assets/photos/Logo Web.png';
 
 const { Header } = Layout;
 const { Text } = Typography;

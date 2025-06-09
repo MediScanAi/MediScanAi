@@ -10,10 +10,10 @@ import {
   PhoneOutlined,
   ClockCircleOutlined,
 } from '@ant-design/icons';
-import '../assets/styles/footer.css';
-import { useAppSelector } from '../app/hooks.ts';
-import logoLight from '../assets/photos/logo-light.svg';
-import logoDark from '../assets/photos/logo-dark.svg';
+import '../../assets/styles/footer.css';
+import { useAppSelector } from '../../app/hooks.ts';
+import logoLight from '../../assets/photos/logo-light.svg';
+import logoDark from '../../assets/photos/logo-dark.svg';
 import { useTranslation } from 'react-i18next';
 
 const { Text, Link, Title } = Typography;

@@ -9,27 +9,27 @@ import {
   YAxis,
   Bar,
 } from 'recharts';
-import '../../../assets/styles/analysis.css';
-import Done from '../../../assets/photos/Done.webp';
+import '../../assets/styles/analysis.css';
+import Done from '../../assets/photos/Done.webp';
 import { Button } from 'antd';
 import { useNavigate } from 'react-router-dom';
-import Chocolate from '../../../assets/photos/Chocolate.webp';
-import PH from '../../../assets/photos/PH.webp';
-import Nitrites from '../../../assets/photos/Nitrite.webp';
-import Protein from '../../../assets/photos/Protein.webp';
-import Ketones from '../../../assets/photos/Ketones.webp';
-import Bilirubin from '../../../assets/photos/Bilirubin.webp';
-import BloodMultic from '../../../assets/photos/BloodMultic.png';
-import Urobilinogen from '../../../assets/photos/Urobilinogen.webp';
-import Urine from '../../../assets/photos/Urine.webp';
-import LeukocyteEsterase from '../../../assets/photos/LeukocyteEsterase.webp';
+import Chocolate from '../../assets/photos/Chocolate.webp';
+import PH from '../../assets/photos/PH.webp';
+import Nitrites from '../../assets/photos/Nitrite.webp';
+import Protein from '../../assets/photos/Protein.webp';
+import Ketones from '../../assets/photos/Ketones.webp';
+import Bilirubin from '../../assets/photos/Bilirubin.webp';
+import BloodMultic from '../../assets/photos/BloodMultic.png';
+import Urobilinogen from '../../assets/photos/Urobilinogen.webp';
+import Urine from '../../assets/photos/Urine.webp';
+import LeukocyteEsterase from '../../assets/photos/LeukocyteEsterase.webp';
 import { useEffect } from 'react';
 import { useState } from 'react';
-import type { UrineTestFormValues } from '../../../app/slices/testSlice';
-import { useAppSelector } from '../../../app/hooks';
+import type { UrineTestFormValues } from '../../app/slices/testSlice';
+import { useAppSelector } from '../../app/hooks';
 import { useSelector } from 'react-redux';
-import type { RootState } from '../../../app/store';
-import PrimaryButton from '../../../components/common/PrimaryButton';
+import type { RootState } from '../../app/store';
+import PrimaryButton from '../../components/common/buttons/PrimaryButton';
 import { useTranslation } from 'react-i18next';
 
 interface ChartData {

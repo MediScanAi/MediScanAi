@@ -1,13 +1,13 @@
 import { Form, message, Typography, Card, Row, Col } from 'antd';
-import { useAppDispatch, useAppSelector } from '../../../app/hooks';
-import { saveTestData, setTestData } from '../../../app/slices/testSlice';
-import type { VitaminTestFormValues } from '../../../app/slices/testSlice';
+import { useAppDispatch, useAppSelector } from '../../app/hooks';
+import { saveTestData, setTestData } from '../../app/slices/testSlice';
+import type { VitaminTestFormValues } from '../../app/slices/testSlice';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { auth } from '../../../api/authApi';
+import { auth } from '../../api/authApi';
 import { useTranslation } from 'react-i18next';
-import PrimaryButton from '../../../components/common/PrimaryButton';
-import '../../../assets/styles/rootForm.css';
-import NumberInput from '../../../components/common/inputs/NumberInput';
+import PrimaryButton from '../common/buttons/PrimaryButton';
+import '../../assets/styles/rootForm.css';
+import NumberInput from '../common/inputs/NumberInput';
 
 const { Title } = Typography;
 

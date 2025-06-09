@@ -10,8 +10,7 @@ i18n
   .init({
     debug: false,
     saveMissing: false,
-    missingKeyHandler: async (lng, key) => {
-      await console.error(`[i18n] Missing ${lng} translation for: ${key}`);
+    missingKeyHandler: async (key) => {
       return key;
     },
     ns: [

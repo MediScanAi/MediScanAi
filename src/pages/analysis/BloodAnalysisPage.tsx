@@ -9,22 +9,22 @@ import {
   YAxis,
   Bar,
 } from 'recharts';
-import '../../../assets/styles/analysis.css';
-import BloodMultic from '../../../assets/photos/BloodMultic.png';
-import Done from '../../../assets/photos/Done.webp';
+import '../../assets/styles/analysis.css';
+import BloodMultic from '../../assets/photos/BloodMultic.png';
+import Done from '../../assets/photos/Done.webp';
 import { Button } from 'antd';
 import { useNavigate } from 'react-router-dom';
-import ChartGoingDown from '../../../assets/photos/ChartGoingDown.webp';
-import Syringe from '../../../assets/photos/Syringe.webp';
-import MedKit from '../../../assets/photos/MedKit.webp';
-import Cholesterol from '../../../assets/photos/Cholesterol.webp';
-import Chocolate from '../../../assets/photos/Chocolate.webp';
+import ChartGoingDown from '../../assets/photos/ChartGoingDown.webp';
+import Syringe from '../../assets/photos/Syringe.webp';
+import MedKit from '../../assets/photos/MedKit.webp';
+import Cholesterol from '../../assets/photos/Cholesterol.webp';
+import Chocolate from '../../assets/photos/Chocolate.webp';
 import { useEffect } from 'react';
 import { useState } from 'react';
-import { useAppSelector } from '../../../app/hooks';
+import { useAppSelector } from '../../app/hooks';
 import { useSelector } from 'react-redux';
-import type { RootState } from '../../../app/store';
-import PrimaryButton from '../../../components/common/PrimaryButton';
+import type { RootState } from '../../app/store';
+import PrimaryButton from '../../components/common/buttons/PrimaryButton';
 import { useTranslation } from 'react-i18next';
 
 interface ChartData {
@@ -374,7 +374,7 @@ function BloodAnalysis() {
                     navigate('/ai-doctor', {
                       state: {
                         bloodTests: bloodTestData,
-                        healthWarnings: warnings,
+                        bloodWarnings: warnings,
                       },
                     });
                   }}
