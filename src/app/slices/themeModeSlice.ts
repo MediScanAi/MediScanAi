@@ -7,7 +7,7 @@ interface ThemeState {
   isDarkMode: boolean;
 }
 
-function getSystemDarkMode(): boolean {
+const getSystemDarkMode = (): boolean => {
   if (typeof window !== 'undefined' && window.matchMedia) {
     return window.matchMedia('(prefers-color-scheme: dark)').matches;
   }
@@ -16,7 +16,7 @@ function getSystemDarkMode(): boolean {
 
 const savedMode = (localStorage.getItem('themeMode') as ThemeMode) || 'system';
 
-function getInitialThemeState(): ThemeState {
+const getInitialThemeState = (): ThemeState => {
   const mode: ThemeMode = savedMode;
   let isDark = false;
 

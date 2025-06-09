@@ -11,11 +11,11 @@ import type { AuthUser } from '../../api/authApi';
 
 const { Text } = Typography;
 
-export default function UserDropdown({ user }: { user: AuthUser }) {
+const UserDropdown: React.FC<{ user: AuthUser }> = ({ user }) => {
   const { t } = useTranslation('header');
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState<boolean>(false);
   const isDarkMode = useAppSelector((state) => state.theme.isDarkMode);
 
   const menuItems = [
@@ -55,4 +55,6 @@ export default function UserDropdown({ user }: { user: AuthUser }) {
       </div>
     </Dropdown>
   );
-}
+};
+
+export default UserDropdown;

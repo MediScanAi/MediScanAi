@@ -29,7 +29,7 @@ import SecondaryButton from '../../components/common/buttons/SecondaryButton';
 
 const { Title, Text } = Typography;
 
-function HomePage() {
+const HomePage: React.FC = () => {
   const { t } = useTranslation('homePage');
   const [width, setWidth] = useState(window.innerWidth);
   const [openIndex, setOpenIndex] = useState<number | null>(null);

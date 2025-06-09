@@ -10,7 +10,7 @@ import teamMember3 from '../../assets/photos/TeamMemberArtur.png';
 import teamMember4 from '../../assets/photos/TeamMemberArayik.png';
 import teamMember5 from '../../assets/photos/TeamMemberDavit.png';
 import { useNavigate } from 'react-router';
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
@@ -23,7 +23,7 @@ import {
 } from '@ant-design/icons';
 const { Title, Paragraph, Text } = Typography;
 
-function AboutUsPage() {
+const AboutUsPage: React.FC = () => {
   const navigate = useNavigate();
   const [width, setWidth] = useState(window.innerWidth);
   const { t } = useTranslation('aboutUs');

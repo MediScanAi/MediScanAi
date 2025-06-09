@@ -18,10 +18,11 @@ import GeneticTestForm from './GeneticTestForm';
 import { useTranslation } from 'react-i18next';
 import { Navigate } from 'react-router';
 import SecondaryButton from '../common/buttons/SecondaryButton';
+import type React from 'react';
 
 const { Title, Text } = Typography;
 
-function RootForm(): ReactNode | null {
+const RootForm: React.FC = (): ReactNode | null => {
   const navigate = useNavigate();
   const { testType } = useParams();
   const { t } = useTranslation('rootForm');
@@ -128,6 +129,6 @@ function RootForm(): ReactNode | null {
       </Row>
     </div>
   );
-}
+};
 
 export default RootForm;

@@ -23,7 +23,7 @@ import BloodMultic from '../../assets/photos/BloodMultic.png';
 import Urobilinogen from '../../assets/photos/Urobilinogen.webp';
 import Urine from '../../assets/photos/Urine.webp';
 import LeukocyteEsterase from '../../assets/photos/LeukocyteEsterase.webp';
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useState } from 'react';
 import type { UrineTestFormValues } from '../../app/slices/testSlice';
 import { useAppSelector } from '../../app/hooks';
@@ -104,7 +104,7 @@ const CustomBarChart = ({ data }: { data: ChartData[] }) => (
 
 const { Title } = Typography;
 
-function UrineAnalysis() {
+const UrineAnalysis: React.FC = () => {
   const { t } = useTranslation('urineAnalysis');
   const urineTestData = useAppSelector((state) => state.tests.urine);
   const isDarkMode = useSelector((state: RootState) => state.theme.isDarkMode);
@@ -561,6 +561,6 @@ function UrineAnalysis() {
       </div>
     </div>
   );
-}
+};
 
 export default UrineAnalysis;

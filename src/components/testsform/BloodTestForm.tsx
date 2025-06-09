@@ -9,10 +9,11 @@ import { useTranslation } from 'react-i18next';
 import '../../assets/styles/components/form-wrapper.css';
 import PrimaryButton from '../common/buttons/PrimaryButton';
 import NumberInput from '../common/inputs/NumberInput';
+import type { FC } from 'react';
 
 const { Title } = Typography;
 
-function BloodTestsForm() {
+const BloodTestsForm: FC = () => {
   const navigate = useNavigate();
   const [form] = Form.useForm();
   const dispatch = useAppDispatch();
@@ -95,7 +96,7 @@ function BloodTestsForm() {
     },
   ];
 
-  const onFinish = async (values: BloodTestFormValues) => {
+  const onFinish = async (values: BloodTestFormValues): Promise<void> => {
     const uid = auth.currentUser?.uid;
     if (!uid) {
       message.error(t('errors.userNotAuthenticated'));
@@ -103,7 +104,6 @@ function BloodTestsForm() {
     }
     const testData = { ...values, date: new Date().toISOString() };
     await dispatch(saveTestData({ uid, testType: 'blood', data: testData }));
-
     dispatch(setTestData({ testType: 'blood', data: testData }));
 
     if (updatedData) {
@@ -162,6 +162,6 @@ function BloodTestsForm() {
       </Form>
     </Card>
   );
-}
+};
 
 export default BloodTestsForm;

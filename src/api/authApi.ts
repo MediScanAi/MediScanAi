@@ -93,14 +93,13 @@ export const sendVerificationEmail = async (u: FirebaseUser) =>
 export const applyVerificationCode = async (oobCode: string) =>
   applyActionCode(auth, oobCode);
 
-function isFirebaseAuthError(error: unknown): error is { code: string } {
-  return (
-    typeof error === 'object' &&
-    error !== null &&
-    Object.prototype.hasOwnProperty.call(error, 'code') &&
-    typeof (error as Record<string, unknown>).code === 'string'
-  );
-}
+export const isFirebaseAuthError = (
+  error: unknown
+): error is { code: string } =>
+  typeof error === 'object' &&
+  error !== null &&
+  Object.prototype.hasOwnProperty.call(error, 'code') &&
+  typeof (error as Record<string, unknown>).code === 'string';
 
 /**
  * Opens a Google sign-in popup.

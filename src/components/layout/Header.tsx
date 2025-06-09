@@ -1,12 +1,5 @@
 import { useState } from 'react';
-import {
-  Layout,
-  Menu,
-  Button,
-  Space,
-  Drawer,
-  Grid,
-} from 'antd';
+import { Layout, Menu, Button, Space, Drawer, Grid } from 'antd';
 import {
   MenuOutlined,
   MoreOutlined,
@@ -28,14 +21,14 @@ import UserDropdown from './UserDropdown.tsx';
 
 const { Header } = Layout;
 
-export default function AppHeader() {
+const AppHeader: React.FC = () => {
   const { t } = useTranslation('header');
   const navigate = useNavigate();
   const { pathname } = useLocation();
   const user = useAppSelector((s) => s.auth.user);
   const isDarkMode = useAppSelector((s) => s.theme.isDarkMode);
   const screens = Grid.useBreakpoint();
-  const [drawerOpen, setDrawerOpen] = useState(false);
+  const [drawerOpen, setDrawerOpen] = useState<boolean>(false);
   const showDrawer = screens.xs;
 
   const mainMenuItems = [
@@ -96,10 +89,10 @@ export default function AppHeader() {
     },
   ];
 
-  
-  const navigateHome = () => {
+  const navigateHome = (): void => {
     navigate('/');
   };
+
   return (
     <Header className={`app-header ${isDarkMode ? 'dark' : 'light'}`}>
       <div className="app-header-container">
@@ -169,4 +162,6 @@ export default function AppHeader() {
       </div>
     </Header>
   );
-}
+};
+
+export default AppHeader;

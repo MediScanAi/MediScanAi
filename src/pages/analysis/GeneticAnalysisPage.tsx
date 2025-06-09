@@ -7,7 +7,7 @@ import Syringe from '../../assets/photos/Syringe.webp';
 import Bilirubin from '../../assets/photos/Bilirubin.webp';
 import BRCA1 from '../../assets/photos/BRCA1.webp';
 import APOE from '../../assets/photos/APOE.webp';
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useState } from 'react';
 import Gen from '../../assets/photos/Gen.webp';
 import type { GeneticTestFormValues } from '../../app/slices/testSlice';
@@ -33,7 +33,7 @@ interface Scorecard {
 
 const { Title } = Typography;
 
-function GeneticAnalysis() {
+const GeneticAnalysis: React.FC = () => {
   const { t } = useTranslation('geneticAnalysis');
   const geneticTestData = useAppSelector((state) => state.tests.genetic);
   const isDarkMode = useSelector((state: RootState) => state.theme.isDarkMode);
@@ -484,6 +484,6 @@ function GeneticAnalysis() {
       </div>
     </div>
   );
-}
+};
 
 export default GeneticAnalysis;
