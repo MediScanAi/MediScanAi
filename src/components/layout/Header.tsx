@@ -2,18 +2,13 @@ import { useState } from 'react';
 import {
   Layout,
   Menu,
-  Dropdown,
   Button,
   Space,
   Drawer,
-  Typography,
   Grid,
 } from 'antd';
 import {
-  LogoutOutlined,
-  UserOutlined,
   MenuOutlined,
-  DownOutlined,
   MoreOutlined,
   HomeOutlined,
   MedicineBoxOutlined,
@@ -21,28 +16,26 @@ import {
   TeamOutlined,
 } from '@ant-design/icons';
 import { NavLink, useLocation, useNavigate } from 'react-router-dom';
-import { useAppDispatch, useAppSelector } from '../../app/hooks.ts';
-import { logoutUser } from '../../app/slices/authSlice.ts';
+import { useAppSelector } from '../../app/hooks.ts';
 import { useTranslation } from 'react-i18next';
 import logoLight from '../../assets/photos/logo-light.svg';
 import logoDark from '../../assets/photos/logo-dark.svg';
 import '../../assets/styles/components/layout/header.css';
 import PreferencesDropdown from '../preferences/PreferencesDropdown.tsx';
 import PrimaryButton from '../common/buttons/PrimaryButton.tsx';
-import UserAvatar from '../common/UserAvatar.tsx';
 import LogoWeb from '../../assets/photos/Logo Web.png';
+import UserDropdown from './UserDropdown.tsx';
 
 const { Header } = Layout;
-const { Text } = Typography;
 
 export default function AppHeader() {
   const { t } = useTranslation('header');
-  const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const { pathname } = useLocation();
   const user = useAppSelector((s) => s.auth.user);
   const isDarkMode = useAppSelector((s) => s.theme.isDarkMode);
   const screens = Grid.useBreakpoint();
+  const [drawerOpen, setDrawerOpen] = useState(false);
   const showDrawer = screens.xs;
 
   const mainMenuItems = [
@@ -103,9 +96,7 @@ export default function AppHeader() {
     },
   ];
 
-  const [drawerOpen, setDrawerOpen] = useState(false);
-  const [usrMenuOpen, setUsrMenuOpen] = useState(false);
-
+  
   const navigateHome = () => {
     navigate('/');
   };
@@ -146,54 +137,7 @@ export default function AppHeader() {
           <Space size="middle">
             <PreferencesDropdown />
             {user ? (
-              <Dropdown
-                menu={{
-                  items: [
-                    {
-                      key: 'profile',
-                      icon: <UserOutlined />,
-                      label: (
-                        <NavLink to="/profile/info">
-                          {t('menu.profile')}
-                        </NavLink>
-                      ),
-                    },
-                    {
-                      key: 'logout',
-                      icon: <LogoutOutlined className="logout-link" />,
-                      label: (
-                        <span
-                          onClick={() => {
-                            dispatch(logoutUser());
-                            navigate('/');
-                          }}
-                          className="logout-link"
-                        >
-                          {t('menu.logout')}
-                        </span>
-                      ),
-                    },
-                  ],
-                }}
-                open={usrMenuOpen}
-                onOpenChange={setUsrMenuOpen}
-                placement="bottomRight"
-                overlayClassName={
-                  isDarkMode ? 'dropdown-dark' : 'dropdown-light'
-                }
-              >
-                <div className={`user-profile ${isDarkMode ? 'dark' : ''}`}>
-                  <UserAvatar user={user} size="small" />
-                  <Text className={`username ${isDarkMode ? 'dark' : ''}`}>
-                    {user.firstName} {user.lastName}
-                  </Text>
-                  <span
-                    className={`arrow-icon ${usrMenuOpen ? 'rotated' : ''}`}
-                  >
-                    <DownOutlined />
-                  </span>
-                </div>
-              </Dropdown>
+              <UserDropdown user={user} />
             ) : (
               <PrimaryButton
                 style={{ height: '35px' }}
