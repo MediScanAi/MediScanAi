@@ -341,6 +341,6 @@ const AboutUsPage: React.FC = () => {
       </Row>
     </Row>
   );
-}
+};
 
 export default AboutUsPage;

@@ -8,9 +8,6 @@
     "strict": true,
     "skipLibCheck": false,
     "forceConsistentCasingInFileNames": true,
-    "typeRoots": [
-      "./node_modules/@types",
-      "./types"
-    ]
+    "typeRoots": ["./node_modules/@types", "./types"]
   }
 }

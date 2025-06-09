@@ -448,6 +448,6 @@ const HomePage: React.FC = () => {
       </Col>
     </Row>
   );
-}
+};
 
 export default HomePage;
