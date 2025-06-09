@@ -1,5 +1,5 @@
 import { Card, Row, Col, Typography, Progress } from 'antd';
-import '../../assets/styles/pages/analysis.css';
+import '../../assets/styles/pages/analysis-page.css';
 import { Button } from 'antd';
 import { useNavigate } from 'react-router-dom';
 import ChartGoingDown from '../../assets/photos/ChartGoingDown.webp';

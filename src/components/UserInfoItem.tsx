@@ -8,7 +8,7 @@ import {
 } from '@ant-design/icons';
 import NumberInput from './common/inputs/NumberInput';
 import { useTranslation } from 'react-i18next';
-import '../assets/styles/components/userInfoItem.css';
+import '../assets/styles/components/user-info-item.css';
 const { Text } = Typography;
 const { Option } = Select;
 

@@ -9,7 +9,7 @@ import { useState } from 'react';
 import ForgotPasswordForm from '../../components/ForgotPasswordForm';
 import LoginWithGoogleButton from '../../components/common/buttons/LoginWithGoogleButton';
 import MedicalInstruments3D from '../../assets/photos/medical_instruments.png';
-import '../../assets/styles/pages/LoginPage.css';
+import '../../assets/styles/pages/login-page.css';
 import PrimaryButton from '../../components/common/buttons/PrimaryButton';
 import PreferencesDropdown from '../../components/preferences/PreferencesDropdown';
 import SecondaryButton from '../../components/common/buttons/SecondaryButton';

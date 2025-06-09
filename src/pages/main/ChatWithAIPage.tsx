@@ -30,7 +30,7 @@ import {
 } from 'firebase/firestore';
 import { onAuthStateChanged } from 'firebase/auth';
 import { db, auth } from '../../api/authApi';
-import '../../assets/styles/pages/chatwithai.css';
+import '../../assets/styles/pages/chat-with-ai-page.css';
 import { format, isToday, isYesterday, differenceInDays } from 'date-fns';
 import { Upload } from 'antd';
 import { DiffOutlined } from '@ant-design/icons';

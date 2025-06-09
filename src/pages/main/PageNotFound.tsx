@@ -2,7 +2,7 @@ import React from 'react';
 import { Result, Space, Typography } from 'antd';
 import { useNavigate } from 'react-router-dom';
 import { useAppSelector } from '../../app/hooks';
-import '../../assets/styles/pages/PageNotFound.css';
+import '../../assets/styles/pages/not-found-page.css';
 import PrimaryButton from '../../components/common/buttons/PrimaryButton';
 import { useTranslation } from 'react-i18next';
 

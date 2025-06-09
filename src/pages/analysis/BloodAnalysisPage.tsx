@@ -9,7 +9,7 @@ import {
   YAxis,
   Bar,
 } from 'recharts';
-import '../../assets/styles/pages/analysis.css';
+import '../../assets/styles/pages/analysis-page.css';
 import BloodMultic from '../../assets/photos/BloodMultic.png';
 import Done from '../../assets/photos/Done.webp';
 import { Button } from 'antd';

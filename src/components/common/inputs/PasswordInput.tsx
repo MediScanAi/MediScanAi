@@ -1,7 +1,7 @@
 import React from 'react';
 import { Input } from 'antd';
 import type { PasswordProps } from 'antd/es/input';
-import '../../../assets/styles/components/inputs/passwordInput.css';
+import '../../../assets/styles/components/inputs/password-input.css';
 
 type CustomPasswordInputProps = PasswordProps & {
   className?: string;

@@ -10,7 +10,7 @@ import {
   MonitorOutlined,
 } from '@ant-design/icons';
 import laboratoryImage from '../../assets/photos/Education8.webp';
-import '../../assets/styles/components/rootForm.css';
+import '../../assets/styles/components/form-wrapper.css';
 import VitaminTestForm from './VitaminTestForm';
 import UrineTestForm from './UrineTestForm';
 import BloodTestsForm from './BloodTestForm';

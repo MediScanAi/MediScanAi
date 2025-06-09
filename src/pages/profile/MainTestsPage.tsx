@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { useAppSelector } from '../../app/hooks';
 import { motion } from 'framer-motion';
 import PrimaryButton from '../../components/common/buttons/PrimaryButton';
-import '../../assets/styles/pages/mainTests.css';
+import '../../assets/styles/pages/main-tests-page.css';
 
 const { Title, Text } = Typography;
 

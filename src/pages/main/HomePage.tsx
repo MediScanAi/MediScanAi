@@ -18,7 +18,7 @@ import fileUpload from '../../assets/photos/Folder.webp';
 import aiAnalysis from '../../assets/photos/Productivity 4.webp';
 import insightsReport from '../../assets/photos/Finance 5.webp';
 import clinicalDecision from '../../assets/photos/m11.webp';
-import '../../assets/styles/pages/homepage.css';
+import '../../assets/styles/pages/home-page.css';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
