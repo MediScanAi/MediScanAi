@@ -721,9 +721,14 @@
 
 .goal-input {
   border-radius: 8px;
-  border: 1px solid #e2e8f0;
   padding: 10px 16px;
   font-size: 16px;
+}
+
+.goal-input .ant-input-number-input,
+.goal-input .ant-input-number {
+  border: none !important;
+  background: transparent !important;
 }
 
 .goal-input:focus {

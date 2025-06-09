@@ -5,6 +5,7 @@
   color: #1a237e !important;
   border-radius: 12px !important;
   font-size: 16px;
+  border: 1px solid #5271c3 !important;
   font-weight: 400 !important;
   transition:
     background 0.25s,
