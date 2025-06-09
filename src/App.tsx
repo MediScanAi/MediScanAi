@@ -7,7 +7,7 @@ import i18n from './i18n';
 import AppInitFetcher from './components/AppInitFetcher';
 import { useSystemThemeSync } from './app/hooks/useSystemThemeSync';
 
-function App() {
+const App: React.FC = () => {
   useSystemThemeSync();
   return (
     <I18nextProvider i18n={i18n}>
@@ -17,6 +17,6 @@ function App() {
       </Suspense>
     </I18nextProvider>
   );
-}
+};
 
 export default App;

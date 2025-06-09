@@ -1,7 +1,7 @@
 import React from 'react';
 import { Input } from 'antd';
 import type { InputProps } from 'antd';
-import '../../../assets/styles/components/inputs/TextInput.css';
+import '../../../assets/styles/components/inputs/text-input.css';
 
 type TextInputProps = InputProps & {
   className?: string;

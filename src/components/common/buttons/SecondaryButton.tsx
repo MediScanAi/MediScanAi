@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button, type ButtonProps } from 'antd';
-import '../../../assets/styles/buttons.css';
+import '../../../assets/styles/components/buttons.css';
 import { useSelector } from 'react-redux';
 import type { RootState } from '../../../app/store';
 

@@ -158,6 +158,28 @@
   border-bottom: 2px solid #1890ff;
 }
 
+.nav-menu.ant-menu-horizontal > .ant-menu-item-active,
+.nav-menu.ant-menu-horizontal > .ant-menu-submenu-active,
+.nav-menu.ant-menu-horizontal > .ant-menu-item-open,
+.nav-menu.ant-menu-horizontal > .ant-menu-submenu-open,
+.nav-menu.ant-menu-horizontal > .ant-menu-item-selected,
+.nav-menu.ant-menu-horizontal > .ant-menu-submenu-selected,
+.nav-menu.ant-menu-horizontal > .ant-menu-item:hover,
+.nav-menu.ant-menu-horizontal > .ant-menu-submenu:hover {
+  background: transparent !important;
+}
+
+.nav-menu .ant-menu-item,
+.nav-menu .ant-menu-submenu-title {
+  cursor: pointer !important;
+}
+
+.nav-menu.ant-menu-horizontal > .ant-menu-item-selected::after,
+.nav-menu.ant-menu-horizontal > .ant-menu-submenu-selected::after {
+  border-bottom: 2px solid #1890ff !important;
+  opacity: 1 !important;
+}
+
 .dark-drawer .ant-drawer-body {
   padding: 0;
   background: #1d2b40;

@@ -6,7 +6,7 @@ import { saveTestData, setTestData } from '../../app/slices/testSlice';
 import { auth } from '../../api/authApi';
 import { useTranslation } from 'react-i18next';
 import PrimaryButton from '../common/buttons/PrimaryButton';
-import '../../assets/styles/rootForm.css';
+import '../../assets/styles/components/form-wrapper.css';
 import NumberInput from '../common/inputs/NumberInput';
 import SelectInput from '../common/inputs/SelectInput';
 

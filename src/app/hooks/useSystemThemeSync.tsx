@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import type { RootState } from '../store';
 import { setIsDarkMode } from '../slices/themeModeSlice';
 
-export function useSystemThemeSync() {
+export const useSystemThemeSync = (): void => {
   const dispatch = useDispatch();
   const themeMode = useSelector((state: RootState) => state.theme.themeMode);
 
@@ -21,4 +21,4 @@ export function useSystemThemeSync() {
 
     return () => matcher.removeEventListener('change', onChange);
   }, [themeMode, dispatch]);
-}
+};

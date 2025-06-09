@@ -2,7 +2,7 @@ import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { setThemeMode } from '../../app/slices/themeModeSlice';
 import { MoonOutlined, SunOutlined, LaptopOutlined } from '@ant-design/icons';
 import { useTranslation } from 'react-i18next';
-import '../../assets/styles/components/preferences/themePicker.css';
+import '../../assets/styles/components/preferences/theme-picker.css';
 import SelectInput from '../common/inputs/SelectInput';
 
 const ThemePicker = () => {

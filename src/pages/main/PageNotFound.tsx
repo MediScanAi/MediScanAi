@@ -2,7 +2,7 @@ import React from 'react';
 import { Result, Space, Typography } from 'antd';
 import { useNavigate } from 'react-router-dom';
 import { useAppSelector } from '../../app/hooks';
-import '../../assets/styles/PageNotFound.css';
+import '../../assets/styles/pages/not-found-page.css';
 import PrimaryButton from '../../components/common/buttons/PrimaryButton';
 import { useTranslation } from 'react-i18next';
 
@@ -14,14 +14,10 @@ const PageNotFound: React.FC = () => {
   const { t } = useTranslation('pageNotFound');
 
   return (
-    <div className={`page-not-found ${theme ? 'dark-theme' : ''}`}>
+    <div className={`page-not-found ${theme ? 'dark' : ''}`}>
       <Result
         status="404"
-        title={
-          <Text className={`page-not-found-title ${theme ? 'dark' : 'light'}`}>
-            404
-          </Text>
-        }
+        title={<Text className="page-not-found-title">404</Text>}
         subTitle={
           <Text className="page-not-found-subtitle">
             {t('pageNotFound.subtitle')}
