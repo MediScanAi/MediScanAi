@@ -7,6 +7,8 @@
   width: 100%;
   font-family: 'Poppins';
   background: radial-gradient(circle at 10% 30%, #b3d1ff, #e6ecfa, #ffffff);
+  overflow-y: hidden;
+  overflow-x: hidden;
 }
 
 .health-dashboard.dark {
