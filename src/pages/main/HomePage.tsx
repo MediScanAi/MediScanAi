@@ -404,7 +404,8 @@ function HomePage() {
                             : width > 1200
                               ? '350px'
                               : width > 820
-                                ? '340px' : '370px'
+                                ? '340px'
+                                : '370px',
                       }}
                       hoverable
                       className={`partner-card ${isDarkMode ? 'dark' : ''}`}
