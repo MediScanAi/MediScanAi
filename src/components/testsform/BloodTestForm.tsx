@@ -6,7 +6,7 @@ import { useLocation } from 'react-router';
 import { useNavigate } from 'react-router-dom';
 import { auth } from '../../api/authApi';
 import { useTranslation } from 'react-i18next';
-import '../../assets/styles/rootForm.css';
+import '../../assets/styles/components/rootForm.css';
 import PrimaryButton from '../common/buttons/PrimaryButton';
 import NumberInput from '../common/inputs/NumberInput';
 

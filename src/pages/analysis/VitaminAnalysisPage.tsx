@@ -9,7 +9,7 @@ import {
   YAxis,
   Bar,
 } from 'recharts';
-import '../../assets/styles/analysis.css';
+import '../../assets/styles/pages/analysis.css';
 import type { VitaminTestFormValues } from '../../app/slices/testSlice';
 import Drugs from '../../assets/photos/Drugs.webp';
 import VitaminK from '../../assets/photos/VitaminK.webp';

@@ -1,5 +1,5 @@
 import { Row, Typography, Col, Card, Carousel } from 'antd';
-import '../../assets/styles/aboutUs.css';
+import '../../assets/styles/pages/aboutUs.css';
 import mission from '../../assets/photos/target.png';
 import vision from '../../assets/photos/opportunity.png';
 import values from '../../assets/photos/core-values.png';

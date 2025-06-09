@@ -41,7 +41,7 @@ import {
   TrophyOutlined,
 } from '@ant-design/icons';
 
-import '../../assets/styles/healthPage.css';
+import '../../assets/styles/pages/healthPage.css';
 import { motion } from 'framer-motion';
 import { useAppSelector, useAppDispatch } from '../../app/hooks';
 import { useTranslation } from 'react-i18next';

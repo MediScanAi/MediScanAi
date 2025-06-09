@@ -19,7 +19,7 @@ import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import MyHealth from '../../assets/photos/MyHealth.svg';
 import MyHealthDark from '../../assets/photos/MyHealthDark.svg';
-import '../../assets/styles/healthPage.css';
+import '../../assets/styles/pages/healthPage.css';
 import { auth } from '../../api/authApi';
 import type { RootState } from '../../app/store';
 import { useSelector } from 'react-redux';

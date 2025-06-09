@@ -9,7 +9,7 @@ import {
   YAxis,
   Bar,
 } from 'recharts';
-import '../../assets/styles/analysis.css';
+import '../../assets/styles/pages/analysis.css';
 import Done from '../../assets/photos/Done.webp';
 import { Button } from 'antd';
 import { useNavigate } from 'react-router-dom';
