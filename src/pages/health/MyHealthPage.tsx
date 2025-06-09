@@ -189,7 +189,7 @@ const HealthPage: React.FC = () => {
           setBmr(Number(calcBmr.toFixed(0)));
         }
 
-        if (waist && neck && height && gender === 'male') {
+        if (waist && neck && height) {
           const logBase10 = (val: number) => Math.log(val) / Math.LN10;
           const fatPercent =
             495 /
