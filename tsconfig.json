@@ -1,6 +1,9 @@
 {
   "compilerOptions": {
-    "typeRoots": ["./node_modules/@types", "./types"]
+    "typeRoots": [
+      "./node_modules/@types",
+      "./types"
+    ]
   },
   "extends": "./tsconfig.base.json",
   "files": [],
@@ -8,8 +11,5 @@
     {
       "path": "./tsconfig.app.json"
     },
-    {
-      "path": "./functions/tsconfig.node.json"
-    }
   ]
 }
