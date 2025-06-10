@@ -29,7 +29,13 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
 export const db = getFirestore(app);
-await setPersistence(auth, browserLocalPersistence);
+(async () => {
+  try {
+    await setPersistence(auth, browserLocalPersistence);
+  } catch (error) {
+    console.error('Error initializing Firebase:', error);
+  }
+})();
 
 export interface AuthUser {
   firstName: string;

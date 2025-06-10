@@ -12,7 +12,7 @@ const getSystemDarkMode = (): boolean => {
     return window.matchMedia('(prefers-color-scheme: dark)').matches;
   }
   return false;
-}
+};
 
 const savedMode = (localStorage.getItem('themeMode') as ThemeMode) || 'system';
 
@@ -25,7 +25,7 @@ const getInitialThemeState = (): ThemeState => {
   else isDark = getSystemDarkMode();
 
   return { themeMode: mode, isDarkMode: isDark };
-}
+};
 
 const initialState: ThemeState = getInitialThemeState();
 

@@ -49,6 +49,7 @@ import PrimaryButton from '../../components/common/buttons/PrimaryButton';
 import MediScanAILogo from '../../assets/photos/Logo.webp';
 import i18n from '../../i18n';
 import { Header } from 'antd/es/layout/layout';
+import { API_BASE } from '../../api/baseURL';
 
 const { Sider, Content } = Layout;
 const { Text } = Typography;
@@ -387,7 +388,7 @@ const ChatWithAi = () => {
     setLoading(true);
 
     try {
-      const res = await axios.post('/api/chat', {
+      const res = await axios.post(`${API_BASE}/chatWithOpenAI`, {
         messages: updatedChat.messages,
       });
 
@@ -548,7 +549,7 @@ const ChatWithAi = () => {
             reader.onload = async () => {
               try {
                 const base64 = (reader.result as string).split(',')[1];
-                const res = await axios.post('/api/parse-pdf', {
+                const res = await axios.post(`${API_BASE}/parsePdf`, {
                   fileBase64: base64,
                 });
                 setInput(res.data.text.trim());

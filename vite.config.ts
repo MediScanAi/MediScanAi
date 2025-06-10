@@ -17,6 +17,15 @@ export default defineConfig({
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api\/parse-pdf/, '/parsePdf'),
       },
+      '/api/receive-data': {
+        target: 'https://us-central1-mediscan-ai-app.cloudfunctions.net',
+        changeOrigin: true,
+        rewrite: (path) =>
+          path.replace(/^\/api\/receive-data/, '/receiveHealthData'),
+      },
     },
+  },
+  build: {
+    target: 'es2022',
   },
 });
