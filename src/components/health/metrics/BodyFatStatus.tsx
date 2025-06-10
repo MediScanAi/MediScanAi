@@ -2,7 +2,7 @@ import React from 'react';
 import { Typography } from 'antd';
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
-import '../../../assets/styles/pages/health-page.css';
+import '../../../assets/styles/components/health/metrics-status.css';
 import { getBodyFatStatus } from '../../../utils/healthHelpers';
 import { bodyFatColors as colors } from '../../../utils/healthColors';
 

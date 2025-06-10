@@ -8,7 +8,7 @@ import {
 import HealthCircles from './HealthCircles';
 import { useTranslation } from 'react-i18next';
 import dayjs from 'dayjs';
-import '../../assets/styles/pages/health-page.css';
+import '../../assets/styles/components/health/daily-metrics-card.css';
 import { Metric } from '../../utils/healthHelpers';
 
 const { Title, Text } = Typography;

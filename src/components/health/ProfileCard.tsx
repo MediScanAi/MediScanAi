@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import WeightAdvice from './WeightAdvice';
 import { useTranslation } from 'react-i18next';
 import type { UserData } from '../../app/slices/userDataSlice';
-import '../../assets/styles/pages/health-page.css';
+import '../../assets/styles/components/health/health-profile-card.css';
 
 const { Title, Text } = Typography;
 

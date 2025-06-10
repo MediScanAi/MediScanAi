@@ -8,7 +8,7 @@ import IdealWeightStatus from './metrics/IdealWeightStatus';
 import HealthSuggestions from './HealthSuggestions';
 import { useAppSelector } from '../../app/hooks';
 import { useTranslation } from 'react-i18next';
-import '../../assets/styles/pages/health-page.css';
+import '../../assets/styles/components/health/metrics-card.css';
 
 const { Title } = Typography;
 

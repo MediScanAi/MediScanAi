@@ -8,7 +8,7 @@ import {
   CheckOutlined,
   CopyOutlined,
 } from '@ant-design/icons';
-import '../../assets/styles/pages/health-page.css';
+import '../../assets/styles/components/health/export-data-modal.css';
 import { useTranslation } from 'react-i18next';
 
 const { Text } = Typography;

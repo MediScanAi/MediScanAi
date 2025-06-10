@@ -11,7 +11,7 @@ import {
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import { useAppSelector } from '../../app/hooks';
-import '../../assets/styles/pages/health-page.css';
+import '../../assets/styles/components/health/health-suggestions.css';
 import { getBmiStatus } from '../../utils/healthHelpers';
 
 const { Paragraph } = Typography;

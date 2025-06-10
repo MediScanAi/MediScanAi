@@ -1,0 +1,110 @@
+.daily-metrics-card {
+  background: var(--card-background-color, #fff);
+  border-radius: 20px;
+  box-shadow: var(--card-box-shadow, 0 8px 32px rgba(0, 48, 192, 0.15));
+  border: var(--card-border, 1px solid rgba(255, 255, 255, 0.18));
+  backdrop-filter: blur(8px);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.daily-metrics-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--card-box-shadow-hover, 0 12px 40px rgba(34, 56, 122, 0.2));
+}
+
+.daily-metrics-card.dark {
+  background: #121e63;
+  box-shadow: 0 8px 32px rgba(229, 236, 255, 0.15);
+  border: 1px solid rgba(47, 50, 83, 0.18);
+}
+
+.metrics-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-bottom: 16px;
+}
+
+.daily-metrics-title {
+  margin: 0 !important;
+  font-size: 18px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  color: #2c3e50;
+}
+
+.daily-metrics-title.dark {
+  color: #e0e0e0;
+}
+
+.daily-metrics-icon {
+  margin-right: 8px;
+  color: #1890ff;
+  font-size: 20px;
+}
+
+.daily-metrics-icon.dark {
+  color: #40a9ff;
+}
+
+.metrics-divider {
+  margin: 15px 0;
+}
+
+.metrics-divider.dark {
+  border-color: #333;
+}
+
+.daily-metrics-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.no-data-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  text-align: center;
+  background: #f8fafc;
+  border-radius: 12px;
+  border: 1px dashed #e2e8f0;
+}
+
+.no-data-container.dark {
+  background: rgba(255, 255, 255, 0.02);
+  border-color: #1e88e5;
+}
+
+.no-data-icon {
+  font-size: 48px;
+  color: #d9d9d9;
+  margin-bottom: 16px;
+}
+
+.no-data-icon.dark {
+  color: #444;
+}
+
+.no-data-text {
+  font-size: 16px;
+  color: #888;
+  font-weight: 500;
+}
+
+.no-data-text.dark {
+  color: #666;
+}

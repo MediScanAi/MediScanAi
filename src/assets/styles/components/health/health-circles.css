@@ -1,0 +1,147 @@
+.health-circles-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 16px;
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+.health-metric-card {
+  padding: 5px !important;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: var(--card-background-color, #fff);
+  border-radius: 15px;
+  border: var(--card-border, 1px solid rgba(255, 255, 255, 0.18));
+  transition: all 0.3s ease;
+  backdrop-filter: blur(8px);
+  width: 100%;
+  min-width: 140px;
+}
+
+.health-metric-card:hover {
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.health-metric-card.dark {
+  background: rgba(33, 57, 130, 0.7);
+}
+
+.confetti-container {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.progress-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.progress-value {
+  font-size: 22px;
+  font-weight: 700;
+  color: #2d3748;
+}
+
+.progress-value.dark {
+  color: #fff;
+}
+
+.progress-unit {
+  font-size: 12px;
+  color: #64748b;
+  margin-top: 2px;
+}
+
+.progress-unit.dark {
+  color: #bbdefb;
+}
+
+.metric-type {
+  font-size: 15px;
+  font-weight: 600;
+  color: #2d3748;
+  margin-top: 12px;
+  text-align: center;
+}
+
+.metric-type.dark {
+  color: #fff;
+}
+
+.metric-goal {
+  font-size: 13px;
+  color: #64748b;
+  margin-top: 6px;
+  text-align: center;
+  display: flex;
+}
+
+.metric-goal.dark {
+  color: #bbdefb;
+}
+
+.edit-goal-button {
+  color: #0052d9;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.edit-goal-button:hover {
+  background: rgba(0, 0, 0, 0.1);
+  color: #0052d9;
+}
+
+.edit-goal-button.dark {
+  color: #64b5f6;
+}
+
+.edit-goal-button.dark:hover {
+  background: rgba(100, 181, 246, 0.1);
+  color: #64b5f6;
+}
+
+.goal-modal .ant-modal-content {
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+  background: #fff !important;
+}
+
+.goal-modal.dark .ant-modal-content {
+  background: #121e63 !important;
+}
+
+.goal-modal-title {
+  color: #000 !important;
+}
+
+.goal-modal-title.dark {
+  color: #fff !important;
+}
+
+.goal-input {
+  border-radius: 8px;
+  padding: 10px 16px;
+  font-size: 16px;
+}
+
+.goal-input-icon {
+  color: #0052d9;
+}
+
+.metric-badge {
+  width: clamp(80px, 20vw, 120px);
+  height: clamp(80px, 20vw, 120px);
+}

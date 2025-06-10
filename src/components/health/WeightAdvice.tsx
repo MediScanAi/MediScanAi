@@ -1,7 +1,7 @@
 import React from 'react';
 import { Alert } from 'antd';
 import { useTranslation } from 'react-i18next';
-import '../../assets/styles/pages/health-page.css';
+import '../../assets/styles/components/health/weight-advice.css';
 
 type Props = {
   weight: number | null;
