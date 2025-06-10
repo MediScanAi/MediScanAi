@@ -594,7 +594,6 @@ const ChatWithAi = () => {
           className="new-button"
           onClick={() => {
             createNewChat();
-            if (isMobile) setDrawerVisible(false);
           }}
         >
           {t('chat.newChat')}
@@ -616,7 +615,6 @@ const ChatWithAi = () => {
               <List.Item
                 onClick={() => {
                   setSelectedChatId(chat.id);
-                  if (isMobile) setDrawerVisible(false);
                 }}
                 className={`chat-item-hover ${isDarkMode ? 'dark' : ''}`}
                 style={{
@@ -637,11 +635,20 @@ const ChatWithAi = () => {
               >
                 <div className="list-item-div">
                   {editingChatId === chat.id ? (
-                    <div style={{ display: 'flex', alignItems: 'center', width: '100%', gap: 8 }}>
+                    <div
+                      onClick={(e) => e.stopPropagation()}
+                      style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        width: '100%',
+                        gap: 8,
+                      }}
+                    >
                       <Input
                         value={editingTitle}
                         onChange={(e) => setEditingTitle(e.target.value)}
-                        onPressEnter={async () => {
+                        onPressEnter={async (e) => {
+                          e.stopPropagation();
                           await renameChat(chat.id, editingTitle);
                           setEditingChatId(null);
                         }}
@@ -653,7 +660,8 @@ const ChatWithAi = () => {
                       <Button
                         type="text"
                         size="small"
-                        onClick={async () => {
+                        onClick={async (e) => {
+                          e.stopPropagation();
                           await renameChat(chat.id, editingTitle);
                           setEditingChatId(null);
                         }}
@@ -738,7 +746,7 @@ const ChatWithAi = () => {
             padding: '0 16px',
             display: 'flex',
             alignItems: 'center',
-            height: "68px",
+            height: '68px',
             background: 'none',
             border: 'none',
             boxShadow: 'none',
@@ -747,7 +755,7 @@ const ChatWithAi = () => {
           <Button
             icon={<MenuOutlined />}
             onClick={() => setDrawerVisible(true)}
-            className='hamburger-btn'
+            className="hamburger-btn"
             style={{
               marginRight: 16,
               height: '32px',
@@ -755,13 +763,12 @@ const ChatWithAi = () => {
               border: 'none',
               boxShadow: 'none',
             }}
-
           />
           <Text
             strong
             style={{
               color: isDarkMode ? '#fff' : 'inherit',
-              fontSize: '18px'
+              fontSize: '18px',
             }}
           >
             {t('chat.AiAssistant')}
@@ -785,7 +792,7 @@ const ChatWithAi = () => {
             header: {
               background: isDarkMode ? 'rgb(38, 63, 137)' : '#fff',
               color: isDarkMode ? '#fff' : 'inherit',
-            }
+            },
           }}
         >
           {renderSidebarContent()}
@@ -918,7 +925,6 @@ const ChatWithAi = () => {
                     ? { minRows: 1, maxRows: 3 }
                     : { minRows: 1, maxRows: 7 }
                 }
-
                 disabled={loading}
                 style={{
                   fontSize: 15,
