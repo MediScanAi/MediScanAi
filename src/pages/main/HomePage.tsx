@@ -412,14 +412,27 @@ const HomePage: React.FC = () => {
                       className={`partner-card ${isDarkMode ? 'dark' : ''}`}
                     >
                       <img
-                          draggable={false}
-                          src={partner.image}
-                          alt={partner.name}
-                          className="partner-image"
-                          style={{height:width > 670 ? 230 : width > 300 ? 200 : 200}}
+                        draggable={false}
+                        src={partner.image}
+                        alt={partner.name}
+                        className="partner-image"
+                        style={{
+                          height: width > 670 ? 230 : width > 300 ? 200 : 200,
+                        }}
                       />
-                      <div style={{height:width > 900 ? 200 :width > 630 ? 250 : width > 620 ? 300:200}} className="partner-image-container">
-
+                      <div
+                        style={{
+                          height:
+                            width > 900
+                              ? 200
+                              : width > 630
+                                ? 250
+                                : width > 620
+                                  ? 300
+                                  : 200,
+                        }}
+                        className="partner-image-container"
+                      >
                         <Title
                           level={4}
                           className={`partner-name ${isDarkMode ? 'dark' : ''}`}
