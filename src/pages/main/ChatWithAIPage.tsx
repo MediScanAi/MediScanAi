@@ -783,7 +783,7 @@ const ChatWithAi = () => {
           closable={true}
           onClose={() => setDrawerVisible(false)}
           open={drawerVisible}
-          width={240}
+          className={`light-drawer ${isDarkMode ? 'dark' : ''}`}
           styles={{
             body: {
               padding: 0,
