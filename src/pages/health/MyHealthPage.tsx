@@ -982,7 +982,7 @@ const HealthPage: React.FC = () => {
                 description={
                   <div className="download-link-container">
                     <a
-                      href="https://www.icloud.com/shortcuts/e6269ab0fef447f498eeac823f764deb"
+                      href="https://www.icloud.com/shortcuts/803c34db628144028b7af3529bab00d2"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="download-link"
