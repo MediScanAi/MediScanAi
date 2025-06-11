@@ -1,4 +1,18 @@
+import { HealthDataEntry } from '../app/slices/healthSlice';
 import { bmiColors, bodyFatColors } from './healthColors';
+
+export type Metric = {
+  type: string;
+  value: number | string;
+  unit?: string;
+  max?: number | string;
+};
+const metricUnits: Record<string, string> = {
+  steps: 'steps',
+  activeCalories: 'kcal',
+  restingCalories: 'kcal',
+  weight: 'kg',
+};
 
 export const getBmiStatus = (
   bmi: number | null
@@ -16,16 +30,32 @@ export const getBmrColor = (bmr: number) => {
   return '#FA8C16';
 };
 
-export const getBodyFatStatus = (bodyFat: number): keyof typeof bodyFatColors => {
+export const getBodyFatStatus = (
+  bodyFat: number
+): keyof typeof bodyFatColors => {
   if (bodyFat < 10) return 'excellent';
   if (bodyFat >= 10 && bodyFat <= 15) return 'good';
   if (bodyFat > 15 && bodyFat <= 20) return 'average';
   return 'high';
-}
+};
 
-export type Metric = {
-  type: string;
-  value: number | string;
-  unit?: string;
-  max?: number | string;
+export const hasEntries = (obj: unknown): obj is { entries: Metric[] } => {
+  return (
+    typeof obj === 'object' &&
+    obj !== null &&
+    'entries' in obj &&
+    Array.isArray((obj as { entries?: unknown }).entries)
+  );
+};
+export const toMetricsArray = (entry: HealthDataEntry): Metric[] => {
+  if (hasEntries(entry)) return entry.entries;
+
+  return Object.entries(entry)
+    .filter(([k]) => k !== 'date' && k !== 'updatedAt')
+    .map(([k, v]) => ({
+      type: k,
+      value: typeof v === 'number' ? v : Number(v),
+      unit: metricUnits[k] || '',
+    }))
+    .filter((m) => !isNaN(m.value));
 };

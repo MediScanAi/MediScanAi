@@ -134,7 +134,8 @@ const HealthCircles: React.FC<Props> = ({
       <Modal
         title={
           <span className={`goal-modal-title ${isDarkMode ? 'dark' : ''}`}>
-            {t('health.setGoal')}
+            <TrophyOutlined className="goal-input-icon" />
+            {'  '}{t('health.setGoal')}
           </span>
         }
         open={isModalOpen}
@@ -149,8 +150,8 @@ const HealthCircles: React.FC<Props> = ({
             value={tempGoalInput}
             onChange={handleGoalInputChange}
             placeholder={t('health.enterGoalValue')}
-            prefix={<TrophyOutlined className="goal-input-icon" />}
-            className="goal-input"
+            className='goal-input'
+            size='large'
           />
         )}
       </Modal>

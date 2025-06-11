@@ -122,6 +122,9 @@
 .goal-modal.dark .ant-modal-content {
   background: #121e63 !important;
 }
+.goal-modal.dark .anticon {
+  color: #fff !important;
+}
 
 .goal-modal-title {
   color: #000 !important;
@@ -133,15 +136,31 @@
 
 .goal-input {
   border-radius: 8px;
-  padding: 10px 16px;
   font-size: 16px;
-}
-
-.goal-input-icon {
-  color: #0052d9;
+  margin-top: 8px;
 }
 
 .metric-badge {
   width: clamp(80px, 20vw, 120px);
   height: clamp(80px, 20vw, 120px);
+}
+
+.health-circles-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 16px;
+  padding: 8px;
+}
+
+.health-circles-container.dark {
+  background-color: rgba(255, 255, 255, 0.02);
+}
+
+.goal-modal .ant-modal-header {
+  background: transparent !important;
+  border-bottom: none;
+}
+.goal-modal.dark .ant-modal-header {
+  background: transparent !important;
+  border-bottom: none;
 }

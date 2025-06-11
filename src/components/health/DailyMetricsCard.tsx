@@ -5,9 +5,9 @@ import {
   CalendarOutlined,
   InboxOutlined,
 } from '@ant-design/icons';
-import HealthCircles from './HealthCircles';
-import { useTranslation } from 'react-i18next';
 import dayjs from 'dayjs';
+import { useTranslation } from 'react-i18next';
+import HealthCircles from './HealthCircles';
 import '../../assets/styles/components/health/daily-metrics-card.css';
 import { Metric } from '../../utils/healthHelpers';
 
@@ -35,7 +35,7 @@ const DailyMetricsCard: React.FC<Props> = ({
   const { t } = useTranslation('health');
 
   return (
-    <Card className={`metrics-card ${isDarkMode ? 'dark' : ''}`}>
+    <Card className={`daily-metrics-card ${isDarkMode ? 'dark' : ''}`}>
       <div className="metrics-header">
         <Title
           level={4}
@@ -43,12 +43,13 @@ const DailyMetricsCard: React.FC<Props> = ({
         >
           <LineChartOutlined
             className={`daily-metrics-icon ${isDarkMode ? 'dark' : ''}`}
-          />{' '}
+          />
           {t('health.dailyMetrics')}
         </Title>
+
         <DatePicker
+          value={selectedDate ? dayjs(selectedDate) : null}
           onChange={(date) => setSelectedDate(date?.toDate() || null)}
-          style={{ width: '290px' }}
           disabledDate={(current) => current && current > dayjs().endOf('day')}
           placeholder={t('health.selectDate')}
           suffixIcon={
@@ -57,9 +58,7 @@ const DailyMetricsCard: React.FC<Props> = ({
             />
           }
           className={`date-picker ${isDarkMode ? 'dark' : ''}`}
-          classNames={{
-            root: isDarkMode ? 'dark-date-picker-dropdown' : '',
-          }}
+          classNames={{ root: isDarkMode ? 'dark-date-picker-dropdown' : '' }}
         />
       </div>
 

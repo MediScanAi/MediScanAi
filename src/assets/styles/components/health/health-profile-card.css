@@ -107,3 +107,20 @@
   flex: 1;
   overflow-y: auto;
 }
+
+.profile-descriptions-item {
+  padding: 12px 16px;
+}
+
+.profile-descriptions-item.dark {
+  color: #e0e0e0;
+}
+
+.profile-text {
+  color: #2d3748;
+  font-weight: 500;
+}
+
+.profile-text.dark {
+  color: #e0e0e0;
+}

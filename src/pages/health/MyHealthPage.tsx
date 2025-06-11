@@ -16,28 +16,9 @@ import MetricsCard from '../../components/health/MetricsCard';
 import DailyMetricsCard from '../../components/health/DailyMetricsCard';
 import ExportDataModal from '../../components/health/ExportDataModal';
 import '../../assets/styles/pages/health-page.css';
-import { Metric } from '../../utils/healthHelpers';
+import { hasEntries, Metric, toMetricsArray } from '../../utils/healthHelpers';
 
 const { Title, Text } = Typography;
-
-const metricUnits: Record<string, string> = {
-  steps: 'steps',
-  activeCalories: 'kcal',
-  restingCalories: 'kcal',
-  weight: 'kg',
-};
-
-const toMetricsArray = (entry: HealthDataEntry): Metric[] => {
-  return Object.entries(entry)
-    .filter(([key]) => key !== 'date' && key !== 'updatedAt')
-    .map(([key, value]) => ({
-      type: key,
-      value: typeof value === 'number' ? value : Number(value),
-      unit: metricUnits[key] || '',
-    }))
-    .filter((metric) => !isNaN(metric.value));
-};
-
 const HealthPage: React.FC = () => {
   const dispatch = useAppDispatch();
   const { t } = useTranslation('health');
@@ -125,13 +106,14 @@ const HealthPage: React.FC = () => {
       dispatch(fetchHealthData({ uid: user.uid, date: dateStr }))
         .unwrap()
         .then((data: HealthDataEntry | null) => {
-          if (data && typeof data === 'object' && !Array.isArray(data)) {
+          if (data && hasEntries(data)) {
+            setMetrics(data.entries);
+          } else if (data) {
             setMetrics(toMetricsArray(data));
           } else {
             setMetrics([]);
           }
-        })
-        .catch(() => setMetrics([]));
+        });
     }
   }, [user, dispatch, selectedDate]);
 
