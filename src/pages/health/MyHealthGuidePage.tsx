@@ -306,7 +306,8 @@ const MyHealthGuide: React.FC = () => {
               </div>
 
               <div className="modal-footer-note">
-                <InfoCircleOutlined className="info-circle" />
+                <InfoCircleOutlined className={`info-circle ${isDarkMode ? 'dark' : ''}`} />
+                &nbsp;
                 <Text type="secondary">
                   {t('healthGuide.guide.connectModal.privacyNote')}
                 </Text>
