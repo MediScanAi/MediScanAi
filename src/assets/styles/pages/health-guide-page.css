@@ -182,3 +182,136 @@
     margin-bottom: 24px;
   }
 }
+
+.guide-button {
+  width: 100%;
+}
+
+.modal-container.dark .ant-modal-content {
+  background-color: #121e63 !important;
+  color: #f0f0f0;
+}
+
+.modal-container.dark .ant-modal-header {
+  background-color: transparent !important;
+  border-bottom: 1px solid #333;
+}
+
+.modal-container .ant-modal-title {
+  color: #000000 !important;
+}
+
+.modal-container.dark .ant-modal-title {
+  color: #ffffff !important;
+}
+
+.modal-container .ant-modal-close {
+  color: #000000 !important;
+}
+
+.modal-container.dark .ant-modal-close {
+  color: #ffffff !important;
+}
+
+.modal-container.dark .ant-typography {
+  color: #000000 !important;
+}
+
+.modal-container.dark .ant-modal-body {
+  background-color: transparent !important;
+  color: #dcdcdc;
+}
+
+.modal-container.dark .ant-modal-footer {
+  background-color: transparent !important;
+  border-top: 1px solid #333 !important;
+}
+
+.modal-container .ant-steps-item-title,
+.modal-container .ant-steps-description,
+.modal-container .ant-steps-item-description {
+  color: #000000 !important;
+}
+
+.modal-container.dark .ant-steps-item-title,
+.modal-container.dark .ant-steps-item-description {
+  background-color: transparent !important;
+  color: #dcdcdc;
+}
+
+.modal-container.dark .ant-steps-item {
+  background-color: transparent !important;
+}
+
+.modal-container.dark .ant-steps-item-description {
+  color: #ffffff !important;
+}
+
+.modal-container.dark .ant-steps-item-title {
+  color: #ffffff !important;
+}
+
+.modal-container.dark a {
+  color: #58a6ff;
+}
+
+.modal-container.dark .uid-text,
+.modal-container.dark .download-link {
+  color: #e6e6e6;
+}
+
+.modal-container.dark .modal-footer-note {
+  background-color: #2d324f !important;
+}
+
+.modal-container.dark .modal-footer-note .ant-typography {
+  color: #ffffff !important;
+}
+
+.modal-container.dark .ant-btn {
+  margin-top: 10px;
+}
+
+.modal-container.dark .ant-btn {
+  background-color: #121e63 !important;
+  color: #ffffff;
+  border: 1px solid #444;
+}
+
+.modal-container.dark .ant-btn:hover {
+  background-color: #333333;
+}
+
+.modal-container.dark .info-circle {
+  color: #ffc107;
+}
+
+.modal-container.dark .ant-steps-item-tail {
+  background-color: transparent !important;
+  margin-top: 50px !important;
+  height: 10px !important;
+}
+
+.modal-container.dark .ant-typography-secondary {
+  color: #999999;
+}
+
+.modal-container .ant-modal-content,
+.modal-container .ant-modal-header,
+.modal-container .ant-modal-footer {
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
+}
+
+.modal-container .text-white {
+  color: #000000 !important;
+}
+
+.modal-container.dark .text-white {
+  color: #ffffff !important;
+}
+
+.modal-container.dark .info-circle {
+  color: #ffa500;
+}

@@ -179,7 +179,7 @@ const HealthPage: React.FC = () => {
     userData.waistSize &&
     userData.neckSize;
 
-  if (!profileFetched || loading) {
+  if (loading) {
     return (
       <div className={`loading-state ${isDarkMode ? 'dark' : ''}`}>
         <Spin className="loading-spinner" />
