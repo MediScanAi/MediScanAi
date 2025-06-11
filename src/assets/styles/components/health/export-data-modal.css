@@ -6,6 +6,10 @@
     color 0.3s ease;
 }
 
+.modal-container .anticon {
+  color: #0052d9;
+}
+
 .modal-container.dark .ant-modal-content {
   background: #121e63 !important;
   color: #f0f0f0;
@@ -75,7 +79,7 @@
 
 .modal-steps.dark .ant-steps-item-title,
 .modal-steps.dark .ant-steps-item-description {
-  color: #dcdcdc;
+  color: #dcdcdc !important;
 }
 
 .download-link-container {
@@ -112,10 +116,20 @@
   color: #e6e6e6;
 }
 
+.dark .modal-container .anticon {
+  color: #fff;
+}
 .copy-uid-button {
   display: flex;
   align-items: center;
   gap: 4px;
+  border-radius: 6px;
+  padding: 6px 12px;
+}
+
+.dark .copy-uid-button .anticon {
+  color: #58a6ff;
+  font-size: 16px;
 }
 
 .modal-footer-note {
@@ -141,4 +155,14 @@
 
 .footer-note-icon.dark {
   color: #ffa500;
+}
+
+.modal-step {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+}
+
+.modal-container.dark .text-white {
+  color: #fff !important;
 }
