@@ -387,8 +387,9 @@ const HomePage: React.FC = () => {
                 autoplay
                 autoplaySpeed={2000}
                 infinite
+                dots={false}
                 slidesToShow={
-                  width > 1500 ? 4 : width > 1200 ? 3 : width > 820 ? 2 : 1
+                  width > 1500 ? 4 : width > 1200 ? 3 : width > 620 ? 2 : 1
                 }
                 slidesToScroll={1}
                 className="carousel-container"
@@ -403,20 +404,35 @@ const HomePage: React.FC = () => {
                             ? '300px'
                             : width > 1200
                               ? '350px'
-                              : width > 820
-                                ? '340px'
-                                : '370px',
+                              : width > 620
+                                ? '37vw'
+                                : '67vw',
                       }}
                       hoverable
                       className={`partner-card ${isDarkMode ? 'dark' : ''}`}
                     >
-                      <div className="partner-image-container">
-                        <img
-                          draggable={false}
-                          src={partner.image}
-                          alt={partner.name}
-                          className="partner-image"
-                        />
+                      <img
+                        draggable={false}
+                        src={partner.image}
+                        alt={partner.name}
+                        className="partner-image"
+                        style={{
+                          height: width > 670 ? 230 : width > 300 ? 200 : 200,
+                        }}
+                      />
+                      <div
+                        style={{
+                          height:
+                            width > 900
+                              ? 200
+                              : width > 630
+                                ? 250
+                                : width > 620
+                                  ? 300
+                                  : 200,
+                        }}
+                        className="partner-image-container"
+                      >
                         <Title
                           level={4}
                           className={`partner-name ${isDarkMode ? 'dark' : ''}`}

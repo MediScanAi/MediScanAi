@@ -9,15 +9,15 @@ import {
   TeamOutlined,
 } from '@ant-design/icons';
 import { NavLink, useLocation, useNavigate } from 'react-router-dom';
-import { useAppSelector } from '../../app/hooks.ts';
+import { useAppSelector } from '../../app/hooks';
 import { useTranslation } from 'react-i18next';
 import logoLight from '../../assets/photos/logo-light.svg';
 import logoDark from '../../assets/photos/logo-dark.svg';
 import '../../assets/styles/components/layout/header.css';
-import PreferencesDropdown from '../preferences/PreferencesDropdown.tsx';
-import PrimaryButton from '../common/buttons/PrimaryButton.tsx';
+import PreferencesDropdown from '../preferences/PreferencesDropdown';
+import PrimaryButton from '../common/buttons/PrimaryButton';
 import LogoWeb from '../../assets/photos/Logo Web.png';
-import UserDropdown from './UserDropdown.tsx';
+import UserDropdown from './UserDropdown';
 
 const { Header } = Layout;
 
@@ -97,13 +97,6 @@ const AppHeader: React.FC = () => {
     <Header className={`app-header ${isDarkMode ? 'dark' : 'light'}`}>
       <div className="app-header-container">
         <div className="header-left">
-          <img
-            src={isDarkMode ? logoDark : logoLight}
-            draggable={false}
-            onClick={navigateHome}
-            alt="logo"
-            className="logo"
-          />
           {showDrawer && (
             <Button
               type="text"
@@ -112,6 +105,13 @@ const AppHeader: React.FC = () => {
               onClick={() => setDrawerOpen(true)}
             />
           )}
+          <img
+            src={isDarkMode ? logoDark : logoLight}
+            draggable={false}
+            onClick={navigateHome}
+            alt="logo"
+            className="logo"
+          />
         </div>
 
         {!showDrawer && (
@@ -144,12 +144,24 @@ const AppHeader: React.FC = () => {
         </div>
 
         <Drawer
-          className={isDarkMode ? 'dark-drawer' : ''}
+          className={isDarkMode ? 'dark-drawer' : 'light-drawer'}
           title="Menu"
-          placement="right"
+          placement="left"
           open={drawerOpen}
           onClose={() => setDrawerOpen(false)}
-          styles={{ body: { padding: 0 } }}
+          styles={{
+            body: { 
+              padding: 0,
+              backgroundColor: isDarkMode ? '#1d2b40' : '#fff'
+            },
+            header: {
+              backgroundColor: isDarkMode ? '#1d2b40' : '#fff',
+              borderBottom: isDarkMode ? '1px solid #2e4a6b' : '1px solid #f0f0f0'
+            },
+            content: {
+              boxShadow: 'none !important',
+            },
+          }}
         >
           <Menu
             theme={isDarkMode ? 'dark' : 'light'}
