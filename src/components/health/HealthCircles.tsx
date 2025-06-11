@@ -4,7 +4,7 @@ import { EditOutlined, TrophyOutlined } from '@ant-design/icons';
 import NumberInput from '../common/inputs/NumberInput';
 import { useTranslation } from 'react-i18next';
 import '../../assets/styles/components/health/health-circles.css';
-import { Metric } from '../../utils/healthHelpers';
+import type { Metric } from '../../utils/healthHelpers';
 
 type Props = {
   metrics: Metric[];

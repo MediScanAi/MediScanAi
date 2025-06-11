@@ -9,7 +9,7 @@ import dayjs from 'dayjs';
 import { useTranslation } from 'react-i18next';
 import HealthCircles from './HealthCircles';
 import '../../assets/styles/components/health/daily-metrics-card.css';
-import { Metric } from '../../utils/healthHelpers';
+import type { Metric } from '../../utils/healthHelpers';
 
 const { Title, Text } = Typography;
 

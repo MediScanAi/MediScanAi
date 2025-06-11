@@ -16,7 +16,8 @@ import MetricsCard from '../../components/health/MetricsCard';
 import DailyMetricsCard from '../../components/health/DailyMetricsCard';
 import ExportDataModal from '../../components/health/ExportDataModal';
 import '../../assets/styles/pages/health-page.css';
-import { hasEntries, Metric, toMetricsArray } from '../../utils/healthHelpers';
+import { hasEntries, toMetricsArray } from '../../utils/healthHelpers';
+import type { Metric } from '../../utils/healthHelpers';
 
 const { Title, Text } = Typography;
 const HealthPage: React.FC = () => {

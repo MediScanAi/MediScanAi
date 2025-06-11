@@ -1,5 +1,5 @@
 import React from 'react';
-import { Modal, Button, Steps, Typography } from 'antd';
+import { Modal,  Steps, Typography } from 'antd';
 import {
   SafetyOutlined,
   SyncOutlined,

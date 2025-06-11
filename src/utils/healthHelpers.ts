@@ -1,4 +1,4 @@
-import { HealthDataEntry } from '../app/slices/healthSlice';
+import type { HealthDataEntry } from '../app/slices/healthSlice';
 import { bmiColors, bodyFatColors } from './healthColors';
 
 export type Metric = {
