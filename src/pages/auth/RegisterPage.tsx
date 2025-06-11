@@ -165,7 +165,7 @@ const RegisterPage: React.FC = () => {
                           },
                         ]}
                       >
-                        <TextInput placeholder={t('register.forms.surname')} />
+                        <TextInput placeholder={t('register.forms.surname')} size='large'/>
                       </Form.Item>
                     </Col>
                     <Col xs={24} sm={12}>

@@ -1,0 +1,168 @@
+.modal-container .ant-modal-content {
+  border-radius: 16px;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
+}
+
+.modal-container .anticon {
+  color: #0052d9;
+}
+
+.modal-container.dark .ant-modal-content {
+  background: #121e63 !important;
+  color: #f0f0f0;
+}
+
+.modal-container .ant-modal-header {
+  background: transparent !important;
+  border-bottom: none;
+  padding: 16px 24px;
+}
+
+.modal-container.dark .ant-modal-header {
+  border-bottom: 1px solid #333;
+}
+
+.modal-container .ant-modal-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: #000;
+}
+
+.modal-container.dark .ant-modal-title {
+  color: #fff;
+}
+
+.modal-container .ant-modal-close {
+  color: #000;
+}
+
+.modal-container.dark .ant-modal-close {
+  color: #fff;
+}
+
+.modal-content {
+  padding: 20px;
+}
+
+.modal-step-description {
+  font-size: 15px;
+  line-height: 1.6;
+  margin-bottom: 24px;
+  color: #666;
+}
+
+.modal-step-description.dark {
+  color: #dcdcdc;
+}
+
+.modal-steps-container {
+  margin-bottom: 24px;
+}
+
+.modal-steps .ant-steps-item-icon {
+  background: transparent;
+  border-color: #1890ff;
+}
+
+.modal-steps .ant-steps-item-title {
+  font-size: 0.85rem;
+  color: #333;
+}
+
+.modal-steps .ant-steps-item-description {
+  font-size: 0.8rem;
+  color: #666;
+}
+
+.modal-steps.dark .ant-steps-item-title,
+.modal-steps.dark .ant-steps-item-description {
+  color: #dcdcdc !important;
+}
+
+.download-link-container {
+  margin-top: 8px;
+}
+
+.download-link {
+  color: #0052d9;
+  text-decoration: underline;
+  font-size: 14px;
+}
+
+.download-link.dark {
+  color: #58a6ff;
+}
+
+.uid-container {
+  display: flex;
+  align-items: center;
+  margin-top: 8px;
+}
+
+.uid-text {
+  font-family: monospace;
+  background: #f1f5f9;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 14px;
+  margin-right: 8px;
+}
+
+.uid-text.dark {
+  background: rgba(255, 255, 255, 0.1);
+  color: #e6e6e6;
+}
+
+.dark .modal-container .anticon {
+  color: #fff;
+}
+.copy-uid-button {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  border-radius: 6px;
+  padding: 6px 12px;
+}
+
+.dark .copy-uid-button .anticon {
+  color: #58a6ff;
+  font-size: 16px;
+}
+
+.modal-footer-note {
+  margin-top: 20px;
+  padding: 15px;
+  background: #f8fafc;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  display: flex;
+  align-items: flex-start;
+}
+
+.modal-footer-note.dark {
+  background: #2d324f;
+  color: #fff;
+}
+
+.footer-note-icon {
+  color: #0052d9;
+  margin-right: 8px;
+  margin-top: 3px;
+}
+
+.footer-note-icon.dark {
+  color: #ffa500;
+}
+
+.modal-step {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+}
+
+.modal-container.dark .text-white {
+  color: #fff !important;
+}
