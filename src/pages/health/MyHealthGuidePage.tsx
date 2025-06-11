@@ -19,7 +19,7 @@ import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import MyHealth from '../../assets/photos/MyHealth.svg';
 import MyHealthDark from '../../assets/photos/MyHealthDark.svg';
-import '../../assets/styles/pages/health-page.css';
+import '../../assets/styles/pages/health-guide-page.css';
 import { auth } from '../../api/authApi';
 import type { RootState } from '../../app/store';
 import { useSelector } from 'react-redux';
@@ -306,7 +306,8 @@ const MyHealthGuide: React.FC = () => {
               </div>
 
               <div className="modal-footer-note">
-                <InfoCircleOutlined className="info-circle" />
+                <InfoCircleOutlined className={`info-circle ${isDarkMode ? 'dark' : ''}`} />
+                &nbsp;
                 <Text type="secondary">
                   {t('healthGuide.guide.connectModal.privacyNote')}
                 </Text>

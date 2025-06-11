@@ -1,0 +1,12 @@
+.health-alert {
+  border-radius: 8px;
+  margin-top: 25px;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.health-alert.dark {
+  border-color: #2d3a6a;
+  background: rgba(28, 52, 125, 0.85);
+  color: #e6e6e6;
+}
