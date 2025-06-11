@@ -7,9 +7,6 @@
   "references": [
     {
       "path": "./tsconfig.app.json"
-    },
-    {
-      "path": "./functions/tsconfig.node.json"
     }
   ]
 }

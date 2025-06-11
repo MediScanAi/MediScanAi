@@ -1,0 +1,156 @@
+* {
+  box-sizing: border-box;
+}
+
+.health-dashboard {
+  padding: 20px;
+  width: 100%;
+  font-family: 'Poppins';
+  background: radial-gradient(circle at 10% 30%, #b3d1ff, #e6ecfa, #fff);
+  overflow: hidden;
+}
+.health-dashboard.dark {
+  background: radial-gradient(
+    circle at 10% 30%,
+    rgba(28, 52, 125, 0.9),
+    #121e63,
+    rgba(28, 52, 125, 1)
+  );
+}
+
+.loading-state {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100%;
+}
+.loading-state.dark {
+  background: rgba(255, 255, 255, 0.02);
+}
+.loading-spinner {
+  margin-bottom: 24px;
+  color: #6b73ff;
+}
+.loading-title {
+  color: #2c3e50;
+  margin-bottom: 8px !important;
+  font-weight: 600;
+  text-align: center;
+}
+.loading-title.dark {
+  color: #fff;
+}
+.loading-subtitle {
+  color: #7f8c8d;
+  font-size: 16px;
+  margin-bottom: 24px;
+}
+.loading-subtitle.dark {
+  color: #fff;
+}
+
+.dashboard-header {
+  text-align: center;
+  margin-bottom: 48px;
+}
+.dashboard-title {
+  color: #2c3e50;
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 8px !important;
+}
+.dashboard-title.dark {
+  color: #fff;
+}
+.dashboard-subtitle {
+  color: #7f8c8d;
+  font-size: 16px;
+}
+.dashboard-subtitle.dark {
+  color: #d0d4e8;
+}
+.header-actions {
+  margin-top: 12px;
+}
+
+.health-content {
+  width: 100%;
+}
+.health-main-row {
+  display: flex;
+  align-items: stretch;
+}
+.profile-column {
+  display: flex;
+  flex: 1;
+}
+.metrics-column {
+  display: flex;
+}
+
+@media (max-width: 992px) {
+  .health-dashboard {
+    padding: 20px;
+  }
+  .dashboard-header {
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+  .dashboard-title {
+    font-size: 28px;
+  }
+  .dashboard-subtitle {
+    font-size: 16px;
+  }
+  .health-main-row {
+    margin-bottom: 0;
+  }
+}
+@media (max-width: 576px) {
+  .health-dashboard {
+    padding: 12px;
+  }
+  .dashboard-header {
+    padding: 16px;
+    margin-bottom: 16px;
+  }
+  .dashboard-title {
+    font-size: 22px;
+  }
+  .dashboard-subtitle {
+    font-size: 14px;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}

@@ -18,7 +18,7 @@ import {
 import { selectCurrentUser } from '../../app/slices/authSlice';
 import type { RootState } from '../../app/store';
 import { useTranslation } from 'react-i18next';
-import '../../assets/styles/UserInfo.css';
+import '../../assets/styles/pages/user-info-page.css';
 import { motion } from 'framer-motion';
 import UserAvatar from '../../components/common/UserAvatar';
 import UserInfoItem, {

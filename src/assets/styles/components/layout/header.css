@@ -1,3 +1,4 @@
+/* Animations */
 @keyframes spin180 {
   to {
     transform: rotate(180deg);
@@ -10,6 +11,7 @@
   }
 }
 
+/* Header Styles */
 .app-header {
   display: flex;
   align-items: center;
@@ -44,6 +46,7 @@
   display: flex;
   align-items: center;
 }
+
 .dark .hamburger-btn .anticon {
   color: #fff;
 }
@@ -58,16 +61,12 @@
   height: 25px;
   transition: all 0.3s ease;
 }
+
 .logo:hover {
   transform: scale(1.05);
   cursor: pointer;
 }
 
-@media (max-width: 630px) {
-  .logo {
-    height: 20px;
-  }
-}
 .user-profile {
   display: flex;
   align-items: center;
@@ -96,12 +95,6 @@
   color: #fff;
 }
 
-@media (max-width: 1200px) {
-  .username {
-    display: none;
-  }
-}
-
 .arrow-icon {
   display: flex;
   transition: transform 0.3s ease;
@@ -112,6 +105,7 @@
   transform: rotate(180deg);
 }
 
+/* Navigation Menu */
 .nav-menu {
   flex: 1;
   display: flex;
@@ -152,10 +146,84 @@
 }
 
 .app-header.dark .nav-menu.ant-menu-horizontal > .ant-menu-item-selected::after,
-.app-header.dark
-  .nav-menu.ant-menu-horizontal
-  > .ant-menu-submenu-selected::after {
+.app-header.dark .nav-menu.ant-menu-horizontal > .ant-menu-submenu-selected::after {
   border-bottom: 2px solid #1890ff;
+}
+
+.nav-menu.ant-menu-horizontal > .ant-menu-item-active,
+.nav-menu.ant-menu-horizontal > .ant-menu-submenu-active,
+.nav-menu.ant-menu-horizontal > .ant-menu-item-open,
+.nav-menu.ant-menu-horizontal > .ant-menu-submenu-open,
+.nav-menu.ant-menu-horizontal > .ant-menu-item-selected,
+.nav-menu.ant-menu-horizontal > .ant-menu-submenu-selected,
+.nav-menu.ant-menu-horizontal > .ant-menu-item:hover,
+.nav-menu.ant-menu-horizontal > .ant-menu-submenu:hover {
+  background: transparent !important;
+}
+
+.nav-menu .ant-menu-item,
+.nav-menu .ant-menu-submenu-title {
+  cursor: pointer !important;
+}
+
+.nav-menu.ant-menu-horizontal > .ant-menu-item-selected::after,
+.nav-menu.ant-menu-horizontal > .ant-menu-submenu-selected::after {
+  border-bottom: 2px solid #1890ff !important;
+  opacity: 1 !important;
+}
+
+/* Drawer Styles - All set to 200px width */
+.ant-drawer-content {
+  overflow: hidden;
+  width: 200px !important;
+}
+
+.ant-drawer-content-wrapper {
+  width: 200px !important;
+}
+
+.ant-drawer-header {
+  width: 200px !important;
+}
+
+.ant-drawer-body {
+  width: 200px !important;
+}
+
+/* Light Mode Drawer */
+.light-drawer .ant-drawer-content {
+  background: #fff;
+  box-shadow: -8px 0 15px rgba(0, 0, 0, 0.1);
+}
+
+.light-drawer .ant-drawer-header {
+  background: #fff;
+}
+
+.light-drawer .ant-drawer-title,
+.light-drawer .ant-drawer-close {
+  color: rgba(0, 0, 0, 0.85);
+}
+
+.light-drawer .ant-drawer-body {
+  padding: 0;
+  background: #fff;
+}
+
+/* Dark Mode Drawer */
+.dark-drawer .ant-drawer-content {
+  background: #1d2b40;
+}
+
+.dark-drawer .ant-drawer-header {
+  background: #1d2b40;
+  border-bottom: 1px solid #2e4a6b;
+}
+
+.dark-drawer .ant-drawer-title,
+.dark-drawer .ant-drawer-close,
+.dark-drawer .ant-drawer-close .anticon {
+  color: #fff;
 }
 
 .dark-drawer .ant-drawer-body {
@@ -163,23 +231,44 @@
   background: #1d2b40;
 }
 
-.dark-drawer .ant-drawer-title,
-.dark-drawer .ant-drawer-close {
-  color: #fff;
-}
-
-.dark-drawer .ant-menu,
-.dark-drawer .ant-menu-item,
-.dark-drawer .ant-menu-submenu-title {
+/* Menu Inside Drawer */
+.dark-drawer .ant-menu {
   background: #1d2b40;
-  color: #fff;
+  border-right: none;
 }
 
+.dark-drawer .ant-menu-item {
+  color: rgba(255, 255, 255, 0.85);
+  transition: all 0.3s;
+}
+
+.dark-drawer .ant-menu-item-selected {
+  background-color: #1890ff !important;
+  color: #fff !important;
+}
+
+.dark-drawer .ant-menu-item:hover {
+  background-color: #243a55 !important;
+}
+
+.light-drawer .ant-menu {
+  border-right: none;
+}
+
+.light-drawer .ant-menu-item-selected {
+  background-color: #e6f7ff !important;
+  color: #1890ff !important;
+}
+
+.light-drawer .ant-menu-item:hover {
+  background-color: #f5f5f5 !important;
+}
+
+/* Dropdown Menu */
 .dropdown-dark,
 .dropdown-dark .ant-dropdown-menu {
   background: #1d2b40;
   color: #fff;
-  border-radius: 6px;
 }
 
 .dropdown-dark .ant-dropdown-menu-item,
@@ -191,14 +280,16 @@
 .dropdown-dark .ant-dropdown-menu-item-active {
   background: #243a55;
 }
-.dark-drawer .ant-drawer-header {
-  background: #1d2b40;
-  border-bottom: 1px solid #2e4a6b;
+
+/* Responsive Styles */
+@media (max-width: 630px) {
+  .logo {
+    height: 20px;
+  }
 }
 
-.dark-drawer .ant-drawer-header-title,
-.dark-drawer .ant-drawer-title,
-.dark-drawer .ant-drawer-close,
-.dark-drawer .ant-drawer-close .anticon {
-  color: #fff;
+@media (max-width: 1200px) {
+  .username {
+    display: none;
+  }
 }

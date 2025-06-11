@@ -9,7 +9,7 @@ import {
   YAxis,
   Bar,
 } from 'recharts';
-import '../../assets/styles/analysis.css';
+import '../../assets/styles/pages/analysis-page.css';
 import BloodMultic from '../../assets/photos/BloodMultic.png';
 import Done from '../../assets/photos/Done.webp';
 import { Button } from 'antd';
@@ -19,7 +19,7 @@ import Syringe from '../../assets/photos/Syringe.webp';
 import MedKit from '../../assets/photos/MedKit.webp';
 import Cholesterol from '../../assets/photos/Cholesterol.webp';
 import Chocolate from '../../assets/photos/Chocolate.webp';
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useState } from 'react';
 import { useAppSelector } from '../../app/hooks';
 import { useSelector } from 'react-redux';
@@ -103,7 +103,7 @@ const CustomBarChart = ({ data }: { data: ChartData[] }) => (
 
 const { Title } = Typography;
 
-function BloodAnalysis() {
+const BloodAnalysis: React.FC = () => {
   const { t } = useTranslation('bloodAnalysis');
   const bloodTestData = useAppSelector(
     (state) => state.tests.blood
@@ -464,6 +464,6 @@ function BloodAnalysis() {
       </div>
     </div>
   );
-}
+};
 
 export default BloodAnalysis;

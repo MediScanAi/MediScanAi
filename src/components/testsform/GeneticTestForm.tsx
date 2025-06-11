@@ -7,11 +7,12 @@ import type { GeneticTestFormValues } from '../../app/slices/testSlice';
 import { useTranslation } from 'react-i18next';
 import PrimaryButton from '../common/buttons/PrimaryButton';
 import SelectInput from '../common/inputs/SelectInput';
+import type React from 'react';
 
 const { Title } = Typography;
 const { Option } = Select;
 
-function GeneticTestForm() {
+const GeneticTestForm: React.FC = () => {
   const navigate = useNavigate();
   const [form] = Form.useForm();
   const { t } = useTranslation('geneticTest');
@@ -171,6 +172,6 @@ function GeneticTestForm() {
       </Form>
     </Card>
   );
-}
+};
 
 export default GeneticTestForm;

@@ -2,11 +2,7 @@ import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 
 export default defineConfig({
-  base: '/',
   plugins: [react()],
-  build: {
-    target: 'esnext',
-  },
   server: {
     host: true,
     port: 5173,
@@ -21,6 +17,15 @@ export default defineConfig({
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api\/parse-pdf/, '/parsePdf'),
       },
+      '/api/receive-data': {
+        target: 'https://us-central1-mediscan-ai-app.cloudfunctions.net',
+        changeOrigin: true,
+        rewrite: (path) =>
+          path.replace(/^\/api\/receive-data/, '/receiveHealthData'),
+      },
     },
+  },
+  build: {
+    target: 'es2022',
   },
 });

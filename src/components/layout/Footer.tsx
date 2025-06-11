@@ -10,7 +10,7 @@ import {
   PhoneOutlined,
   ClockCircleOutlined,
 } from '@ant-design/icons';
-import '../../assets/styles/footer.css';
+import '../../assets/styles/components/layout/footer.css';
 import { useAppSelector } from '../../app/hooks.ts';
 import logoLight from '../../assets/photos/logo-light.svg';
 import logoDark from '../../assets/photos/logo-dark.svg';
@@ -60,7 +60,7 @@ const Footer = () => {
               {t('footer.company')}
             </Title>
             <div className="footer-links">
-              <Link href="/about">{t('footer.aboutUs')}</Link>
+              <Link href="/about-us">{t('footer.aboutUs')}</Link>
               <Link href="/my-health">{t('footer.myHealth')}</Link>
               <Link href="/ai-doctor">{t('footer.aiDoctor')}</Link>
               <Link href="/profile/info">{t('footer.profile')}</Link>

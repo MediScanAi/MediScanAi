@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import LanguagePicker from './LanguagePicker';
 import { useAppSelector } from '../../app/hooks';
-import '../../assets/styles/components/preferences/preferencesDropdown.css';
+import '../../assets/styles/components/preferences/preferences-dropdown.css';
 import ThemePicker from './ThemePicker';
 
 const PreferencesDropdown = () => {

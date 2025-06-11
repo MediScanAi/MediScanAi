@@ -22,7 +22,7 @@ import { useTranslation } from 'react-i18next';
 import { auth } from '../../api/authApi';
 import SecondaryButton from '../../components/common/buttons/SecondaryButton';
 import PrimaryButton from '../../components/common/buttons/PrimaryButton';
-import '../../assets/styles/analysis.css';
+import '../../assets/styles/pages/analysis-page.css';
 
 const { Title, Text } = Typography;
 

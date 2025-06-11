@@ -9,7 +9,7 @@ import {
   YAxis,
   Bar,
 } from 'recharts';
-import '../../assets/styles/analysis.css';
+import '../../assets/styles/pages/analysis-page.css';
 import type { VitaminTestFormValues } from '../../app/slices/testSlice';
 import Drugs from '../../assets/photos/Drugs.webp';
 import VitaminK from '../../assets/photos/VitaminK.webp';
@@ -20,7 +20,7 @@ import Cholesterol from '../../assets/photos/Cholesterol.webp';
 import Cow from '../../assets/photos/Cow.webp';
 import Protein from '../../assets/photos/Protein.webp';
 import PopCorn from '../../assets/photos/PopCorn.webp';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useAppSelector } from '../../app/hooks';
 import { useSelector } from 'react-redux';
 import type { RootState } from '../../app/store';
@@ -54,7 +54,7 @@ const CustomLegend = ({ payload }: { payload: LegendPayload[] }) => (
 
 const { Title } = Typography;
 
-function VitaminAnalysis() {
+const VitaminAnalysis: React.FC = () => {
   const { t } = useTranslation('vitaminAnalysis');
   const vitaminTestData = useAppSelector((state) => state.tests.vitamin);
   const isDarkMode = useSelector((state: RootState) => state.theme.isDarkMode);
@@ -438,6 +438,6 @@ function VitaminAnalysis() {
       </div>
     </div>
   );
-}
+};
 
 export default VitaminAnalysis;

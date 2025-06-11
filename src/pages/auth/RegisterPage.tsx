@@ -9,9 +9,9 @@ import { getAuth, reload } from 'firebase/auth';
 import { mapFirebaseUser } from '../../api/authApi';
 import LoginWithGoogleButton from '../../components/common/buttons/LoginWithGoogleButton';
 import PrimaryButton from '../../components/common/buttons/PrimaryButton';
-import '../../assets/styles/RegisterPage.css';
+import '../../assets/styles/pages/register-page.css';
 import Notebook3D from '../../assets/photos/Notebook.webp';
-import '../../assets/styles/LoginPage.css';
+import '../../assets/styles/pages/login-page.css';
 import PreferencesDropdown from '../../components/preferences/PreferencesDropdown';
 import SecondaryButton from '../../components/common/buttons/SecondaryButton';
 import { X } from 'lucide-react';
@@ -165,7 +165,7 @@ const RegisterPage: React.FC = () => {
                           },
                         ]}
                       >
-                        <TextInput placeholder={t('register.forms.surname')} />
+                        <TextInput placeholder={t('register.forms.surname')} size='large'/>
                       </Form.Item>
                     </Col>
                     <Col xs={24} sm={12}>

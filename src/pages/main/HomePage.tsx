@@ -18,7 +18,7 @@ import fileUpload from '../../assets/photos/Folder.webp';
 import aiAnalysis from '../../assets/photos/Productivity 4.webp';
 import insightsReport from '../../assets/photos/Finance 5.webp';
 import clinicalDecision from '../../assets/photos/m11.webp';
-import '../../assets/styles/homepage.css';
+import '../../assets/styles/pages/home-page.css';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
@@ -29,7 +29,7 @@ import SecondaryButton from '../../components/common/buttons/SecondaryButton';
 
 const { Title, Text } = Typography;
 
-function HomePage() {
+const HomePage: React.FC = () => {
   const { t } = useTranslation('homePage');
   const [width, setWidth] = useState(window.innerWidth);
   const [openIndex, setOpenIndex] = useState<number | null>(null);
@@ -387,8 +387,9 @@ function HomePage() {
                 autoplay
                 autoplaySpeed={2000}
                 infinite
+                dots={false}
                 slidesToShow={
-                  width > 1500 ? 4 : width > 1200 ? 3 : width > 820 ? 2 : 1
+                  width > 1500 ? 4 : width > 1200 ? 3 : width > 620 ? 2 : 1
                 }
                 slidesToScroll={1}
                 className="carousel-container"
@@ -403,20 +404,35 @@ function HomePage() {
                             ? '300px'
                             : width > 1200
                               ? '350px'
-                              : width > 820
-                                ? '340px'
-                                : '370px',
+                              : width > 620
+                                ? '37vw'
+                                : '67vw',
                       }}
                       hoverable
                       className={`partner-card ${isDarkMode ? 'dark' : ''}`}
                     >
-                      <div className="partner-image-container">
-                        <img
-                          draggable={false}
-                          src={partner.image}
-                          alt={partner.name}
-                          className="partner-image"
-                        />
+                      <img
+                        draggable={false}
+                        src={partner.image}
+                        alt={partner.name}
+                        className="partner-image"
+                        style={{
+                          height: width > 670 ? 230 : width > 300 ? 200 : 200,
+                        }}
+                      />
+                      <div
+                        style={{
+                          height:
+                            width > 900
+                              ? 200
+                              : width > 630
+                                ? 250
+                                : width > 620
+                                  ? 300
+                                  : 200,
+                        }}
+                        className="partner-image-container"
+                      >
                         <Title
                           level={4}
                           className={`partner-name ${isDarkMode ? 'dark' : ''}`}
@@ -448,6 +464,6 @@ function HomePage() {
       </Col>
     </Row>
   );
-}
+};
 
 export default HomePage;

@@ -1,19 +1,7 @@
 import { useState } from 'react';
+import { Layout, Menu, Button, Space, Drawer, Grid } from 'antd';
 import {
-  Layout,
-  Menu,
-  Dropdown,
-  Button,
-  Space,
-  Drawer,
-  Typography,
-  Grid,
-} from 'antd';
-import {
-  LogoutOutlined,
-  UserOutlined,
   MenuOutlined,
-  DownOutlined,
   MoreOutlined,
   HomeOutlined,
   MedicineBoxOutlined,
@@ -21,28 +9,26 @@ import {
   TeamOutlined,
 } from '@ant-design/icons';
 import { NavLink, useLocation, useNavigate } from 'react-router-dom';
-import { useAppDispatch, useAppSelector } from '../../app/hooks.ts';
-import { logoutUser } from '../../app/slices/authSlice.ts';
+import { useAppSelector } from '../../app/hooks';
 import { useTranslation } from 'react-i18next';
 import logoLight from '../../assets/photos/logo-light.svg';
 import logoDark from '../../assets/photos/logo-dark.svg';
-import '../../assets/styles/Header.css';
-import PreferencesDropdown from '../preferences/PreferencesDropdown.tsx';
-import PrimaryButton from '../common/buttons/PrimaryButton.tsx';
-import UserAvatar from '../common/UserAvatar.tsx';
+import '../../assets/styles/components/layout/header.css';
+import PreferencesDropdown from '../preferences/PreferencesDropdown';
+import PrimaryButton from '../common/buttons/PrimaryButton';
 import LogoWeb from '../../assets/photos/Logo Web.png';
+import UserDropdown from './UserDropdown';
 
 const { Header } = Layout;
-const { Text } = Typography;
 
-export default function AppHeader() {
+const AppHeader: React.FC = () => {
   const { t } = useTranslation('header');
-  const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const { pathname } = useLocation();
   const user = useAppSelector((s) => s.auth.user);
   const isDarkMode = useAppSelector((s) => s.theme.isDarkMode);
   const screens = Grid.useBreakpoint();
+  const [drawerOpen, setDrawerOpen] = useState<boolean>(false);
   const showDrawer = screens.xs;
 
   const mainMenuItems = [
@@ -103,23 +89,14 @@ export default function AppHeader() {
     },
   ];
 
-  const [drawerOpen, setDrawerOpen] = useState(false);
-  const [usrMenuOpen, setUsrMenuOpen] = useState(false);
-
-  const navigateHome = () => {
+  const navigateHome = (): void => {
     navigate('/');
   };
+
   return (
     <Header className={`app-header ${isDarkMode ? 'dark' : 'light'}`}>
       <div className="app-header-container">
         <div className="header-left">
-          <img
-            src={isDarkMode ? logoDark : logoLight}
-            draggable={false}
-            onClick={navigateHome}
-            alt="logo"
-            className="logo"
-          />
           {showDrawer && (
             <Button
               type="text"
@@ -128,6 +105,13 @@ export default function AppHeader() {
               onClick={() => setDrawerOpen(true)}
             />
           )}
+          <img
+            src={isDarkMode ? logoDark : logoLight}
+            draggable={false}
+            onClick={navigateHome}
+            alt="logo"
+            className="logo"
+          />
         </div>
 
         {!showDrawer && (
@@ -146,54 +130,7 @@ export default function AppHeader() {
           <Space size="middle">
             <PreferencesDropdown />
             {user ? (
-              <Dropdown
-                menu={{
-                  items: [
-                    {
-                      key: 'profile',
-                      icon: <UserOutlined />,
-                      label: (
-                        <NavLink to="/profile/info">
-                          {t('menu.profile')}
-                        </NavLink>
-                      ),
-                    },
-                    {
-                      key: 'logout',
-                      icon: <LogoutOutlined className="logout-link" />,
-                      label: (
-                        <span
-                          onClick={() => {
-                            dispatch(logoutUser());
-                            navigate('/');
-                          }}
-                          className="logout-link"
-                        >
-                          {t('menu.logout')}
-                        </span>
-                      ),
-                    },
-                  ],
-                }}
-                open={usrMenuOpen}
-                onOpenChange={setUsrMenuOpen}
-                placement="bottomRight"
-                overlayClassName={
-                  isDarkMode ? 'dropdown-dark' : 'dropdown-light'
-                }
-              >
-                <div className={`user-profile ${isDarkMode ? 'dark' : ''}`}>
-                  <UserAvatar user={user} size="small" />
-                  <Text className={`username ${isDarkMode ? 'dark' : ''}`}>
-                    {user.firstName} {user.lastName}
-                  </Text>
-                  <span
-                    className={`arrow-icon ${usrMenuOpen ? 'rotated' : ''}`}
-                  >
-                    <DownOutlined />
-                  </span>
-                </div>
-              </Dropdown>
+              <UserDropdown user={user} />
             ) : (
               <PrimaryButton
                 style={{ height: '35px' }}
@@ -207,12 +144,24 @@ export default function AppHeader() {
         </div>
 
         <Drawer
-          className={isDarkMode ? 'dark-drawer' : ''}
+          className={isDarkMode ? 'dark-drawer' : 'light-drawer'}
           title="Menu"
-          placement="right"
+          placement="left"
           open={drawerOpen}
           onClose={() => setDrawerOpen(false)}
-          styles={{ body: { padding: 0 } }}
+          styles={{
+            body: { 
+              padding: 0,
+              backgroundColor: isDarkMode ? '#1d2b40' : '#fff'
+            },
+            header: {
+              backgroundColor: isDarkMode ? '#1d2b40' : '#fff',
+              borderBottom: isDarkMode ? '1px solid #2e4a6b' : '1px solid #f0f0f0'
+            },
+            content: {
+              boxShadow: 'none !important',
+            },
+          }}
         >
           <Menu
             theme={isDarkMode ? 'dark' : 'light'}
@@ -225,4 +174,6 @@ export default function AppHeader() {
       </div>
     </Header>
   );
-}
+};
+
+export default AppHeader;

@@ -29,7 +29,13 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
 export const db = getFirestore(app);
-await setPersistence(auth, browserLocalPersistence);
+(async () => {
+  try {
+    await setPersistence(auth, browserLocalPersistence);
+  } catch (error) {
+    console.error('Error initializing Firebase:', error);
+  }
+})();
 
 export interface AuthUser {
   firstName: string;
@@ -93,14 +99,13 @@ export const sendVerificationEmail = async (u: FirebaseUser) =>
 export const applyVerificationCode = async (oobCode: string) =>
   applyActionCode(auth, oobCode);
 
-function isFirebaseAuthError(error: unknown): error is { code: string } {
-  return (
-    typeof error === 'object' &&
-    error !== null &&
-    Object.prototype.hasOwnProperty.call(error, 'code') &&
-    typeof (error as Record<string, unknown>).code === 'string'
-  );
-}
+export const isFirebaseAuthError = (
+  error: unknown
+): error is { code: string } =>
+  typeof error === 'object' &&
+  error !== null &&
+  Object.prototype.hasOwnProperty.call(error, 'code') &&
+  typeof (error as Record<string, unknown>).code === 'string';
 
 /**
  * Opens a Google sign-in popup.

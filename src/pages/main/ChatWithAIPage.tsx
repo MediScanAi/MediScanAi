@@ -9,6 +9,7 @@ import {
   Dropdown,
   type MenuProps,
   message,
+  Drawer,
 } from 'antd';
 import {
   PlusOutlined,
@@ -18,6 +19,9 @@ import {
   UploadOutlined,
   SoundOutlined,
   UserOutlined,
+  MenuOutlined,
+  CloseOutlined,
+  CheckOutlined,
 } from '@ant-design/icons';
 import { v4 as uuidv4 } from 'uuid';
 import axios from 'axios';
@@ -30,7 +34,7 @@ import {
 } from 'firebase/firestore';
 import { onAuthStateChanged } from 'firebase/auth';
 import { db, auth } from '../../api/authApi';
-import '../../assets/styles/chatwithai.css';
+import '../../assets/styles/pages/chat-with-ai-page.css';
 import { format, isToday, isYesterday, differenceInDays } from 'date-fns';
 import { Upload } from 'antd';
 import { DiffOutlined } from '@ant-design/icons';
@@ -44,6 +48,8 @@ import { useSelector } from 'react-redux';
 import PrimaryButton from '../../components/common/buttons/PrimaryButton';
 import MediScanAILogo from '../../assets/photos/Logo.webp';
 import i18n from '../../i18n';
+import { Header } from 'antd/es/layout/layout';
+import { API_BASE } from '../../api/baseURL';
 
 const { Sider, Content } = Layout;
 const { Text } = Typography;
@@ -64,6 +70,8 @@ interface Chat {
 const ChatWithAi = () => {
   const [chats, setChats] = useState<Chat[]>([]);
   const [selectedChatId, setSelectedChatId] = useState<string | null>(null);
+  const [isMobile, setIsMobile] = useState(false);
+  const [drawerVisible, setDrawerVisible] = useState(false);
   const [input, setInput] = useState('');
   const [loading, setLoading] = useState(false);
   const [editingChatId, setEditingChatId] = useState<string | null>(null);
@@ -89,6 +97,18 @@ const ChatWithAi = () => {
   const synth = window.speechSynthesis;
 
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 900);
+    };
+
+    handleResize();
+
+    window.addEventListener('resize', handleResize);
+
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   useEffect(() => {
     let testDescription = '';
@@ -368,7 +388,7 @@ const ChatWithAi = () => {
     setLoading(true);
 
     try {
-      const res = await axios.post('/api/chat', {
+      const res = await axios.post(`${API_BASE}/chatWithOpenAI`, {
         messages: updatedChat.messages,
       });
 
@@ -415,8 +435,8 @@ const ChatWithAi = () => {
                 .map(([key, value]) => `${key}: ${value}`)
                 .join(', '),
             }) +
-              t('chat.describeResults') +
-              t('chat.recommendPlan')
+            t('chat.describeResults') +
+            t('chat.recommendPlan')
           );
         } else {
           message.error(t('chat.noBloodTests'));
@@ -439,8 +459,8 @@ const ChatWithAi = () => {
                 .map(([key, value]) => `${key}: ${value}`)
                 .join(', '),
             }) +
-              t('chat.describeResults') +
-              t('chat.recommendPlan')
+            t('chat.describeResults') +
+            t('chat.recommendPlan')
           );
         } else {
           message.error(t('chat.noUrineTests'));
@@ -463,8 +483,8 @@ const ChatWithAi = () => {
                 .map(([key, value]) => `${key}: ${value}`)
                 .join(', '),
             }) +
-              t('chat.describeResults') +
-              t('chat.recommendPlan')
+            t('chat.describeResults') +
+            t('chat.recommendPlan')
           );
         } else {
           message.error(t('chat.noVitaminTests'));
@@ -487,8 +507,8 @@ const ChatWithAi = () => {
                 .map(([key, value]) => `${key}: ${value}`)
                 .join(', '),
             }) +
-              t('chat.describeResults') +
-              t('chat.recommendPlan')
+            t('chat.describeResults') +
+            t('chat.recommendPlan')
           );
         } else {
           message.error(t('chat.noGeneticTests'));
@@ -529,7 +549,7 @@ const ChatWithAi = () => {
             reader.onload = async () => {
               try {
                 const base64 = (reader.result as string).split(',')[1];
-                const res = await axios.post('/api/parse-pdf', {
+                const res = await axios.post(`${API_BASE}/parsePdf`, {
                   fileBase64: base64,
                 });
                 setInput(res.data.text.trim());
@@ -567,134 +587,237 @@ const ChatWithAi = () => {
     },
   ];
 
-  return (
-    <Layout className={`chat-with-ai ${isDarkMode ? 'dark' : ''}`}>
-      <Sider
-        width={240}
-        style={{
-          background: isDarkMode ? 'rgb(38, 63, 137)' : '#fff',
-        }}
-      >
-        <div className="sider-div">
-          <PrimaryButton
-            icon={<PlusOutlined />}
-            className="new-button"
-            onClick={createNewChat}
+  const renderSidebarContent = () => (
+    <>
+      <div className="sider-div">
+        <PrimaryButton
+          icon={<PlusOutlined />}
+          className="new-button"
+          onClick={() => {
+            createNewChat();
+          }}
+        >
+          {t('chat.newChat')}
+        </PrimaryButton>
+      </div>
+      {Object.entries(grouped).map(([label, chats]) => (
+        <div key={label} className="chats-list-container">
+          <Text
+            className={`chat-with-ai-label chat-list-label ${isDarkMode ? 'dark' : ''}`}
+            type="secondary"
           >
-            {t('chat.newChat')}
-          </PrimaryButton>
-        </div>
-        {Object.entries(grouped).map(([label, chats]) => (
-          <div key={label} className="chats-list-container">
-            <Text
-              className={`chat-with-ai-label chat-list-label ${isDarkMode ? 'dark' : ''}`}
-              type="secondary"
-            >
-              {label}
-            </Text>
-            <List
-              size="small"
-              dataSource={chats}
-              className="chats-list-container"
-              renderItem={(chat) => (
-                <List.Item
-                  onClick={() => setSelectedChatId(chat.id)}
-                  className={`chat-item-hover ${isDarkMode ? 'dark' : ''}`}
-                  style={{
-                    background:
-                      chat.id !== selectedChatId
-                        ? isDarkMode
-                          ? 'transparent'
-                          : 'rgb(255, 255, 255)'
-                        : isDarkMode
-                          ? 'rgb(38, 63, 137)'
-                          : '#fff',
-                    boxShadow:
-                      chat.id === selectedChatId
-                        ? '0 2px 6px rgba(0, 0, 0, 0.5)'
-                        : 'none',
-                  }}
-                >
-                  <div className="list-item-div">
-                    {editingChatId === chat.id ? (
+            {label}
+          </Text>
+          <List
+            size="small"
+            dataSource={chats}
+            className="chats-list-container"
+            renderItem={(chat) => (
+              <List.Item
+                onClick={() => {
+                  setSelectedChatId(chat.id);
+                }}
+                className={`chat-item-hover ${isDarkMode ? 'dark' : ''}`}
+                style={{
+                  width: 200,
+                  background:
+                    chat.id !== selectedChatId
+                      ? isDarkMode
+                        ? 'transparent'
+                        : 'rgb(255, 255, 255)'
+                      : isDarkMode
+                        ? 'rgb(38, 63, 137)'
+                        : '#fff',
+                  boxShadow:
+                    chat.id === selectedChatId
+                      ? '0 2px 6px rgba(0, 0, 0, 0.5)'
+                      : 'none',
+                }}
+              >
+                <div className="list-item-div">
+                  {editingChatId === chat.id ? (
+                    <div
+                      onClick={(e) => e.stopPropagation()}
+                      style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        width: '100%',
+                        gap: 8,
+                      }}
+                    >
                       <Input
                         value={editingTitle}
                         onChange={(e) => setEditingTitle(e.target.value)}
-                        onPressEnter={async () => {
+                        onPressEnter={async (e) => {
+                          e.stopPropagation();
                           await renameChat(chat.id, editingTitle);
                           setEditingChatId(null);
                         }}
-                        onBlur={() => setEditingChatId(null)}
                         autoFocus
                         size="small"
+                        style={{ flex: 1 }}
+                        className="borderless-input"
                       />
-                    ) : (
-                      <>
-                        <Text
-                          className={`chat-item-title ${isDarkMode ? 'dark' : ''}`}
-                          strong
-                        >
-                          {chat.title}
-                        </Text>
-                        <Dropdown
-                          className={`chat-with-ai-dropdown ${isDarkMode ? 'dark' : ''}`}
-                          trigger={['click']}
-                          menu={{
-                            items: [
-                              {
-                                key: 'rename',
-                                label: t('chat.rename'),
-                                style: {
-                                  color: isDarkMode ? '#ffffff' : '#000000',
-                                },
+                      <Button
+                        type="text"
+                        size="small"
+                        onClick={async (e) => {
+                          e.stopPropagation();
+                          await renameChat(chat.id, editingTitle);
+                          setEditingChatId(null);
+                        }}
+                        icon={<CheckOutlined />}
+                      />
+                      <Button
+                        type="text"
+                        size="small"
+                        onClick={() => {
+                          setEditingChatId(null);
+                          setEditingTitle('');
+                        }}
+                        icon={<CloseOutlined />}
+                      />
+                    </div>
+                  ) : (
+                    <>
+                      <Text
+                        className={`chat-item-title ${isDarkMode ? 'dark' : ''}`}
+                        strong
+                      >
+                        {chat.title}
+                      </Text>
+                      <Dropdown
+                        className={`chat-with-ai-dropdown ${isDarkMode ? 'dark' : ''}`}
+                        trigger={['click']}
+                        menu={{
+                          items: [
+                            {
+                              key: 'rename',
+                              label: t('chat.rename'),
+                              style: {
+                                color: isDarkMode ? '#ffffff' : '#000000',
                               },
-                              {
-                                key: 'delete',
-                                label: t('chat.delete'),
-                                danger: true,
-                                style: {
-                                  color: isDarkMode ? '#ffffff' : '#000000',
-                                },
+                            },
+                            {
+                              key: 'delete',
+                              label: t('chat.delete'),
+                              danger: true,
+                              style: {
+                                color: isDarkMode ? '#ffffff' : '#000000',
                               },
-                            ],
-                            onClick: ({ key }) => {
-                              if (key === 'rename') {
-                                setEditingChatId(chat.id);
-                                setEditingTitle(chat.title);
-                              } else if (key === 'delete') {
-                                deleteChat(chat.id);
-                              }
                             },
-                            style: {
-                              background: isDarkMode
-                                ? 'rgb(38, 63, 137)'
-                                : '#fff',
-                            },
-                          }}
-                        >
-                          <MoreOutlined
-                            onClick={(e) => e.stopPropagation()}
-                            className={`more-icon ${isDarkMode ? 'dark' : ''}`}
-                          />
-                        </Dropdown>
-                      </>
-                    )}
-                  </div>
-                </List.Item>
-              )}
-            />
-          </div>
-        ))}
-      </Sider>
+                          ],
+                          onClick: ({ key }) => {
+                            if (key === 'rename') {
+                              setEditingChatId(chat.id);
+                              setEditingTitle(chat.title);
+                            } else if (key === 'delete') {
+                              deleteChat(chat.id);
+                            }
+                          },
+                          style: {
+                            background: isDarkMode
+                              ? 'rgb(38, 63, 137)'
+                              : '#fff',
+                          },
+                        }}
+                      >
+                        <MoreOutlined
+                          onClick={(e) => e.stopPropagation()}
+                          className={`more-icon ${isDarkMode ? 'dark' : ''}`}
+                        />
+                      </Dropdown>
+                    </>
+                  )}
+                </div>
+              </List.Item>
+            )}
+          />
+        </div>
+      ))}
+    </>
+  );
+
+  return (
+    <Layout className={`chat-with-ai ${isDarkMode ? 'dark' : ''}`}>
+      {isMobile && (
+        <Header
+          className={`chat-with-ai ${isDarkMode ? 'dark' : ''}`}
+          style={{
+            padding: '0 16px',
+            display: 'flex',
+            alignItems: 'center',
+            height: '68px',
+            background: 'none',
+            border: 'none',
+            boxShadow: 'none',
+          }}
+        >
+          <Button
+            icon={<MenuOutlined />}
+            onClick={() => setDrawerVisible(true)}
+            className="hamburger-btn"
+            style={{
+              marginRight: 16,
+              height: '32px',
+              background: 'none',
+              border: 'none',
+              boxShadow: 'none',
+            }}
+          />
+          <Text
+            strong
+            style={{
+              color: isDarkMode ? '#fff' : 'inherit',
+              fontSize: '18px',
+            }}
+          >
+            {t('chat.AiAssistant')}
+          </Text>
+        </Header>
+      )}
+
+      {isMobile && (
+        <Drawer
+          title={t('chat.AiAssistant')}
+          placement="left"
+          closable={true}
+          onClose={() => setDrawerVisible(false)}
+          open={drawerVisible}
+          className={`light-drawer ${isDarkMode ? 'dark' : ''}`}
+          styles={{
+            body: {
+              padding: 0,
+              background: isDarkMode ? 'rgb(38, 63, 137)' : '#fff',
+            },
+            header: {
+              background: isDarkMode ? 'rgb(38, 63, 137)' : '#fff',
+              color: isDarkMode ? '#fff' : 'inherit',
+            },
+          }}
+        >
+          {renderSidebarContent()}
+        </Drawer>
+      )}
+
+      {!isMobile && (
+        <Sider
+          width={240}
+          style={{
+            background: isDarkMode ? 'rgb(38, 63, 137)' : '#fff',
+          }}
+        >
+          {renderSidebarContent()}
+        </Sider>
+      )}
 
       <Content style={{ display: 'flex', flexDirection: 'column' }}>
         <div className="chat-content-container custom-scrollbar">
           {selectedChat?.messages.map((msg, idx) => (
             <div className="message-row" key={idx}>
               <div
-                className={`message-container ${
-                  msg.role === 'user' ? 'user-message' : 'ai-message'
-                } ${isDarkMode ? 'dark' : ''}`}
+                className={`message-container ${msg.role === 'user' ? 'user-message' : 'ai-message'
+                  } ${isDarkMode ? 'dark' : ''}`}
               >
                 <div className="message-buttons">
                   <Button
@@ -773,10 +896,22 @@ const ChatWithAi = () => {
                 className={`plus-icon ${isDarkMode ? 'dark' : ''}`}
               />
             </Dropdown>
-
-            <div className="chat-textarea-wrapper">
+            <div
+              className="chat-textarea-wrapper"
+              style={
+                isMobile
+                  ? {
+                    minWidth: 350,
+                    marginLeft: 8,
+                  }
+                  : {
+                    width: 580,
+                    maxWidth: '100%',
+                  }
+              }
+            >
               <Input.TextArea
-                className="chat-textarea custom-scrollbar"
+                className="chat-textarea"
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 onPressEnter={(e) => {
@@ -786,8 +921,18 @@ const ChatWithAi = () => {
                   }
                 }}
                 placeholder={t('chat.typeYourMessage')}
-                autoSize={{ minRows: 1, maxRows: 7 }}
+                autoSize={
+                  isMobile
+                    ? { minRows: 1, maxRows: 3 }
+                    : { minRows: 1, maxRows: 7 }
+                }
                 disabled={loading}
+                style={{
+                  fontSize: 15,
+                  padding: '8px 12px',
+                  width: '100%',
+                  height: 150,
+                }}
               />
               {loading ? (
                 <Spin

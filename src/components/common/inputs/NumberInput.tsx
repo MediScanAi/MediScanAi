@@ -1,7 +1,7 @@
 import React from 'react';
 import { InputNumber } from 'antd';
 import type { InputNumberProps } from 'antd';
-import '../../../assets/styles/components/inputs/numberInput.css';
+import '../../../assets/styles/components/inputs/number-input.css';
 
 type CustomNumberInputProps = InputNumberProps & {
   className?: string;

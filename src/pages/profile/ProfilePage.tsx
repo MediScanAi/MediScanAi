@@ -5,7 +5,7 @@ import {
   PhoneOutlined,
   UserOutlined,
 } from '@ant-design/icons';
-import '../../assets/styles/Profile.css';
+import '../../assets/styles/pages/profile-page.css';
 import { Navigate, useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 

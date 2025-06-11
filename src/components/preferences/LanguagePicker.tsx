@@ -3,7 +3,7 @@ import engFlag from '../../assets/photos/united-kingdom.png';
 import rusFlag from '../../assets/photos/russia.png';
 import armFlag from '../../assets/photos/armenia.png';
 import { useAppSelector } from '../../app/hooks';
-import '../../assets/styles/components/preferences/languagePicker.css';
+import '../../assets/styles/components/preferences/language-picker.css';
 import SelectInput from '../common/inputs/SelectInput';
 const languageOptions = [
   {
