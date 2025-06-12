@@ -159,11 +159,11 @@
 }
 
 .dark .chat-textarea {
-  background-color: #121e63;
+  background-color: #ffffff;
 }
 
 .dark .chat-textarea::placeholder {
-  color: #fff;
+  color: #545454;
 }
 
 .ant-drawer-content {
@@ -172,11 +172,11 @@
 }
 
 .ant-drawer-content-wrapper {
-  width: 200px !important;
+  width: 240px !important;
 }
 
 .ant-drawer-header {
-  width: 200px !important;
+  width: 240px !important;
 }
 
 .ant-drawer-body {
@@ -184,5 +184,5 @@
 }
 
 .ant-drawer-content-wrapper {
-  width: 200px !important;
+  width: 240px !important;
 }

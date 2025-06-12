@@ -779,7 +779,7 @@ const ChatWithAi = () => {
 
       {isMobile && (
         <Drawer
-          title={t('chat.AiAssistant')}
+          title={<Text className={`chat-with-ai-label ${isDarkMode ? 'dark' : ''}`}>{t('chat.AiAssistant')}</Text>}
           placement="left"
           closable={true}
           onClose={() => setDrawerVisible(false)}
@@ -911,7 +911,7 @@ const ChatWithAi = () => {
               }
             >
               <Input.TextArea
-                className="chat-textarea"
+                className={`chat-textarea ${isDarkMode ? 'dark' : ''}`}
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 onPressEnter={(e) => {

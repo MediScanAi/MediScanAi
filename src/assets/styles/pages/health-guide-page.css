@@ -178,7 +178,6 @@
   .guide-card {
     width: 100%;
     max-width: 400px;
-    height: 590px;
     margin-bottom: 24px;
   }
 }
@@ -314,4 +313,100 @@
 
 .modal-container.dark .info-circle {
   color: #ffa500;
+}
+
+.lucide-user {
+  color: #000000 !important;
+}
+
+.lucide-user.dark {
+  color: #ffffff !important;
+}
+
+.lucide-scale {
+  color: #000000 !important;
+}
+
+.lucide-scale.dark {
+  color: #ffffff !important;
+}
+
+.lucide-activity {
+  color: #000000 !important;
+}
+
+.lucide-activity.dark {
+  color: #ffffff !important;
+}
+
+.lucide-target {
+  color: #000000 !important;
+}
+
+.lucide-target.dark {
+  color: #ffffff !important;
+}
+
+.lucide-trending-up {
+  color: #000000 !important;
+}
+
+.lucide-trending-up.dark {
+  color: #ffffff !important;
+}
+
+.lucide-zap {
+  color: #000000 !important;
+}
+
+.lucide-zap.dark {
+  color: #ffffff !important;
+}
+
+.lucide-heart {
+  color: #000000 !important;
+}
+
+.lucide-heart.dark {
+  color: #ffffff !important;
+}
+
+.lucide-fund {
+  color: #000000 !important;
+}
+
+.lucide-fund.dark {
+  color: #ffffff !important;
+}
+
+.lucide-safety {
+  color: #000000 !important;
+}
+
+.lucide-safety.dark {
+  color: #ffffff !important;
+}
+
+.lucide-sync {
+  color: #000000 !important;
+}
+
+.lucide-sync.dark {
+  color: #ffffff !important;
+}
+
+.lucide-database {
+  color: #000000 !important;
+}
+
+.lucide-database.dark {
+  color: #ffffff !important;
+}
+
+.lucide-loading {
+  color: #000000 !important;
+}
+
+.lucide-loading.dark {
+  color: #ffffff !important;
 }
