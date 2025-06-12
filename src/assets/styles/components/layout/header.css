@@ -183,7 +183,7 @@
 }
 
 .ant-drawer-header {
-  width: 200px !important;
+  width: 250px !important;
 }
 
 .ant-drawer-body {
@@ -213,11 +213,13 @@
 /* Dark Mode Drawer */
 .dark-drawer .ant-drawer-content {
   background: #1d2b40;
+  width: 240px !important;
 }
 
 .dark-drawer .ant-drawer-header {
   background: #1d2b40;
   border-bottom: 1px solid #2e4a6b;
+  width: 240px !important;
 }
 
 .dark-drawer .ant-drawer-title,

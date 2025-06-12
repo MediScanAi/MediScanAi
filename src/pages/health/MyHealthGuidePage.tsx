@@ -36,31 +36,31 @@ const MyHealthGuide: React.FC = () => {
   const isDarkMode = useSelector((state: RootState) => state.theme.isDarkMode);
 
   const profileSteps = [
-    { icon: <User className="w-4 h-4 text-green-500" />, key: 'ageGender' },
-    { icon: <Scale className="w-4 h-4 text-green-500" />, key: 'heightWeight' },
+    { icon: <User className={`lucide-user ${isDarkMode ? 'dark' : ''}`} />, key: 'ageGender' },
+    { icon: <Scale className={`lucide-scale ${isDarkMode ? 'dark' : ''}`} />, key: 'heightWeight' },
     {
-      icon: <Activity className="w-4 h-4 text-green-500" />,
+      icon: <Activity className={`lucide-activity ${isDarkMode ? 'dark' : ''}`} />,
       key: 'activityLevel',
     },
-    { icon: <Target className="w-4 h-4 text-green-500" />, key: 'bodyFat' },
+    { icon: <Target className={`lucide-target ${isDarkMode ? 'dark' : ''}`} />, key: 'bodyFat' },
     {
-      icon: <TrendingUp className="w-4 h-4 text-green-500" />,
+      icon: <TrendingUp className={`lucide-trending-up ${isDarkMode ? 'dark' : ''}`} />,
       key: 'idealWeight',
     },
-    { icon: <Zap className="w-4 h-4 text-green-500" />, key: 'dailyCalories' },
+    { icon: <Zap className={`lucide-zap ${isDarkMode ? 'dark' : ''}`} />, key: 'dailyCalories' },
     {
-      icon: <HeartOutlined className="w-4 h-4 text-green-500" />,
+      icon: <HeartOutlined className={`lucide-heart ${isDarkMode ? 'dark' : ''}`} />,
       key: 'exerciseGoal',
     },
-    { icon: <FundOutlined />, key: 'step5' },
+    { icon: <FundOutlined className={`lucide-fund ${isDarkMode ? 'dark' : ''}`} />, key: 'step5' },
   ];
 
   const connectSteps = [
-    { icon: <SafetyOutlined />, key: 'step1' },
-    { icon: <SyncOutlined />, key: 'step2' },
-    { icon: <DatabaseOutlined />, key: 'step3' },
-    { icon: <LoadingOutlined />, key: 'step4' },
-    { icon: <FundOutlined />, key: 'step5' },
+    { icon: <SafetyOutlined className={`lucide-safety ${isDarkMode ? 'dark' : ''}`} />, key: 'step1' },
+    { icon: <SyncOutlined className={`lucide-sync ${isDarkMode ? 'dark' : ''}`} />, key: 'step2' },
+    { icon: <DatabaseOutlined className={`lucide-database ${isDarkMode ? 'dark' : ''}`} />, key: 'step3' },
+    { icon: <LoadingOutlined className={`lucide-loading ${isDarkMode ? 'dark' : ''}`} />, key: 'step4' },
+    { icon: <FundOutlined className={`lucide-fund ${isDarkMode ? 'dark' : ''}`} />, key: 'step5' },
   ];
 
   const showModal = () => {
